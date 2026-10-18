@@ -1,0 +1,34 @@
+import { createBrowserRouter } from 'react-router';
+import { HomePage } from '@/features/home/HomePage';
+import { NotFoundPage, RouteError } from './ErrorScreens';
+import { Layout } from './Layout';
+
+export function createRouter() {
+  return createBrowserRouter(
+    [
+      {
+        element: <Layout />,
+        errorElement: <RouteError />,
+        children: [
+          { index: true, element: <HomePage /> },
+          // Secondary screens load on demand to keep the first load small.
+          {
+            path: 'beallitasok',
+            lazy: async () => ({
+              Component: (await import('@/features/settings/SettingsPage')).SettingsPage,
+            }),
+          },
+          {
+            path: 'nevjegy',
+            lazy: async () => ({
+              Component: (await import('@/features/about/AboutPage')).AboutPage,
+            }),
+          },
+          { path: '*', element: <NotFoundPage /> },
+        ],
+      },
+    ],
+    // Vite's BASE_URL ends with a slash; the router expects none.
+    { basename: import.meta.env.BASE_URL.replace(/\/$/, '') || '/' },
+  );
+}

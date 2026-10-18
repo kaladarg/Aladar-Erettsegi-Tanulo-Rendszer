@@ -1,0 +1,18 @@
+node_modules/
+dist/
+dev-dist/
+coverage/
+playwright-report/
+test-results/
+blob-report/
+*.tsbuildinfo
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+.vscode/*
+!.vscode/extensions.json
+# Official exam material lives in the separate content repository, never here.
+/content/
+/tools/.cache/

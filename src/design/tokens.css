@@ -1,0 +1,119 @@
+/*
+ * Design tokens. Every color, size and motion value the UI uses comes from here.
+ * Light values live on :root, dark values on [data-theme='dark'] (set by the
+ * boot script from the user's setting or the system preference).
+ * Contrast of the text/background pairs is verified in tokens.test.ts.
+ */
+:root {
+  /* Surfaces */
+  --c-bg: #faf9f7;
+  --c-surface: #ffffff;
+  --c-surface-muted: #f2f0ec;
+  --c-border: #e2ded7;
+  --c-border-strong: #857f75;
+
+  /* Text */
+  --c-text: #1c1a17;
+  --c-text-muted: #5c574f;
+
+  /* Brand */
+  --c-primary: #0f766e;
+  --c-primary-hover: #115e59;
+  --c-primary-fg: #ffffff;
+  --c-primary-soft: #ccfbf1;
+  --c-primary-soft-fg: #134e4a;
+
+  /* Semantic */
+  --c-success: #15803d;
+  --c-success-soft: #dcfce7;
+  --c-warning: #a16207;
+  --c-warning-soft: #fef9c3;
+  --c-danger: #b91c1c;
+  --c-danger-fg: #ffffff;
+  --c-danger-soft: #fee2e2;
+  --c-info: #1d4ed8;
+  --c-info-soft: #dbeafe;
+  --c-focus: #1d4ed8;
+
+  /* Subject accents */
+  --c-subject-matematika: #1d4ed8;
+  --c-subject-tortenelem: #b45309;
+  --c-subject-magyar: #be123c;
+
+  /* Typography */
+  --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-dyslexic: 'OpenDyslexic', 'Comic Sans MS', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+  --text-scale: 1;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+
+  /* Elevation */
+  --shadow-1: 0 1px 2px rgb(28 26 23 / 0.06), 0 1px 3px rgb(28 26 23 / 0.08);
+  --shadow-2: 0 4px 12px rgb(28 26 23 / 0.08), 0 2px 4px rgb(28 26 23 / 0.06);
+  --shadow-3: 0 12px 32px rgb(28 26 23 / 0.14), 0 4px 8px rgb(28 26 23 / 0.08);
+
+  /* Motion */
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --c-bg: #12110f;
+  --c-surface: #1c1b18;
+  --c-surface-muted: #27251f;
+  --c-border: #38352f;
+  --c-border-strong: #807a70;
+
+  --c-text: #f2efe9;
+  --c-text-muted: #b3ada3;
+
+  --c-primary: #5eead4;
+  --c-primary-hover: #99f6e4;
+  --c-primary-fg: #042f2e;
+  --c-primary-soft: #134e4a;
+  --c-primary-soft-fg: #ccfbf1;
+
+  --c-success: #4ade80;
+  --c-success-soft: #14532d;
+  --c-warning: #fbbf24;
+  --c-warning-soft: #422006;
+  --c-danger: #f87171;
+  --c-danger-fg: #1c1a17;
+  --c-danger-soft: #450a0a;
+  --c-info: #93c5fd;
+  --c-info-soft: #172554;
+  --c-focus: #93c5fd;
+
+  --c-subject-matematika: #93c5fd;
+  --c-subject-tortenelem: #fbbf24;
+  --c-subject-magyar: #fda4af;
+
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-2: 0 4px 12px rgb(0 0 0 / 0.45);
+  --shadow-3: 0 12px 32px rgb(0 0 0 / 0.55);
+
+  color-scheme: dark;
+}
+
+[data-font='dyslexic'] {
+  --font-body: var(--font-dyslexic);
+}
+
+[data-motion='reduced'] {
+  --motion-fast: 0ms;
+  --motion-base: 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+  }
+}

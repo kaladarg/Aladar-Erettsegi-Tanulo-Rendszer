@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="hu" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Ingyenes, reklámmentes, nyílt forráskódú érettségi gyakorló. Regisztráció nélkül, offline is működik."
+    />
+    <meta name="theme-color" content="#faf9f7" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Érettségi Gyakorló</title>
+    <script>
+      // Apply saved appearance before first paint to avoid a theme flash.
+      (function () {
+        var s = {};
+        try {
+          s = JSON.parse(localStorage.getItem('eg-appearance') || '{}') || {};
+        } catch (e) {}
+        var dark =
+          s.theme === 'dark' ||
+          (s.theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var root = document.documentElement;
+        root.dataset.theme = dark ? 'dark' : 'light';
+        root.dataset.font = s.dyslexicFont ? 'dyslexic' : 'default';
+        root.dataset.motion = s.reducedMotion ? 'reduced' : 'default';
+        if (typeof s.textScale === 'number') root.style.setProperty('--text-scale', s.textScale);
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>Az Érettségi Gyakorló használatához engedélyezd a JavaScriptet.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
