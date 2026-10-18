@@ -1,4 +1,5 @@
 import { t } from '@/i18n';
+import { findSubject } from './catalog';
 import type { ExamEntry, Part } from './schema.types';
 
 type Titled = Pick<ExamEntry, 'year' | 'session' | 'title' | 'sample'>;
@@ -10,6 +11,12 @@ export function examDisplayTitle(exam: Titled): string {
     year: String(exam.year),
     session: t(`session.${exam.session}`),
   });
+}
+
+/** "Matematika, 2024. május"; samples carry the subject in their own title. */
+export function examFullTitle(exam: Titled & Pick<ExamEntry, 'subject'>): string {
+  if (exam.sample) return exam.title;
+  return `${findSubject(exam.subject)?.name ?? exam.subject}, ${examDisplayTitle(exam)}`;
 }
 
 /** "45 perc · 30 pont · 12 feladat"; the time is left out when the exam shares one time limit. */

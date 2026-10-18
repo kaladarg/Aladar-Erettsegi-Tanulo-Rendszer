@@ -48,6 +48,7 @@ const REQUIRED_KEYS: Record<BackupTable, string[]> = {
   attempts: ['id', 'examId'],
   answers: ['attemptId', 'fieldId'],
   selfAssessments: ['attemptId', 'taskId'],
+  activity: ['day'],
 };
 
 /** Parses and validates a backup file. Throws BackupError with a user-facing reason code. */

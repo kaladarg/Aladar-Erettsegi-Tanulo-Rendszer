@@ -1,4 +1,11 @@
-import { GraduationCap, House, Info, Library, Settings as SettingsIcon } from 'lucide-react';
+import {
+  BarChart3,
+  GraduationCap,
+  House,
+  Info,
+  Library,
+  Settings as SettingsIcon,
+} from 'lucide-react';
 import { NavLink, Outlet } from 'react-router';
 import { t, type MessageKey } from '@/i18n';
 import { cn } from '@/lib/cn';
@@ -10,13 +17,14 @@ import { StorageWarning } from './StorageWarning';
 const NAV_ITEMS: { to: string; label: MessageKey; icon: typeof House }[] = [
   { to: '/', label: 'nav.home', icon: House },
   { to: '/feladatsorok', label: 'nav.exams', icon: Library },
+  { to: '/statisztika', label: 'nav.stats', icon: BarChart3 },
   { to: '/beallitasok', label: 'nav.settings', icon: SettingsIcon },
   { to: '/nevjegy', label: 'nav.about', icon: Info },
 ];
 
 function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
   return (
-    <ul className={cn(variant === 'bottom' ? 'grid grid-cols-4' : 'flex flex-col gap-1')}>
+    <ul className={cn(variant === 'bottom' ? 'grid grid-cols-5' : 'flex flex-col gap-1')}>
       {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
         <li key={to}>
           <NavLink
@@ -27,7 +35,7 @@ function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
                 'flex items-center rounded-md font-medium transition-colors',
                 variant === 'side'
                   ? 'min-h-11 gap-3 px-3 hover:bg-surface-muted'
-                  : 'min-h-16 flex-col justify-center gap-1 text-xs',
+                  : 'min-h-16 flex-col justify-center gap-1 px-0.5 text-center text-[0.6875rem] leading-tight',
                 isActive
                   ? variant === 'side'
                     ? 'bg-primary-soft text-primary-soft-fg hover:bg-primary-soft'

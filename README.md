@@ -6,7 +6,7 @@ A free, open-source, ad-free web app for practicing the Hungarian _érettségi_ 
 
 Made by **Králik Aladár**. Mistakes, questions and suggestions: [kralik.aladar.gergely@gmail.com](mailto:kralik.aladar.gergely@gmail.com).
 
-> Status: phase 5 of 7 (help mode, word lookup, optional AI). See [docs/roadmap.md](docs/roadmap.md).
+> Status: phase 6 of 7 (statistics, home dashboard, result sharing). See [docs/roadmap.md](docs/roadmap.md).
 
 | Mobile (light)                                                   | Desktop (dark)                                                    |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -22,6 +22,7 @@ Nyisd meg az oldalt: **https://kaladarg.github.io/Aladar-Erettsegi-Tanulo-Rendsz
 - A haladásod csak a te eszközödön tárolódik. A Beállításokban fájlba mentheted, és másik eszközön visszatöltheted.
 - Gyakorolhatsz a saját tempódban, vagy vizsgaszimulációban, a hivatalos időkerettel. Beadás után azonnal megkapod az eredményt; az esszét a javítási útmutató szempontjai szerint te pontozod.
 - Gyakorláskor a „Segítség” gombbal megnézheted, mit kér a feladat, tippet kaphatsz, szavakat kereshetsz a Wikiszótárban és a Wikipédiában, és ingyenes, reklámmentes magyar tanulóoldalakat találsz tárgyanként. Kérdezhetsz ingyenes MI-csevegőkben is: az alkalmazás összeállítja és kimásolja a kérdést, te beilleszted. 18 év felett saját Anthropic API-kulccsal az alkalmazáson belül is kérdezhetsz (nem kötelező).
+- A kezdőlapon folytathatod a félbehagyott feladatsort, ajánlást kapsz a következő lépésre, és látod a gyakorlási sorozatodat. A Statisztika oldal megmutatja a fejlődésedet, az erős és gyenge témaköreidet és a hibatípusokat. Az eredményedet képként megoszthatod (név nélkül).
 
 ## Quick start (developers)
 

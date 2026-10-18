@@ -1,4 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie';
+import type { Task } from '@/content/schema.types';
 import type { Settings } from '@/domain/settings';
 
 export interface SettingsRow extends Settings {
@@ -26,6 +27,30 @@ export interface AttemptResult {
   maxPoints: number;
   /** Points still waiting for review (essays, working). */
   pendingPoints?: number;
+  subject?: string;
+  /** Grade once nothing is waiting for review. */
+  grade?: number;
+  /** Counted tasks, for statistics. Missing on attempts from before version 0.6. */
+  tasks?: TaskSummary[];
+}
+
+export interface TaskSummary {
+  id: string;
+  number: string;
+  type: Task['type'];
+  topics?: string[];
+  points: number;
+  maxPoints: number;
+  pendingPoints: number;
+  status: 'correct' | 'partial' | 'wrong' | 'empty' | 'pending';
+  /** The marking-scheme steps or the solution were opened in the help panel. */
+  helped?: boolean;
+}
+
+/** A day (local date, YYYY-MM-DD) on which the student practised. */
+export interface ActivityRow {
+  day: string;
+  updatedAt: number;
 }
 
 export interface AnswerRow {
@@ -68,6 +93,7 @@ export class AppDatabase extends Dexie {
   selfAssessments!: Dexie.Table<SelfAssessmentRow, [string, string]>;
   importedPdfs!: EntityTable<ImportedPdfRow, 'sha256'>;
   secrets!: EntityTable<SecretRow, 'key'>;
+  activity!: EntityTable<ActivityRow, 'day'>;
 
   constructor(name = 'erettsegi-gyakorlo') {
     super(name);
@@ -79,13 +105,44 @@ export class AppDatabase extends Dexie {
       importedPdfs: 'sha256',
       secrets: 'key',
     });
+    // Version 2: practice days for the streak, filled from existing attempts.
+    this.version(2)
+      .stores({ activity: 'day' })
+      .upgrade(async (tx) => {
+        const times: number[] = [];
+        await tx
+          .table<AttemptRow>('attempts')
+          .each((a) =>
+            times.push(a.startedAt, a.updatedAt, ...(a.submittedAt ? [a.submittedAt] : [])),
+          );
+        await tx.table<AnswerRow>('answers').each((a) => times.push(a.updatedAt));
+        const rows = new Map<string, ActivityRow>();
+        for (const time of times) {
+          const day = dayKey(time);
+          rows.set(day, { day, updatedAt: Math.max(time, rows.get(day)?.updatedAt ?? 0) });
+        }
+        await tx.table('activity').bulkPut([...rows.values()]);
+      });
   }
+}
+
+/** Local calendar day of a timestamp, as YYYY-MM-DD. */
+export function dayKey(time: number | Date): string {
+  const date = new Date(time);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
 export const db = new AppDatabase();
 
 /** Tables included in a user's backup file. */
-export const BACKUP_TABLES = ['settings', 'attempts', 'answers', 'selfAssessments'] as const;
+export const BACKUP_TABLES = [
+  'settings',
+  'attempts',
+  'answers',
+  'selfAssessments',
+  'activity',
+] as const;
 export type BackupTable = (typeof BACKUP_TABLES)[number];
 
 export const ALL_TABLES = [...BACKUP_TABLES, 'importedPdfs', 'secrets'] as const;

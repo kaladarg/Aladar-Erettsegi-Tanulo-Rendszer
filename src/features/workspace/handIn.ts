@@ -1,6 +1,7 @@
 import type { Exam } from '@/content/schema.types';
 import { countedTasks, scoreExam } from '@/domain/scoring/exam';
 import { isBlank } from '@/domain/scoring/rules';
+import { summarizeResult } from '@/domain/stats/summary';
 import { useAnswers } from '@/state/answerStore';
 import { submitAttempt, type Answers } from '@/storage/attempts';
 
@@ -22,10 +23,6 @@ export async function handIn(exam: Exam, attemptId: string): Promise<void> {
   const store = useAnswers.getState();
   await store.flush();
   const result = scoreExam(exam, store.answers);
-  await submitAttempt(attemptId, {
-    points: result.points,
-    maxPoints: result.maxPoints,
-    pendingPoints: result.pendingPoints,
-  });
+  await submitAttempt(attemptId, summarizeResult(exam, result, store.answers));
   await store.close();
 }

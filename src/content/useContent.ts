@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSettings } from '@/state/settingsStore';
 import { contentBaseUrl } from './config';
 import { ContentError, loadExam, loadManifest, type LoadedManifest } from './loader';
-import type { Exam } from './schema.types';
+import type { Exam, ExamEntry } from './schema.types';
 
 type State<T> =
   { status: 'loading' } | { status: 'error'; error: ContentError } | { status: 'ready'; data: T };
@@ -88,6 +88,18 @@ export function useExam(examId: string) {
     };
   }
   return { state, retry, entry, manifest: ready };
+}
+
+/** Loads a paper outside React, sharing the cache of `useExam`. */
+export function getExam(baseUrl: string, entry: ExamEntry): Promise<Exam> {
+  const key = `${baseUrl}|${entry.id}|${entry.sha256}`;
+  let promise = examCache.get(key);
+  if (!promise) {
+    promise = loadExam(baseUrl, entry);
+    examCache.set(key, promise);
+    promise.catch(() => examCache.delete(key));
+  }
+  return promise;
 }
 
 /** Clears loaded content, e.g. after the content source changes. */

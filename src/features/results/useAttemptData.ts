@@ -2,6 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo } from 'react';
 import type { Exam } from '@/content/schema.types';
 import { scoreExam, type ExamResult, type Reviews } from '@/domain/scoring/exam';
+import { summarizeResult } from '@/domain/stats/summary';
 import { loadAnswers, loadReviews, setAttemptResult, type Answers } from '@/storage/attempts';
 import { db, type AttemptRow } from '@/storage/db';
 
@@ -30,20 +31,11 @@ export function useAttemptResult(exam: Exam | null, data: AttemptData | null | u
   const attemptId = data?.attempt.id;
   const stored = data?.attempt.result;
   const submitted = !!data?.attempt.submittedAt;
+  const answers = data?.answers;
   useEffect(() => {
-    if (!result || !attemptId || !submitted) return;
-    const next = {
-      points: result.points,
-      maxPoints: result.maxPoints,
-      pendingPoints: result.pendingPoints,
-    };
-    if (
-      stored?.points !== next.points ||
-      stored.maxPoints !== next.maxPoints ||
-      (stored.pendingPoints ?? 0) !== next.pendingPoints
-    ) {
-      void setAttemptResult(attemptId, next);
-    }
-  }, [result, attemptId, stored, submitted]);
+    if (!exam || !result || !answers || !attemptId || !submitted) return;
+    const next = summarizeResult(exam, result, answers);
+    if (JSON.stringify(stored) !== JSON.stringify(next)) void setAttemptResult(attemptId, next);
+  }, [exam, result, answers, attemptId, stored, submitted]);
   return result;
 }

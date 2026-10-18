@@ -1,4 +1,4 @@
-import { db, type AnswerRow, type AttemptResult, type AttemptRow } from './db';
+import { dayKey, db, type AnswerRow, type AttemptResult, type AttemptRow } from './db';
 
 export type AnswerValue = string | string[];
 
@@ -55,10 +55,11 @@ export async function saveAnswers(attemptId: string, changes: Answers): Promise<
     if (isEmpty(value)) deletes.push([attemptId, fieldId]);
     else puts.push({ attemptId, fieldId, value, updatedAt: now });
   }
-  await db.transaction('rw', db.answers, db.attempts, async () => {
+  await db.transaction('rw', db.answers, db.attempts, db.activity, async () => {
     if (puts.length) await db.answers.bulkPut(puts);
     if (deletes.length) await db.answers.bulkDelete(deletes);
     await db.attempts.update(attemptId, { updatedAt: now });
+    await db.activity.put({ day: dayKey(now), updatedAt: now });
   });
 }
 
@@ -114,7 +115,10 @@ export async function saveReview(
 /** Closes an attempt for editing and stores its first result. */
 export async function submitAttempt(attemptId: string, result: AttemptResult): Promise<void> {
   const now = Date.now();
-  await db.attempts.update(attemptId, { submittedAt: now, updatedAt: now, result });
+  await db.transaction('rw', db.attempts, db.activity, async () => {
+    await db.attempts.update(attemptId, { submittedAt: now, updatedAt: now, result });
+    await db.activity.put({ day: dayKey(now), updatedAt: now });
+  });
 }
 
 export async function setAttemptResult(attemptId: string, result: AttemptResult): Promise<void> {

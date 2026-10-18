@@ -11,6 +11,7 @@ import { Skeleton } from '@/design/ui/Skeleton';
 import { t } from '@/i18n';
 import { useOnboarding } from '@/state/onboardingStore';
 import { useSettings } from '@/state/settingsStore';
+import { Dashboard } from './Dashboard';
 
 export function HomePage() {
   usePageTitle(t('nav.home'));
@@ -23,6 +24,7 @@ export function HomePage() {
   return (
     <>
       <PageHeader title={t('home.greeting')} description={t('home.intro')} />
+      {loaded && <Dashboard />}
 
       <section aria-labelledby="home-subjects">
         <h2 id="home-subjects" className="mb-4 text-xl font-semibold">

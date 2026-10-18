@@ -15,6 +15,7 @@ import { DEDUCTIONS_KEY, type ExamResult } from '@/domain/scoring/exam';
 import { ContentErrorState } from '@/features/exams/ContentErrorState';
 import { formatDate, formatNumber, t } from '@/i18n';
 import { CriterionReview } from './ReviewControls';
+import { ShareResult } from './share/ShareDialog';
 import { StatusBadge, TaskReview } from './TaskReview';
 import { useAttemptData, useAttemptResult, type AttemptData } from './useAttemptData';
 
@@ -140,6 +141,14 @@ function Results({
       />
 
       <ScoreSummary result={result} />
+      <div className="mt-4 flex flex-wrap gap-2">
+        <ShareResult
+          exam={exam}
+          result={result}
+          mode={attempt.mode}
+          submittedAt={attempt.submittedAt!}
+        />
+      </div>
 
       {missingChoice && (
         <p className="mt-4 flex items-start gap-2 rounded-md bg-warning-soft p-3 text-sm">

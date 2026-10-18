@@ -46,6 +46,12 @@ export function createRouter() {
             }),
           },
           {
+            path: 'statisztika',
+            lazy: async () => ({
+              Component: (await import('@/features/stats/StatsPage')).StatsPage,
+            }),
+          },
+          {
             path: 'beallitasok',
             lazy: async () => ({
               Component: (await import('@/features/settings/SettingsPage')).SettingsPage,

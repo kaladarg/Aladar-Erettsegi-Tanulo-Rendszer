@@ -4,6 +4,7 @@ import { expect, finishOnboarding, test } from './fixtures';
 const PAGES = [
   ['/', 'Jó gyakorlást!'],
   ['/beallitasok', 'Beállítások'],
+  ['/statisztika', 'Statisztika'],
   ['/nevjegy', 'Névjegy'],
   ['/feladatsorok', 'Feladatsorok'],
   ['/feladatsorok/tortenelem-kozep-2026-majus-minta', 'Mintafeladatsor – Történelem, középszint'],
