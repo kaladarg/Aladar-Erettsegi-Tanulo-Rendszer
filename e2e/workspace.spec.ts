@@ -138,32 +138,37 @@ test('restarting deletes answers and can be undone', async ({ page }) => {
   await expect(page.getByRole('textbox', { name: '1. feladat, x =' })).toHaveValue('6');
 });
 
-test('works with a PDF the student imported when the pack has none', async ({ page }) => {
-  // Serve the demo manifest as if the pack shipped no PDFs.
-  await page.route('**/demo-pack/manifest.json', async (route) => {
-    const response = await route.fetch();
-    const manifest = await response.json();
-    for (const exam of manifest.exams) exam.hasPdf = false;
-    await route.fulfill({ response, json: manifest });
-  });
-  await page.goto(`/feladatsorok/${MATH}/gyakorlas`);
-  await expect(
-    page.getByText('Az űrlapnézetben minden feladatot megoldhatsz', { exact: false }),
-  ).toHaveCount(0);
-  await expect(page).not.toHaveURL(/nezet/);
-  await expect(page.getByRole('article', { name: '1. feladat' })).toBeVisible();
+test.describe('without a PDF in the pack', () => {
+  // page.route cannot see requests the service worker makes, so keep it out of the way.
+  test.use({ serviceWorkers: 'block' });
 
-  await page.goto(`/feladatsorok/${MATH}`);
-  await page.locator('input[type="file"]').setInputFiles({
-    name: 'feladatlap.pdf',
-    mimeType: 'application/pdf',
-    buffer: await readFile(`public/demo-pack/exams/${MATH}/feladatlap.pdf`),
+  test('works with a PDF the student imported when the pack has none', async ({ page }) => {
+    // Serve the demo manifest as if the pack shipped no PDFs.
+    await page.route('**/demo-pack/manifest.json', async (route) => {
+      const response = await route.fetch();
+      const manifest = await response.json();
+      for (const exam of manifest.exams) exam.hasPdf = false;
+      await route.fulfill({ response, json: manifest });
+    });
+    await page.goto(`/feladatsorok/${MATH}/gyakorlas`);
+    await expect(
+      page.getByText('Az űrlapnézetben minden feladatot megoldhatsz', { exact: false }),
+    ).toHaveCount(0);
+    await expect(page).not.toHaveURL(/nezet/);
+    await expect(page.getByRole('article', { name: '1. feladat' })).toBeVisible();
+
+    await page.goto(`/feladatsorok/${MATH}`);
+    await page.locator('input[type="file"]').setInputFiles({
+      name: 'feladatlap.pdf',
+      mimeType: 'application/pdf',
+      buffer: await readFile(`public/demo-pack/exams/${MATH}/feladatlap.pdf`),
+    });
+    await expect(toastWith(page, 'Elmentettük a PDF-et ezen az eszközön.')).toBeVisible();
+    await page.getByRole('link', { name: 'Folytatás' }).click();
+    await toPdf(page);
+    await expect(page.locator('[data-page="1"] canvas')).toBeVisible();
+    await expect(page.getByRole('textbox', { name: '1. feladat, x =' })).toBeVisible();
   });
-  await expect(toastWith(page, 'Elmentettük a PDF-et ezen az eszközön.')).toBeVisible();
-  await page.getByRole('link', { name: 'Folytatás' }).click();
-  await toPdf(page);
-  await expect(page.locator('[data-page="1"] canvas')).toBeVisible();
-  await expect(page.getByRole('textbox', { name: '1. feladat, x =' })).toBeVisible();
 });
 
 test('the position editor moves boxes and exports exam.json', async ({ page }, testInfo) => {

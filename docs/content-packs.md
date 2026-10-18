@@ -46,9 +46,17 @@ Each task has `id`, `number` (as printed), `type` (`short_answer`, `multiple_cho
 
 `pdfRect` places a field on the paper: `page` is 1-based; `x`, `y`, `w`, `h` are **fractions of the page width/height, measured from the top-left corner**, so they work at any zoom level.
 
+More layout options for official papers:
+
+- `group` on a task joins the sub-tasks of one numbered task (`"16"` for 16. a)–c)). Choices can name groups instead of task ids.
+- `options[].pdfRect` marks where an option is printed (the number to circle). When every option has one, PDF mode lets the student circle the printed option instead of showing a dropdown.
+- `continuationRects` on a field lists further areas of the same answer on later pages (an essay that continues on the next page).
+- `choices[].unitLabels` names each choosable unit ("13. és 16. feladat"); `choices[].unitRects` marks where the choice is recorded on the paper (the X cells). When alternative units share one answer area, PDF mode shows the choice there until the student picks.
+- `timeLimitMinutes` can sit on the exam instead of the parts when all parts share one time limit (history: 180 minutes).
+
 ### Rich text
 
-`text`, `explanation` and source `text` use a small subset of Markdown: paragraphs separated by a blank line, `**bold**`, `*italic*`, lines starting with `- ` for lists, and LaTeX between single dollar signs for maths (`$x^2 + 1$`). Content is always rendered as text, never as raw HTML.
+`text`, `explanation` and source `text` use a small subset of Markdown: paragraphs separated by a blank line, `**bold**`, `*italic*`, `__underline__` (passages the paper underlines), lines starting with `- ` for lists, and LaTeX between single dollar signs for maths (`$x^2 + 1$`). Content is always rendered as text, never as raw HTML.
 
 ### Scoring
 
@@ -65,12 +73,13 @@ The scoring engine that applies these rules ships in phase 4; the semantics belo
 Rule answer kinds:
 
 - `text`: any of `accepted` matches after normalization. By default comparison ignores case and collapses whitespace; `normalize` can also ignore diacritics, punctuation or all spaces.
-- `number`: any of `accepted` within `tolerance` (absolute). Hungarian decimal commas are accepted.
+- `number`: any of `accepted` within `tolerance` (absolute). Hungarian decimal commas, fractions (`5/9`) and percentages are accepted, and a typographic minus (`−`) counts as a minus sign.
 - `choice`: the selected option values must equal `correct` (one value for single choice).
 - `set`: the rule's fields must each match a **different** item; every item lists its accepted variants. With `order: "any"` there may be more items than fields ("name two reformers" with six acceptable names). With `order: "fixed"`, field _n_ must match item _n_.
-- `matching`: each field id must hold the given option value (also used for true/false lists).
+- `matching`: each field id must hold the given option value (also used for true/false lists). Without `partial`, all pairs must be right (e.g. a whole chronological order for 1 point).
+- `elements`: one field holds a list (`1; 2; 3`, `1, 2, 3` or with braces) that must contain exactly these elements in any order (sets, common divisors).
 
-`partial` gives partial credit for multi-part rules: `perItem` points per correct item, or a `table` of thresholds (`{ "correct": 2, "points": 1 }` = 2 correct answers earn 1 point). `penalizeWrong` subtracts one item's credit for each wrong extra choice in multi-select answers. Points never go below zero.
+`partial` gives partial credit for multi-part rules: `perItem` points per correct item, or a `table` of thresholds (`{ "correct": 2, "points": 1 }` = 2 correct answers earn 1 point). `penalizeWrong` subtracts one item's credit for each wrong extra choice in multi-select answers. `errorsTable` scores by the number of errors (missing plus wrong items): `[{ "errors": 0, "points": 3 }, { "errors": 1, "points": 2 }]`. Points never go below zero.
 
 ## Working with the private official pack
 
