@@ -59,6 +59,11 @@
       "type": "integer",
       "minimum": 1
     },
+    "timeLimitMinutes": {
+      "description": "Time limit of the whole paper when its parts share one block of time (e.g. history: 180 minutes). Parts then omit their own limit.",
+      "type": "integer",
+      "minimum": 1
+    },
     "gradeBands": {
       "description": "Percentage thresholds for grades. Omit to use the standard középszint bands.",
       "type": "array",
@@ -234,7 +239,7 @@
       }
     },
     "Choice": {
-      "description": "The student solves only `pick` of the listed tasks (e.g. 2 of 3 in maths part II/B).",
+      "description": "The student solves only `pick` of the listed units (e.g. 2 of 3 in maths part II/B). A unit is a task id or a task `group` (all tasks of that group).",
       "type": "object",
       "additionalProperties": false,
       "required": ["pick", "taskIds"],
@@ -251,6 +256,22 @@
           "minItems": 2,
           "items": {
             "$ref": "#/definitions/Id"
+          },
+          "description": "Task ids or task group names."
+        },
+        "unitLabels": {
+          "description": "Display name of each unit, in taskIds order (e.g. \"13. és 16. feladat\").",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unitRects": {
+          "description": "Where each unit's choice is marked on the paper (e.g. the X cells), in taskIds order.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rect"
           }
         }
       }
@@ -258,7 +279,7 @@
     "Part": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "title", "timeLimitMinutes", "maxPoints", "tasks"],
+      "required": ["id", "title", "maxPoints", "tasks"],
       "properties": {
         "id": {
           "$ref": "#/definitions/Id"
@@ -269,7 +290,8 @@
         },
         "timeLimitMinutes": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "description": "Time limit of this part. Omit when the exam has one shared timeLimitMinutes."
         },
         "maxPoints": {
           "type": "integer",
@@ -316,6 +338,10 @@
         "label": {
           "type": "string",
           "minLength": 1
+        },
+        "pdfRect": {
+          "description": "Where the option is printed (e.g. the number to circle); lets students mark it on the paper.",
+          "$ref": "#/definitions/Rect"
         }
       }
     },
@@ -350,6 +376,13 @@
         },
         "pdfRect": {
           "$ref": "#/definitions/Rect"
+        },
+        "continuationRects": {
+          "description": "Further areas of the same answer on later pages (e.g. an essay continuing on the next page).",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rect"
+          }
         }
       }
     },
@@ -481,7 +514,7 @@
       }
     },
     "PartialCredit": {
-      "description": "Points for partly correct multi-item answers. Either per correct item, or a threshold table (\"2 correct: 1 point, 4 correct: 2 points\").",
+      "description": "Points for partly correct multi-part answers: per correct item, a threshold table by correct items (\"2 correct: 1 point\"), or a table by errors (missing plus wrong items: \"1 error: 2 points\").",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -511,6 +544,25 @@
         "penalizeWrong": {
           "description": "Subtract one item's credit for each wrong extra choice (multi-select).",
           "type": "boolean"
+        },
+        "errorsTable": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["errors", "points"],
+            "properties": {
+              "errors": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "points": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
         }
       }
     },
@@ -550,6 +602,9 @@
             },
             {
               "$ref": "#/definitions/SetAnswer"
+            },
+            {
+              "$ref": "#/definitions/ElementsAnswer"
             },
             {
               "$ref": "#/definitions/MatchingAnswer"
@@ -658,6 +713,10 @@
           "type": "string",
           "minLength": 1
         },
+        "group": {
+          "description": "Groups sub-tasks of one numbered task (e.g. \"16\" for 16. a)–c)); choices can refer to it.",
+          "$ref": "#/definitions/Id"
+        },
         "type": {
           "$ref": "#/definitions/TaskType"
         },
@@ -750,6 +809,28 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "ElementsAnswer": {
+      "description": "A set of elements written in one field in any order, e.g. A = {1; 2; 3; 4}. The input is split at commas, semicolons, spaces and braces.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "elements"],
+      "properties": {
+        "kind": {
+          "const": "elements"
+        },
+        "elements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "normalize": {
+          "$ref": "#/definitions/Normalize"
         }
       }
     }

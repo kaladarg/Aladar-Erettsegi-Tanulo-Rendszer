@@ -4,7 +4,7 @@ import { parseBlocks, parseInline } from './richTextParse';
 
 /**
  * Renders content-pack rich text: paragraphs (blank line), "- " lists,
- * **bold**, *italic* and $LaTeX$. Content is always rendered as React text;
+ * **bold**, *italic*, __underline__ and $LaTeX$. Content is always rendered as React text;
  * only KaTeX's own escaped output is injected as HTML.
  */
 type Katex = typeof import('katex');
@@ -43,6 +43,8 @@ function renderInline(text: string): ReactNode[] {
         return <strong key={index}>{token.value}</strong>;
       case 'italic':
         return <em key={index}>{token.value}</em>;
+      case 'underline':
+        return <u key={index}>{token.value}</u>;
       case 'math':
         return <MathSpan key={index} tex={token.value} />;
       default:

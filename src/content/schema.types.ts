@@ -54,6 +54,10 @@ export interface Exam {
    */
   maxPoints: number;
   /**
+   * Time limit of the whole paper when its parts share one block of time (e.g. history: 180 minutes). Parts then omit their own limit.
+   */
+  timeLimitMinutes?: number;
+  /**
    * Percentage thresholds for grades. Omit to use the standard középszint bands.
    *
    * @minItems 1
@@ -139,7 +143,10 @@ export interface Rect {
 export interface Part {
   id: Id;
   title: string;
-  timeLimitMinutes: number;
+  /**
+   * Time limit of this part. Omit when the exam has one shared timeLimitMinutes.
+   */
+  timeLimitMinutes?: number;
   maxPoints: number;
   instructions?: string;
   choices?: Choice[];
@@ -149,7 +156,7 @@ export interface Part {
   tasks: Task[];
 }
 /**
- * The student solves only `pick` of the listed tasks (e.g. 2 of 3 in maths part II/B).
+ * The student solves only `pick` of the listed units (e.g. 2 of 3 in maths part II/B). A unit is a task id or a task `group` (all tasks of that group).
  *
  * This interface was referenced by `Exam`'s JSON-Schema
  * via the `definition` "Choice".
@@ -158,9 +165,19 @@ export interface Choice {
   label?: string;
   pick: number;
   /**
+   * Task ids or task group names.
+   *
    * @minItems 2
    */
   taskIds: Id[];
+  /**
+   * Display name of each unit, in taskIds order (e.g. "13. és 16. feladat").
+   */
+  unitLabels?: string[];
+  /**
+   * Where each unit's choice is marked on the paper (e.g. the X cells), in taskIds order.
+   */
+  unitRects?: Rect[];
 }
 /**
  * This interface was referenced by `Exam`'s JSON-Schema
@@ -172,6 +189,10 @@ export interface Task {
    * Number as printed on the paper, e.g. "3." or "13. b)".
    */
   number: string;
+  /**
+   * Groups sub-tasks of one numbered task (e.g. "16" for 16. a)–c)); choices can refer to it.
+   */
+  group?: string;
   type: TaskType;
   /**
    * Task wording, rich text (see docs/content-packs.md).
@@ -217,6 +238,10 @@ export interface Field {
    */
   options?: Option[];
   pdfRect?: Rect;
+  /**
+   * Further areas of the same answer on later pages (e.g. an essay continuing on the next page).
+   */
+  continuationRects?: Rect[];
 }
 /**
  * This interface was referenced by `Exam`'s JSON-Schema
@@ -225,6 +250,17 @@ export interface Field {
 export interface Option {
   value: string;
   label: string;
+  pdfRect?: Rect1;
+}
+/**
+ * Area on a PDF page. x, y, w, h are fractions (0-1) of the page width/height, origin top-left.
+ */
+export interface Rect1 {
+  page: number;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
 }
 /**
  * Points of a task: auto rules + self-checked steps + rubric criteria. Their sum must equal the task's maxPoints.
@@ -251,7 +287,7 @@ export interface Rule {
    * @minItems 1
    */
   fieldIds: Id[];
-  answer: TextAnswer | NumberAnswer | ChoiceAnswer | SetAnswer | MatchingAnswer;
+  answer: TextAnswer | NumberAnswer | ChoiceAnswer | SetAnswer | ElementsAnswer | MatchingAnswer;
   partial?: PartialCredit;
 }
 /**
@@ -326,6 +362,20 @@ export interface SetAnswer {
   normalize?: Normalize;
 }
 /**
+ * A set of elements written in one field in any order, e.g. A = {1; 2; 3; 4}. The input is split at commas, semicolons, spaces and braces.
+ *
+ * This interface was referenced by `Exam`'s JSON-Schema
+ * via the `definition` "ElementsAnswer".
+ */
+export interface ElementsAnswer {
+  kind: 'elements';
+  /**
+   * @minItems 1
+   */
+  elements: string[];
+  normalize?: Normalize;
+}
+/**
  * Each field must hold the given option value.
  *
  * This interface was referenced by `Exam`'s JSON-Schema
@@ -338,7 +388,7 @@ export interface MatchingAnswer {
   };
 }
 /**
- * Points for partly correct multi-item answers. Either per correct item, or a threshold table ("2 correct: 1 point, 4 correct: 2 points").
+ * Points for partly correct multi-part answers: per correct item, a threshold table by correct items ("2 correct: 1 point"), or a table by errors (missing plus wrong items: "1 error: 2 points").
  *
  * This interface was referenced by `Exam`'s JSON-Schema
  * via the `definition` "PartialCredit".
@@ -356,6 +406,13 @@ export interface PartialCredit {
    * Subtract one item's credit for each wrong extra choice (multi-select).
    */
   penalizeWrong?: boolean;
+  /**
+   * @minItems 1
+   */
+  errorsTable?: {
+    errors: number;
+    points: number;
+  }[];
 }
 /**
  * A marking-scheme step the student checks themselves (e.g. a correct intermediate result).

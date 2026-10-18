@@ -1,15 +1,12 @@
 import type { PDFDocumentProxy, RenderTask } from 'pdfjs-dist';
 import { useEffect, useRef, useState } from 'react';
-import type { Field, Task } from '@/content/schema.types';
 import { t } from '@/i18n';
 import { OverlayField } from '../fields/OverlayField';
 import { EditableBox } from './EditableBox';
+import { useAnswers } from '@/state/answerStore';
 import { useRectEdits } from './editorStore';
-
-export interface PageField {
-  task: Task;
-  field: Field;
-}
+import { rectStyle, visibleItems, type OverlayItem } from './overlayItems';
+import { ChoiceGate, ChoiceMark, OptionMarks } from './PaperMarks';
 
 interface PdfPageProps {
   doc: PDFDocumentProxy;
@@ -17,7 +14,7 @@ interface PdfPageProps {
   /** Page size at scale 1, in PDF points. */
   size: { w: number; h: number };
   scale: number;
-  fields: PageField[];
+  items: OverlayItem[];
   editing: boolean;
   registerPage: (pageNumber: number, element: HTMLElement | null) => void;
 }
@@ -32,7 +29,7 @@ export function PdfPage({
   pageNumber,
   size,
   scale,
-  fields,
+  items,
   editing,
   registerPage,
 }: PdfPageProps) {
@@ -40,6 +37,11 @@ export function PdfPage({
   const canvas = useRef<HTMLCanvasElement>(null);
   const [near, setNear] = useState(false);
   const edits = useRectEdits((state) => state.edits);
+  const answers = useAnswers((state) => state.answers);
+  const shown = visibleItems(items, (key) => {
+    const value = answers[key];
+    return Array.isArray(value) ? value : undefined;
+  });
   const width = size.w * scale;
   const height = size.h * scale;
 
@@ -99,32 +101,39 @@ export function PdfPage({
       style={{ width, height }}
     >
       <canvas ref={canvas} aria-hidden="true" className="absolute inset-0 h-full w-full" />
-      {fields.map(({ task, field }) => {
-        const rect = edits[field.id] ?? field.pdfRect!;
-        if (editing)
-          return (
-            <EditableBox
-              key={field.id}
-              field={field}
-              rect={rect}
-              pageSize={{ w: width, h: height }}
-            />
-          );
-        return (
-          <OverlayField
-            key={field.id}
-            task={task}
-            field={field}
-            scale={scale}
-            heightPx={rect.h * height}
-            style={{
-              left: `${rect.x * 100}%`,
-              top: `${rect.y * 100}%`,
-              width: `${rect.w * 100}%`,
-              height: `${rect.h * 100}%`,
-            }}
-          />
-        );
+      {shown.map((item) => {
+        switch (item.kind) {
+          case 'options':
+            return <OptionMarks key={item.key} task={item.task} field={item.field} />;
+          case 'choiceMark':
+            return <ChoiceMark {...item} key={item.key} />;
+          case 'gate':
+            return <ChoiceGate {...item} key={item.key} />;
+          default: {
+            const rect = item.kind === 'field' ? (edits[item.field.id] ?? item.rect) : item.rect;
+            if (editing && item.kind === 'field') {
+              return (
+                <EditableBox
+                  key={item.key}
+                  field={item.field}
+                  rect={rect}
+                  pageSize={{ w: width, h: height }}
+                />
+              );
+            }
+            return (
+              <OverlayField
+                key={item.key}
+                task={item.task}
+                field={item.field}
+                continuation={item.kind === 'continuation'}
+                scale={scale}
+                heightPx={rect.h * height}
+                style={rectStyle(rect)}
+              />
+            );
+          }
+        }
       })}
     </div>
   );

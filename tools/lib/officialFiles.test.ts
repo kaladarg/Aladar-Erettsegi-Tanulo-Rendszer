@@ -7,7 +7,7 @@ import {
   isRelevantArchivePage,
 } from './officialFiles';
 
-const BASE = 'https://dload-oktatas.educatio.hu/erettsegi';
+const BASE = 'https://www.oktatas.hu/bin/content/dload/erettsegi';
 
 describe('classifyUrl', () => {
   it('recognises papers, marking schemes and attachments', () => {

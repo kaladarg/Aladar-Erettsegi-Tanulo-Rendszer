@@ -139,7 +139,9 @@ export function FormField({ task, field }: { task: Task; field: Field }) {
               autoComplete="off"
               spellCheck={field.kind !== 'number'}
               value={text}
-              placeholder={field.placeholder}
+              placeholder={
+                field.placeholder !== label.replace(/:$/, '') ? field.placeholder : undefined
+              }
               aria-describedby={field.unit ? `${id}-unit` : undefined}
               onChange={(e) => setAnswer(field.id, e.target.value)}
               className={inputClass}

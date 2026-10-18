@@ -90,3 +90,36 @@ describe('checkExam', () => {
     expect(messages(exam)).toContain('Marked as reviewed but has errors.');
   });
 });
+
+describe('task groups in choices', () => {
+  it('counts a chosen group as the sum of its tasks', () => {
+    const exam = load(IDS[0]!);
+    const part = exam.parts[1]!;
+    // Turn tasks 7 and 8 into groups of sub-tasks with the same totals.
+    part.tasks = part.tasks.flatMap((task) =>
+      task.id === '7' || task.id === '8'
+        ? [
+            {
+              ...task,
+              id: `${task.id}a`,
+              group: task.id,
+              maxPoints: 6,
+              scoring: { steps: [{ id: 's1', points: 6, description: 'x' }] },
+            },
+            {
+              ...task,
+              id: `${task.id}b`,
+              group: task.id,
+              maxPoints: 6,
+              fields: [],
+              scoring: { steps: [{ id: 's1', points: 6, description: 'x' }] },
+            },
+          ]
+        : [task],
+    );
+    expect(partPoints(part)).toBe(24);
+    expect(messages(exam)).toEqual([]);
+    part.choices![0]!.taskIds = ['7', '9'];
+    expect(messages(exam)).toContain('Unknown task or group "9".');
+  });
+});

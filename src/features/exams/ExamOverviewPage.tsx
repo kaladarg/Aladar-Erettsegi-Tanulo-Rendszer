@@ -18,7 +18,8 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { subjectAccent } from '@/content/catalog';
-import { examDisplayTitle } from '@/content/labels';
+import { examMinutes } from '@/content/checks';
+import { examDisplayTitle, partMeta } from '@/content/labels';
 import { examFileUrl, examUrl, type LoadedManifest } from '@/content/loader';
 import { isSavedOffline, saveForOffline } from '@/content/offline';
 import { removePdf, storePdf, useHasImportedPdf } from '@/content/pdfImport';
@@ -119,7 +120,7 @@ function Overview({
   const level = manifest.manifest.levels.find((l) => l.id === exam.level);
   usePageTitle(`${subject?.name ?? ''} ${title}`.trim());
   const progress = useExamProgress()?.get(exam.id);
-  const totalMinutes = exam.parts.reduce((sum, part) => sum + part.timeLimitMinutes, 0);
+  const totalMinutes = examMinutes(exam);
   const taskCount = exam.parts.reduce((sum, part) => sum + part.tasks.length, 0);
   const repo = manifest.manifest.repositoryUrl;
 
@@ -172,13 +173,7 @@ function Overview({
           {exam.parts.map((part) => (
             <Card key={part.id} aria-labelledby={`part-${part.id}`}>
               <CardTitle id={`part-${part.id}`}>{part.title}</CardTitle>
-              <CardDescription>
-                {t('exam.partMeta', {
-                  minutes: part.timeLimitMinutes,
-                  points: part.maxPoints,
-                  count: part.tasks.length,
-                })}
-              </CardDescription>
+              <CardDescription>{partMeta(part)}</CardDescription>
               {part.instructions && <p className="mt-3">{part.instructions}</p>}
               {part.choices?.map((choice) => (
                 <p key={choice.taskIds.join()} className="mt-2 text-sm font-medium text-primary">

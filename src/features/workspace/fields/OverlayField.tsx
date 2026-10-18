@@ -19,13 +19,22 @@ interface OverlayFieldProps {
   /** Height of the box in CSS pixels, used to size the text. */
   heightPx: number;
   scale: number;
+  /** A further area of the same answer on a later page. */
+  continuation?: boolean;
 }
 
 /** One answer field positioned over its box on the PDF page. */
 /** WCAG 2.2 target size (2.5.8): small boxes grow to 24 px, centred on the printed box. */
 const MIN_TARGET = 24;
 
-export function OverlayField({ task, field, style: boxStyle, heightPx, scale }: OverlayFieldProps) {
+export function OverlayField({
+  task,
+  field,
+  style: boxStyle,
+  heightPx,
+  scale,
+  continuation,
+}: OverlayFieldProps) {
   const style: CSSProperties =
     heightPx < MIN_TARGET
       ? {
@@ -69,6 +78,7 @@ export function OverlayField({ task, field, style: boxStyle, heightPx, scale }: 
         <textarea
           aria-label={name}
           value={text}
+          placeholder={field.placeholder}
           onChange={(e) => setAnswer(field.id, e.target.value)}
           style={{ ...style, fontSize: blockFont }}
           className={cn(overlayClass, 'resize-none p-1.5 font-mono leading-snug')}
@@ -81,6 +91,7 @@ export function OverlayField({ task, field, style: boxStyle, heightPx, scale }: 
           field={field}
           style={{ ...style, fontSize: blockFont }}
           text={text}
+          continuation={continuation}
         />
       );
     default:
@@ -92,6 +103,7 @@ export function OverlayField({ task, field, style: boxStyle, heightPx, scale }: 
           autoComplete="off"
           spellCheck={field.kind !== 'number'}
           value={text}
+          placeholder={field.placeholder}
           onChange={(e) => setAnswer(field.id, e.target.value)}
           style={{ ...style, fontSize: lineFont }}
           className={cn(overlayClass, 'px-1.5')}
@@ -155,11 +167,13 @@ function EssayOverlay({
   field,
   style,
   text,
+  continuation,
 }: {
   task: Task;
   field: Field;
   style: CSSProperties;
   text: string;
+  continuation?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -179,7 +193,7 @@ function EssayOverlay({
           {t('workspace.writeOpen')}
         </span>
         <span className="line-clamp-[20] whitespace-pre-wrap">
-          {text || t('workspace.essayEmpty')}
+          {continuation ? t('workspace.essayContinued') : text || t('workspace.essayEmpty')}
         </span>
       </button>
       <EssayEditor task={task} field={field} open={open} onOpenChange={setOpen} />

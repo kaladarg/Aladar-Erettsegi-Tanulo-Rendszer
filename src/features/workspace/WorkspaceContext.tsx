@@ -1,10 +1,13 @@
 import { createContext, useContext } from 'react';
 import type { Exam, Field, SourceMaterial, Task } from '@/content/schema.types';
+import type { PdfSource } from './pdf/pdfjs';
 import { t } from '@/i18n';
 
 export interface WorkspaceValue {
   exam: Exam;
   sources: Map<string, SourceMaterial>;
+  /** The exam paper, when available; form mode crops figures from it. */
+  pdf: PdfSource | null;
 }
 
 export const WorkspaceContext = createContext<WorkspaceValue | null>(null);
@@ -15,8 +18,8 @@ export function useWorkspace(): WorkspaceValue {
   return value;
 }
 
-export function createWorkspace(exam: Exam): WorkspaceValue {
-  return { exam, sources: new Map((exam.sources ?? []).map((source) => [source.id, source])) };
+export function createWorkspace(exam: Exam, pdf: PdfSource | null = null): WorkspaceValue {
+  return { exam, pdf, sources: new Map((exam.sources ?? []).map((source) => [source.id, source])) };
 }
 
 /** Accessible name of a field: task number plus the field's own label. */

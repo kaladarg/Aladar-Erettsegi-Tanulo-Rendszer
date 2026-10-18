@@ -16,6 +16,14 @@ describe('rich text', () => {
     ]);
   });
 
+  it('parses underlined source passages', () => {
+    expect(parseInline('Az __aláhúzott rész__ fontos.')).toEqual([
+      { kind: 'text', value: 'Az ' },
+      { kind: 'underline', value: 'aláhúzott rész' },
+      { kind: 'text', value: ' fontos.' },
+    ]);
+  });
+
   it('splits paragraphs and lists', () => {
     expect(parseBlocks('Első\nsor\n\n- egy\n- kettő\n\n\nVége')).toEqual([
       { kind: 'paragraph', lines: ['Első', 'sor'] },

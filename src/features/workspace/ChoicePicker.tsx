@@ -35,8 +35,11 @@ export function ChoicePicker({
       <legend className="px-1 font-semibold">{t('workspace.choiceTitle')}</legend>
       <p className="mb-3">{choice.label ?? t('workspace.choiceQuestion', { pick: choice.pick })}</p>
       <div className="flex flex-wrap gap-2">
-        {choice.taskIds.map((taskId) => {
+        {choice.taskIds.map((taskId, unitIndex) => {
           const task = part.tasks.find((candidate) => candidate.id === taskId);
+          // Units can be whole task groups ("16" for 16. a)–c)).
+          const number = task?.number ?? `${taskId}.`;
+          const label = choice.unitLabels?.[unitIndex] ?? t('workspace.choiceTask', { number });
           const checked = selected.includes(taskId);
           return (
             <label
@@ -54,7 +57,7 @@ export function ChoicePicker({
                 onChange={() => toggle(taskId)}
                 className="size-4 accent-[var(--c-primary)]"
               />
-              {t('workspace.choiceTask', { number: task?.number ?? taskId })}
+              {label}
             </label>
           );
         })}

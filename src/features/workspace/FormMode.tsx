@@ -1,3 +1,4 @@
+import { partMeta } from '@/content/labels';
 import { RichText } from '@/content/RichText';
 import type { Part, SourceMaterial, Task } from '@/content/schema.types';
 import { t } from '@/i18n';
@@ -5,6 +6,7 @@ import { cn } from '@/lib/cn';
 import { ChoicePicker } from './ChoicePicker';
 import { useUnchosenTasks } from './useUnchosenTasks';
 import { FormField } from './fields/FormField';
+import { PdfCrop } from './pdf/PdfCrop';
 import { useWorkspace } from './WorkspaceContext';
 
 /** All tasks as a simple, accessible list. Shares answers with PDF mode. */
@@ -30,13 +32,7 @@ function FormPart({ part }: { part: Part }) {
         <h2 id={`form-part-${part.id}`} className="text-2xl font-bold">
           {part.title}
         </h2>
-        <p className="text-muted">
-          {t('exam.partMeta', {
-            minutes: part.timeLimitMinutes,
-            points: part.maxPoints,
-            count: part.tasks.length,
-          })}
-        </p>
+        <p className="text-muted">{partMeta(part)}</p>
         {part.instructions && <p className="mt-2">{part.instructions}</p>}
       </header>
       {part.choices?.map((choice, index) => (
@@ -60,6 +56,9 @@ function FormPart({ part }: { part: Part }) {
 }
 
 function SourceCard({ source }: { source: SourceMaterial }) {
+  const { pdf } = useWorkspace();
+  // Figures are shown as crops of the paper; their text is the accessible description.
+  const figure = pdf && source.kind !== 'text' && source.pdfRects?.length ? source.pdfRects : null;
   return (
     <aside
       aria-label={`${t('workspace.source')}: ${source.title ?? source.id}`}
@@ -69,7 +68,20 @@ function SourceCard({ source }: { source: SourceMaterial }) {
         {t('workspace.source')}
       </p>
       {source.title && <h3 className="mb-2 font-semibold">{source.title}</h3>}
-      {source.text && <RichText text={source.text} className="leading-relaxed" />}
+      {figure ? (
+        <div className="grid gap-3">
+          {figure.map((rect, index) => (
+            <PdfCrop
+              key={index}
+              source={pdf!}
+              rect={rect}
+              label={source.text ?? source.title ?? t('workspace.source')}
+            />
+          ))}
+        </div>
+      ) : (
+        source.text && <RichText text={source.text} className="leading-relaxed" />
+      )}
       {source.credit && <p className="mt-3 text-xs text-muted">{source.credit}</p>}
     </aside>
   );

@@ -3,7 +3,7 @@ import { Dialog } from 'radix-ui';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { examDisplayTitle } from '@/content/labels';
+import { examDisplayTitle, partInfo } from '@/content/labels';
 import { examFileUrl } from '@/content/loader';
 import type { Exam } from '@/content/schema.types';
 import { useExam } from '@/content/useContent';
@@ -16,6 +16,7 @@ import { t } from '@/i18n';
 import { db } from '@/storage/db';
 import { ChoicePicker } from './ChoicePicker';
 import { FormMode } from './FormMode';
+import { closeCropDocuments } from './pdf/cropDocuments';
 import { PdfMode } from './pdf/PdfMode';
 import type { PdfSource } from './pdf/pdfjs';
 import { SaveStatus } from './SaveStatus';
@@ -61,7 +62,12 @@ export function WorkspacePage() {
     setParams(nextParams, { replace: true });
     window.scrollTo({ top: 0 });
   };
-  const workspace = useMemo(() => (exam ? createWorkspace(exam) : null), [exam]);
+  const pdfSource = pdf.status === 'ready' ? pdf.source : null;
+  const workspace = useMemo(
+    () => (exam ? createWorkspace(exam, pdfSource) : null),
+    [exam, pdfSource],
+  );
+  useEffect(() => () => void closeCropDocuments(), []);
 
   return (
     <div className="min-h-dvh bg-bg">
@@ -211,13 +217,7 @@ function InfoSheet({ exam }: { exam: Exam }) {
           </div>
           {exam.parts.map((part) => (
             <section key={part.id} className="grid gap-3">
-              <h2 className="font-semibold">
-                {t('workspace.partInfo', {
-                  title: part.title,
-                  minutes: part.timeLimitMinutes,
-                  points: part.maxPoints,
-                })}
-              </h2>
+              <h2 className="font-semibold">{partInfo(part)}</h2>
               {part.instructions && <p className="text-muted">{part.instructions}</p>}
               {part.choices?.map((choice, index) => (
                 <ChoicePicker key={index} part={part} choice={choice} index={index} />

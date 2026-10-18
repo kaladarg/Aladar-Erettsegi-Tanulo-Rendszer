@@ -1,5 +1,5 @@
 import { t } from '@/i18n';
-import type { ExamEntry } from './schema.types';
+import type { ExamEntry, Part } from './schema.types';
 
 type Titled = Pick<ExamEntry, 'year' | 'session' | 'title' | 'sample'>;
 
@@ -10,4 +10,22 @@ export function examDisplayTitle(exam: Titled): string {
     year: String(exam.year),
     session: t(`session.${exam.session}`),
   });
+}
+
+/** "45 perc · 30 pont · 12 feladat"; the time is left out when the exam shares one time limit. */
+export function partMeta(part: Part): string {
+  const values = { points: part.maxPoints, count: part.tasks.length };
+  return part.timeLimitMinutes === undefined
+    ? t('exam.partMetaNoTime', values)
+    : t('exam.partMeta', { ...values, minutes: part.timeLimitMinutes });
+}
+
+export function partInfo(part: Part): string {
+  return part.timeLimitMinutes === undefined
+    ? t('workspace.partInfoNoTime', { title: part.title, points: part.maxPoints })
+    : t('workspace.partInfo', {
+        title: part.title,
+        minutes: part.timeLimitMinutes,
+        points: part.maxPoints,
+      });
 }

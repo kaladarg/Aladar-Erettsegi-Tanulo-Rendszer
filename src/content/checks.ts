@@ -23,15 +23,25 @@ export function scoringPoints(task: Task): number {
   );
 }
 
-/** Points a part is worth, counting only `pick` tasks of each choice group. */
+/** Tasks that make up a choice unit: the task with that id, or every task of that group. */
+export function unitTasks(part: Part, unit: string): Task[] {
+  const byId = part.tasks.filter((task) => task.id === unit);
+  return byId.length > 0 ? byId : part.tasks.filter((task) => task.group === unit);
+}
+
+/** Points a part is worth, counting only `pick` units of each choice group. */
 export function partPoints(part: Part): number {
-  const chosen = new Set(part.choices?.flatMap((choice) => choice.taskIds) ?? []);
+  const chosen = new Set(
+    part.choices?.flatMap((choice) =>
+      choice.taskIds.flatMap((unit) => unitTasks(part, unit).map((t) => t.id)),
+    ) ?? [],
+  );
   const fixed = part.tasks
     .filter((task) => !chosen.has(task.id))
     .reduce((sum, task) => sum + task.maxPoints, 0);
   const optional = (part.choices ?? []).reduce((sum, choice) => {
     const points = choice.taskIds
-      .map((id) => part.tasks.find((task) => task.id === id)?.maxPoints ?? 0)
+      .map((unit) => unitTasks(part, unit).reduce((total, task) => total + task.maxPoints, 0))
       .sort((a, b) => b - a)
       .slice(0, choice.pick);
     return sum + points.reduce((a, b) => a + b, 0);
@@ -77,7 +87,10 @@ export function checkExam(exam: Exam): ContentIssue[] {
         if ((field.kind === 'choice' || field.kind === 'multi') && !field.options) {
           error(path, `Field "${field.id}" (${field.kind}) needs options.`);
         }
-        if (!field.pdfRect) warn(path, `Field "${field.id}" has no PDF coordinates.`);
+        const optionRects =
+          field.options?.length && field.options.every((option) => option.pdfRect);
+        if (!field.pdfRect && !optionRects)
+          warn(path, `Field "${field.id}" has no PDF coordinates.`);
       }
 
       for (const ref of task.sourceRefs ?? []) {
@@ -121,8 +134,8 @@ export function checkExam(exam: Exam): ContentIssue[] {
             if (!options.has(value)) error(path, `Rule "${rule.id}": "${value}" is not an option.`);
           }
         }
-        const table = rule.partial?.table;
-        if (table && table.some((row) => row.points > rule.points)) {
+        const tables = [...(rule.partial?.table ?? []), ...(rule.partial?.errorsTable ?? [])];
+        if (tables.some((row) => row.points > rule.points)) {
           error(path, `Rule "${rule.id}": partial credit exceeds the rule's points.`);
         }
       }
@@ -140,9 +153,10 @@ export function checkExam(exam: Exam): ContentIssue[] {
     }
 
     for (const [c, choice] of (part.choices ?? []).entries()) {
-      const ids = new Set(part.tasks.map((task) => task.id));
-      for (const id of choice.taskIds) {
-        if (!ids.has(id)) error(`${partPath}.choices[${c}]`, `Unknown task "${id}".`);
+      for (const unit of choice.taskIds) {
+        if (unitTasks(part, unit).length === 0) {
+          error(`${partPath}.choices[${c}]`, `Unknown task or group "${unit}".`);
+        }
       }
       if (choice.pick >= choice.taskIds.length) {
         error(`${partPath}.choices[${c}]`, 'pick must be smaller than the number of tasks.');
@@ -152,6 +166,18 @@ export function checkExam(exam: Exam): ContentIssue[] {
       );
       if (points.size > 1)
         warn(`${partPath}.choices[${c}]`, 'Tasks in a choice group have different points.');
+    }
+
+    if (part.timeLimitMinutes === undefined && exam.timeLimitMinutes === undefined) {
+      error(partPath, 'No time limit: set timeLimitMinutes on the part or on the exam.');
+    }
+    for (const [c, choice] of (part.choices ?? []).entries()) {
+      for (const key of ['unitLabels', 'unitRects'] as const) {
+        const list = choice[key];
+        if (list && list.length !== choice.taskIds.length) {
+          error(`${partPath}.choices[${c}]`, `${key} must have one entry per unit.`);
+        }
+      }
     }
 
     const points = partPoints(part);
@@ -175,3 +201,10 @@ export function checkExam(exam: Exam): ContentIssue[] {
 
 export const hasErrors = (issues: ContentIssue[]) =>
   issues.some((issue) => issue.level === 'error');
+
+/** Total time of an exam: the shared limit, or the sum of the parts' limits. */
+export function examMinutes(exam: Exam): number {
+  return (
+    exam.timeLimitMinutes ?? exam.parts.reduce((sum, part) => sum + (part.timeLimitMinutes ?? 0), 0)
+  );
+}

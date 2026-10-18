@@ -7,7 +7,8 @@ import { Skeleton } from '@/design/ui/Skeleton';
 import { formatNumber, t } from '@/i18n';
 import { useWorkspace } from '../WorkspaceContext';
 import { applyRectEdits, useRectEdits } from './editorStore';
-import { PdfPage, type PageField } from './PdfPage';
+import { buildOverlayItems } from './overlayItems';
+import { PdfPage } from './PdfPage';
 import { openPdf, type OpenedPdf, type PdfSource } from './pdfjs';
 
 const ZOOM_STEPS = [0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3];
@@ -70,26 +71,7 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
     return () => observer.disconnect();
   }, []);
 
-  const fieldsByPage = useMemo(() => {
-    const map = new Map<number, PageField[]>();
-    for (const part of exam.parts) {
-      for (const task of part.tasks) {
-        for (const field of task.fields) {
-          if (!field.pdfRect) continue;
-          const list = map.get(field.pdfRect.page) ?? [];
-          list.push({ task, field });
-          map.set(field.pdfRect.page, list);
-        }
-      }
-    }
-    // DOM order = reading order, so Tab moves through the paper naturally.
-    for (const list of map.values())
-      list.sort(
-        (a, b) =>
-          a.field.pdfRect!.y - b.field.pdfRect!.y || a.field.pdfRect!.x - b.field.pdfRect!.x,
-      );
-    return map;
-  }, [exam]);
+  const itemsByPage = useMemo(() => buildOverlayItems(exam), [exam]);
 
   const maxWidth = Math.max(1, ...sizes.map((size) => size.w));
   // "100%" fits the page to the screen width, but never wider than a comfortable reading size.
@@ -242,7 +224,7 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
                 pageNumber={index + 1}
                 size={size}
                 scale={scale}
-                fields={fieldsByPage.get(index + 1) ?? []}
+                items={itemsByPage.get(index + 1) ?? []}
                 editing={editing}
                 registerPage={registerPage}
               />
