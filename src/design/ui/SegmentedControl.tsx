@@ -14,6 +14,8 @@ interface SegmentedControlProps<T extends string> {
   options: Option<T>[];
   onValueChange: (value: T) => void;
   className?: string;
+  /** Show only the icons on narrow screens (labels stay available to screen readers). */
+  compact?: boolean;
 }
 
 /** Single choice among a few options, keyboard navigable with the arrow keys. */
@@ -23,6 +25,7 @@ export function SegmentedControl<T extends string>({
   options,
   onValueChange,
   className,
+  compact = false,
 }: SegmentedControlProps<T>) {
   return (
     <RadioGroup.Root
@@ -42,7 +45,9 @@ export function SegmentedControl<T extends string>({
           className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-sm px-3 text-sm font-medium text-muted transition-colors hover:text-text data-[state=checked]:bg-surface data-[state=checked]:text-text data-[state=checked]:shadow-1 sm:flex-none [&_svg]:size-4"
         >
           {option.icon}
-          {option.label}
+          <span className={compact && option.icon ? 'max-md:sr-only' : undefined}>
+            {option.label}
+          </span>
         </RadioGroup.Item>
       ))}
     </RadioGroup.Root>

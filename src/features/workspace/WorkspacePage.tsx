@@ -106,7 +106,7 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
             <X aria-hidden="true" />
           </Link>
         </Button>
-        <h1 className="min-w-0 flex-1 truncate font-semibold">{title}</h1>
+        <h1 className="min-w-16 flex-1 truncate font-semibold">{title}</h1>
         {exam && attemptId && <SaveStatus />}
         {exam && attemptId && timed && (
           <ExamClock
@@ -126,6 +126,7 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
               label={t('workspace.modeLabel')}
               value={mode}
               onValueChange={setMode}
+              compact
               className="w-auto shrink-0 sm:w-auto"
               options={[
                 {

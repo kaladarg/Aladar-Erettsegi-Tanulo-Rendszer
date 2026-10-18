@@ -335,12 +335,79 @@
               {
                 "id": "s1",
                 "points": 1,
-                "description": "Helyes összetett szó a szövegből, például: négyzetkilométer, vízszint, fürdőhely, félsziget."
+                "description": "Helyes összetett szó a szövegből, például: négyzetkilométer, vízszint, fürdőhely, félsziget.",
+                "auto": {
+                  "fieldIds": [
+                    "4-f1"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "négyzetkilométer"
+                      ]
+                    ],
+                    [
+                      [
+                        "vízszint"
+                      ]
+                    ],
+                    [
+                      [
+                        "fürdőhely"
+                      ]
+                    ],
+                    [
+                      [
+                        "félsziget"
+                      ]
+                    ]
+                  ]
+                }
               },
               {
                 "id": "s2",
                 "points": 1,
-                "description": "Helyes elemekre bontás, például: víz + szint, fürdő + hely, fél + sziget."
+                "description": "Helyes elemekre bontás, például: víz + szint, fürdő + hely, fél + sziget.",
+                "auto": {
+                  "fieldIds": [
+                    "4-f1",
+                    "4-f2"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "víz"
+                      ],
+                      [
+                        "szint"
+                      ]
+                    ],
+                    [
+                      [
+                        "fürdő"
+                      ],
+                      [
+                        "hely"
+                      ]
+                    ],
+                    [
+                      [
+                        "fél"
+                      ],
+                      [
+                        "sziget"
+                      ]
+                    ],
+                    [
+                      [
+                        "négyzet"
+                      ],
+                      [
+                        "kilométer"
+                      ]
+                    ]
+                  ]
+                }
               }
             ]
           },

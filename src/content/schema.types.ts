@@ -431,7 +431,7 @@ export interface Step {
   auto?: AutoCheck;
 }
 /**
- * Checks a step automatically: the step is met when an answer in `fieldIds` matches one of the `alternatives`. Steps without it need review.
+ * Checks a step automatically: the step is met when the answers in `fieldIds`, read together, match one of the `alternatives`. Steps without it need review.
  *
  * This interface was referenced by `Exam`'s JSON-Schema
  * via the `definition` "AutoCheck".
@@ -456,7 +456,7 @@ export interface AutoCheck {
    */
   requireQuotes?: boolean;
   /**
-   * Every field in `fieldIds` must match, each with a different alternative (default: any one field).
+   * Instead, every field in `fieldIds` must match on its own, each with a different alternative ("name two examples").
    */
   allFields?: boolean;
 }

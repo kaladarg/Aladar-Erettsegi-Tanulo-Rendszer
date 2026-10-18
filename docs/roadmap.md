@@ -4,13 +4,14 @@
 | ----- | ---------------------------------------------------------------------------------------------- | ------- |
 | 0     | Plan, architecture, design system, schema                                                      | done    |
 | 1     | Scaffold, CI, design system, app shell, onboarding, settings                                   | done    |
-| 2     | Import pipeline and content packs for one paper per subject; exam browser                      | next    |
-| 3     | Editable PDF mode and form mode                                                                | planned |
-| 4     | Scoring, timed exam mode, mistake review                                                       | planned |
-| 5     | Help mode (lookup, task explanations, optional AI)                                             | planned |
+| 2     | Import pipeline and content packs for one paper per subject; exam browser                      | done    |
+| 3     | Editable PDF mode and form mode                                                                | done    |
+| 4     | Scoring, timed exam mode, mistake review                                                       | done    |
+| 5     | Help mode (lookup, task explanations, optional AI, AI feedback on essays)                      | next    |
 | 6     | Statistics, sharing, home dashboard                                                            | planned |
 | 7     | Full középszint archive (2024 onward first), accessibility and performance pass, docs, release | planned |
 
-## Open items carried from phase 2
+## Open items
 
-- Download the first official papers (2024 May, one per subject) with `npm run content:crawl` from a Hungarian connection, extract and review them in the private content repository.
+- The three May 2024 papers in the private content repository are drafts until a person checks them against the marking schemes.
+- Optional AI feedback on essays moved from phase 4 to phase 5, where the AI provider adapter is built.

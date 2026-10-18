@@ -41,7 +41,7 @@ See [docs/architecture.md](docs/architecture.md). In short:
 
 ## Reporting a mistake in an exam
 
-Use the flag button next to a task or the "Hibát találtál?" link on an exam page; both open a pre-filled "Data correction" issue. The correction workflow is described in [docs/content-packs.md](docs/content-packs.md#reporting-and-correcting-mistakes).
+Use the flag button next to a task, the link under each task on the results page, or the "Hibát találtál?" link on an exam page; they open a pre-filled email to kralik.aladar.gergely@gmail.com. The correction workflow is described in [docs/content-packs.md](docs/content-packs.md#reporting-and-correcting-mistakes).
 
 ## Commit messages
 

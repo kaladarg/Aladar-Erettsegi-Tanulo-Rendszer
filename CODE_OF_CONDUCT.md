@@ -6,4 +6,4 @@ In short: be welcoming, patient and respectful. Many contributors are students. 
 
 ## Reporting
 
-Report unacceptable behavior privately to the maintainer through GitHub (the maintainer's profile lists contact options), or by opening a [private security advisory](https://github.com/kaladarg/Aladar-Erettsegi-Tanulo-Rendszer/security/advisories/new) if you need a confidential channel. Reports are handled confidentially, and the maintainer will act on them following the enforcement guidelines of the Contributor Covenant.
+Report unacceptable behavior privately to the maintainer, Králik Aladár, at kralik.aladar.gergely@gmail.com, or by opening a [private security advisory](https://github.com/kaladarg/Aladar-Erettsegi-Tanulo-Rendszer/security/advisories/new) if you need a confidential channel. Reports are handled confidentially, and the maintainer will act on them following the enforcement guidelines of the Contributor Covenant.

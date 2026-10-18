@@ -526,12 +526,12 @@ const schema6 = {
         requireQuotes: { description: 'The answer must be in quotation marks.', type: 'boolean' },
         allFields: {
           description:
-            'Every field in `fieldIds` must match, each with a different alternative (default: any one field).',
+            'Instead, every field in `fieldIds` must match on its own, each with a different alternative ("name two examples").',
           type: 'boolean',
         },
       },
       description:
-        'Checks a step automatically: the step is met when an answer in `fieldIds` matches one of the `alternatives`. Steps without it need review.',
+        'Checks a step automatically: the step is met when the answers in `fieldIds`, read together, match one of the `alternatives`. Steps without it need review.',
     },
   },
 };
@@ -4881,12 +4881,12 @@ const schema32 = {
     requireQuotes: { description: 'The answer must be in quotation marks.', type: 'boolean' },
     allFields: {
       description:
-        'Every field in `fieldIds` must match, each with a different alternative (default: any one field).',
+        'Instead, every field in `fieldIds` must match on its own, each with a different alternative ("name two examples").',
       type: 'boolean',
     },
   },
   description:
-    'Checks a step automatically: the step is met when an answer in `fieldIds` matches one of the `alternatives`. Steps without it need review.',
+    'Checks a step automatically: the step is met when the answers in `fieldIds`, read together, match one of the `alternatives`. Steps without it need review.',
 };
 function validate88(
   data,

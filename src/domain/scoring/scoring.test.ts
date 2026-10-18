@@ -279,6 +279,10 @@ describe('automatic step checks', () => {
     expect(hasKeyword('a török elleni harcok', 'török elleni')).toBe(true);
   });
 
+  it('keeps maths symbols as word breaks', () => {
+    expect(hasKeyword('425 = 95·q¹², q', 'q¹²')).toBe(true);
+  });
+
   it('matches numbers at the keyword precision', () => {
     expect(hasKeyword('m = 15,39 cm', '15,4')).toBe(true);
     expect(hasKeyword('221x = 1326', '1326')).toBe(true);
@@ -320,6 +324,16 @@ describe('automatic step checks', () => {
     };
     expect(scoreTask(task, { a: 'sokáig tartott', b: 'sok munka volt' }).points).toBe(2);
     expect(scoreTask(task, { a: 'sokáig tartott', b: 'hosszas volt' }).points).toBe(1);
+  });
+
+  it('reads several fields together', () => {
+    const check = { fieldIds: ['name', 'role'], alternatives: [[['arész'], ['háború']]] };
+    expect(runAutoCheck(check, { name: 'Arész', role: 'a háború istene' }, new Set()).met).toBe(
+      true,
+    );
+    expect(runAutoCheck(check, { name: 'Arész', role: 'a tenger istene' }, new Set()).met).toBe(
+      false,
+    );
   });
 
   it('can require every field and quotation marks', () => {

@@ -37,5 +37,19 @@ for (const scheme of ['light', 'dark'] as const) {
         .analyze();
       expect(results.violations, path).toEqual([]);
     }
+
+    // Results page with a pending essay review and an open task.
+    await page.goto('/feladatsorok/magyar-kozep-2026-majus-minta/gyakorlas?nezet=urlap');
+    await page
+      .getByRole('textbox', { name: 'Érvelő esszé:' })
+      .fill('Szerintem érdemes. '.repeat(20));
+    await page.getByRole('button', { name: 'Beadás' }).click();
+    await page.getByRole('alertdialog').getByRole('button', { name: 'Beadom' }).click();
+    await expect(page.getByRole('heading', { level: 1, name: 'Eredmény' })).toBeVisible();
+    await page.locator('details summary').first().click();
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+      .analyze();
+    expect(results.violations, 'results').toEqual([]);
   });
 }

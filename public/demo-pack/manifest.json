@@ -40,7 +40,7 @@
       "sample": true,
       "maxPoints": 27,
       "path": "exams/magyar-kozep-2026-majus-minta/exam.json",
-      "sha256": "3bd6341fb33cc89eeb1954c1bad474c9cfa7b27a1cb79c3ef1fb79103a484ba6",
+      "sha256": "a2c365d44f7aef9e49d3c9c2394bfab89470f58a13c0e4395395c2e8a481cd51",
       "hasPdf": true,
       "pdfSha256": "c9c71f20db632e5456dbe93ae0e07ad065a5ad842f07a46d12cb3b58d0c78ba5",
       "status": "reviewed"
@@ -56,7 +56,7 @@
       "sample": true,
       "maxPoints": 34,
       "path": "exams/matematika-kozep-2026-majus-minta/exam.json",
-      "sha256": "c2394b9fc2c92ab4513d52de77bd3a15428d5f4713bc2b9a86d50d5677203adb",
+      "sha256": "046e767fb53df2e6025e11dac46d53e8ba7f80fe6861c6320c4006dad8c52a74",
       "hasPdf": true,
       "pdfSha256": "52e58a8bb27dbd6d0f291d6a14e5f4fd56a51c82aed76dfc1dc75d6f1d85a3c5",
       "status": "reviewed"

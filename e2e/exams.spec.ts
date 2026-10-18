@@ -33,14 +33,13 @@ test('browses, filters and opens an exam', async ({ page }) => {
     page.getByText('Választható: A 7. és a 8. feladat közül válasszon egyet!'),
   ).toBeVisible();
 
-  const report = page.getByRole('link', { name: /Hiba jelzése: 6\. c\)/ });
+  const report = page.getByRole('link', { name: /Hiba jelzése e-mailben: 6\. c\)/ });
   const href = new URL((await report.getAttribute('href'))!);
-  expect(href.origin + href.pathname).toBe(
-    'https://github.com/kaladarg/Aladar-Erettsegi-Tanulo-Rendszer/issues/new',
+  expect(href.protocol + href.pathname).toBe('mailto:kralik.aladar.gergely@gmail.com');
+  expect(href.searchParams.get('subject')).toBe(
+    'Hiba a feladatsorban: matematika-kozep-2026-majus-minta, 6. c) feladat',
   );
-  expect(href.searchParams.get('template')).toBe('data_correction.yml');
-  expect(href.searchParams.get('exam')).toBe('matematika-kozep-2026-majus-minta');
-  expect(href.searchParams.get('task')).toBe('6c');
+  expect(href.searchParams.get('body')).toContain('Feladat: 6. c) (6c)');
 
   const pdf = page.getByRole('link', { name: /Feladatlap \(PDF\)/ });
   const response = await page.request.get((await pdf.getAttribute('href'))!);

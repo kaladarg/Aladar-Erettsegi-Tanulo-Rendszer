@@ -65,10 +65,10 @@ More layout options for official papers:
 | Kind       | Scored by                               | Use for                                                               |
 | ---------- | --------------------------------------- | --------------------------------------------------------------------- |
 | `rules`    | the app, automatically                  | answers that can be checked mechanically                              |
-| `steps`    | the student (checklist)                 | marking-scheme steps such as "correct method" or intermediate results |
-| `criteria` | the student (rubric, optional `levels`) | essays and long writing                                               |
+| `steps`    | the app when `auto` is set, else review | marking-scheme steps such as "correct method" or intermediate results |
+| `criteria` | review (rubric, optional `levels`)      | essays and long writing                                               |
 
-The scoring engine that applies these rules ships in phase 4; the semantics below are its specification.
+The scoring engine (`src/domain/scoring`) applies these rules when the student hands in. Mark everything the app can decide on its own; only what needs a reader (essays, a drawn graph) should be left for review. Students see review items on the results page and rate them against the marking scheme.
 
 Rule answer kinds:
 
@@ -79,7 +79,26 @@ Rule answer kinds:
 - `matching`: each field id must hold the given option value (also used for true/false lists). Without `partial`, all pairs must be right (e.g. a whole chronological order for 1 point).
 - `elements`: one field holds a list (`1; 2; 3`, `1, 2, 3` or with braces) that must contain exactly these elements in any order (sets, common divisors).
 
-`partial` gives partial credit for multi-part rules: `perItem` points per correct item, or a `table` of thresholds (`{ "correct": 2, "points": 1 }` = 2 correct answers earn 1 point). `penalizeWrong` subtracts one item's credit for each wrong extra choice in multi-select answers. `errorsTable` scores by the number of errors (missing plus wrong items): `[{ "errors": 0, "points": 3 }, { "errors": 1, "points": 2 }]`. Points never go below zero.
+Automatic steps (`steps[].auto`) cover open answers that the marking scheme accepts "in other wording" and maths working:
+
+```jsonc
+{
+  "id": "s1",
+  "points": 1,
+  "description": "A török elleni harcok (elhanyagolása).",
+  "auto": { "fieldIds": ["3-a"], "alternatives": [[["török", "oszmán"]]] },
+}
+```
+
+- `alternatives` lists acceptable answers; each is a list of keyword groups, and an alternative matches when every group has a keyword in the answer. Keywords match word beginnings, ignoring case, accents and punctuation (`török` matches `törökök`). Number keywords match by value at the precision written (`15,4` accepts 15,39).
+- The fields in `fieldIds` are read together (a name in one cell and its role in the next). With `allFields`, each field must match on its own with a different alternative ("two examples").
+- Steps sharing a `distinct` key must be met by different alternatives ("two different reasons").
+- `requireQuotes` asks for the answer in quotation marks ("idézzen").
+- When a non-empty answer matches nothing, the results page says so and lets the student accept it, since the wording may still be right.
+
+`deductions` on the exam lists paper-wide deductions rated after hand-in (Hungarian spelling, up to −8, and handwriting, up to −2). Grades use the exam's `gradeBands`, or the középszint thresholds (25, 40, 60, 80%) by default.
+
+`partial` gives partial credit for multi-part rules: `perItem` points per correct item, or a `table` of thresholds (`{ "correct": 2, "points": 1 }` = 2 correct answers earn 1 point). `penalizeWrong` subtracts one item's credit for each wrong extra choice in multi-select answers. `errorsTable` scores by the number of errors (missing plus wrong items); each row gives the points for up to that many errors: `[{ "errors": 0, "points": 3 }, { "errors": 1, "points": 2 }, { "errors": 3, "points": 1 }]`. Points never go below zero.
 
 ## Working with the private official pack
 
@@ -117,7 +136,7 @@ npm run dev:content                  # the app loads ../erettsegi-gyakorlo-conte
 
 ## Reporting and correcting mistakes
 
-- In the app, each task has a flag button and each exam a "Hibát találtál?" link. They open a pre-filled [data correction issue](../.github/ISSUE_TEMPLATE/data_correction.yml) in the repository named by the manifest's `repositoryUrl` (the code repository for the demo pack).
+- In the app, each task has a flag button (exam page and results page) and each exam a "Hibát találtál?" link. They open a pre-filled email to the manifest's `reportEmail`, or to the maintainer (kralik.aladar.gergely@gmail.com) when the pack names none.
 - Anyone can fix the demo pack with a pull request against `tools/demo/demoExams.ts` (then run `npm run demo:build`).
 - Fixes to official exams go to the content repository: edit `exam.json`, run `content:review`, and open a pull request that cites the page of the marking scheme. While that repository is private, only invited reviewers can do this.
 

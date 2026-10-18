@@ -22,13 +22,16 @@ function summary(exam: Exam) {
     fieldsWithRect: fields.filter((field) => field.pdfRect).length,
     withKey: tasks.filter((task) => scoringPoints(task) > 0).length,
     autoPoints: tasks.reduce(
-      (sum, t) => sum + (t.scoring.rules ?? []).reduce((s, r) => s + r.points, 0),
+      (sum, t) =>
+        sum +
+        (t.scoring.rules ?? []).reduce((s, r) => s + r.points, 0) +
+        (t.scoring.steps ?? []).filter((x) => x.auto).reduce((s, x) => s + x.points, 0),
       0,
     ),
     selfPoints: tasks.reduce(
       (sum, t) =>
         sum +
-        (t.scoring.steps ?? []).reduce((s, x) => s + x.points, 0) +
+        (t.scoring.steps ?? []).filter((x) => !x.auto).reduce((s, x) => s + x.points, 0) +
         (t.scoring.criteria ?? []).reduce((s, c) => s + c.maxPoints, 0),
       0,
     ),
@@ -57,7 +60,7 @@ export function renderReport(id: string, loaded: LoadedExam): string {
       `| Points: tasks add up to the marking-scheme total (${exam.maxPoints}) | ${partTotal === exam.maxPoints ? 'yes' : `**no (${partTotal})**`} |`,
       `| Every task has an answer key or criteria | ${s.withKey === s.tasks ? 'yes' : `**no (${s.tasks - s.withKey} missing)**`} |`,
       `| Every field has PDF coordinates | ${s.fieldsWithRect === s.fields ? 'yes' : `**no (${s.fields - s.fieldsWithRect} of ${s.fields} missing)**`} |`,
-      `| Auto-scored / self-assessed points | ${s.autoPoints} / ${s.selfPoints} |`,
+      `| Automatic / needs-review points | ${s.autoPoints} / ${s.selfPoints} |`,
       '',
       '## Parts',
       '',

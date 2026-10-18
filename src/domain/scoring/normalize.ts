@@ -9,7 +9,7 @@ const EDGE_PUNCTUATION = /^[\s.,;:!?]+|[\s.,;:!?]+$/g;
 export const stripDiacritics = (text: string) =>
   text
     .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '')
+    .replace(/\p{Mn}/gu, '')
     .normalize('NFC');
 
 /**

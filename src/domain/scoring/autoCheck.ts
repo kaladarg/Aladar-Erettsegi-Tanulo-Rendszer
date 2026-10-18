@@ -64,9 +64,9 @@ export function runAutoCheck(
     }
     return { met: true, empty: false, used };
   }
-  for (const value of texts) {
-    const index = fits(asText(value));
-    if (index >= 0) return { met: true, empty: false, used: [index] };
-  }
-  return { met: false, empty: false, used: [] };
+  // The fields are read together, e.g. a name in one table cell and its role in the next.
+  const index = fits(texts.map(asText).filter(Boolean).join('\n'));
+  return index >= 0
+    ? { met: true, empty: false, used: [index] }
+    : { met: false, empty: false, used: [] };
 }

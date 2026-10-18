@@ -20,4 +20,4 @@ Students can download papers from oktatas.hu themselves and open them in the app
 
 ## Corrections and takedown requests
 
-If you are a rights holder and believe material is used incorrectly, please open an issue or contact the maintainer through the repository; we will respond promptly.
+If you are a rights holder and believe material is used incorrectly, please contact the maintainer, Králik Aladár, at kralik.aladar.gergely@gmail.com; we will respond promptly.

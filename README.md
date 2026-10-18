@@ -4,7 +4,9 @@ A free, open-source, ad-free web app for practicing the Hungarian _érettségi_ 
 
 **Version 1 scope:** középszint (intermediate level) in Mathematics, History, and Hungarian Language & Literature. Subjects and levels are data, so more can be added without code changes.
 
-> Status: phase 2 of 7 (content pipeline, exam browser). See [docs/roadmap.md](docs/roadmap.md).
+Made by **Králik Aladár**. Mistakes, questions and suggestions: [kralik.aladar.gergely@gmail.com](mailto:kralik.aladar.gergely@gmail.com).
+
+> Status: phase 4 of 7 (scoring, results, timed exam mode). See [docs/roadmap.md](docs/roadmap.md).
 
 | Mobile (light)                                                   | Desktop (dark)                                                    |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------- |

@@ -231,6 +231,7 @@ export const DEMO_EXAMS: DemoExam[] = [
                   id: 's1',
                   points: 1,
                   description: 'A Pitagorasz-tétel helyes felírása: c² = 6² + 8².',
+                  auto: { fieldIds: ['6a-w'], alternatives: [[['36'], ['64']], [['100']]] },
                 },
               ],
               rules: [
@@ -261,6 +262,7 @@ export const DEMO_EXAMS: DemoExam[] = [
                   id: 's1',
                   points: 1,
                   description: 'A terület képletének felírása: T = (a · b) / 2.',
+                  auto: { fieldIds: ['6b-w'], alternatives: [[['6'], ['8'], ['2']], [['48']]] },
                 },
               ],
               rules: [
@@ -293,13 +295,30 @@ export const DEMO_EXAMS: DemoExam[] = [
                   points: 1,
                   description:
                     'Annak felismerése, hogy a legkisebb szög a 6 cm-es befogóval szemben van.',
+                  auto: {
+                    fieldIds: ['6c-w'],
+                    alternatives: [[['6'], ['szemben', 'legkisebb', 'legrövidebb']]],
+                  },
                 },
                 {
                   id: 's2',
                   points: 2,
                   description: 'Megfelelő szögfüggvény felírása, például tg α = 6/8.',
+                  auto: {
+                    fieldIds: ['6c-w'],
+                    alternatives: [
+                      [['tg', 'tan'], ['6'], ['8']],
+                      [['sin'], ['6'], ['10']],
+                      [['cos'], ['8'], ['10']],
+                    ],
+                  },
                 },
-                { id: 's3', points: 1, description: 'tg α = 0,75 helyes kiszámítása.' },
+                {
+                  id: 's3',
+                  points: 1,
+                  description: 'tg α = 0,75 helyes kiszámítása.',
+                  auto: { fieldIds: ['6c-w'], alternatives: [[['0,75']], [['0,6']], [['0,8']]] },
+                },
               ],
               rules: [
                 {
@@ -337,11 +356,16 @@ export const DEMO_EXAMS: DemoExam[] = [
                   id: 's1',
                   points: 2,
                   description: 'Az átlag helyes felírása: (6 · 5 + 9 · 4 + 10 · 3 + 5 · 2) / 30.',
+                  auto: {
+                    fieldIds: ['7-w'],
+                    alternatives: [[['106']], [['30'], ['36'], ['10'], ['5']]],
+                  },
                 },
                 {
                   id: 's2',
                   points: 2,
                   description: 'A kedvező esetek számának meghatározása: 9 + 6 = 15.',
+                  auto: { fieldIds: ['7-w'], alternatives: [[['15']]] },
                 },
               ],
               rules: [
@@ -397,13 +421,26 @@ export const DEMO_EXAMS: DemoExam[] = [
                   id: 's1',
                   points: 2,
                   description: 'Az aₙ = a₁ + (n − 1) · d képlet helyes alkalmazása.',
+                  auto: { fieldIds: ['8-w'], alternatives: [[['39']]] },
                 },
                 {
                   id: 's2',
                   points: 2,
                   description: 'Az összegképlet helyes alkalmazása: S₁₀ = 10 · (a₁ + a₁₀) / 2.',
+                  auto: { fieldIds: ['8-w'], alternatives: [[['210']], [['42']]] },
                 },
-                { id: 's3', points: 2, description: 'A 3 + (n − 1) · 4 = 99 egyenlet felírása.' },
+                {
+                  id: 's3',
+                  points: 2,
+                  description: 'A 3 + (n − 1) · 4 = 99 egyenlet felírása.',
+                  auto: {
+                    fieldIds: ['8-w'],
+                    alternatives: [
+                      [['99'], ['96']],
+                      [['99'], ['24']],
+                    ],
+                  },
+                },
               ],
               rules: [
                 {
@@ -854,12 +891,30 @@ export const DEMO_EXAMS: DemoExam[] = [
                   points: 1,
                   description:
                     'Helyes összetett szó a szövegből, például: négyzetkilométer, vízszint, fürdőhely, félsziget.',
+                  auto: {
+                    fieldIds: ['4-f1'],
+                    alternatives: [
+                      [['négyzetkilométer']],
+                      [['vízszint']],
+                      [['fürdőhely']],
+                      [['félsziget']],
+                    ],
+                  },
                 },
                 {
                   id: 's2',
                   points: 1,
                   description:
                     'Helyes elemekre bontás, például: víz + szint, fürdő + hely, fél + sziget.',
+                  auto: {
+                    fieldIds: ['4-f1', '4-f2'],
+                    alternatives: [
+                      [['víz'], ['szint']],
+                      [['fürdő'], ['hely']],
+                      [['fél'], ['sziget']],
+                      [['négyzet'], ['kilométer']],
+                    ],
+                  },
                 },
               ],
             },
