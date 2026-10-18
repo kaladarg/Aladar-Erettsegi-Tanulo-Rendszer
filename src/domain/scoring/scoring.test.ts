@@ -46,6 +46,9 @@ describe('parseNumber', () => {
 
   it('finds numbers in working', () => {
     expect(numbersIn('221x = 1326, ezért x = 6; m ≈ 15,4 és −2')).toEqual([221, 1326, 6, 15.4, -2]);
+    expect(numbersIn('10 593 fő')).toEqual([10593]);
+    // Numbers on separate lines of the working are never one grouped number.
+    expect(numbersIn('216\n120')).toEqual([216, 120]);
   });
 });
 

@@ -1,5 +1,6 @@
 const MINUS = /[‐‑‒–—−]/g;
-const GROUP_SPACE = /(\d)[\s\u00a0\u2009\u202f]+(?=\d{3}(\D|$))/g;
+// Thousands are grouped with spaces on one line ("10 593"); a line break always separates numbers.
+const GROUP_SPACE = /(\d)[ \t\u00a0\u2009\u202f]+(?=\d{3}(\D|$))/g;
 const DECIMAL = String.raw`[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)`;
 const NUMBER = new RegExp(String.raw`^(${DECIMAL})(?:\s*/\s*(${DECIMAL}))?\s*(%)?$`);
 
