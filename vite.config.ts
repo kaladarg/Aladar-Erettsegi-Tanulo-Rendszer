@@ -1,5 +1,12 @@
 /// <reference types="vitest/config" />
-import { copyFileSync, createReadStream, existsSync, readFileSync, statSync } from 'node:fs';
+import {
+  copyFileSync,
+  cpSync,
+  createReadStream,
+  existsSync,
+  readFileSync,
+  statSync,
+} from 'node:fs';
 import { extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
@@ -18,6 +25,39 @@ function spaFallback(): Plugin {
     apply: 'build',
     closeBundle() {
       copyFileSync(resolve(root, 'dist/index.html'), resolve(root, 'dist/404.html'));
+    },
+  };
+}
+
+const PDFJS_ROUTE = 'pdfjs/';
+const PDFJS_DIRS = ['standard_fonts', 'wasm', 'iccs'];
+const pdfjsRoot = resolve(root, 'node_modules/pdfjs-dist');
+
+/**
+ * pdf.js loads fonts, image decoders and colour profiles at runtime. Serve
+ * them from node_modules in dev and copy them into dist/pdfjs/ on build.
+ * The JavaScript sandbox (quickjs) is left out: exam papers need no scripting.
+ */
+function pdfjsAssets(): Plugin {
+  return {
+    name: 'pdfjs-assets',
+    configureServer(server) {
+      server.middlewares.use(`${base}${PDFJS_ROUTE}`, (req, res, next) => {
+        const path = decodeURIComponent((req.url ?? '/').split('?')[0]!);
+        const file = resolve(pdfjsRoot, `.${path}`);
+        const allowed = PDFJS_DIRS.some((dir) => file.startsWith(resolve(pdfjsRoot, dir) + sep));
+        if (!allowed || !existsSync(file) || !statSync(file).isFile()) return next();
+        if (file.endsWith('.wasm')) res.setHeader('content-type', 'application/wasm');
+        createReadStream(file).pipe(res);
+      });
+    },
+    writeBundle() {
+      for (const dir of PDFJS_DIRS) {
+        cpSync(resolve(pdfjsRoot, dir), resolve(root, 'dist', PDFJS_ROUTE, dir), {
+          recursive: true,
+          filter: (src) => !/quickjs/.test(src),
+        });
+      }
     },
   };
 }
@@ -112,7 +152,9 @@ export default defineConfig(({ mode }) => {
           ],
         },
         workbox: {
-          globPatterns: ['**/*.{js,css,html,svg,png,woff2,webmanifest}'],
+          globPatterns: ['**/*.{js,mjs,css,html,svg,png,woff2,webmanifest}'],
+          // The pdf.js worker is ~1.3 MB; allow it in the offline precache.
+          maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
           // Hungarian needs only the latin and latin-ext font subsets offline.
           navigateFallback: 'index.html',
           cleanupOutdatedCaches: true,
@@ -120,8 +162,25 @@ export default defineConfig(({ mode }) => {
           globIgnores: [
             '**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*.woff2',
             'demo-pack/**',
+            'pdfjs/**',
+            'assets/pdf*',
+            'assets/katex*',
+            'assets/KaTeX_*',
           ],
           runtimeCaching: [
+            {
+              // Hashed build assets left out of the precache (pdf.js, KaTeX): cached on first use.
+              urlPattern: ({ url }) => url.pathname.includes('/assets/'),
+              handler: 'CacheFirst',
+              options: { cacheName: 'eg-assets', expiration: { maxEntries: 120 } },
+            },
+            {
+              // pdf.js fonts and decoders, fetched only when a PDF needs them.
+              // Matchers are serialized into the service worker: use literals, not variables.
+              urlPattern: ({ url }) => url.pathname.includes('/pdfjs/'),
+              handler: 'CacheFirst',
+              options: { cacheName: 'eg-pdfjs', cacheableResponse: { statuses: [0, 200] } },
+            },
             {
               // Manifests change when exams are added: show cached, refresh in the background.
               urlPattern: ({ url }) => url.pathname.endsWith('/manifest.json'),
@@ -144,6 +203,7 @@ export default defineConfig(({ mode }) => {
       }),
       spaFallback(),
       localContent(contentDir),
+      pdfjsAssets(),
     ],
     test: {
       environment: 'jsdom',

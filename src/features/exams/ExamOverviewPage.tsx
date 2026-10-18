@@ -37,6 +37,7 @@ import { cn } from '@/lib/cn';
 import { toast } from '@/state/toastStore';
 import { useExamProgress } from '@/storage/progress';
 import { ContentErrorState } from './ContentErrorState';
+import { PracticeCard } from './PracticeCard';
 import { ProgressBadge } from './ProgressBadge';
 import { usePdfPicker } from './usePdfPicker';
 
@@ -146,9 +147,7 @@ function Overview({
           {t('exam.reviewDraft')}
         </Callout>
       )}
-      <Callout tone="info" icon={<ListChecks />}>
-        {t('exam.comingNext')}
-      </Callout>
+      <PracticeCard examId={exam.id} />
 
       <section aria-labelledby="summary-title" className="mt-6">
         <h2 id="summary-title" className="sr-only">

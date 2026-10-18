@@ -26,6 +26,7 @@ test('skip link jumps to the main content', async ({ page, isMobile }) => {
   await page.goto('/');
   await finishOnboarding(page);
   await page.reload();
+  await expect(page.getByRole('heading', { level: 1, name: 'Feladatsorok' })).toBeVisible();
   await page.keyboard.press('Tab');
   const skip = page.getByRole('link', { name: 'Ugrás a tartalomra' });
   await expect(skip).toBeFocused();

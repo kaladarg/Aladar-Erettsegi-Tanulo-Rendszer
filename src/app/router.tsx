@@ -7,6 +7,14 @@ export function createRouter() {
   return createBrowserRouter(
     [
       {
+        // Full-screen workspace without the app navigation.
+        path: 'feladatsorok/:examId/gyakorlas',
+        errorElement: <RouteError />,
+        lazy: async () => ({
+          Component: (await import('@/features/workspace/WorkspacePage')).WorkspacePage,
+        }),
+      },
+      {
         element: <Layout />,
         errorElement: <RouteError />,
         children: [

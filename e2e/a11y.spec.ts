@@ -7,10 +7,20 @@ const PAGES = [
   ['/nevjegy', 'Névjegy'],
   ['/feladatsorok', 'Feladatsorok'],
   ['/feladatsorok/tortenelem-kozep-2026-majus-minta', 'Mintafeladatsor – Történelem, középszint'],
+  [
+    '/feladatsorok/tortenelem-kozep-2026-majus-minta/gyakorlas?nezet=urlap',
+    'Történelem – Mintafeladatsor – Történelem, középszint',
+  ],
+  [
+    '/feladatsorok/matematika-kozep-2026-majus-minta/gyakorlas?nezet=feladatlap',
+    'Matematika – Mintafeladatsor – Matematika, középszint',
+  ],
 ] as const;
 
 for (const scheme of ['light', 'dark'] as const) {
   test(`no WCAG 2.2 AA violations (${scheme})`, async ({ page }) => {
+    // Scans many pages, including the PDF workspace.
+    test.setTimeout(120_000);
     await page.emulateMedia({ colorScheme: scheme });
     await page.goto('/');
     const onboarding = await new AxeBuilder({ page })
