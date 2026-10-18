@@ -166,6 +166,8 @@ export default defineConfig(({ mode }) => {
             'assets/pdf*',
             'assets/katex*',
             'assets/KaTeX_*',
+            // The Anthropic SDK chunk loads only for students who use the optional AI.
+            'assets/sdk-*',
           ],
           runtimeCaching: [
             {

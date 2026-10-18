@@ -40,7 +40,7 @@ The JSON Schemas in [`schemas/`](../schemas) are the source of truth. `npm run s
 
 ### Tasks, fields and coordinates
 
-Each task has `id`, `number` (as printed), `type` (`short_answer`, `multiple_choice`, `matching`, `true_false`, `calculation`, `essay`, `long_writing`), Hungarian `text`, `maxPoints`, optional `sourceRefs`, `topics`, `hints`, `explanation` and `wordLimit`.
+Each task has `id`, `number` (as printed), `type` (`short_answer`, `multiple_choice`, `matching`, `true_false`, `calculation`, `essay`, `long_writing`), Hungarian `text`, `maxPoints`, optional `sourceRefs`, `topics`, `hints`, `explanation` and `wordLimit`. `hints` appear in the help panel (practice mode only) before the marking-scheme steps and the solution; write them as nudges, not answers (see [help-and-ai.md](help-and-ai.md)).
 
 `fields` are the inputs: `text`, `number`, `textarea`, `choice` (one option), `multi` (several options), `work` (maths working area) and `essay`. Field ids are unique within the exam (`<taskId>-f1`).
 

@@ -51,5 +51,14 @@ for (const scheme of ['light', 'dark'] as const) {
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
       .analyze();
     expect(results.violations, 'results').toEqual([]);
+
+    // Help panel with the task explanation open.
+    await page.goto('/feladatsorok/tortenelem-kozep-2026-majus-minta/gyakorlas?nezet=urlap');
+    await page.getByRole('button', { name: 'Segítség ehhez: 1. feladat' }).click();
+    await expect(page.getByRole('dialog', { name: 'Segítség' })).toBeVisible();
+    const help = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+      .analyze();
+    expect(help.violations, 'help').toEqual([]);
   });
 }

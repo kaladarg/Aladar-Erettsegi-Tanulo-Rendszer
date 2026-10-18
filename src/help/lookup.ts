@@ -63,7 +63,9 @@ export async function lookup(
 ): Promise<LookupResult | null> {
   const query = cleanQuery(rawQuery);
   if (!query) return null;
-  const title = (await findTitle(site, query, signal)) ?? query;
+  // No matching title means no page; skip the summary request (it would only 404).
+  const title = await findTitle(site, query, signal);
+  if (!title) return null;
   const summary = (await getJson(
     `${HOSTS[site]}/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, '_'))}`,
     signal,

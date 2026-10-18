@@ -104,7 +104,7 @@ export function AiKeySection() {
           value={model}
           aria-describedby="ai-model-hint"
           onChange={(event) => void update({ aiModel: event.target.value as AiModel })}
-          className="min-h-11 rounded-md border border-border-strong bg-surface px-3 sm:max-w-sm"
+          className="min-h-11 w-full min-w-0 rounded-md border border-border-strong bg-surface px-3 sm:max-w-sm"
         >
           {AI_MODELS.map((id) => (
             <option key={id} value={id}>
