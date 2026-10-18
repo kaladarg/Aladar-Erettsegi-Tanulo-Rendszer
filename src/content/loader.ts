@@ -1,6 +1,9 @@
 import { checkExam, hasErrors } from './checks';
 import type { Exam, ExamEntry, Manifest } from './schema.types';
-import { validateExam, validateManifest } from './schema.validators.js';
+
+// The generated validators are large; load them with the first content request,
+// not with the app shell.
+const validators = () => import('./schema.validators.js');
 
 export type ContentErrorCode = 'offline' | 'notFound' | 'invalid';
 
@@ -36,7 +39,10 @@ export interface LoadedManifest {
 }
 
 export async function loadManifest(baseUrl: string): Promise<LoadedManifest> {
-  const data = await fetchJson(new URL('manifest.json', baseUrl).href, { cache: 'no-cache' });
+  const [data, { validateManifest }] = await Promise.all([
+    fetchJson(new URL('manifest.json', baseUrl).href, { cache: 'no-cache' }),
+    validators(),
+  ]);
   if (!validateManifest(data)) {
     console.error('Invalid content manifest', validateManifest.errors);
     throw new ContentError('invalid', 'The content manifest does not match the schema.');
@@ -57,7 +63,10 @@ export function examFileUrl(baseUrl: string, entry: ExamEntry, file: string): st
 }
 
 export async function loadExam(baseUrl: string, entry: ExamEntry): Promise<Exam> {
-  const data = await fetchJson(examUrl(baseUrl, entry));
+  const [data, { validateExam }] = await Promise.all([
+    fetchJson(examUrl(baseUrl, entry)),
+    validators(),
+  ]);
   if (!validateExam(data)) {
     console.error(`Invalid exam ${entry.id}`, validateExam.errors);
     throw new ContentError('invalid', `Exam ${entry.id} does not match the schema.`);

@@ -26,7 +26,8 @@
     "content:pack": "tsx tools/build-pack.ts",
     "demo:build": "tsx tools/demo/build-demo-pack.ts",
     "dev:content": "vite --mode content",
-    "preview:content": "vite preview --mode content"
+    "preview:content": "vite preview --mode content",
+    "lighthouse": "lhci autorun --config=lighthouserc.cjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
@@ -49,6 +50,7 @@
     "@anthropic-ai/sdk": "^0.135.0",
     "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^9.39.5",
+    "@lhci/cli": "^0.15.1",
     "@pdf-lib/fontkit": "^1.1.1",
     "@playwright/test": "^1.56.1",
     "@tailwindcss/vite": "^4.3.3",

@@ -15,11 +15,12 @@ import type { ExamEntry } from '@/content/schema.types';
 import { useManifest } from '@/content/useContent';
 import { Button } from '@/design/ui/Button';
 import { Card, CardTitle } from '@/design/ui/Card';
+import { Skeleton } from '@/design/ui/Skeleton';
 import { recentDays, recommendations, streak, type Recommendation } from '@/domain/stats/stats';
 import { formatDate, formatNumber, t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useSettings } from '@/state/settingsStore';
-import { useBackfillSummaries, useStatsData } from '../stats/useStatsData';
+import { useBackfillSummaries, type StatsData } from '../stats/useStatsData';
 
 function examName(entry: ExamEntry | undefined, examId: string): string {
   return entry ? examFullTitle(entry) : examId;
@@ -99,78 +100,33 @@ function recommendationRow(rec: Recommendation, exams: ExamEntry[]) {
   }
 }
 
-/** Home page overview: unfinished papers, what to do next, and the practice streak. */
-export function Dashboard() {
-  const data = useStatsData();
+/** Home page: what to do next and the practice streak. */
+export function Dashboard({ data }: { data: StatsData }) {
   const { state } = useManifest();
   const manifest = state.status === 'ready' ? state.data : null;
   useBackfillSummaries(data?.attempts, manifest);
   const subjects = useSettings((s) => s.settings.subjects);
-  if (!data) return null;
 
   const exams = manifest?.manifest.exams ?? [];
-  const open = data.attempts
-    .filter((a) => !a.submittedAt)
-    .sort((a, b) => b.updatedAt - a.updatedAt)
-    .slice(0, 3);
   const next = recommendations(data.attempts, exams, subjects);
   const days = streak(data.days);
   const week = recentDays(data.days);
 
   return (
-    <div className="mb-10 grid gap-6 lg:grid-cols-2">
-      {open.length > 0 && (
-        <Card aria-labelledby="dash-continue" className="lg:col-span-2">
-          <CardTitle id="dash-continue" className="flex items-center gap-2">
-            <Play aria-hidden="true" className="size-5 text-primary" />
-            {t('dashboard.continueTitle')}
-          </CardTitle>
-          <ul className="mt-4 grid gap-3">
-            {open.map((attempt) => (
-              <li
-                key={attempt.id}
-                className="flex flex-col gap-3 rounded-md border border-border p-3 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div className="min-w-0">
-                  <p className="font-medium">
-                    {t('dashboard.continueItem', {
-                      exam: examName(
-                        exams.find((e) => e.id === attempt.examId),
-                        attempt.examId,
-                      ),
-                      mode:
-                        attempt.mode === 'exam' ? t('results.modeExam') : t('results.modePractice'),
-                    })}
-                  </p>
-                  <p className="text-sm text-muted">
-                    {t('dashboard.continueUpdated', {
-                      date: formatDate(attempt.updatedAt, {
-                        dateStyle: 'medium',
-                        timeStyle: 'short',
-                      }),
-                    })}
-                  </p>
-                </div>
-                <Button asChild size="sm" className="shrink-0 self-start sm:self-auto">
-                  <Link
-                    to={`/feladatsorok/${attempt.examId}/${attempt.mode === 'exam' ? 'vizsga' : 'gyakorlas'}`}
-                  >
-                    <Play aria-hidden="true" />
-                    {t('dashboard.continueAction')}
-                  </Link>
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </Card>
-      )}
-
+    <div className="mt-10 grid gap-6 lg:grid-cols-2">
       <Card aria-labelledby="dash-next">
         <CardTitle id="dash-next" className="flex items-center gap-2">
           <Target aria-hidden="true" className="size-5 text-primary" />
           {t('dashboard.recommendedTitle')}
         </CardTitle>
-        {next.length > 0 ? (
+        {state.status === 'loading' ? (
+          // Same height as the list, so the page does not jump when it arrives.
+          <div className="mt-3 grid gap-1" aria-hidden="true">
+            {[0, 1, 2].map((i) => (
+              <Skeleton key={i} className="h-20" />
+            ))}
+          </div>
+        ) : next.length > 0 ? (
           <ul className="mt-3 grid gap-1">{next.map((rec) => recommendationRow(rec, exams))}</ul>
         ) : (
           <p className="mt-3 text-muted">{t('dashboard.recommendNone')}</p>
@@ -229,5 +185,60 @@ export function Dashboard() {
         </Link>
       </Card>
     </div>
+  );
+}
+
+/** Unfinished papers, shown first on the home page. */
+export function ContinueCard({ data }: { data: StatsData }) {
+  const { state } = useManifest();
+  const exams = state.status === 'ready' ? state.data.manifest.exams : [];
+  const open = data.attempts
+    .filter((a) => !a.submittedAt)
+    .sort((a, b) => b.updatedAt - a.updatedAt)
+    .slice(0, 3);
+  if (open.length === 0) return null;
+  return (
+    <Card aria-labelledby="dash-continue" className="mb-10">
+      <CardTitle id="dash-continue" className="flex items-center gap-2">
+        <Play aria-hidden="true" className="size-5 text-primary" />
+        {t('dashboard.continueTitle')}
+      </CardTitle>
+      <ul className="mt-4 grid gap-3">
+        {open.map((attempt) => (
+          <li
+            key={attempt.id}
+            className="flex flex-col gap-3 rounded-md border border-border p-3 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div className="min-w-0">
+              <p className="font-medium">
+                {t('dashboard.continueItem', {
+                  exam: examName(
+                    exams.find((e) => e.id === attempt.examId),
+                    attempt.examId,
+                  ),
+                  mode: attempt.mode === 'exam' ? t('results.modeExam') : t('results.modePractice'),
+                })}
+              </p>
+              <p className="text-sm text-muted">
+                {t('dashboard.continueUpdated', {
+                  date: formatDate(attempt.updatedAt, {
+                    dateStyle: 'medium',
+                    timeStyle: 'short',
+                  }),
+                })}
+              </p>
+            </div>
+            <Button asChild size="sm" className="shrink-0 self-start sm:self-auto">
+              <Link
+                to={`/feladatsorok/${attempt.examId}/${attempt.mode === 'exam' ? 'vizsga' : 'gyakorlas'}`}
+              >
+                <Play aria-hidden="true" />
+                {t('dashboard.continueAction')}
+              </Link>
+            </Button>
+          </li>
+        ))}
+      </ul>
+    </Card>
   );
 }

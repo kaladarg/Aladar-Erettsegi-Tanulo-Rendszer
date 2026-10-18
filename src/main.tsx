@@ -1,4 +1,4 @@
-import '@fontsource-variable/inter/wght.css';
+import './design/fonts.css';
 import '@fontsource/opendyslexic/400.css';
 import '@fontsource/opendyslexic/700.css';
 import './index.css';

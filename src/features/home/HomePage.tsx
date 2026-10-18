@@ -11,11 +11,16 @@ import { Skeleton } from '@/design/ui/Skeleton';
 import { t } from '@/i18n';
 import { useOnboarding } from '@/state/onboardingStore';
 import { useSettings } from '@/state/settingsStore';
-import { Dashboard } from './Dashboard';
+import { useStatsData } from '../stats/useStatsData';
+import { ContinueCard, Dashboard } from './Dashboard';
 
 export function HomePage() {
   usePageTitle(t('nav.home'));
-  const loaded = useSettings((state) => state.loaded);
+  const settingsLoaded = useSettings((state) => state.loaded);
+  const stats = useStatsData();
+  // Settings and progress both come from IndexedDB within milliseconds; showing
+  // them together avoids the page jumping as each part arrives.
+  const loaded = settingsLoaded && !!stats;
   const selected = useSettings((state) => state.settings.subjects);
   const showOnboarding = useOnboarding((state) => state.show);
   const subjects = DEFAULT_SUBJECTS.filter((subject) => selected.includes(subject.id));
@@ -24,7 +29,7 @@ export function HomePage() {
   return (
     <>
       <PageHeader title={t('home.greeting')} description={t('home.intro')} />
-      {loaded && <Dashboard />}
+      {loaded && <ContinueCard data={stats} />}
 
       <section aria-labelledby="home-subjects">
         <h2 id="home-subjects" className="mb-4 text-xl font-semibold">
@@ -80,6 +85,8 @@ export function HomePage() {
           </Button>
         )}
       </section>
+
+      {loaded && <Dashboard data={stats} />}
 
       <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="flex items-center gap-2 text-sm text-muted">

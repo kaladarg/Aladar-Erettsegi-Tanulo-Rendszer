@@ -28,6 +28,14 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+      - name: Lighthouse budget (desktop, median of 3 runs)
+        run: npm run lighthouse
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/reports
+          retention-days: 7
 
   e2e:
     name: Playwright smoke tests
