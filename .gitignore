@@ -18,3 +18,4 @@ blob-report/
 /content/
 /tools/.cache/
 .lighthouseci/
+dist-portable/

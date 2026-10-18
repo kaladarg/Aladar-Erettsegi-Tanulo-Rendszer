@@ -122,6 +122,8 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
       VitePWA({
+        // The portable build runs where service workers are not allowed.
+        disable: process.env.VITE_PORTABLE === '1',
         registerType: 'prompt',
         injectRegister: false,
         includeAssets: ['favicon.svg', 'apple-touch-icon.png'],

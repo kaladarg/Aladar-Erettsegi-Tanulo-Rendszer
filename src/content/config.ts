@@ -10,7 +10,7 @@ const withSlash = (url: string) => (url.endsWith('/') ? url : `${url}/`);
 
 export function contentBaseUrl(userSetting: string): string {
   const configured = userSetting || import.meta.env.VITE_CONTENT_BASE_URL || DEFAULT_CONTENT_BASE;
-  return withSlash(new URL(configured, window.location.origin).href);
+  return withSlash(new URL(configured, document.baseURI).href);
 }
 
 /** Cache Storage bucket shared with the service worker's runtime caching. */

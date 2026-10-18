@@ -37,7 +37,7 @@ export function cardContent(
 
 /** Link to the paper's page on this site (no attempt data in it). */
 export function examLink(examId: string): string {
-  return new URL(`${import.meta.env.BASE_URL}feladatsorok/${examId}`, location.origin).href;
+  return new URL(`${import.meta.env.BASE_URL}feladatsorok/${examId}`, document.baseURI).href;
 }
 
 const SIZE = 1080;

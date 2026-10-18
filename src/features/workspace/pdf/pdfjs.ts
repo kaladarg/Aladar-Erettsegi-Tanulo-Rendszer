@@ -18,7 +18,7 @@ export async function openPdf(source: PdfSource): Promise<OpenedPdf> {
     import('pdfjs-dist/legacy/build/pdf.worker.min.mjs?url'),
   ]);
   pdfjs.GlobalWorkerOptions.workerSrc = worker.default;
-  const assets = `${import.meta.env.BASE_URL}pdfjs/`;
+  const assets = new URL(`${import.meta.env.BASE_URL}pdfjs/`, document.baseURI).href;
   const task = pdfjs.getDocument({
     ...('url' in source ? { url: source.url } : { data: new Uint8Array(source.data.slice(0)) }),
     standardFontDataUrl: `${assets}standard_fonts/`,
