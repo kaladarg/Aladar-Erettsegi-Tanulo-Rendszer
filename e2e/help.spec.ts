@@ -44,6 +44,41 @@ test('exam mode offers no help', async ({ page }) => {
   await expect(page.getByRole('button', { name: /^Segítség/ })).toHaveCount(0);
 });
 
+test('the sites tab lists free learning sites for the subject', async ({ page }) => {
+  await page.goto(`/feladatsorok/${HUNGARIAN}/gyakorlas?nezet=urlap`);
+  await page.getByRole('button', { name: 'Segítség ehhez: 1. feladat' }).click();
+  const help = page.getByRole('dialog', { name: 'Segítség' });
+  await help.getByRole('tab', { name: 'Oldalak' }).click();
+  await expect(help.getByRole('link', { name: /Helyesírási tanácsadó/ })).toHaveAttribute(
+    'href',
+    'https://helyesiras.mta.hu',
+  );
+  await expect(help.getByRole('link', { name: /Nemzeti Köznevelési Portál/ })).toBeVisible();
+  await expect(help.getByRole('link', { name: /Khan Academy/ })).toHaveCount(0);
+});
+
+test('without a key, questions go to a free AI chat by copy and paste', async ({
+  page,
+  context,
+}) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await context.route('https://gemini.google.com/**', (route) =>
+    route.fulfill({ contentType: 'text/html', body: '<title>Gemini</title>' }),
+  );
+  await page.goto(`/feladatsorok/${HISTORY}/gyakorlas?nezet=urlap`);
+  await page.getByRole('button', { name: 'Segítség ehhez: 2. feladat' }).click();
+  const help = page.getByRole('dialog', { name: 'Segítség' });
+  await help.getByRole('tab', { name: 'Kérdezz' }).click();
+  await help.getByRole('textbox', { name: 'Kérdésed' }).fill('Mit jelent a cenzúra?');
+  const popup = page.waitForEvent('popup');
+  await help.getByRole('link', { name: /Google Gemini megnyitása/ }).click();
+  await (await popup).close();
+  await expect(help.getByRole('status')).toHaveText(/Kimásoltuk a kérdést\./);
+  const copied = await page.evaluate(() => navigator.clipboard.readText());
+  expect(copied).toContain('Középszintű érettségire készülök történelem tárgyból');
+  expect(copied).toContain('Kérdésem: Mit jelent a cenzúra?');
+});
+
 const summary = (title: string, extract: string, host: string) => ({
   title,
   extract,
@@ -90,6 +125,10 @@ test('selected words can be looked up in Wiktionary and Wikipedia', async ({ pag
   await expect(help.getByRole('link', { name: /Keresés a weben/ })).toHaveAttribute(
     'href',
     /duckduckgo\.com\/\?q=sajt%C3%B3/,
+  );
+  await expect(help.getByRole('link', { name: /Zanza\.tv: „sajtó”/ })).toHaveAttribute(
+    'href',
+    /site%3Azanza\.tv%20sajt%C3%B3/,
   );
 });
 
@@ -169,6 +208,7 @@ test('with an API key, the AI tutor answers and suggests essay points', async ({
 
   await page.goto('/beallitasok');
   await page.getByLabel('API-kulcs').fill(`sk-ant-api03-${'x'.repeat(40)}`);
+  await page.getByRole('checkbox', { name: /Elmúltam 18 éves/ }).check();
   await page.getByRole('button', { name: 'Kulcs mentése' }).click();
   await page.getByRole('combobox', { name: 'Modell' }).selectOption('claude-sonnet-5-5');
 

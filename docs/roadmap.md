@@ -7,7 +7,7 @@
 | 2     | Import pipeline and content packs for one paper per subject; exam browser                      | done    |
 | 3     | Editable PDF mode and form mode                                                                | done    |
 | 4     | Scoring, timed exam mode, mistake review                                                       | done    |
-| 5     | Help mode (lookup, task explanations, optional AI, AI feedback on essays)                      | next    |
+| 5     | Help mode (lookup, task explanations, learning sites, free AI chat hand-off, optional AI)      | done    |
 | 6     | Statistics, sharing, home dashboard                                                            | next    |
 | 7     | Full középszint archive (2024 onward first), accessibility and performance pass, docs, release | planned |
 

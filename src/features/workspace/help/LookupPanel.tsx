@@ -8,7 +8,9 @@ import {
   type LookupResult,
   type LookupSite,
 } from '@/help/lookup';
+import { resourcesFor, siteSearchUrl } from '@/help/resources';
 import { t } from '@/i18n';
+import { useWorkspace } from '../WorkspaceContext';
 
 type State =
   | { status: 'idle' }
@@ -23,6 +25,8 @@ const SITES: { site: LookupSite; label: () => string; icon: typeof BookOpen }[] 
 
 /** Looks a word up in the Hungarian Wiktionary and Wikipedia, on request only. */
 export function LookupPanel({ initialQuery }: { initialQuery: string }) {
+  const { exam } = useWorkspace();
+  const searchSites = resourcesFor(exam.subject).filter((site) => site.searchDomain);
   const id = useId();
   const [query, setQuery] = useState(initialQuery);
   // A new object per search, so searching the same text again re-runs it.
@@ -138,6 +142,30 @@ export function LookupPanel({ initialQuery }: { initialQuery: string }) {
           <Globe aria-hidden="true" className="size-4" />
           {t('help.lookupWeb')}: „{searched}”<span className="sr-only"> {t('common.newTab')}</span>
         </a>
+      )}
+      {searched && (
+        <section className="grid gap-2">
+          <h3 className="text-sm font-semibold text-muted">{t('help.lookupSites')}</h3>
+          <ul className="grid gap-1">
+            {searchSites.map((site) => (
+              <li key={site.id}>
+                <a
+                  href={siteSearchUrl(site.searchDomain!, searched)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4"
+                >
+                  {t('help.lookupSiteLink', {
+                    site: t(`help.resources.${site.id}.name`),
+                    query: searched,
+                  })}
+                  <ExternalLink aria-hidden="true" className="size-3.5" />
+                  <span className="sr-only"> {t('common.newTab')}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
     </div>
   );

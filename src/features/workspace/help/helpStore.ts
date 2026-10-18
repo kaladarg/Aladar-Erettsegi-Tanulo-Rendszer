@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type HelpTab = 'task' | 'lookup' | 'ai';
+export type HelpTab = 'task' | 'lookup' | 'sites' | 'ai';
 
 interface HelpState {
   open: boolean;

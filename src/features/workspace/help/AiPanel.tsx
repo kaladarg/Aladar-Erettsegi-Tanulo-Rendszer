@@ -4,25 +4,15 @@ import { AiError, streamAnswer, type AiMessage } from '@/ai/claude';
 import { tutorSystem } from '@/ai/prompts';
 import type { Task } from '@/content/schema.types';
 import { Button } from '@/design/ui/Button';
-import { asText, isBlank } from '@/domain/scoring/rules';
 import { t } from '@/i18n';
 import { cn } from '@/lib/cn';
-import { useAnswers } from '@/state/answerStore';
 import { useSettings } from '@/state/settingsStore';
 import { useWorkspace } from '../WorkspaceContext';
+import { currentAnswer } from './currentAnswer';
 
 interface Turn {
   role: 'user' | 'assistant';
   text: string;
-}
-
-/** The student's current answer to a task, for the tutor to look at. */
-function currentAnswer(task: Task): string {
-  const answers = useAnswers.getState().answers;
-  return task.fields
-    .filter((field) => !isBlank(answers[field.id]))
-    .map((field) => `${field.label ?? field.id} ${asText(answers[field.id])}`)
-    .join('\n');
 }
 
 /** Questions to the AI tutor about one task (needs the student's own API key). */

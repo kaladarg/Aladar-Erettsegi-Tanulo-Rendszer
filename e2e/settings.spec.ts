@@ -77,6 +77,9 @@ test('AI key is validated and stored only after confirmation', async ({ page }) 
 
   await input.fill('sk-ant-api03-abcdefghijklmnopqrstuvwxyz0123');
   await page.getByRole('button', { name: 'Kulcs mentése' }).click();
+  await expect(page.getByRole('alert').filter({ hasText: '18 éves' })).toBeVisible();
+  await page.getByRole('checkbox', { name: /Elmúltam 18 éves/ }).check();
+  await page.getByRole('button', { name: 'Kulcs mentése' }).click();
   await expect(toastWith(page, 'Elmentettük a kulcsot ezen az eszközön.')).toBeVisible();
   await expect(page.getByText('sk-ant-api…0123')).toBeVisible();
   await page.getByRole('button', { name: 'Kulcs törlése' }).click();

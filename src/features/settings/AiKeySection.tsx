@@ -15,6 +15,7 @@ export function AiKeySection() {
   const [draft, setDraft] = useState('');
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [adult, setAdult] = useState(false);
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -22,10 +23,15 @@ export function AiKeySection() {
       setError(t('settings.ai.invalid'));
       return;
     }
+    if (!adult) {
+      setError(t('settings.ai.adultRequired'));
+      return;
+    }
     setError(null);
     await saveAiKey(draft);
     setDraft('');
     setVisible(false);
+    setAdult(false);
     toast({ message: t('settings.ai.saved'), tone: 'success' });
   };
 
@@ -88,6 +94,17 @@ export function AiKeySection() {
               {t('settings.ai.save')}
             </Button>
           </div>
+          <label htmlFor="ai-adult" className="mt-3 flex items-start gap-2 text-sm">
+            <input
+              id="ai-adult"
+              type="checkbox"
+              checked={adult}
+              onChange={(event) => setAdult(event.target.checked)}
+              className="mt-0.5 size-4 shrink-0"
+            />
+            {t('settings.ai.adult')}
+          </label>
+          <p className="mt-2 text-sm text-muted">{t('settings.ai.under18')}</p>
           {error && (
             <p id="ai-key-error" role="alert" className="mt-2 text-sm font-medium text-danger">
               {error}

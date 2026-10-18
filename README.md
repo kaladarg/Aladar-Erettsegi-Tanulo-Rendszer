@@ -21,7 +21,7 @@ Nyisd meg az oldalt: **https://kaladarg.github.io/Aladar-Erettsegi-Tanulo-Rendsz
 - Első betöltés után internet nélkül is működik.
 - A haladásod csak a te eszközödön tárolódik. A Beállításokban fájlba mentheted, és másik eszközön visszatöltheted.
 - Gyakorolhatsz a saját tempódban, vagy vizsgaszimulációban, a hivatalos időkerettel. Beadás után azonnal megkapod az eredményt; az esszét a javítási útmutató szempontjai szerint te pontozod.
-- Gyakorláskor a „Segítség” gombbal megnézheted, mit kér a feladat, tippet kaphatsz, és szavakat kereshetsz a Wikiszótárban és a Wikipédiában. Saját Anthropic API-kulccsal kérdezhetsz a mesterséges intelligenciától is (nem kötelező).
+- Gyakorláskor a „Segítség” gombbal megnézheted, mit kér a feladat, tippet kaphatsz, szavakat kereshetsz a Wikiszótárban és a Wikipédiában, és ingyenes, reklámmentes magyar tanulóoldalakat találsz tárgyanként. Kérdezhetsz ingyenes MI-csevegőkben is: az alkalmazás összeállítja és kimásolja a kérdést, te beilleszted. 18 év felett saját Anthropic API-kulccsal az alkalmazáson belül is kérdezhetsz (nem kötelező).
 
 ## Quick start (developers)
 
@@ -68,7 +68,7 @@ Code and content are separate. The app loads exams from a _content pack_: a mani
 
 ## Privacy
 
-No ads, no analytics, no third-party trackers, no cookies. All data stays in the browser (IndexedDB). Optional AI features use the student's own API key, stored only on their device and never included in exports.
+No ads, no analytics, no third-party trackers, no cookies. All data stays in the browser (IndexedDB). Optional AI features use the student's own API key, stored only on their device and never included in exports. Links to free AI chats and learning sites open in a new tab; the app sends them nothing, the student pastes the prepared text.
 
 ## Contributing
 

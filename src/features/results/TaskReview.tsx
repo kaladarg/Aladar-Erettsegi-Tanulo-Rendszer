@@ -9,6 +9,7 @@ import { expectedAnswer } from '@/domain/scoring/rules';
 import { t } from '@/i18n';
 import { HELP_REVEALED, helpKey, type Answers } from '@/storage/attempts';
 import { AiEssayFeedback } from './AiEssayFeedback';
+import { EssayHandoff } from './EssayHandoff';
 import { AnswerView } from './AnswerView';
 import { CriterionReview, StepReview } from './ReviewControls';
 
@@ -139,7 +140,10 @@ export function TaskReview({
         </ul>
       )}
       {exam && criteria.size > 0 && (
-        <AiEssayFeedback exam={exam} task={task} answers={answers} attemptId={attemptId} />
+        <>
+          <AiEssayFeedback exam={exam} task={task} answers={answers} attemptId={attemptId} />
+          <EssayHandoff exam={exam} task={task} answers={answers} />
+        </>
       )}
       {result.items.some((i) => i.kind === 'criterion') && (
         <ul className="grid gap-3">

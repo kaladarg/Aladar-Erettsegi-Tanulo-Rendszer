@@ -234,7 +234,7 @@ export const hu = {
     ai: {
       title: 'Mesterséges intelligencia (nem kötelező)',
       description:
-        'Saját Anthropic API-kulccsal kérhetsz MI-visszajelzést. Az alkalmazás e nélkül is teljesen működik.',
+        'Saját Anthropic API-kulccsal az alkalmazáson belül kérdezhetsz az MI-től (csak 18 év felett). Kulcs nélkül is kérdezhetsz: a Segítség panel ingyenes MI-csevegőkbe másolja a kérdést. Az alkalmazás e nélkül is teljesen működik.',
       keyLabel: 'API-kulcs',
       keyPlaceholder: 'sk-ant-…',
       show: 'Kulcs megjelenítése',
@@ -244,6 +244,11 @@ export const hu = {
       saved: 'Elmentettük a kulcsot ezen az eszközön.',
       removed: 'Töröltük a kulcsot.',
       invalid: 'Ez nem tűnik Anthropic API-kulcsnak (sk-ant- kezdetű).',
+      adult:
+        'Elmúltam 18 éves, és elfogadom az Anthropic felhasználási feltételeit (a kulcsot a saját fiókomhoz kaptam).',
+      adultRequired: 'A kulcs mentéséhez erősítsd meg, hogy elmúltál 18 éves.',
+      under18:
+        '18 év alatt is sokat segít a Segítség panel kulcs nélkül: tippek, szótár, tanulóoldalak és ingyenes MI-csevegők (a saját korhatáruk szerint).',
       notice:
         'A kulcs csak ebben a böngészőben tárolódik, és nem kerül bele az adatmentésbe. Ha MI-funkciót használsz, a kérdésed, a kapcsolódó feladat szövege és javítási útmutatója, illetve kérésedre a válaszod közvetlenül az Anthropichoz kerül.',
       modelLabel: 'Modell',
@@ -269,7 +274,7 @@ export const hu = {
     },
     privacy: {
       title: 'Adatvédelem',
-      body: 'Nincs reklám, nincs analitika, nincs követő kód és nincs süti. Minden adatod ezen az eszközön marad, mi semmit sem látunk belőle. Ha a szótárban keresel, a keresett szót a Wikimédia (Wikipédia, Wikiszótár) kapja meg; ha MI-funkciót használsz, az adott kérdés az Anthropichoz kerül.',
+      body: 'Nincs reklám, nincs analitika, nincs követő kód és nincs süti. Minden adatod ezen az eszközön marad, mi semmit sem látunk belőle. Ha a szótárban keresel, a keresett szót a Wikimédia (Wikipédia, Wikiszótár) kapja meg; ha saját kulccsal MI-funkciót használsz, az adott kérdés az Anthropichoz kerül. Ha ingyenes MI-csevegőt vagy tanulóoldalt nyitsz meg, az új lapon nyílik, és csak az kerül oda, amit te beillesztesz vagy beírsz.',
     },
   },
   about: {
@@ -286,7 +291,7 @@ export const hu = {
     officialLink: 'Hivatalos feladatsorok: oktatas.hu',
     privacyTitle: 'Adatvédelem',
     privacyBody:
-      'Nincs regisztráció, reklám, analitika vagy követés. Minden adat ezen az eszközön, a böngésződben tárolódik. Csak a kifejezett kérésedre küldünk ki adatot: a szótárkeresésnél a keresett szót a Wikimédiának, az MI-funkcióknál a kérdést az Anthropicnak.',
+      'Nincs regisztráció, reklám, analitika vagy követés. Minden adat ezen az eszközön, a böngésződben tárolódik. Csak a kifejezett kérésedre küldünk ki adatot: a szótárkeresésnél a keresett szót a Wikimédiának, az MI-funkcióknál (saját kulccsal) a kérdést az Anthropicnak. Az ingyenes MI-csevegőknek az alkalmazás semmit nem küld: a kérdést te illeszted be.',
     creditsTitle: 'Köszönet',
     creditsBody:
       'Az alkalmazás nyílt forrású eszközökre épül: React, Vite, Tailwind CSS, Radix UI, Dexie, pdf.js, Lucide ikonok, Inter és OpenDyslexic betűtípusok.',
@@ -455,6 +460,9 @@ export const hu = {
     aiFeedbackApplied: 'Átvettük a javasolt pontokat. Bármikor módosíthatod őket.',
     aiFeedbackPoints: '{label}: {points} / {max} pont',
     aiFeedbackNote: 'Az MI tévedhet: nézd át a javaslatot az útmutató alapján.',
+    essayHandoff: 'Visszajelzés ingyenes MI-csevegőtől',
+    essayHandoffBody:
+      'Kimásoljuk az esszédet a feladattal és az értékelési szempontokkal együtt, és megnyitjuk a választott oldalt. Ott illeszd be, majd a javaslat alapján pontozd magad.',
   },
   help: {
     open: 'Segítség',
@@ -553,6 +561,74 @@ export const hu = {
       refused: 'Erre a kérdésre a segítő nem tud válaszolni.',
       network: 'Nem sikerült elérni az Anthropicot. Ellenőrizd az internetkapcsolatot.',
       other: 'Valami hiba történt. Próbáld újra.',
+    },
+    tabSites: 'Oldalak',
+    sitesIntro:
+      'Ingyenes, reklámmentes vagy közszolgálati oldalak, ahol tovább tanulhatsz. Új lapon nyílnak meg, és mindegyiknek saját adatkezelése van.',
+    sitesSubject: 'Ehhez a tárgyhoz',
+    sitesGeneral: 'Minden tárgyhoz',
+    lookupSites: 'Keresés ingyenes tanulóoldalakon',
+    lookupSiteLink: '{site}: „{query}”',
+    handoffTitle: 'Kérdezz egy ingyenes MI-csevegőben',
+    handoffIntro:
+      'Összeállítjuk a kérdést a feladat szövegével együtt. A gombra kattintva kimásoljuk, és megnyílik a választott oldal: ott illeszd be (Ctrl+V vagy hosszú érintés, Beillesztés).',
+    handoffNotice:
+      'Ezek külső szolgáltatások saját feltételekkel és korhatárral (általában 13 vagy 18 év). A beillesztett szöveg hozzájuk kerül. Személyes adatot ne írj bele. Az alkalmazás maga semmit nem küld el.',
+    handoffOpen: '{name} megnyitása',
+    handoffCopied: 'Kimásoltuk a kérdést. Illeszd be a megnyíló oldalon.',
+    handoffCopyFailed: 'Nem sikerült kimásolni. Jelöld ki és másold ki a lenti szöveget.',
+    handoffCopy: 'Kérdés másolása',
+    handoffPreview: 'A kimásolt szöveg',
+    handoffWithKey: 'Vagy kérdezz egy ingyenes MI-csevegőben, kulcs nélkül',
+    resources: {
+      oktatas: {
+        name: 'Oktatási Hivatal: korábbi feladatsorok',
+        description: 'Az összes hivatalos érettségi feladatsor és javítási útmutató.',
+      },
+      nkp: {
+        name: 'Nemzeti Köznevelési Portál',
+        description: 'Ingyenes digitális tankönyvek és feladatok minden tárgyból.',
+      },
+      zanza: {
+        name: 'Zanza.tv',
+        description: 'Rövid magyarázó videók és kvízek az érettségi témaköreihez.',
+      },
+      felvi: {
+        name: 'Felvi.hu',
+        description: 'Hivatalos tájékoztató a felvételiről, a pontszámításról és a szakokról.',
+      },
+      wikipedia: {
+        name: 'Magyar Wikipédia',
+        description: 'Szabad enciklopédia: fogalmak, személyek, események.',
+      },
+      khan: {
+        name: 'Khan Academy magyarul',
+        description: 'Ingyenes matematikai videók és gyakorlófeladatok, lépésről lépésre.',
+      },
+      geogebra: {
+        name: 'GeoGebra',
+        description: 'Ingyenes függvényrajzoló és geometriai program, böngészőben is.',
+      },
+      mek: {
+        name: 'Magyar Elektronikus Könyvtár',
+        description: 'Kötelező olvasmányok és forrásművek ingyen, az OSZK-tól.',
+      },
+      dia: {
+        name: 'Digitális Irodalmi Akadémia',
+        description: 'Magyar írók művei és életrajzai a Petőfi Irodalmi Múzeumtól.',
+      },
+      helyesiras: {
+        name: 'Helyesírási tanácsadó',
+        description: 'A HUN-REN Nyelvtudományi Kutatóközpont helyesírási portálja.',
+      },
+      nagyszotar: {
+        name: 'A magyar nyelv nagyszótára',
+        description: 'Szavak jelentése és használata, a Nyelvtudományi Kutatóközponttól.',
+      },
+      wiktionary: {
+        name: 'Wikiszótár',
+        description: 'Szabad szótár: jelentés, eredet, ragozás.',
+      },
     },
     selectionMenu: 'Kijelölt szöveg',
     selectionLookup: 'Keresés: „{text}”',
