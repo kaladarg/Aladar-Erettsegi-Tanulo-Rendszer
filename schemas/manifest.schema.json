@@ -26,7 +26,7 @@
       "type": "string"
     },
     "repositoryUrl": {
-      "description": "Where to report data mistakes (GitHub repository URL).",
+      "description": "Repository of the content pack (shown as its source).",
       "type": "string",
       "pattern": "^https?://"
     },
@@ -49,6 +49,11 @@
       "items": {
         "$ref": "#/definitions/ExamEntry"
       }
+    },
+    "reportEmail": {
+      "description": "Where students report data mistakes (defaults to the app maintainer).",
+      "type": "string",
+      "pattern": "^[^@\\s]+@[^@\\s]+$"
     }
   },
   "definitions": {

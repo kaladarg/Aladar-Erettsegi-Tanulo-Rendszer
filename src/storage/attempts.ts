@@ -1,4 +1,4 @@
-import { db, type AnswerRow, type AttemptRow } from './db';
+import { db, type AnswerRow, type AttemptResult, type AttemptRow } from './db';
 
 export type AnswerValue = string | string[];
 
@@ -85,4 +85,65 @@ export async function restoreAttempt(deleted: DeletedAttempt): Promise<void> {
     await db.attempts.put(deleted.attempt);
     await db.answers.bulkPut(deleted.answers);
   });
+}
+
+/** Review marks of an attempt, keyed by task id then step/criterion id. */
+export async function loadReviews(
+  attemptId: string,
+): Promise<Record<string, Record<string, number>>> {
+  const rows = await db.selfAssessments.where('attemptId').equals(attemptId).toArray();
+  return Object.fromEntries(rows.map((row) => [row.taskId, row.points]));
+}
+
+/** Sets (or with `null` clears) the points of one reviewed item. */
+export async function saveReview(
+  attemptId: string,
+  taskId: string,
+  itemId: string,
+  points: number | null,
+): Promise<void> {
+  await db.transaction('rw', db.selfAssessments, async () => {
+    const row = await db.selfAssessments.get([attemptId, taskId]);
+    const next = { ...(row?.points ?? {}) };
+    if (points === null) delete next[itemId];
+    else next[itemId] = points;
+    await db.selfAssessments.put({ attemptId, taskId, points: next, updatedAt: Date.now() });
+  });
+}
+
+/** Closes an attempt for editing and stores its first result. */
+export async function submitAttempt(attemptId: string, result: AttemptResult): Promise<void> {
+  const now = Date.now();
+  await db.attempts.update(attemptId, { submittedAt: now, updatedAt: now, result });
+}
+
+export async function setAttemptResult(attemptId: string, result: AttemptResult): Promise<void> {
+  await db.attempts.update(attemptId, { result });
+}
+
+/** Submitted attempts of an exam, newest first. */
+export async function submittedAttempts(examId: string): Promise<AttemptRow[]> {
+  const attempts = await db.attempts.where('examId').equals(examId).toArray();
+  return attempts
+    .filter((attempt) => attempt.submittedAt)
+    .sort((a, b) => (b.submittedAt ?? 0) - (a.submittedAt ?? 0));
+}
+
+/** Stores the time written in one exam segment. */
+export async function saveSegmentSeconds(
+  attemptId: string,
+  segmentId: string,
+  seconds: number,
+): Promise<void> {
+  await db.attempts
+    .where('id')
+    .equals(attemptId)
+    .modify((attempt) => {
+      attempt.partSeconds = { ...attempt.partSeconds, [segmentId]: seconds };
+    });
+}
+
+/** Hands in the current exam segment and moves on to the next one. */
+export async function advanceSegment(attemptId: string, next: number): Promise<void> {
+  await db.attempts.update(attemptId, { segment: next, updatedAt: Date.now() });
 }

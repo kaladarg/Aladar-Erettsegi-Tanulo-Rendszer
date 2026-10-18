@@ -7,7 +7,7 @@ import { Skeleton } from '@/design/ui/Skeleton';
 import { formatNumber, t } from '@/i18n';
 import { useWorkspace } from '../WorkspaceContext';
 import { applyRectEdits, useRectEdits } from './editorStore';
-import { buildOverlayItems } from './overlayItems';
+import { buildOverlayItems, type OverlayItem } from './overlayItems';
 import { PdfPage } from './PdfPage';
 import { openPdf, type OpenedPdf, type PdfSource } from './pdfjs';
 
@@ -21,7 +21,7 @@ interface PdfModeProps {
 
 /** The real exam paper with answer fields over the answer boxes. */
 export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
-  const { exam } = useWorkspace();
+  const { exam, activePartIds } = useWorkspace();
   const [doc, setDoc] = useState<PDFDocumentProxy | null>(null);
   const [sizes, setSizes] = useState<{ w: number; h: number }[]>([]);
   const [failed, setFailed] = useState(false);
@@ -71,7 +71,15 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
     return () => observer.disconnect();
   }, []);
 
-  const itemsByPage = useMemo(() => buildOverlayItems(exam), [exam]);
+  const itemsByPage = useMemo(() => {
+    const all = buildOverlayItems(exam);
+    if (!activePartIds) return all;
+    // Exam mode: only the fields of the parts being written now.
+    const partOf = new Map(exam.parts.flatMap((p) => p.tasks.map((t) => [t.id, p.id])));
+    const active = (item: OverlayItem) =>
+      activePartIds.has('part' in item ? item.part.id : partOf.get(item.task.id)!);
+    return new Map([...all].map(([page, items]) => [page, items.filter(active)]));
+  }, [exam, activePartIds]);
 
   const maxWidth = Math.max(1, ...sizes.map((size) => size.w));
   // "100%" fits the page to the screen width, but never wider than a comfortable reading size.

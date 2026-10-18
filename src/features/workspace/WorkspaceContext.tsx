@@ -8,6 +8,8 @@ export interface WorkspaceValue {
   sources: Map<string, SourceMaterial>;
   /** The exam paper, when available; form mode crops figures from it. */
   pdf: PdfSource | null;
+  /** Exam mode: the parts being written now; others are hidden. Null: all parts. */
+  activePartIds: Set<string> | null;
 }
 
 export const WorkspaceContext = createContext<WorkspaceValue | null>(null);
@@ -18,8 +20,17 @@ export function useWorkspace(): WorkspaceValue {
   return value;
 }
 
-export function createWorkspace(exam: Exam, pdf: PdfSource | null = null): WorkspaceValue {
-  return { exam, pdf, sources: new Map((exam.sources ?? []).map((source) => [source.id, source])) };
+export function createWorkspace(
+  exam: Exam,
+  pdf: PdfSource | null = null,
+  activePartIds: Set<string> | null = null,
+): WorkspaceValue {
+  return {
+    exam,
+    pdf,
+    activePartIds,
+    sources: new Map((exam.sources ?? []).map((source) => [source.id, source])),
+  };
 }
 
 /** Accessible name of a field: task number plus the field's own label. */

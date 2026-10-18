@@ -13,10 +13,19 @@ export interface AttemptRow {
   startedAt: number;
   updatedAt: number;
   submittedAt?: number;
-  /** Time spent per paper part, in seconds. */
+  /** Time spent per timed segment (a part, or the whole paper), in seconds. */
   partSeconds: Record<string, number>;
-  /** Set when the attempt is submitted and scored. */
-  result?: { points: number; maxPoints: number };
+  /** Exam mode: index of the segment being written; earlier ones are handed in. */
+  segment?: number;
+  /** Set when the attempt is submitted; updated as review items are marked. */
+  result?: AttemptResult;
+}
+
+export interface AttemptResult {
+  points: number;
+  maxPoints: number;
+  /** Points still waiting for review (essays, working). */
+  pendingPoints?: number;
 }
 
 export interface AnswerRow {
@@ -29,7 +38,10 @@ export interface AnswerRow {
 export interface SelfAssessmentRow {
   attemptId: string;
   taskId: string;
-  /** Points awarded per criterion or marking-scheme step id. */
+  /**
+   * Points given per criterion or marking-scheme step id. For automatically
+   * checked steps an entry overrides the automatic result.
+   */
   points: Record<string, number>;
   updatedAt: number;
 }

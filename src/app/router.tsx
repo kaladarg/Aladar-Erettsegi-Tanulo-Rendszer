@@ -15,6 +15,13 @@ export function createRouter() {
         }),
       },
       {
+        path: 'feladatsorok/:examId/vizsga',
+        errorElement: <RouteError />,
+        lazy: async () => ({
+          Component: (await import('@/features/workspace/WorkspacePage')).ExamWorkspacePage,
+        }),
+      },
+      {
         element: <Layout />,
         errorElement: <RouteError />,
         children: [
@@ -30,6 +37,12 @@ export function createRouter() {
             path: 'feladatsorok/:examId',
             lazy: async () => ({
               Component: (await import('@/features/exams/ExamOverviewPage')).ExamOverviewPage,
+            }),
+          },
+          {
+            path: 'feladatsorok/:examId/eredmeny/:attemptId',
+            lazy: async () => ({
+              Component: (await import('@/features/results/ResultsPage')).ResultsPage,
             }),
           },
           {

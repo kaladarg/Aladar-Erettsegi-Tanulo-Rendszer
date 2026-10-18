@@ -91,6 +91,13 @@
     },
     "review": {
       "$ref": "#/definitions/Review"
+    },
+    "deductions": {
+      "description": "Points subtracted from the whole paper after review (e.g. spelling and handwriting in Hungarian).",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Criterion"
+      }
     }
   },
   "definitions": {
@@ -632,6 +639,9 @@
         "description": {
           "type": "string",
           "minLength": 1
+        },
+        "auto": {
+          "$ref": "#/definitions/AutoCheck"
         }
       }
     },
@@ -833,6 +843,51 @@
           "$ref": "#/definitions/Normalize"
         }
       }
+    },
+    "AutoCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fieldIds", "alternatives"],
+      "properties": {
+        "fieldIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "alternatives": {
+          "description": "Acceptable answers. Each alternative is a list of keyword groups; it matches when every group has at least one keyword in the answer. Keywords match word beginnings, ignoring case, accents and punctuation (\"török\" matches \"törökök\"). Numbers match numerically.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "distinct": {
+          "description": "Steps of a task sharing this key must be met by different alternatives (\"two different reasons\").",
+          "type": "string",
+          "minLength": 1
+        },
+        "requireQuotes": {
+          "description": "The answer must be in quotation marks.",
+          "type": "boolean"
+        },
+        "allFields": {
+          "description": "Every field in `fieldIds` must match, each with a different alternative (default: any one field).",
+          "type": "boolean"
+        }
+      },
+      "description": "Checks a step automatically: the step is met when an answer in `fieldIds` matches one of the `alternatives`. Steps without it need review."
     }
   }
 }

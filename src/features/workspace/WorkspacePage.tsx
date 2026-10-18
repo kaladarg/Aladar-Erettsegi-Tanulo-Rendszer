@@ -1,7 +1,8 @@
+import { useLiveQuery } from 'dexie-react-hooks';
 import { FileText, Info, ListChecks, X } from 'lucide-react';
 import { Dialog } from 'radix-ui';
-import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { examDisplayTitle, partInfo } from '@/content/labels';
 import { examFileUrl } from '@/content/loader';
@@ -13,26 +14,40 @@ import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { Skeleton } from '@/design/ui/Skeleton';
 import { ContentErrorState } from '@/features/exams/ContentErrorState';
 import { t } from '@/i18n';
-import { db } from '@/storage/db';
+import { examSegments, type Segment } from '@/domain/examTiming';
+import { useAnswers } from '@/state/answerStore';
+import { toast } from '@/state/toastStore';
+import { advanceSegment } from '@/storage/attempts';
+import { db, type AttemptRow } from '@/storage/db';
+import { ExamClock } from './ExamClock';
+import { handIn } from './handIn';
 import { ChoicePicker } from './ChoicePicker';
 import { FormMode } from './FormMode';
 import { closeCropDocuments } from './pdf/cropDocuments';
 import { PdfMode } from './pdf/PdfMode';
 import type { PdfSource } from './pdf/pdfjs';
 import { SaveStatus } from './SaveStatus';
-import { usePracticeAttempt } from './useAttempt';
+import { SubmitButton } from './SubmitButton';
+import { useAttempt } from './useAttempt';
 import { createWorkspace, WorkspaceContext } from './WorkspaceContext';
 
 type Mode = 'pdf' | 'form';
 const MODE_PARAM = 'nezet';
 const MODE_VALUES: Record<Mode, string> = { pdf: 'feladatlap', form: 'urlap' };
 
+/** Timed exam simulation: the same workspace with the official clock. */
+export function ExamWorkspacePage() {
+  return <WorkspacePage attemptMode="exam" />;
+}
+
 /** Full-screen workspace where the student solves an exam in PDF or form mode. */
-export function WorkspacePage() {
+export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: AttemptRow['mode'] }) {
   const { examId = '' } = useParams();
   const { state, retry, entry, manifest } = useExam(examId);
   const exam = state.status === 'ready' ? (state.data as Exam) : null;
-  const { attemptId, failed } = usePracticeAttempt(exam ? exam.id : null);
+  const { attemptId, failed } = useAttempt(exam ? exam.id : null, attemptMode);
+  const timed = useTimedSegment(exam, attemptMode === 'exam' ? attemptId : null);
+  const navigate = useNavigate();
   const pdf = usePdfSource(
     exam,
     entry && manifest
@@ -63,10 +78,24 @@ export function WorkspacePage() {
     window.scrollTo({ top: 0 });
   };
   const pdfSource = pdf.status === 'ready' ? pdf.source : null;
+  const activePartIds = timed?.activePartIds ?? null;
   const workspace = useMemo(
-    () => (exam ? createWorkspace(exam, pdfSource) : null),
-    [exam, pdfSource],
+    () => (exam ? createWorkspace(exam, pdfSource, activePartIds) : null),
+    [exam, pdfSource, activePartIds],
   );
+  const onExpire = useCallback(async () => {
+    if (!exam || !attemptId || !timed) return;
+    if (timed.next !== undefined) {
+      await useAnswers.getState().flush();
+      await advanceSegment(attemptId, timed.next);
+      window.scrollTo({ top: 0 });
+      toast({ message: t('workspace.timeUpPart'), tone: 'neutral' });
+    } else {
+      await handIn(exam, attemptId);
+      toast({ message: t('workspace.timeUpExam'), tone: 'neutral' });
+      navigate(`/feladatsorok/${exam.id}/eredmeny/${attemptId}`);
+    }
+  }, [exam, attemptId, timed, navigate]);
   useEffect(() => () => void closeCropDocuments(), []);
 
   return (
@@ -79,6 +108,18 @@ export function WorkspacePage() {
         </Button>
         <h1 className="min-w-0 flex-1 truncate font-semibold">{title}</h1>
         {exam && attemptId && <SaveStatus />}
+        {exam && attemptId && timed && (
+          <ExamClock
+            key={`${attemptId}:${timed.segment.id}`}
+            attemptId={attemptId}
+            segment={timed.segment}
+            initialSeconds={timed.initialSeconds}
+            onExpire={() => void onExpire()}
+          />
+        )}
+        {exam && attemptId && (attemptMode === 'practice' || timed) && (
+          <SubmitButton exam={exam} attemptId={attemptId} nextSegment={timed?.next} />
+        )}
         {exam && (
           <>
             <SegmentedControl<Mode>
@@ -228,4 +269,37 @@ function InfoSheet({ exam }: { exam: Exam }) {
       </Dialog.Portal>
     </Dialog.Root>
   );
+}
+
+interface TimedSegment {
+  segment: Segment;
+  activePartIds: Set<string>;
+  initialSeconds: number;
+  /** Index of the next segment, when this is not the last one. */
+  next?: number;
+}
+
+/** Exam mode: the segment being written, from the attempt stored in IndexedDB. */
+function useTimedSegment(exam: Exam | null, attemptId: string | null): TimedSegment | null {
+  const attempt = useLiveQuery(
+    async () => (attemptId ? ((await db.attempts.get(attemptId)) ?? null) : null),
+    [attemptId],
+  );
+  const index = attempt?.segment ?? 0;
+  const segmentId = exam && attempt ? examSegments(exam)[index]?.id : undefined;
+  // Read once per segment; the clock itself keeps counting from there.
+  const initialSeconds = attempt && segmentId ? (attempt.partSeconds[segmentId] ?? 0) : 0;
+  return useMemo(() => {
+    if (!exam || !attempt) return null;
+    const segments = examSegments(exam);
+    const segment = segments[Math.min(index, segments.length - 1)]!;
+    return {
+      segment,
+      activePartIds: new Set(segment.partIds),
+      initialSeconds,
+      next: index < segments.length - 1 ? index + 1 : undefined,
+    };
+    // initialSeconds changes as the clock saves; only a new segment should reset it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exam, attempt?.id, index]);
 }

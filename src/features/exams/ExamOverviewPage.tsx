@@ -38,7 +38,9 @@ import { cn } from '@/lib/cn';
 import { toast } from '@/state/toastStore';
 import { useExamProgress } from '@/storage/progress';
 import { ContentErrorState } from './ContentErrorState';
+import { ExamModeCard } from './ExamModeCard';
 import { PracticeCard } from './PracticeCard';
+import { ResultsHistory } from './ResultsHistory';
 import { ProgressBadge } from './ProgressBadge';
 import { usePdfPicker } from './usePdfPicker';
 
@@ -122,7 +124,7 @@ function Overview({
   const progress = useExamProgress()?.get(exam.id);
   const totalMinutes = examMinutes(exam);
   const taskCount = exam.parts.reduce((sum, part) => sum + part.tasks.length, 0);
-  const repo = manifest.manifest.repositoryUrl;
+  const reportEmail = manifest.manifest.reportEmail;
 
   return (
     <>
@@ -149,6 +151,8 @@ function Overview({
         </Callout>
       )}
       <PracticeCard examId={exam.id} />
+      <ExamModeCard exam={exam} />
+      <ResultsHistory examId={exam.id} />
 
       <section aria-labelledby="summary-title" className="mt-6">
         <h2 id="summary-title" className="sr-only">
@@ -198,10 +202,8 @@ function Overview({
                       {t('exam.taskPoints', { points: task.maxPoints })}
                     </span>
                     <a
-                      href={reportMistakeUrl(repo, exam.id, task)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${t('exam.reportTask')}: ${task.number} ${t('common.newTab')}`}
+                      href={reportMistakeUrl(reportEmail, exam.id, task)}
+                      aria-label={`${t('exam.reportTask')}: ${task.number}`}
                       className="-my-2 flex size-11 shrink-0 items-center justify-center rounded-md text-muted hover:bg-surface-muted hover:text-text"
                     >
                       <Flag aria-hidden="true" className="size-4" />
@@ -227,14 +229,11 @@ function Overview({
 
       <div className="mt-8 flex flex-col gap-2 border-t border-border pt-6 text-sm text-muted">
         <a
-          href={reportMistakeUrl(repo, exam.id)}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={reportMistakeUrl(reportEmail, exam.id)}
           className="inline-flex items-center gap-2 font-medium text-primary underline underline-offset-4 hover:text-primary-hover"
         >
           <Bug aria-hidden="true" className="size-4" />
           {t('exam.reportMistake')}
-          <span className="sr-only"> {t('common.newTab')}</span>
         </a>
         {manifest.manifest.notice && <p>{manifest.manifest.notice}</p>}
       </div>

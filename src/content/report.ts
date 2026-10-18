@@ -1,22 +1,40 @@
-import { REPO_URL } from '@/app/config';
+import { APP_VERSION, REPORT_EMAIL } from '@/app/config';
 
-/**
- * Link to a pre-filled "data correction" issue (see
- * .github/ISSUE_TEMPLATE/data_correction.yml; query keys are its field ids).
- */
+/** A pre-filled email about a mistake in an exam or one of its tasks. */
 export function reportMistakeUrl(
-  repositoryUrl: string | undefined,
+  reportEmail: string | undefined,
   examId: string,
   task?: { id: string; number: string },
 ): string {
-  const url = new URL(`${(repositoryUrl ?? REPO_URL).replace(/\/$/, '')}/issues/new`);
-  url.searchParams.set('template', 'data_correction.yml');
-  url.searchParams.set(
-    'title',
-    task ? `Hiba: ${examId}, ${task.number} feladat` : `Hiba: ${examId}`,
-  );
-  url.searchParams.set('labels', 'data-correction');
-  url.searchParams.set('exam', examId);
-  if (task) url.searchParams.set('task', task.id);
-  return url.href;
+  const subject = task
+    ? `Hiba a feladatsorban: ${examId}, ${task.number} feladat`
+    : `Hiba a feladatsorban: ${examId}`;
+  const body = [
+    `Feladatsor: ${examId}`,
+    ...(task ? [`Feladat: ${task.number} (${task.id})`] : []),
+    '',
+    'Mi a hiba?',
+    '',
+    '',
+    'Mi lenne a helyes? (Ha tudod, írd meg a javítási-értékelési útmutató oldalszámát is.)',
+    '',
+    '',
+    `Alkalmazás verziója: ${APP_VERSION}`,
+  ].join('\n');
+  return `mailto:${reportEmail ?? REPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/** A pre-filled email about a problem with the app itself. */
+export function reportBugUrl(): string {
+  const body = [
+    'Mi történt?',
+    '',
+    '',
+    'Mit vártál helyette?',
+    '',
+    '',
+    `Alkalmazás verziója: ${APP_VERSION}`,
+    `Böngésző: ${typeof navigator === 'undefined' ? '' : navigator.userAgent}`,
+  ].join('\n');
+  return `mailto:${REPORT_EMAIL}?subject=${encodeURIComponent('Hiba az Érettségi Gyakorlóban')}&body=${encodeURIComponent(body)}`;
 }

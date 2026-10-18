@@ -1,6 +1,13 @@
-import { Bug, Code, ExternalLink, Heart, Scale, ShieldCheck } from 'lucide-react';
+import { Bug, Code, ExternalLink, Heart, Mail, Scale, ShieldCheck, User } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { APP_VERSION, ISSUES_URL, OFFICIAL_ARCHIVE_URL, REPO_URL } from '@/app/config';
+import {
+  APP_AUTHOR,
+  APP_VERSION,
+  OFFICIAL_ARCHIVE_URL,
+  REPO_URL,
+  REPORT_EMAIL,
+} from '@/app/config';
+import { reportBugUrl } from '@/content/report';
 import { usePageTitle } from '@/app/usePageTitle';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { PageHeader } from '@/design/ui/PageHeader';
@@ -12,6 +19,19 @@ export function AboutPage() {
     <>
       <PageHeader title={t('about.title')} description={t('about.intro')} />
       <div className="grid gap-6 sm:grid-cols-2">
+        <Section
+          icon={<User />}
+          title={t('about.authorTitle')}
+          body={t('about.authorBody', { author: APP_AUTHOR })}
+        >
+          <a
+            href={`mailto:${REPORT_EMAIL}`}
+            className="inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 hover:text-primary-hover"
+          >
+            <Mail aria-hidden="true" className="size-4" />
+            {REPORT_EMAIL}
+          </a>
+        </Section>
         <Section
           icon={<Code />}
           title={t('about.openSourceTitle')}
@@ -31,9 +51,13 @@ export function AboutPage() {
       </div>
       <div className="mt-8 flex flex-col gap-3 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>{t('about.version', { version: APP_VERSION })}</p>
-        <ExternalAnchor href={ISSUES_URL} icon={<Bug aria-hidden="true" className="size-4" />}>
+        <a
+          href={reportBugUrl()}
+          className="inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 hover:text-primary-hover"
+        >
+          <Bug aria-hidden="true" className="size-4" />
           {t('about.reportBug')}
-        </ExternalAnchor>
+        </a>
       </div>
     </>
   );
@@ -65,15 +89,7 @@ function Section({
   );
 }
 
-function ExternalAnchor({
-  href,
-  children,
-  icon,
-}: {
-  href: string;
-  children: ReactNode;
-  icon?: ReactNode;
-}) {
+function ExternalAnchor({ href, children }: { href: string; children: ReactNode }) {
   return (
     <a
       href={href}
@@ -81,7 +97,6 @@ function ExternalAnchor({
       rel="noopener noreferrer"
       className="inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 hover:text-primary-hover"
     >
-      {icon}
       {children}
       <ExternalLink aria-hidden="true" className="size-4" />
       <span className="sr-only"> {t('common.newTab')}</span>

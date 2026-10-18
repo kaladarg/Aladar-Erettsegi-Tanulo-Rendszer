@@ -73,6 +73,10 @@ export interface Exam {
    */
   parts: Part[];
   review: Review;
+  /**
+   * Points subtracted from the whole paper after review (e.g. spelling and handwriting in Hungarian).
+   */
+  deductions?: Criterion[];
 }
 /**
  * This interface was referenced by `Exam`'s JSON-Schema
@@ -424,6 +428,37 @@ export interface Step {
   id: Id;
   points: number;
   description: string;
+  auto?: AutoCheck;
+}
+/**
+ * Checks a step automatically: the step is met when an answer in `fieldIds` matches one of the `alternatives`. Steps without it need review.
+ *
+ * This interface was referenced by `Exam`'s JSON-Schema
+ * via the `definition` "AutoCheck".
+ */
+export interface AutoCheck {
+  /**
+   * @minItems 1
+   */
+  fieldIds: Id[];
+  /**
+   * Acceptable answers. Each alternative is a list of keyword groups; it matches when every group has at least one keyword in the answer. Keywords match word beginnings, ignoring case, accents and punctuation ("török" matches "törökök"). Numbers match numerically.
+   *
+   * @minItems 1
+   */
+  alternatives: string[][][];
+  /**
+   * Steps of a task sharing this key must be met by different alternatives ("two different reasons").
+   */
+  distinct?: string;
+  /**
+   * The answer must be in quotation marks.
+   */
+  requireQuotes?: boolean;
+  /**
+   * Every field in `fieldIds` must match, each with a different alternative (default: any one field).
+   */
+  allFields?: boolean;
 }
 /**
  * An assessment criterion for essays and long writing.
@@ -473,7 +508,7 @@ export interface Manifest {
    */
   notice?: string;
   /**
-   * Where to report data mistakes (GitHub repository URL).
+   * Repository of the content pack (shown as its source).
    */
   repositoryUrl?: string;
   /**
@@ -485,6 +520,10 @@ export interface Manifest {
    */
   levels: Level[];
   exams: ExamEntry[];
+  /**
+   * Where students report data mistakes (defaults to the app maintainer).
+   */
+  reportEmail?: string;
 }
 /**
  * This interface was referenced by `Manifest`'s JSON-Schema

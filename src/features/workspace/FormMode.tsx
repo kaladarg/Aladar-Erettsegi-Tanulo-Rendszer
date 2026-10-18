@@ -11,10 +11,11 @@ import { useWorkspace } from './WorkspaceContext';
 
 /** All tasks as a simple, accessible list. Shares answers with PDF mode. */
 export function FormMode() {
-  const { exam } = useWorkspace();
+  const { exam, activePartIds } = useWorkspace();
+  const parts = exam.parts.filter((part) => !activePartIds || activePartIds.has(part.id));
   return (
     <div className="mx-auto grid w-full max-w-3xl gap-10 px-4 py-6 sm:px-6">
-      {exam.parts.map((part) => (
+      {parts.map((part) => (
         <FormPart key={part.id} part={part} />
       ))}
     </div>

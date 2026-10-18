@@ -139,6 +139,11 @@ export function checkExam(exam: Exam): ContentIssue[] {
           error(path, `Rule "${rule.id}": partial credit exceeds the rule's points.`);
         }
       }
+      for (const step of steps) {
+        for (const id of step.auto?.fieldIds ?? []) {
+          if (!localFields.has(id)) error(path, `Step "${step.id}" checks unknown field "${id}".`);
+        }
+      }
       if ((task.type === 'essay' || task.type === 'long_writing') && criteria.length === 0) {
         error(path, 'Essay tasks need assessment criteria.');
       }
