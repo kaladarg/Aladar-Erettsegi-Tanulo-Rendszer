@@ -1,0 +1,1 @@
+# Aladar-Erettsegi-Tanulo-Rendszer
