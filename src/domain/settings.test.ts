@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_SETTINGS, sanitizeSettings, stepTextScale, TEXT_SCALE_STEPS } from './settings';
+import {
+  DEFAULT_SETTINGS,
+  sanitizeContentSource,
+  sanitizeSettings,
+  stepTextScale,
+  TEXT_SCALE_STEPS,
+} from './settings';
 
 describe('stepTextScale', () => {
   it('moves one step up and down', () => {
@@ -34,6 +40,7 @@ describe('sanitizeSettings', () => {
       reducedMotion: true,
       subjects: ['matematika'],
       onboardingDone: true,
+      contentSource: 'https://example.org/pack/',
     } as const;
     expect(sanitizeSettings(valid)).toEqual(valid);
   });
@@ -47,5 +54,16 @@ describe('sanitizeSettings', () => {
         dyslexicFont: 'yes',
       }),
     ).toEqual({ ...DEFAULT_SETTINGS, subjects: ['magyar'] });
+  });
+});
+
+describe('sanitizeContentSource', () => {
+  it('accepts http(s) URLs and site paths only', () => {
+    expect(sanitizeContentSource('https://example.org/pack/')).toBe('https://example.org/pack/');
+    expect(sanitizeContentSource(' /content-local/ ')).toBe('/content-local/');
+    expect(sanitizeContentSource('javascript:alert(1)')).toBe('');
+    expect(sanitizeContentSource('//evil.example')).toBe('');
+    expect(sanitizeContentSource('not a url')).toBe('');
+    expect(sanitizeContentSource(42)).toBe('');
   });
 });

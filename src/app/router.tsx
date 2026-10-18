@@ -13,6 +13,18 @@ export function createRouter() {
           { index: true, element: <HomePage /> },
           // Secondary screens load on demand to keep the first load small.
           {
+            path: 'feladatsorok',
+            lazy: async () => ({
+              Component: (await import('@/features/exams/ExamBrowserPage')).ExamBrowserPage,
+            }),
+          },
+          {
+            path: 'feladatsorok/:examId',
+            lazy: async () => ({
+              Component: (await import('@/features/exams/ExamOverviewPage')).ExamOverviewPage,
+            }),
+          },
+          {
             path: 'beallitasok',
             lazy: async () => ({
               Component: (await import('@/features/settings/SettingsPage')).SettingsPage,

@@ -1,4 +1,4 @@
-import { PlayCircle, ShieldCheck } from 'lucide-react';
+import { ChevronRight, Library, PlayCircle, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { DEFAULT_LEVELS, DEFAULT_SUBJECTS, subjectAccent } from '@/content/catalog';
@@ -44,23 +44,38 @@ export function HomePage() {
         ) : (
           <ul className="grid gap-4 sm:grid-cols-2">
             {subjects.map((subject) => (
-              <li
-                key={subject.id}
-                className="flex items-center gap-4 rounded-lg border border-border bg-surface p-5 shadow-1"
-              >
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-surface-muted">
-                  <SubjectIcon
-                    subject={subject}
-                    className={`size-6 ${subjectAccent(subject.id)}`}
+              <li key={subject.id}>
+                <Link
+                  to={`/feladatsorok?targy=${subject.id}`}
+                  aria-label={t('home.browseSubject', { subject: subject.name })}
+                  className="group flex items-center gap-4 rounded-lg border border-border bg-surface p-5 shadow-1 transition-colors hover:border-border-strong"
+                >
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-surface-muted">
+                    <SubjectIcon
+                      subject={subject}
+                      className={`size-6 ${subjectAccent(subject.id)}`}
+                    />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-lg font-semibold">{subject.name}</p>
+                    {level && <Badge className="mt-1">{level.name}</Badge>}
+                  </div>
+                  <ChevronRight
+                    aria-hidden="true"
+                    className="ml-auto size-5 shrink-0 text-muted transition-transform group-hover:translate-x-0.5"
                   />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-lg font-semibold">{subject.name}</p>
-                  {level && <Badge className="mt-1">{level.name}</Badge>}
-                </div>
+                </Link>
               </li>
             ))}
           </ul>
+        )}
+        {loaded && (
+          <Button asChild variant="secondary" className="mt-4">
+            <Link to="/feladatsorok">
+              <Library aria-hidden="true" />
+              {t('home.browseAll')}
+            </Link>
+          </Button>
         )}
       </section>
 

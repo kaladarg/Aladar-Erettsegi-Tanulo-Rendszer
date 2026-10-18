@@ -10,3 +10,7 @@
 | 5     | Help mode (lookup, task explanations, optional AI)                                             | planned |
 | 6     | Statistics, sharing, home dashboard                                                            | planned |
 | 7     | Full középszint archive (2024 onward first), accessibility and performance pass, docs, release | planned |
+
+## Open items carried from phase 2
+
+- Download the first official papers (2024 May, one per subject) with `npm run content:crawl` from a Hungarian connection, extract and review them in the private content repository.

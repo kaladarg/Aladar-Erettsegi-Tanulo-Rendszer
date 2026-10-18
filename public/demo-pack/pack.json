@@ -1,0 +1,29 @@
+{
+  "packId": "demo",
+  "title": "Mintafeladatsorok",
+  "notice": "Saját készítésű, nem hivatalos mintafeladatsorok az alkalmazás kipróbálásához.",
+  "repositoryUrl": "https://github.com/kaladarg/Aladar-Erettsegi-Tanulo-Rendszer",
+  "subjects": [
+    {
+      "id": "matematika",
+      "name": "Matematika",
+      "icon": "sigma"
+    },
+    {
+      "id": "tortenelem",
+      "name": "Történelem",
+      "icon": "landmark"
+    },
+    {
+      "id": "magyar",
+      "name": "Magyar nyelv és irodalom",
+      "icon": "book-open"
+    }
+  ],
+  "levels": [
+    {
+      "id": "kozep",
+      "name": "Középszint"
+    }
+  ]
+}

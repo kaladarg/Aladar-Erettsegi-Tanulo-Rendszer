@@ -5,6 +5,8 @@ const PAGES = [
   ['/', 'Jó gyakorlást!'],
   ['/beallitasok', 'Beállítások'],
   ['/nevjegy', 'Névjegy'],
+  ['/feladatsorok', 'Feladatsorok'],
+  ['/feladatsorok/tortenelem-kozep-2026-majus-minta', 'Mintafeladatsor – Történelem, középszint'],
 ] as const;
 
 for (const scheme of ['light', 'dark'] as const) {

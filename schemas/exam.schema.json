@@ -1,0 +1,757 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kaladarg.github.io/Aladar-Erettsegi-Tanulo-Rendszer/schemas/exam.schema.json",
+  "title": "Exam",
+  "description": "One written érettségi paper with its tasks, answer key and answer-field positions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "subject",
+    "level",
+    "year",
+    "session",
+    "format",
+    "title",
+    "maxPoints",
+    "source",
+    "parts",
+    "review"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "description": "Stable id: <subject>-<level>-<year>-<session>, e.g. matematika-kozep-2024-majus. Sample papers add a suffix, e.g. -minta.",
+      "$ref": "#/definitions/Slug"
+    },
+    "subject": {
+      "$ref": "#/definitions/Slug"
+    },
+    "level": {
+      "$ref": "#/definitions/Slug"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 2000,
+      "maximum": 2100
+    },
+    "session": {
+      "enum": ["majus", "oktober"]
+    },
+    "format": {
+      "description": "Exam requirements the paper follows, e.g. \"2024\" for the requirements in force from May 2024.",
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sample": {
+      "description": "True for self-written practice papers that are not official érettségi papers.",
+      "type": "boolean"
+    },
+    "maxPoints": {
+      "description": "Total points of the written paper.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "gradeBands": {
+      "description": "Percentage thresholds for grades. Omit to use the standard középszint bands.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/GradeBand"
+      }
+    },
+    "source": {
+      "$ref": "#/definitions/ExamSource"
+    },
+    "sources": {
+      "description": "Source texts, images, tables and maps that tasks refer to.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SourceMaterial"
+      }
+    },
+    "parts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/Part"
+      }
+    },
+    "review": {
+      "$ref": "#/definitions/Review"
+    }
+  },
+  "definitions": {
+    "Slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "Id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "Sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "GradeBand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minPercent", "grade", "label"],
+      "properties": {
+        "minPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "grade": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "PdfRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256"],
+      "properties": {
+        "file": {
+          "description": "Path of the PDF relative to exam.json. Omitted when the pack does not ship the file.",
+          "type": "string"
+        },
+        "officialUrl": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "sha256": {
+          "$ref": "#/definitions/Sha256"
+        },
+        "pages": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "ExamSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["examPdf"],
+      "properties": {
+        "publisher": {
+          "type": "string"
+        },
+        "officialPage": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "examPdf": {
+          "$ref": "#/definitions/PdfRef"
+        },
+        "keyPdf": {
+          "$ref": "#/definitions/PdfRef"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PdfRef"
+          }
+        }
+      }
+    },
+    "Rect": {
+      "description": "Area on a PDF page. x, y, w, h are fractions (0-1) of the page width/height, origin top-left.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page", "x", "y", "w", "h"],
+      "properties": {
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "w": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "h": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "SourceMaterial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind"],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "kind": {
+          "enum": ["text", "image", "table", "map", "chart"]
+        },
+        "title": {
+          "type": "string"
+        },
+        "text": {
+          "description": "Rich text (see docs/content-packs.md).",
+          "type": "string"
+        },
+        "credit": {
+          "type": "string"
+        },
+        "pdfRects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rect"
+          }
+        }
+      }
+    },
+    "Choice": {
+      "description": "The student solves only `pick` of the listed tasks (e.g. 2 of 3 in maths part II/B).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pick", "taskIds"],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "pick": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "taskIds": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        }
+      }
+    },
+    "Part": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "timeLimitMinutes", "maxPoints", "tasks"],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timeLimitMinutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxPoints": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "instructions": {
+          "type": "string"
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Choice"
+          }
+        },
+        "tasks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Task"
+          }
+        }
+      }
+    },
+    "TaskType": {
+      "enum": [
+        "short_answer",
+        "multiple_choice",
+        "matching",
+        "true_false",
+        "calculation",
+        "essay",
+        "long_writing"
+      ]
+    },
+    "Option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "label"],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Field": {
+      "description": "One input the student fills in.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind"],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "kind": {
+          "description": "text: one line; number; textarea: several lines; choice: one option (radio/dropdown); multi: several options (checkboxes); work: free working area (maths); essay: long text with word count.",
+          "enum": ["text", "number", "textarea", "choice", "multi", "work", "essay"]
+        },
+        "label": {
+          "type": "string"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/definitions/Option"
+          }
+        },
+        "pdfRect": {
+          "$ref": "#/definitions/Rect"
+        }
+      }
+    },
+    "Normalize": {
+      "description": "How answers are normalized before comparison. Defaults: case-insensitive, whitespace collapsed, diacritics significant, punctuation significant.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "caseSensitive": {
+          "type": "boolean"
+        },
+        "ignoreDiacritics": {
+          "type": "boolean"
+        },
+        "ignorePunctuation": {
+          "type": "boolean"
+        },
+        "ignoreSpaces": {
+          "type": "boolean"
+        }
+      }
+    },
+    "TextAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "accepted"],
+      "properties": {
+        "kind": {
+          "const": "text"
+        },
+        "accepted": {
+          "description": "Accepted variants.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "normalize": {
+          "$ref": "#/definitions/Normalize"
+        }
+      }
+    },
+    "NumberAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "accepted"],
+      "properties": {
+        "kind": {
+          "const": "number"
+        },
+        "accepted": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "number"
+          }
+        },
+        "tolerance": {
+          "description": "Absolute tolerance.",
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "ChoiceAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "correct"],
+      "properties": {
+        "kind": {
+          "const": "choice"
+        },
+        "correct": {
+          "description": "Correct option values (one for single choice).",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "SetAnswer": {
+      "description": "Several fields whose answers may come in any order (or fixed order), e.g. 'name three causes'.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "items", "order"],
+      "properties": {
+        "kind": {
+          "const": "set"
+        },
+        "items": {
+          "description": "Each item lists its accepted variants.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "order": {
+          "enum": ["any", "fixed"]
+        },
+        "normalize": {
+          "$ref": "#/definitions/Normalize"
+        }
+      }
+    },
+    "MatchingAnswer": {
+      "description": "Each field must hold the given option value.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "pairs"],
+      "properties": {
+        "kind": {
+          "const": "matching"
+        },
+        "pairs": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "PartialCredit": {
+      "description": "Points for partly correct multi-item answers. Either per correct item, or a threshold table (\"2 correct: 1 point, 4 correct: 2 points\").",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "perItem": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "table": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["correct", "points"],
+            "properties": {
+              "correct": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "points": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "penalizeWrong": {
+          "description": "Subtract one item's credit for each wrong extra choice (multi-select).",
+          "type": "boolean"
+        }
+      }
+    },
+    "Rule": {
+      "description": "An automatically checked scoring rule.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "points", "fieldIds", "answer"],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "points": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fieldIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "answer": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TextAnswer"
+            },
+            {
+              "$ref": "#/definitions/NumberAnswer"
+            },
+            {
+              "$ref": "#/definitions/ChoiceAnswer"
+            },
+            {
+              "$ref": "#/definitions/SetAnswer"
+            },
+            {
+              "$ref": "#/definitions/MatchingAnswer"
+            }
+          ]
+        },
+        "partial": {
+          "$ref": "#/definitions/PartialCredit"
+        }
+      }
+    },
+    "Step": {
+      "description": "A marking-scheme step the student checks themselves (e.g. a correct intermediate result).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "points", "description"],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "points": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Criterion": {
+      "description": "An assessment criterion for essays and long writing.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "maxPoints"],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maxPoints": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "description": {
+          "type": "string"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["points", "description"],
+            "properties": {
+              "points": {
+                "type": "number",
+                "minimum": 0
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Scoring": {
+      "description": "Points of a task: auto rules + self-checked steps + rubric criteria. Their sum must equal the task's maxPoints.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rule"
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Step"
+          }
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Criterion"
+          }
+        }
+      }
+    },
+    "Task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "number", "type", "text", "maxPoints", "fields", "scoring"],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "number": {
+          "description": "Number as printed on the paper, e.g. \"3.\" or \"13. b)\".",
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "$ref": "#/definitions/TaskType"
+        },
+        "text": {
+          "description": "Task wording, rich text (see docs/content-packs.md).",
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "maxPoints": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "pdfRect": {
+          "$ref": "#/definitions/Rect"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Field"
+          }
+        },
+        "scoring": {
+          "$ref": "#/definitions/Scoring"
+        },
+        "explanation": {
+          "description": "Explanation based on the marking scheme.",
+          "type": "string"
+        },
+        "keyPage": {
+          "description": "Page of the marking scheme PDF for this task.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "wordLimit": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "description": "draft: machine-extracted, not yet checked; reviewed: checked by a person against the marking scheme.",
+          "enum": ["draft", "reviewed"]
+        },
+        "extractedBy": {
+          "type": "string"
+        },
+        "reviewedBy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

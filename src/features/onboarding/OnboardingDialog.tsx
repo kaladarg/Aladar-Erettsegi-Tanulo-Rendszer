@@ -37,11 +37,13 @@ export function OnboardingDialog() {
     }
   }
 
-  const finish = async () => {
+  const finish = async (openExams = false) => {
     await update({ onboardingDone: true, subjects });
     closeReopened();
     setStep(0);
-    navigate('/');
+    if (openExams) {
+      navigate(subjects.length === 1 ? `/feladatsorok?targy=${subjects[0]}` : '/feladatsorok');
+    }
   };
 
   const next = () => {
@@ -136,7 +138,7 @@ export function OnboardingDialog() {
                 <ArrowRight aria-hidden="true" />
               </Button>
             ) : (
-              <Button onClick={() => void finish()}>
+              <Button onClick={() => void finish(true)}>
                 {t('onboarding.start.cta')}
                 <ArrowRight aria-hidden="true" />
               </Button>

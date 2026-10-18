@@ -8,13 +8,15 @@ src/
   design/     tokens.css (design tokens) and ui/ primitives built on Radix UI
   i18n/       typed t() helper and the Hungarian catalog (hu.ts)
   domain/     pure TypeScript logic, no React (settings now; scoring, stats later)
-  content/    subject/level catalog and, from phase 2, the content-pack loader
+  content/    content-pack loader and hooks, generated schema types/validators, checks, PDF import, offline cache
   storage/    Dexie database, backup export/import, snapshots for undo
   state/      small Zustand stores (settings, toasts, onboarding)
   features/   one folder per screen (home, onboarding, settings, about, ...)
   ai/         optional AI integration; only the key store exists so far
 e2e/          Playwright tests (desktop and mobile projects)
-tools/        build-time content pipeline (phase 2)
+schemas/      JSON Schemas for manifest.json and exam.json (source of truth)
+tools/        build-time content pipeline (crawl, extract, review, pack) and demo-pack generator
+public/demo-pack/  self-written sample papers served with the app
 ```
 
 ## Key decisions
@@ -51,6 +53,6 @@ Schema changes add a new `this.version(n)` block in `db.ts` with an upgrade func
 
 Theme, text size, font and motion are mirrored into `localStorage` so an inline script in `index.html` applies them before first paint (IndexedDB is asynchronous). IndexedDB stays the source of truth.
 
-## Content (phase 2)
+## Content
 
-Exam data is loaded through a content pack: `manifest.json` plus per-exam `exam.json` files and PDF references, from a configurable base URL. The full schema is specified in the approved plan and will be documented in `docs/content-packs.md` together with the JSON Schemas in `schemas/`.
+Exam data is loaded through a content pack (`manifest.json`, per-exam `exam.json`, optional PDFs) from a configurable base URL, validated with the generated schema validators and the consistency checks, and cached by the service worker (manifest: stale-while-revalidate; hashed exam files and PDFs: cache-first). See [content-packs.md](content-packs.md).

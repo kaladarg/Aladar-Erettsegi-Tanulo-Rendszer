@@ -1,0 +1,502 @@
+{
+  "schemaVersion": 1,
+  "id": "magyar-kozep-2026-majus-minta",
+  "subject": "magyar",
+  "level": "kozep",
+  "year": 2026,
+  "session": "majus",
+  "format": "2024",
+  "title": "Mintafeladatsor – Magyar nyelv és irodalom, középszint",
+  "sample": true,
+  "maxPoints": 27,
+  "source": {
+    "publisher": "Érettségi Gyakorló (saját mintafeladatsor)",
+    "examPdf": {
+      "file": "feladatlap.pdf",
+      "sha256": "c9c71f20db632e5456dbe93ae0e07ad065a5ad842f07a46d12cb3b58d0c78ba5",
+      "pages": 4,
+      "label": "Feladatlap"
+    }
+  },
+  "sources": [
+    {
+      "id": "src-1",
+      "kind": "text",
+      "title": "A magyar tenger",
+      "text": "A Balaton Közép-Európa legnagyobb tava: felszíne csaknem hatszáz négyzetkilométer. Mégis meglepően sekély, átlagos mélysége alig több mint három méter, ezért nyáron gyorsan felmelegszik, télen pedig gyakran befagy.\n\nA tó legfontosabb tápláló vize a Zala folyó, amely a nyugati medencébe torkollik. A víz a Sió-csatornán keresztül távozik a Duna felé; a csatorna zsilipje segít szabályozni a vízszintet.\n\nAz északi part dombjain évszázadok óta szőlőt termesztenek, a déli part homokos, lapos partszakaszai pedig a családok kedvelt fürdőhelyei. A Tihanyi-félsziget a tó egyik legkeskenyebb pontjánál nyúlik a vízbe.",
+      "credit": "Az Érettségi Gyakorló saját szövege.",
+      "pdfRects": [
+        {
+          "page": 1,
+          "x": 0.0941,
+          "y": 0.3072,
+          "w": 0.8119,
+          "h": 0.2447
+        }
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "id": "I",
+      "title": "I. Szövegértés",
+      "timeLimitMinutes": 60,
+      "maxPoints": 7,
+      "instructions": "Olvassa el a szöveget, majd válaszoljon a kérdésekre! Válaszait a kijelölt helyre írja!",
+      "tasks": [
+        {
+          "id": "1",
+          "number": "1.",
+          "type": "short_answer",
+          "text": "Melyik folyó a Balaton legfontosabb tápláló vize a szöveg szerint?",
+          "sourceRefs": [
+            "src-1"
+          ],
+          "maxPoints": 1,
+          "topics": [
+            "szövegértés"
+          ],
+          "fields": [
+            {
+              "id": "1-f1",
+              "kind": "text",
+              "label": "A folyó neve:",
+              "pdfRect": {
+                "page": 1,
+                "x": 0.6203,
+                "y": 0.609,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 1,
+                "fieldIds": [
+                  "1-f1"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "Zala",
+                    "a Zala",
+                    "Zala folyó",
+                    "a Zala folyó"
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "A szöveg második bekezdése szerint a Zala folyó a tó legfontosabb tápláló vize.",
+          "pdfRect": {
+            "page": 1,
+            "x": 0.0941,
+            "y": 0.5685,
+            "w": 0.8119,
+            "h": 0.0809
+          }
+        },
+        {
+          "id": "2",
+          "number": "2.",
+          "type": "multiple_choice",
+          "text": "Mi a szöveg fő témája? Írja a helyes válasz betűjelét a kijelölt helyre!",
+          "sourceRefs": [
+            "src-1"
+          ],
+          "maxPoints": 1,
+          "topics": [
+            "szövegértés"
+          ],
+          "fields": [
+            {
+              "id": "2-f1",
+              "kind": "choice",
+              "label": "Betűjel:",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "a balatoni szőlőtermesztés története"
+                },
+                {
+                  "value": "B",
+                  "label": "a Balaton földrajzi jellemzői"
+                },
+                {
+                  "value": "C",
+                  "label": "a Sió-csatorna építése"
+                },
+                {
+                  "value": "D",
+                  "label": "a balatoni nyaralás költségei"
+                }
+              ],
+              "pdfRect": {
+                "page": 1,
+                "x": 0.7883,
+                "y": 0.7835,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 1,
+                "fieldIds": [
+                  "2-f1"
+                ],
+                "answer": {
+                  "kind": "choice",
+                  "correct": [
+                    "B"
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "A szöveg a tó méretét, mélységét, vízrendszerét és partjait mutatja be, vagyis földrajzi jellemzőit.",
+          "pdfRect": {
+            "page": 1,
+            "x": 0.0941,
+            "y": 0.666,
+            "w": 0.8119,
+            "h": 0.1579
+          }
+        },
+        {
+          "id": "3",
+          "number": "3.",
+          "type": "true_false",
+          "text": "Döntse el a szöveg alapján, hogy igazak vagy hamisak az állítások!",
+          "sourceRefs": [
+            "src-1"
+          ],
+          "maxPoints": 2,
+          "topics": [
+            "szövegértés"
+          ],
+          "fields": [
+            {
+              "id": "3-f1",
+              "kind": "choice",
+              "label": "A) A Balaton átlagos mélysége több mint tíz méter.",
+              "options": [
+                {
+                  "value": "igaz",
+                  "label": "igaz"
+                },
+                {
+                  "value": "hamis",
+                  "label": "hamis"
+                }
+              ],
+              "pdfRect": {
+                "page": 2,
+                "x": 0.7883,
+                "y": 0.107,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "3-f2",
+              "kind": "choice",
+              "label": "B) A tó vize a Sió-csatornán át távozik.",
+              "options": [
+                {
+                  "value": "igaz",
+                  "label": "igaz"
+                },
+                {
+                  "value": "hamis",
+                  "label": "hamis"
+                }
+              ],
+              "pdfRect": {
+                "page": 2,
+                "x": 0.7883,
+                "y": 0.145,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "3-f3",
+              "kind": "choice",
+              "label": "C) A déli part homokos és lapos.",
+              "options": [
+                {
+                  "value": "igaz",
+                  "label": "igaz"
+                },
+                {
+                  "value": "hamis",
+                  "label": "hamis"
+                }
+              ],
+              "pdfRect": {
+                "page": 2,
+                "x": 0.7883,
+                "y": 0.183,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "3-f1",
+                  "3-f2",
+                  "3-f3"
+                ],
+                "answer": {
+                  "kind": "matching",
+                  "pairs": {
+                    "3-f1": "hamis",
+                    "3-f2": "igaz",
+                    "3-f3": "igaz"
+                  }
+                },
+                "partial": {
+                  "table": [
+                    {
+                      "correct": 2,
+                      "points": 1
+                    },
+                    {
+                      "correct": 3,
+                      "points": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "A szöveg szerint az átlagos mélység alig több mint három méter; a víz a Sió-csatornán távozik; a déli part homokos és lapos.",
+          "pdfRect": {
+            "page": 2,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.1569
+          }
+        },
+        {
+          "id": "4",
+          "number": "4.",
+          "type": "short_answer",
+          "text": "Keressen a szövegben egy összetett szót, és bontsa elemeire!",
+          "sourceRefs": [
+            "src-1"
+          ],
+          "maxPoints": 2,
+          "topics": [
+            "szóalkotás",
+            "összetett szavak"
+          ],
+          "fields": [
+            {
+              "id": "4-f1",
+              "kind": "text",
+              "label": "Összetett szó:",
+              "pdfRect": {
+                "page": 2,
+                "x": 0.6203,
+                "y": 0.2806,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "4-f2",
+              "kind": "text",
+              "label": "Elemei:",
+              "pdfRect": {
+                "page": 2,
+                "x": 0.6203,
+                "y": 0.3186,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 1,
+                "description": "Helyes összetett szó a szövegből, például: négyzetkilométer, vízszint, fürdőhely, félsziget."
+              },
+              {
+                "id": "s2",
+                "points": 1,
+                "description": "Helyes elemekre bontás, például: víz + szint, fürdő + hely, fél + sziget."
+              }
+            ]
+          },
+          "explanation": "Összetett szó két vagy több önálló szóból áll, például vízszint = víz + szint.",
+          "pdfRect": {
+            "page": 2,
+            "x": 0.0941,
+            "y": 0.2401,
+            "w": 0.8119,
+            "h": 0.1189
+          }
+        },
+        {
+          "id": "5",
+          "number": "5.",
+          "type": "short_answer",
+          "text": "Milyen szófajú a „sekély” szó a szöveg első bekezdésében?",
+          "sourceRefs": [
+            "src-1"
+          ],
+          "maxPoints": 1,
+          "topics": [
+            "szófajok"
+          ],
+          "fields": [
+            {
+              "id": "5-f1",
+              "kind": "text",
+              "label": "Szófaj:",
+              "pdfRect": {
+                "page": 2,
+                "x": 0.6203,
+                "y": 0.4161,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 1,
+                "fieldIds": [
+                  "5-f1"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "melléknév"
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "A „sekély” tulajdonságot fejez ki (milyen a tó?), tehát melléknév.",
+          "pdfRect": {
+            "page": 2,
+            "x": 0.0941,
+            "y": 0.3756,
+            "w": 0.8119,
+            "h": 0.0809
+          }
+        }
+      ]
+    },
+    {
+      "id": "II",
+      "title": "II. Szövegalkotás",
+      "timeLimitMinutes": 90,
+      "maxPoints": 20,
+      "instructions": "Írjon összefüggő, érvelő szöveget! Ügyeljen a helyesírásra és a szöveg tagolására!",
+      "tasks": [
+        {
+          "id": "6",
+          "number": "6.",
+          "type": "long_writing",
+          "text": "Érdemes-e a nyári szünidőben belföldön utazni? Írjon érvelő esszét a kérdésről! Fogalmazza meg álláspontját, és támassza alá legalább két érvvel és példával! Szövegének terjedelme legalább 250 szó legyen.",
+          "maxPoints": 20,
+          "topics": [
+            "érvelés"
+          ],
+          "wordLimit": {
+            "min": 250
+          },
+          "fields": [
+            {
+              "id": "6-f1",
+              "kind": "essay",
+              "label": "Érvelő esszé:",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.0941,
+                "y": 0.0887,
+                "w": 0.8119,
+                "h": 0.8234
+              }
+            }
+          ],
+          "scoring": {
+            "criteria": [
+              {
+                "id": "c1",
+                "label": "Tartalom, érvelés",
+                "maxPoints": 8,
+                "levels": [
+                  {
+                    "points": 8,
+                    "description": "Világos álláspont, legalább két kifejtett érv, meggyőző példákkal."
+                  },
+                  {
+                    "points": 5,
+                    "description": "Van álláspont és érv, de a kifejtés vagy a példák hiányosak."
+                  },
+                  {
+                    "points": 2,
+                    "description": "Az álláspont homályos, az érvek alig kidolgozottak."
+                  },
+                  {
+                    "points": 0,
+                    "description": "Nincs érvelés."
+                  }
+                ]
+              },
+              {
+                "id": "c2",
+                "label": "Szerkezet, kompozíció",
+                "maxPoints": 4,
+                "description": "Bevezetés, tárgyalás, befejezés; logikus bekezdések."
+              },
+              {
+                "id": "c3",
+                "label": "Nyelvi minőség, stílus",
+                "maxPoints": 4,
+                "description": "Változatos szókincs, a témához illő stílus."
+              },
+              {
+                "id": "c4",
+                "label": "Helyesírás, nyelvhelyesség",
+                "maxPoints": 4,
+                "description": "Kevés vagy semmilyen helyesírási és nyelvhelyességi hiba."
+              }
+            ]
+          },
+          "explanation": "Az érvelő esszében egyértelmű álláspontot kell megfogalmazni, és azt érvekkel, példákkal kell alátámasztani. A terjedelmi követelmény legalább 250 szó."
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": [
+      "Érettségi Gyakorló"
+    ],
+    "notes": [
+      "Saját készítésű, nem hivatalos feladatsor."
+    ]
+  }
+}

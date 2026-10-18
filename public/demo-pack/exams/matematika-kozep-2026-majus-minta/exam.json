@@ -1,0 +1,927 @@
+{
+  "schemaVersion": 1,
+  "id": "matematika-kozep-2026-majus-minta",
+  "subject": "matematika",
+  "level": "kozep",
+  "year": 2026,
+  "session": "majus",
+  "format": "2024",
+  "title": "Mintafeladatsor – Matematika, középszint",
+  "sample": true,
+  "maxPoints": 34,
+  "source": {
+    "publisher": "Érettségi Gyakorló (saját mintafeladatsor)",
+    "examPdf": {
+      "file": "feladatlap.pdf",
+      "sha256": "52e58a8bb27dbd6d0f291d6a14e5f4fd56a51c82aed76dfc1dc75d6f1d85a3c5",
+      "pages": 6,
+      "label": "Feladatlap"
+    }
+  },
+  "parts": [
+    {
+      "id": "I",
+      "title": "I. rész",
+      "timeLimitMinutes": 45,
+      "maxPoints": 10,
+      "instructions": "A feladatok megoldásához zsebszámológépet és függvénytáblázatot használhat. Válaszait a kijelölt helyre írja!",
+      "tasks": [
+        {
+          "id": "1",
+          "number": "1.",
+          "type": "short_answer",
+          "text": "Oldja meg a valós számok halmazán a következő egyenletet: $3x - 7 = 11$",
+          "maxPoints": 2,
+          "topics": [
+            "elsőfokú egyenlet"
+          ],
+          "fields": [
+            {
+              "id": "1-f1",
+              "kind": "number",
+              "label": "x =",
+              "pdfRect": {
+                "page": 1,
+                "x": 0.7043,
+                "y": 0.336,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "1-f1"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    6
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "Mindkét oldalhoz 7-et adva 3x = 18, majd 3-mal osztva x = 6.",
+          "hints": [
+            "Először vigye át a −7-et a jobb oldalra!"
+          ],
+          "pdfRect": {
+            "page": 1,
+            "x": 0.0941,
+            "y": 0.2955,
+            "w": 0.8119,
+            "h": 0.0809
+          }
+        },
+        {
+          "id": "2",
+          "number": "2.",
+          "type": "multiple_choice",
+          "text": "Melyik szám osztója a 84-nek? Adja meg az összes helyes válasz betűjelét!",
+          "maxPoints": 2,
+          "topics": [
+            "oszthatóság"
+          ],
+          "fields": [
+            {
+              "id": "2-f1",
+              "kind": "multi",
+              "label": "Helyes válaszok:",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "5"
+                },
+                {
+                  "value": "B",
+                  "label": "7"
+                },
+                {
+                  "value": "C",
+                  "label": "12"
+                },
+                {
+                  "value": "D",
+                  "label": "16"
+                }
+              ],
+              "pdfRect": {
+                "page": 1,
+                "x": 0.7211,
+                "y": 0.5105,
+                "w": 0.1848,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "2-f1"
+                ],
+                "answer": {
+                  "kind": "choice",
+                  "correct": [
+                    "B",
+                    "C"
+                  ]
+                },
+                "partial": {
+                  "perItem": 1,
+                  "penalizeWrong": true
+                }
+              }
+            ]
+          },
+          "explanation": "84 = 2² · 3 · 7, ezért a 7 és a 12 osztója, az 5 és a 16 nem.",
+          "pdfRect": {
+            "page": 1,
+            "x": 0.0941,
+            "y": 0.393,
+            "w": 0.8119,
+            "h": 0.1579
+          }
+        },
+        {
+          "id": "3",
+          "number": "3.",
+          "type": "true_false",
+          "text": "Döntse el, hogy igazak vagy hamisak a következő állítások!",
+          "maxPoints": 2,
+          "topics": [
+            "logika",
+            "számhalmazok"
+          ],
+          "fields": [
+            {
+              "id": "3-f1",
+              "kind": "choice",
+              "label": "A) Minden négyzet rombusz.",
+              "options": [
+                {
+                  "value": "igaz",
+                  "label": "igaz"
+                },
+                {
+                  "value": "hamis",
+                  "label": "hamis"
+                }
+              ],
+              "pdfRect": {
+                "page": 1,
+                "x": 0.7883,
+                "y": 0.608,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "3-f2",
+              "kind": "choice",
+              "label": "B) A 0 páros szám.",
+              "options": [
+                {
+                  "value": "igaz",
+                  "label": "igaz"
+                },
+                {
+                  "value": "hamis",
+                  "label": "hamis"
+                }
+              ],
+              "pdfRect": {
+                "page": 1,
+                "x": 0.7883,
+                "y": 0.646,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "3-f3",
+              "kind": "choice",
+              "label": "C) Két negatív szám szorzata negatív.",
+              "options": [
+                {
+                  "value": "igaz",
+                  "label": "igaz"
+                },
+                {
+                  "value": "hamis",
+                  "label": "hamis"
+                }
+              ],
+              "pdfRect": {
+                "page": 1,
+                "x": 0.7883,
+                "y": 0.6841,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "3-f1",
+                  "3-f2",
+                  "3-f3"
+                ],
+                "answer": {
+                  "kind": "matching",
+                  "pairs": {
+                    "3-f1": "igaz",
+                    "3-f2": "igaz",
+                    "3-f3": "hamis"
+                  }
+                },
+                "partial": {
+                  "table": [
+                    {
+                      "correct": 2,
+                      "points": 1
+                    },
+                    {
+                      "correct": 3,
+                      "points": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "A négyzet minden oldala egyenlő, tehát rombusz. A 0 osztható 2-vel, így páros. Két negatív szám szorzata pozitív.",
+          "pdfRect": {
+            "page": 1,
+            "x": 0.0941,
+            "y": 0.5675,
+            "w": 0.8119,
+            "h": 0.1569
+          }
+        },
+        {
+          "id": "4",
+          "number": "4.",
+          "type": "short_answer",
+          "text": "Egy termék ára 2000 Ft. Az árát 15%-kal csökkentik. Mennyi lesz az új ár?",
+          "maxPoints": 2,
+          "topics": [
+            "százalékszámítás"
+          ],
+          "fields": [
+            {
+              "id": "4-f1",
+              "kind": "number",
+              "label": "Az új ár:",
+              "unit": "Ft",
+              "pdfRect": {
+                "page": 1,
+                "x": 0.6472,
+                "y": 0.7816,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "4-f1"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    1700
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "A csökkentés 2000 · 0,15 = 300 Ft, így az új ár 2000 − 300 = 1700 Ft.",
+          "pdfRect": {
+            "page": 1,
+            "x": 0.0941,
+            "y": 0.7411,
+            "w": 0.8119,
+            "h": 0.0809
+          }
+        },
+        {
+          "id": "5",
+          "number": "5.",
+          "type": "short_answer",
+          "text": "Adja meg a $2x^2 - 8 = 0$ egyenlet valós megoldásait!",
+          "maxPoints": 2,
+          "topics": [
+            "másodfokú egyenlet"
+          ],
+          "fields": [
+            {
+              "id": "5-f1",
+              "kind": "text",
+              "label": "x₁ =",
+              "pdfRect": {
+                "page": 2,
+                "x": 0.6203,
+                "y": 0.107,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "5-f2",
+              "kind": "text",
+              "label": "x₂ =",
+              "pdfRect": {
+                "page": 2,
+                "x": 0.6203,
+                "y": 0.145,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "5-f1",
+                  "5-f2"
+                ],
+                "answer": {
+                  "kind": "set",
+                  "items": [
+                    [
+                      "2",
+                      "+2"
+                    ],
+                    [
+                      "-2",
+                      "−2"
+                    ]
+                  ],
+                  "order": "any",
+                  "normalize": {
+                    "ignoreSpaces": true
+                  }
+                },
+                "partial": {
+                  "perItem": 1
+                }
+              }
+            ]
+          },
+          "explanation": "2x² = 8, x² = 4, ezért x = 2 vagy x = −2.",
+          "pdfRect": {
+            "page": 2,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.1189
+          }
+        }
+      ]
+    },
+    {
+      "id": "II",
+      "title": "II. rész",
+      "timeLimitMinutes": 135,
+      "maxPoints": 24,
+      "instructions": "A 6. feladatot mindenkinek meg kell oldania. A 7. és a 8. feladat közül csak az egyiket kell megoldania. Gondolatmenetét, számításait is írja le!",
+      "choices": [
+        {
+          "label": "A 7. és a 8. feladat közül válasszon egyet!",
+          "pick": 1,
+          "taskIds": [
+            "7",
+            "8"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": "6a",
+          "number": "6. a)",
+          "type": "calculation",
+          "text": "Egy derékszögű háromszög két befogója 6 cm és 8 cm hosszú. Számítsa ki az átfogó hosszát!",
+          "maxPoints": 3,
+          "topics": [
+            "Pitagorasz-tétel"
+          ],
+          "fields": [
+            {
+              "id": "6a-w",
+              "kind": "work",
+              "label": "Számítás:",
+              "pdfRect": {
+                "page": 3,
+                "x": 0.0941,
+                "y": 0.2364,
+                "w": 0.8119,
+                "h": 0.2019
+              }
+            },
+            {
+              "id": "6a-f1",
+              "kind": "number",
+              "label": "Az átfogó:",
+              "unit": "cm",
+              "pdfRect": {
+                "page": 3,
+                "x": 0.6472,
+                "y": 0.4478,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 1,
+                "description": "A Pitagorasz-tétel helyes felírása: c² = 6² + 8²."
+              }
+            ],
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "6a-f1"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    10
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "c² = 36 + 64 = 100, így c = 10 cm.",
+          "pdfRect": {
+            "page": 3,
+            "x": 0.0941,
+            "y": 0.1579,
+            "w": 0.8119,
+            "h": 0.3303
+          }
+        },
+        {
+          "id": "6b",
+          "number": "6. b)",
+          "type": "calculation",
+          "text": "Számítsa ki a háromszög területét!",
+          "maxPoints": 3,
+          "topics": [
+            "háromszög területe"
+          ],
+          "fields": [
+            {
+              "id": "6b-w",
+              "kind": "work",
+              "label": "Számítás:",
+              "pdfRect": {
+                "page": 3,
+                "x": 0.0941,
+                "y": 0.5659,
+                "w": 0.8119,
+                "h": 0.2019
+              }
+            },
+            {
+              "id": "6b-f1",
+              "kind": "number",
+              "label": "A terület:",
+              "unit": "cm²",
+              "pdfRect": {
+                "page": 3,
+                "x": 0.6472,
+                "y": 0.7773,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 1,
+                "description": "A terület képletének felírása: T = (a · b) / 2."
+              }
+            ],
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "6b-f1"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    24
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "Derékszögű háromszögben a befogók szorzatának fele a terület: 6 · 8 / 2 = 24 cm².",
+          "pdfRect": {
+            "page": 3,
+            "x": 0.0941,
+            "y": 0.5048,
+            "w": 0.8119,
+            "h": 0.3129
+          }
+        },
+        {
+          "id": "6c",
+          "number": "6. c)",
+          "type": "calculation",
+          "text": "Számítsa ki a háromszög legkisebb szögét fokban, egy tizedesjegyre kerekítve!",
+          "maxPoints": 6,
+          "topics": [
+            "szögfüggvények"
+          ],
+          "fields": [
+            {
+              "id": "6c-w",
+              "kind": "work",
+              "label": "Számítás:",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.0941,
+                "y": 0.1276,
+                "w": 0.8119,
+                "h": 0.2019
+              }
+            },
+            {
+              "id": "6c-f1",
+              "kind": "number",
+              "label": "A legkisebb szög:",
+              "unit": "°",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6472,
+                "y": 0.339,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 1,
+                "description": "Annak felismerése, hogy a legkisebb szög a 6 cm-es befogóval szemben van."
+              },
+              {
+                "id": "s2",
+                "points": 2,
+                "description": "Megfelelő szögfüggvény felírása, például tg α = 6/8."
+              },
+              {
+                "id": "s3",
+                "points": 1,
+                "description": "tg α = 0,75 helyes kiszámítása."
+              }
+            ],
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "6c-f1"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    36.9
+                  ],
+                  "tolerance": 0.05
+                }
+              }
+            ]
+          },
+          "explanation": "A legrövidebb oldallal szemben van a legkisebb szög: tg α = 6/8 = 0,75, ebből α ≈ 36,9°.",
+          "pdfRect": {
+            "page": 4,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.3129
+          }
+        },
+        {
+          "id": "7",
+          "number": "7.",
+          "type": "calculation",
+          "text": "Egy 30 fős osztály matematikajegyei: 6 tanuló 5-ös, 9 tanuló 4-es, 10 tanuló 3-as, 5 tanuló 2-es.\n\na) Számítsa ki a jegyek átlagát két tizedesjegyre kerekítve!\n\nb) Adja meg a jegyek móduszát és mediánját!\n\nc) Véletlenszerűen kiválasztunk egy tanulót. Mennyi a valószínűsége, hogy legalább 4-es a jegye?",
+          "maxPoints": 12,
+          "topics": [
+            "statisztika",
+            "valószínűség"
+          ],
+          "fields": [
+            {
+              "id": "7-w",
+              "kind": "work",
+              "label": "Számítás:",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.0941,
+                "y": 0.2411,
+                "w": 0.8119,
+                "h": 0.2019
+              }
+            },
+            {
+              "id": "7-f1",
+              "kind": "number",
+              "label": "a) Átlag:",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.7043,
+                "y": 0.4525,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "7-f2",
+              "kind": "number",
+              "label": "b) Módusz:",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.7043,
+                "y": 0.4905,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "7-f3",
+              "kind": "number",
+              "label": "b) Medián:",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.7043,
+                "y": 0.5285,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "7-f4",
+              "kind": "number",
+              "label": "c) Valószínűség:",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.7043,
+                "y": 0.5665,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 2,
+                "description": "Az átlag helyes felírása: (6 · 5 + 9 · 4 + 10 · 3 + 5 · 2) / 30."
+              },
+              {
+                "id": "s2",
+                "points": 2,
+                "description": "A kedvező esetek számának meghatározása: 9 + 6 = 15."
+              }
+            ],
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "7-f1"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    3.53
+                  ],
+                  "tolerance": 0.005
+                }
+              },
+              {
+                "id": "r2",
+                "points": 2,
+                "fieldIds": [
+                  "7-f2"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    3
+                  ]
+                }
+              },
+              {
+                "id": "r3",
+                "points": 2,
+                "fieldIds": [
+                  "7-f3"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    3.5
+                  ]
+                }
+              },
+              {
+                "id": "r4",
+                "points": 2,
+                "fieldIds": [
+                  "7-f4"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    0.5
+                  ],
+                  "tolerance": 0.001
+                }
+              }
+            ]
+          },
+          "explanation": "Átlag: 106 / 30 ≈ 3,53. A leggyakoribb jegy a 3-as (10 tanuló), ez a módusz. Sorba rendezve a 15. jegy 3-as, a 16. jegy 4-es, így a medián 3,5. Legalább 4-es 15 tanuló, a valószínűség 15/30 = 0,5.",
+          "pdfRect": {
+            "page": 5,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.5404
+          }
+        },
+        {
+          "id": "8",
+          "number": "8.",
+          "type": "calculation",
+          "text": "Egy számtani sorozat első tagja 3, differenciája 4.\n\na) Adja meg a sorozat 10. tagját!\n\nb) Számítsa ki a sorozat első 10 tagjának összegét!\n\nc) Hányadik tagja a sorozatnak a 99?",
+          "maxPoints": 12,
+          "topics": [
+            "számtani sorozat"
+          ],
+          "fields": [
+            {
+              "id": "8-w",
+              "kind": "work",
+              "label": "Számítás:",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.0941,
+                "y": 0.2061,
+                "w": 0.8119,
+                "h": 0.2019
+              }
+            },
+            {
+              "id": "8-f1",
+              "kind": "number",
+              "label": "a) A 10. tag:",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.7043,
+                "y": 0.4176,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "8-f2",
+              "kind": "number",
+              "label": "b) Az összeg:",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.7043,
+                "y": 0.4556,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "8-f3",
+              "kind": "number",
+              "label": "c) Sorszám:",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.7043,
+                "y": 0.4936,
+                "w": 0.2016,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 2,
+                "description": "Az aₙ = a₁ + (n − 1) · d képlet helyes alkalmazása."
+              },
+              {
+                "id": "s2",
+                "points": 2,
+                "description": "Az összegképlet helyes alkalmazása: S₁₀ = 10 · (a₁ + a₁₀) / 2."
+              },
+              {
+                "id": "s3",
+                "points": 2,
+                "description": "A 3 + (n − 1) · 4 = 99 egyenlet felírása."
+              }
+            ],
+            "rules": [
+              {
+                "id": "r1",
+                "points": 2,
+                "fieldIds": [
+                  "8-f1"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    39
+                  ]
+                }
+              },
+              {
+                "id": "r2",
+                "points": 2,
+                "fieldIds": [
+                  "8-f2"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    210
+                  ]
+                }
+              },
+              {
+                "id": "r3",
+                "points": 2,
+                "fieldIds": [
+                  "8-f3"
+                ],
+                "answer": {
+                  "kind": "number",
+                  "accepted": [
+                    25
+                  ]
+                }
+              }
+            ]
+          },
+          "explanation": "a₁₀ = 3 + 9 · 4 = 39; S₁₀ = 10 · (3 + 39) / 2 = 210; 3 + (n − 1) · 4 = 99-ből n = 25.",
+          "pdfRect": {
+            "page": 6,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.4675
+          }
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": [
+      "Érettségi Gyakorló"
+    ],
+    "notes": [
+      "Saját készítésű, nem hivatalos feladatsor."
+    ]
+  }
+}

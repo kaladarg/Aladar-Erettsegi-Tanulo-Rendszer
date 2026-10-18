@@ -1,4 +1,4 @@
-import { GraduationCap, House, Info, Settings as SettingsIcon } from 'lucide-react';
+import { GraduationCap, House, Info, Library, Settings as SettingsIcon } from 'lucide-react';
 import { NavLink, Outlet } from 'react-router';
 import { t, type MessageKey } from '@/i18n';
 import { cn } from '@/lib/cn';
@@ -9,13 +9,14 @@ import { StorageWarning } from './StorageWarning';
 
 const NAV_ITEMS: { to: string; label: MessageKey; icon: typeof House }[] = [
   { to: '/', label: 'nav.home', icon: House },
+  { to: '/feladatsorok', label: 'nav.exams', icon: Library },
   { to: '/beallitasok', label: 'nav.settings', icon: SettingsIcon },
   { to: '/nevjegy', label: 'nav.about', icon: Info },
 ];
 
 function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
   return (
-    <ul className={cn(variant === 'bottom' ? 'grid grid-cols-3' : 'flex flex-col gap-1')}>
+    <ul className={cn(variant === 'bottom' ? 'grid grid-cols-4' : 'flex flex-col gap-1')}>
       {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
         <li key={to}>
           <NavLink

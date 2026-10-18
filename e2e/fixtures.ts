@@ -18,15 +18,16 @@ export const test = base.extend<{ consoleErrors: string[] }>({
 
 export { expect };
 
-/** Completes onboarding with the given subjects. */
+/** Completes onboarding with the given subjects; ends on the exam browser. */
 export async function finishOnboarding(page: Page, subjects: string[] = ['Matematika']) {
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   for (const subject of subjects) await dialog.getByText(subject, { exact: true }).click();
   await dialog.getByRole('button', { name: 'Tovább' }).click();
   await dialog.getByRole('button', { name: 'Tovább' }).click();
-  await dialog.getByRole('button', { name: 'Indulás' }).click();
+  await dialog.getByRole('button', { name: 'Feladatsorok megnyitása' }).click();
   await expect(dialog).toBeHidden();
+  await expect(page.getByRole('heading', { level: 1, name: 'Feladatsorok' })).toBeVisible();
 }
 
 /** The visible toast with the given text (Radix also mirrors it into a live region). */

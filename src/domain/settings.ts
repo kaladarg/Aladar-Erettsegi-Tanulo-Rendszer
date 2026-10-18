@@ -10,6 +10,8 @@ export interface Settings {
   /** Subject ids the student picked during onboarding or in settings. */
   subjects: string[];
   onboardingDone: boolean;
+  /** Custom content pack URL (forks, teachers); empty means the built-in default. */
+  contentSource: string;
 }
 
 export const TEXT_SCALE_STEPS = [0.875, 1, 1.125, 1.25, 1.375, 1.5] as const;
@@ -21,7 +23,21 @@ export const DEFAULT_SETTINGS: Settings = {
   reducedMotion: false,
   subjects: [],
   onboardingDone: false,
+  contentSource: '',
 };
+
+/** Accepts absolute http(s) URLs and same-site paths; returns '' for anything else. */
+export function sanitizeContentSource(value: unknown): string {
+  if (typeof value !== 'string') return '';
+  const trimmed = value.trim();
+  if (trimmed.startsWith('/') && !trimmed.startsWith('//')) return trimmed;
+  try {
+    const url = new URL(trimmed);
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
+  } catch {
+    return '';
+  }
+}
 
 export function stepTextScale(current: number, direction: 1 | -1): number {
   const steps = TEXT_SCALE_STEPS as readonly number[];
@@ -47,5 +63,6 @@ export function sanitizeSettings(input: unknown): Settings {
       ? raw.subjects.filter((s): s is string => typeof s === 'string')
       : [],
     onboardingDone: raw.onboardingDone === true,
+    contentSource: sanitizeContentSource(raw.contentSource),
   };
 }

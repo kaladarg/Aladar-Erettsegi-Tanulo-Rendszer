@@ -15,6 +15,11 @@ test('first visit walks through onboarding and shows the chosen subjects', async
 
   await page.goto('/');
   await finishOnboarding(page, ['Történelem', 'Magyar nyelv és irodalom']);
+  await page
+    .getByRole('navigation', { name: 'Fő navigáció' })
+    .filter({ visible: true })
+    .getByRole('link', { name: 'Kezdőlap' })
+    .click();
 
   const subjects = page.getByRole('region', { name: 'A tárgyaid' });
   await expect(subjects.getByText('Történelem')).toBeVisible();
@@ -34,6 +39,9 @@ test('onboarding can be skipped and reopened from the home screen', async ({ pag
 
   await page.getByRole('button', { name: 'Tárgyak kiválasztása' }).click();
   await finishOnboarding(page, ['Matematika']);
+  // A single chosen subject opens the browser filtered to it.
+  await expect(page).toHaveURL(/\/feladatsorok\?targy=matematika$/);
+  await page.goto('/');
   await expect(
     page.getByRole('region', { name: 'A tárgyaid' }).getByText('Matematika'),
   ).toBeVisible();

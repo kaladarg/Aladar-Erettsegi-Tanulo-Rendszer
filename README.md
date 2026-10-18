@@ -4,7 +4,7 @@ A free, open-source, ad-free web app for practicing the Hungarian _érettségi_ 
 
 **Version 1 scope:** középszint (intermediate level) in Mathematics, History, and Hungarian Language & Literature. Subjects and levels are data, so more can be added without code changes.
 
-> Status: phase 1 of 7 (app shell, design system, onboarding, settings). See [docs/roadmap.md](docs/roadmap.md).
+> Status: phase 2 of 7 (content pipeline, exam browser). See [docs/roadmap.md](docs/roadmap.md).
 
 | Mobile (light)                                                   | Desktop (dark)                                                    |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -49,7 +49,18 @@ docker build -t erettsegi-gyakorlo . && docker run --rm -p 8080:80 erettsegi-gya
 
 ## Exam content
 
-Code and content are separate. The app loads exams from a _content pack_ (a manifest plus per-exam JSON and PDF references). Official exam papers are **never** committed to this repository; see [CONTENT_LICENSE.md](CONTENT_LICENSE.md). The import pipeline (`tools/`) and the content pack format arrive in phase 2 and will be documented in `docs/content-packs.md`.
+Code and content are separate. The app loads exams from a _content pack_: a manifest plus one `exam.json` per paper and optional PDFs. See [docs/content-packs.md](docs/content-packs.md).
+
+- The public site ships a **demo pack** of self-written sample papers (`public/demo-pack`, built with `npm run demo:build`).
+- Official papers and marking schemes from the Oktatási Hivatal live in a separate, **private** content repository until their reuse is cleared. They are never committed here; see [CONTENT_LICENSE.md](CONTENT_LICENSE.md).
+- Students can open a paper they downloaded from oktatas.hu themselves ("Saját PDF megnyitása"); the app recognises it by its hash and keeps it only on the device.
+
+| Command                                                                         | What it does                                                                     |
+| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `npm run demo:build`                                                            | Regenerates the demo pack (PDFs and `exam.json`)                                 |
+| `npm run schemas`                                                               | Regenerates types and validators from `schemas/`                                 |
+| `npm run content:crawl` / `content:extract` / `content:review` / `content:pack` | Official content pipeline (maintainers)                                          |
+| `npm run dev:content`                                                           | Dev server using the private pack checked out at `../erettsegi-gyakorlo-content` |
 
 ## Privacy
 

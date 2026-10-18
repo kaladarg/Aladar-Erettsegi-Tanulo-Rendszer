@@ -23,6 +23,7 @@ import { formatDate, formatNumber, t } from '@/i18n';
 import type { BackupFile } from '@/storage/backup';
 import { useSettings } from '@/state/settingsStore';
 import { AiKeySection } from './AiKeySection';
+import { ContentSourceSection } from './ContentSourceSection';
 import { applyBackup, exportToFile, readBackupFile, resetAllData } from './dataActions';
 
 export function SettingsPage() {
@@ -101,6 +102,7 @@ export function SettingsPage() {
 
         <DataSection />
         <AiKeySection />
+        <ContentSourceSection />
 
         <Card aria-labelledby="settings-privacy" className="border-success/40">
           <CardTitle id="settings-privacy" className="flex items-center gap-2">

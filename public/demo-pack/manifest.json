@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "packId": "demo",
+  "title": "Mintafeladatsorok",
+  "updatedAt": "2026-10-18",
+  "notice": "Saját készítésű, nem hivatalos mintafeladatsorok az alkalmazás kipróbálásához.",
+  "repositoryUrl": "https://github.com/kaladarg/Aladar-Erettsegi-Tanulo-Rendszer",
+  "subjects": [
+    {
+      "id": "matematika",
+      "name": "Matematika",
+      "icon": "sigma"
+    },
+    {
+      "id": "tortenelem",
+      "name": "Történelem",
+      "icon": "landmark"
+    },
+    {
+      "id": "magyar",
+      "name": "Magyar nyelv és irodalom",
+      "icon": "book-open"
+    }
+  ],
+  "levels": [
+    {
+      "id": "kozep",
+      "name": "Középszint"
+    }
+  ],
+  "exams": [
+    {
+      "id": "magyar-kozep-2026-majus-minta",
+      "subject": "magyar",
+      "level": "kozep",
+      "year": 2026,
+      "session": "majus",
+      "format": "2024",
+      "title": "Mintafeladatsor – Magyar nyelv és irodalom, középszint",
+      "sample": true,
+      "maxPoints": 27,
+      "path": "exams/magyar-kozep-2026-majus-minta/exam.json",
+      "sha256": "3bd6341fb33cc89eeb1954c1bad474c9cfa7b27a1cb79c3ef1fb79103a484ba6",
+      "hasPdf": true,
+      "pdfSha256": "c9c71f20db632e5456dbe93ae0e07ad065a5ad842f07a46d12cb3b58d0c78ba5",
+      "status": "reviewed"
+    },
+    {
+      "id": "matematika-kozep-2026-majus-minta",
+      "subject": "matematika",
+      "level": "kozep",
+      "year": 2026,
+      "session": "majus",
+      "format": "2024",
+      "title": "Mintafeladatsor – Matematika, középszint",
+      "sample": true,
+      "maxPoints": 34,
+      "path": "exams/matematika-kozep-2026-majus-minta/exam.json",
+      "sha256": "c2394b9fc2c92ab4513d52de77bd3a15428d5f4713bc2b9a86d50d5677203adb",
+      "hasPdf": true,
+      "pdfSha256": "52e58a8bb27dbd6d0f291d6a14e5f4fd56a51c82aed76dfc1dc75d6f1d85a3c5",
+      "status": "reviewed"
+    },
+    {
+      "id": "tortenelem-kozep-2026-majus-minta",
+      "subject": "tortenelem",
+      "level": "kozep",
+      "year": 2026,
+      "session": "majus",
+      "format": "2024",
+      "title": "Mintafeladatsor – Történelem, középszint",
+      "sample": true,
+      "maxPoints": 24,
+      "path": "exams/tortenelem-kozep-2026-majus-minta/exam.json",
+      "sha256": "884ddb09344b63bc38e8d0ac2eae93b01a5235989f2dd8d36d1127e0b8e07ee1",
+      "hasPdf": true,
+      "pdfSha256": "a6c9d7e62b3b965f3c6ca6783c8bfdf1c9ba5d95f49b18ae6522012c8f7d870d",
+      "status": "reviewed"
+    }
+  ]
+}

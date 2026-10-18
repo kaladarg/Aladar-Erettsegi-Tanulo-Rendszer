@@ -15,6 +15,8 @@ export interface AttemptRow {
   submittedAt?: number;
   /** Time spent per paper part, in seconds. */
   partSeconds: Record<string, number>;
+  /** Set when the attempt is submitted and scored. */
+  result?: { points: number; maxPoints: number };
 }
 
 export interface AnswerRow {

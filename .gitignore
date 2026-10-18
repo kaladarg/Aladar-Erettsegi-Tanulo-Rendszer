@@ -11,6 +11,7 @@ blob-report/
 .env
 .env.*
 !.env.example
+!.env.content
 .vscode/*
 !.vscode/extensions.json
 # Official exam material lives in the separate content repository, never here.
