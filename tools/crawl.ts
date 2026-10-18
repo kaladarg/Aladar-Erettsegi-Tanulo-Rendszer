@@ -18,6 +18,7 @@ import {
   classifyUrl,
   conventionalUrls,
   extractLinks,
+  isRelevantArchivePage,
   type OfficialFile,
 } from './lib/officialFiles';
 import { BlockedError, PoliteFetcher } from './lib/politeFetch';
@@ -34,6 +35,8 @@ export interface CrawlOptions {
   fetcher: PoliteFetcher;
   startUrls: string[];
   maxPages: number;
+  /** Only follow archive pages for the requested level, years and sessions (the real OH site layout). */
+  pageFilter?: boolean;
   log: (message: string) => void;
 }
 
@@ -86,8 +89,10 @@ async function discover(options: CrawlOptions): Promise<OfficialFile[]> {
       const target = new URL(link);
       const isArchivePage =
         CONTENT_SOURCE.allowedHosts.includes(target.host) &&
-        /erettsegi/i.test(target.pathname) &&
-        !/\.(pdf|zip|mp3|jpg|png|docx?)$/i.test(target.pathname);
+        !/\.(pdf|zip|mp3|jpg|png|docx?)$/i.test(target.pathname) &&
+        (options.pageFilter
+          ? isRelevantArchivePage(target, options)
+          : /erettsegi/i.test(target.pathname));
       if (isArchivePage && !seen.has(target.href)) queue.push(target.href);
     }
   }
@@ -182,6 +187,7 @@ async function main() {
     dryRun: !!args['dry-run'],
     startUrls: CONTENT_SOURCE.startUrls,
     maxPages: CONTENT_SOURCE.maxPages,
+    pageFilter: true,
     fetcher: new PoliteFetcher({
       userAgent: CONTENT_SOURCE.userAgent,
       minDelayMs: CONTENT_SOURCE.minDelayMs,

@@ -86,3 +86,43 @@ export function extractLinks(html: string, baseUrl: string): string[] {
   }
   return [...links];
 }
+
+export interface PageFilter {
+  level: string;
+  from: number;
+  to: number;
+  sessions: Session[];
+}
+
+const ARCHIVE_ROOT = '/kozneveles/erettsegi/feladatsorok';
+const PERIOD_RE = /^(kozepszint|emelt_?szint)_?(\d{4})_?(tavasz|osz|majus|oktober|februar)$/;
+
+/**
+ * Whether an archive page can lead to papers we want. The OH archive has one
+ * page per level and exam period (e.g. .../feladatsorok/kozepszint_2024tavasz)
+ * with sub-pages per exam day; everything else is skipped to keep the crawl short.
+ */
+export function isRelevantArchivePage(url: URL, filter: PageFilter): boolean {
+  if (url.search || url.hash) return false;
+  const path = url.pathname.replace(/\/$/, '');
+  if (path !== ARCHIVE_ROOT && !path.startsWith(`${ARCHIVE_ROOT}/`)) return false;
+  const segments = path.slice(ARCHIVE_ROOT.length).split('/').filter(Boolean);
+  if (segments.length === 0) return true;
+  const match = PERIOD_RE.exec(segments[0]!);
+  if (!match) return false;
+  const [, levelName, year, season] = match as unknown as [string, string, string, string];
+  const level = levelName.startsWith('kozep') ? 'kozep' : 'emelt';
+  const session: Session | null =
+    season === 'tavasz' || season === 'majus'
+      ? 'majus'
+      : season === 'osz' || season === 'oktober'
+        ? 'oktober'
+        : null;
+  return (
+    level === filter.level &&
+    Number(year) >= filter.from &&
+    Number(year) <= filter.to &&
+    session !== null &&
+    filter.sessions.includes(session)
+  );
+}

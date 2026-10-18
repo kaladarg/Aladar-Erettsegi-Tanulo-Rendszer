@@ -1,6 +1,11 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest';
-import { classifyUrl, conventionalUrls, extractLinks } from './officialFiles';
+import {
+  classifyUrl,
+  conventionalUrls,
+  extractLinks,
+  isRelevantArchivePage,
+} from './officialFiles';
 
 const BASE = 'https://dload-oktatas.educatio.hu/erettsegi';
 
@@ -44,5 +49,38 @@ describe('extractLinks', () => {
       'https://www.oktatas.hu/a?x=1&y=2',
       'https://www.oktatas.hu/dir/b.pdf',
     ]);
+  });
+});
+
+describe('isRelevantArchivePage', () => {
+  const filter = { level: 'kozep', from: 2024, to: 2024, sessions: ['majus' as const] };
+  const page = (path: string) =>
+    isRelevantArchivePage(new URL(`https://www.oktatas.hu${path}`), filter);
+
+  it('follows the archive index and the wanted period with its day pages', () => {
+    expect(page('/kozneveles/erettsegi/feladatsorok')).toBe(true);
+    expect(page('/kozneveles/erettsegi/feladatsorok/kozepszint_2024tavasz')).toBe(true);
+    expect(page('/kozneveles/erettsegi/feladatsorok/kozepszint_2024tavasz/kozep_2nap')).toBe(true);
+  });
+
+  it('skips other levels, years, sessions, query variants and unrelated pages', () => {
+    expect(page('/kozneveles/erettsegi/feladatsorok/emelt_szint_2024tavasz')).toBe(false);
+    expect(page('/kozneveles/erettsegi/feladatsorok/kozepszint_2024osz')).toBe(false);
+    expect(page('/kozneveles/erettsegi/feladatsorok/kozepszint_2023tavasz/kozep_1nap')).toBe(false);
+    expect(page('/kozneveles/erettsegi/feladatsorok/kozepszint_2010majus')).toBe(false);
+    expect(page('/kozneveles/erettsegi/feladatsorok?accessible=true')).toBe(false);
+    expect(page('/kozneveles/erettsegi/feladatsorok/probaerettsegi2004')).toBe(false);
+    expect(page('/kozneveles/erettsegi/feladatsorok_vizsgatargyankent')).toBe(false);
+    expect(page('/kozneveles/erettsegi/&quot;')).toBe(false);
+  });
+
+  it('understands the older month-named periods', () => {
+    const old = { level: 'kozep', from: 2010, to: 2010, sessions: ['oktober' as const] };
+    expect(
+      isRelevantArchivePage(
+        new URL('https://www.oktatas.hu/kozneveles/erettsegi/feladatsorok/kozepszint_2010oktober'),
+        old,
+      ),
+    ).toBe(true);
   });
 });
