@@ -41,6 +41,7 @@ describe('sanitizeSettings', () => {
       subjects: ['matematika'],
       onboardingDone: true,
       contentSource: 'https://example.org/pack/',
+      aiModel: 'claude-haiku-5-5',
     } as const;
     expect(sanitizeSettings(valid)).toEqual(valid);
   });

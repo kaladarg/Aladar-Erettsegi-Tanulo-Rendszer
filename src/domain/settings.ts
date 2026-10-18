@@ -12,7 +12,12 @@ export interface Settings {
   onboardingDone: boolean;
   /** Custom content pack URL (forks, teachers); empty means the built-in default. */
   contentSource: string;
+  /** Claude model used by the optional AI features (the student's own API key pays). */
+  aiModel: AiModel;
 }
+
+export const AI_MODELS = ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-5-5'] as const;
+export type AiModel = (typeof AI_MODELS)[number];
 
 export const TEXT_SCALE_STEPS = [0.875, 1, 1.125, 1.25, 1.375, 1.5] as const;
 
@@ -24,6 +29,7 @@ export const DEFAULT_SETTINGS: Settings = {
   subjects: [],
   onboardingDone: false,
   contentSource: '',
+  aiModel: 'claude-opus-5-5',
 };
 
 /** Accepts absolute http(s) URLs and same-site paths; returns '' for anything else. */
@@ -64,5 +70,8 @@ export function sanitizeSettings(input: unknown): Settings {
       : [],
     onboardingDone: raw.onboardingDone === true,
     contentSource: sanitizeContentSource(raw.contentSource),
+    aiModel: (AI_MODELS as readonly unknown[]).includes(raw.aiModel)
+      ? (raw.aiModel as AiModel)
+      : DEFAULT_SETTINGS.aiModel,
   };
 }

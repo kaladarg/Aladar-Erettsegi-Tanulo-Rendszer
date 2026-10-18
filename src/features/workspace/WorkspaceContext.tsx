@@ -10,6 +10,8 @@ export interface WorkspaceValue {
   pdf: PdfSource | null;
   /** Exam mode: the parts being written now; others are hidden. Null: all parts. */
   activePartIds: Set<string> | null;
+  /** Help (hints, lookup, AI) is offered in practice, never in exam mode. */
+  helpEnabled: boolean;
 }
 
 export const WorkspaceContext = createContext<WorkspaceValue | null>(null);
@@ -24,11 +26,13 @@ export function createWorkspace(
   exam: Exam,
   pdf: PdfSource | null = null,
   activePartIds: Set<string> | null = null,
+  helpEnabled = false,
 ): WorkspaceValue {
   return {
     exam,
     pdf,
     activePartIds,
+    helpEnabled,
     sources: new Map((exam.sources ?? []).map((source) => [source.id, source])),
   };
 }

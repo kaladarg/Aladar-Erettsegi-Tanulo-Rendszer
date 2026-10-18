@@ -124,7 +124,7 @@ function Results({
   const pendingDeductions = result.deductions.filter((d) => d.points === null);
   const seconds = Object.values(attempt.partSeconds).reduce((a, b) => a + b, 0);
   const missingChoice = result.parts.some((p) => p.missingChoices.length > 0);
-  const common = { answers, attemptId: attempt.id, examId: exam.id, reportEmail };
+  const common = { answers, attemptId: attempt.id, examId: exam.id, reportEmail, exam };
 
   return (
     <>

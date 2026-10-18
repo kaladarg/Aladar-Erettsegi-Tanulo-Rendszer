@@ -1,13 +1,14 @@
-import { Check, CircleDashed, Mail, Minus, X } from 'lucide-react';
+import { Check, CircleDashed, LifeBuoy, Mail, Minus, X } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { RichText } from '@/content/RichText';
-import type { Criterion, Field } from '@/content/schema.types';
+import type { Criterion, Exam, Field } from '@/content/schema.types';
 import { reportMistakeUrl } from '@/content/report';
 import { Badge } from '@/design/ui/Badge';
 import type { TaskResult, TaskStatus } from '@/domain/scoring/exam';
 import { expectedAnswer } from '@/domain/scoring/rules';
 import { t } from '@/i18n';
-import type { Answers } from '@/storage/attempts';
+import { HELP_REVEALED, helpKey, type Answers } from '@/storage/attempts';
+import { AiEssayFeedback } from './AiEssayFeedback';
 import { AnswerView } from './AnswerView';
 import { CriterionReview, StepReview } from './ReviewControls';
 
@@ -43,6 +44,7 @@ export function TaskReview({
   attemptId,
   examId,
   reportEmail,
+  exam,
   headingLevel = 3,
 }: {
   result: TaskResult;
@@ -50,9 +52,12 @@ export function TaskReview({
   attemptId: string;
   examId: string;
   reportEmail?: string;
+  /** Enables the AI essay suggestion (with the student's key). */
+  exam?: Exam;
   headingLevel?: 2 | 3 | 4;
 }) {
   const { task } = result;
+  const helpUsed = Number(answers[helpKey(task.id)] ?? 0) >= HELP_REVEALED;
   const fields = new Map<string, Field>(task.fields.map((f) => [f.id, f]));
   const judged: Record<string, boolean> = Object.assign({}, ...result.rules.map((r) => r.fields));
   const criteria = new Map<string, Criterion>((task.scoring.criteria ?? []).map((c) => [c.id, c]));
@@ -71,6 +76,12 @@ export function TaskReview({
           {t('workspace.taskHeading', { number: task.number })}
         </Heading>
         <div className="flex items-center gap-2">
+          {helpUsed && (
+            <Badge tone="info" title={t('help.usedNote')}>
+              <LifeBuoy aria-hidden="true" />
+              {t('help.usedBadge')}
+            </Badge>
+          )}
           <StatusBadge status={result.status} />
           <span className="text-sm font-medium tabular-nums">
             {t('results.taskScore', { points: result.points, max: result.maxPoints })}
@@ -126,6 +137,9 @@ export function TaskReview({
               <StepReview key={item.id} target={target} item={item} />
             ))}
         </ul>
+      )}
+      {exam && criteria.size > 0 && (
+        <AiEssayFeedback exam={exam} task={task} answers={answers} attemptId={attemptId} />
       )}
       {result.items.some((i) => i.kind === 'criterion') && (
         <ul className="grid gap-3">

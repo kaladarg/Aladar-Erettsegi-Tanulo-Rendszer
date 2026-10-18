@@ -21,6 +21,8 @@ import { advanceSegment } from '@/storage/attempts';
 import { db, type AttemptRow } from '@/storage/db';
 import { ExamClock } from './ExamClock';
 import { handIn } from './handIn';
+import { HelpButton, HelpSheet } from './help/HelpSheet';
+import { SelectionLookup } from './help/SelectionLookup';
 import { ChoicePicker } from './ChoicePicker';
 import { FormMode } from './FormMode';
 import { closeCropDocuments } from './pdf/cropDocuments';
@@ -80,8 +82,9 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
   const pdfSource = pdf.status === 'ready' ? pdf.source : null;
   const activePartIds = timed?.activePartIds ?? null;
   const workspace = useMemo(
-    () => (exam ? createWorkspace(exam, pdfSource, activePartIds) : null),
-    [exam, pdfSource, activePartIds],
+    () =>
+      exam ? createWorkspace(exam, pdfSource, activePartIds, attemptMode === 'practice') : null,
+    [exam, pdfSource, activePartIds, attemptMode],
   );
   const onExpire = useCallback(async () => {
     if (!exam || !attemptId || !timed) return;
@@ -141,6 +144,7 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
                 },
               ]}
             />
+            {attemptMode === 'practice' && <HelpButton />}
             <InfoSheet exam={exam} />
           </>
         )}
@@ -173,6 +177,12 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
         ) : (
           workspace && (
             <WorkspaceContext.Provider value={workspace}>
+              {workspace.helpEnabled && (
+                <>
+                  <HelpSheet />
+                  <SelectionLookup />
+                </>
+              )}
               {mode === 'form' ? (
                 <FormMode />
               ) : pdf.status === 'ready' ? (

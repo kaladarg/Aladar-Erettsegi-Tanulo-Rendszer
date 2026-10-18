@@ -245,7 +245,14 @@ export const hu = {
       removed: 'Töröltük a kulcsot.',
       invalid: 'Ez nem tűnik Anthropic API-kulcsnak (sk-ant- kezdetű).',
       notice:
-        'A kulcs csak ebben a böngészőben tárolódik, és nem kerül bele az adatmentésbe. Ha MI-funkciót használsz, a kérdésed és a kapcsolódó feladat szövege közvetlenül az Anthropichoz kerül.',
+        'A kulcs csak ebben a böngészőben tárolódik, és nem kerül bele az adatmentésbe. Ha MI-funkciót használsz, a kérdésed, a kapcsolódó feladat szövege és javítási útmutatója, illetve kérésedre a válaszod közvetlenül az Anthropichoz kerül.',
+      modelLabel: 'Modell',
+      modelHint: 'Az erősebb modell pontosabb, de többe kerül a kulcsodon.',
+      models: {
+        'claude-opus-5-5': 'Claude Opus 5.5 (legpontosabb)',
+        'claude-sonnet-5-5': 'Claude Sonnet 5.5 (gyors, olcsóbb)',
+        'claude-haiku-5-5': 'Claude Haiku 5.5 (leggyorsabb, legolcsóbb)',
+      },
     },
     content: {
       title: 'Tartalomforrás (haladó)',
@@ -262,7 +269,7 @@ export const hu = {
     },
     privacy: {
       title: 'Adatvédelem',
-      body: 'Nincs reklám, nincs analitika, nincs követő kód és nincs süti. Minden adatod ezen az eszközön marad, mi semmit sem látunk belőle.',
+      body: 'Nincs reklám, nincs analitika, nincs követő kód és nincs süti. Minden adatod ezen az eszközön marad, mi semmit sem látunk belőle. Ha a szótárban keresel, a keresett szót a Wikimédia (Wikipédia, Wikiszótár) kapja meg; ha MI-funkciót használsz, az adott kérdés az Anthropichoz kerül.',
     },
   },
   about: {
@@ -279,7 +286,7 @@ export const hu = {
     officialLink: 'Hivatalos feladatsorok: oktatas.hu',
     privacyTitle: 'Adatvédelem',
     privacyBody:
-      'Nincs regisztráció, reklám, analitika vagy követés. Minden adat ezen az eszközön, a böngésződben tárolódik.',
+      'Nincs regisztráció, reklám, analitika vagy követés. Minden adat ezen az eszközön, a böngésződben tárolódik. Csak a kifejezett kérésedre küldünk ki adatot: a szótárkeresésnél a keresett szót a Wikimédiának, az MI-funkcióknál a kérdést az Anthropicnak.',
     creditsTitle: 'Köszönet',
     creditsBody:
       'Az alkalmazás nyílt forrású eszközökre épül: React, Vite, Tailwind CSS, Radix UI, Dexie, pdf.js, Lucide ikonok, Inter és OpenDyslexic betűtípusok.',
@@ -437,6 +444,225 @@ export const hu = {
     historyPending: '+ pontozásra vár',
     open: 'Megnézem',
     newAttempt: 'Új próbálkozás',
+    aiFeedback: 'MI-visszajelzés kérése',
+    aiFeedbackBody:
+      'A mesterséges intelligencia a szempontok szerint javaslatot tesz a pontokra, és tippeket ad. A javaslatot te fogadod el.',
+    aiFeedbackPrivacy:
+      'Az esszéd, a feladat és a szempontok az Anthropichoz kerülnek, a saját API-kulcsoddal.',
+    aiFeedbackLoading: 'Az MI értékeli az esszét…',
+    aiFeedbackTitle: 'MI-javaslat',
+    aiFeedbackApply: 'Javasolt pontok elfogadása',
+    aiFeedbackApplied: 'Átvettük a javasolt pontokat. Bármikor módosíthatod őket.',
+    aiFeedbackPoints: '{label}: {points} / {max} pont',
+    aiFeedbackNote: 'Az MI tévedhet: nézd át a javaslatot az útmutató alapján.',
+  },
+  help: {
+    open: 'Segítség',
+    openForTask: 'Segítség ehhez: {task}',
+    title: 'Segítség',
+    close: 'Segítség bezárása',
+    taskSelect: 'Feladat',
+    tabsLabel: 'Segítség fajtája',
+    tabTask: 'Feladat',
+    tabLookup: 'Szótár',
+    tabAi: 'Kérdezz',
+    whatTitle: 'Mit kér a feladat?',
+    typeLabel: 'Feladattípus: {type}',
+    instructionsTitle: 'A feladat utasításai',
+    noInstructions:
+      'Olvasd el figyelmesen a feladatot: minden kérdésre válaszolj, és csak annyi elemet írj, amennyit kér.',
+    answersTitle: 'Amit be kell írnod',
+    answerItem: '{label}',
+    answerUnit: '{label} (mértékegység: {unit})',
+    answerChoice: '{label} (válassz a megadott lehetőségek közül)',
+    answerMulti: '{label} (több lehetőséget is jelölhetsz)',
+    answerWork: '{label} (a számítás menetét is írd le)',
+    answerEssay: '{label} (kifejtős szöveg)',
+    pointsTitle: 'Pontozás',
+    pointsBody: '{points} pont jár érte.',
+    pointsSteps:
+      'A javítási útmutató {count} részlépést pontoz külön, ezért a gondolatmenet is számít.',
+    pointsCriteria: 'Szempontok szerint értékelik: {criteria}.',
+    wordLimit: 'Terjedelem: {range}.',
+    topicsTitle: 'Témakör',
+    typeGuide: {
+      short_answer: 'Rövid, pontos választ vár: szót, nevet, számot vagy egy mondatot.',
+      multiple_choice:
+        'A megadott lehetőségek közül kell választanod. Figyeld, hány helyes választ kér.',
+      matching:
+        'Elemeket kell párosítanod vagy sorba rendezned. Minden elemet csak egyszer használj, hacsak a feladat mást nem ír.',
+      true_false:
+        'Minden állításról döntsd el, igaz-e. Az állítást pontosan a forrás vagy a szöveg alapján ítéld meg.',
+      calculation:
+        'Számítási feladat: írd le a megoldás menetét is, mert a részlépések pontot érnek.',
+      essay:
+        'Kifejtős feladat: tényeket rögzíts, és fűzz hozzájuk összefüggéseket. Használd a forrásokat és a szakkifejezéseket.',
+      long_writing:
+        'Hosszabb szövegalkotás: tervezd meg a felépítést (bevezetés, kifejtés, lezárás), és tartsd a terjedelmet.',
+    },
+    hintsTitle: 'Tippek',
+    hintsShow: 'Tipp megmutatása',
+    hintsNone: 'Ehhez a feladathoz nincs külön tipp.',
+    stepsTitle: 'Mit pontoz az útmutató?',
+    stepsBody: 'Megmutatja a javítási útmutató részlépéseit. Ez sokat elárul a megoldásból.',
+    stepsShow: 'Részlépések megmutatása',
+    solutionTitle: 'Megoldás és magyarázat',
+    solutionBody: 'Megmutatja az elfogadható választ és az útmutató magyarázatát.',
+    solutionShow: 'Megoldás megmutatása',
+    revealConfirmTitle: 'Biztosan megnézed?',
+    revealConfirmBody:
+      'Az eredményoldalon jelezzük, hogy ennél a feladatnál segítséget használtál. Gyakorláskor ez teljesen rendben van.',
+    revealConfirm: 'Megnézem',
+    noSolution: 'Ehhez a feladathoz nincs rögzített megoldás.',
+    usedBadge: 'Segítséggel',
+    usedNote: 'Ennél a feladatnál megnézted az útmutató lépéseit vagy a megoldást.',
+    lookupLabel: 'Szó vagy kifejezés',
+    lookupPlaceholder: 'Például: interregnum',
+    lookupSubmit: 'Keresés',
+    lookupDictionary: 'Wikiszótár',
+    lookupEncyclopedia: 'Wikipédia',
+    lookupWeb: 'Keresés a weben',
+    lookupLoading: 'Keresés…',
+    lookupNotFound: 'Nem találtunk szócikket erre: „{query}”.',
+    lookupError: 'A keresés nem sikerült. Ellenőrizd az internetkapcsolatot.',
+    lookupSource: 'Forrás: {site}',
+    lookupOpen: 'A teljes szócikk megnyitása',
+    lookupPrivacy:
+      'A keresett szót a Wikimédia (Wikipédia, Wikiszótár) szervereinek küldjük el. Más adatot nem.',
+    aiIntro:
+      'Kérdezz a feladatról! A segítő elmagyarázza, mit kér a feladat és hogyan foghatsz hozzá, de csak akkor mondja meg a megoldást, ha kifejezetten kéred.',
+    aiPrivacy:
+      'A kérdésed, a feladat szövege és a javítási útmutató az Anthropichoz kerül, a saját API-kulcsoddal.',
+    aiInclude: 'A válaszomat is küldd el',
+    aiLabel: 'Kérdésed',
+    aiPlaceholder: 'Például: Mit jelent itt az interregnum?',
+    aiSend: 'Küldés',
+    aiStop: 'Leállítás',
+    aiThinking: 'Gondolkodik…',
+    aiYou: 'Te',
+    aiTutor: 'Segítő',
+    aiClear: 'Beszélgetés törlése',
+    aiSuggestions: {
+      what: 'Mit kér ez a feladat?',
+      start: 'Hogyan kezdjek hozzá?',
+      check: 'Jó irányban haladok?',
+    },
+    aiErrors: {
+      auth: 'Az API-kulcs érvénytelen vagy lejárt. Ellenőrizd a beállításokban.',
+      rateLimit: 'Túl sok kérés érkezett. Várj egy kicsit, és próbáld újra.',
+      refused: 'Erre a kérdésre a segítő nem tud válaszolni.',
+      network: 'Nem sikerült elérni az Anthropicot. Ellenőrizd az internetkapcsolatot.',
+      other: 'Valami hiba történt. Próbáld újra.',
+    },
+    selectionMenu: 'Kijelölt szöveg',
+    selectionLookup: 'Keresés: „{text}”',
+    instructions: {
+      name: {
+        label: 'Nevezze meg',
+        meaning:
+          'Egy pontos nevet, fogalmat vagy szakkifejezést kér. Magyarázat nem kell; ha nem tudod a pontos nevet, egy körülírás általában nem ér pontot.',
+      },
+      circle: {
+        label: 'Karikázza be',
+        meaning:
+          'Jelöld meg a helyes válasz sorszámát vagy betűjelét. Pontosan annyit jelölj, amennyit a feladat kér: a túljelölés pontot ér le.',
+      },
+      explain: {
+        label: 'Magyarázza meg',
+        meaning:
+          'Saját szavaiddal fejtsd ki az okot vagy az összefüggést. Egy szó vagy név nem elég, teljes mondatot írj.',
+      },
+      justify: {
+        label: 'Indokolja',
+        meaning:
+          'Az állításod mellé írd le, miért igaz: egy tényt vagy érvet, amely alátámasztja. Indoklás nélkül a válasz kevesebb pontot ér.',
+      },
+      formulate: {
+        label: 'Fogalmazza meg',
+        meaning:
+          'Teljes, értelmes mondatban válaszolj. Ha a feladat kéri (például „egy összetett mondatban”), a forma is pontot ér.',
+      },
+      order: {
+        label: 'Állítsa időrendbe',
+        meaning:
+          'A teljes sorrend számít: általában csak a hibátlan sorrend ér pontot. Figyeld, honnan kell kezdeni (például a legkorábbival).',
+      },
+      present: {
+        label: 'Mutassa be',
+        meaning:
+          'Kifejtős válasz: tényeket rögzíts, és mindegyikhez fűzz összefüggést (ok, következmény, jelentőség). Kövesd a feladatban megadott szempontokat.',
+      },
+      calculate: {
+        label: 'Számítsa ki',
+        meaning:
+          'Írd le a számítás menetét is, ne csak a végeredményt: a lépések külön pontot érnek. A végeredményt mértékegységgel add meg, ha van.',
+      },
+      detail: {
+        label: 'Részletezze',
+        meaning: 'A gondolatmenetedet le kell írnod; a puszta végeredmény nem ér teljes pontot.',
+      },
+      prove: {
+        label: 'Igazolja',
+        meaning:
+          'Lépésről lépésre mutasd meg, miért igaz az állítás. Az eredmény itt adott: a levezetés ér pontot.',
+      },
+      determine: {
+        label: 'Határozza meg',
+        meaning: 'Pontos értéket, fogalmat vagy adatot kér, a feladat által kért formában.',
+      },
+      give: {
+        label: 'Adja meg',
+        meaning:
+          'Konkrét adatot vagy értéket írj, a kért alakban (például halmazt elemeivel, számot mértékegységgel).',
+      },
+      decide: {
+        label: 'Döntse el',
+        meaning:
+          'Válassz a lehetőségek közül (például igaz vagy hamis). Ha a feladat nem kér indoklást, ne írj.',
+      },
+      quote: {
+        label: 'Idézzen',
+        meaning:
+          'Szó szerint másold ki a szövegből, idézőjelek között. A saját szavaiddal írt válasz itt kevesebbet ér.',
+      },
+      interpret: {
+        label: 'Értelmezze',
+        meaning:
+          'Műelemzés: mutasd be a mű jelentését a feladat szempontjai szerint, szövegből vett példákkal.',
+      },
+      compare: {
+        label: 'Vesse össze',
+        meaning:
+          'Írd le a hasonlóságokat és a különbségeket is, vagy amit a feladat kér a kettő közül.',
+      },
+      characterize: {
+        label: 'Jellemezze',
+        meaning: 'Sorold fel a fontos tulajdonságokat, a szöveg vagy a forrás alapján.',
+      },
+      complete: {
+        label: 'Egészítse ki',
+        meaning: 'A hiányzó részeket írd be a megadott helyre, a szövegbe illő alakban.',
+      },
+      mark: {
+        label: 'Jelölje',
+        meaning:
+          'Tegyél jelet (például X-et) a megfelelő helyre. Csak annyi jelet tegyél, amennyit a feladat kér.',
+      },
+      write: {
+        label: 'Írja',
+        meaning:
+          'Pontosan azt írd a megadott helyre, amit kér (sorszámot, betűjelet, szót). Figyeld, hány elemet kér.',
+      },
+      draw: {
+        label: 'Ábrázolja',
+        meaning:
+          'Rajzot vagy grafikont kér; ezt az alkalmazás nem tudja ellenőrizni, papíron érdemes elkészíteni.',
+      },
+      choose: {
+        label: 'Válassza ki',
+        meaning: 'A megadott lehetőségek közül válassz; más válasz nem ér pontot.',
+      },
+    },
   },
   pwa: {
     offlineReady: 'Az alkalmazás mostantól internet nélkül is működik.',

@@ -147,3 +147,9 @@ export async function saveSegmentSeconds(
 export async function advanceSegment(attemptId: string, next: number): Promise<void> {
   await db.attempts.update(attemptId, { segment: next, updatedAt: Date.now() });
 }
+
+/** Pseudo field id that records how much help a task's solution used (1-4, see the help panel). */
+export const helpKey = (taskId: string) => `__help:${taskId}`;
+
+/** Help level from which a task counts as solved with help (marking-scheme steps or solution seen). */
+export const HELP_REVEALED = 3;

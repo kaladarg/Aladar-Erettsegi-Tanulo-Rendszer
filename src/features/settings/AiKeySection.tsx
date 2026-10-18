@@ -2,12 +2,16 @@ import { Eye, EyeOff, KeyRound, Trash2 } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 import { looksLikeAnthropicKey, removeAiKey, saveAiKey, useAiKey } from '@/ai/keyStore';
 import { Button } from '@/design/ui/Button';
+import { AI_MODELS, type AiModel } from '@/domain/settings';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { t } from '@/i18n';
+import { useSettings } from '@/state/settingsStore';
 import { toast } from '@/state/toastStore';
 
 export function AiKeySection() {
   const storedKey = useAiKey();
+  const model = useSettings((state) => state.settings.aiModel);
+  const update = useSettings((state) => state.update);
   const [draft, setDraft] = useState('');
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -91,6 +95,27 @@ export function AiKeySection() {
           )}
         </form>
       )}
+      <div className="mt-5 grid gap-2">
+        <label htmlFor="ai-model" className="font-medium">
+          {t('settings.ai.modelLabel')}
+        </label>
+        <select
+          id="ai-model"
+          value={model}
+          aria-describedby="ai-model-hint"
+          onChange={(event) => void update({ aiModel: event.target.value as AiModel })}
+          className="min-h-11 rounded-md border border-border-strong bg-surface px-3 sm:max-w-sm"
+        >
+          {AI_MODELS.map((id) => (
+            <option key={id} value={id}>
+              {t(`settings.ai.models.${id}`)}
+            </option>
+          ))}
+        </select>
+        <p id="ai-model-hint" className="text-sm text-muted">
+          {t('settings.ai.modelHint')}
+        </p>
+      </div>
       <p id="ai-key-notice" className="mt-4 text-sm text-muted">
         {t('settings.ai.notice')}
       </p>

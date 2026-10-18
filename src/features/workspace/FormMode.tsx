@@ -1,12 +1,15 @@
+import { LifeBuoy } from 'lucide-react';
 import { partMeta } from '@/content/labels';
 import { RichText } from '@/content/RichText';
 import type { Part, SourceMaterial, Task } from '@/content/schema.types';
+import { Button } from '@/design/ui/Button';
 import { t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { ChoicePicker } from './ChoicePicker';
 import { useUnchosenTasks } from './useUnchosenTasks';
 import { FormField } from './fields/FormField';
 import { PdfCrop } from './pdf/PdfCrop';
+import { useHelp } from './help/helpStore';
 import { useWorkspace } from './WorkspaceContext';
 
 /** All tasks as a simple, accessible list. Shares answers with PDF mode. */
@@ -89,6 +92,8 @@ function SourceCard({ source }: { source: SourceMaterial }) {
 }
 
 function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
+  const { helpEnabled } = useWorkspace();
+  const showHelp = useHelp((state) => state.show);
   return (
     <article
       aria-labelledby={`task-${task.id}`}
@@ -101,8 +106,21 @@ function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
         <h3 id={`task-${task.id}`} className="text-lg font-bold">
           {t('workspace.taskHeading', { number: task.number })}
         </h3>
-        <span className="shrink-0 text-sm font-medium text-muted">
+        <span className="flex shrink-0 items-center gap-2 text-sm font-medium text-muted">
           {t('workspace.taskPoints', { points: task.maxPoints })}
+          {helpEnabled && (
+            <Button
+              variant="ghost"
+              size="sm"
+              aria-label={t('help.openForTask', {
+                task: t('workspace.taskHeading', { number: task.number }),
+              })}
+              onClick={() => showHelp({ taskId: task.id, tab: 'task' })}
+            >
+              <LifeBuoy aria-hidden="true" />
+              <span className="max-sm:sr-only">{t('help.open')}</span>
+            </Button>
+          )}
         </span>
       </header>
       {dimmed && <p className="mb-3 text-sm font-medium">{t('workspace.notChosen')}</p>}
