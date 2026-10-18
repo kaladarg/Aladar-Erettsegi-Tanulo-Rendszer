@@ -7,6 +7,7 @@ import { Button } from '@/design/ui/Button';
 import { examSegments, formatClock } from '@/domain/examTiming';
 import { t } from '@/i18n';
 import { findOpenAttempt } from '@/storage/attempts';
+import { AbandonExamButton } from './AbandonExam';
 
 /** Start or continue a timed exam simulation. */
 export function ExamModeCard({ exam }: { exam: Exam }) {
@@ -51,6 +52,7 @@ export function ExamModeCard({ exam }: { exam: Exam }) {
             </Link>
           </Button>
         )}
+        {open && <AbandonExamButton attemptId={open.id} />}
         {remaining !== null && (
           <p className="text-sm text-muted tabular-nums">
             {t('exam.examRemaining', { time: formatClock(remaining) })}

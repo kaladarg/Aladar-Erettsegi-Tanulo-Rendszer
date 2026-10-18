@@ -96,3 +96,24 @@ test('exam mode times each part and hands in part by part', async ({ page }) => 
   await submit(page);
   await expect(page.getByText('Vizsga', { exact: false }).first()).toBeVisible();
 });
+
+test('a timed exam can be abandoned without a result, with undo', async ({ page }) => {
+  await page.goto(`/feladatsorok/${MATH}/vizsga?nezet=urlap`);
+  await page.getByRole('textbox', { name: 'x =' }).fill('6');
+  await expect(page.getByRole('status').filter({ hasText: 'Mentve' })).toBeAttached();
+  await page.getByRole('button', { name: 'Tudnivalók' }).click();
+  await page.getByRole('dialog').getByRole('button', { name: 'Vizsga feladása' }).click();
+  await page.getByRole('alertdialog').getByRole('button', { name: 'Feladom' }).click();
+
+  await expect(page).toHaveURL(new RegExp(`/feladatsorok/${MATH}$`));
+  const card = page.getByRole('region', { name: 'Vizsgaszimuláció' });
+  await expect(card.getByRole('link', { name: 'Vizsga indítása' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Korábbi eredmények' })).toHaveCount(0);
+
+  await page.getByRole('button', { name: 'Visszavonás' }).click();
+  await expect(card.getByRole('link', { name: 'Vizsga folytatása' })).toBeVisible();
+  // From the paper page as well.
+  await card.getByRole('button', { name: 'Vizsga feladása' }).click();
+  await page.getByRole('alertdialog').getByRole('button', { name: 'Feladom' }).click();
+  await expect(card.getByRole('link', { name: 'Vizsga indítása' })).toBeVisible();
+});

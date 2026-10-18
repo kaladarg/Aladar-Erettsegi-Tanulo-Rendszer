@@ -210,7 +210,7 @@ test('with an API key, the AI tutor answers and suggests essay points', async ({
   await page.getByLabel('API-kulcs').fill(`sk-ant-api03-${'x'.repeat(40)}`);
   await page.getByRole('checkbox', { name: /Elmúltam 18 éves/ }).check();
   await page.getByRole('button', { name: 'Kulcs mentése' }).click();
-  await page.getByRole('combobox', { name: 'Modell' }).selectOption('claude-sonnet-5-5');
+  await page.getByRole('combobox', { name: 'Modell' }).selectOption('claude-opus-5-5');
 
   await page.goto(`/feladatsorok/${HUNGARIAN}/gyakorlas?nezet=urlap`);
   await page.getByRole('button', { name: 'Segítség ehhez: 1. feladat' }).click();
@@ -218,7 +218,7 @@ test('with an API key, the AI tutor answers and suggests essay points', async ({
   await help.getByRole('tab', { name: 'Kérdezz' }).click();
   await help.getByRole('button', { name: 'Mit kér ez a feladat?' }).click();
   await expect(help.getByText('Ez a feladat egy rövid választ kér a szövegből.')).toBeVisible();
-  expect(requests[0]).toMatchObject({ model: 'claude-sonnet-5-5', fallbacks: 'default' });
+  expect(requests[0]).toMatchObject({ model: 'claude-opus-5-5', fallbacks: 'default' });
   expect(String(requests[0]!.system)).toContain('marking_scheme');
   await page.keyboard.press('Escape');
 

@@ -142,6 +142,14 @@ export const hu = {
     examStart: 'Vizsga indítása',
     examContinue: 'Vizsga folytatása',
     examRemaining: 'Hátralévő idő ebben a részben: {time}',
+    abandon: 'Vizsga feladása',
+    abandonConfirmTitle: 'Feladod a vizsgát?',
+    abandonConfirmBody:
+      'A vizsgát nem adjuk be és nem pontozzuk: a válaszaid törlődnek, eredmény nem keletkezik. Utána néhány másodpercig még visszavonhatod.',
+    abandonConfirm: 'Feladom',
+    abandonDone: 'Feladtad a vizsgát. Bármikor kezdhetsz újat.',
+    abandonUndone: 'Visszaállítottuk a vizsgát. Folytathatod, ahol abbahagytad.',
+    abandonHint: 'Ha most nem tudod befejezni, feladhatod: ilyenkor nem kapsz eredményt.',
   },
   onboarding: {
     dialogLabel: 'Bemutató',
@@ -255,8 +263,8 @@ export const hu = {
       modelLabel: 'Modell',
       modelHint: 'Az erősebb modell pontosabb, de többe kerül a kulcsodon.',
       models: {
-        'claude-opus-5-5': 'Claude Opus 5.5 (legpontosabb)',
-        'claude-sonnet-5-5': 'Claude Sonnet 5.5 (gyors, olcsóbb)',
+        'claude-sonnet-5-5': 'Claude Sonnet 5.5 (ajánlott: gyors és pontos)',
+        'claude-opus-5-5': 'Claude Opus 5.5 (legpontosabb, többe kerül)',
         'claude-haiku-5-5': 'Claude Haiku 5.5 (leggyorsabb, legolcsóbb)',
       },
     },

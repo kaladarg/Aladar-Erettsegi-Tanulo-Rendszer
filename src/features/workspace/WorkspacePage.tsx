@@ -12,6 +12,7 @@ import { Button } from '@/design/ui/Button';
 import { EmptyState } from '@/design/ui/EmptyState';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { Skeleton } from '@/design/ui/Skeleton';
+import { AbandonExamButton } from '@/features/exams/AbandonExam';
 import { ContentErrorState } from '@/features/exams/ContentErrorState';
 import { t } from '@/i18n';
 import { examSegments, type Segment } from '@/domain/examTiming';
@@ -145,7 +146,11 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
               ]}
             />
             {attemptMode === 'practice' && <HelpButton />}
-            <InfoSheet exam={exam} />
+            <InfoSheet
+              exam={exam}
+              abandonAttemptId={attemptMode === 'exam' ? attemptId : null}
+              onAbandoned={() => navigate(`/feladatsorok/${exam.id}`)}
+            />
           </>
         )}
       </header>
@@ -243,7 +248,15 @@ function usePdfSource(exam: Exam | null, packUrl: string | null, hasPdf: boolean
     : { status: 'missing' };
 }
 
-function InfoSheet({ exam }: { exam: Exam }) {
+function InfoSheet({
+  exam,
+  abandonAttemptId,
+  onAbandoned,
+}: {
+  exam: Exam;
+  abandonAttemptId: string | null;
+  onAbandoned: () => void;
+}) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -276,6 +289,16 @@ function InfoSheet({ exam }: { exam: Exam }) {
               ))}
             </section>
           ))}
+          {abandonAttemptId && (
+            <section className="mt-auto grid gap-2 border-t border-border pt-4">
+              <p className="text-sm text-muted">{t('exam.abandonHint')}</p>
+              <AbandonExamButton
+                attemptId={abandonAttemptId}
+                onAbandoned={onAbandoned}
+                className="justify-self-start"
+              />
+            </section>
+          )}
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

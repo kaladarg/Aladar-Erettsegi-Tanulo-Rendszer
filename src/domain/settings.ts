@@ -16,7 +16,7 @@ export interface Settings {
   aiModel: AiModel;
 }
 
-export const AI_MODELS = ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-5-5'] as const;
+export const AI_MODELS = ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5'] as const;
 export type AiModel = (typeof AI_MODELS)[number];
 
 export const TEXT_SCALE_STEPS = [0.875, 1, 1.125, 1.25, 1.375, 1.5] as const;
@@ -29,7 +29,7 @@ export const DEFAULT_SETTINGS: Settings = {
   subjects: [],
   onboardingDone: false,
   contentSource: '',
-  aiModel: 'claude-opus-5-5',
+  aiModel: 'claude-sonnet-5-5',
 };
 
 /** Accepts absolute http(s) URLs and same-site paths; returns '' for anything else. */
