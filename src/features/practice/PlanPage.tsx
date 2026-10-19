@@ -1,6 +1,7 @@
-import { CalendarDays, Check, ChevronRight, Circle, X } from 'lucide-react';
-import { useId } from 'react';
+import { BellRing, CalendarDays, Check, ChevronRight, Circle, Download, X } from 'lucide-react';
+import { useId, useState } from 'react';
 import { Link } from 'react-router';
+import { appBaseUrl } from '@/app/config';
 import { usePageTitle } from '@/app/usePageTitle';
 import { DEFAULT_SUBJECTS, findSubject } from '@/content/catalog';
 import { examFullTitle } from '@/content/labels';
@@ -8,10 +9,13 @@ import { Button } from '@/design/ui/Button';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { Skeleton } from '@/design/ui/Skeleton';
+import { buildCalendar } from '@/domain/practice/ics';
 import type { PlanItem, SubjectPlan } from '@/domain/practice/plan';
 import { formatDate, formatNumber, t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useSettings } from '@/state/settingsStore';
+import { toast } from '@/state/toastStore';
+import { dayKey } from '@/storage/db';
 import { BackLink } from './BackLink';
 import { usePlan } from './usePlan';
 
@@ -29,6 +33,7 @@ export function PlanPage() {
       <PageHeader title={t('practice.plan.title')} description={t('practice.plan.intro')} />
       <div className="grid gap-6">
         <ExamDates />
+        <CalendarExport />
         {plans === undefined ? (
           <Skeleton className="h-48" />
         ) : (
@@ -69,6 +74,110 @@ function ExamDates() {
             onChange={(value) => set(subject.id, value)}
           />
         ))}
+      </div>
+    </Card>
+  );
+}
+
+/** Downloads the exam days and study reminders as an .ics file. */
+function CalendarExport() {
+  const examDates = useSettings((s) => s.settings.examDates);
+  const [weekday, setWeekday] = useState(1);
+  const [time, setTime] = useState('17:00');
+  const [daily, setDaily] = useState(false);
+  const [dailyTime, setDailyTime] = useState('19:00');
+  const ids = { weekday: useId(), time: useId(), daily: useId(), dailyTime: useId() };
+  const download = () => {
+    const now = new Date();
+    const ics = buildCalendar({
+      examDates,
+      subjectName: (id) => findSubject(id)?.name ?? id,
+      today: dayKey(now),
+      weekly: { weekday, time },
+      daily: daily ? dailyTime : null,
+      appUrl: appBaseUrl(),
+      now,
+    });
+    const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'erettsegi.ics';
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1_000);
+    toast({ message: t('practice.plan.calendarDone'), tone: 'success' });
+  };
+  const [today] = useState(() => dayKey(Date.now()));
+  const hasDates = Object.values(examDates).some((day) => day >= today);
+  const input = 'min-h-11 rounded-md border border-border-strong bg-surface px-3';
+  return (
+    <Card aria-labelledby="plan-calendar">
+      <CardTitle id="plan-calendar" className="flex items-center gap-2">
+        <BellRing aria-hidden="true" className="size-5 text-primary" />
+        {t('practice.plan.calendarTitle')}
+      </CardTitle>
+      <CardDescription>{t('practice.plan.calendarBody')}</CardDescription>
+      <fieldset className="mt-4 grid gap-4 sm:grid-cols-2">
+        <legend className="sr-only">{t('practice.plan.calendarWeekly')}</legend>
+        <div className="grid gap-1">
+          <label htmlFor={ids.weekday} className="text-sm font-medium">
+            {t('practice.plan.calendarWeekly')}: {t('practice.plan.calendarWeekday').toLowerCase()}
+          </label>
+          <select
+            id={ids.weekday}
+            value={weekday}
+            onChange={(event) => setWeekday(Number(event.target.value))}
+            className={input}
+          >
+            {[1, 2, 3, 4, 5, 6, 7].map((day) => (
+              <option key={day} value={day}>
+                {t(`practice.plan.weekdays.${day}` as 'practice.plan.weekdays.1')}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="grid gap-1">
+          <label htmlFor={ids.time} className="text-sm font-medium">
+            {t('practice.plan.calendarWeekly')}: {t('practice.plan.calendarTime').toLowerCase()}
+          </label>
+          <input
+            id={ids.time}
+            type="time"
+            value={time}
+            onChange={(event) => setTime(event.target.value || '17:00')}
+            className={input}
+          />
+        </div>
+        <label htmlFor={ids.daily} className="flex min-h-11 items-center gap-3">
+          <input
+            id={ids.daily}
+            type="checkbox"
+            checked={daily}
+            onChange={(event) => setDaily(event.target.checked)}
+            className="size-5 accent-[var(--c-primary)]"
+          />
+          {t('practice.plan.calendarDaily')}
+        </label>
+        {daily && (
+          <div className="grid gap-1">
+            <label htmlFor={ids.dailyTime} className="text-sm font-medium">
+              {t('practice.plan.calendarDailyTime')}
+            </label>
+            <input
+              id={ids.dailyTime}
+              type="time"
+              value={dailyTime}
+              onChange={(event) => setDailyTime(event.target.value || '19:00')}
+              className={input}
+            />
+          </div>
+        )}
+      </fieldset>
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <Button onClick={download} disabled={!hasDates}>
+          <Download aria-hidden="true" />
+          {t('practice.plan.calendarDownload')}
+        </Button>
+        {!hasDates && <p className="text-sm text-muted">{t('practice.plan.calendarNoDates')}</p>}
       </div>
     </Card>
   );

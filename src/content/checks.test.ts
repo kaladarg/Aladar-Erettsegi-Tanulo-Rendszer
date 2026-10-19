@@ -69,6 +69,21 @@ describe('checkExam', () => {
     expect(errors).toContain('Essay tasks need assessment criteria.');
   });
 
+  it('checks example answers against the criteria', () => {
+    const exam = load(IDS[2]!);
+    const essay = exam.parts[1]!.tasks[0]!;
+    const [first] = essay.scoring.criteria!;
+    essay.examples = [
+      { id: 'ex1', text: 'Minta.', scores: { [first!.id]: first!.maxPoints + 1, nope: 1 } },
+    ];
+    const errors = messages(exam);
+    expect(errors).toContain(
+      `Score ${first!.maxPoints + 1} is above the maximum of "${first!.id}".`,
+    );
+    expect(errors).toContain('Unknown criterion "nope".');
+    expect(errors.some((e) => e.startsWith('No score for criterion'))).toBe(true);
+  });
+
   it('rejects choice answers that are not options', () => {
     const exam = load(IDS[0]!);
     const rule = exam.parts[0]!.tasks[1]!.scoring.rules![0]!;

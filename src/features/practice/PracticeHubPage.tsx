@@ -1,4 +1,12 @@
-import { CalendarDays, ChevronRight, Layers, Mic, RotateCcw } from 'lucide-react';
+import {
+  CalendarDays,
+  ChevronRight,
+  GalleryVerticalEnd,
+  Layers,
+  Mic,
+  RotateCcw,
+  School,
+} from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
@@ -36,6 +44,12 @@ export function PracticeHubPage() {
           highlight={!!due}
         />
         <HubCard
+          to="/gyakorlas/kartyak"
+          icon={<GalleryVerticalEnd />}
+          title={t('practice.hub.cardsTitle')}
+          body={t('practice.hub.cardsBody')}
+        />
+        <HubCard
           to="/gyakorlas/szobeli"
           icon={<Mic />}
           title={t('practice.hub.oralTitle')}
@@ -46,6 +60,12 @@ export function PracticeHubPage() {
           icon={<CalendarDays />}
           title={t('practice.hub.planTitle')}
           body={t('practice.hub.planBody')}
+        />
+        <HubCard
+          to="/tanaroknak"
+          icon={<School />}
+          title={t('teacher.hubTitle')}
+          body={t('teacher.hubBody')}
         />
       </ul>
     </>

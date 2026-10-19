@@ -221,6 +221,10 @@ export interface Task {
     min?: number;
     max?: number;
   };
+  /**
+   * Sample answers for essays and long writing, scored with the task's criteria. Written for the app (not taken from students); students practise scoring them before seeing the given scores.
+   */
+  examples?: ExampleAnswer[];
 }
 /**
  * One input the student fills in.
@@ -475,6 +479,37 @@ export interface Criterion {
     points: number;
     description: string;
   }[];
+}
+/**
+ * This interface was referenced by `Exam`'s JSON-Schema
+ * via the `definition` "ExampleAnswer".
+ */
+export interface ExampleAnswer {
+  id: Id;
+  /**
+   * Short description, e.g. "Erős megoldás" or "Közepes megoldás".
+   */
+  label?: string;
+  /**
+   * The sample answer, plain text; paragraphs separated by blank lines.
+   */
+  text: string;
+  /**
+   * Points per criterion id.
+   */
+  scores: {
+    [k: string]: number;
+  };
+  /**
+   * Why the points were given, per criterion id.
+   */
+  notes?: {
+    [k: string]: string;
+  };
+  /**
+   * Overall comment on the sample.
+   */
+  comment?: string;
 }
 /**
  * This interface was referenced by `Exam`'s JSON-Schema

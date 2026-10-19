@@ -147,6 +147,19 @@ export function checkExam(exam: Exam): ContentIssue[] {
       if ((task.type === 'essay' || task.type === 'long_writing') && criteria.length === 0) {
         error(path, 'Essay tasks need assessment criteria.');
       }
+      for (const example of task.examples ?? []) {
+        const at = `${path}.examples.${example.id}`;
+        if (criteria.length === 0) error(at, 'Examples need assessment criteria to score them.');
+        for (const criterion of criteria) {
+          const score = example.scores[criterion.id];
+          if (score === undefined) error(at, `No score for criterion "${criterion.id}".`);
+          else if (score > criterion.maxPoints)
+            error(at, `Score ${score} is above the maximum of "${criterion.id}".`);
+        }
+        for (const id of Object.keys(example.scores)) {
+          if (!criteria.some((c) => c.id === id)) error(at, `Unknown criterion "${id}".`);
+        }
+      }
       const points = scoringPoints(task);
       if (!same(points, task.maxPoints)) {
         error(path, `Scoring adds up to ${points}, but maxPoints is ${task.maxPoints}.`);

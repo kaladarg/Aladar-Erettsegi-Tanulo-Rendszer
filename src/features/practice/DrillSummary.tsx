@@ -9,6 +9,7 @@ import { findTask } from '@/domain/practice/topics';
 import { formatNumber, t } from '@/i18n';
 import type { DrillSessionRow } from '@/storage/db';
 import { createDrill } from '@/storage/practice';
+import { ResultCode } from '../teacher/ResultCode';
 
 const ICON = {
   correct: <Check aria-hidden="true" />,
@@ -75,6 +76,7 @@ export function DrillSummary({
           </Button>
         </div>
       </Card>
+      {session.kind === 'assignment' && <ResultCode session={session} exams={exams} />}
       <section aria-labelledby="drill-items" className="grid gap-2">
         <h2 id="drill-items" className="text-lg font-semibold">
           {t('practice.summaryTasks')}

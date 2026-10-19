@@ -147,6 +147,14 @@ export interface RecordingRow {
   blob: Blob;
 }
 
+/** One answer to a study card ("Tudtam" or "Nem tudtam"). */
+export interface CardEventRow {
+  id?: number;
+  cardId: string;
+  time: number;
+  known: boolean;
+}
+
 /** Values that never leave the device, not even in exports (e.g. the AI key). */
 export interface SecretRow {
   key: string;
@@ -165,6 +173,7 @@ export class AppDatabase extends Dexie {
   drillEvents!: EntityTable<DrillEventRow, 'id'>;
   oralTopics!: EntityTable<OralTopicRow, 'id'>;
   recordings!: EntityTable<RecordingRow, 'id'>;
+  cardEvents!: EntityTable<CardEventRow, 'id'>;
 
   constructor(name = 'erettsegi-gyakorlo') {
     super(name);
@@ -201,6 +210,8 @@ export class AppDatabase extends Dexie {
       oralTopics: 'id, subject',
       recordings: 'id, topicId, createdAt',
     });
+    // Version 4: study cards.
+    this.version(4).stores({ cardEvents: '++id, cardId, time' });
   }
 }
 
@@ -224,6 +235,7 @@ export const BACKUP_TABLES = [
   'drillEvents',
   'oralTopics',
   'recordings',
+  'cardEvents',
 ] as const;
 export type BackupTable = (typeof BACKUP_TABLES)[number];
 

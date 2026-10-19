@@ -28,6 +28,13 @@ export function createRouter() {
       }),
     },
     {
+      path: 'gyakorlas/kartyak/tanulas',
+      errorElement: <RouteError />,
+      lazy: async () => ({
+        Component: (await import('@/features/practice/cards/CardStudyPage')).CardStudyPage,
+      }),
+    },
+    {
       path: 'gyakorlas/kor/:sessionId',
       errorElement: <RouteError />,
       lazy: async () => ({
@@ -77,6 +84,12 @@ export function createRouter() {
           }),
         },
         {
+          path: 'gyakorlas/kartyak',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/cards/CardsPage')).CardsPage,
+          }),
+        },
+        {
           path: 'gyakorlas/terv',
           lazy: async () => ({
             Component: (await import('@/features/practice/PlanPage')).PlanPage,
@@ -92,6 +105,18 @@ export function createRouter() {
           path: 'gyakorlas/szobeli/:topicId',
           lazy: async () => ({
             Component: (await import('@/features/practice/OralTopicPage')).OralTopicPage,
+          }),
+        },
+        {
+          path: 'tanaroknak',
+          lazy: async () => ({
+            Component: (await import('@/features/teacher/TeacherPage')).TeacherPage,
+          }),
+        },
+        {
+          path: 'feladat',
+          lazy: async () => ({
+            Component: (await import('@/features/teacher/AssignmentPage')).AssignmentPage,
           }),
         },
         {

@@ -793,6 +793,13 @@
               "minimum": 1
             }
           }
+        },
+        "examples": {
+          "description": "Sample answers for essays and long writing, scored with the task's criteria. Written for the app (not taken from students); students practise scoring them before seeing the given scores.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExampleAnswer"
+          }
         }
       }
     },
@@ -888,6 +895,47 @@
         }
       },
       "description": "Checks a step automatically: the step is met when the answers in `fieldIds`, read together, match one of the `alternatives`. Steps without it need review."
+    },
+    "ExampleAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "scores"],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "label": {
+          "description": "Short description, e.g. \"Erős megoldás\" or \"Közepes megoldás\".",
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "description": "The sample answer, plain text; paragraphs separated by blank lines.",
+          "type": "string",
+          "minLength": 1
+        },
+        "scores": {
+          "description": "Points per criterion id.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "notes": {
+          "description": "Why the points were given, per criterion id.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "comment": {
+          "description": "Overall comment on the sample.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
     }
   }
 }
