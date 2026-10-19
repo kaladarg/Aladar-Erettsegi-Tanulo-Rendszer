@@ -22,6 +22,8 @@ Nyisd meg az oldalt: **https://kaladarg.github.io/Aladar-Erettsegi-Tanulo-Rendsz
 - A haladásod csak a te eszközödön tárolódik. A Beállításokban fájlba mentheted, és másik eszközön visszatöltheted.
 - Gyakorolhatsz a saját tempódban, vagy vizsgaszimulációban, a hivatalos időkerettel. Beadás után azonnal megkapod az eredményt; az esszét a javítási útmutató szempontjai szerint te pontozod.
 - Gyakorláskor a „Segítség” gombbal megnézheted, mit kér a feladat, tippet kaphatsz, szavakat kereshetsz a Wikiszótárban és a Wikipédiában, és ingyenes, reklámmentes magyar tanulóoldalakat találsz tárgyanként. Kérdezhetsz ingyenes MI-csevegőkben is: az alkalmazás összeállítja és kimásolja a kérdést, te beilleszted. 18 év felett saját Anthropic API-kulccsal az alkalmazáson belül is kérdezhetsz (nem kötelező).
+- A Gyakorlás menüben témakörönként gyakorolhatsz az összes feladatsorból; a hibás feladatok a Hibáim közé kerülnek, és 1, 3, majd 7 nap múlva visszatérnek. Megadhatod a vizsgáid dátumát: a Tervem oldal visszaszámol, és heti teendőket ad. A szóbelire tételvázlattal, időmérővel és hangfelvétellel készülhetsz.
+- A feladatlapra tollal, kiemelővel rajzolhatsz, az űrlapnézetben pedig minden feladat alatt van rajzlap.
 - A kezdőlapon folytathatod a félbehagyott feladatsort, ajánlást kapsz a következő lépésre, és látod a gyakorlási sorozatodat. A Statisztika oldal megmutatja a fejlődésedet, az erős és gyenge témaköreidet és a hibatípusokat. Az eredményedet képként megoszthatod (név nélkül).
 
 ## Quick start (developers)
@@ -69,7 +71,7 @@ Code and content are separate. The app loads exams from a _content pack_: a mani
 
 ## Privacy
 
-No ads, no analytics, no third-party trackers, no cookies. All data stays in the browser (IndexedDB). Optional AI features use the student's own API key, stored only on their device and never included in exports. Links to free AI chats and learning sites open in a new tab; the app sends them nothing, the student pastes the prepared text.
+No ads, no analytics, no third-party trackers, no cookies. All data stays in the browser (IndexedDB). Voice recordings for the oral exam stay on the device; the microphone is used only while recording. Optional AI features use the student's own API key, stored only on their device and never included in exports. Links to free AI chats and learning sites open in a new tab; the app sends them nothing, the student pastes the prepared text.
 
 ## Contributing
 

@@ -15,9 +15,11 @@
 
 - Done: tips for the three May 2024 papers, abandon button for timed exams, Sonnet as the default AI model.
 - Done: axe checks on every screen; Lighthouse CI budget (desktop ≥ 0.9 in all categories), mobile measured in [performance.md](performance.md).
-- Waiting: the 2024 October, 2025 and 2026 papers. oktatas.hu cannot be reached from the build container; the maintainer runs `npm run content:crawl -- --out ../erettsegi-gyakorlo-content --subjects matematika,tortenelem,magyar --level kozep --from 2024` locally and pushes the content repository, then each paper is extracted and checked like the May 2024 ones.
+- Done: all 18 new-format középszint papers (2024 May – 2026 October) in the private content repository.
+- Done: practice features ([practice.md](practice.md)): practice by topic, Hibáim spaced review, study plan and countdown, oral exam preparation, drawing on the paper.
 - Next: mobile performance (prerendering), a manual screen-reader pass, then the v1.0.0 release.
 
 ## Open items
 
-- The three May 2024 papers in the private content repository are drafts until a person checks them against the marking schemes.
+- The papers in the private content repository are drafts until a person checks them against the marking schemes.
+- The built-in oral topic areas are drafts; a teacher should check them against the current requirements.
