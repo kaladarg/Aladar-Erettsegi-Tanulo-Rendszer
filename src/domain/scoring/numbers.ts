@@ -3,6 +3,7 @@ const MINUS = /[‐‑‒–—−]/g;
 const GROUP_SPACE = /(\d)[ \t\u00a0\u2009\u202f]+(?=\d{3}(\D|$))/g;
 const DECIMAL = String.raw`[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)`;
 const ROOT = new RegExp(String.raw`^(${DECIMAL})?\s*[·*]?\s*√\s*\(?\s*(\d+(?:[.,]\d+)?)\s*\)?$`);
+const PI = new RegExp(String.raw`^(${DECIMAL})?\s*[·*]?\s*π$`);
 const NUMBER = new RegExp(String.raw`^(${DECIMAL})(?:\s*/\s*(${DECIMAL}))?\s*(%)?$`);
 
 function parseDecimal(text: string): number {
@@ -22,6 +23,9 @@ export function parseNumber(raw: string, unit?: string): number[] {
   text = text.trim();
   if (unit && text.toLocaleLowerCase('hu').endsWith(unit.toLocaleLowerCase('hu')))
     text = text.slice(0, -unit.length);
+  // Multiples of π ("48π", "48 · π", "π"): the letter is a factor, not a unit.
+  const pi = PI.exec(text);
+  if (pi) return [(pi[1] ? parseDecimal(pi[1]) : 1) * Math.PI];
   // Other trailing units or words ("cm", "Ft", "fő", "év").
   text = text.replace(/\s*[\p{L}²³°]+\.?$/u, '').trim();
   // An ordinal or sentence-final dot: "12." (as in "12. év").

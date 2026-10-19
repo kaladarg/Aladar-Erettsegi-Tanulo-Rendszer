@@ -51,6 +51,8 @@ describe('parseNumber', () => {
     expect(parseNumber('2034.')).toEqual([2034]);
     expect(parseNumber('√80')[0]).toBeCloseTo(8.944, 3);
     expect(parseNumber('2√5')[0]).toBeCloseTo(4.472, 3);
+    expect(parseNumber('48π')[0]).toBeCloseTo(150.796, 3);
+    expect(parseNumber('V = 48 · π')[0]).toBeCloseTo(150.796, 3);
     expect(parseNumber('d = √(80) cm', 'cm')[0]).toBeCloseTo(8.944, 3);
     // Numbers on separate lines of the working are never one grouped number.
     expect(numbersIn('216\n120')).toEqual([216, 120]);
