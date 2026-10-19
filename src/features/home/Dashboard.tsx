@@ -1,9 +1,11 @@
 import {
   BarChart3,
+  CalendarDays,
   ChevronRight,
   ClipboardCheck,
   Flame,
   Play,
+  RotateCcw,
   Sparkles,
   Target,
 } from 'lucide-react';
@@ -16,10 +18,13 @@ import { useManifest } from '@/content/useContent';
 import { Button } from '@/design/ui/Button';
 import { Card, CardTitle } from '@/design/ui/Card';
 import { Skeleton } from '@/design/ui/Skeleton';
+import { dueCards } from '@/domain/practice/review';
 import { recentDays, recommendations, streak, type Recommendation } from '@/domain/stats/stats';
 import { formatDate, formatNumber, t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useSettings } from '@/state/settingsStore';
+import { usePlan } from '../practice/usePlan';
+import { useReviewCards } from '../practice/useReviewCards';
 import { useBackfillSummaries, type StatsData } from '../stats/useStatsData';
 
 function examName(entry: ExamEntry | undefined, examId: string): string {
@@ -76,7 +81,7 @@ function recommendationRow(rec: Recommendation, exams: ExamEntry[]) {
       return (
         <ActionRow
           key={`topic-${rec.stat.subject}-${rec.stat.topic}`}
-          to={`/feladatsorok/${rec.stat.examId}`}
+          to={`/gyakorlas/temakorok?targy=${rec.stat.subject}&tema=${encodeURIComponent(rec.stat.topic)}`}
           icon={<Target aria-hidden="true" />}
           title={t('dashboard.recommendTopic', { topic: rec.stat.topic })}
           body={t('dashboard.recommendTopicBody', {
@@ -114,6 +119,7 @@ export function Dashboard({ data }: { data: StatsData }) {
 
   return (
     <div className="mt-10 grid gap-6 lg:grid-cols-2">
+      <CountdownCard />
       <Card aria-labelledby="dash-next">
         <CardTitle id="dash-next" className="flex items-center gap-2">
           <Target aria-hidden="true" className="size-5 text-primary" />
@@ -185,6 +191,58 @@ export function Dashboard({ data }: { data: StatsData }) {
         </Link>
       </Card>
     </div>
+  );
+}
+
+/** Days left until the nearest written exam, and today's mistakes review. */
+function CountdownCard() {
+  const plans = usePlan();
+  const cards = useReviewCards();
+  const due = cards ? dueCards(cards).length : 0;
+  const upcoming = plans?.slice(0, 3) ?? [];
+  return (
+    <Card aria-labelledby="dash-countdown" className="lg:col-span-2">
+      <CardTitle id="dash-countdown" className="flex items-center gap-2">
+        <CalendarDays aria-hidden="true" className="size-5 text-primary" />
+        {t('practice.plan.countdownTitle')}
+      </CardTitle>
+      {plans === undefined ? (
+        <Skeleton className="mt-3 h-12" />
+      ) : upcoming.length === 0 ? (
+        <p className="mt-3 text-muted">{t('practice.plan.countdownEmpty')}</p>
+      ) : (
+        <ul className="mt-3 flex flex-wrap gap-x-8 gap-y-2">
+          {upcoming.map((plan) => (
+            <li key={plan.subject} className="text-lg">
+              <span className="font-semibold">
+                {findSubject(plan.subject)?.name ?? plan.subject}:
+              </span>{' '}
+              <span className="tabular-nums">
+                {plan.phase === 'day'
+                  ? t('practice.plan.today')
+                  : t('practice.plan.daysLeft', { days: formatNumber(plan.daysLeft) })}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+      <div className="mt-4 flex flex-wrap gap-3">
+        <Button asChild size="sm" variant="secondary">
+          <Link to="/gyakorlas/terv">
+            {upcoming.length === 0 ? t('practice.plan.setDates') : t('practice.plan.openPlan')}
+            <ChevronRight aria-hidden="true" />
+          </Link>
+        </Button>
+        {due > 0 && (
+          <Button asChild size="sm">
+            <Link to="/gyakorlas/hibaim">
+              <RotateCcw aria-hidden="true" />
+              {t('practice.hub.dueToday', { count: due })}
+            </Link>
+          </Button>
+        )}
+      </div>
+    </Card>
   );
 }
 
