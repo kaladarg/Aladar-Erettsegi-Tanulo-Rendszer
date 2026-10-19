@@ -73,7 +73,13 @@ function Scorer({ example, criteria }: { example: ExampleAnswer; criteria: Crite
             {t('results.examples.words', { count: words })}
           </span>
         </h5>
-        <div className="max-h-96 overflow-y-auto rounded-md bg-surface-muted p-3 leading-relaxed">
+        <div
+          // Focusable so the text can be scrolled with the keyboard.
+          tabIndex={0}
+          role="region"
+          aria-labelledby={textId}
+          className="max-h-96 overflow-y-auto rounded-md bg-surface-muted p-3 leading-relaxed focus-visible:ring-2 focus-visible:ring-focus"
+        >
           {example.text.split(/\n\s*\n/).map((paragraph, i) => (
             <p key={i} className={i > 0 ? 'mt-3' : undefined}>
               {paragraph}

@@ -13,6 +13,8 @@ const PAGES = [
   ['/gyakorlas/hibaim', 'Hibáim'],
   ['/gyakorlas/terv', 'Tervem'],
   ['/gyakorlas/szobeli', 'Szóbeli'],
+  ['/gyakorlas/kartyak', 'Történelem kártyák'],
+  ['/tanaroknak', 'Tanároknak'],
   ['/feladatsorok/tortenelem-kozep-2026-majus-minta', 'Mintafeladatsor – Történelem, középszint'],
   [
     '/feladatsorok/tortenelem-kozep-2026-majus-minta/gyakorlas?nezet=urlap',
@@ -52,6 +54,25 @@ for (const scheme of ['light', 'dark'] as const) {
     await expect(page.getByRole('heading', { level: 1, name: 'A dualizmus kora' })).toBeVisible();
     await scan(page, 'oral topic');
 
+    // A map card, turned over.
+    await page.goto('/gyakorlas/kartyak/tanulas?pakli=topografia');
+    await page.getByRole('button', { name: 'Megfordítom' }).click();
+    await expect(page.getByRole('heading', { name: 'Válasz' })).toBeVisible();
+    await scan(page, 'card study');
+
+    // Teacher link with QR code, then the student's landing page.
+    await page.goto('/tanaroknak');
+    await page.getByRole('radio', { name: 'Matematika' }).click();
+    await page.getByLabel('A feladatsor címe').fill('Teszt');
+    await page.getByText('Mintafeladatsor – Matematika, középszint').click();
+    await page.getByRole('checkbox', { name: /^1\. feladat \(2 pont\)/ }).check();
+    await page.getByRole('button', { name: 'Link készítése' }).click();
+    await scan(page, 'teacher link');
+    const link = new URL(await page.getByLabel('Feladatsor linkje').inputValue());
+    await page.goto(link.pathname + link.search);
+    await expect(page.getByRole('heading', { level: 1, name: 'Teszt' })).toBeVisible();
+    await scan(page, 'assignment');
+
     // A practice round with the drawing pad open.
     await page.goto('/gyakorlas/temakorok?targy=matematika');
     await page.getByRole('button', { name: /Pitagorasz-tétel/ }).click();
@@ -76,6 +97,7 @@ for (const scheme of ['light', 'dark'] as const) {
     await page.getByRole('alertdialog').getByRole('button', { name: 'Beadom' }).click();
     await expect(page.getByRole('heading', { level: 1, name: 'Eredmény' })).toBeVisible();
     await page.locator('details summary').first().click();
+    await page.getByText('Gyakorold a pontozást mintamegoldásokon').first().click();
     await scan(page, 'results');
 
     // Share dialog with the result card.
