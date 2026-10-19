@@ -68,6 +68,8 @@ More layout options for official papers:
 | `steps`    | the app when `auto` is set, else review | marking-scheme steps such as "correct method" or intermediate results |
 | `criteria` | review (rubric, optional `levels`)      | essays and long writing                                               |
 
+Essay and long-writing tasks can carry `examples`: sample answers written for the app (never real student work or the marking scheme's text), each with `scores` for every criterion id, optional `notes` per criterion and a `comment`. Students score a sample themselves and then compare (see [practice.md](practice.md)). `npm run content:review` checks that every criterion is scored and no score exceeds its maximum.
+
 The scoring engine (`src/domain/scoring`) applies these rules when the student hands in. Mark everything the app can decide on its own; only what needs a reader (essays, a drawn graph) should be left for review. Students see review items on the results page and rate them against the marking scheme.
 
 Rule answer kinds:

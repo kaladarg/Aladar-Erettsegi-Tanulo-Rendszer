@@ -337,7 +337,7 @@ export const hu = {
       'Nincs regisztráció, reklám, analitika vagy követés. Minden adat ezen az eszközön, a böngésződben tárolódik. Csak a kifejezett kérésedre küldünk ki adatot: a szótárkeresésnél a keresett szót a Wikimédiának, az MI-funkcióknál (saját kulccsal) a kérdést az Anthropicnak. Az ingyenes MI-csevegőknek az alkalmazás semmit nem küld: a kérdést te illeszted be.',
     creditsTitle: 'Köszönet',
     creditsBody:
-      'Az alkalmazás nyílt forrású eszközökre épül: React, Vite, Tailwind CSS, Radix UI, Dexie, pdf.js, Lucide ikonok, Inter és OpenDyslexic betűtípusok.',
+      'Az alkalmazás nyílt forrású eszközökre épül: React, Vite, Tailwind CSS, Radix UI, Dexie, pdf.js, Lucide ikonok, Inter és OpenDyslexic betűtípusok, qrcode-generator. A térképek a Natural Earth közkincs adataiból készültek.',
     version: 'Verzió: {version}',
     reportBug: 'Hibát találtál az alkalmazásban? Írj nekünk e-mailt',
     authorTitle: 'Készítette',
