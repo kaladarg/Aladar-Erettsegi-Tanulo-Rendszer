@@ -192,6 +192,7 @@ export const hu = {
   },
   settings: {
     title: 'Beállítások',
+    aboutLink: 'Névjegy: az alkalmazásról, licencek, hibabejelentés',
     intro: 'Igazítsd az alkalmazást magadhoz. A beállítások azonnal életbe lépnek.',
     appearance: 'Megjelenés',
     theme: {

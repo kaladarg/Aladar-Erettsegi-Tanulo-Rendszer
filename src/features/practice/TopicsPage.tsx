@@ -8,12 +8,12 @@ import { Button } from '@/design/ui/Button';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { Skeleton } from '@/design/ui/Skeleton';
-import { shuffle, topicIndex, topicKey, type TopicEntry } from '@/domain/practice/topics';
+import { topicIndex, topicKey, type TopicEntry } from '@/domain/practice/topics';
 import { scoredAttempts, topicStats } from '@/domain/stats/stats';
 import { formatNumber, t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useSettings } from '@/state/settingsStore';
-import { createDrill } from '@/storage/practice';
+import { createDrill, randomRound } from '@/storage/practice';
 import { useStatsData } from '../stats/useStatsData';
 import { BackLink } from './BackLink';
 
@@ -58,7 +58,7 @@ export function TopicsPage() {
     );
 
   const start = async (topic: TopicEntry) => {
-    const items = shuffle(topic.tasks, Date.now()).slice(0, ROUND_SIZE);
+    const items = randomRound(topic.tasks, ROUND_SIZE);
     const id = await createDrill({ kind: 'topic', subject, topic: topic.name, items });
     navigate(`/gyakorlas/kor/${id}`);
   };

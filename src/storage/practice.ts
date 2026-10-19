@@ -1,3 +1,4 @@
+import { shuffle, type TaskRef } from '@/domain/practice/topics';
 import { newAttemptId } from './attempts';
 import { dayKey, db, type DrillEventRow, type DrillItemResult, type DrillSessionRow } from './db';
 
@@ -22,6 +23,10 @@ export async function createDrill(
   void purgeOldDrills();
   return id;
 }
+
+/** Picks up to `size` random tasks for a new round. */
+export const randomRound = (tasks: TaskRef[], size: number) =>
+  shuffle(tasks, Date.now()).slice(0, size);
 
 export async function setDrillIndex(id: string, index: number): Promise<void> {
   await db.drillSessions.update(id, { index, updatedAt: Date.now() });

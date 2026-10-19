@@ -28,6 +28,13 @@ export function createRouter() {
       }),
     },
     {
+      path: 'gyakorlas/kor/:sessionId',
+      errorElement: <RouteError />,
+      lazy: async () => ({
+        Component: (await import('@/features/practice/DrillPage')).DrillPage,
+      }),
+    },
+    {
       element: <Layout />,
       errorElement: <RouteError />,
       children: [
@@ -49,6 +56,42 @@ export function createRouter() {
           path: 'feladatsorok/:examId/eredmeny/:attemptId',
           lazy: async () => ({
             Component: (await import('@/features/results/ResultsPage')).ResultsPage,
+          }),
+        },
+        {
+          path: 'gyakorlas',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/PracticeHubPage')).PracticeHubPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/temakorok',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/TopicsPage')).TopicsPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/hibaim',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/ReviewPage')).ReviewPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/terv',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/PlanPage')).PlanPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/szobeli',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/OralPage')).OralPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/szobeli/:topicId',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/OralTopicPage')).OralTopicPage,
           }),
         },
         {

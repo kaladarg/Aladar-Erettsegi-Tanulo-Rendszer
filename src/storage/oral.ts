@@ -63,11 +63,7 @@ export async function deleteTopic(id: string): Promise<void> {
   });
 }
 
-export async function saveRecording(
-  topicId: string,
-  blob: Blob,
-  seconds: number,
-): Promise<void> {
+export async function saveRecording(topicId: string, blob: Blob, seconds: number): Promise<void> {
   await db.recordings.add({
     id: newAttemptId(),
     topicId,

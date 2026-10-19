@@ -1,5 +1,7 @@
 import {
+  ChevronRight,
   Download,
+  Info,
   Minus,
   Monitor,
   Moon,
@@ -10,6 +12,7 @@ import {
   Upload,
 } from 'lucide-react';
 import { useRef, useState } from 'react';
+import { Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { TEXT_SCALE_STEPS, stepTextScale, type ThemePreference } from '@/domain/settings';
 import { Button } from '@/design/ui/Button';
@@ -111,6 +114,15 @@ export function SettingsPage() {
           </CardTitle>
           <CardDescription className="text-text">{t('settings.privacy.body')}</CardDescription>
         </Card>
+
+        <Link
+          to="/nevjegy"
+          className="flex items-center gap-3 rounded-lg border border-border bg-surface p-4 font-medium shadow-1 hover:border-border-strong"
+        >
+          <Info aria-hidden="true" className="size-5 text-primary" />
+          <span className="flex-1">{t('settings.aboutLink')}</span>
+          <ChevronRight aria-hidden="true" className="size-4 text-muted" />
+        </Link>
       </div>
     </>
   );
