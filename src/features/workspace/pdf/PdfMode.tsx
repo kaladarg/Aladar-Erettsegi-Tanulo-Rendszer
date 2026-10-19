@@ -5,6 +5,8 @@ import { Button } from '@/design/ui/Button';
 import { EmptyState } from '@/design/ui/EmptyState';
 import { Skeleton } from '@/design/ui/Skeleton';
 import { formatNumber, t } from '@/i18n';
+import { InkToolbar } from '../ink/InkToolbar';
+import { inkKeys, useInk } from '../ink/inkStore';
 import { useWorkspace } from '../WorkspaceContext';
 import { applyRectEdits, useRectEdits } from './editorStore';
 import { buildOverlayItems, type OverlayItem } from './overlayItems';
@@ -31,6 +33,10 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
   const container = useRef<HTMLDivElement>(null);
   const pages = useRef(new Map<number, HTMLElement>());
   const sourceKey = 'url' in source ? source.url : source.data;
+  const inkMode = useInk((state) => state.mode);
+
+  // Leaving the paper turns drawing off, so fields are clickable again next time.
+  useEffect(() => () => useInk.getState().setMode('off'), []);
 
   useEffect(() => {
     let active = true;
@@ -142,77 +148,90 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
   return (
     <div className="flex flex-col">
       <p className="sr-only">{t('workspace.pdfScreenReaderHint')}</p>
-      <div
-        role="toolbar"
-        aria-label={t('workspace.toolbarLabel')}
-        className="sticky top-[3.75rem] z-20 flex flex-wrap items-center justify-center gap-1 border-b border-border bg-surface/95 px-2 py-1 backdrop-blur"
-      >
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={t('workspace.zoomOut')}
-          disabled={zoom <= ZOOM_STEPS[0]!}
-          onClick={() => stepZoom(-1)}
+      <div className="sticky top-[3.75rem] z-20 border-b border-border bg-surface/95 backdrop-blur">
+        <div
+          role="toolbar"
+          aria-label={t('workspace.toolbarLabel')}
+          className="flex flex-wrap items-center justify-center gap-1 px-2 py-1"
         >
-          <Minus aria-hidden="true" />
-        </Button>
-        <output
-          aria-label={t('workspace.zoomLevel', {
-            percent: formatNumber(zoom, { style: 'percent' }),
-          })}
-          className="w-14 text-center text-sm tabular-nums"
-        >
-          {formatNumber(zoom, { style: 'percent' })}
-        </output>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={t('workspace.zoomIn')}
-          disabled={zoom >= ZOOM_STEPS.at(-1)!}
-          onClick={() => stepZoom(1)}
-        >
-          <Plus aria-hidden="true" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={t('workspace.zoomFit')}
-          disabled={zoom === 1}
-          onClick={() => setZoom(1)}
-        >
-          <Maximize aria-hidden="true" />
-        </Button>
-        <span aria-hidden="true" className="mx-2 h-6 w-px bg-border" />
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={t('workspace.pagePrev')}
-          disabled={currentPage <= 1}
-          onClick={() => goToPage(currentPage - 1)}
-        >
-          <ChevronUp aria-hidden="true" />
-        </Button>
-        <label className="flex items-center gap-1 text-sm tabular-nums">
-          <span className="sr-only">{t('workspace.pageJump')}</span>
-          <input
-            type="number"
-            min={1}
-            max={sizes.length || 1}
-            value={currentPage}
-            onChange={(event) => goToPage(Number(event.target.value))}
-            className="h-9 w-12 rounded-sm border border-border-strong bg-surface text-center"
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={t('workspace.zoomOut')}
+            disabled={zoom <= ZOOM_STEPS[0]!}
+            onClick={() => stepZoom(-1)}
+          >
+            <Minus aria-hidden="true" />
+          </Button>
+          <output
+            aria-label={t('workspace.zoomLevel', {
+              percent: formatNumber(zoom, { style: 'percent' }),
+            })}
+            className="w-14 text-center text-sm tabular-nums"
+          >
+            {formatNumber(zoom, { style: 'percent' })}
+          </output>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={t('workspace.zoomIn')}
+            disabled={zoom >= ZOOM_STEPS.at(-1)!}
+            onClick={() => stepZoom(1)}
+          >
+            <Plus aria-hidden="true" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={t('workspace.zoomFit')}
+            disabled={zoom === 1}
+            onClick={() => setZoom(1)}
+          >
+            <Maximize aria-hidden="true" />
+          </Button>
+          <span aria-hidden="true" className="mx-2 h-6 w-px bg-border" />
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={t('workspace.pagePrev')}
+            disabled={currentPage <= 1}
+            onClick={() => goToPage(currentPage - 1)}
+          >
+            <ChevronUp aria-hidden="true" />
+          </Button>
+          <label className="flex items-center gap-1 text-sm tabular-nums">
+            <span className="sr-only">{t('workspace.pageJump')}</span>
+            <input
+              type="number"
+              min={1}
+              max={sizes.length || 1}
+              value={currentPage}
+              onChange={(event) => goToPage(Number(event.target.value))}
+              className="h-9 w-12 rounded-sm border border-border-strong bg-surface text-center"
+            />
+            <span aria-hidden="true">/ {sizes.length || '–'}</span>
+          </label>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={t('workspace.pageNext')}
+            disabled={currentPage >= sizes.length}
+            onClick={() => goToPage(currentPage + 1)}
+          >
+            <ChevronDown aria-hidden="true" />
+          </Button>
+        </div>
+        {!editing && (
+          <InkToolbar
+            clearKeys={inkKeys}
+            className="justify-center border-t border-border px-2 py-1"
           />
-          <span aria-hidden="true">/ {sizes.length || '–'}</span>
-        </label>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={t('workspace.pageNext')}
-          disabled={currentPage >= sizes.length}
-          onClick={() => goToPage(currentPage + 1)}
-        >
-          <ChevronDown aria-hidden="true" />
-        </Button>
+        )}
+        {!editing && inkMode !== 'off' && (
+          <p role="status" className="bg-info-soft px-3 py-1 text-center text-sm">
+            {t('workspace.ink.drawHint')}
+          </p>
+        )}
       </div>
 
       {editing && <EditorBar />}

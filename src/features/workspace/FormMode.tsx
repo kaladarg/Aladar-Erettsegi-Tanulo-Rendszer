@@ -8,6 +8,7 @@ import { cn } from '@/lib/cn';
 import { ChoicePicker } from './ChoicePicker';
 import { useUnchosenTasks } from './useUnchosenTasks';
 import { FormField } from './fields/FormField';
+import { DrawingPad } from './ink/DrawingPad';
 import { PdfCrop } from './pdf/PdfCrop';
 import { useHelp } from './help/helpStore';
 import { useWorkspace } from './WorkspaceContext';
@@ -132,6 +133,7 @@ export function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
           ))}
         </div>
       )}
+      {task.type !== 'essay' && task.type !== 'long_writing' && <DrawingPad task={task} />}
     </article>
   );
 }

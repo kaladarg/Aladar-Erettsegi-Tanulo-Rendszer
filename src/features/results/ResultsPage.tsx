@@ -1,8 +1,9 @@
 import { ArrowLeft, ClipboardCheck, Info, Play, SearchX, TriangleAlert } from 'lucide-react';
-import { useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { examDisplayTitle } from '@/content/labels';
+import { examFileUrl } from '@/content/loader';
 import type { Exam } from '@/content/schema.types';
 import { useExam } from '@/content/useContent';
 import { Button } from '@/design/ui/Button';
@@ -14,6 +15,7 @@ import { SwitchField } from '@/design/ui/Switch';
 import { DEDUCTIONS_KEY, type ExamResult } from '@/domain/scoring/exam';
 import { ContentErrorState } from '@/features/exams/ContentErrorState';
 import { formatDate, formatNumber, t } from '@/i18n';
+import { PageDrawings } from './PageDrawings';
 import { CriterionReview } from './ReviewControls';
 import { ShareResult } from './share/ShareDialog';
 import { StatusBadge, TaskReview } from './TaskReview';
@@ -25,6 +27,11 @@ export function ResultsPage() {
   const exam = state.status === 'ready' ? (state.data as Exam) : null;
   const data = useAttemptData(attemptId);
   const result = useAttemptResult(exam, data);
+  const entry = manifest?.manifest.exams.find((e) => e.id === examId);
+  const pdfUrl =
+    manifest && entry?.hasPdf && exam
+      ? examFileUrl(manifest.baseUrl, entry, exam.source.examPdf.file ?? '')
+      : null;
   usePageTitle(
     exam ? t('results.pageTitle', { exam: examDisplayTitle(exam) }) : t('results.title'),
   );
@@ -96,6 +103,7 @@ export function ResultsPage() {
         data={data}
         result={result}
         reportEmail={manifest?.manifest.reportEmail}
+        pdfUrl={pdfUrl}
       />
     </>
   );
@@ -111,13 +119,16 @@ function Results({
   data,
   result,
   reportEmail,
+  pdfUrl,
 }: {
   exam: Exam;
   data: AttemptData;
   result: ExamResult;
   reportEmail?: string;
+  pdfUrl: string | null;
 }) {
   const { attempt, answers } = data;
+  const pdfSource = useMemo(() => (pdfUrl ? { url: pdfUrl } : null), [pdfUrl]);
   const [onlyMistakes, setOnlyMistakes] = useState(false);
   const pendingTasks = result.parts.flatMap((p) =>
     p.tasks.filter((t) => t.counted && t.pendingPoints > 0),
@@ -252,6 +263,8 @@ function Results({
           );
         })}
       </section>
+
+      <PageDrawings answers={answers} source={pdfSource} />
     </>
   );
 }

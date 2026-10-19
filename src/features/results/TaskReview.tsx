@@ -7,7 +7,9 @@ import { Badge } from '@/design/ui/Badge';
 import type { TaskResult, TaskStatus } from '@/domain/scoring/exam';
 import { expectedAnswer } from '@/domain/scoring/rules';
 import { t } from '@/i18n';
+import { parseInk, taskInkKey } from '@/domain/ink/ink';
 import { HELP_REVEALED, helpKey, type Answers } from '@/storage/attempts';
+import { InkView } from '../workspace/ink/InkView';
 import { AiEssayFeedback } from './AiEssayFeedback';
 import { EssayHandoff } from './EssayHandoff';
 import { AnswerView } from './AnswerView';
@@ -66,6 +68,7 @@ export function TaskReview({
   const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
   const Sub = `h${headingLevel + 1}` as 'h3' | 'h4' | 'h5';
   const lost = result.points < result.maxPoints && result.status !== 'pending';
+  const drawing = parseInk(answers[taskInkKey(task.id)]);
 
   return (
     <article
@@ -111,6 +114,18 @@ export function TaskReview({
               correct={judged[field.id]}
             />
           ))}
+        </section>
+      )}
+
+      {drawing.length > 0 && (
+        <section className="grid gap-2">
+          <Sub className="text-sm font-semibold tracking-wide text-muted uppercase">
+            {t('workspace.ink.yourDrawing')}
+          </Sub>
+          <InkView
+            strokes={drawing}
+            className="aspect-[5/3] w-full max-w-xl rounded-md border border-border bg-white"
+          />
         </section>
       )}
 

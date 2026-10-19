@@ -2,6 +2,8 @@ import type { PDFDocumentProxy, RenderTask } from 'pdfjs-dist';
 import { useEffect, useRef, useState } from 'react';
 import { t } from '@/i18n';
 import { OverlayField } from '../fields/OverlayField';
+import { pageInkKey } from '@/domain/ink/ink';
+import { InkSurface } from '../ink/InkSurface';
 import { EditableBox } from './EditableBox';
 import { useAnswers } from '@/state/answerStore';
 import { useRectEdits } from './editorStore';
@@ -135,6 +137,15 @@ export function PdfPage({
           }
         }
       })}
+      {!editing && (
+        <InkSurface
+          inkKey={pageInkKey(pageNumber)}
+          width={width}
+          height={height}
+          label={t('workspace.ink.pageLabel', { page: pageNumber })}
+          className="absolute inset-0 z-10"
+        />
+      )}
     </div>
   );
 }
