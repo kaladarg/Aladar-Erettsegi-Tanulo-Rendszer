@@ -47,6 +47,11 @@ describe('parseNumber', () => {
   it('finds numbers in working', () => {
     expect(numbersIn('221x = 1326, ezért x = 6; m ≈ 15,4 és −2')).toEqual([221, 1326, 6, 15.4, -2]);
     expect(numbersIn('10 593 fő')).toEqual([10593]);
+    expect(parseNumber('12. év')).toEqual([12]);
+    expect(parseNumber('2034.')).toEqual([2034]);
+    expect(parseNumber('√80')[0]).toBeCloseTo(8.944, 3);
+    expect(parseNumber('2√5')[0]).toBeCloseTo(4.472, 3);
+    expect(parseNumber('d = √(80) cm', 'cm')[0]).toBeCloseTo(8.944, 3);
     // Numbers on separate lines of the working are never one grouped number.
     expect(numbersIn('216\n120')).toEqual([216, 120]);
   });

@@ -2,6 +2,7 @@ const MINUS = /[‐‑‒–—−]/g;
 // Thousands are grouped with spaces on one line ("10 593"); a line break always separates numbers.
 const GROUP_SPACE = /(\d)[ \t\u00a0\u2009\u202f]+(?=\d{3}(\D|$))/g;
 const DECIMAL = String.raw`[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)`;
+const ROOT = new RegExp(String.raw`^(${DECIMAL})?\s*[·*]?\s*√\s*\(?\s*(\d+(?:[.,]\d+)?)\s*\)?$`);
 const NUMBER = new RegExp(String.raw`^(${DECIMAL})(?:\s*/\s*(${DECIMAL}))?\s*(%)?$`);
 
 function parseDecimal(text: string): number {
@@ -23,7 +24,16 @@ export function parseNumber(raw: string, unit?: string): number[] {
     text = text.slice(0, -unit.length);
   // Other trailing units or words ("cm", "Ft", "fő", "év").
   text = text.replace(/\s*[\p{L}²³°]+\.?$/u, '').trim();
+  // An ordinal or sentence-final dot: "12." (as in "12. év").
+  text = text.replace(/^([+-]?\d+)\.$/, '$1');
   text = text.replace(GROUP_SPACE, '$1');
+  // Exact roots: "√80", "√(80)", "2√5", "2·√5".
+  const root = ROOT.exec(text);
+  if (root) {
+    const factor = root[1] ? parseDecimal(root[1]) : 1;
+    const value = factor * Math.sqrt(parseDecimal(root[2]!));
+    return Number.isFinite(value) ? [value] : [];
+  }
   // Thousands separated by dots when a decimal comma is present ("19.260,5").
   if (text.includes(',') && text.includes('.')) text = text.replace(/\./g, '');
   const match = NUMBER.exec(text);
