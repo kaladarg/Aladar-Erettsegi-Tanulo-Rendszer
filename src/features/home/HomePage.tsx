@@ -13,6 +13,7 @@ import { useOnboarding } from '@/state/onboardingStore';
 import { useSettings } from '@/state/settingsStore';
 import { useStatsData } from '../stats/useStatsData';
 import { ContinueCard, Dashboard } from './Dashboard';
+import { PracticeTools, WhatsNew } from './PracticeTools';
 
 export function HomePage() {
   usePageTitle(t('nav.home'));
@@ -29,6 +30,7 @@ export function HomePage() {
   return (
     <>
       <PageHeader title={t('home.greeting')} description={t('home.intro')} />
+      {loaded && <WhatsNew />}
       {loaded && <ContinueCard data={stats} />}
 
       <section aria-labelledby="home-subjects">
@@ -87,6 +89,7 @@ export function HomePage() {
       </section>
 
       {loaded && <Dashboard data={stats} />}
+      {loaded && <PracticeTools />}
 
       <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="flex items-center gap-2 text-sm text-muted">

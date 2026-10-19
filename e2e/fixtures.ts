@@ -25,6 +25,7 @@ export async function finishOnboarding(page: Page, subjects: string[] = ['Matema
   for (const subject of subjects) await dialog.getByText(subject, { exact: true }).click();
   await dialog.getByRole('button', { name: 'Tovább' }).click();
   await dialog.getByRole('button', { name: 'Tovább' }).click();
+  await dialog.getByRole('button', { name: 'Tovább' }).click();
   await dialog.getByRole('button', { name: 'Feladatsorok megnyitása' }).click();
   await expect(dialog).toBeHidden();
   await expect(page.getByRole('heading', { level: 1, name: 'Feladatsorok' })).toBeVisible();

@@ -171,6 +171,22 @@ export const hu = {
       privacyBody:
         'Nincs regisztráció, nincs reklám, nincs követés. A válaszaid csak ezen az eszközön tárolódnak.',
     },
+    tools: {
+      title: 'Gyakorolj okosan',
+      topicsTitle: 'Témakörök és vegyes kör',
+      topicsBody:
+        'Egy témakör feladatai az összes feladatsorból, vagy több témakör összekeverve. Minden feladatot azonnal ellenőrizhetsz.',
+      reviewTitle: 'Hibáim',
+      reviewBody: 'A hibás feladatok 1, 3 és 7 nap múlva visszatérnek, amíg biztosan nem megy.',
+      drawTitle: 'Rajzolás a feladatlapon',
+      drawBody:
+        'Tollal, kiemelővel jegyzetelhetsz a feladatlapon, az űrlapnézetben rajzlap is van.',
+      cardsTitle: 'Történelem kártyák',
+      cardsBody: 'Évszámok, fogalmak, személyek és helyszínek térképpel, ismétlő rendszerrel.',
+      oralTitle: 'Szóbeli és terv',
+      oralBody:
+        'Tételvázlat, időmérő, hangfelvétel, valamint visszaszámlálás és heti terv a vizsgáig.',
+    },
     start: {
       title: 'Kezdhetjük!',
       body: 'A Feladatsorok oldalon a tárgyaidhoz tartozó feladatsorokat látod. Válaszd ki az elsőt!',
@@ -178,6 +194,22 @@ export const hu = {
     },
   },
   home: {
+    newTitle: 'Újdonságok',
+    newBody: 'Új gyakorlási lehetőségek kerültek az alkalmazásba:',
+    newItems: {
+      practice: 'Témakörök és vegyes kör: feladatok témakörönként az összes feladatsorból',
+      review: 'Hibáim: a hibás feladatok néhány nap múlva visszatérnek',
+      cards: 'Történelem kártyák térképes helyszínekkel',
+      oral: 'Szóbeli felkészülés: vázlat, időmérő, hangfelvétel',
+      plan: 'Tervem: visszaszámlálás, heti teendők, emlékeztetők a naptáradba',
+      draw: 'Rajzolás a feladatlapon és rajzlap az űrlapnézetben',
+      essays: 'Mintaesszék: gyakorold a pontozást az eredményoldalon',
+      teacher: 'Tanároknak: feladatsor-link a diákoknak, regisztráció nélkül',
+    },
+    newOpen: 'Gyakorlás megnyitása',
+    newDismiss: 'Rendben',
+    toolsTitle: 'Gyakorolj máshogy is',
+    toolsDue: '{count} esedékes',
     greeting: 'Jó gyakorlást!',
     intro: 'Itt látod a választott tárgyaidat és a haladásodat.',
     yourSubjects: 'A tárgyaid',
@@ -429,7 +461,8 @@ export const hu = {
       title: 'Gyakorold a pontozást mintamegoldásokon',
       intro:
         'Olvasd el a mintamegoldást, és pontozd az útmutató szempontjai szerint. Utána összevetheted a saját pontjaidat a megadott pontokkal. Így pontosabban tudod értékelni a saját esszédet is.',
-      draft: 'A mintamegoldásokat az alkalmazáshoz írtuk; a pontozásuk tervezet, amelyet tanárnak kell ellenőriznie.',
+      draft:
+        'A mintamegoldásokat az alkalmazáshoz írtuk; a pontozásuk tervezet, amelyet tanárnak kell ellenőriznie.',
       pick: 'Mintamegoldás',
       read: 'A mintamegoldás szövege',
       yourScore: 'A te pontod: {criterion}',

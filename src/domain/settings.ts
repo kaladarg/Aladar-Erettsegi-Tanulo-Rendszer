@@ -16,7 +16,12 @@ export interface Settings {
   aiModel: AiModel;
   /** Written exam date per subject id (YYYY-MM-DD), entered by the student. */
   examDates: Record<string, string>;
+  /** Newest feature announcement the student has seen (see CURRENT_FEATURES). */
+  featuresSeen: number;
 }
+
+/** Bump when new features deserve a "what's new" note on the home page. */
+export const CURRENT_FEATURES = 1;
 
 export const AI_MODELS = ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5'] as const;
 export type AiModel = (typeof AI_MODELS)[number];
@@ -33,6 +38,7 @@ export const DEFAULT_SETTINGS: Settings = {
   contentSource: '',
   aiModel: 'claude-sonnet-5-5',
   examDates: {},
+  featuresSeen: 0,
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -88,5 +94,9 @@ export function sanitizeSettings(input: unknown): Settings {
       ? (raw.aiModel as AiModel)
       : DEFAULT_SETTINGS.aiModel,
     examDates: sanitizeExamDates(raw.examDates),
+    featuresSeen:
+      typeof raw.featuresSeen === 'number' && Number.isInteger(raw.featuresSeen)
+        ? Math.max(0, raw.featuresSeen)
+        : 0,
   };
 }

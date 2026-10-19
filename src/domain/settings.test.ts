@@ -43,6 +43,7 @@ describe('sanitizeSettings', () => {
       contentSource: 'https://example.org/pack/',
       aiModel: 'claude-haiku-5-5',
       examDates: { matematika: '2027-05-04' },
+      featuresSeen: 1,
     } as const;
     expect(sanitizeSettings(valid)).toEqual(valid);
     expect(sanitizeSettings({ examDates: { magyar: 'holnap', tortenelem: 5 } }).examDates).toEqual(

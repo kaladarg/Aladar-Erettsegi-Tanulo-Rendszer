@@ -1,15 +1,27 @@
-import { ArrowLeft, ArrowRight, BookOpenCheck, ShieldCheck, Timer } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookOpenCheck,
+  GalleryVerticalEnd,
+  Layers,
+  Mic,
+  PenLine,
+  RotateCcw,
+  ShieldCheck,
+  Timer,
+} from 'lucide-react';
 import { Dialog } from 'radix-ui';
 import { useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from '@/design/ui/Button';
+import { CURRENT_FEATURES } from '@/domain/settings';
 import { t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useOnboarding } from '@/state/onboardingStore';
 import { useSettings } from '@/state/settingsStore';
 import { SubjectPicker } from './SubjectPicker';
 
-const TOTAL_STEPS = 3;
+const TOTAL_STEPS = 4;
 
 /** First-run introduction: pick subjects, learn how it works, start. */
 export function OnboardingDialog() {
@@ -38,7 +50,7 @@ export function OnboardingDialog() {
   }
 
   const finish = async (openExams = false) => {
-    await update({ onboardingDone: true, subjects });
+    await update({ onboardingDone: true, subjects, featuresSeen: CURRENT_FEATURES });
     closeReopened();
     setStep(0);
     if (openExams) {
@@ -118,6 +130,28 @@ export function OnboardingDialog() {
           )}
 
           {step === 2 && (
+            <Step title={t('onboarding.tools.title')}>
+              <ul className="grid gap-4">
+                <Feature icon={<Layers />} title={t('onboarding.tools.topicsTitle')}>
+                  {t('onboarding.tools.topicsBody')}
+                </Feature>
+                <Feature icon={<RotateCcw />} title={t('onboarding.tools.reviewTitle')}>
+                  {t('onboarding.tools.reviewBody')}
+                </Feature>
+                <Feature icon={<PenLine />} title={t('onboarding.tools.drawTitle')}>
+                  {t('onboarding.tools.drawBody')}
+                </Feature>
+                <Feature icon={<GalleryVerticalEnd />} title={t('onboarding.tools.cardsTitle')}>
+                  {t('onboarding.tools.cardsBody')}
+                </Feature>
+                <Feature icon={<Mic />} title={t('onboarding.tools.oralTitle')}>
+                  {t('onboarding.tools.oralBody')}
+                </Feature>
+              </ul>
+            </Step>
+          )}
+
+          {step === 3 && (
             <Step title={t('onboarding.start.title')} body={t('onboarding.start.body')} />
           )}
 
