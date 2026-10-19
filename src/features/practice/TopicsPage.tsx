@@ -1,0 +1,163 @@
+import { Play, Search } from 'lucide-react';
+import { useId, useMemo, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router';
+import { usePageTitle } from '@/app/usePageTitle';
+import { DEFAULT_SUBJECTS } from '@/content/catalog';
+import { useExams } from '@/content/useExams';
+import { Button } from '@/design/ui/Button';
+import { PageHeader } from '@/design/ui/PageHeader';
+import { SegmentedControl } from '@/design/ui/SegmentedControl';
+import { Skeleton } from '@/design/ui/Skeleton';
+import { shuffle, topicIndex, topicKey, type TopicEntry } from '@/domain/practice/topics';
+import { scoredAttempts, topicStats } from '@/domain/stats/stats';
+import { formatNumber, t } from '@/i18n';
+import { cn } from '@/lib/cn';
+import { useSettings } from '@/state/settingsStore';
+import { createDrill } from '@/storage/practice';
+import { useStatsData } from '../stats/useStatsData';
+import { BackLink } from './BackLink';
+
+const ROUND_SIZE = 10;
+type Sort = 'common' | 'weak' | 'abc';
+
+export function TopicsPage() {
+  usePageTitle(t('practice.topics.title'));
+  const chosen = useSettings((s) => s.settings.subjects);
+  const [params, setParams] = useSearchParams();
+  const subject =
+    params.get('targy') ??
+    chosen.find((s) => DEFAULT_SUBJECTS.some((d) => d.id === s)) ??
+    'matematika';
+  const subjects = useMemo(() => [subject], [subject]);
+  const { exams, loading } = useExams(subjects);
+  const stats = useStatsData();
+  const [query, setQuery] = useState(params.get('tema') ?? '');
+  const [sort, setSort] = useState<Sort>('common');
+  const searchId = useId();
+  const navigate = useNavigate();
+
+  const topics = useMemo(() => topicIndex([...exams.values()]), [exams]);
+  const ratios = useMemo(() => {
+    const map = new Map<string, number>();
+    if (!stats) return map;
+    for (const s of topicStats(scoredAttempts(stats.attempts, subject)))
+      map.set(topicKey(s.topic), s.ratio);
+    return map;
+  }, [stats, subject]);
+
+  const shown = topics
+    .filter((topic) =>
+      topic.name.toLocaleLowerCase('hu').includes(query.trim().toLocaleLowerCase('hu')),
+    )
+    .sort((a, b) =>
+      sort === 'abc'
+        ? a.name.localeCompare(b.name, 'hu')
+        : sort === 'weak'
+          ? (ratios.get(a.key) ?? 2) - (ratios.get(b.key) ?? 2)
+          : 0,
+    );
+
+  const start = async (topic: TopicEntry) => {
+    const items = shuffle(topic.tasks, Date.now()).slice(0, ROUND_SIZE);
+    const id = await createDrill({ kind: 'topic', subject, topic: topic.name, items });
+    navigate(`/gyakorlas/kor/${id}`);
+  };
+
+  return (
+    <>
+      <BackLink />
+      <PageHeader title={t('practice.topics.title')} description={t('practice.topics.intro')} />
+      <div className="mb-6 grid gap-4">
+        <SegmentedControl
+          label={t('practice.topics.subject')}
+          value={subject}
+          onValueChange={(value) => setParams({ targy: value }, { replace: true })}
+          options={DEFAULT_SUBJECTS.map((s) => ({ value: s.id, label: s.name }))}
+        />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+          <div className="grid flex-1 gap-1">
+            <label htmlFor={searchId} className="text-sm font-medium">
+              {t('practice.topics.search')}
+            </label>
+            <div className="relative">
+              <Search aria-hidden="true" className="absolute top-3 left-3 size-5 text-muted" />
+              <input
+                id={searchId}
+                type="search"
+                value={query}
+                placeholder={t('practice.topics.searchPlaceholder')}
+                onChange={(event) => setQuery(event.target.value)}
+                className="min-h-11 w-full rounded-md border border-border-strong bg-surface pr-3 pl-10"
+              />
+            </div>
+          </div>
+          <SegmentedControl<Sort>
+            label={t('practice.topics.sortLabel')}
+            value={sort}
+            onValueChange={setSort}
+            options={[
+              { value: 'common', label: t('practice.topics.sortCommon') },
+              { value: 'weak', label: t('practice.topics.sortWeak') },
+              { value: 'abc', label: t('practice.topics.sortAbc') },
+            ]}
+          />
+        </div>
+      </div>
+
+      {loading ? (
+        <div aria-busy="true" className="grid gap-3 sm:grid-cols-2">
+          <p className="sr-only">{t('practice.topics.loading')}</p>
+          {[0, 1, 2, 3].map((i) => (
+            <Skeleton key={i} className="h-24" />
+          ))}
+        </div>
+      ) : shown.length === 0 ? (
+        <p className="text-muted">{t('practice.topics.none')}</p>
+      ) : (
+        <ul className="grid gap-3 sm:grid-cols-2">
+          {shown.map((topic) => {
+            const ratio = ratios.get(topic.key);
+            return (
+              <li
+                key={topic.key}
+                className="flex items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 shadow-1"
+              >
+                <div className="min-w-0">
+                  <p className="font-semibold">{topic.name}</p>
+                  <p className="text-sm text-muted">
+                    {t('practice.topics.count', {
+                      count: topic.tasks.length,
+                      points: topic.points,
+                    })}
+                  </p>
+                  {ratio !== undefined && (
+                    <p
+                      className={cn(
+                        'text-sm font-medium',
+                        ratio < 0.6 ? 'text-warning' : ratio >= 0.8 ? 'text-success' : 'text-muted',
+                      )}
+                    >
+                      {t(ratio < 0.6 ? 'practice.topics.weak' : 'practice.topics.strong', {
+                        percent: formatNumber(Math.round(ratio * 100)),
+                      })}
+                    </p>
+                  )}
+                </div>
+                <Button
+                  size="sm"
+                  className="shrink-0"
+                  aria-label={t('practice.topics.startLabel', { topic: topic.name })}
+                  onClick={() => void start(topic)}
+                >
+                  <Play aria-hidden="true" />
+                  {t('practice.topics.start')}
+                </Button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      <p className="mt-6 text-sm text-muted">{t('practice.topics.essaysNote')}</p>
+    </>
+  );
+}

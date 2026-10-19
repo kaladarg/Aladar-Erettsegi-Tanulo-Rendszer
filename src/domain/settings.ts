@@ -14,6 +14,8 @@ export interface Settings {
   contentSource: string;
   /** Claude model used by the optional AI features (the student's own API key pays). */
   aiModel: AiModel;
+  /** Written exam date per subject id (YYYY-MM-DD), entered by the student. */
+  examDates: Record<string, string>;
 }
 
 export const AI_MODELS = ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5'] as const;
@@ -30,7 +32,19 @@ export const DEFAULT_SETTINGS: Settings = {
   onboardingDone: false,
   contentSource: '',
   aiModel: 'claude-sonnet-5-5',
+  examDates: {},
 };
+
+const DAY = /^\d{4}-\d{2}-\d{2}$/;
+
+function sanitizeExamDates(value: unknown): Record<string, string> {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return {};
+  return Object.fromEntries(
+    Object.entries(value).filter(
+      (entry): entry is [string, string] => typeof entry[1] === 'string' && DAY.test(entry[1]),
+    ),
+  );
+}
 
 /** Accepts absolute http(s) URLs and same-site paths; returns '' for anything else. */
 export function sanitizeContentSource(value: unknown): string {
@@ -73,5 +87,6 @@ export function sanitizeSettings(input: unknown): Settings {
     aiModel: (AI_MODELS as readonly unknown[]).includes(raw.aiModel)
       ? (raw.aiModel as AiModel)
       : DEFAULT_SETTINGS.aiModel,
+    examDates: sanitizeExamDates(raw.examDates),
   };
 }

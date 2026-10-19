@@ -80,6 +80,69 @@ export interface ImportedPdfRow {
   blob: Blob;
 }
 
+/** One task practised on its own (topic practice or mistakes review). */
+export interface DrillItemResult {
+  points: number;
+  maxPoints: number;
+  /** Points still waiting for the student's own marking. */
+  pendingPoints: number;
+}
+
+/** A practice round of single tasks, possibly from several papers. */
+export interface DrillSessionRow {
+  id: string;
+  kind: 'topic' | 'review';
+  subject: string;
+  /** Topic name for topic practice. */
+  topic?: string;
+  items: { examId: string; taskId: string }[];
+  /** Task being worked on. */
+  index: number;
+  /** Results of checked tasks, by position. */
+  checked: Record<number, DrillItemResult>;
+  startedAt: number;
+  updatedAt: number;
+  finishedAt?: number;
+}
+
+/** A task answered on its own; feeds the mistakes review schedule. */
+export interface DrillEventRow {
+  id?: number;
+  examId: string;
+  taskId: string;
+  time: number;
+  ratio: number;
+  type: Task['type'];
+  subject: string;
+  topics?: string[];
+  number: string;
+}
+
+/** A topic (tétel) for the oral exam: built-in ones are copied here when first edited. */
+export interface OralTopicRow {
+  id: string;
+  subject: string;
+  title: string;
+  /** Built-in topic it was copied from. */
+  builtinId?: string;
+  /** The student's outline, plain text with one point per line. */
+  outline: string;
+  createdAt: number;
+  updatedAt: number;
+  /** Rehearsals done, for the progress mark. */
+  practised: number;
+}
+
+/** A voice recording of an oral rehearsal; stays on the device unless backed up. */
+export interface RecordingRow {
+  id: string;
+  topicId: string;
+  createdAt: number;
+  seconds: number;
+  mimeType: string;
+  blob: Blob;
+}
+
 /** Values that never leave the device, not even in exports (e.g. the AI key). */
 export interface SecretRow {
   key: string;
@@ -94,6 +157,10 @@ export class AppDatabase extends Dexie {
   importedPdfs!: EntityTable<ImportedPdfRow, 'sha256'>;
   secrets!: EntityTable<SecretRow, 'key'>;
   activity!: EntityTable<ActivityRow, 'day'>;
+  drillSessions!: EntityTable<DrillSessionRow, 'id'>;
+  drillEvents!: EntityTable<DrillEventRow, 'id'>;
+  oralTopics!: EntityTable<OralTopicRow, 'id'>;
+  recordings!: EntityTable<RecordingRow, 'id'>;
 
   constructor(name = 'erettsegi-gyakorlo') {
     super(name);
@@ -123,6 +190,13 @@ export class AppDatabase extends Dexie {
         }
         await tx.table('activity').bulkPut([...rows.values()]);
       });
+    // Version 3: single-task practice, mistakes review, oral exam topics and recordings.
+    this.version(3).stores({
+      drillSessions: 'id, updatedAt',
+      drillEvents: '++id, [examId+taskId], time',
+      oralTopics: 'id, subject',
+      recordings: 'id, topicId, createdAt',
+    });
   }
 }
 
@@ -142,6 +216,10 @@ export const BACKUP_TABLES = [
   'answers',
   'selfAssessments',
   'activity',
+  'drillSessions',
+  'drillEvents',
+  'oralTopics',
+  'recordings',
 ] as const;
 export type BackupTable = (typeof BACKUP_TABLES)[number];
 

@@ -59,7 +59,7 @@ function FormPart({ part }: { part: Part }) {
   );
 }
 
-function SourceCard({ source }: { source: SourceMaterial }) {
+export function SourceCard({ source }: { source: SourceMaterial }) {
   const { pdf } = useWorkspace();
   // Figures are shown as crops of the paper; their text is the accessible description.
   const figure = pdf && source.kind !== 'text' && source.pdfRects?.length ? source.pdfRects : null;
@@ -91,7 +91,7 @@ function SourceCard({ source }: { source: SourceMaterial }) {
   );
 }
 
-function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
+export function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
   const { helpEnabled } = useWorkspace();
   const showHelp = useHelp((state) => state.show);
   return (

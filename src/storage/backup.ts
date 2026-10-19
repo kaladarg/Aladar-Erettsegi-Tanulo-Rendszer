@@ -1,5 +1,12 @@
 import { sanitizeSettings } from '@/domain/settings';
-import { ALL_TABLES, BACKUP_TABLES, db, type AppDatabase, type BackupTable } from './db';
+import {
+  ALL_TABLES,
+  BACKUP_TABLES,
+  db,
+  type AppDatabase,
+  type BackupTable,
+  type RecordingRow,
+} from './db';
 
 export const BACKUP_APP_ID = 'erettsegi-gyakorlo';
 export const BACKUP_VERSION = 1;
@@ -27,6 +34,13 @@ export async function createBackup(database: AppDatabase = db): Promise<BackupFi
       data[table] = await database.table(table).toArray();
     }
   });
+  // Blobs cannot go into JSON: recordings travel as data URLs.
+  data.recordings = await Promise.all(
+    (data.recordings as RecordingRow[]).map(async ({ blob, ...row }) => ({
+      ...row,
+      data: await blobToDataUrl(blob),
+    })),
+  );
   return {
     app: BACKUP_APP_ID,
     exportVersion: BACKUP_VERSION,
@@ -49,7 +63,30 @@ const REQUIRED_KEYS: Record<BackupTable, string[]> = {
   answers: ['attemptId', 'fieldId'],
   selfAssessments: ['attemptId', 'taskId'],
   activity: ['day'],
+  drillSessions: ['id', 'subject'],
+  drillEvents: ['examId', 'taskId'],
+  oralTopics: ['id', 'subject'],
+  recordings: ['id', 'topicId', 'data'],
 };
+
+/** Recordings are stored as Blobs; in the backup file they are base64 data URLs. */
+async function blobToDataUrl(blob: Blob): Promise<string> {
+  const bytes = new Uint8Array(await blob.arrayBuffer());
+  let binary = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  }
+  return `data:${blob.type || 'application/octet-stream'};base64,${btoa(binary)}`;
+}
+
+function dataUrlToBlob(dataUrl: string): Blob {
+  const match = /^data:([^;,]*)(;base64)?,(.*)$/s.exec(dataUrl);
+  if (!match) throw new BackupError('corrupt');
+  const binary = match[2] ? atob(match[3]!) : decodeURIComponent(match[3]!);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: match[1] || 'application/octet-stream' });
+}
 
 /** Parses and validates a backup file. Throws BackupError with a user-facing reason code. */
 export function parseBackup(text: string): BackupFile {
@@ -90,6 +127,10 @@ export function parseBackup(text: string): BackupFile {
 
 /** Replaces the backup tables with the file's contents. Other tables are untouched. */
 export async function restoreBackup(backup: BackupFile, database: AppDatabase = db): Promise<void> {
+  const recordings = (
+    backup.data.recordings as (Omit<RecordingRow, 'blob'> & { data: string })[]
+  ).map(({ data, ...row }) => ({ ...row, blob: dataUrlToBlob(data) }));
+  backup = { ...backup, data: { ...backup.data, recordings } };
   await database.transaction('rw', BACKUP_TABLES as unknown as string[], async () => {
     for (const table of BACKUP_TABLES) {
       await database.table(table).clear();
