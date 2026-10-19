@@ -98,11 +98,8 @@ test('example essays: score a sample and compare', async ({ page }) => {
     ['Szerkezet, kompozíció', '4'],
     ['Nyelvi minőség, stílus', '3'],
     ['Helyesírás, nyelvhelyesség', '4'],
-  ])
-    await review
-      .getByRole('radiogroup', { name: `A te pontod: ${criterion}` })
-      .getByRole('radio', { name: points, exact: true })
-      .click();
+  ] as const)
+    await review.getByLabel(`A te pontod: ${criterion}`).selectOption(points);
   await review.getByRole('button', { name: 'Összevetés' }).click();
   await expect(review.getByText(/A te pontszámod 17, a megadott 19/)).toBeVisible();
   await expect(review.getByText('Bátrabban adhatsz pontot', { exact: false })).toBeVisible();

@@ -74,7 +74,8 @@ function Scorer({ example, criteria }: { example: ExampleAnswer; criteria: Crite
           </span>
         </h5>
         <div
-          // Focusable so the text can be scrolled with the keyboard.
+          // A scrolling region must be focusable to scroll it with the keyboard (WCAG 2.1.1).
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
           tabIndex={0}
           role="region"
           aria-labelledby={textId}
@@ -92,20 +93,12 @@ function Scorer({ example, criteria }: { example: ExampleAnswer; criteria: Crite
         <>
           <ul className="grid gap-3">
             {criteria.map((criterion) => (
-              <li key={criterion.id} className="grid gap-1">
-                <SegmentedControl
-                  label={t('results.examples.yourScore', { criterion: criterion.label })}
-                  value={scores[criterion.id] === undefined ? '' : String(scores[criterion.id])}
-                  onValueChange={(value) => setScores({ ...scores, [criterion.id]: Number(value) })}
-                  options={Array.from({ length: criterion.maxPoints + 1 }, (_, p) => ({
-                    value: String(p),
-                    label: String(p),
-                  }))}
-                />
-                {criterion.description && (
-                  <p className="text-xs text-muted">{criterion.description}</p>
-                )}
-              </li>
+              <ScoreField
+                key={criterion.id}
+                criterion={criterion}
+                value={scores[criterion.id]}
+                onChange={(value) => setScores({ ...scores, [criterion.id]: value })}
+              />
             ))}
           </ul>
           <div>
@@ -210,5 +203,40 @@ function Scorer({ example, criteria }: { example: ExampleAnswer; criteria: Crite
         </div>
       )}
     </div>
+  );
+}
+
+function ScoreField({
+  criterion,
+  value,
+  onChange,
+}: {
+  criterion: Criterion;
+  value: number | undefined;
+  onChange: (value: number) => void;
+}) {
+  const id = useId();
+  return (
+    <li className="grid gap-1">
+      <label htmlFor={id} className="text-sm font-medium">
+        {t('results.examples.yourScore', { criterion: criterion.label })}
+      </label>
+      <select
+        id={id}
+        value={value ?? ''}
+        onChange={(event) => onChange(Number(event.target.value))}
+        className="min-h-11 max-w-xs rounded-md border border-border bg-surface px-3"
+      >
+        <option value="" disabled>
+          {t('results.notRated')}
+        </option>
+        {Array.from({ length: criterion.maxPoints + 1 }, (_, n) => (
+          <option key={n} value={n}>
+            {n} / {criterion.maxPoints}
+          </option>
+        ))}
+      </select>
+      {criterion.description && <p className="text-xs text-muted">{criterion.description}</p>}
+    </li>
   );
 }
