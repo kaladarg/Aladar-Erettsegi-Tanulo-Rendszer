@@ -91,10 +91,14 @@ export interface DrillItemResult {
 /** A practice round of single tasks, possibly from several papers. */
 export interface DrillSessionRow {
   id: string;
-  kind: 'topic' | 'review';
+  kind: 'topic' | 'review' | 'mixed' | 'assignment';
   subject: string;
   /** Topic name for topic practice. */
   topic?: string;
+  /** Title of a teacher's assignment. */
+  title?: string;
+  /** The assignment link's code, to build the result code at the end. */
+  assignment?: string;
   items: { examId: string; taskId: string }[];
   /** Task being worked on. */
   index: number;

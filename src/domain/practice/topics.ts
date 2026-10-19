@@ -73,3 +73,71 @@ export function shuffle<T>(items: T[], seed: number): T[] {
   }
   return result;
 }
+
+/**
+ * An interleaved round: tasks from several topics, with weak topics (ratio
+ * below 0.6) filling up to half of it, and no two neighbours from the same
+ * topic where that can be avoided. Mixing problem types helps students learn
+ * to choose the method, not only to apply it (Rohrer & Taylor, 2007).
+ */
+export function mixedRound(
+  topics: TopicEntry[],
+  size: number,
+  seed: number,
+  ratios: Map<string, number> = new Map(),
+): TaskRef[] {
+  const refKey = (ref: TaskRef) => `${ref.examId}|${ref.taskId}`;
+  const topicOf = new Map<string, string>();
+  for (const topic of topics)
+    for (const ref of topic.tasks)
+      if (!topicOf.has(refKey(ref))) topicOf.set(refKey(ref), topic.key);
+  const all = shuffle(
+    topics.flatMap((topic) => topic.tasks),
+    seed,
+  ).filter((ref, index, list) => list.findIndex((r) => refKey(r) === refKey(ref)) === index);
+
+  const weak = new Set(topics.filter((t) => (ratios.get(t.key) ?? 1) < 0.6).map((t) => t.key));
+  const picked: TaskRef[] = [];
+  const perTopic = new Map<string, number>();
+  const take = (ref: TaskRef) => {
+    const key = topicOf.get(refKey(ref))!;
+    picked.push(ref);
+    perTopic.set(key, (perTopic.get(key) ?? 0) + 1);
+  };
+  // Spread the round over many topics: at most two tasks per topic in each pass.
+  for (const [limit, onlyWeak] of [
+    [1, true],
+    [1, false],
+    [2, false],
+    [Infinity, false],
+  ] as const) {
+    for (const ref of all) {
+      if (picked.length >= size) break;
+      if (picked.includes(ref)) continue;
+      const key = topicOf.get(refKey(ref))!;
+      if (onlyWeak && (!weak.has(key) || picked.length >= Math.ceil(size / 2))) continue;
+      if ((perTopic.get(key) ?? 0) >= limit) continue;
+      take(ref);
+    }
+  }
+
+  // Reorder so that neighbours come from different topics where possible:
+  // always continue with the topic that has the most tasks left.
+  const groups = new Map<string, TaskRef[]>();
+  for (const ref of picked) {
+    const key = topicOf.get(refKey(ref))!;
+    groups.set(key, [...(groups.get(key) ?? []), ref]);
+  }
+  const ordered: TaskRef[] = [];
+  let last: string | undefined;
+  while (ordered.length < picked.length) {
+    let best: string | undefined;
+    for (const [key, refs] of groups)
+      if (refs.length > 0 && key !== last && (!best || refs.length > groups.get(best)!.length))
+        best = key;
+    best ??= last!;
+    ordered.push(groups.get(best)!.shift()!);
+    last = best;
+  }
+  return ordered;
+}

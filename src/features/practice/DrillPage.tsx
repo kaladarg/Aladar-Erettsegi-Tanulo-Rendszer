@@ -22,9 +22,25 @@ import { createWorkspace, WorkspaceContext } from '@/features/workspace/Workspac
 import { t } from '@/i18n';
 import { useAnswers } from '@/state/answerStore';
 import { loadReviews } from '@/storage/attempts';
+import { findSubject } from '@/content/catalog';
 import { db, type DrillSessionRow } from '@/storage/db';
 import { drillAttemptId, finishDrill, recordDrillCheck, setDrillIndex } from '@/storage/practice';
 import { DrillSummary } from './DrillSummary';
+
+function drillTitle(session: DrillSessionRow): string {
+  switch (session.kind) {
+    case 'topic':
+      return t('practice.topicTitle', { topic: session.topic ?? '' });
+    case 'mixed':
+      return t('practice.mixedTitle', {
+        subject: findSubject(session.subject)?.name ?? session.subject,
+      });
+    case 'assignment':
+      return session.title || t('practice.assignmentTitle');
+    case 'review':
+      return t('practice.reviewTitle');
+  }
+}
 
 /** A practice round: single tasks from any paper, checked one by one. */
 export function DrillPage() {
@@ -35,11 +51,7 @@ export function DrillPage() {
   );
   const subjects = useMemo(() => (session ? [session.subject] : undefined), [session]);
   const { exams, loading } = useExams(subjects);
-  const title = session
-    ? session.kind === 'topic'
-      ? t('practice.topicTitle', { topic: session.topic ?? '' })
-      : t('practice.reviewTitle')
-    : t('practice.title');
+  const title = session ? drillTitle(session) : t('practice.title');
   usePageTitle(title);
 
   if (session === undefined || (session && loading)) {

@@ -1,10 +1,11 @@
-import { Play, Search } from 'lucide-react';
+import { Play, Search, Shuffle } from 'lucide-react';
 import { useId, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { DEFAULT_SUBJECTS } from '@/content/catalog';
 import { useExams } from '@/content/useExams';
 import { Button } from '@/design/ui/Button';
+import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { Skeleton } from '@/design/ui/Skeleton';
@@ -13,7 +14,7 @@ import { scoredAttempts, topicStats } from '@/domain/stats/stats';
 import { formatNumber, t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useSettings } from '@/state/settingsStore';
-import { createDrill, randomRound } from '@/storage/practice';
+import { createDrill, randomMixedRound, randomRound } from '@/storage/practice';
 import { useStatsData } from '../stats/useStatsData';
 import { BackLink } from './BackLink';
 
@@ -33,6 +34,7 @@ export function TopicsPage() {
   const stats = useStatsData();
   const [query, setQuery] = useState(params.get('tema') ?? '');
   const [sort, setSort] = useState<Sort>('common');
+  const [selected, setSelected] = useState<Set<string>>(new Set());
   const searchId = useId();
   const navigate = useNavigate();
 
@@ -57,6 +59,22 @@ export function TopicsPage() {
           : 0,
     );
 
+  const toggle = (key: string) =>
+    setSelected((current) => {
+      const next = new Set(current);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  const picked = topics.filter((topic) => selected.has(topic.key));
+
+  const startMixed = async () => {
+    const pool = picked.length >= 2 ? picked : topics;
+    const items = randomMixedRound(pool, ROUND_SIZE, ratios);
+    const id = await createDrill({ kind: 'mixed', subject, items });
+    navigate(`/gyakorlas/kor/${id}`);
+  };
+
   const start = async (topic: TopicEntry) => {
     const items = randomRound(topic.tasks, ROUND_SIZE);
     const id = await createDrill({ kind: 'topic', subject, topic: topic.name, items });
@@ -71,7 +89,10 @@ export function TopicsPage() {
         <SegmentedControl
           label={t('practice.topics.subject')}
           value={subject}
-          onValueChange={(value) => setParams({ targy: value }, { replace: true })}
+          onValueChange={(value) => {
+            setSelected(new Set());
+            setParams({ targy: value }, { replace: true });
+          }}
           options={DEFAULT_SUBJECTS.map((s) => ({ value: s.id, label: s.name }))}
         />
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
@@ -104,6 +125,32 @@ export function TopicsPage() {
         </div>
       </div>
 
+      {!loading && topics.length > 1 && (
+        <Card aria-labelledby="topics-mixed" className="mb-6">
+          <CardTitle id="topics-mixed" className="flex items-center gap-2">
+            <Shuffle aria-hidden="true" className="size-5 text-primary" />
+            {t('practice.topics.mixedTitle')}
+          </CardTitle>
+          <CardDescription>{t('practice.topics.mixedBody')}</CardDescription>
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <Button onClick={() => void startMixed()}>
+              <Shuffle aria-hidden="true" />
+              {picked.length >= 2
+                ? t('practice.topics.mixedSelected', { count: picked.length })
+                : t('practice.topics.mixedAll')}
+            </Button>
+            {selected.size > 0 && (
+              <Button variant="ghost" onClick={() => setSelected(new Set())}>
+                {t('practice.topics.clearSelection')}
+              </Button>
+            )}
+          </div>
+          {picked.length < 2 && (
+            <p className="mt-2 text-sm text-muted">{t('practice.topics.mixedPick')}</p>
+          )}
+        </Card>
+      )}
+
       {loading ? (
         <div aria-busy="true" className="grid gap-3 sm:grid-cols-2">
           <p className="sr-only">{t('practice.topics.loading')}</p>
@@ -122,7 +169,7 @@ export function TopicsPage() {
                 key={topic.key}
                 className="flex items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 shadow-1"
               >
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <p className="font-semibold">{topic.name}</p>
                   <p className="text-sm text-muted">
                     {t('practice.topics.count', {
@@ -143,6 +190,16 @@ export function TopicsPage() {
                     </p>
                   )}
                 </div>
+                <label className="flex shrink-0 cursor-pointer flex-col items-center gap-1 text-xs text-muted">
+                  <input
+                    type="checkbox"
+                    className="size-5 accent-[var(--c-primary)]"
+                    checked={selected.has(topic.key)}
+                    aria-label={t('practice.topics.selectLabel', { topic: topic.name })}
+                    onChange={() => toggle(topic.key)}
+                  />
+                  <span aria-hidden="true">{t('practice.topics.select')}</span>
+                </label>
                 <Button
                   size="sm"
                   className="shrink-0"

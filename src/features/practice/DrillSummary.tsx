@@ -43,6 +43,8 @@ export function DrillSummary({
       kind: session.kind,
       subject: session.subject,
       topic: session.topic,
+      title: session.title,
+      assignment: session.assignment,
       items: session.items,
     });
     navigate(`/gyakorlas/kor/${id}`, { replace: true });

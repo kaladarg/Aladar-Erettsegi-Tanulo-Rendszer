@@ -1,4 +1,4 @@
-import { shuffle, type TaskRef } from '@/domain/practice/topics';
+import { mixedRound, shuffle, type TaskRef, type TopicEntry } from '@/domain/practice/topics';
 import { newAttemptId } from './attempts';
 import { dayKey, db, type DrillEventRow, type DrillItemResult, type DrillSessionRow } from './db';
 
@@ -8,7 +8,7 @@ export const drillAttemptId = (sessionId: string, index: number) => `drill-${ses
 const KEEP_FINISHED = 20;
 
 export async function createDrill(
-  session: Pick<DrillSessionRow, 'kind' | 'subject' | 'topic' | 'items'>,
+  session: Pick<DrillSessionRow, 'kind' | 'subject' | 'topic' | 'items' | 'title' | 'assignment'>,
 ): Promise<string> {
   const now = Date.now();
   const id = newAttemptId();
@@ -27,6 +27,13 @@ export async function createDrill(
 /** Picks up to `size` random tasks for a new round. */
 export const randomRound = (tasks: TaskRef[], size: number) =>
   shuffle(tasks, Date.now()).slice(0, size);
+
+/** An interleaved round from several topics (see `mixedRound`). */
+export const randomMixedRound = (
+  topics: TopicEntry[],
+  size: number,
+  ratios?: Map<string, number>,
+) => mixedRound(topics, size, Date.now(), ratios);
 
 export async function setDrillIndex(id: string, index: number): Promise<void> {
   await db.drillSessions.update(id, { index, updatedAt: Date.now() });
