@@ -1,3 +1,5 @@
+// @vitest-environment node
+// Node's Blob supports arrayBuffer(); jsdom's does not.
 import { beforeEach, describe, expect, it } from 'vitest';
 import { DEFAULT_SETTINGS } from '@/domain/settings';
 import {
@@ -68,6 +70,48 @@ describe('createBackup', () => {
     await restoreBackup(parseBackup(text), other);
     expect(await other.answers.toArray()).toEqual(await database.answers.toArray());
     expect((await other.settings.get('app'))?.theme).toBe('dark');
+  });
+});
+
+describe('practice data', () => {
+  it('carries oral topics, drills and voice recordings through a backup', async () => {
+    await database.oralTopics.put({
+      id: 'o1',
+      subject: 'tortenelem',
+      title: 'A kiegyezés',
+      outline: '1867',
+      createdAt: 1,
+      updatedAt: 1,
+      practised: 2,
+    });
+    await database.drillEvents.add({
+      examId: 'matematika-a',
+      taskId: '1',
+      time: 5,
+      ratio: 0,
+      type: 'short_answer',
+      subject: 'matematika',
+      number: '1.',
+    });
+    const audio = new Blob([new Uint8Array([1, 2, 3, 250])], { type: 'audio/webm' });
+    await database.recordings.put({
+      id: 'r1',
+      topicId: 'o1',
+      createdAt: 2,
+      seconds: 4,
+      mimeType: 'audio/webm',
+      blob: audio,
+    });
+
+    const text = JSON.stringify(await createBackup(database));
+    expect(text).toContain('data:audio/webm;base64,');
+    const other = new AppDatabase(`test-${counter++}`);
+    await restoreBackup(parseBackup(text), other);
+    expect(await other.oralTopics.get('o1')).toMatchObject({ outline: '1867', practised: 2 });
+    expect(await other.drillEvents.count()).toBe(1);
+    const restored = await other.recordings.get('r1');
+    expect(restored?.blob.type).toBe('audio/webm');
+    expect([...new Uint8Array(await restored!.blob.arrayBuffer())]).toEqual([1, 2, 3, 250]);
   });
 });
 

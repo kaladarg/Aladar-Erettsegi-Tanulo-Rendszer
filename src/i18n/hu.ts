@@ -594,7 +594,7 @@ export const hu = {
         practise: 'Gyakorlás: feladatsorok, gyenge témakörök, ismétlés és szóbeli felkészülés.',
         final: 'Hajrá: időre írt próbavizsgák és ismétlés, új anyag helyett.',
         day: 'Ma van a vizsga.',
-        done: '',
+        done: 'A vizsga lezajlott.',
       },
       item: {
         review: 'Ismételd át az esedékes hibáidat ({count})',

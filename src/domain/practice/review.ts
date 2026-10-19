@@ -50,7 +50,7 @@ const addDays = (day: string, days: number) => {
   return dayKey(new Date(y!, m! - 1, d! + days));
 };
 
-/** Events from handed-in papers: each marked task of the newest attempt per paper. */
+/** Events from handed-in papers: every marked task of every submitted attempt. */
 export function examEvents(attempts: AttemptRow[]): ReviewEvent[] {
   const events: ReviewEvent[] = [];
   for (const attempt of attempts) {

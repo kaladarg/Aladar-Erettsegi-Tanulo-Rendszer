@@ -8,6 +8,11 @@ const PAGES = [
   ['/statisztika', 'Statisztika'],
   ['/nevjegy', 'Névjegy'],
   ['/feladatsorok', 'Feladatsorok'],
+  ['/gyakorlas', 'Gyakorlás'],
+  ['/gyakorlas/temakorok', 'Témakörök'],
+  ['/gyakorlas/hibaim', 'Hibáim'],
+  ['/gyakorlas/terv', 'Tervem'],
+  ['/gyakorlas/szobeli', 'Szóbeli'],
   ['/feladatsorok/tortenelem-kozep-2026-majus-minta', 'Mintafeladatsor – Történelem, középszint'],
   [
     '/feladatsorok/tortenelem-kozep-2026-majus-minta/gyakorlas?nezet=urlap',
@@ -40,6 +45,27 @@ for (const scheme of ['light', 'dark'] as const) {
       await expect(page.getByRole('heading', { level: 1, name: heading })).toBeVisible();
       await scan(page, path);
     }
+
+    // Oral topic page with timers and recorder.
+    await page.goto('/gyakorlas/szobeli?targy=tortenelem');
+    await page.getByRole('button', { name: 'Megnyitás: A dualizmus kora' }).click();
+    await expect(page.getByRole('heading', { level: 1, name: 'A dualizmus kora' })).toBeVisible();
+    await scan(page, 'oral topic');
+
+    // A practice round with the drawing pad open.
+    await page.goto('/gyakorlas/temakorok?targy=matematika');
+    await page.getByRole('button', { name: /Pitagorasz-tétel/ }).click();
+    await page.getByRole('button', { name: 'Rajzlap megnyitása' }).click();
+    await scan(page, 'drill');
+
+    // Drawing tools on the paper.
+    await page.goto('/feladatsorok/matematika-kozep-2026-majus-minta/gyakorlas?nezet=feladatlap');
+    await page
+      .getByRole('toolbar', { name: 'Rajzeszközök' })
+      .getByRole('button', { name: 'Toll' })
+      .click();
+    await scan(page, 'drawing');
+    await page.getByRole('button', { name: 'Kitöltés: rajzolás kikapcsolva' }).click();
 
     // Results page with a pending essay review and an open task.
     await page.goto('/feladatsorok/magyar-kozep-2026-majus-minta/gyakorlas?nezet=urlap');
