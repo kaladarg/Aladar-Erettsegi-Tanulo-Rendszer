@@ -7,7 +7,11 @@ test('navigation moves focus to the page heading and sets the title', async ({
   await page.goto('/');
   await finishOnboarding(page);
   const nav = page.getByRole('navigation', { name: 'Fő navigáció' }).filter({ visible: true });
-  await nav.getByRole('link', { name: 'Névjegy' }).click();
+  // Phones reach Névjegy through Settings; the bottom bar has five slots.
+  if (isMobile) {
+    await nav.getByRole('link', { name: 'Beállítások' }).click();
+    await page.getByRole('link', { name: /^Névjegy:/ }).click();
+  } else await nav.getByRole('link', { name: 'Névjegy' }).click();
   const heading = page.getByRole('heading', { level: 1, name: 'Névjegy' });
   await expect(heading).toBeFocused();
   await expect(page).toHaveTitle('Névjegy · Érettségi Gyakorló');
