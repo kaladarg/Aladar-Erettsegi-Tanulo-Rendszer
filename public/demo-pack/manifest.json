@@ -40,7 +40,7 @@
       "sample": true,
       "maxPoints": 27,
       "path": "exams/magyar-kozep-2026-majus-minta/exam.json",
-      "sha256": "a2c365d44f7aef9e49d3c9c2394bfab89470f58a13c0e4395395c2e8a481cd51",
+      "sha256": "fd3f5ef772ed7f2f96ee0a3b4d639e2ff8495a3fdc45daed828791ab460a3c5f",
       "hasPdf": true,
       "pdfSha256": "c9c71f20db632e5456dbe93ae0e07ad065a5ad842f07a46d12cb3b58d0c78ba5",
       "status": "reviewed"
@@ -72,7 +72,7 @@
       "sample": true,
       "maxPoints": 24,
       "path": "exams/tortenelem-kozep-2026-majus-minta/exam.json",
-      "sha256": "884ddb09344b63bc38e8d0ac2eae93b01a5235989f2dd8d36d1127e0b8e07ee1",
+      "sha256": "e3cbaf537cd4160e8b9fae8dc2246696f2084e59eeac3ffd099c69e28fd0b405",
       "hasPdf": true,
       "pdfSha256": "a6c9d7e62b3b965f3c6ca6783c8bfdf1c9ba5d95f49b18ae6522012c8f7d870d",
       "status": "reviewed"

@@ -552,7 +552,43 @@
               }
             ]
           },
-          "explanation": "Az érvelő esszében egyértelmű álláspontot kell megfogalmazni, és azt érvekkel, példákkal kell alátámasztani. A terjedelmi követelmény legalább 250 szó."
+          "explanation": "Az érvelő esszében egyértelmű álláspontot kell megfogalmazni, és azt érvekkel, példákkal kell alátámasztani. A terjedelmi követelmény legalább 250 szó.",
+          "examples": [
+            {
+              "id": "minta-eros",
+              "label": "Erős megoldás",
+              "text": "Sokan úgy gondolják, hogy a nyári szünet igazi kalandja egy külföldi út. Szerintem azonban legalább annyira érdemes belföldön utazni, sőt, egy diák számára gyakran ez a jobb választás. Két okból gondolom így.\n\nElső érvem a költség és a szervezés egyszerűsége. Egy belföldi utazáshoz nem kell repülőjegy, a vonat- és buszjegyek a diákkedvezménnyel olcsók, így a zsebpénzből is kijön egy hosszabb kirándulás. Tavaly a barátaimmal vonattal mentünk a Balaton-felvidékre: a szállás egy kis kemping volt, mégis egy hétig túráztunk, fürödtünk és bicikliztünk, mindezt kevesebből, mint amennyibe egy külföldi hétvége került volna.\n\nMásodik érvem, hogy a saját országunkat sokszor kevésbé ismerjük, mint a külföldi nevezetességeket. Aki járt már a pécsi ókeresztény sírkamráknál, a tokaji borvidéken vagy a Bükk barlangjaiban, tudja, hogy ezek a helyek semmivel sem unalmasabbak egy idegen város múzeumainál. Ráadásul az itt látottak kapcsolódnak ahhoz, amit történelemből vagy irodalomból tanulunk, így az utazás a tanulást is segíti. Amikor a szigligeti várban álltam, egészen másképp értettem meg, mit jelentett a török elleni végvári harc, mint az órán. Az ilyen élmény sokkal tovább megmarad, mint egy tankönyvi oldal.\n\nTermészetesen a külföldi út is értékes: új nyelvet és kultúrát ismerhetünk meg. Aki ilyen lehetőséget kap, ne hagyja ki. Ezt nem vitatom, de úgy gondolom, hogy a kettő nem zárja ki egymást, és a belföldi utazás könnyebben elérhető mindenki számára.\n\nÖsszegezve: a belföldi utazás olcsóbb, egyszerűbben megszervezhető, és közelebb visz a saját hazánk megismeréséhez. Nem kell hozzá nagy költségvetés, csak kíváncsiság és egy kis tervezés. Ezért a nyári szünidőben érdemes először a közelben keresni a kalandot.",
+              "scores": {
+                "c1": 8,
+                "c2": 4,
+                "c3": 3,
+                "c4": 4
+              },
+              "notes": {
+                "c1": "Világos álláspont, két kifejtett érv saját példával, és az ellenérvet is kezeli.",
+                "c3": "Igényes, de helyenként ismétlődő szófordulatok („érvem”, „utazás”); ezért nem kap teljes pontot."
+              },
+              "comment": "Jól tagolt érvelés: bevezetés az állásponttal, két érv egy-egy bekezdésben, cáfolat, összegzés."
+            },
+            {
+              "id": "minta-kozepes",
+              "label": "Közepes megoldás",
+              "text": "Szerintem érdemes belföldön utazni nyáron. Én is sokszor utazok belföldön a családommal és mindig jól érezzük magunkat.\n\nBelföldön sok szép hely van. Például a Balaton, ahol lehet fürdeni és sok program van. Meg ott van Budapest is, ahol sok múzeum van, és a Parlamentet is meg lehet nézni. A Balatonnál nyáron nagyon jó az idő, és sok fiatal megy oda, ezért jó a hangulat. Mi minden évben elmegyünk egy hétre Siófokra. Ott mindig sok koncert és fesztivál van, és este a parton sétálunk. Tavaly elmentünk Tihanyba is hajóval, ami nagyon tetszett nekem, mert onnan szép a kilátás.\n\nAzért is jó belföldön utazni, mert olcsóbb. Külföldre drága elmenni, kell repülőjegy és a szállás is drágább sokszor. Ha belföldön utazunk akkor nem kell annyit fizetni, és a pénzt másra lehet költeni, például ételre vagy programokra. Szerintem ez nagyon fontos szempont egy család számára.\n\nVan aki szerint külföldön érdekesebb mert ott más nyelvet beszélnek és más ételek vannak. Ez igaz de szerintem belföldön is lehet érdekes dolgokat csinálni, csak tudni kell hova menjünk. Ha az ember jól tervez, akkor belföldön is lehet nagy élményeket szerezni, és nem kell olyan messzire menni. Az utazás is rövidebb, így nem fárad el az ember. Például ha valaki szereti a természetet, akkor elmehet a Bükkbe vagy az Őrségbe túrázni, ahol szép erdők vannak és kevés ember. Ez is olyan élmény, mint egy külföldi út.\n\nÖsszefoglalva szerintem érdemes belföldön utazni mert sok szép hely van és olcsóbb is. Mindenkinek ajánlom, hogy próbálja ki ezen a nyáron is, mert biztos, hogy nem fog csalódni.",
+              "scores": {
+                "c1": 5,
+                "c2": 3,
+                "c3": 2,
+                "c4": 2
+              },
+              "notes": {
+                "c1": "Van álláspont és két érv, de az első érv („sok szép hely van”) inkább felsorolás, mint kifejtés.",
+                "c2": "Felismerhető a bevezetés, a tárgyalás és a befejezés, de a bekezdéseken belül csapong.",
+                "c3": "Egyszerű, ismétlődő mondatszerkezetek („sok … van”), szűk szókincs.",
+                "c4": "Több vesszőhiba a kötőszavak előtt („családommal, és”, „utazunk, akkor”, „érdekesebb, mert”)."
+              },
+              "comment": "Teljesíti a terjedelmet és a szerkezeti elvárásokat, de az érvek kidolgozatlanok, a nyelvhasználat egyszerű."
+            }
+          ]
         }
       ]
     }

@@ -610,6 +610,48 @@
               }
             ]
           },
+          "examples": [
+            {
+              "id": "minta-eros",
+              "label": "Erős megoldás",
+              "text": "1848 márciusában a pozsonyi országgyűlés gyors ütemben fogadta el a reformkor legfontosabb követeléseit. A törvényeket V. Ferdinánd 1848. április 11-én szentesítette, ezért nevezzük őket áprilisi törvényeknek. A pesti forradalom 12 pontja, amelyet a forrás részben idéz, nagyrészt ugyanezeket a célokat fogalmazta meg.\n\nA törvények Magyarországot alkotmányos monarchiává alakították. Létrejött a független, felelős magyar kormány, amely az országgyűlésnek tartozott felelősséggel; első miniszterelnöke Batthyány Lajos lett. A rendi országgyűlés helyére népképviseleti országgyűlés lépett, amelyet vagyoni vagy műveltségi cenzushoz kötött választójog alapján választottak. Az országgyűlés évente ülésezett Pesten.\n\nA társadalmi átalakulás legfontosabb lépése az úrbéri viszonyok megszüntetése, azaz a jobbágyfelszabadítás volt: a volt jobbágyok saját tulajdonukba kapták úrbéres földjüket, a földesurakat az állam kártalanította. Ez megfelel a 12 pont 7. követelésének. Eltörölték az ősiséget, és kimondták a közteherviselést (6. pont), vagyis a nemesség is adót fizetett. A sajtószabadság (1. pont) és a törvény előtti egyenlőség (4. pont) is megvalósult, és kimondták az unió Erdéllyel (12. pont), amelyet az erdélyi országgyűlés is megerősített.\n\nAz áprilisi törvények jelentősége, hogy békés úton, törvényes keretek között valósították meg a polgári átalakulást. A jogegyenlőség és a jobbágyfelszabadítás megteremtette a modern, polgári Magyarország alapjait. Ugyanakkor a Habsburg-kormány és Magyarország viszonya (például a hadügy és a pénzügy kérdése) nem volt egyértelműen rendezve, ami később a fegyveres konfliktushoz vezetett.",
+              "scores": {
+                "c1": 2,
+                "c2": 2,
+                "c3": 2,
+                "c4": 4,
+                "c5": 3,
+                "c6": 2
+              },
+              "notes": {
+                "c4": "A forrás négy pontját is pontosan összekapcsolja a törvényekkel.",
+                "c5": "A rendelkezések és a jelentőség rendben vannak, a következmények közül a nemzetiségi kérdés kimaradt, ezért nem kap teljes pontot."
+              },
+              "comment": "Pontos, jól szerkesztett válasz. Időt és helyet (Pozsony, Pest, április 11.) is megad, a szakkifejezéseket helyesen használja."
+            },
+            {
+              "id": "minta-kozepes",
+              "label": "Közepes megoldás",
+              "text": "1848-ban forradalom volt Pesten március 15-én, Petőfi felolvasta a Nemzeti dalt és a 12 pontot. A 12 pontban a magyarok sajtószabadságot és közös teherviselést kértek, meg hogy legyen unió Erdéllyel.\n\nEzután jöttek az áprilisi törvények. Ezek nagyon fontosak voltak mert megszüntették a jobbágyságot, és mindenki egyenlő lett a törvény előtt. Lett magyar kormány is, Batthyány Lajos vezetésével, és Kossuth is miniszter lett.\n\nA törvények jelentősége az, hogy Magyarország modern ország lett. A nemesek is fizettek adót. Később viszont kitört a szabadságharc, mert Bécs nem fogadta el ezeket.",
+              "scores": {
+                "c1": 1,
+                "c2": 1,
+                "c3": 1,
+                "c4": 2,
+                "c5": 2,
+                "c6": 1
+              },
+              "notes": {
+                "c1": "A válasz nagy része a márciusi eseményekről szól, nem a törvények rendelkezéseiről.",
+                "c2": "A március 15. pontos, de a törvények helye és időpontja (Pozsony, április) hiányzik.",
+                "c3": "Hiányzik a felelős kormány, a népképviselet és a jobbágyfelszabadítás mint szakkifejezés pontos használata.",
+                "c4": "Felsorolja a forrás néhány pontját, de nem kapcsolja őket egyenként a törvényekhez.",
+                "c5": "A jelentőség csak általánosan jelenik meg; a népképviselet és az ősiség eltörlése kimaradt.",
+                "c6": "Rövid, a bekezdések nem építenek egymásra; vesszőhiba is van („fontosak voltak, mert”)."
+              },
+              "comment": "A válasz ismeri a korszakot, de a feladat kérdésére (a törvények rendelkezései és jelentősége) csak részben felel."
+            }
+          ],
           "explanation": "Jó válasz például: a felelős kormány, az évenkénti országgyűlés Pesten, a népképviselet, a közteherviselés és a jobbágyfelszabadítás bemutatása, valamint annak értékelése, hogy a törvények megteremtették a polgári Magyarország alapjait."
         }
       ]

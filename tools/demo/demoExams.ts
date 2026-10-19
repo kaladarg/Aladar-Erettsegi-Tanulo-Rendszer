@@ -1,3 +1,4 @@
+import { HISTORY_ESSAY_EXAMPLES, HUNGARIAN_ESSAY_EXAMPLES } from './demoExamples';
 /**
  * Self-written sample papers for the public demo pack and the e2e tests.
  * They follow the structure of real középszint papers but are NOT official
@@ -738,6 +739,7 @@ export const DEMO_EXAMS: DemoExam[] = [
                 { id: 'c6', label: 'Megszerkesztettség, nyelvhelyesség', maxPoints: 2 },
               ],
             },
+            examples: HISTORY_ESSAY_EXAMPLES,
             explanation:
               'Jó válasz például: a felelős kormány, az évenkénti országgyűlés Pesten, a népképviselet, a közteherviselés és a jobbágyfelszabadítás bemutatása, valamint annak értékelése, hogy a törvények megteremtették a polgári Magyarország alapjait.',
           },
@@ -1006,6 +1008,7 @@ export const DEMO_EXAMS: DemoExam[] = [
             },
             explanation:
               'Az érvelő esszében egyértelmű álláspontot kell megfogalmazni, és azt érvekkel, példákkal kell alátámasztani. A terjedelmi követelmény legalább 250 szó.',
+            examples: HUNGARIAN_ESSAY_EXAMPLES,
           },
         ],
       },

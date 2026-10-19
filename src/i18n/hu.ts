@@ -425,6 +425,28 @@ export const hu = {
     examPaused: 'Az óra csak akkor jár, amikor a feladatsor nyitva van előtted.',
   },
   results: {
+    examples: {
+      title: 'Gyakorold a pontozást mintamegoldásokon',
+      intro:
+        'Olvasd el a mintamegoldást, és pontozd az útmutató szempontjai szerint. Utána összevetheted a saját pontjaidat a megadott pontokkal. Így pontosabban tudod értékelni a saját esszédet is.',
+      draft: 'A mintamegoldásokat az alkalmazáshoz írtuk; a pontozásuk tervezet, amelyet tanárnak kell ellenőriznie.',
+      pick: 'Mintamegoldás',
+      read: 'A mintamegoldás szövege',
+      yourScore: 'A te pontod: {criterion}',
+      compare: 'Összevetés',
+      again: 'Újra pontozom',
+      given: 'Megadott pont',
+      yours: 'Te',
+      diff: 'Eltérés',
+      total: 'Összesen',
+      result:
+        'A te pontszámod {yours}, a megadott {given}. {close} szempontnál értettél egyet (legfeljebb 1 pont eltérés).',
+      tooHigh: 'Szigorúbb lehetsz: a pontjaid általában magasabbak a megadottnál.',
+      tooLow: 'Bátrabban adhatsz pontot: a pontjaid általában alacsonyabbak a megadottnál.',
+      good: 'Jól pontozol: közel jársz a megadott pontokhoz.',
+      comment: 'Megjegyzés',
+      words: '{count} szó',
+    },
     title: 'Eredmény',
     pageTitle: 'Eredmény – {exam}',
     backToExam: 'Vissza a feladatsorhoz',

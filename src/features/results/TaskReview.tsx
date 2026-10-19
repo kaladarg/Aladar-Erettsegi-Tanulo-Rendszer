@@ -12,6 +12,7 @@ import { HELP_REVEALED, helpKey, type Answers } from '@/storage/attempts';
 import { InkView } from '../workspace/ink/InkView';
 import { AiEssayFeedback } from './AiEssayFeedback';
 import { EssayHandoff } from './EssayHandoff';
+import { ExampleScoring } from './ExampleScoring';
 import { AnswerView } from './AnswerView';
 import { CriterionReview, StepReview } from './ReviewControls';
 
@@ -174,6 +175,8 @@ export function TaskReview({
             ))}
         </ul>
       )}
+
+      {task.examples && task.examples.length > 0 && <ExampleScoring task={task} />}
 
       {task.explanation && (lost || result.status === 'pending' || result.items.length > 0) && (
         <section className="grid gap-1">
