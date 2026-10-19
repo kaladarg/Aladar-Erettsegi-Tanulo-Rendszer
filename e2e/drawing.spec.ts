@@ -9,6 +9,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 async function drawLine(page: Page, target: ReturnType<Page['locator']>) {
+  // Mouse events only reach elements inside the viewport.
+  await target.scrollIntoViewIfNeeded();
   const box = (await target.boundingBox())!;
   await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.5);
   await page.mouse.down();
@@ -46,6 +48,9 @@ test('the form-mode drawing pad shows up in the results', async ({ page, isMobil
   const task = page.getByRole('article', { name: '6. a) feladat' });
   await task.getByRole('button', { name: 'Rajzlap megnyitása' }).click();
   const pad = task.getByRole('img', { name: 'Rajzlap: 6. a) feladat' });
+  // The pad measures its width before it accepts strokes.
+  await expect(pad).toBeVisible();
+  await expect.poll(async () => (await pad.boundingBox())?.width ?? 0).toBeGreaterThan(100);
   await drawLine(page, pad);
   await expect(pad.locator('path')).toHaveCount(1);
 
