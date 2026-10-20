@@ -46,11 +46,15 @@ export interface Exam {
   format: string;
   title: string;
   /**
+   * Language of the task texts when it is not Hungarian, as a BCP 47 tag (e.g. "en", "de"). Screen readers and word lookup use it.
+   */
+  language?: string;
+  /**
    * True for self-written practice papers that are not official érettségi papers.
    */
   sample?: boolean;
   /**
-   * Total points of the written paper.
+   * Total points of the written paper (exam points when parts have a scale).
    */
   maxPoints: number;
   /**
@@ -152,12 +156,57 @@ export interface Part {
    */
   timeLimitMinutes?: number;
   maxPoints: number;
+  scale?: Scale;
   instructions?: string;
+  audio?: AudioRef;
   choices?: Choice[];
   /**
    * @minItems 1
    */
   tasks: Task[];
+}
+/**
+ * Official conversion of a part's task points (feladatpont) to exam points (vizsgapont), e.g. in foreign languages.
+ *
+ * This interface was referenced by `Exam`'s JSON-Schema
+ * via the `definition` "Scale".
+ */
+export interface Scale {
+  /**
+   * Exam points of a full score.
+   */
+  maxPoints: number;
+  /**
+   * @minItems 1
+   */
+  table: {
+    raw: number;
+    points: number;
+  }[];
+}
+/**
+ * A recording played during a part (listening comprehension).
+ *
+ * This interface was referenced by `Exam`'s JSON-Schema
+ * via the `definition` "AudioRef".
+ */
+export interface AudioRef {
+  /**
+   * Path of the audio file relative to exam.json. Omitted when the pack does not ship it; students can then load their own copy.
+   */
+  file?: string;
+  officialUrl?: string;
+  sha256?: Sha256;
+  label?: string;
+  durationSeconds?: number;
+  /**
+   * Where each task starts in the recording, for practice.
+   */
+  segments?: {
+    label: string;
+    startSeconds: number;
+    taskIds?: Id[];
+  }[];
 }
 /**
  * The student solves only `pick` of the listed units (e.g. 2 of 3 in maths part II/B). A unit is a task id or a task `group` (all tasks of that group).
@@ -212,6 +261,10 @@ export interface Task {
    * Explanation based on the marking scheme.
    */
   explanation?: string;
+  /**
+   * What is said in the recording for this task (listening). Shown only after the answers are checked.
+   */
+  transcript?: string;
   /**
    * Page of the marking scheme PDF for this task.
    */
@@ -567,7 +620,7 @@ export interface Manifest {
 export interface Subject {
   id: Slug;
   name: string;
-  icon: 'sigma' | 'landmark' | 'book-open' | 'book';
+  icon: 'sigma' | 'landmark' | 'book-open' | 'book' | 'languages';
 }
 /**
  * This interface was referenced by `Manifest`'s JSON-Schema

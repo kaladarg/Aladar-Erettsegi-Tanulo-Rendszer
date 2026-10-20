@@ -1,4 +1,4 @@
-import type { Exam, Part, Task } from './schema.types';
+import type { Exam, Part, Scale, Task } from './schema.types';
 
 /**
  * Consistency checks that JSON Schema cannot express. Shared by the review
@@ -48,6 +48,20 @@ export function partPoints(part: Part): number {
   }, 0);
   return fixed + optional;
 }
+
+/**
+ * Exam points (vizsgapont) for a part's task points, by the official table.
+ * Scores between rows take the row below; scores under the lowest row are 0.
+ */
+export function scalePoints(scale: Scale, raw: number): number {
+  const row = [...scale.table]
+    .sort((a, b) => b.raw - a.raw)
+    .find((entry) => raw >= entry.raw - EPSILON);
+  return row ? row.points : 0;
+}
+
+/** What a part adds to the exam total: its exam points when it has a scale. */
+export const partExamMax = (part: Part) => part.scale?.maxPoints ?? part.maxPoints;
 
 export function checkExam(exam: Exam): ContentIssue[] {
   const issues: ContentIssue[] = [];
@@ -202,7 +216,24 @@ export function checkExam(exam: Exam): ContentIssue[] {
     if (!same(points, part.maxPoints)) {
       error(partPath, `Tasks add up to ${points}, but the part's maxPoints is ${part.maxPoints}.`);
     }
-    examTotal += part.maxPoints;
+    if (part.scale) {
+      const { table, maxPoints } = part.scale;
+      const top = table.find((row) => same(row.raw, part.maxPoints));
+      if (!top) error(`${partPath}.scale`, `No row for the full score ${part.maxPoints}.`);
+      else if (!same(top.points, maxPoints))
+        error(`${partPath}.scale`, `Full score gives ${top.points}, not ${maxPoints}.`);
+      const sorted = [...table].sort((a, b) => a.raw - b.raw);
+      if (sorted.some((row, i) => i > 0 && row.points < sorted[i - 1]!.points))
+        error(`${partPath}.scale`, 'More task points must never give fewer exam points.');
+      if (table.some((row) => row.raw > part.maxPoints))
+        error(`${partPath}.scale`, "A row is above the part's maxPoints.");
+      for (let raw = 1; raw <= part.maxPoints; raw++)
+        if (!table.some((row) => same(row.raw, raw)))
+          warn(`${partPath}.scale`, `No row for ${raw} task points.`);
+    }
+    if (part.audio && !part.tasks.some((task) => task.transcript))
+      warn(partPath, 'Listening part without transcripts.');
+    examTotal += partExamMax(part);
   }
 
   if (!same(examTotal, exam.maxPoints)) {

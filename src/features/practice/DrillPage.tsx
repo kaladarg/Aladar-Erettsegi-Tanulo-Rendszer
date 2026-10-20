@@ -21,6 +21,7 @@ import { SelectionLookup } from '@/features/workspace/help/SelectionLookup';
 import { createWorkspace, WorkspaceContext } from '@/features/workspace/WorkspaceContext';
 import { t } from '@/i18n';
 import { useAnswers } from '@/state/answerStore';
+import { ListeningPlayer } from '../workspace/audio/ListeningPlayer';
 import { loadReviews } from '@/storage/attempts';
 import { findSubject } from '@/content/catalog';
 import { db, type DrillSessionRow } from '@/storage/db';
@@ -201,11 +202,26 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
     );
   }
   if (!ready) return <Skeleton className="h-64" />;
+  const part = found.exam.parts.find((p) => p.tasks.includes(found.task));
 
   return (
     <WorkspaceContext.Provider value={workspace}>
       <HelpSheet />
       <SelectionLookup />
+      {part?.audio && (
+        <div className="-mx-4 sm:-mx-6">
+          <ListeningPlayer
+            exam={found.exam}
+            part={part}
+            examMode={false}
+            packUrl={
+              manifest && entry && part.audio.file
+                ? examFileUrl(manifest.baseUrl, entry, part.audio.file)
+                : null
+            }
+          />
+        </div>
+      )}
       <p className="text-sm text-muted">
         {entry ? examFullTitle(entry) : ref.examId} ·{' '}
         {t('workspace.taskHeading', { number: found.task.number })}

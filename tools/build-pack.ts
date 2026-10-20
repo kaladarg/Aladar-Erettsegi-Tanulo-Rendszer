@@ -39,6 +39,17 @@ export async function buildPack(dir: string, today = new Date().toISOString().sl
         )
       : false;
     if (pdf && !hasPdf) problems.push(`${id}: exam PDF ${pdf} is missing`);
+    for (const part of exam.parts) {
+      const audio = part.audio?.file;
+      if (
+        audio &&
+        !(await access(join(loaded.dir, audio)).then(
+          () => true,
+          () => false,
+        ))
+      )
+        problems.push(`${id}: recording ${audio} of part ${part.id} is missing`);
+    }
     exams.push({
       id: exam.id,
       subject: exam.subject,

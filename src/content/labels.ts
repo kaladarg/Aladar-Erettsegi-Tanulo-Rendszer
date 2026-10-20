@@ -22,9 +22,15 @@ export function examFullTitle(exam: Titled & Pick<ExamEntry, 'subject'>): string
 /** "45 perc · 30 pont · 12 feladat"; the time is left out when the exam shares one time limit. */
 export function partMeta(part: Part): string {
   const values = { points: part.maxPoints, count: part.tasks.length };
-  return part.timeLimitMinutes === undefined
-    ? t('exam.partMetaNoTime', values)
-    : t('exam.partMeta', { ...values, minutes: part.timeLimitMinutes });
+  const meta =
+    part.timeLimitMinutes === undefined
+      ? t('exam.partMetaNoTime', values)
+      : t('exam.partMeta', { ...values, minutes: part.timeLimitMinutes });
+  const extra = [
+    part.scale && t('exam.partScale', { points: part.scale.maxPoints }),
+    part.audio && t('exam.partAudio'),
+  ].filter(Boolean);
+  return [meta, ...extra].join(' · ');
 }
 
 export function partInfo(part: Part): string {

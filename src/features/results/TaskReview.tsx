@@ -1,4 +1,4 @@
-import { Check, CircleDashed, LifeBuoy, Mail, Minus, X } from 'lucide-react';
+import { Check, CircleDashed, FileAudio, LifeBuoy, Mail, Minus, X } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { RichText } from '@/content/RichText';
 import type { Criterion, Exam, Field } from '@/content/schema.types';
@@ -99,7 +99,7 @@ export function TaskReview({
         <summary className="cursor-pointer font-medium text-primary">
           {t('workspace.writeTask')}
         </summary>
-        <RichText text={task.text} className="mt-2" />
+        <RichText text={task.text} lang={exam?.language} className="mt-2" />
       </details>
 
       {task.fields.length > 0 && (
@@ -186,6 +186,19 @@ export function TaskReview({
             <p className="text-xs text-muted">{t('results.keyPage', { page: task.keyPage })}</p>
           )}
         </section>
+      )}
+
+      {task.transcript && (
+        <details className="rounded-md border border-border">
+          <summary className="flex min-h-11 cursor-pointer items-center gap-2 px-3 py-2 font-medium text-primary">
+            <FileAudio aria-hidden="true" className="size-4" />
+            {t('results.transcript')}
+          </summary>
+          <div className="grid gap-2 border-t border-border p-3">
+            <p className="text-xs text-muted">{t('results.transcriptNote')}</p>
+            <RichText text={task.transcript} lang={exam?.language} className="leading-relaxed" />
+          </div>
+        </details>
       )}
 
       <a

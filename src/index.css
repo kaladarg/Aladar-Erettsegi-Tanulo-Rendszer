@@ -30,6 +30,8 @@
   --color-subject-matematika: var(--c-subject-matematika);
   --color-subject-tortenelem: var(--c-subject-tortenelem);
   --color-subject-magyar: var(--c-subject-magyar);
+  --color-subject-angol: var(--c-subject-angol);
+  --color-subject-nemet: var(--c-subject-nemet);
 
   --font-sans: var(--font-body);
   --font-mono: var(--font-mono);

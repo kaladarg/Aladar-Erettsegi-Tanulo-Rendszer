@@ -21,7 +21,7 @@ export function EssayEditor({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  const { sources } = useWorkspace();
+  const { sources, exam } = useWorkspace();
   const editor = useRef<HTMLTextAreaElement>(null);
   const value = useAnswer(field.id);
   const text = typeof value === 'string' ? value : '';
@@ -61,13 +61,15 @@ export function EssayEditor({
               <h2 className="mb-2 text-sm font-semibold tracking-wide text-muted uppercase">
                 {t('workspace.writeTask')}
               </h2>
-              <RichText text={task.text} />
+              <RichText text={task.text} lang={exam.language} />
               {taskSources.map((source) => (
                 <section key={source.id} className="mt-6">
                   <h2 className="mb-2 text-sm font-semibold tracking-wide text-muted uppercase">
                     {source.title ?? t('workspace.source')}
                   </h2>
-                  {source.text && <RichText text={source.text} className="leading-relaxed" />}
+                  {source.text && (
+                    <RichText text={source.text} lang={exam.language} className="leading-relaxed" />
+                  )}
                 </section>
               ))}
             </aside>
@@ -79,7 +81,7 @@ export function EssayEditor({
                 id={`editor-${field.id}`}
                 ref={editor}
                 spellCheck
-                lang="hu"
+                lang={exam.language ?? 'hu'}
                 value={text}
                 placeholder={t('workspace.writePlaceholder')}
                 onChange={(event) => setAnswer(field.id, event.target.value)}

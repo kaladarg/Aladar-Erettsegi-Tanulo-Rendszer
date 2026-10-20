@@ -1,11 +1,11 @@
 import { Maximize2 } from 'lucide-react';
-import { useId, useState } from 'react';
+import { useId, useState, type ReactNode } from 'react';
 import type { Field, Task } from '@/content/schema.types';
 import { Button } from '@/design/ui/Button';
 import { t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useAnswer, useAnswers } from '@/state/answerStore';
-import { isTrueFalse, optionText } from '../WorkspaceContext';
+import { isTrueFalse, optionText, useWorkspace } from '../WorkspaceContext';
 import { EssayEditor } from './EssayEditor';
 import { WordCount } from './WordCount';
 
@@ -19,7 +19,13 @@ export function FormField({ task, field }: { task: Task; field: Field }) {
   const setAnswer = useAnswers((state) => state.setAnswer);
   const text = typeof value === 'string' ? value : '';
   const selected = Array.isArray(value) ? value : [];
-  const label = field.label ?? t('workspace.answer');
+  const lang = useWorkspace().exam.language;
+  // Labels and options of a foreign-language paper are in that language.
+  const labelText = field.label ?? t('workspace.answer');
+  const label = field.label ? <span lang={lang}>{field.label}</span> : labelText;
+  const optionLabel = (option: { value: string; label: string }) => (
+    <span lang={lang}>{optionText(option)}</span>
+  );
 
   switch (field.kind) {
     case 'choice': {
@@ -36,7 +42,7 @@ export function FormField({ task, field }: { task: Task; field: Field }) {
             >
               <option value="">{t('workspace.selectPlaceholder')}</option>
               {options.map((option) => (
-                <option key={option.value} value={option.value}>
+                <option key={option.value} value={option.value} lang={lang}>
                   {optionText(option)}
                 </option>
               ))}
@@ -67,7 +73,7 @@ export function FormField({ task, field }: { task: Task; field: Field }) {
                   onChange={() => setAnswer(field.id, option.value)}
                   className="size-4 accent-[var(--c-primary)]"
                 />
-                {optionText(option)}
+                {optionLabel(option)}
               </label>
             ))}
           </div>
@@ -104,7 +110,7 @@ export function FormField({ task, field }: { task: Task; field: Field }) {
                     }
                     className="size-4 accent-[var(--c-primary)]"
                   />
-                  {optionText(option)}
+                  {optionLabel(option)}
                 </label>
               );
             })}
@@ -140,7 +146,7 @@ export function FormField({ task, field }: { task: Task; field: Field }) {
               spellCheck={field.kind !== 'number'}
               value={text}
               placeholder={
-                field.placeholder !== label.replace(/:$/, '') ? field.placeholder : undefined
+                field.placeholder !== labelText.replace(/:$/, '') ? field.placeholder : undefined
               }
               aria-describedby={field.unit ? `${id}-unit` : undefined}
               onChange={(e) => setAnswer(field.id, e.target.value)}
@@ -168,10 +174,11 @@ function EssayFormField({
   task: Task;
   field: Field;
   id: string;
-  label: string;
+  label: ReactNode;
   text: string;
 }) {
   const [open, setOpen] = useState(false);
+  const lang = useWorkspace().exam.language ?? 'hu';
   const setAnswer = useAnswers((state) => state.setAnswer);
   return (
     <div className="grid gap-2">
@@ -185,7 +192,7 @@ function EssayFormField({
       <textarea
         id={id}
         rows={12}
-        lang="hu"
+        lang={lang}
         value={text}
         aria-describedby={`${id}-count`}
         onChange={(e) => setAnswer(field.id, e.target.value)}

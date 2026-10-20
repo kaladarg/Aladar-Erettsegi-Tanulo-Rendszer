@@ -33,6 +33,7 @@ import { SaveStatus } from './SaveStatus';
 import { SubmitButton } from './SubmitButton';
 import { useAttempt } from './useAttempt';
 import { createWorkspace, WorkspaceContext } from './WorkspaceContext';
+import { ListeningPlayer } from './audio/ListeningPlayer';
 
 type Mode = 'pdf' | 'form';
 const MODE_PARAM = 'nezet';
@@ -182,6 +183,21 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
         ) : (
           workspace && (
             <WorkspaceContext.Provider value={workspace}>
+              {workspace.exam.parts
+                .filter((part) => part.audio && (!activePartIds || activePartIds.has(part.id)))
+                .map((part) => (
+                  <ListeningPlayer
+                    key={part.id}
+                    exam={workspace.exam}
+                    part={part}
+                    examMode={attemptMode === 'exam'}
+                    packUrl={
+                      entry && manifest && part.audio?.file
+                        ? examFileUrl(manifest.baseUrl, entry, part.audio.file)
+                        : null
+                    }
+                  />
+                ))}
               {workspace.helpEnabled && (
                 <>
                   <HelpSheet />

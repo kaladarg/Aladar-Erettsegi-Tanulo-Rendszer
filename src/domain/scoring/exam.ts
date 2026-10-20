@@ -1,4 +1,4 @@
-import { unitTasks } from '@/content/checks';
+import { partExamMax, scalePoints, unitTasks } from '@/content/checks';
 import type { Criterion, Exam, Field, GradeBand, Part, Task } from '@/content/schema.types';
 import { choiceKey, type Answers } from '@/storage/attempts';
 import { runAutoCheck } from './autoCheck';
@@ -47,8 +47,12 @@ export interface TaskResult {
 
 export interface PartResult {
   part: Part;
+  /** Task points (feladatpont). */
   maxPoints: number;
   points: number;
+  /** What the part adds to the exam total: exam points (vizsgapont) when it has a scale. */
+  examMaxPoints: number;
+  examPoints: number;
   pendingPoints: number;
   tasks: TaskResult[];
   /** Choice groups where the student marked fewer units than required. */
@@ -240,10 +244,13 @@ export function scoreExam(exam: Exam, answers: Answers, reviews: Reviews = {}): 
       scoreTask(task, answers, reviews[task.id], ids.has(task.id)),
     );
     const counted = tasks.filter((t) => t.counted);
+    const points = counted.reduce((sum, t) => sum + t.points, 0);
     return {
       part,
       maxPoints: counted.reduce((sum, t) => sum + t.maxPoints, 0),
-      points: counted.reduce((sum, t) => sum + t.points, 0),
+      points,
+      examMaxPoints: partExamMax(part),
+      examPoints: part.scale ? scalePoints(part.scale, points) : points,
       pendingPoints: counted.reduce((sum, t) => sum + t.pendingPoints, 0),
       tasks,
       missingChoices: missing,
@@ -270,7 +277,7 @@ export function scoreExam(exam: Exam, answers: Answers, reviews: Reviews = {}): 
   const sum = (pick: (t: TaskResult) => number) =>
     parts.flatMap((p) => p.tasks.filter((t) => t.counted)).reduce((s, t) => s + pick(t), 0);
   const deducted = deductions.reduce((s, d) => s + (d.points ?? 0), 0);
-  const raw = sum((t) => t.points);
+  const raw = parts.reduce((s, p) => s + p.examPoints, 0);
   const points = Math.max(0, raw - deducted);
   const pendingPoints = sum((t) => t.pendingPoints);
   const maxPoints = exam.maxPoints;

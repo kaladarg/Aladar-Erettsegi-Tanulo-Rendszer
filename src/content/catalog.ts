@@ -7,7 +7,7 @@ export interface SubjectInfo {
   id: string;
   name: string;
   /** Lucide icon key, resolved in SubjectIcon. */
-  icon: 'sigma' | 'landmark' | 'book-open' | 'book';
+  icon: 'sigma' | 'landmark' | 'book-open' | 'book' | 'languages';
 }
 
 export interface LevelInfo {
@@ -19,6 +19,8 @@ export const DEFAULT_SUBJECTS: SubjectInfo[] = [
   { id: 'matematika', name: 'Matematika', icon: 'sigma' },
   { id: 'tortenelem', name: 'Történelem', icon: 'landmark' },
   { id: 'magyar', name: 'Magyar nyelv és irodalom', icon: 'book-open' },
+  { id: 'angol', name: 'Angol nyelv', icon: 'languages' },
+  { id: 'nemet', name: 'Német nyelv', icon: 'languages' },
 ];
 
 export const DEFAULT_LEVELS: LevelInfo[] = [{ id: 'kozep', name: 'Középszint' }];
@@ -36,6 +38,10 @@ export function subjectAccent(id: string): string {
       return 'text-subject-tortenelem';
     case 'magyar':
       return 'text-subject-magyar';
+    case 'angol':
+      return 'text-subject-angol';
+    case 'nemet':
+      return 'text-subject-nemet';
     default:
       return 'text-primary';
   }

@@ -50,12 +50,17 @@
       "type": "string",
       "minLength": 1
     },
+    "language": {
+      "description": "Language of the task texts when it is not Hungarian, as a BCP 47 tag (e.g. \"en\", \"de\"). Screen readers and word lookup use it.",
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+    },
     "sample": {
       "description": "True for self-written practice papers that are not official érettségi papers.",
       "type": "boolean"
     },
     "maxPoints": {
-      "description": "Total points of the written paper.",
+      "description": "Total points of the written paper (exam points when parts have a scale).",
       "type": "integer",
       "minimum": 1
     },
@@ -304,8 +309,14 @@
           "type": "integer",
           "minimum": 1
         },
+        "scale": {
+          "$ref": "#/definitions/Scale"
+        },
         "instructions": {
           "type": "string"
+        },
+        "audio": {
+          "$ref": "#/definitions/AudioRef"
         },
         "choices": {
           "type": "array",
@@ -768,6 +779,10 @@
           "description": "Explanation based on the marking scheme.",
           "type": "string"
         },
+        "transcript": {
+          "description": "What is said in the recording for this task (listening). Shown only after the answers are checked.",
+          "type": "string"
+        },
         "keyPage": {
           "description": "Page of the marking scheme PDF for this task.",
           "type": "integer",
@@ -934,6 +949,88 @@
           "description": "Overall comment on the sample.",
           "type": "string",
           "minLength": 1
+        }
+      }
+    },
+    "AudioRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A recording played during a part (listening comprehension).",
+      "properties": {
+        "file": {
+          "description": "Path of the audio file relative to exam.json. Omitted when the pack does not ship it; students can then load their own copy.",
+          "type": "string"
+        },
+        "officialUrl": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "sha256": {
+          "$ref": "#/definitions/Sha256"
+        },
+        "label": {
+          "type": "string"
+        },
+        "durationSeconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "segments": {
+          "description": "Where each task starts in the recording, for practice.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "startSeconds"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "startSeconds": {
+                "type": "number",
+                "minimum": 0
+              },
+              "taskIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Id"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Scale": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxPoints", "table"],
+      "description": "Official conversion of a part's task points (feladatpont) to exam points (vizsgapont), e.g. in foreign languages.",
+      "properties": {
+        "maxPoints": {
+          "description": "Exam points of a full score.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "table": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["raw", "points"],
+            "properties": {
+              "raw": {
+                "type": "number",
+                "minimum": 0
+              },
+              "points": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
         }
       }
     }

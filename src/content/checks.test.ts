@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { checkExam, hasErrors, partPoints } from './checks';
+import { checkExam, hasErrors, partPoints, scalePoints } from './checks';
 import type { Exam } from './schema.types';
 import { validateExam } from './schema.validators.js';
 
@@ -103,6 +103,44 @@ describe('checkExam', () => {
     exam.maxPoints = 99;
     expect(hasErrors(checkExam(exam))).toBe(true);
     expect(messages(exam)).toContain('Marked as reviewed but has errors.');
+  });
+});
+
+describe('scale tables', () => {
+  it('checks the full score row, the order and the exam total', () => {
+    const exam = load(IDS[1]!);
+    const part = exam.parts[0]!;
+    const max = part.maxPoints;
+    part.scale = {
+      maxPoints: 20,
+      table: [
+        { raw: max, points: 18 },
+        { raw: 2, points: 5 },
+        { raw: 1, points: 6 },
+      ],
+    };
+    const found = messages(exam);
+    expect(found).toEqual(
+      expect.arrayContaining([
+        'Full score gives 18, not 20.',
+        'More task points must never give fewer exam points.',
+        `Parts add up to ${exam.maxPoints - max + 20}, but the exam's maxPoints is ${exam.maxPoints}.`,
+      ]),
+    );
+    expect(checkExam(exam).some((i) => i.message === 'No row for 3 task points.')).toBe(true);
+  });
+
+  it('converts with the row below for scores between rows', () => {
+    const scale = {
+      maxPoints: 10,
+      table: [
+        { raw: 10, points: 10 },
+        { raw: 5, points: 4 },
+      ],
+    };
+    expect(scalePoints(scale, 10)).toBe(10);
+    expect(scalePoints(scale, 7)).toBe(4);
+    expect(scalePoints(scale, 4)).toBe(0);
   });
 });
 

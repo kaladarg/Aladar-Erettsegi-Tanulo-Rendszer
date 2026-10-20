@@ -61,7 +61,7 @@ function FormPart({ part }: { part: Part }) {
 }
 
 export function SourceCard({ source }: { source: SourceMaterial }) {
-  const { pdf } = useWorkspace();
+  const { pdf, exam } = useWorkspace();
   // Figures are shown as crops of the paper; their text is the accessible description.
   const figure = pdf && source.kind !== 'text' && source.pdfRects?.length ? source.pdfRects : null;
   return (
@@ -72,7 +72,11 @@ export function SourceCard({ source }: { source: SourceMaterial }) {
       <p className="mb-2 text-sm font-semibold tracking-wide text-muted uppercase">
         {t('workspace.source')}
       </p>
-      {source.title && <h3 className="mb-2 font-semibold">{source.title}</h3>}
+      {source.title && (
+        <h3 lang={exam.language} className="mb-2 font-semibold">
+          {source.title}
+        </h3>
+      )}
       {figure ? (
         <div className="grid gap-3">
           {figure.map((rect, index) => (
@@ -85,7 +89,9 @@ export function SourceCard({ source }: { source: SourceMaterial }) {
           ))}
         </div>
       ) : (
-        source.text && <RichText text={source.text} className="leading-relaxed" />
+        source.text && (
+          <RichText text={source.text} lang={exam.language} className="leading-relaxed" />
+        )
       )}
       {source.credit && <p className="mt-3 text-xs text-muted">{source.credit}</p>}
     </aside>
@@ -93,7 +99,7 @@ export function SourceCard({ source }: { source: SourceMaterial }) {
 }
 
 export function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
-  const { helpEnabled } = useWorkspace();
+  const { helpEnabled, exam } = useWorkspace();
   const showHelp = useHelp((state) => state.show);
   return (
     <article
@@ -125,7 +131,7 @@ export function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
         </span>
       </header>
       {dimmed && <p className="mb-3 text-sm font-medium">{t('workspace.notChosen')}</p>}
-      <RichText text={task.text} />
+      <RichText text={task.text} lang={exam.language} />
       {task.fields.length > 0 && (
         <div className="mt-5 grid gap-4 border-t border-border pt-5">
           {task.fields.map((field) => (

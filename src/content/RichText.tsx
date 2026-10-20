@@ -53,9 +53,18 @@ function renderInline(text: string): ReactNode[] {
   });
 }
 
-export function RichText({ text, className }: { text: string; className?: string }) {
+export function RichText({
+  text,
+  className,
+  lang,
+}: {
+  text: string;
+  className?: string;
+  /** Language of the text when it is not Hungarian (e.g. an English paper). */
+  lang?: string;
+}) {
   return (
-    <div className={cn('grid gap-3', className)}>
+    <div lang={lang} className={cn('grid gap-3', className)}>
       {parseBlocks(text).map((block, index) =>
         block.kind === 'list' ? (
           <ul key={index} className="list-disc space-y-1 pl-6">

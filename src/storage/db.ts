@@ -155,6 +155,16 @@ export interface CardEventRow {
   known: boolean;
 }
 
+/** A listening recording the student opened from their own device. */
+export interface ImportedAudioRow {
+  /** `<examId>/<partId>` */
+  key: string;
+  name: string;
+  size: number;
+  importedAt: number;
+  blob: Blob;
+}
+
 /** Values that never leave the device, not even in exports (e.g. the AI key). */
 export interface SecretRow {
   key: string;
@@ -174,6 +184,7 @@ export class AppDatabase extends Dexie {
   oralTopics!: EntityTable<OralTopicRow, 'id'>;
   recordings!: EntityTable<RecordingRow, 'id'>;
   cardEvents!: EntityTable<CardEventRow, 'id'>;
+  importedAudio!: EntityTable<ImportedAudioRow, 'key'>;
 
   constructor(name = 'erettsegi-gyakorlo') {
     super(name);
@@ -212,6 +223,8 @@ export class AppDatabase extends Dexie {
     });
     // Version 4: study cards.
     this.version(4).stores({ cardEvents: '++id, cardId, time' });
+    // Version 5: listening recordings opened by the student (foreign-language papers).
+    this.version(5).stores({ importedAudio: 'key' });
   }
 }
 
@@ -239,4 +252,4 @@ export const BACKUP_TABLES = [
 ] as const;
 export type BackupTable = (typeof BACKUP_TABLES)[number];
 
-export const ALL_TABLES = [...BACKUP_TABLES, 'importedPdfs', 'secrets'] as const;
+export const ALL_TABLES = [...BACKUP_TABLES, 'importedPdfs', 'importedAudio', 'secrets'] as const;

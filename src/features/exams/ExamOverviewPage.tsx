@@ -231,6 +231,7 @@ function Overview({
           entry={entry}
           baseUrl={manifest.baseUrl}
           pdfFile={entry.hasPdf ? exam.source.examPdf.file : undefined}
+          audioFiles={exam.parts.flatMap((part) => (part.audio?.file ? [part.audio.file] : []))}
         />
       </div>
 
@@ -366,14 +367,17 @@ function OfflineCard({
   entry,
   baseUrl,
   pdfFile,
+  audioFiles = [],
 }: {
   entry: ExamEntry;
   baseUrl: string;
   pdfFile?: string;
+  audioFiles?: string[];
 }) {
   const urls = [
     examUrl(baseUrl, entry),
     ...(pdfFile ? [examFileUrl(baseUrl, entry, pdfFile)] : []),
+    ...audioFiles.map((file) => examFileUrl(baseUrl, entry, file)),
   ];
   const key = urls.join('|');
   const [saved, setSaved] = useState<boolean | null>(null);

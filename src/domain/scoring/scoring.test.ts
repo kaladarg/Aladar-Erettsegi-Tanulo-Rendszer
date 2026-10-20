@@ -493,3 +493,53 @@ describe('scoreExam', () => {
     expect(gradeFor(24).grade).toBe(1);
   });
 });
+
+describe('scaled parts (foreign languages)', () => {
+  const scaled = {
+    ...exam,
+    subject: 'angol',
+    maxPoints: 13,
+    deductions: undefined,
+    parts: [
+      {
+        id: 'I',
+        title: 'Olvasott szöveg értése',
+        maxPoints: 4,
+        timeLimitMinutes: 60,
+        scale: {
+          maxPoints: 5,
+          table: [
+            { raw: 4, points: 5 },
+            { raw: 3, points: 4 },
+            { raw: 2, points: 2 },
+            { raw: 1, points: 1 },
+          ],
+        },
+        tasks: [task('1'), task('2')],
+      },
+      { id: 'IV', title: 'Íráskészség', maxPoints: 8, timeLimitMinutes: 60, tasks: [essay('3')] },
+    ],
+  } as unknown as Exam;
+  scaled.parts[1]!.maxPoints = 10;
+  scaled.maxPoints = 15;
+
+  it('converts task points to exam points with the table', () => {
+    const result = scoreExam(scaled, { '1-f1': '1' }, { '3': { c1: 4, c2: 3 } });
+    const reading = result.parts[0]!;
+    expect(reading.points).toBe(2);
+    expect(reading.examPoints).toBe(2);
+    expect(reading.examMaxPoints).toBe(5);
+    expect(result.points).toBe(2 + 7);
+    expect(result.maxPoints).toBe(15);
+    const full = scoreExam(scaled, { '1-f1': '1', '2-f1': '1' }, { '3': { c1: 6, c2: 4 } });
+    expect(full.parts[0]!.examPoints).toBe(5);
+    expect(full.points).toBe(15);
+    expect(full.percent).toBe(100);
+  });
+
+  it('gives 0 below the lowest row and keeps writing points as they are', () => {
+    const result = scoreExam(scaled, {}, {});
+    expect(result.parts[0]!.examPoints).toBe(0);
+    expect(result.parts[1]!.examPoints).toBe(0);
+  });
+});

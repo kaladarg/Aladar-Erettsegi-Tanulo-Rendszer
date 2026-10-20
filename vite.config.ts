@@ -192,8 +192,9 @@ export default defineConfig(({ mode }) => {
               options: { cacheName: 'eg-content-manifest' },
             },
             {
-              // exam.json URLs carry a content hash and PDFs never change: cache first.
-              urlPattern: ({ url }) => /\/exam\.json$|\.pdf$/.test(url.pathname),
+              // exam.json URLs carry a content hash; PDFs and recordings never change: cache first.
+              // Recordings are fetched whole (no range requests), so they cache like PDFs.
+              urlPattern: ({ url }) => /\/exam\.json$|\.(pdf|mp3|m4a|ogg)$/.test(url.pathname),
               handler: 'CacheFirst',
               options: {
                 cacheName: 'eg-content',

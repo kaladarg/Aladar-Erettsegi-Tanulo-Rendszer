@@ -230,7 +230,14 @@ function Results({
               >
                 {part.part.title}
                 <span className="text-base font-medium text-muted tabular-nums">
-                  {t('results.score', { points: part.points, max: part.maxPoints })}
+                  {part.part.scale
+                    ? t('results.partScaled', {
+                        points: part.points,
+                        max: part.maxPoints,
+                        examPoints: part.examPoints,
+                        examMax: part.examMaxPoints,
+                      })
+                    : t('results.score', { points: part.points, max: part.maxPoints })}
                 </span>
               </h3>
               {tasks.length === 0 ? (
@@ -327,6 +334,9 @@ function ScoreSummary({ result }: { result: ExamResult }) {
           />
         )}
       </dl>
+      {result.parts.some((part) => part.part.scale) && (
+        <p className="text-sm text-muted">{t('results.scaledNote')}</p>
+      )}
     </Card>
   );
 }
