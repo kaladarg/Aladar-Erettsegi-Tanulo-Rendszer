@@ -45,8 +45,25 @@ test('the exam aids page lists the permitted aids per subject', async ({ page })
   ).toBeVisible();
   await expect(page.getByText('Bármilyen négyjegyű függvénytáblázat (nyomtatott)')).toBeVisible();
   await page.getByRole('radio', { name: 'Történelem' }).click();
-  await expect(page.getByText('Középiskolai történelmi atlasz')).toBeVisible();
+  await expect(page.getByText('Középiskolai történelmi atlasz', { exact: true })).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Érettségi az Oktatási Hivatal oldalán/ }),
   ).toHaveAttribute('href', 'https://www.oktatas.hu/kozneveles/erettsegi/');
+});
+
+test('literature cards: switch subject, filter and study', async ({ page }) => {
+  await page.goto('/gyakorlas/kartyak');
+  await page.getByRole('radio', { name: 'Irodalom' }).click();
+  await expect(page).toHaveURL(/targy=magyar/);
+  await expect(page.getByRole('region', { name: 'Szerzők' })).toBeVisible();
+  await expect(page.getByRole('radio', { name: 'Világirodalom' })).toBeVisible();
+  await page.getByRole('combobox', { name: 'Korszak' }).selectOption({ label: 'Romantika' });
+  await page.getByRole('link', { name: 'Művek: tanulás' }).click();
+  await expect(page.getByRole('heading', { level: 1, name: 'Kártyák: Irodalom' })).toBeVisible();
+  await expect(page.getByRole('article')).toContainText('Művek · Romantika');
+  await page.getByRole('button', { name: 'Megfordítom' }).click();
+  await page.getByRole('button', { name: 'Tudtam', exact: true }).click();
+  await page.getByRole('link', { name: 'Vissza a kártyákhoz' }).click();
+  await expect(page).toHaveURL(/targy=magyar/);
+  await expect(page.getByRole('region', { name: 'Művek' })).toContainText('1 tanulás alatt');
 });
