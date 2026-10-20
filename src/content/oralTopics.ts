@@ -103,7 +103,32 @@ export const BUILTIN_ORAL_TOPICS: BuiltinOralTopic[] = [
   ),
   topic('tortenelem', 'Magyar történelem', 'rakosi-kadar', 'A Rákosi- és a Kádár-korszak, 1956'),
   topic('tortenelem', 'Magyar történelem', 'rendszervaltas', 'A rendszerváltoztatás és a jelenkor'),
+  // Angol nyelv: témakörök (a szóbeli három része: bemutatkozás és beszélgetés, szituáció, önálló témakifejtés)
+  topic('angol', 'Témakörök', 'szemelyes', 'Személyes vonatkozások, család'),
+  topic('angol', 'Témakörök', 'tarsadalom', 'Ember és társadalom'),
+  topic('angol', 'Témakörök', 'kornyezet', 'Környezetünk'),
+  topic('angol', 'Témakörök', 'iskola', 'Az iskola'),
+  topic('angol', 'Témakörök', 'munka', 'A munka világa'),
+  topic('angol', 'Témakörök', 'eletmod', 'Életmód'),
+  topic('angol', 'Témakörök', 'szabadido', 'Szabadidő, művelődés, szórakozás'),
+  topic('angol', 'Témakörök', 'utazas', 'Utazás, turizmus'),
+  topic('angol', 'Témakörök', 'tudomany', 'Tudomány és technika'),
+  topic('angol', 'Témakörök', 'gazdasag', 'Gazdaság és pénzügyek'),
+  // Német nyelv: témakörök (a szóbeli három része: bemutatkozás és beszélgetés, szituáció, önálló témakifejtés)
+  topic('nemet', 'Témakörök', 'szemelyes', 'Személyes vonatkozások, család'),
+  topic('nemet', 'Témakörök', 'tarsadalom', 'Ember és társadalom'),
+  topic('nemet', 'Témakörök', 'kornyezet', 'Környezetünk'),
+  topic('nemet', 'Témakörök', 'iskola', 'Az iskola'),
+  topic('nemet', 'Témakörök', 'munka', 'A munka világa'),
+  topic('nemet', 'Témakörök', 'eletmod', 'Életmód'),
+  topic('nemet', 'Témakörök', 'szabadido', 'Szabadidő, művelődés, szórakozás'),
+  topic('nemet', 'Témakörök', 'utazas', 'Utazás, turizmus'),
+  topic('nemet', 'Témakörök', 'tudomany', 'Tudomány és technika'),
+  topic('nemet', 'Témakörök', 'gazdasag', 'Gazdaság és pénzügyek'),
 ];
 
 /** Subjects that have built-in oral topics. */
-export const ORAL_TOPIC_SUBJECTS = ['magyar', 'tortenelem'];
+export const ORAL_TOPIC_SUBJECTS = ['magyar', 'tortenelem', 'angol', 'nemet'];
+
+/** Foreign languages: no preparation time, a different outline. */
+export const LANGUAGE_SUBJECTS = ['angol', 'nemet'];

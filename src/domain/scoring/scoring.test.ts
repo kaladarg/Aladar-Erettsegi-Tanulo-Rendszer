@@ -254,6 +254,27 @@ describe('evaluateRule', () => {
   });
 });
 
+describe('tick n of m', () => {
+  const field: Field = {
+    id: 'm',
+    kind: 'multi',
+    options: ['a', 'b', 'c', 'd', 'e'].map((v) => ({ value: v, label: v })),
+  };
+  const rule: Rule = {
+    id: 'r',
+    points: 2,
+    fieldIds: ['m'],
+    answer: { kind: 'choice', correct: ['a', 'b'] },
+    partial: { perItem: 1, maxMarks: 2 },
+  };
+  it('takes a point off only for marks beyond the limit, and gives 0 for all marked', () => {
+    expect(run(rule, { m: ['a', 'c'] }, fieldMap(field)).points).toBe(1);
+    expect(run(rule, { m: ['a', 'b', 'c'] }, fieldMap(field)).points).toBe(1);
+    expect(run(rule, { m: ['a', 'b'] }, fieldMap(field)).points).toBe(2);
+    expect(run(rule, { m: ['a', 'b', 'c', 'd', 'e'] }, fieldMap(field)).points).toBe(0);
+  });
+});
+
 describe('partial credit', () => {
   const counts = { correct: 2, wrong: 0, errors: 1, total: 3 };
   it('threshold table', () => {
@@ -265,6 +286,14 @@ describe('partial credit', () => {
         { ...counts, correct: 3, errors: 0 },
       ),
     ).toBe(2);
+  });
+  it('mark limit: only marks beyond the limit cost a point', () => {
+    const six = { perItem: 1, maxMarks: 6 };
+    const c = (correct: number, wrong: number) => ({ correct, wrong, errors: wrong, total: 6 });
+    expect(partialPoints(6, six, c(4, 2))).toBe(4);
+    expect(partialPoints(6, six, c(6, 1))).toBe(5);
+    expect(partialPoints(6, six, c(6, 6))).toBe(0);
+    expect(partialPoints(6, six, c(3, 0))).toBe(3);
   });
   it('never below zero or above the rule', () => {
     expect(

@@ -581,6 +581,11 @@
               }
             }
           }
+        },
+        "maxMarks": {
+          "description": "Multi-select with a mark limit (\"tick six\"): each mark beyond this many costs one item's credit, whether it is right or wrong; marking every option scores 0. Use with perItem instead of penalizeWrong.",
+          "type": "integer",
+          "minimum": 1
         }
       }
     },

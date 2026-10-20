@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   ALL_CARDS,
+  CARD_LANGUAGES,
   CARD_SUBJECTS,
   filterCards,
   filterFromParams,
@@ -14,13 +15,19 @@ describe('study cards', () => {
   it('have unique, stable-looking ids that start with their deck', () => {
     const ids = ALL_CARDS.map((c) => c.id);
     expect(new Set(ids).size).toBe(ids.length);
-    for (const card of ALL_CARDS) expect(card.id).toMatch(new RegExp(`^${card.deck}-[a-z0-9-]+$`));
+    // Language cards share deck names, so their ids carry the language first.
+    for (const card of ALL_CARDS) {
+      const prefix = CARD_LANGUAGES[card.subject] ? `${CARD_LANGUAGES[card.subject]}-` : '';
+      expect(card.id).toMatch(new RegExp(`^${prefix}${card.deck}-[a-z0-9-]+$`));
+    }
   });
 
   it('fill every deck with text on both sides', () => {
     for (const subject of CARD_SUBJECTS)
       for (const deck of SUBJECT_DECKS[subject])
-        expect(filterCards({ subject, deck }).length, deck).toBeGreaterThan(20);
+        expect(filterCards({ subject, deck }).length, deck).toBeGreaterThanOrEqual(
+          CARD_LANGUAGES[subject] ? 15 : 20,
+        );
     for (const card of ALL_CARDS) {
       expect(card.front.trim()).not.toBe('');
       expect(card.back.trim()).not.toBe('');

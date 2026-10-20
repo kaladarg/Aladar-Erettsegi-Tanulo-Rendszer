@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { Exam, Field, SourceMaterial, Task } from '@/content/schema.types';
+import type { Exam, Field, Part, SourceMaterial, Task } from '@/content/schema.types';
 import type { PdfSource } from './pdf/pdfjs';
 import { t } from '@/i18n';
 
@@ -12,6 +12,8 @@ export interface WorkspaceValue {
   activePartIds: Set<string> | null;
   /** Help (hints, lookup, AI) is offered in practice, never in exam mode. */
   helpEnabled: boolean;
+  /** URL of a listening part's recording in the content pack, when it ships one. */
+  audioUrl: (part: Part) => string | null;
 }
 
 export const WorkspaceContext = createContext<WorkspaceValue | null>(null);
@@ -27,12 +29,14 @@ export function createWorkspace(
   pdf: PdfSource | null = null,
   activePartIds: Set<string> | null = null,
   helpEnabled = false,
+  audioUrl: (part: Part) => string | null = () => null,
 ): WorkspaceValue {
   return {
     exam,
     pdf,
     activePartIds,
     helpEnabled,
+    audioUrl,
     sources: new Map((exam.sources ?? []).map((source) => [source.id, source])),
   };
 }

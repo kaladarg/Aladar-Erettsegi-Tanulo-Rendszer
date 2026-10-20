@@ -2,7 +2,7 @@
 
 A free, open-source, ad-free web app for practicing the Hungarian _érettségi_ (school-leaving exam) on real past papers. It runs entirely in the browser: no signup, no backend, no tracking. Works offline once loaded and can be installed as an app (PWA).
 
-**Version 1 scope:** középszint (intermediate level) in Mathematics, History, and Hungarian Language & Literature. Subjects and levels are data, so more can be added without code changes.
+**Version 1 scope:** középszint (intermediate level) in Mathematics, History, Hungarian Language & Literature, English and German. Subjects and levels are data, so more can be added without code changes.
 
 Made by **Králik Aladár**. Mistakes, questions and suggestions: [kralik.aladar.gergely@gmail.com](mailto:kralik.aladar.gergely@gmail.com).
 
@@ -25,6 +25,7 @@ Nyisd meg az oldalt: **https://kaladarg.github.io/Aladar-Erettsegi-Tanulo-Rendsz
 - A Gyakorlás menüben témakörönként gyakorolhatsz az összes feladatsorból; a hibás feladatok a Hibáim közé kerülnek, és 1, 3, majd 7 nap múlva visszatérnek. Megadhatod a vizsgáid dátumát: a Tervem oldal visszaszámol, és heti teendőket ad. A szóbelire tételvázlattal, időmérővel és hangfelvétellel készülhetsz.
 - A feladatlapra tollal, kiemelővel rajzolhatsz, az űrlapnézetben pedig minden feladat alatt van rajzlap.
 - Vegyes körben több témakör feladatai jönnek összekeverve. Történelemből évszám-, fogalom-, személy- és térképes helyszínkártyákkal, irodalomból szerző-, mű-, korszak- és fogalomkártyákkal gyakorolhatsz. Egy oldalon megnézheted, milyen segédeszközt használhatsz az írásbelin. Az alkalmazás emlékeztet, hogy mentsd el a haladásodat. A tervedet naptárfájlként a telefonod naptárába teheted. Esszéknél mintamegoldásokon gyakorolhatod a pontozást.
+- Angolból és németből a négy írásbeli rész mind gyakorolható. A hallott szöveg értéséhez a hangfelvételt gyakorláskor megállíthatod, visszatekerheted és lassíthatod, vizsga módban megállás nélkül szól, mint a vizsgán. Ha a felvétel nincs a csomagban, az oktatas.hu oldalról letöltött saját fájlodat is megnyithatod. Ellenőrzés után a szövegátiratot is elolvashatod. A pontszámot a hivatalos táblázat szerint vizsgapontra számítja át. Levél-, vélemény- és szóbeli fordulatokat kártyákon gyakorolhatsz.
 - Tanároknak: feladatsor-link és QR-kód a diákoknak, eredménykódok összesítése táblázatba, regisztráció és szerver nélkül.
 - A kezdőlapon folytathatod a félbehagyott feladatsort, ajánlást kapsz a következő lépésre, és látod a gyakorlási sorozatodat. A Statisztika oldal megmutatja a fejlődésedet, az erős és gyenge témaköreidet és a hibatípusokat. Az eredményedet képként megoszthatod (név nélkül).
 

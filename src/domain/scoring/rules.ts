@@ -58,9 +58,13 @@ export function partialPoints(points: number, partial: PartialCredit | undefined
     return clamp(c.errors === 0 && c.correct === c.total ? points : best);
   }
   if (partial.perItem) {
-    return clamp(
-      c.correct * partial.perItem - (partial.penalizeWrong ? c.wrong * partial.perItem : 0),
-    );
+    const extra =
+      partial.maxMarks !== undefined
+        ? Math.max(0, c.correct + c.wrong - partial.maxMarks)
+        : partial.penalizeWrong
+          ? c.wrong
+          : 0;
+    return clamp((c.correct - extra) * partial.perItem);
   }
   return clamp(c.errors === 0 && c.correct === c.total ? points : 0);
 }
@@ -191,7 +195,12 @@ export function evaluateRule(rule: Rule, answers: Answers, fields: Map<string, F
     }
   }
 
-  const points = partialPoints(rule.points, rule.partial, counts);
+  let points = partialPoints(rule.points, rule.partial, counts);
+  // "Tick n" tasks: marking every box earns nothing, as the marking schemes say.
+  if (answer.kind === 'choice' && rule.partial?.maxMarks !== undefined) {
+    const options = rule.fieldIds.reduce((n, id) => n + (fields.get(id)?.options?.length ?? 0), 0);
+    if (options > 0 && new Set(values.flatMap(asList)).size >= options) points = 0;
+  }
   const status: ResultStatus = points >= rule.points ? 'correct' : points > 0 ? 'partial' : 'wrong';
   return { ...base, points, status, fields: fieldResults };
 }

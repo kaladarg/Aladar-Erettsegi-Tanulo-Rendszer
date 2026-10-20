@@ -100,7 +100,16 @@ Automatic steps (`steps[].auto`) cover open answers that the marking scheme acce
 
 `deductions` on the exam lists paper-wide deductions rated after hand-in (Hungarian spelling, up to −8, and handwriting, up to −2). Grades use the exam's `gradeBands`, or the középszint thresholds (25, 40, 60, 80%) by default.
 
-`partial` gives partial credit for multi-part rules: `perItem` points per correct item, or a `table` of thresholds (`{ "correct": 2, "points": 1 }` = 2 correct answers earn 1 point). `penalizeWrong` subtracts one item's credit for each wrong extra choice in multi-select answers. `errorsTable` scores by the number of errors (missing plus wrong items); each row gives the points for up to that many errors: `[{ "errors": 0, "points": 3 }, { "errors": 1, "points": 2 }, { "errors": 3, "points": 1 }]`. Points never go below zero.
+`partial` gives partial credit for multi-part rules: `perItem` points per correct item, or a `table` of thresholds (`{ "correct": 2, "points": 1 }` = 2 correct answers earn 1 point). `penalizeWrong` subtracts one item's credit for each wrong extra choice in multi-select answers. `maxMarks` is for "tick six" tasks: only marks beyond that many cost a point, whether right or wrong (4 right and 2 wrong out of six marks still earn 4). `errorsTable` scores by the number of errors (missing plus wrong items); each row gives the points for up to that many errors: `[{ "errors": 0, "points": 3 }, { "errors": 1, "points": 2 }, { "errors": 3, "points": 1 }]`. Points never go below zero.
+
+### Foreign languages
+
+English and German papers (`subject` `angol` / `nemet`) add four things:
+
+- `language` on the exam (`"en"`, `"de"`): task texts, sources, field labels and options are marked with that `lang`, so screen readers pronounce them correctly, the essay editor spell-checks in that language and the word lookup searches the English or German Wiktionary and Wikipedia besides the Hungarian Wiktionary.
+- `scale` on parts I–III: the útmutató's "Átszámítási táblázat" as `{ "maxPoints": 33, "table": [{ "raw": 30, "points": 33 }, …] }`. The part's `maxPoints` stays in task points (feladatpont); the exam total (`maxPoints` of the exam) is the sum of exam points (vizsgapont). Scores between rows take the row below, scores under the lowest row are 0. Results show both numbers.
+- `audio` on the listening part: `{ "label": "Hangfelvétel", "file": "source/hanganyag.mp3", "durationSeconds": 1740, "segments": [{ "label": "Task 1", "startSeconds": 35, "taskIds": ["III-1"] }] }`. Without `file` the app asks the student to open their own copy (downloaded from oktatas.hu); it is stored on the device only (IndexedDB table `importedAudio`, not in backups). In practice the player can pause, skip 10 seconds and slow down; in exam mode it plays through once, as at the exam, and resumes after a reload. Recordings are fetched whole, so the service worker caches them like PDFs.
+- `transcript` on listening tasks: the útmutató's szövegátirat, shown on the results page and after checking a task, never before.
 
 ## Working with the private official pack
 

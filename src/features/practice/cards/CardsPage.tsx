@@ -4,6 +4,7 @@ import { useId, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import {
+  CARD_LANGUAGES,
   CARD_SUBJECTS,
   filterCards,
   filterFromParams,
@@ -39,6 +40,8 @@ export function CardsPage() {
   const setFilter = (next: CardFilter) => setParams(filterToParams(next), { replace: true });
   const subject = filter.subject ?? 'tortenelem';
   const literature = subject === 'magyar';
+  // Language cards have registers instead of periods and no Hungarian/world split.
+  const language = !!CARD_LANGUAGES[subject];
   const filtered = filterCards({ ...filter, deck: undefined });
   const all = deckCounts(
     filtered.map((c) => c.id),
@@ -68,29 +71,31 @@ export function CardsPage() {
         className="mb-4"
       />
       <section aria-label={t('practice.cards.filters')} className="mb-6 grid gap-4 sm:grid-cols-2">
-        <SegmentedControl<Scope>
-          label={literature ? t('practice.cards.scopeLit') : t('practice.cards.scope')}
-          value={filter.scope ?? 'all'}
-          onValueChange={(scope) => setFilter({ ...filter, scope })}
-          options={[
-            { value: 'all', label: t('practice.cards.scopeAll') },
-            {
-              value: 'hungarian',
-              label: literature
-                ? t('practice.cards.scopeHungarianLit')
-                : t('practice.cards.scopeHungarian'),
-            },
-            {
-              value: 'world',
-              label: literature
-                ? t('practice.cards.scopeWorldLit')
-                : t('practice.cards.scopeWorld'),
-            },
-          ]}
-        />
+        {!language && (
+          <SegmentedControl<Scope>
+            label={literature ? t('practice.cards.scopeLit') : t('practice.cards.scope')}
+            value={filter.scope ?? 'all'}
+            onValueChange={(scope) => setFilter({ ...filter, scope })}
+            options={[
+              { value: 'all', label: t('practice.cards.scopeAll') },
+              {
+                value: 'hungarian',
+                label: literature
+                  ? t('practice.cards.scopeHungarianLit')
+                  : t('practice.cards.scopeHungarian'),
+              },
+              {
+                value: 'world',
+                label: literature
+                  ? t('practice.cards.scopeWorldLit')
+                  : t('practice.cards.scopeWorld'),
+              },
+            ]}
+          />
+        )}
         <div className="grid gap-1">
           <label htmlFor={eraId} className="text-sm font-medium">
-            {t('practice.cards.era')}
+            {language ? t('practice.cards.register') : t('practice.cards.era')}
           </label>
           <select
             id={eraId}
@@ -103,7 +108,9 @@ export function CardsPage() {
             }
             className="min-h-11 rounded-md border border-border-strong bg-surface px-3"
           >
-            <option value="">{t('practice.cards.allEras')}</option>
+            <option value="">
+              {language ? t('practice.cards.allRegisters') : t('practice.cards.allEras')}
+            </option>
             {SUBJECT_ERAS[subject].map((era) => (
               <option key={era} value={era}>
                 {t(`practice.cards.eras.${era}`)}

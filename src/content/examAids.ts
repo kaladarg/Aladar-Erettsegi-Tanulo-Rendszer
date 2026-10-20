@@ -49,6 +49,36 @@ export const EXAM_AIDS: SubjectAids[] = [
     quote:
       '„Ügyeljen a helyesírásra! Ha bizonytalan, használjon helyesírási szótárt! Az I. feladatlap megoldásához szöveggyűjtemény nem használható.”',
   },
+  {
+    subject: 'angol',
+    allowed: [
+      'Íráskészség (IV.): bármilyen egynyelvű vagy kétnyelvű nyomtatott szótár',
+      'Kék színű toll',
+    ],
+    notes: [
+      'Az Olvasott szöveg értése, a Nyelvhelyesség és a Hallott szöveg értése részhez semmilyen segédeszköz nem használható, szótár sem.',
+      'A szótárt csak a negyedik füzethez veheted elő; elektronikus szótár, fordítóprogram és telefon nem használható.',
+      'A Hallott szöveg értése felvételét a teremben játsszák le, megállás nélkül; a feladatokra szánt szünetek a felvétel részei.',
+      'Ügyelj a megadott szószámra: ha a szöveg jelentősen rövidebb vagy hosszabb, az pontlevonással jár.',
+    ],
+    quote:
+      '„Az Olvasott szöveg értése, a Nyelvhelyesség és a Hallott szöveg értése feladatlapokhoz semmilyen segédeszköz nem használható. Az Íráskészség részhez bármilyen nyomtatott szótár használható.” (a német feladatlapok szövege; az angol feladatlapok ezt nem írják ki külön, a szabály az idegen nyelvek vizsgaleírásából ered, ezért az iskoládnál is érdemes megerősíteni)',
+  },
+  {
+    subject: 'nemet',
+    allowed: [
+      'Íráskészség (IV.): bármilyen egynyelvű vagy kétnyelvű nyomtatott szótár',
+      'Kék színű toll',
+    ],
+    notes: [
+      'Az Olvasott szöveg értése, a Nyelvhelyesség és a Hallott szöveg értése részhez semmilyen segédeszköz nem használható, szótár sem.',
+      'A szótárt csak a negyedik füzethez veheted elő; elektronikus szótár, fordítóprogram és telefon nem használható.',
+      'A Hallott szöveg értése felvételét a teremben játsszák le, megállás nélkül; a feladatokra szánt szünetek a felvétel részei.',
+      'Ügyelj a megadott szószámra: ha a szöveg jelentősen rövidebb vagy hosszabb, az pontlevonással jár.',
+    ],
+    quote:
+      '„Az Olvasott szöveg értése, a Nyelvhelyesség és a Hallott szöveg értése feladatlapokhoz semmilyen segédeszköz nem használható. Az Íráskészség részhez bármilyen nyomtatott szótár használható.” (Német nyelv, középszintű írásbeli vizsga, 2024–2026)',
+  },
 ];
 
 /** What to take to every written exam. */

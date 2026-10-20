@@ -185,7 +185,7 @@ export const hu = {
         'Tollal, kiemelővel jegyzetelhetsz a feladatlapon, az űrlapnézetben rajzlap is van.',
       cardsTitle: 'Tanulókártyák',
       cardsBody:
-        'Történelemből évszámok, fogalmak, személyek és térképes helyszínek, irodalomból szerzők, művek, korszakok, ismétlő rendszerrel.',
+        'Történelemből évszámok, fogalmak, személyek és térképes helyszínek, irodalomból szerzők, művek, korszakok, angolból és németből hasznos fordulatok, ismétlő rendszerrel.',
       oralTitle: 'Szóbeli és terv',
       oralBody:
         'Tételvázlat, időmérő, hangfelvétel, valamint visszaszámlálás és heti terv a vizsgáig.',
@@ -200,6 +200,9 @@ export const hu = {
     newTitle: 'Újdonságok',
     newBody: 'Új gyakorlási lehetőségek kerültek az alkalmazásba:',
     newItems: {
+      languages:
+        'Angol és német nyelv: hivatalos középszintű feladatsorok, hallott szöveg értése hangfelvétellel és szövegátirattal, vizsgapont-átszámítás',
+      phrases: 'Nyelvi kártyák: levél- és véleményfordulatok, kötőszavak, szóbeli kifejezések',
       practice: 'Témakörök és vegyes kör: feladatok témakörönként az összes feladatsorból',
       review: 'Hibáim: a hibás feladatok néhány nap múlva visszatérnek',
       cards:
@@ -742,9 +745,11 @@ export const hu = {
     cards: {
       title: 'Tanulókártyák',
       intro:
-        'Történelemből évszámok, fogalmak, személyek és helyszínek, irodalomból szerzők, művek, korszakok és fogalmak a középszintű vizsgakövetelményekből. Gondold végig a választ, fordítsd meg a kártyát, és jelöld, tudtad-e. Amit nem tudtál, holnap visszajön; amit tudtál, 1, 3, 7, majd 21 nap múlva.',
+        'Történelemből évszámok, fogalmak, személyek és helyszínek, irodalomból szerzők, művek, korszakok és fogalmak, angolból és németből levél- és véleményfordulatok, kötőszavak és szóbeli kifejezések. Gondold végig a választ, fordítsd meg a kártyát, és jelöld, tudtad-e. Amit nem tudtál, holnap visszajön; amit tudtál, 1, 3, 7, majd 21 nap múlva.',
       subject: 'Tárgy',
-      subjects: { tortenelem: 'Történelem', magyar: 'Irodalom' },
+      subjects: { tortenelem: 'Történelem', magyar: 'Irodalom', angol: 'Angol', nemet: 'Német' },
+      register: 'Hangnem',
+      allRegisters: 'Minden hangnem',
       studyTitle: 'Kártyák: {subject}',
       draftNote:
         'A kártyák a vizsgakövetelmények alapján készült tervezetek. Ha hibát találsz, jelezd a Névjegy oldalon található címen.',
@@ -767,6 +772,10 @@ export const hu = {
         muvek: 'Művek',
         korszakok: 'Korszakok, irányzatok',
         'irodalmi-fogalmak': 'Irodalmi fogalmak',
+        levelfordulatok: 'Levél és e-mail',
+        kotoszavak: 'Kötőszavak',
+        velemeny: 'Vélemény, érvelés',
+        szobeli: 'Szóbeli helyzetek',
       },
       deckHint: {
         evszamok: 'Mikor történt?',
@@ -777,6 +786,10 @@ export const hu = {
         muvek: 'Milyen műfajú, miről szól?',
         korszakok: 'Mikor, milyen jellemzőkkel?',
         'irodalmi-fogalmak': 'Mit jelent?',
+        levelfordulatok: 'Hogyan írnád le?',
+        kotoszavak: 'Melyik kötőszó illik ide?',
+        velemeny: 'Hogyan mondanád?',
+        szobeli: 'Mit mondanál ebben a helyzetben?',
       },
       eras: {
         okor: 'Ókor',
@@ -795,6 +808,9 @@ export const hu = {
         modern: 'Századforduló és modernség (1890–1945)',
         kesomodern: '1945 után',
         kortars: 'Kortárs irodalom',
+        informalis: 'Baráti (informális)',
+        formalis: 'Hivatalos (formális)',
+        semleges: 'Mindkettőben jó',
       },
       counts: '{total} kártya · {new} új · {learning} tanulás alatt · {mastered} megtanulva',
       due: '{count} esedékes ma',
@@ -847,6 +863,8 @@ export const hu = {
       outlineLabel: 'Vázlatpontok, soronként egy',
       outlineTemplate:
         'Bevezetés: miről szól a tétel, idő és hely\nFő gondolatok (3–4 pont)\nPéldák, művek, források, idézetek\nFogalmak és szakkifejezések\nÖsszegzés, saját véleményem',
+      outlineTemplateLanguage:
+        'Kulcsszavak, kifejezések a témához\nKérdések, amelyeket feltehetnek, és a válaszaim\nSaját példák, élmények\nKépleíráshoz: hasonlóságok, különbségek, véleményem\nSzituációhoz: köszönés, kérés, javaslat, elköszönés',
       outlineSaved: 'Mentve',
       delete: 'Tétel törlése',
       deleteConfirmTitle: 'Törlöd ezt a tételt?',
@@ -862,6 +880,8 @@ export const hu = {
       reset: 'Újra',
       timeUp: 'Lejárt az idő: {timer}.',
       timesNote: 'Állítsd be az időket az iskolád szabályai szerint.',
+      timesNoteLanguage:
+        'Idegen nyelvből a középszintű szóbelin nincs felkészülési idő. A felelet három része: bemutatkozás és beszélgetés, szituációs feladat, önálló témakifejtés képek vagy más segédanyag alapján. Gyakorold hangosan, felvétellel.',
       recordTitle: 'Hangfelvétel',
       record: 'Felvétel indítása',
       stop: 'Felvétel leállítása',
@@ -1176,6 +1196,10 @@ export const hu = {
     lookupSubmit: 'Keresés',
     lookupDictionary: 'Wikiszótár',
     lookupEncyclopedia: 'Wikipédia',
+    lookupDictionaryHu: 'Wikiszótár (magyar jelentések)',
+    lookupDictionaryIn: '{language} Wiktionary (egynyelvű szótár)',
+    lookupEncyclopediaIn: '{language} Wikipédia',
+    languages: { en: 'Angol', de: 'Német' },
     lookupWeb: 'Keresés a weben',
     lookupLoading: 'Keresés…',
     lookupNotFound: 'Nem találtunk szócikket erre: „{query}”.',
@@ -1228,6 +1252,36 @@ export const hu = {
     handoffPreview: 'A kimásolt szöveg',
     handoffWithKey: 'Vagy kérdezz egy ingyenes MI-csevegőben, kulcs nélkül',
     resources: {
+      sztaki: {
+        name: 'SZTAKI Szótár',
+        description: 'Ingyenes angol–magyar és német–magyar szótár kifejezésekkel.',
+      },
+      bbcLearning: {
+        name: 'BBC Learning English',
+        description:
+          'A BBC ingyenes nyelvtani, szókincs- és hallásértési anyagai hanggal, átirattal.',
+      },
+      britishCouncil: {
+        name: 'LearnEnglish Teens (British Council)',
+        description: 'Ingyenes olvasás-, hallás- és írásgyakorlatok kamaszoknak, szintek szerint.',
+      },
+      enWiktionary: {
+        name: 'Angol Wiktionary',
+        description: 'Egynyelvű angol szótár kiejtéssel és példamondatokkal.',
+      },
+      dw: {
+        name: 'DW Deutsch lernen',
+        description:
+          'A Deutsche Welle ingyenes német tanfolyamai és hanganyagai, magyar felülettel is.',
+      },
+      dwds: {
+        name: 'DWDS',
+        description: 'A Berlin-Brandenburgi Tudományos Akadémia ingyenes német szótára példákkal.',
+      },
+      deWiktionary: {
+        name: 'Német Wiktionary',
+        description: 'Egynyelvű német szótár ragozási táblázatokkal.',
+      },
       oktatas: {
         name: 'Oktatási Hivatal: korábbi feladatsorok',
         description: 'Az összes hivatalos érettségi feladatsor és javítási útmutató.',

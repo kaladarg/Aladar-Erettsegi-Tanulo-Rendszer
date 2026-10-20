@@ -3,11 +3,13 @@
  * turns over and marks as known or not. Review status of the built-in decks:
  * draft, until a teacher checks them.
  */
-export type CardSubject = 'tortenelem' | 'magyar';
+export type CardSubject = 'tortenelem' | 'magyar' | 'angol' | 'nemet';
 
 export type HistoryDeckId = 'evszamok' | 'fogalmak' | 'szemelyek' | 'topografia';
 export type LiteratureDeckId = 'szerzok' | 'muvek' | 'korszakok' | 'irodalmi-fogalmak';
-export type DeckId = HistoryDeckId | LiteratureDeckId;
+/** Foreign languages: phrases for the writing tasks and the oral exam. */
+export type LanguageDeckId = 'levelfordulatok' | 'kotoszavak' | 'velemeny' | 'szobeli';
+export type DeckId = HistoryDeckId | LiteratureDeckId | LanguageDeckId;
 
 /** History periods, in the order of the history syllabus. */
 export type HistoryEra = 'okor' | 'kozepkor' | 'koraujkor' | 'ujkor' | 'jelenkor20' | 'jelenkor21';
@@ -23,7 +25,9 @@ export type LiteratureEra =
   | 'modern'
   | 'kesomodern'
   | 'kortars';
-export type Era = HistoryEra | LiteratureEra;
+/** Foreign languages use the register instead of a period. */
+export type LanguageEra = 'informalis' | 'formalis' | 'semleges';
+export type Era = HistoryEra | LiteratureEra | LanguageEra;
 
 export interface StudyCard {
   /** Stable id: `<deck>-<slug>`; never reuse an id for a different card. */
@@ -31,7 +35,7 @@ export interface StudyCard {
   subject: CardSubject;
   deck: DeckId;
   era: Era;
-  /** Hungarian history or literature (true), world history or literature (false). */
+  /** Hungarian history or literature (true), world history or literature (false); false for languages. */
   hungarian: boolean;
   /** The question side. For place cards the map is the question; this is the hint. */
   front: string;

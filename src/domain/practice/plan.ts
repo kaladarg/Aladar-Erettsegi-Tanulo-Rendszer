@@ -5,7 +5,7 @@ import type { ReviewCard } from './review';
 import { dueCards } from './review';
 
 /** Subjects with a compulsory oral exam at középszint. */
-export const ORAL_SUBJECTS = ['magyar', 'tortenelem'];
+export const ORAL_SUBJECTS = ['magyar', 'tortenelem', 'angol', 'nemet'];
 
 /**
  * Phases before a written exam:

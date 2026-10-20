@@ -27,7 +27,7 @@ export interface Settings {
 }
 
 /** Bump when new features deserve a "what's new" note on the home page. */
-export const CURRENT_FEATURES = 2;
+export const CURRENT_FEATURES = 3;
 
 export const AI_MODELS = ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5'] as const;
 export type AiModel = (typeof AI_MODELS)[number];

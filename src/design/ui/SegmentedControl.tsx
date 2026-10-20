@@ -34,7 +34,7 @@ export function SegmentedControl<T extends string>({
       onValueChange={(next) => onValueChange(next as T)}
       orientation="horizontal"
       className={cn(
-        'inline-flex w-full rounded-md border border-border bg-surface-muted p-1 sm:w-auto',
+        'inline-flex w-full flex-wrap gap-y-1 rounded-md border border-border bg-surface-muted p-1 sm:w-auto',
         className,
       )}
     >

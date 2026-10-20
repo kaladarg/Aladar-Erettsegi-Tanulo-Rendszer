@@ -16,7 +16,15 @@ const SUBJECT_NAMES: Record<string, string> = {
   matematika: 'matematika',
   tortenelem: 'történelem',
   magyar: 'magyar nyelv és irodalom',
+  angol: 'angol nyelv',
+  nemet: 'német nyelv',
 };
+
+/** For English or German papers: the student writes in that language, help comes in Hungarian. */
+const languageNote = (exam: Exam) =>
+  exam.language && exam.language !== 'hu'
+    ? ` A feladat ${exam.language === 'de' ? 'német' : 'angol'} nyelvű, B1 szintű; a hibáimat az eredeti nyelven idézd, a magyarázatot magyarul írd.`
+    : '';
 
 function sources(exam: Exam, task: Task): string {
   const byId = new Map<string, SourceMaterial>((exam.sources ?? []).map((s) => [s.id, s]));
@@ -34,7 +42,7 @@ export function tutorHandoffPrompt(
   options: { question?: string; answer?: string } = {},
 ): string {
   const parts = [
-    `Középszintű érettségire készülök ${SUBJECT_NAMES[exam.subject] ?? exam.subject} tárgyból, egy korábbi feladatsorból (${exam.title}) gyakorolok.`,
+    `Középszintű érettségire készülök ${SUBJECT_NAMES[exam.subject] ?? exam.subject} tárgyból, egy korábbi feladatsorból (${exam.title}) gyakorolok.${languageNote(exam)}`,
     'Segíts megérteni az alábbi feladatot: magyarázd el, mit kér, milyen ismeretek kellenek hozzá, és hogyan fogjak hozzá. A megoldást ne mondd meg, csak ha külön kérem. Válaszolj magyarul, röviden és érthetően.',
     `A feladat (${task.number}, ${task.maxPoints} pont):\n${task.text}`,
   ];
@@ -58,7 +66,7 @@ export function essayHandoffPrompt(exam: Exam, task: Task, essay: string): strin
     })
     .join('\n');
   return [
-    `Középszintű érettségire készülök ${SUBJECT_NAMES[exam.subject] ?? exam.subject} tárgyból. Az alábbi esszémet a hivatalos javítási-értékelési útmutató szempontjai szerint értékeld: minden szempontnál adj pontszámot és rövid indoklást, a végén pedig két-három konkrét tanácsot, hogyan javíthatnék rajta. Válaszolj magyarul.`,
+    `Középszintű érettségire készülök ${SUBJECT_NAMES[exam.subject] ?? exam.subject} tárgyból. Az alábbi esszémet a hivatalos javítási-értékelési útmutató szempontjai szerint értékeld: minden szempontnál adj pontszámot és rövid indoklást, a végén pedig két-három konkrét tanácsot, hogyan javíthatnék rajta. Válaszolj magyarul.${languageNote(exam)}`,
     `A feladat:\n${task.text}`,
     sources(exam, task) ? `Források:\n${sources(exam, task)}` : '',
     `Értékelési szempontok:\n${criteria}`,

@@ -64,7 +64,8 @@ export function RichText({
   lang?: string;
 }) {
   return (
-    <div lang={lang} className={cn('grid gap-3', className)}>
+    // Long unbroken strings (source links) must wrap instead of widening the page.
+    <div lang={lang} className={cn('grid gap-3 wrap-anywhere', className)}>
       {parseBlocks(text).map((block, index) =>
         block.kind === 'list' ? (
           <ul key={index} className="list-disc space-y-1 pl-6">

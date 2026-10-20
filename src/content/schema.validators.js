@@ -367,6 +367,12 @@ const schema6 = {
             },
           },
         },
+        maxMarks: {
+          description:
+            'Multi-select with a mark limit ("tick six"): each mark beyond this many costs one item\'s credit, whether it is right or wrong; marking every option scores 0. Use with perItem instead of penalizeWrong.',
+          type: 'integer',
+          minimum: 1,
+        },
       },
     },
     Rule: {
@@ -4817,6 +4823,12 @@ const schema32 = {
         },
       },
     },
+    maxMarks: {
+      description:
+        'Multi-select with a mark limit ("tick six"): each mark beyond this many costs one item\'s credit, whether it is right or wrong; marking every option scores 0. Use with perItem instead of penalizeWrong.',
+      type: 'integer',
+      minimum: 1,
+    },
   },
 };
 function validate89(
@@ -4833,7 +4845,8 @@ function validate89(
           key0 === 'perItem' ||
           key0 === 'table' ||
           key0 === 'penalizeWrong' ||
-          key0 === 'errorsTable'
+          key0 === 'errorsTable' ||
+          key0 === 'maxMarks'
         )) {
           validate89.errors = [
             {
@@ -5257,6 +5270,48 @@ function validate89(
                 var valid0 = _errs15 === errors;
               } else {
                 var valid0 = true;
+              }
+              if (valid0) {
+                if (data.maxMarks !== undefined) {
+                  let data10 = data.maxMarks;
+                  const _errs24 = errors;
+                  if (!(
+                    typeof data10 == 'number' &&
+                    !(data10 % 1) &&
+                    !isNaN(data10) &&
+                    isFinite(data10)
+                  )) {
+                    validate89.errors = [
+                      {
+                        instancePath: instancePath + '/maxMarks',
+                        schemaPath: '#/properties/maxMarks/type',
+                        keyword: 'type',
+                        params: { type: 'integer' },
+                        message: 'must be integer',
+                      },
+                    ];
+                    return false;
+                  }
+                  if (errors === _errs24) {
+                    if (typeof data10 == 'number' && isFinite(data10)) {
+                      if (data10 < 1 || isNaN(data10)) {
+                        validate89.errors = [
+                          {
+                            instancePath: instancePath + '/maxMarks',
+                            schemaPath: '#/properties/maxMarks/minimum',
+                            keyword: 'minimum',
+                            params: { comparison: '>=', limit: 1 },
+                            message: 'must be >= 1',
+                          },
+                        ];
+                        return false;
+                      }
+                    }
+                  }
+                  var valid0 = _errs24 === errors;
+                } else {
+                  var valid0 = true;
+                }
               }
             }
           }

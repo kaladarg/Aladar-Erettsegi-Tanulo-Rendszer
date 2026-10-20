@@ -15,17 +15,70 @@ import { useWorkspace } from '../WorkspaceContext';
 type State =
   | { status: 'idle' }
   | { status: 'loading' }
-  | { status: 'done'; results: Partial<Record<LookupSite, LookupResult | null>> }
+  | { status: 'done'; results: Partial<Record<string, LookupResult | null>> }
   | { status: 'error' };
 
-const SITES: { site: LookupSite; label: () => string; icon: typeof BookOpen }[] = [
-  { site: 'wiktionary', label: () => t('help.lookupDictionary'), icon: BookOpen },
-  { site: 'wikipedia', label: () => t('help.lookupEncyclopedia'), icon: Library },
-];
+interface Source {
+  key: string;
+  site: LookupSite;
+  lang: string;
+  label: string;
+  icon: typeof BookOpen;
+}
 
-/** Looks a word up in the Hungarian Wiktionary and Wikipedia, on request only. */
+/**
+ * Where to look: the Hungarian Wiktionary and Wikipedia; for a foreign-language
+ * paper the Hungarian Wiktionary (meanings in Hungarian) and that language's
+ * own Wiktionary and Wikipedia.
+ */
+function lookupSources(lang: string | undefined): Source[] {
+  if (!lang || lang === 'hu')
+    return [
+      {
+        key: 'wiktionary',
+        site: 'wiktionary',
+        lang: 'hu',
+        label: t('help.lookupDictionary'),
+        icon: BookOpen,
+      },
+      {
+        key: 'wikipedia',
+        site: 'wikipedia',
+        lang: 'hu',
+        label: t('help.lookupEncyclopedia'),
+        icon: Library,
+      },
+    ];
+  const language = t(`help.languages.${lang === 'de' ? 'de' : 'en'}`);
+  return [
+    {
+      key: 'wiktionary-hu',
+      site: 'wiktionary',
+      lang: 'hu',
+      label: t('help.lookupDictionaryHu'),
+      icon: BookOpen,
+    },
+    {
+      key: `wiktionary-${lang}`,
+      site: 'wiktionary',
+      lang,
+      label: t('help.lookupDictionaryIn', { language }),
+      icon: BookOpen,
+    },
+    {
+      key: `wikipedia-${lang}`,
+      site: 'wikipedia',
+      lang,
+      label: t('help.lookupEncyclopediaIn', { language }),
+      icon: Library,
+    },
+  ];
+}
+
+/** Looks a word up in Wiktionary and Wikipedia, on request only. */
 export function LookupPanel({ initialQuery }: { initialQuery: string }) {
   const { exam } = useWorkspace();
+  const sources = lookupSources(exam.language);
   const searchSites = resourcesFor(exam.subject).filter((site) => site.searchDomain);
   const id = useId();
   const [query, setQuery] = useState(initialQuery);
@@ -45,8 +98,10 @@ export function LookupPanel({ initialQuery }: { initialQuery: string }) {
     if (!request) return;
     const controller = new AbortController();
     Promise.all(
-      SITES.map(({ site }) =>
-        lookup(site, request.text, controller.signal).then((result) => [site, result] as const),
+      sources.map(({ key, site, lang }) =>
+        lookup(site, request.text, controller.signal, lang).then(
+          (result) => [key, result] as const,
+        ),
       ),
     )
       .then((pairs) => setState({ status: 'done', results: Object.fromEntries(pairs) }))
@@ -57,6 +112,8 @@ export function LookupPanel({ initialQuery }: { initialQuery: string }) {
         }
       });
     return () => controller.abort();
+    // The sources depend only on the exam's language, which does not change here.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [request]);
 
   // A new selection from the page starts a new lookup.
@@ -99,18 +156,22 @@ export function LookupPanel({ initialQuery }: { initialQuery: string }) {
         {state.status === 'loading' && <p className="text-muted">{t('help.lookupLoading')}</p>}
         {state.status === 'error' && <p className="text-danger">{t('help.lookupError')}</p>}
         {state.status === 'done' &&
-          SITES.map(({ site, label, icon: Icon }) => {
-            const result = state.results[site];
+          sources.map(({ key, lang, label, icon: Icon }) => {
+            const result = state.results[key];
             return (
-              <section key={site} className="rounded-md border border-border p-4">
+              <section key={key} className="rounded-md border border-border p-4">
                 <h3 className="flex items-center gap-2 text-sm font-semibold text-muted">
                   <Icon aria-hidden="true" className="size-4" />
-                  {label()}
+                  {label}
                 </h3>
                 {result ? (
                   <>
-                    <p className="mt-2 font-semibold">{result.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed">{result.extract}</p>
+                    <p lang={lang} className="mt-2 font-semibold">
+                      {result.title}
+                    </p>
+                    <p lang={lang} className="mt-1 text-sm leading-relaxed">
+                      {result.extract}
+                    </p>
                     <a
                       href={result.url}
                       target="_blank"

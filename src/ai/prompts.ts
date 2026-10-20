@@ -5,7 +5,15 @@ const SUBJECTS: Record<string, string> = {
   matematika: 'mathematics',
   tortenelem: 'history',
   magyar: 'Hungarian language and literature',
+  angol: 'English as a foreign language',
+  nemet: 'German as a foreign language',
 };
+
+/** Extra guidance for foreign-language papers (tasks and texts in English or German). */
+function languageNote(exam: Exam): string {
+  if (!exam.language || exam.language === 'hu') return '';
+  return ` The task and the student's writing are in ${exam.language === 'de' ? 'German' : 'English'}; quote words and corrections in that language, but explain in Hungarian. Judge at B1 level, as the középszint exam does.`;
+}
 
 function sourcesOf(exam: Exam, task: Task): string {
   const byId = new Map<string, SourceMaterial>((exam.sources ?? []).map((s) => [s.id, s]));
@@ -34,7 +42,7 @@ function markingScheme(task: Task): string {
  * so the help is accurate; the student decides whether to see the solution.
  */
 export function tutorSystem(exam: Exam, task: Task): string {
-  return `You are a patient tutor helping a Hungarian secondary-school student practise for the középszintű érettségi in ${SUBJECTS[exam.subject] ?? exam.subject}. The student is working on one task from a past paper (${exam.title}).
+  return `You are a patient tutor helping a Hungarian secondary-school student practise for the középszintű érettségi in ${SUBJECTS[exam.subject] ?? exam.subject}. The student is working on one task from a past paper (${exam.title}).${languageNote(exam)}
 
 Answer in Hungarian, in plain language a 17-year-old understands, and keep answers short: a few sentences or a short list. Help the student think: explain what the task asks, the concepts involved and how to approach it. Do not give the final answer or write the solution for them unless they clearly ask for it; if they do, give it with a brief explanation. If a question has nothing to do with the task or the subject, say so kindly in one sentence.
 
@@ -80,7 +88,7 @@ export function essayFeedbackSchema(task: Task): Record<string, unknown> {
   };
 }
 
-export const ESSAY_SYSTEM = `You are an experienced Hungarian secondary-school teacher who marks középszintű érettségi essays strictly by the official marking scheme (javítási-értékelési útmutató). Rate each criterion with an integer from 0 to its maximum, following the criterion's description and levels. For each criterion give a one or two sentence reason in Hungarian that points to what is present or missing in the essay. In the summary, give the student two or three concrete, encouraging suggestions in Hungarian for improving this essay. If the essay is off-topic or empty, rate it accordingly.`;
+export const ESSAY_SYSTEM = `You are an experienced Hungarian secondary-school teacher who marks középszintű érettségi essays and foreign-language writing tasks strictly by the official marking scheme (javítási-értékelési útmutató). For English or German writing, judge at B1 level, check the word limit and every content point of the task, and quote mistakes in the original language. Rate each criterion with an integer from 0 to its maximum, following the criterion's description and levels. For each criterion give a one or two sentence reason in Hungarian that points to what is present or missing in the essay. In the summary, give the student two or three concrete, encouraging suggestions in Hungarian for improving this essay. If the essay is off-topic or empty, rate it accordingly.`;
 
 /** The essay with its task and rubric, as the user message of the feedback request. */
 export function essayFeedbackPrompt(exam: Exam, task: Task, essay: string): string {

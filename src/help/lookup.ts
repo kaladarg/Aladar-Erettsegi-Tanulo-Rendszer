@@ -1,5 +1,6 @@
 /**
- * Word lookup in the Hungarian Wikipedia and Wiktionary. Only the searched
+ * Word lookup in Wikipedia and Wiktionary (Hungarian by default; English or
+ * German editions for foreign-language papers). Only the searched
  * text leaves the device, and only when the student asks for a lookup.
  * Both sites serve CORS-enabled APIs; see https://www.mediawiki.org/wiki/API:Opensearch
  * and https://hu.wikipedia.org/api/rest_v1/.
@@ -13,10 +14,9 @@ export interface LookupResult {
   url: string;
 }
 
-const HOSTS: Record<LookupSite, string> = {
-  wiktionary: 'https://hu.wiktionary.org',
-  wikipedia: 'https://hu.wikipedia.org',
-};
+/** Site host for a language edition; unknown languages fall back to Hungarian. */
+export const siteHost = (site: LookupSite, lang = 'hu') =>
+  `https://${/^[a-z]{2}$/.test(lang) ? lang : 'hu'}.${site}.org`;
 
 /** Trims a selection to something worth looking up (a word or short phrase). */
 export function cleanQuery(raw: string): string {
@@ -34,8 +34,8 @@ async function getJson(url: string, signal?: AbortSignal): Promise<unknown> {
 }
 
 /** Best-matching page title on a site (handles inflected forms and capitalization). */
-async function findTitle(site: LookupSite, query: string, signal?: AbortSignal) {
-  const url = new URL(`${HOSTS[site]}/w/api.php`);
+async function findTitle(site: LookupSite, query: string, lang: string, signal?: AbortSignal) {
+  const url = new URL(`${siteHost(site, lang)}/w/api.php`);
   url.search = new URLSearchParams({
     action: 'opensearch',
     search: query,
@@ -60,14 +60,15 @@ export async function lookup(
   site: LookupSite,
   rawQuery: string,
   signal?: AbortSignal,
+  lang = 'hu',
 ): Promise<LookupResult | null> {
   const query = cleanQuery(rawQuery);
   if (!query) return null;
   // No matching title means no page; skip the summary request (it would only 404).
-  const title = await findTitle(site, query, signal);
+  const title = await findTitle(site, query, lang, signal);
   if (!title) return null;
   const summary = (await getJson(
-    `${HOSTS[site]}/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, '_'))}`,
+    `${siteHost(site, lang)}/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, '_'))}`,
     signal,
   )) as Summary | null;
   if (!summary?.extract || summary.type === 'disambiguation') return null;
@@ -77,7 +78,7 @@ export async function lookup(
     extract: summary.extract,
     url:
       summary.content_urls?.desktop?.page ??
-      `${HOSTS[site]}/wiki/${encodeURIComponent(title.replace(/ /g, '_'))}`,
+      `${siteHost(site, lang)}/wiki/${encodeURIComponent(title.replace(/ /g, '_'))}`,
   };
 }
 

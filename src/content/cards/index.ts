@@ -1,14 +1,24 @@
+import { ENGLISH_CARDS } from './englishCards';
+import { GERMAN_CARDS } from './germanCards';
 import { HISTORY_CARDS } from './historyCards';
 import { LITERATURE_CARDS } from './literatureCards';
 import type { CardSubject, DeckId, Era, StudyCard } from './types';
 
 export type { CardSubject, DeckId, Era, StudyCard } from './types';
 
-export const CARD_SUBJECTS: CardSubject[] = ['tortenelem', 'magyar'];
+export const CARD_SUBJECTS: CardSubject[] = ['tortenelem', 'magyar', 'angol', 'nemet'];
+
+/** Subjects whose cards are phrases in a foreign language (with its BCP 47 tag). */
+export const CARD_LANGUAGES: Partial<Record<CardSubject, string>> = { angol: 'en', nemet: 'de' };
+
+const LANGUAGE_DECKS: DeckId[] = ['levelfordulatok', 'kotoszavak', 'velemeny', 'szobeli'];
+const REGISTERS: Era[] = ['informalis', 'formalis', 'semleges'];
 
 export const SUBJECT_DECKS: Record<CardSubject, DeckId[]> = {
   tortenelem: ['evszamok', 'fogalmak', 'szemelyek', 'topografia'],
   magyar: ['szerzok', 'muvek', 'korszakok', 'irodalmi-fogalmak'],
+  angol: LANGUAGE_DECKS,
+  nemet: LANGUAGE_DECKS,
 };
 
 export const SUBJECT_ERAS: Record<CardSubject, Era[]> = {
@@ -25,10 +35,12 @@ export const SUBJECT_ERAS: Record<CardSubject, Era[]> = {
     'kesomodern',
     'kortars',
   ],
+  angol: REGISTERS,
+  nemet: REGISTERS,
 };
 
-export const DECKS: DeckId[] = Object.values(SUBJECT_DECKS).flat();
-export const ERAS: Era[] = Object.values(SUBJECT_ERAS).flat();
+export const DECKS: DeckId[] = [...new Set(Object.values(SUBJECT_DECKS).flat())];
+export const ERAS: Era[] = [...new Set(Object.values(SUBJECT_ERAS).flat())];
 export type Scope = 'all' | 'hungarian' | 'world';
 
 export interface CardFilter {
@@ -41,6 +53,8 @@ export interface CardFilter {
 export const ALL_CARDS: StudyCard[] = [
   ...HISTORY_CARDS.map((card) => ({ ...card, subject: 'tortenelem' as const })),
   ...LITERATURE_CARDS.map((card) => ({ ...card, subject: 'magyar' as const })),
+  ...ENGLISH_CARDS.map((card) => ({ ...card, subject: 'angol' as const })),
+  ...GERMAN_CARDS.map((card) => ({ ...card, subject: 'nemet' as const })),
 ];
 export const CARDS_BY_ID = new Map(ALL_CARDS.map((card) => [card.id, card]));
 
@@ -61,7 +75,9 @@ export function filterCards({
 
 /** Reads a filter from the page address (?targy=&pakli=&kor=&tortenelem=). */
 export function filterFromParams(params: URLSearchParams): CardFilter {
-  const subject: CardSubject = params.get('targy') === 'magyar' ? 'magyar' : 'tortenelem';
+  const requested = params.get('targy') as CardSubject | null;
+  const subject: CardSubject =
+    requested && CARD_SUBJECTS.includes(requested) ? requested : 'tortenelem';
   const deck = params.get('pakli') as DeckId | null;
   const era = params.get('kor') as Era | null;
   const scope = params.get('tortenelem');

@@ -474,6 +474,10 @@ export interface PartialCredit {
     errors: number;
     points: number;
   }[];
+  /**
+   * Multi-select with a mark limit ("tick six"): each mark beyond this many costs one item's credit, whether it is right or wrong; marking every option scores 0. Use with perItem instead of penalizeWrong.
+   */
+  maxMarks?: number;
 }
 /**
  * A marking-scheme step the student checks themselves (e.g. a correct intermediate result).

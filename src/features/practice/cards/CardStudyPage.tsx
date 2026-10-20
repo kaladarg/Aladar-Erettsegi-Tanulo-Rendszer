@@ -9,6 +9,7 @@ import {
   filterFromParams,
   filterToParams,
   type StudyCard,
+  CARD_LANGUAGES,
 } from '@/content/cards';
 import { Button } from '@/design/ui/Button';
 import { EmptyState } from '@/design/ui/EmptyState';
@@ -260,7 +261,9 @@ function CardFace({
           >
             {t('practice.cards.answer')}
           </h2>
-          <p className="mt-1 text-xl font-semibold">{card.back}</p>
+          <p lang={CARD_LANGUAGES[card.subject]} className="mt-1 text-xl font-semibold">
+            {card.back}
+          </p>
           {card.note && <p className="mt-2 text-muted">{card.note}</p>}
           {again && <p className="mt-2 text-sm text-muted">{t('practice.cards.again')}</p>}
         </div>

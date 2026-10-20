@@ -3,12 +3,15 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { removeAudio, storeAudio, useImportedAudio } from '@/content/audioImport';
 import type { Exam, Part } from '@/content/schema.types';
 import { Button } from '@/design/ui/Button';
+import { formatClock as clock } from '@/domain/examTiming';
 import { t } from '@/i18n';
 import { useAnswer, useAnswers } from '@/state/answerStore';
 import { toast } from '@/state/toastStore';
-import { audioPositionKey, formatClock } from './clock';
+import { audioPositionKey } from './clock';
 
 const SPEEDS = [0.75, 0.9, 1, 1.25];
+/** Elapsed time rounds down (the exam clock rounds its countdown up). */
+const formatClock = (seconds: number) => clock(Math.floor(seconds));
 
 type Source =
   | { status: 'loading' }

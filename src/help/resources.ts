@@ -4,7 +4,7 @@
  * for non-commercial use); no paid, freemium or ad-funded services. Names and
  * descriptions are in i18n under `help.resources.<id>`.
  */
-export type ResourceSubject = 'all' | 'matematika' | 'tortenelem' | 'magyar';
+export type ResourceSubject = 'all' | 'matematika' | 'tortenelem' | 'magyar' | 'angol' | 'nemet';
 
 export interface Resource {
   id: ResourceId;
@@ -58,6 +58,43 @@ export const RESOURCES = [
     url: 'https://hu.wiktionary.org',
     subjects: ['magyar'],
     searchDomain: 'hu.wiktionary.org',
+  },
+  {
+    id: 'sztaki',
+    url: 'https://dict.sztaki.hu',
+    subjects: ['angol', 'nemet'],
+    searchDomain: 'dict.sztaki.hu',
+  },
+  {
+    id: 'bbcLearning',
+    url: 'https://www.bbc.co.uk/learningenglish',
+    subjects: ['angol'],
+    searchDomain: 'bbc.co.uk/learningenglish',
+  },
+  {
+    id: 'britishCouncil',
+    url: 'https://learnenglishteens.britishcouncil.org',
+    subjects: ['angol'],
+    searchDomain: 'learnenglishteens.britishcouncil.org',
+  },
+  {
+    id: 'enWiktionary',
+    url: 'https://en.wiktionary.org',
+    subjects: ['angol'],
+    searchDomain: 'en.wiktionary.org',
+  },
+  {
+    id: 'dw',
+    url: 'https://learngerman.dw.com/hu',
+    subjects: ['nemet'],
+    searchDomain: 'learngerman.dw.com',
+  },
+  { id: 'dwds', url: 'https://www.dwds.de', subjects: ['nemet'], searchDomain: 'dwds.de' },
+  {
+    id: 'deWiktionary',
+    url: 'https://de.wiktionary.org',
+    subjects: ['nemet'],
+    searchDomain: 'de.wiktionary.org',
   },
 ] as const satisfies readonly {
   id: string;

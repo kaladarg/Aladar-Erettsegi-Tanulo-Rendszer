@@ -85,8 +85,14 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
   const activePartIds = timed?.activePartIds ?? null;
   const workspace = useMemo(
     () =>
-      exam ? createWorkspace(exam, pdfSource, activePartIds, attemptMode === 'practice') : null,
-    [exam, pdfSource, activePartIds, attemptMode],
+      exam
+        ? createWorkspace(exam, pdfSource, activePartIds, attemptMode === 'practice', (part) =>
+            entry && manifest && part.audio?.file
+              ? examFileUrl(manifest.baseUrl, entry, part.audio.file)
+              : null,
+          )
+        : null,
+    [exam, pdfSource, activePartIds, attemptMode, entry, manifest],
   );
   const onExpire = useCallback(async () => {
     if (!exam || !attemptId || !timed) return;
@@ -183,21 +189,18 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
         ) : (
           workspace && (
             <WorkspaceContext.Provider value={workspace}>
-              {workspace.exam.parts
-                .filter((part) => part.audio && (!activePartIds || activePartIds.has(part.id)))
-                .map((part) => (
-                  <ListeningPlayer
-                    key={part.id}
-                    exam={workspace.exam}
-                    part={part}
-                    examMode={attemptMode === 'exam'}
-                    packUrl={
-                      entry && manifest && part.audio?.file
-                        ? examFileUrl(manifest.baseUrl, entry, part.audio.file)
-                        : null
-                    }
-                  />
-                ))}
+              {mode === 'pdf' &&
+                workspace.exam.parts
+                  .filter((part) => part.audio && (!activePartIds || activePartIds.has(part.id)))
+                  .map((part) => (
+                    <ListeningPlayer
+                      key={part.id}
+                      exam={workspace.exam}
+                      part={part}
+                      examMode={attemptMode === 'exam'}
+                      packUrl={workspace.audioUrl(part)}
+                    />
+                  ))}
               {workspace.helpEnabled && (
                 <>
                   <HelpSheet />

@@ -6,6 +6,7 @@ import { Button } from '@/design/ui/Button';
 import { t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { ChoicePicker } from './ChoicePicker';
+import { ListeningPlayer } from './audio/ListeningPlayer';
 import { useUnchosenTasks } from './useUnchosenTasks';
 import { FormField } from './fields/FormField';
 import { DrawingPad } from './ink/DrawingPad';
@@ -27,7 +28,7 @@ export function FormMode() {
 }
 
 function FormPart({ part }: { part: Part }) {
-  const { sources } = useWorkspace();
+  const { sources, exam, audioUrl, helpEnabled } = useWorkspace();
   const unchosen = useUnchosenTasks(part);
   const shown = new Set<string>();
 
@@ -40,6 +41,16 @@ function FormPart({ part }: { part: Part }) {
         <p className="text-muted">{partMeta(part)}</p>
         {part.instructions && <p className="mt-2">{part.instructions}</p>}
       </header>
+      {part.audio && (
+        <div className="-mx-4 sm:mx-0 sm:overflow-hidden sm:rounded-lg sm:border sm:border-border">
+          <ListeningPlayer
+            exam={exam}
+            part={part}
+            examMode={!helpEnabled}
+            packUrl={audioUrl(part)}
+          />
+        </div>
+      )}
       {part.choices?.map((choice, index) => (
         <ChoicePicker key={index} part={part} choice={choice} index={index} />
       ))}
@@ -93,7 +104,7 @@ export function SourceCard({ source }: { source: SourceMaterial }) {
           <RichText text={source.text} lang={exam.language} className="leading-relaxed" />
         )
       )}
-      {source.credit && <p className="mt-3 text-xs text-muted">{source.credit}</p>}
+      {source.credit && <p className="mt-3 text-xs wrap-anywhere text-muted">{source.credit}</p>}
     </aside>
   );
 }

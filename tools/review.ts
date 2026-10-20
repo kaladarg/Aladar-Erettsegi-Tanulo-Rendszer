@@ -50,7 +50,11 @@ export function renderReport(id: string, loaded: LoadedExam): string {
   const exam = loaded.exam;
   if (exam) {
     const s = summary(exam);
-    const partTotal = exam.parts.reduce((sum, part) => sum + partPoints(part), 0);
+    // Parts with a conversion table count with their exam points (foreign languages).
+    const partTotal = exam.parts.reduce(
+      (sum, part) => sum + (part.scale ? part.scale.maxPoints : partPoints(part)),
+      0,
+    );
     lines.push(
       '## Checks',
       '',
