@@ -2,7 +2,7 @@ import { Play, Search, Shuffle } from 'lucide-react';
 import { useId, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { DEFAULT_SUBJECTS } from '@/content/catalog';
+import { DEFAULT_SUBJECTS, subjectShortName } from '@/content/catalog';
 import { useExams } from '@/content/useExams';
 import { Button } from '@/design/ui/Button';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
@@ -93,7 +93,7 @@ export function TopicsPage() {
             setSelected(new Set());
             setParams({ targy: value }, { replace: true });
           }}
-          options={DEFAULT_SUBJECTS.map((s) => ({ value: s.id, label: s.name }))}
+          options={DEFAULT_SUBJECTS.map((s) => ({ value: s.id, label: subjectShortName(s) }))}
         />
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="grid flex-1 gap-1">

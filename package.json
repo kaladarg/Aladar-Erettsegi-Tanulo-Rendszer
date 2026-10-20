@@ -25,6 +25,7 @@
     "content:review": "tsx tools/review.ts",
     "content:pack": "tsx tools/build-pack.ts",
     "demo:build": "tsx tools/demo/build-demo-pack.ts",
+    "demo:audio": "python3 tools/demo/build-demo-audio.py",
     "dev:content": "vite --mode content",
     "preview:content": "vite preview --mode content",
     "lighthouse": "lhci autorun --config=lighthouserc.cjs",

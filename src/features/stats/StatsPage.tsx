@@ -2,7 +2,7 @@ import { BarChart3, ClipboardCheck, ExternalLink, RotateCcw } from 'lucide-react
 import { useState, type ReactNode } from 'react';
 import { Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { DEFAULT_SUBJECTS, findSubject } from '@/content/catalog';
+import { DEFAULT_SUBJECTS, findSubject, subjectShortName } from '@/content/catalog';
 import { examFullTitle } from '@/content/labels';
 import { useManifest } from '@/content/useContent';
 import { Button } from '@/design/ui/Button';
@@ -222,7 +222,7 @@ export function StatsPage() {
           onValueChange={setSubject}
           options={[
             { value: 'all', label: t('stats.allSubjects') },
-            ...subjects.map((s) => ({ value: s.id, label: s.name })),
+            ...subjects.map((s) => ({ value: s.id, label: subjectShortName(s) })),
           ]}
           className="mb-6"
         />

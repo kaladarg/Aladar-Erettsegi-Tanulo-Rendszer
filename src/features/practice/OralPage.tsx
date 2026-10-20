@@ -3,7 +3,7 @@ import { ChevronRight, Info, Plus } from 'lucide-react';
 import { useId, useState, type FormEvent } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { findSubject } from '@/content/catalog';
+import { findSubject, subjectShortName } from '@/content/catalog';
 import {
   BUILTIN_ORAL_TOPICS,
   ORAL_TOPIC_SUBJECTS,
@@ -56,7 +56,7 @@ export function OralPage() {
           onValueChange={(value) => setParams({ targy: value }, { replace: true })}
           options={ORAL_TOPIC_SUBJECTS.map((id) => ({
             value: id,
-            label: findSubject(id)?.name ?? id,
+            label: subjectShortName(findSubject(id) ?? { id, name: id }),
           }))}
         />
 

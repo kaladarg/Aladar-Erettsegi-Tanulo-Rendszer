@@ -2,7 +2,7 @@ import { Copy, Download, ExternalLink, Info, Link2, Users } from 'lucide-react';
 import { useId, useMemo, useState } from 'react';
 import { appBaseUrl } from '@/app/config';
 import { usePageTitle } from '@/app/usePageTitle';
-import { DEFAULT_SUBJECTS } from '@/content/catalog';
+import { DEFAULT_SUBJECTS, subjectShortName } from '@/content/catalog';
 import { examDisplayTitle } from '@/content/labels';
 import type { Exam } from '@/content/schema.types';
 import { useExams } from '@/content/useExams';
@@ -111,7 +111,7 @@ function Builder({ onCreate }: { onCreate: (code: string, labels: string[]) => v
             setSubject(value);
             setPicked([]);
           }}
-          options={DEFAULT_SUBJECTS.map((s) => ({ value: s.id, label: s.name }))}
+          options={DEFAULT_SUBJECTS.map((s) => ({ value: s.id, label: subjectShortName(s) }))}
         />
         <div className="grid gap-1">
           <label htmlFor={ids.title} className="text-sm font-medium">

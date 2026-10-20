@@ -1,0 +1,34 @@
+{
+  "angol-kozep-2026-majus-minta": {
+    "file": "hanganyag.mp3",
+    "durationSeconds": 417.1,
+    "segments": [
+      {
+        "label": "III/1. feladat",
+        "startSeconds": 44.6,
+        "taskIds": ["III-1"]
+      },
+      {
+        "label": "III/2. feladat",
+        "startSeconds": 260.9,
+        "taskIds": ["III-2"]
+      }
+    ]
+  },
+  "nemet-kozep-2026-majus-minta": {
+    "file": "hanganyag.mp3",
+    "durationSeconds": 351.4,
+    "segments": [
+      {
+        "label": "III/1. feladat",
+        "startSeconds": 44.1,
+        "taskIds": ["III-1"]
+      },
+      {
+        "label": "III/2. feladat",
+        "startSeconds": 225.5,
+        "taskIds": ["III-2"]
+      }
+    ]
+  }
+}

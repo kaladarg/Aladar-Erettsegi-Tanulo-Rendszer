@@ -1,0 +1,1705 @@
+{
+  "schemaVersion": 1,
+  "id": "angol-kozep-2026-majus-minta",
+  "subject": "angol",
+  "level": "kozep",
+  "year": 2026,
+  "session": "majus",
+  "format": "2024",
+  "title": "Mintafeladatsor – Angol nyelv, középszint",
+  "language": "en",
+  "sample": true,
+  "maxPoints": 39,
+  "source": {
+    "publisher": "Érettségi Gyakorló (saját mintafeladatsor)",
+    "examPdf": {
+      "file": "feladatlap.pdf",
+      "sha256": "96fc46b4f7f26586bd6a938d39ec26ce846eea8205014fb53c96c3943e2da7d7",
+      "pages": 10,
+      "label": "Feladatlap"
+    }
+  },
+  "sources": [
+    {
+      "id": "src-1",
+      "kind": "text",
+      "title": "From city flat to beehives",
+      "text": "Lily Carter is nineteen and studies biology in Manchester. In her free time she looks after three beehives on the roof of the building where she lives. We asked her about her unusual hobby.\n\n**1** ………\n\nMy grandfather kept bees in his garden, and I used to help him every summer. When I moved to the city, I missed it so much that I asked the owner of our building if I could put a hive on the roof. To my surprise, he said yes.\n\n**2** ………\n\nNot at all. People think city bees are hungry, but there are lots of flowers in parks, gardens and even on balconies. In fact, my bees often produce more honey than my grandfather's did in the countryside.\n\n**3** ………\n\nOnly twice, and both times it was my own fault. I was in a hurry and didn't wear my gloves. Bees are quite calm if you move slowly and don't panic.\n\n**4** ………\n\nIn a good year, about twenty kilos. I keep some for myself and my friends, and I sell the rest at a small market on Saturday mornings. The money pays for new equipment.\n\n**5** ………\n\nAt first they were worried, especially the family with small children on the top floor. So I invited everyone to the roof, showed them the hives and gave them a jar of honey. Now they often ask me how the bees are doing.\n\n**6** ………\n\nI'd like to start a beekeeping club at the university. Lots of students have asked me about it, and I think it would be a great way to teach people why bees are so important.",
+      "credit": "Az Érettségi Gyakorló saját szövege.",
+      "pdfRects": [
+        {
+          "page": 2,
+          "x": 0.0941,
+          "y": 0.0665,
+          "w": 0.8119,
+          "h": 0.6604
+        }
+      ]
+    },
+    {
+      "id": "src-2",
+      "kind": "text",
+      "title": "Don't throw it away – fix it!",
+      "text": "Every second Saturday of the month, the community hall in the small town of Ashford fills with broken things: toasters, lamps, bicycles, torn jackets and even an old radio from the 1960s. This is the Ashford Repair Café, where volunteers help visitors fix their things for free.\n\nThe café was started four years ago by Margaret Hill, a retired science teacher. 'I was shocked when my neighbour threw away a vacuum cleaner just because a small part was broken,' she explains. 'I fixed it in ten minutes. Then I thought: there must be lots of people who would repair their things if someone showed them how.'\n\nToday the café has about twenty volunteers. Some are electricians or tailors, others are simply good with their hands. The most popular volunteer is sixteen-year-old Sam, who can repair almost any mobile phone. 'Young people often think repairing is old-fashioned,' he says, 'but it's actually like solving a puzzle.'\n\nVisitors do not pay for the repairs, but there is a box for donations next to the tea table. The money is used to buy tools and spare parts. The only rule is that visitors must stay and help with the repair. 'We don't want to be a free repair shop,' says Margaret. 'We want people to learn.'\n\nLast year the volunteers repaired more than six hundred items, and the town council says that the amount of rubbish has noticeably decreased. Several other towns in the area have now asked Margaret for advice on starting their own repair cafés.",
+      "credit": "Az Érettségi Gyakorló saját szövege.",
+      "pdfRects": [
+        {
+          "page": 3,
+          "x": 0.0941,
+          "y": 0.0665,
+          "w": 0.8119,
+          "h": 0.4442
+        }
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "id": "I",
+      "title": "I. Olvasott szöveg értése",
+      "timeLimitMinutes": 60,
+      "maxPoints": 12,
+      "scale": {
+        "maxPoints": 11,
+        "table": [
+          {
+            "raw": 0,
+            "points": 0
+          },
+          {
+            "raw": 1,
+            "points": 1
+          },
+          {
+            "raw": 2,
+            "points": 2
+          },
+          {
+            "raw": 3,
+            "points": 3
+          },
+          {
+            "raw": 4,
+            "points": 4
+          },
+          {
+            "raw": 5,
+            "points": 5
+          },
+          {
+            "raw": 6,
+            "points": 6
+          },
+          {
+            "raw": 7,
+            "points": 6
+          },
+          {
+            "raw": 8,
+            "points": 7
+          },
+          {
+            "raw": 9,
+            "points": 8
+          },
+          {
+            "raw": 10,
+            "points": 9
+          },
+          {
+            "raw": 11,
+            "points": 10
+          },
+          {
+            "raw": 12,
+            "points": 11
+          }
+        ]
+      },
+      "instructions": "Olvassa el figyelmesen a szövegeket, és oldja meg a feladatokat! A feladatok utasításai a vizsga nyelvén szerepelnek, mint az érettségin. Ebben a részben szótár nem használható.",
+      "tasks": [
+        {
+          "id": "I-1",
+          "number": "I/1.",
+          "type": "matching",
+          "text": "Read the interview with Lily Carter. Some of the interviewer’s questions are missing. Match the questions (A–H) with the gaps (1–6). There are two extra questions that you do not need to use.",
+          "sourceRefs": [
+            "src-1"
+          ],
+          "topics": [
+            "olvasott szöveg értése",
+            "párosítás"
+          ],
+          "explanation": "1 – B (a nagyapjától tanulta), 2 – E (a városban is sok a virág), 3 – D (kétszer csípték meg), 4 – C (a mézet megtartja és eladja), 5 – A (a szomszédok először aggódtak), 6 – F (egyetemi méhészklubot tervez). A G (a kaptár ára) és a H (hivatásos méhész) kérdésre nincs válasz a szövegben.",
+          "hints": [
+            "Először olvassa el az összes kérdést, majd keressen a válaszokban olyan szavakat, amelyek a kérdés témájára utalnak (például idő, mennyiség, emberek)!",
+            "Két kérdés kimarad: olyan kérdés, amelyre a szöveg egyik bekezdése sem felel."
+          ],
+          "maxPoints": 6,
+          "fields": [
+            {
+              "id": "I-1-f1",
+              "kind": "choice",
+              "label": "1.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Do your neighbours mind the bees?"
+                },
+                {
+                  "value": "B",
+                  "label": "How did you get started?"
+                },
+                {
+                  "value": "C",
+                  "label": "What do you do with the honey?"
+                },
+                {
+                  "value": "D",
+                  "label": "Have you ever been stung?"
+                },
+                {
+                  "value": "E",
+                  "label": "Is it difficult to find enough food for bees in a city?"
+                },
+                {
+                  "value": "F",
+                  "label": "What are your plans for the future?"
+                },
+                {
+                  "value": "G",
+                  "label": "How much does a beehive cost?"
+                },
+                {
+                  "value": "H",
+                  "label": "Do you want to become a professional beekeeper?"
+                }
+              ],
+              "pdfRect": {
+                "page": 4,
+                "x": 0.7883,
+                "y": 0.2888,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f2",
+              "kind": "choice",
+              "label": "2.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Do your neighbours mind the bees?"
+                },
+                {
+                  "value": "B",
+                  "label": "How did you get started?"
+                },
+                {
+                  "value": "C",
+                  "label": "What do you do with the honey?"
+                },
+                {
+                  "value": "D",
+                  "label": "Have you ever been stung?"
+                },
+                {
+                  "value": "E",
+                  "label": "Is it difficult to find enough food for bees in a city?"
+                },
+                {
+                  "value": "F",
+                  "label": "What are your plans for the future?"
+                },
+                {
+                  "value": "G",
+                  "label": "How much does a beehive cost?"
+                },
+                {
+                  "value": "H",
+                  "label": "Do you want to become a professional beekeeper?"
+                }
+              ],
+              "pdfRect": {
+                "page": 4,
+                "x": 0.7883,
+                "y": 0.3268,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f3",
+              "kind": "choice",
+              "label": "3.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Do your neighbours mind the bees?"
+                },
+                {
+                  "value": "B",
+                  "label": "How did you get started?"
+                },
+                {
+                  "value": "C",
+                  "label": "What do you do with the honey?"
+                },
+                {
+                  "value": "D",
+                  "label": "Have you ever been stung?"
+                },
+                {
+                  "value": "E",
+                  "label": "Is it difficult to find enough food for bees in a city?"
+                },
+                {
+                  "value": "F",
+                  "label": "What are your plans for the future?"
+                },
+                {
+                  "value": "G",
+                  "label": "How much does a beehive cost?"
+                },
+                {
+                  "value": "H",
+                  "label": "Do you want to become a professional beekeeper?"
+                }
+              ],
+              "pdfRect": {
+                "page": 4,
+                "x": 0.7883,
+                "y": 0.3648,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f4",
+              "kind": "choice",
+              "label": "4.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Do your neighbours mind the bees?"
+                },
+                {
+                  "value": "B",
+                  "label": "How did you get started?"
+                },
+                {
+                  "value": "C",
+                  "label": "What do you do with the honey?"
+                },
+                {
+                  "value": "D",
+                  "label": "Have you ever been stung?"
+                },
+                {
+                  "value": "E",
+                  "label": "Is it difficult to find enough food for bees in a city?"
+                },
+                {
+                  "value": "F",
+                  "label": "What are your plans for the future?"
+                },
+                {
+                  "value": "G",
+                  "label": "How much does a beehive cost?"
+                },
+                {
+                  "value": "H",
+                  "label": "Do you want to become a professional beekeeper?"
+                }
+              ],
+              "pdfRect": {
+                "page": 4,
+                "x": 0.7883,
+                "y": 0.4028,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f5",
+              "kind": "choice",
+              "label": "5.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Do your neighbours mind the bees?"
+                },
+                {
+                  "value": "B",
+                  "label": "How did you get started?"
+                },
+                {
+                  "value": "C",
+                  "label": "What do you do with the honey?"
+                },
+                {
+                  "value": "D",
+                  "label": "Have you ever been stung?"
+                },
+                {
+                  "value": "E",
+                  "label": "Is it difficult to find enough food for bees in a city?"
+                },
+                {
+                  "value": "F",
+                  "label": "What are your plans for the future?"
+                },
+                {
+                  "value": "G",
+                  "label": "How much does a beehive cost?"
+                },
+                {
+                  "value": "H",
+                  "label": "Do you want to become a professional beekeeper?"
+                }
+              ],
+              "pdfRect": {
+                "page": 4,
+                "x": 0.7883,
+                "y": 0.4408,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f6",
+              "kind": "choice",
+              "label": "6.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Do your neighbours mind the bees?"
+                },
+                {
+                  "value": "B",
+                  "label": "How did you get started?"
+                },
+                {
+                  "value": "C",
+                  "label": "What do you do with the honey?"
+                },
+                {
+                  "value": "D",
+                  "label": "Have you ever been stung?"
+                },
+                {
+                  "value": "E",
+                  "label": "Is it difficult to find enough food for bees in a city?"
+                },
+                {
+                  "value": "F",
+                  "label": "What are your plans for the future?"
+                },
+                {
+                  "value": "G",
+                  "label": "How much does a beehive cost?"
+                },
+                {
+                  "value": "H",
+                  "label": "Do you want to become a professional beekeeper?"
+                }
+              ],
+              "pdfRect": {
+                "page": 4,
+                "x": 0.7883,
+                "y": 0.4788,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 6,
+                "fieldIds": [
+                  "I-1-f1",
+                  "I-1-f2",
+                  "I-1-f3",
+                  "I-1-f4",
+                  "I-1-f5",
+                  "I-1-f6"
+                ],
+                "answer": {
+                  "kind": "matching",
+                  "pairs": {
+                    "I-1-f1": "B",
+                    "I-1-f2": "E",
+                    "I-1-f3": "D",
+                    "I-1-f4": "C",
+                    "I-1-f5": "A",
+                    "I-1-f6": "F"
+                  }
+                },
+                "partial": {
+                  "perItem": 1
+                }
+              }
+            ]
+          },
+          "pdfRect": {
+            "page": 4,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.4527
+          }
+        },
+        {
+          "id": "I-2",
+          "number": "I/2.",
+          "type": "short_answer",
+          "text": "Read the article about a repair café and answer the questions. Write no more than five words in each answer.",
+          "sourceRefs": [
+            "src-2"
+          ],
+          "topics": [
+            "olvasott szöveg értése",
+            "rövid válasz"
+          ],
+          "explanation": "1. once a month / every second Saturday; 2. (science) teacher; 3. a neighbour threw away a vacuum cleaner with a small broken part; 4. mobile phones; 5. tools and spare parts; 6. stay and help with the repair.",
+          "hints": [
+            "A kérdések sorrendje követi a szöveg bekezdéseinek sorrendjét.",
+            "Elég néhány szó; a válasznak nem kell teljes mondatnak lennie."
+          ],
+          "maxPoints": 6,
+          "fields": [
+            {
+              "id": "I-2-f1",
+              "kind": "text",
+              "label": "1. How often is the Repair Café open?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.5938,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f2",
+              "kind": "text",
+              "label": "2. What was Margaret’s job before she retired?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.6318,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f3",
+              "kind": "text",
+              "label": "3. What gave Margaret the idea for the café?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.6698,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f4",
+              "kind": "text",
+              "label": "4. What can Sam repair especially well?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.7078,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f5",
+              "kind": "text",
+              "label": "5. What is the money from donations spent on?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.7458,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f6",
+              "kind": "text",
+              "label": "6. What must visitors do while their things are repaired?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.7838,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 1,
+                "description": "1. once a month / every second Saturday (of the month)",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f1"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "once a month",
+                        "month",
+                        "second Saturday"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s2",
+                "points": 1,
+                "description": "2. (science) teacher",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f2"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "teacher",
+                        "teaching",
+                        "taught"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s3",
+                "points": 1,
+                "description": "3. Her neighbour threw away a vacuum cleaner (with only a small broken part).",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f3"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "vacuum",
+                        "hoover"
+                      ]
+                    ],
+                    [
+                      [
+                        "neighbour",
+                        "neighbor"
+                      ],
+                      [
+                        "threw",
+                        "throw",
+                        "thrown"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s4",
+                "points": 1,
+                "description": "4. (mobile) phones",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f4"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "mobile",
+                        "phone",
+                        "smartphone",
+                        "cell"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s5",
+                "points": 1,
+                "description": "5. tools and spare parts (both needed)",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f5"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "tool"
+                      ],
+                      [
+                        "part",
+                        "spare"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s6",
+                "points": 1,
+                "description": "6. stay and help (with the repair)",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f6"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "help",
+                        "assist",
+                        "take part",
+                        "work with"
+                      ]
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "pdfRect": {
+            "page": 4,
+            "x": 0.0941,
+            "y": 0.5358,
+            "w": 0.8119,
+            "h": 0.2948
+          }
+        }
+      ]
+    },
+    {
+      "id": "II",
+      "title": "II. Nyelvhelyesség",
+      "timeLimitMinutes": 30,
+      "maxPoints": 11,
+      "scale": {
+        "maxPoints": 6,
+        "table": [
+          {
+            "raw": 0,
+            "points": 0
+          },
+          {
+            "raw": 1,
+            "points": 1
+          },
+          {
+            "raw": 2,
+            "points": 1
+          },
+          {
+            "raw": 3,
+            "points": 2
+          },
+          {
+            "raw": 4,
+            "points": 2
+          },
+          {
+            "raw": 5,
+            "points": 3
+          },
+          {
+            "raw": 6,
+            "points": 3
+          },
+          {
+            "raw": 7,
+            "points": 4
+          },
+          {
+            "raw": 8,
+            "points": 4
+          },
+          {
+            "raw": 9,
+            "points": 5
+          },
+          {
+            "raw": 10,
+            "points": 5
+          },
+          {
+            "raw": 11,
+            "points": 6
+          }
+        ]
+      },
+      "instructions": "Oldja meg a nyelvhelyességi feladatokat! Minden helyes válasz 1 feladatpontot ér; csak a helyesen írt alak fogadható el. Szótár nem használható.",
+      "tasks": [
+        {
+          "id": "II-1",
+          "number": "II/1.",
+          "type": "short_answer",
+          "text": "Complete the text with the correct form of the words in brackets.\n\n**A festival for everyone**\n\nLast summer our school organised its first international food festival. It was a great (1) ……… (SUCCEED): more than five hundred people came. Students from twelve countries cooked (2) ……… (TRADITION) dishes from their home countries. The (3) ……… (ORGANISE) had worked for months to find enough tables and cookers. Everybody agreed that the atmosphere was (4) ……… (FRIEND) and relaxed. We are now (5) ……… (HOPE) that the festival will become a yearly event.",
+          "topics": [
+            "nyelvhelyesség",
+            "szóképzés"
+          ],
+          "explanation": "1. success (főnév: „a great success”); 2. traditional (melléknév a főnév előtt); 3. organisers / organizers (többes számú főnév, mert „had worked”, és többen szervezték); 4. friendly (melléknév a „was” után); 5. hopeful („be hopeful that …”).",
+          "hints": [
+            "Nézze meg, milyen szófaj kell a hiányzó helyre: főnév, melléknév vagy ige!",
+            "Egy főnévnél figyeljen arra is, hogy egyes vagy többes számban kell-e állnia."
+          ],
+          "maxPoints": 5,
+          "fields": [
+            {
+              "id": "II-1-f1",
+              "kind": "text",
+              "label": "(1) SUCCEED",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.3555,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-1-f2",
+              "kind": "text",
+              "label": "(2) TRADITION",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.3935,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-1-f3",
+              "kind": "text",
+              "label": "(3) ORGANISE",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.4315,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-1-f4",
+              "kind": "text",
+              "label": "(4) FRIEND",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.4695,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-1-f5",
+              "kind": "text",
+              "label": "(5) HOPE",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.5075,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f1"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "success"
+                  ]
+                }
+              },
+              {
+                "id": "r2",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f2"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "traditional"
+                  ]
+                }
+              },
+              {
+                "id": "r3",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f3"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "organisers",
+                    "organizers"
+                  ]
+                }
+              },
+              {
+                "id": "r4",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f4"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "friendly"
+                  ]
+                }
+              },
+              {
+                "id": "r5",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f5"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "hopeful"
+                  ]
+                }
+              }
+            ]
+          },
+          "pdfRect": {
+            "page": 5,
+            "x": 0.0941,
+            "y": 0.1579,
+            "w": 0.8119,
+            "h": 0.3901
+          }
+        },
+        {
+          "id": "II-2",
+          "number": "II/2.",
+          "type": "short_answer",
+          "text": "Complete the text. Write ONE word in each gap.\n\n**My first job**\n\nWhen I was sixteen, I got a summer job (1) ……… a small café near the beach. I had never worked before, (2) ……… I was quite nervous on my first day. The owner, Mrs Davies, was very kind and explained everything to me. I had to start work (3) ……… seven o’clock every morning, which was hard because I’m not an early riser. However, I soon got used (4) ……… it. The best part of the job was meeting people from all (5) ……… the world. By the end of the summer, I had saved enough money (6) ……… buy a new laptop.",
+          "topics": [
+            "nyelvhelyesség",
+            "nyílt kiegészítés"
+          ],
+          "explanation": "1. at / in (a job at a café); 2. so / and (következmény); 3. at (pontos időpont előtt); 4. to (get used to something); 5. over / around / across (from all over the world); 6. to (enough money to do something).",
+          "hints": [
+            "Olvassa el először az egész szöveget; a hiány előtti és utáni szavak együtt adnak ki egy kifejezést.",
+            "A hiányzó szavak többsége elöljárószó vagy kötőszó."
+          ],
+          "maxPoints": 6,
+          "fields": [
+            {
+              "id": "II-2-f1",
+              "kind": "text",
+              "label": "(1)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.2642,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f2",
+              "kind": "text",
+              "label": "(2)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.3022,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f3",
+              "kind": "text",
+              "label": "(3)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.3402,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f4",
+              "kind": "text",
+              "label": "(4)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.3782,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f5",
+              "kind": "text",
+              "label": "(5)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.4162,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f6",
+              "kind": "text",
+              "label": "(6)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.4542,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f1"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "at",
+                    "in"
+                  ]
+                }
+              },
+              {
+                "id": "r2",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f2"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "so",
+                    "and"
+                  ]
+                }
+              },
+              {
+                "id": "r3",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f3"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "at"
+                  ]
+                }
+              },
+              {
+                "id": "r4",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f4"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "to"
+                  ]
+                }
+              },
+              {
+                "id": "r5",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f5"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "over",
+                    "around",
+                    "across"
+                  ]
+                }
+              },
+              {
+                "id": "r6",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f6"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "to"
+                  ]
+                }
+              }
+            ]
+          },
+          "pdfRect": {
+            "page": 6,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.4281
+          }
+        }
+      ]
+    },
+    {
+      "id": "III",
+      "title": "III. Hallott szöveg értése",
+      "timeLimitMinutes": 30,
+      "maxPoints": 10,
+      "scale": {
+        "maxPoints": 11,
+        "table": [
+          {
+            "raw": 0,
+            "points": 0
+          },
+          {
+            "raw": 1,
+            "points": 1
+          },
+          {
+            "raw": 2,
+            "points": 2
+          },
+          {
+            "raw": 3,
+            "points": 3
+          },
+          {
+            "raw": 4,
+            "points": 4
+          },
+          {
+            "raw": 5,
+            "points": 6
+          },
+          {
+            "raw": 6,
+            "points": 7
+          },
+          {
+            "raw": 7,
+            "points": 8
+          },
+          {
+            "raw": 8,
+            "points": 9
+          },
+          {
+            "raw": 9,
+            "points": 10
+          },
+          {
+            "raw": 10,
+            "points": 11
+          }
+        ]
+      },
+      "instructions": "Minden szöveget kétszer hall. A felvétel tartalmazza a feladatok előtti olvasási időt és a szüneteket is, ezért vizsgamódban ne állítsa meg. Gépi felolvasás (Piper TTS). Hangok: Piper ljspeech (közkincs adatkészlet); Voice: Piper alba (CC BY 4.0, University of Edinburgh CSTR).",
+      "audio": {
+        "file": "hanganyag.mp3",
+        "durationSeconds": 417.1,
+        "segments": [
+          {
+            "label": "III/1. feladat",
+            "startSeconds": 44.6,
+            "taskIds": [
+              "III-1"
+            ]
+          },
+          {
+            "label": "III/2. feladat",
+            "startSeconds": 260.9,
+            "taskIds": [
+              "III-2"
+            ]
+          }
+        ],
+        "label": "Hanganyag. Gépi felolvasás (Piper TTS). Hangok: Piper ljspeech (közkincs adatkészlet); Voice: Piper alba (CC BY 4.0, University of Edinburgh CSTR).",
+        "sha256": "c09decba83aae79120fce15857589e8e329ff30079b695648ff458ed4e8bfd54"
+      },
+      "tasks": [
+        {
+          "id": "III-1",
+          "number": "III/1.",
+          "type": "multiple_choice",
+          "text": "You will hear a conversation between two friends, Kate and Jenny. Choose the correct answer (A, B, C or D). You will hear the recording twice.",
+          "topics": [
+            "hallott szöveg értése",
+            "feleletválasztás"
+          ],
+          "explanation": "1. B – Jenny unokatestvére Kanadából érkezik. 2. A – Daniel nem szereti a múzeumokat. 3. C – hétköznap a diákjegy 12 font. 4. B – Kate felhívja a mászóközpontot, hogy két helyet foglaljon. 5. B – fél tízkor találkoznak, mert a busz háromnegyed tízkor indul.",
+          "hints": [
+            "A hallgatás előtt olvassa el a kérdéseket, és jelölje meg a kulcsszavakat!",
+            "A beszélgetésben több ár és időpont is elhangzik; figyeljen arra, melyikben egyeznek meg végül."
+          ],
+          "maxPoints": 5,
+          "fields": [
+            {
+              "id": "III-1-f1",
+              "kind": "choice",
+              "label": "1. Why does Jenny say she can’t come climbing?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "She has to work on Saturday."
+                },
+                {
+                  "value": "B",
+                  "label": "Her cousin is coming to visit."
+                },
+                {
+                  "value": "C",
+                  "label": "She is ill."
+                },
+                {
+                  "value": "D",
+                  "label": "She is travelling to Canada."
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.2325,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-1-f2",
+              "kind": "choice",
+              "label": "2. What is Daniel not interested in?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "museums"
+                },
+                {
+                  "value": "B",
+                  "label": "sport"
+                },
+                {
+                  "value": "C",
+                  "label": "boat trips"
+                },
+                {
+                  "value": "D",
+                  "label": "the old town"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.3474,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-1-f3",
+              "kind": "choice",
+              "label": "3. How much does the boat trip cost for students on a Wednesday?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "£25"
+                },
+                {
+                  "value": "B",
+                  "label": "£20"
+                },
+                {
+                  "value": "C",
+                  "label": "£12"
+                },
+                {
+                  "value": "D",
+                  "label": "£2"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.4624,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-1-f4",
+              "kind": "choice",
+              "label": "4. What will Kate do this afternoon?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "buy the boat tickets"
+                },
+                {
+                  "value": "B",
+                  "label": "phone the climbing centre"
+                },
+                {
+                  "value": "C",
+                  "label": "meet Daniel"
+                },
+                {
+                  "value": "D",
+                  "label": "go to the bus station"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.5774,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-1-f5",
+              "kind": "choice",
+              "label": "5. What time will the friends meet on Saturday?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "9:15"
+                },
+                {
+                  "value": "B",
+                  "label": "9:30"
+                },
+                {
+                  "value": "C",
+                  "label": "9:45"
+                },
+                {
+                  "value": "D",
+                  "label": "10:00"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.6924,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 5,
+                "fieldIds": [
+                  "III-1-f1",
+                  "III-1-f2",
+                  "III-1-f3",
+                  "III-1-f4",
+                  "III-1-f5"
+                ],
+                "answer": {
+                  "kind": "matching",
+                  "pairs": {
+                    "III-1-f1": "B",
+                    "III-1-f2": "A",
+                    "III-1-f3": "C",
+                    "III-1-f4": "B",
+                    "III-1-f5": "B"
+                  }
+                },
+                "partial": {
+                  "perItem": 1
+                }
+              }
+            ]
+          },
+          "transcript": "**Kate:** Hi Jenny! Are you still coming to the climbing centre with us on Saturday?\n\n**Jenny:** I'm afraid I can't. My cousin Daniel is arriving from Canada on Friday evening, and he's staying with us for a week.\n\n**Kate:** Oh, that's exciting! Is it his first time here?\n\n**Jenny:** Yes, it is. The problem is, I have no idea what to show him. He isn't really interested in museums.\n\n**Kate:** What about the boat trip on the river? It takes about two hours, and you can see the whole old town from the water.\n\n**Jenny:** That sounds nice, but the tickets are quite expensive. Twenty-five pounds each, I think.\n\n**Kate:** Actually, it's cheaper on weekdays. On Tuesdays and Wednesdays, students pay only twelve pounds.\n\n**Jenny:** Really? Great, then we'll go on Wednesday. But what shall we do on Saturday?\n\n**Kate:** Why don't you bring him to the climbing centre? He'd meet everyone, and it's fun even for beginners.\n\n**Jenny:** Hmm, he did some climbing in Canada, so he'd probably love it. Do we need to book?\n\n**Kate:** Yes, it's usually full at weekends. I'll call them this afternoon and add two more people.\n\n**Jenny:** Thanks, Kate! Shall we meet at the bus station at ten, then?\n\n**Kate:** Let's say half past nine. The bus leaves at a quarter to ten.",
+          "pdfRect": {
+            "page": 7,
+            "x": 0.0941,
+            "y": 0.1745,
+            "w": 0.8119,
+            "h": 0.6352
+          }
+        },
+        {
+          "id": "III-2",
+          "number": "III/2.",
+          "type": "short_answer",
+          "text": "You will hear a camp leader welcoming a group of teenagers to a summer camp. Complete the notes with one or two words or a number. You will hear the recording twice.",
+          "topics": [
+            "hallott szöveg értése",
+            "mondatkiegészítés"
+          ],
+          "explanation": "1. 8:30 (half past eight) – fél nyolctól fél kilencig van reggeli. 2. dining hall – a hirdetőtábla az étkező mellett van. 3. Thursday – csütörtök este grillezés. 4. Tom – a zenetanárnál lehet jelentkezni. 5. (a) hat – vizes palack és sapka kell.",
+          "hints": [
+            "Hallgatás előtt gondolja végig, milyen információ hiányzik: időpont, hely, nap vagy név!",
+            "A reggeli kezdete és vége is elhangzik; figyeljen, melyiket kérdezik."
+          ],
+          "maxPoints": 5,
+          "fields": [
+            {
+              "id": "III-2-f1",
+              "kind": "text",
+              "label": "1. Breakfast finishes at:",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.1419,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-2-f2",
+              "kind": "text",
+              "label": "2. The activity lists are on the notice board next to the:",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.18,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-2-f3",
+              "kind": "text",
+              "label": "3. Barbecue by the lake: on … evening",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.218,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-2-f4",
+              "kind": "text",
+              "label": "4. Talent show: speak to",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.256,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-2-f5",
+              "kind": "text",
+              "label": "5. Bring every day: a water bottle and a",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.294,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 1,
+                "description": "1. 8:30 / half past eight",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f1"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "8:30",
+                        "half past eight",
+                        "eight thirty"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s2",
+                "points": 1,
+                "description": "2. dining hall",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f2"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "dining",
+                        "canteen"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s3",
+                "points": 1,
+                "description": "3. Thursday",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f3"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "Thursday",
+                        "Thurs",
+                        "Thu"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s4",
+                "points": 1,
+                "description": "4. Tom (the music teacher)",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f4"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "Tom",
+                        "music teacher"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s5",
+                "points": 1,
+                "description": "5. hat",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f5"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "hat",
+                        "cap"
+                      ]
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "transcript": "Good morning, everyone, and welcome to Green Valley Summer Camp! My name is Rachel, and I'm the camp leader this year. Before you go to your cabins, let me tell you a few important things.\n\nBreakfast is served in the dining hall from half past seven until half past eight. Please don't be late, because after breakfast we start the morning activities straight away.\n\nThis week you can choose between three activities: canoeing, horse riding and photography. You'll find the lists on the notice board next to the dining hall. Please write your name on one of the lists before lunch today.\n\nOn Thursday evening we'll have a barbecue by the lake, and on Friday there's a talent show. If you'd like to take part in the show, talk to Tom, our music teacher.\n\nMobile phones are allowed, but only in your free time, which is between four and six in the afternoon. If you need help at night, the leaders' cabin is the blue one near the main gate.\n\nFinally, please remember to bring a water bottle and a hat every day. It's going to be very hot this week. Have a great time!",
+          "pdfRect": {
+            "page": 8,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.2678
+          }
+        }
+      ]
+    },
+    {
+      "id": "IV",
+      "title": "IV. Íráskészség",
+      "timeLimitMinutes": 60,
+      "maxPoints": 11,
+      "instructions": "Írjon e-mailt a megadott szempontok alapján! Ügyeljen a terjedelemre (80–100 szó). Ennél a résznél nyomtatott szótár használható.",
+      "tasks": [
+        {
+          "id": "IV-1",
+          "number": "IV/1.",
+          "type": "long_writing",
+          "text": "You have recently started a new hobby. Write an email to your English friend, Alex, about it. In your email:\n\n- say what the hobby is and how you started it,\n- explain why you enjoy it,\n- invite Alex to try it with you when he visits you.\n\nWrite 80–100 words.",
+          "maxPoints": 11,
+          "topics": [
+            "íráskészség",
+            "e-mail, levél"
+          ],
+          "wordLimit": {
+            "min": 80,
+            "max": 100
+          },
+          "fields": [
+            {
+              "id": "IV-1-f1",
+              "kind": "essay",
+              "label": "E-mail:",
+              "pdfRect": {
+                "page": 10,
+                "x": 0.0941,
+                "y": 0.0887,
+                "w": 0.8119,
+                "h": 0.8234
+              }
+            }
+          ],
+          "scoring": {
+            "criteria": [
+              {
+                "id": "c1",
+                "label": "A feladat teljesítése és a szöveg hosszúsága",
+                "maxPoints": 5,
+                "levels": [
+                  {
+                    "points": 5,
+                    "description": "Mindhárom irányító szempontot érdemben kifejti; a terjedelem megfelel az előírtnak (80–100 szó); a megszólítás és az elköszönés illik a műfajhoz."
+                  },
+                  {
+                    "points": 4,
+                    "description": "Mindhárom szempontot kifejti, de egyet csak röviden; vagy a terjedelem kissé eltér az előírttól."
+                  },
+                  {
+                    "points": 3,
+                    "description": "Két szempontot fejt ki, a harmadikat csak említi vagy kihagyja."
+                  },
+                  {
+                    "points": 1,
+                    "description": "Csak egy szempontot fejt ki, vagy a szöveg jóval rövidebb az előírtnál."
+                  },
+                  {
+                    "points": 0,
+                    "description": "A szöveg nem a feladatra felel, vagy 40 szónál rövidebb."
+                  }
+                ]
+              },
+              {
+                "id": "c2",
+                "label": "Szókincs, kifejezésmód",
+                "maxPoints": 3,
+                "levels": [
+                  {
+                    "points": 3,
+                    "description": "A témához illő, változatos szókincs; a hangnem megfelel a baráti e-mailnek."
+                  },
+                  {
+                    "points": 2,
+                    "description": "Többnyire megfelelő, de egyszerű, néhol ismétlődő szókincs."
+                  },
+                  {
+                    "points": 1,
+                    "description": "Szűk szókincs; a hiányok helyenként nehezítik a megértést."
+                  },
+                  {
+                    "points": 0,
+                    "description": "A szókincs nem elegendő a feladat teljesítéséhez."
+                  }
+                ]
+              },
+              {
+                "id": "c3",
+                "label": "Nyelvhelyesség, helyesírás",
+                "maxPoints": 3,
+                "levels": [
+                  {
+                    "points": 3,
+                    "description": "Kevés hiba, amely nem zavarja a megértést."
+                  },
+                  {
+                    "points": 2,
+                    "description": "Több hiba, de a szöveg végig érthető."
+                  },
+                  {
+                    "points": 1,
+                    "description": "Sok hiba, amely helyenként nehezíti a megértést."
+                  },
+                  {
+                    "points": 0,
+                    "description": "A hibák miatt a szöveg nagyrészt érthetetlen."
+                  }
+                ]
+              }
+            ]
+          },
+          "examples": [
+            {
+              "id": "minta-kozepes",
+              "label": "Közepes megoldás",
+              "text": "Hi Alex,\n\nHow are you? I hope you are fine. I want to tell you about my new hobby. I started climbing in a climbing centre two month ago. My friend Peti took me there for his birthday party and I liked it very much.\n\nI enjoy it because it is good for my body and I must thinking all the time where to put my hands and foots. Also I met many new friends there.\n\nWhen you come to Budapest in the summer, we can go there together! Its not expensive.\n\nWrite soon,\nBence",
+              "scores": {
+                "c1": 4,
+                "c2": 2,
+                "c3": 2
+              },
+              "notes": {
+                "c1": "Mindhárom szempontra kitér, a terjedelem rendben van, de a meghívás csak egy rövid mondat: nem ír időpontot vagy részletet.",
+                "c2": "Érthető, de egyszerű szókincs („I liked it very much”, „good for my body”); kevés a témához illő kifejezés.",
+                "c3": "Több hiba: „two month” (months), „I must thinking” (I have to think), „foots” (feet), „Its” (It’s). A szöveg ennek ellenére végig érthető."
+              },
+              "comment": "Teljesíti a feladatot, és jól tagolt e-mail, de a nyelvi megformálás egyszerű, és több alapvető hiba van benne."
+            }
+          ],
+          "explanation": "Jó megoldás: baráti megszólítás (Hi Alex / Dear Alex), mindhárom szempont külön bekezdésben vagy legalább két mondatban (mi a hobbi és hogyan kezdte, miért szereti, konkrét meghívás időponttal), elköszönés (Best wishes / Write soon) és 80–100 szó. Hasznos kifejezések: „I took up …”, „What I like most about it is …”, „Why don’t you come with me when …?”.",
+          "hints": [
+            "Mindhárom szempontra írjon legalább két mondatot, és kapcsolja össze őket kötőszavakkal (because, so, also)!",
+            "Ne felejtse el a megszólítást és az elköszönést, és a végén számolja meg a szavakat!"
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": [
+      "Érettségi Gyakorló"
+    ],
+    "notes": [
+      "Saját készítésű, nem hivatalos feladatsor.",
+      "A hanganyag gépi felolvasás (Piper TTS): Piper ljspeech (közkincs adatkészlet); Voice: Piper alba (CC BY 4.0, University of Edinburgh CSTR).",
+      "A rövidített feladatsor pontjai az igazi vizsga arányait követik (33/18/33/33 helyett 11/6/11/11 vizsgapont)."
+    ]
+  }
+}

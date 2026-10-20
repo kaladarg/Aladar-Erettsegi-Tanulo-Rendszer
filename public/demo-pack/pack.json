@@ -18,6 +18,16 @@
       "id": "magyar",
       "name": "Magyar nyelv és irodalom",
       "icon": "book-open"
+    },
+    {
+      "id": "angol",
+      "name": "Angol nyelv",
+      "icon": "languages"
+    },
+    {
+      "id": "nemet",
+      "name": "Német nyelv",
+      "icon": "languages"
     }
   ],
   "levels": [

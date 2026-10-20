@@ -2,7 +2,7 @@ import { CheckCircle2, ExternalLink, Info, ListChecks, Quote } from 'lucide-reac
 import { useSearchParams } from 'react-router';
 import { OFFICIAL_ARCHIVE_URL } from '@/app/config';
 import { usePageTitle } from '@/app/usePageTitle';
-import { findSubject } from '@/content/catalog';
+import { findSubject, subjectShortName } from '@/content/catalog';
 import { EXAM_AIDS, EXAM_DAY_CHECKLIST } from '@/content/examAids';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { PageHeader } from '@/design/ui/PageHeader';
@@ -51,7 +51,7 @@ export function AidsPage() {
           onValueChange={(value) => setParams({ targy: value }, { replace: true })}
           options={EXAM_AIDS.map((a) => ({
             value: a.subject,
-            label: findSubject(a.subject)?.name ?? a.subject,
+            label: subjectShortName(findSubject(a.subject) ?? { id: a.subject, name: a.subject }),
           }))}
         />
 

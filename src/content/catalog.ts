@@ -29,6 +29,16 @@ export function findSubject(id: string, subjects = DEFAULT_SUBJECTS): SubjectInf
   return subjects.find((subject) => subject.id === id);
 }
 
+const SHORT_NAMES: Record<string, string> = {
+  magyar: 'Magyar',
+  angol: 'Angol',
+  nemet: 'Német',
+};
+
+/** Compact name for subject switchers ("Magyar" for "Magyar nyelv és irodalom"). */
+export const subjectShortName = (subject: { id: string; name: string }) =>
+  SHORT_NAMES[subject.id] ?? subject.name;
+
 /** Accent color utility per subject; unknown subjects fall back to the brand color. */
 export function subjectAccent(id: string): string {
   switch (id) {

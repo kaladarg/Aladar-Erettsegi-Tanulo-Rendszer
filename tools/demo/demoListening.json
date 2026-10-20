@@ -1,0 +1,194 @@
+{
+  "angol-kozep-2026-majus-minta": {
+    "voices": {
+      "narrator": "en_US-ljspeech-medium",
+      "Kate": "en_GB-alba-medium",
+      "Jenny": "en_US-ljspeech-medium",
+      "Rachel": "en_GB-alba-medium"
+    },
+    "credit": "Gépi felolvasás (Piper TTS). Hangok: Piper ljspeech (közkincs adatkészlet); Voice: Piper alba (CC BY 4.0, University of Edinburgh CSTR).",
+    "pauses": { "before": 20, "between": 10, "after": 15, "line": 0.45 },
+    "intro": "Listening comprehension. This test has two tasks. You will hear each recording twice.",
+    "outro": "This is the end of the listening test.",
+    "tasks": [
+      {
+        "taskId": "III-1",
+        "label": "III/1. feladat",
+        "announce": "Task 1. You will hear a conversation between two friends, Kate and Jenny. Choose the correct answer, A, B, C or D. You now have twenty seconds to read the questions.",
+        "listen": "Now listen.",
+        "again": "Now listen again.",
+        "showSpeakers": true,
+        "lines": [
+          {
+            "speaker": "Kate",
+            "text": "Hi Jenny! Are you still coming to the climbing centre with us on Saturday?"
+          },
+          {
+            "speaker": "Jenny",
+            "text": "I'm afraid I can't. My cousin Daniel is arriving from Canada on Friday evening, and he's staying with us for a week."
+          },
+          { "speaker": "Kate", "text": "Oh, that's exciting! Is it his first time here?" },
+          {
+            "speaker": "Jenny",
+            "text": "Yes, it is. The problem is, I have no idea what to show him. He isn't really interested in museums."
+          },
+          {
+            "speaker": "Kate",
+            "text": "What about the boat trip on the river? It takes about two hours, and you can see the whole old town from the water."
+          },
+          {
+            "speaker": "Jenny",
+            "text": "That sounds nice, but the tickets are quite expensive. Twenty-five pounds each, I think."
+          },
+          {
+            "speaker": "Kate",
+            "text": "Actually, it's cheaper on weekdays. On Tuesdays and Wednesdays, students pay only twelve pounds."
+          },
+          {
+            "speaker": "Jenny",
+            "text": "Really? Great, then we'll go on Wednesday. But what shall we do on Saturday?"
+          },
+          {
+            "speaker": "Kate",
+            "text": "Why don't you bring him to the climbing centre? He'd meet everyone, and it's fun even for beginners."
+          },
+          {
+            "speaker": "Jenny",
+            "text": "Hmm, he did some climbing in Canada, so he'd probably love it. Do we need to book?"
+          },
+          {
+            "speaker": "Kate",
+            "text": "Yes, it's usually full at weekends. I'll call them this afternoon and add two more people."
+          },
+          {
+            "speaker": "Jenny",
+            "text": "Thanks, Kate! Shall we meet at the bus station at ten, then?"
+          },
+          {
+            "speaker": "Kate",
+            "text": "Let's say half past nine. The bus leaves at a quarter to ten."
+          }
+        ]
+      },
+      {
+        "taskId": "III-2",
+        "label": "III/2. feladat",
+        "announce": "Task 2. You will hear a camp leader welcoming a group of teenagers to a summer camp. Complete the notes with one or two words or a number. You now have twenty seconds to read the notes.",
+        "listen": "Now listen.",
+        "again": "Now listen again.",
+        "showSpeakers": false,
+        "lines": [
+          {
+            "speaker": "Rachel",
+            "text": "Good morning, everyone, and welcome to Green Valley Summer Camp! My name is Rachel, and I'm the camp leader this year. Before you go to your cabins, let me tell you a few important things."
+          },
+          {
+            "speaker": "Rachel",
+            "text": "Breakfast is served in the dining hall from half past seven until half past eight. Please don't be late, because after breakfast we start the morning activities straight away."
+          },
+          {
+            "speaker": "Rachel",
+            "text": "This week you can choose between three activities: canoeing, horse riding and photography. You'll find the lists on the notice board next to the dining hall. Please write your name on one of the lists before lunch today."
+          },
+          {
+            "speaker": "Rachel",
+            "text": "On Thursday evening we'll have a barbecue by the lake, and on Friday there's a talent show. If you'd like to take part in the show, talk to Tom, our music teacher."
+          },
+          {
+            "speaker": "Rachel",
+            "text": "Mobile phones are allowed, but only in your free time, which is between four and six in the afternoon. If you need help at night, the leaders' cabin is the blue one near the main gate."
+          },
+          {
+            "speaker": "Rachel",
+            "text": "Finally, please remember to bring a water bottle and a hat every day. It's going to be very hot this week. Have a great time!"
+          }
+        ]
+      }
+    ]
+  },
+  "nemet-kozep-2026-majus-minta": {
+    "voices": {
+      "narrator": "de_DE-kerstin-low",
+      "Jonas": "de_DE-thorsten-medium",
+      "Mia": "de_DE-kerstin-low",
+      "Thomas": "de_DE-thorsten-medium"
+    },
+    "credit": "Gépi felolvasás (Piper TTS). Hangok: Piper thorsten (CC0) és Piper kerstin (CC0).",
+    "pauses": { "before": 20, "between": 10, "after": 15, "line": 0.45 },
+    "intro": "Hörverstehen. Dieser Test besteht aus zwei Aufgaben. Sie hören jeden Text zweimal.",
+    "outro": "Das ist das Ende des Tests zum Hörverstehen.",
+    "tasks": [
+      {
+        "taskId": "III-1",
+        "label": "III/1. feladat",
+        "announce": "Aufgabe 1. Sie hören ein Gespräch zwischen Jonas und Mia. Wählen Sie die richtige Antwort, A, B, C oder D. Sie haben jetzt zwanzig Sekunden Zeit, die Fragen zu lesen.",
+        "listen": "Hören Sie jetzt den Text.",
+        "again": "Hören Sie den Text noch einmal.",
+        "showSpeakers": true,
+        "lines": [
+          { "speaker": "Jonas", "text": "Hallo Mia! Wie war dein Vorstellungsgespräch gestern?" },
+          {
+            "speaker": "Mia",
+            "text": "Hallo Jonas! Ich glaube, ganz gut. Am Anfang war ich sehr nervös, aber die Chefin war total nett."
+          },
+          { "speaker": "Jonas", "text": "Und was für ein Job ist das genau?" },
+          {
+            "speaker": "Mia",
+            "text": "Ich soll im Sommer im Eiscafé am Marktplatz arbeiten. Vor allem an der Kasse, und manchmal auch draußen an den Tischen."
+          },
+          { "speaker": "Jonas", "text": "Klingt super. Wie viele Stunden musst du denn arbeiten?" },
+          {
+            "speaker": "Mia",
+            "text": "Vier Tage pro Woche, immer von zwölf bis achtzehn Uhr. Am Wochenende habe ich frei, das war mir wichtig."
+          },
+          { "speaker": "Jonas", "text": "Und wann weißt du, ob du den Job bekommst?" },
+          {
+            "speaker": "Mia",
+            "text": "Die Chefin will mich am Freitag anrufen. Sie muss noch mit zwei anderen Bewerberinnen sprechen."
+          },
+          { "speaker": "Jonas", "text": "Und wofür brauchst du das Geld?" },
+          {
+            "speaker": "Mia",
+            "text": "Ich möchte im August mit meiner Freundin Sophie nach Italien fahren. Wir wollen mit dem Zug reisen und auf Campingplätzen übernachten."
+          },
+          { "speaker": "Jonas", "text": "Toll! Dann drücke ich dir die Daumen." },
+          { "speaker": "Mia", "text": "Danke! Und wenn es klappt, bekommst du ein Eis gratis." }
+        ]
+      },
+      {
+        "taskId": "III-2",
+        "label": "III/2. feladat",
+        "announce": "Aufgabe 2. Sie hören die Begrüßung in einer Jugendherberge. Ergänzen Sie die Notizen mit einem Wort oder einer Zahl. Sie haben jetzt zwanzig Sekunden Zeit, die Notizen zu lesen.",
+        "listen": "Hören Sie jetzt den Text.",
+        "again": "Hören Sie den Text noch einmal.",
+        "showSpeakers": false,
+        "lines": [
+          {
+            "speaker": "Thomas",
+            "text": "Herzlich willkommen in der Jugendherberge am See! Mein Name ist Thomas, und ich möchte euch kurz ein paar wichtige Informationen geben."
+          },
+          {
+            "speaker": "Thomas",
+            "text": "Das Frühstück gibt es jeden Morgen von sieben bis neun Uhr im Speisesaal im Erdgeschoss. Das Abendessen beginnt um halb sieben."
+          },
+          {
+            "speaker": "Thomas",
+            "text": "Wenn ihr einen Ausflug macht, könnt ihr an der Rezeption ein Lunchpaket bestellen. Das kostet vier Euro fünfzig. Bitte sagt uns aber bis zwanzig Uhr am Abend vorher Bescheid."
+          },
+          {
+            "speaker": "Thomas",
+            "text": "Fahrräder könnt ihr bei uns kostenlos ausleihen. Die Schlüssel bekommt ihr im Büro neben dem Eingang."
+          },
+          {
+            "speaker": "Thomas",
+            "text": "Am Mittwochabend gibt es ein Grillfest am Strand, und am Donnerstag machen wir eine Bootstour auf dem See."
+          },
+          {
+            "speaker": "Thomas",
+            "text": "Und noch eine Bitte: Ab zweiundzwanzig Uhr ist Nachtruhe. Bitte seid dann leise, damit alle gut schlafen können. Viel Spaß bei uns!"
+          }
+        ]
+      }
+    ]
+  }
+}

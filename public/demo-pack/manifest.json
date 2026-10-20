@@ -20,6 +20,16 @@
       "id": "magyar",
       "name": "Magyar nyelv és irodalom",
       "icon": "book-open"
+    },
+    {
+      "id": "angol",
+      "name": "Angol nyelv",
+      "icon": "languages"
+    },
+    {
+      "id": "nemet",
+      "name": "Német nyelv",
+      "icon": "languages"
     }
   ],
   "levels": [
@@ -29,6 +39,22 @@
     }
   ],
   "exams": [
+    {
+      "id": "angol-kozep-2026-majus-minta",
+      "subject": "angol",
+      "level": "kozep",
+      "year": 2026,
+      "session": "majus",
+      "format": "2024",
+      "title": "Mintafeladatsor – Angol nyelv, középszint",
+      "sample": true,
+      "maxPoints": 39,
+      "path": "exams/angol-kozep-2026-majus-minta/exam.json",
+      "sha256": "8d2fdaa5bf47755f9dcb38a07945e414152ff8c028dc25cf9c3c7aea0a336131",
+      "hasPdf": true,
+      "pdfSha256": "96fc46b4f7f26586bd6a938d39ec26ce846eea8205014fb53c96c3943e2da7d7",
+      "status": "reviewed"
+    },
     {
       "id": "magyar-kozep-2026-majus-minta",
       "subject": "magyar",
@@ -59,6 +85,22 @@
       "sha256": "046e767fb53df2e6025e11dac46d53e8ba7f80fe6861c6320c4006dad8c52a74",
       "hasPdf": true,
       "pdfSha256": "52e58a8bb27dbd6d0f291d6a14e5f4fd56a51c82aed76dfc1dc75d6f1d85a3c5",
+      "status": "reviewed"
+    },
+    {
+      "id": "nemet-kozep-2026-majus-minta",
+      "subject": "nemet",
+      "level": "kozep",
+      "year": 2026,
+      "session": "majus",
+      "format": "2024",
+      "title": "Mintafeladatsor – Német nyelv, középszint",
+      "sample": true,
+      "maxPoints": 39,
+      "path": "exams/nemet-kozep-2026-majus-minta/exam.json",
+      "sha256": "0f54a4a02c999decaf7ec84ce55136bc0204d16b9e09e5564a3f9317d77ea242",
+      "hasPdf": true,
+      "pdfSha256": "2e2a8338f633fbefdc304377e89bf1f1886fc9d2940582454bf2e9bc93adef60",
       "status": "reviewed"
     },
     {

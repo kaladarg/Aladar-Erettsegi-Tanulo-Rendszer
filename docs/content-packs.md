@@ -14,10 +14,10 @@ The JSON Schemas in [`schemas/`](../schemas) are the source of truth. `npm run s
 
 ## Packs that exist
 
-| Pack                | Where                                                                                                                             | Contents                                                        | Public                                                                           |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Demo                | `public/demo-pack` in this repository, built by `npm run demo:build` from [`tools/demo/demoExams.ts`](../tools/demo/demoExams.ts) | Three self-written sample papers with generated PDFs            | yes                                                                              |
-| Official középszint | private repository `erettsegi-gyakorlo-content`                                                                                   | Oktatási Hivatal papers, marking schemes, extracted `exam.json` | **no**, until reuse is cleared (see [CONTENT_LICENSE.md](../CONTENT_LICENSE.md)) |
+| Pack                | Where                                                                                                                             | Contents                                                                                                                                                               | Public                                                                           |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Demo                | `public/demo-pack` in this repository, built by `npm run demo:build` from [`tools/demo/demoExams.ts`](../tools/demo/demoExams.ts) | Five self-written sample papers (maths, history, Hungarian, English, German) with generated PDFs, and computer-voiced listening recordings for the two language papers | yes                                                                              |
+| Official középszint | private repository `erettsegi-gyakorlo-content`                                                                                   | Oktatási Hivatal papers, marking schemes, extracted `exam.json`                                                                                                        | **no**, until reuse is cleared (see [CONTENT_LICENSE.md](../CONTENT_LICENSE.md)) |
 
 ## `exam.json` in short
 
@@ -148,7 +148,7 @@ npm run dev:content                  # the app loads ../erettsegi-gyakorlo-conte
 ## Reporting and correcting mistakes
 
 - In the app, each task has a flag button (exam page and results page) and each exam a "Hibát találtál?" link. They open a pre-filled email to the manifest's `reportEmail`, or to the maintainer (kralik.aladar.gergely@gmail.com) when the pack names none.
-- Anyone can fix the demo pack with a pull request against `tools/demo/demoExams.ts` (then run `npm run demo:build`).
+- Anyone can fix the demo pack with a pull request against `tools/demo/demoExams.ts` or `tools/demo/demoLanguages.ts` (then run `npm run demo:build`). The listening scripts are in `tools/demo/demoListening.json`; after changing them, regenerate the recordings with `npm run demo:audio -- --voices <dir>` (needs the free Piper TTS, see the top of `tools/demo/build-demo-audio.py`), then `npm run demo:build`.
 - Fixes to official exams go to the content repository: edit `exam.json`, run `content:review`, and open a pull request that cites the page of the marking scheme. While that repository is private, only invited reviewers can do this.
 
 ## Adding a subject or level

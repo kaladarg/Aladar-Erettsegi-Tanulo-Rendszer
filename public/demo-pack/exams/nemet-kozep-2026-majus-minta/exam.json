@@ -1,0 +1,1696 @@
+{
+  "schemaVersion": 1,
+  "id": "nemet-kozep-2026-majus-minta",
+  "subject": "nemet",
+  "level": "kozep",
+  "year": 2026,
+  "session": "majus",
+  "format": "2024",
+  "title": "Mintafeladatsor – Német nyelv, középszint",
+  "language": "de",
+  "sample": true,
+  "maxPoints": 39,
+  "source": {
+    "publisher": "Érettségi Gyakorló (saját mintafeladatsor)",
+    "examPdf": {
+      "file": "feladatlap.pdf",
+      "sha256": "2e2a8338f633fbefdc304377e89bf1f1886fc9d2940582454bf2e9bc93adef60",
+      "pages": 10,
+      "label": "Feladatlap"
+    }
+  },
+  "sources": [
+    {
+      "id": "src-1",
+      "kind": "text",
+      "title": "Mein Samstag im Tierheim",
+      "text": "Lena Berger ist 18 Jahre alt und geht in Graz aufs Gymnasium. Seit zwei Jahren hilft sie jeden Samstag im Tierheim ihrer Stadt. Wir haben mit ihr gesprochen.\n\n**1** ………\n\nDurch meine Schule. Wir mussten in der zehnten Klasse ein Sozialpraktikum machen, und ich habe mich für das Tierheim entschieden. Nach zwei Wochen wollte ich nicht mehr aufhören.\n\n**2** ………\n\nIch komme meistens am Samstagmorgen um acht. Zuerst mache ich die Käfige sauber, dann gebe ich den Katzen ihr Futter. Am Nachmittag gehe ich mit zwei oder drei Hunden spazieren.\n\n**3** ………\n\nJa, leider. Manche Tiere sind krank oder alt, und niemand will sie haben. Aber es gibt auch schöne Momente, zum Beispiel wenn ein Hund nach langer Zeit endlich eine Familie findet.\n\n**4** ………\n\nNein, unsere Wohnung ist zu klein, und mein Vater ist gegen Katzen allergisch. Deshalb bin ich so gern im Tierheim – dort habe ich jede Woche zwanzig Tiere um mich!\n\n**5** ………\n\nSehr viel! Ich weiß jetzt, wie man mit ängstlichen Hunden umgeht. Und ich bin geduldiger geworden, auch mit Menschen.\n\n**6** ………\n\nAm Anfang fanden sie es ein bisschen komisch, dass ich am Wochenende so früh aufstehe. Inzwischen kommen zwei Freundinnen manchmal mit und helfen beim Spazierengehen.",
+      "credit": "Az Érettségi Gyakorló saját szövege.",
+      "pdfRects": [
+        {
+          "page": 2,
+          "x": 0.0941,
+          "y": 0.0665,
+          "w": 0.8119,
+          "h": 0.6604
+        }
+      ]
+    },
+    {
+      "id": "src-2",
+      "kind": "text",
+      "title": "Ein Dorf macht seinen eigenen Laden",
+      "text": "In Hohenfeld, einem kleinen Dorf mit 600 Einwohnern in Norddeutschland, hat vor fünf Jahren der letzte Supermarkt geschlossen. Für viele ältere Menschen war das ein großes Problem: Der nächste Laden ist zwölf Kilometer entfernt, und der Bus fährt nur dreimal am Tag.\n\nDeshalb hatte die Bäckerin Anna Krüger eine Idee. Sie lud alle Nachbarn zu einem Treffen ins Gemeindehaus ein und fragte: „Warum öffnen wir nicht selbst einen Laden?“ Fast hundert Familien kauften einen Anteil für je 200 Euro. Mit diesem Geld wurde ein altes Gasthaus in der Dorfmitte renoviert.\n\nHeute verkauft der „Dorfladen Hohenfeld“ Brot, Gemüse, Milch und andere Produkte, die meisten davon von Bauernhöfen aus der Umgebung. Nur zwei Mitarbeiterinnen bekommen ein Gehalt, die anderen Helfer arbeiten ehrenamtlich, meistens zwei Stunden pro Woche. Besonders beliebt ist die kleine Kaffee-Ecke: Hier treffen sich jeden Morgen Rentner zum Frühstück, und nachmittags machen Schüler hier ihre Hausaufgaben.\n\n„Der Laden ist mehr als ein Geschäft“, sagt Anna Krüger. „Er ist wieder ein Treffpunkt für das ganze Dorf geworden.“ Inzwischen kommen sogar Besucher aus anderen Gemeinden, um zu sehen, wie das Projekt funktioniert.",
+      "credit": "Az Érettségi Gyakorló saját szövege.",
+      "pdfRects": [
+        {
+          "page": 3,
+          "x": 0.0941,
+          "y": 0.0665,
+          "w": 0.8119,
+          "h": 0.3777
+        }
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "id": "I",
+      "title": "I. Olvasott szöveg értése",
+      "timeLimitMinutes": 60,
+      "maxPoints": 12,
+      "scale": {
+        "maxPoints": 11,
+        "table": [
+          {
+            "raw": 0,
+            "points": 0
+          },
+          {
+            "raw": 1,
+            "points": 1
+          },
+          {
+            "raw": 2,
+            "points": 2
+          },
+          {
+            "raw": 3,
+            "points": 3
+          },
+          {
+            "raw": 4,
+            "points": 4
+          },
+          {
+            "raw": 5,
+            "points": 5
+          },
+          {
+            "raw": 6,
+            "points": 6
+          },
+          {
+            "raw": 7,
+            "points": 6
+          },
+          {
+            "raw": 8,
+            "points": 7
+          },
+          {
+            "raw": 9,
+            "points": 8
+          },
+          {
+            "raw": 10,
+            "points": 9
+          },
+          {
+            "raw": 11,
+            "points": 10
+          },
+          {
+            "raw": 12,
+            "points": 11
+          }
+        ]
+      },
+      "instructions": "Olvassa el figyelmesen a szövegeket, és oldja meg a feladatokat! A feladatok utasításai a vizsga nyelvén szerepelnek, mint az érettségin. Ebben a részben szótár nem használható.",
+      "tasks": [
+        {
+          "id": "I-1",
+          "number": "I/1.",
+          "type": "matching",
+          "text": "Lesen Sie das Interview mit Lena. Die Fragen fehlen. Welche Frage (A–H) passt zu welcher Antwort (1–6)? Zwei Fragen passen nicht.",
+          "sourceRefs": [
+            "src-1"
+          ],
+          "topics": [
+            "olvasott szöveg értése",
+            "párosítás"
+          ],
+          "explanation": "1 – A (az iskolai gyakorlat révén került oda), 2 – B (egy szokásos szombat menete), 3 – C (a beteg és idős állatok miatt néha szomorú), 4 – F (nincs saját állata), 5 – E (mit tanult), 6 – D (a barátai reakciója). A G (fizetés) és a H (állatorvos) kérdésre nincs válasz.",
+          "hints": [
+            "Keresse meg minden válaszban a kulcsszót, amely a kérdésre utal (például Schule, Samstag, Freunde)!",
+            "Két kérdés kimarad: olyan kérdés, amelyre egyik válasz sem felel."
+          ],
+          "maxPoints": 6,
+          "fields": [
+            {
+              "id": "I-1-f1",
+              "kind": "choice",
+              "label": "1.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Wie bist du zum Tierheim gekommen?"
+                },
+                {
+                  "value": "B",
+                  "label": "Was machst du an einem normalen Tag?"
+                },
+                {
+                  "value": "C",
+                  "label": "Ist die Arbeit manchmal traurig?"
+                },
+                {
+                  "value": "D",
+                  "label": "Wie reagieren deine Freunde darauf?"
+                },
+                {
+                  "value": "E",
+                  "label": "Was hast du bei der Arbeit gelernt?"
+                },
+                {
+                  "value": "F",
+                  "label": "Hast du selbst ein Haustier?"
+                },
+                {
+                  "value": "G",
+                  "label": "Wie viel verdienst du im Tierheim?"
+                },
+                {
+                  "value": "H",
+                  "label": "Möchtest du später Tierärztin werden?"
+                }
+              ],
+              "pdfRect": {
+                "page": 3,
+                "x": 0.7883,
+                "y": 0.6656,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f2",
+              "kind": "choice",
+              "label": "2.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Wie bist du zum Tierheim gekommen?"
+                },
+                {
+                  "value": "B",
+                  "label": "Was machst du an einem normalen Tag?"
+                },
+                {
+                  "value": "C",
+                  "label": "Ist die Arbeit manchmal traurig?"
+                },
+                {
+                  "value": "D",
+                  "label": "Wie reagieren deine Freunde darauf?"
+                },
+                {
+                  "value": "E",
+                  "label": "Was hast du bei der Arbeit gelernt?"
+                },
+                {
+                  "value": "F",
+                  "label": "Hast du selbst ein Haustier?"
+                },
+                {
+                  "value": "G",
+                  "label": "Wie viel verdienst du im Tierheim?"
+                },
+                {
+                  "value": "H",
+                  "label": "Möchtest du später Tierärztin werden?"
+                }
+              ],
+              "pdfRect": {
+                "page": 3,
+                "x": 0.7883,
+                "y": 0.7037,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f3",
+              "kind": "choice",
+              "label": "3.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Wie bist du zum Tierheim gekommen?"
+                },
+                {
+                  "value": "B",
+                  "label": "Was machst du an einem normalen Tag?"
+                },
+                {
+                  "value": "C",
+                  "label": "Ist die Arbeit manchmal traurig?"
+                },
+                {
+                  "value": "D",
+                  "label": "Wie reagieren deine Freunde darauf?"
+                },
+                {
+                  "value": "E",
+                  "label": "Was hast du bei der Arbeit gelernt?"
+                },
+                {
+                  "value": "F",
+                  "label": "Hast du selbst ein Haustier?"
+                },
+                {
+                  "value": "G",
+                  "label": "Wie viel verdienst du im Tierheim?"
+                },
+                {
+                  "value": "H",
+                  "label": "Möchtest du später Tierärztin werden?"
+                }
+              ],
+              "pdfRect": {
+                "page": 3,
+                "x": 0.7883,
+                "y": 0.7417,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f4",
+              "kind": "choice",
+              "label": "4.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Wie bist du zum Tierheim gekommen?"
+                },
+                {
+                  "value": "B",
+                  "label": "Was machst du an einem normalen Tag?"
+                },
+                {
+                  "value": "C",
+                  "label": "Ist die Arbeit manchmal traurig?"
+                },
+                {
+                  "value": "D",
+                  "label": "Wie reagieren deine Freunde darauf?"
+                },
+                {
+                  "value": "E",
+                  "label": "Was hast du bei der Arbeit gelernt?"
+                },
+                {
+                  "value": "F",
+                  "label": "Hast du selbst ein Haustier?"
+                },
+                {
+                  "value": "G",
+                  "label": "Wie viel verdienst du im Tierheim?"
+                },
+                {
+                  "value": "H",
+                  "label": "Möchtest du später Tierärztin werden?"
+                }
+              ],
+              "pdfRect": {
+                "page": 3,
+                "x": 0.7883,
+                "y": 0.7797,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f5",
+              "kind": "choice",
+              "label": "5.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Wie bist du zum Tierheim gekommen?"
+                },
+                {
+                  "value": "B",
+                  "label": "Was machst du an einem normalen Tag?"
+                },
+                {
+                  "value": "C",
+                  "label": "Ist die Arbeit manchmal traurig?"
+                },
+                {
+                  "value": "D",
+                  "label": "Wie reagieren deine Freunde darauf?"
+                },
+                {
+                  "value": "E",
+                  "label": "Was hast du bei der Arbeit gelernt?"
+                },
+                {
+                  "value": "F",
+                  "label": "Hast du selbst ein Haustier?"
+                },
+                {
+                  "value": "G",
+                  "label": "Wie viel verdienst du im Tierheim?"
+                },
+                {
+                  "value": "H",
+                  "label": "Möchtest du später Tierärztin werden?"
+                }
+              ],
+              "pdfRect": {
+                "page": 3,
+                "x": 0.7883,
+                "y": 0.8177,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-1-f6",
+              "kind": "choice",
+              "label": "6.",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "Wie bist du zum Tierheim gekommen?"
+                },
+                {
+                  "value": "B",
+                  "label": "Was machst du an einem normalen Tag?"
+                },
+                {
+                  "value": "C",
+                  "label": "Ist die Arbeit manchmal traurig?"
+                },
+                {
+                  "value": "D",
+                  "label": "Wie reagieren deine Freunde darauf?"
+                },
+                {
+                  "value": "E",
+                  "label": "Was hast du bei der Arbeit gelernt?"
+                },
+                {
+                  "value": "F",
+                  "label": "Hast du selbst ein Haustier?"
+                },
+                {
+                  "value": "G",
+                  "label": "Wie viel verdienst du im Tierheim?"
+                },
+                {
+                  "value": "H",
+                  "label": "Möchtest du später Tierärztin werden?"
+                }
+              ],
+              "pdfRect": {
+                "page": 3,
+                "x": 0.7883,
+                "y": 0.8557,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 6,
+                "fieldIds": [
+                  "I-1-f1",
+                  "I-1-f2",
+                  "I-1-f3",
+                  "I-1-f4",
+                  "I-1-f5",
+                  "I-1-f6"
+                ],
+                "answer": {
+                  "kind": "matching",
+                  "pairs": {
+                    "I-1-f1": "A",
+                    "I-1-f2": "B",
+                    "I-1-f3": "C",
+                    "I-1-f4": "F",
+                    "I-1-f5": "E",
+                    "I-1-f6": "D"
+                  }
+                },
+                "partial": {
+                  "perItem": 1
+                }
+              }
+            ]
+          },
+          "pdfRect": {
+            "page": 3,
+            "x": 0.0941,
+            "y": 0.4609,
+            "w": 0.8119,
+            "h": 0.4352
+          }
+        },
+        {
+          "id": "I-2",
+          "number": "I/2.",
+          "type": "short_answer",
+          "text": "Lesen Sie den Text über den Dorfladen und beantworten Sie die Fragen. Schreiben Sie höchstens fünf Wörter.",
+          "sourceRefs": [
+            "src-2"
+          ],
+          "topics": [
+            "olvasott szöveg értése",
+            "rövid válasz"
+          ],
+          "explanation": "1. 12 Kilometer; 2. Bäckerin; 3. 200 Euro; 4. in einem alten Gasthaus (in der Dorfmitte); 5. von Bauernhöfen aus der Umgebung; 6. ihre Hausaufgaben.",
+          "hints": [
+            "A kérdések sorrendje követi a szöveg sorrendjét.",
+            "Számot számjeggyel is írhat; elég néhány szóval válaszolni."
+          ],
+          "maxPoints": 6,
+          "fields": [
+            {
+              "id": "I-2-f1",
+              "kind": "text",
+              "label": "1. Wie weit ist der nächste Laden entfernt?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.1245,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f2",
+              "kind": "text",
+              "label": "2. Welchen Beruf hat Anna Krüger?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.1625,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f3",
+              "kind": "text",
+              "label": "3. Wie viel hat ein Anteil gekostet?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.2005,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f4",
+              "kind": "text",
+              "label": "4. Wo ist der Laden heute?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.2385,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f5",
+              "kind": "text",
+              "label": "5. Woher kommen die meisten Produkte?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.2765,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "I-2-f6",
+              "kind": "text",
+              "label": "6. Was machen Schüler nachmittags in der Kaffee-Ecke?",
+              "pdfRect": {
+                "page": 4,
+                "x": 0.6203,
+                "y": 0.3145,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 1,
+                "description": "1. 12 Kilometer",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f1"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "12",
+                        "zwölf"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s2",
+                "points": 1,
+                "description": "2. Bäckerin",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f2"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "Bäckerin",
+                        "Bäcker"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s3",
+                "points": 1,
+                "description": "3. 200 Euro",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f3"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "200",
+                        "zweihundert"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s4",
+                "points": 1,
+                "description": "4. in einem alten Gasthaus (in der Dorfmitte)",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f4"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "Gasthaus",
+                        "Gasthof",
+                        "Dorfmitte",
+                        "Mitte"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s5",
+                "points": 1,
+                "description": "5. von Bauernhöfen aus der Umgebung",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f5"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "Bauernhöfen",
+                        "Bauern",
+                        "Höfen",
+                        "Hof",
+                        "Umgebung",
+                        "Region"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s6",
+                "points": 1,
+                "description": "6. (ihre) Hausaufgaben",
+                "auto": {
+                  "fieldIds": [
+                    "I-2-f6"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "Hausaufgaben",
+                        "Aufgaben",
+                        "lernen"
+                      ]
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "pdfRect": {
+            "page": 4,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.2948
+          }
+        }
+      ]
+    },
+    {
+      "id": "II",
+      "title": "II. Nyelvhelyesség",
+      "timeLimitMinutes": 30,
+      "maxPoints": 11,
+      "scale": {
+        "maxPoints": 6,
+        "table": [
+          {
+            "raw": 0,
+            "points": 0
+          },
+          {
+            "raw": 1,
+            "points": 1
+          },
+          {
+            "raw": 2,
+            "points": 1
+          },
+          {
+            "raw": 3,
+            "points": 2
+          },
+          {
+            "raw": 4,
+            "points": 2
+          },
+          {
+            "raw": 5,
+            "points": 3
+          },
+          {
+            "raw": 6,
+            "points": 3
+          },
+          {
+            "raw": 7,
+            "points": 4
+          },
+          {
+            "raw": 8,
+            "points": 4
+          },
+          {
+            "raw": 9,
+            "points": 5
+          },
+          {
+            "raw": 10,
+            "points": 5
+          },
+          {
+            "raw": 11,
+            "points": 6
+          }
+        ]
+      },
+      "instructions": "Oldja meg a nyelvhelyességi feladatokat! Minden helyes válasz 1 feladatpontot ér; csak a helyesen írt alak fogadható el. Szótár nem használható.",
+      "tasks": [
+        {
+          "id": "II-1",
+          "number": "II/1.",
+          "type": "short_answer",
+          "text": "Ergänzen Sie den Text. Setzen Sie die Verben in Klammern im Präteritum ein.\n\n**Sommer in Wien**\n\nIm letzten Sommer (1) ……… (fahren) meine Familie nach Wien. Wir (2) ……… (wohnen) in einem kleinen Hotel in der Nähe des Stephansdoms. Am ersten Tag (3) ……… (gehen) wir ins Museum, und am Abend (4) ……… (essen) ich zum ersten Mal ein echtes Wiener Schnitzel. Meine Schwester (5) ……… (können) nicht genug von der Sachertorte bekommen.",
+          "topics": [
+            "nyelvhelyesség",
+            "igealakok"
+          ],
+          "explanation": "1. fuhr (erős ige, egyes szám 3. személy: „meine Familie”); 2. wohnten (gyenge ige, többes szám 1. személy); 3. gingen; 4. aß (ß nélkül: ass); 5. konnte (módbeli segédige, egyes szám 3. személy).",
+          "hints": [
+            "Először keresse meg az alanyt: egyes vagy többes számú, és hányadik személy?",
+            "A „fahren”, a „gehen” és az „essen” erős ige: a tőhangzójuk megváltozik."
+          ],
+          "maxPoints": 5,
+          "fields": [
+            {
+              "id": "II-1-f1",
+              "kind": "text",
+              "label": "(1) fahren",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.3206,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-1-f2",
+              "kind": "text",
+              "label": "(2) wohnen",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.3586,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-1-f3",
+              "kind": "text",
+              "label": "(3) gehen",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.3966,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-1-f4",
+              "kind": "text",
+              "label": "(4) essen",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.4346,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-1-f5",
+              "kind": "text",
+              "label": "(5) können",
+              "pdfRect": {
+                "page": 5,
+                "x": 0.6203,
+                "y": 0.4726,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f1"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "fuhr"
+                  ]
+                }
+              },
+              {
+                "id": "r2",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f2"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "wohnten"
+                  ]
+                }
+              },
+              {
+                "id": "r3",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f3"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "gingen"
+                  ]
+                }
+              },
+              {
+                "id": "r4",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f4"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "aß",
+                    "ass"
+                  ]
+                }
+              },
+              {
+                "id": "r5",
+                "points": 1,
+                "fieldIds": [
+                  "II-1-f5"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "konnte"
+                  ]
+                }
+              }
+            ]
+          },
+          "pdfRect": {
+            "page": 5,
+            "x": 0.0941,
+            "y": 0.1579,
+            "w": 0.8119,
+            "h": 0.3552
+          }
+        },
+        {
+          "id": "II-2",
+          "number": "II/2.",
+          "type": "short_answer",
+          "text": "Ergänzen Sie den Brief. Schreiben Sie in jede Lücke EIN passendes Wort.\n\nLiebe Oma,\n\nvielen Dank (1) ……… das schöne Geburtstagsgeschenk! Das Buch gefällt mir sehr, ich habe es schon (2) ……… Hälfte gelesen. Am Samstag habe ich mit meinen Freunden gefeiert. Wir sind (3) ……… Kino gegangen, und danach haben wir Pizza gegessen. Leider konnte Paul nicht kommen, (4) ……… er krank war. Nächsten Monat besuche ich dich, (5) ……… ich Ferien habe. Ich freue mich schon (6) ……… deinen Apfelkuchen!\n\nDeine Hanna",
+          "topics": [
+            "nyelvhelyesség",
+            "nyílt kiegészítés"
+          ],
+          "explanation": "1. für (Dank für etwas); 2. zur (zur Hälfte = zu der); 3. ins (ins Kino = in das, irányt jelöl); 4. weil / da (ok, az ige a mondat végén áll); 5. wenn / weil / da / sobald (az ige itt is a végén áll); 6. auf (sich freuen auf etwas – valami jövőbelire).",
+          "hints": [
+            "Sok hiányzó szó egy igéhez vagy főnévhez tartozó vonzat (elöljárószó).",
+            "Ha a mellékmondatban az ige a végén áll, alárendelő kötőszó hiányzik."
+          ],
+          "maxPoints": 6,
+          "fields": [
+            {
+              "id": "II-2-f1",
+              "kind": "text",
+              "label": "(1)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.2729,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f2",
+              "kind": "text",
+              "label": "(2)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.3109,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f3",
+              "kind": "text",
+              "label": "(3)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.3489,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f4",
+              "kind": "text",
+              "label": "(4)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.3869,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f5",
+              "kind": "text",
+              "label": "(5)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.4249,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "II-2-f6",
+              "kind": "text",
+              "label": "(6)",
+              "pdfRect": {
+                "page": 6,
+                "x": 0.6203,
+                "y": 0.4629,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f1"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "für",
+                    "fuer"
+                  ]
+                }
+              },
+              {
+                "id": "r2",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f2"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "zur"
+                  ]
+                }
+              },
+              {
+                "id": "r3",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f3"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "ins"
+                  ]
+                }
+              },
+              {
+                "id": "r4",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f4"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "weil",
+                    "da"
+                  ]
+                }
+              },
+              {
+                "id": "r5",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f5"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "wenn",
+                    "weil",
+                    "da",
+                    "sobald"
+                  ]
+                }
+              },
+              {
+                "id": "r6",
+                "points": 1,
+                "fieldIds": [
+                  "II-2-f6"
+                ],
+                "answer": {
+                  "kind": "text",
+                  "accepted": [
+                    "auf"
+                  ]
+                }
+              }
+            ]
+          },
+          "pdfRect": {
+            "page": 6,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.4368
+          }
+        }
+      ]
+    },
+    {
+      "id": "III",
+      "title": "III. Hallott szöveg értése",
+      "timeLimitMinutes": 30,
+      "maxPoints": 10,
+      "scale": {
+        "maxPoints": 11,
+        "table": [
+          {
+            "raw": 0,
+            "points": 0
+          },
+          {
+            "raw": 1,
+            "points": 1
+          },
+          {
+            "raw": 2,
+            "points": 2
+          },
+          {
+            "raw": 3,
+            "points": 3
+          },
+          {
+            "raw": 4,
+            "points": 4
+          },
+          {
+            "raw": 5,
+            "points": 6
+          },
+          {
+            "raw": 6,
+            "points": 7
+          },
+          {
+            "raw": 7,
+            "points": 8
+          },
+          {
+            "raw": 8,
+            "points": 9
+          },
+          {
+            "raw": 9,
+            "points": 10
+          },
+          {
+            "raw": 10,
+            "points": 11
+          }
+        ]
+      },
+      "instructions": "Minden szöveget kétszer hall. A felvétel tartalmazza a feladatok előtti olvasási időt és a szüneteket is, ezért vizsgamódban ne állítsa meg. Gépi felolvasás (Piper TTS). Hangok: Piper thorsten (CC0) és Piper kerstin (CC0).",
+      "audio": {
+        "file": "hanganyag.mp3",
+        "durationSeconds": 351.4,
+        "segments": [
+          {
+            "label": "III/1. feladat",
+            "startSeconds": 44.1,
+            "taskIds": [
+              "III-1"
+            ]
+          },
+          {
+            "label": "III/2. feladat",
+            "startSeconds": 225.5,
+            "taskIds": [
+              "III-2"
+            ]
+          }
+        ],
+        "label": "Hanganyag. Gépi felolvasás (Piper TTS). Hangok: Piper thorsten (CC0) és Piper kerstin (CC0).",
+        "sha256": "1d9fa365a33982a9f09ecc583c32ffa7c74a1416c7556ebbccad2810d3e583b1"
+      },
+      "tasks": [
+        {
+          "id": "III-1",
+          "number": "III/1.",
+          "type": "multiple_choice",
+          "text": "Sie hören ein Gespräch zwischen Jonas und Mia. Wählen Sie die richtige Antwort (A, B, C oder D). Sie hören den Text zweimal.",
+          "topics": [
+            "hallott szöveg értése",
+            "feleletválasztás"
+          ],
+          "explanation": "1. A – a főnök „total nett” volt. 2. C – a fagyizó a Marktplatzon van. 3. D – heti négy nap, délután 12 és 18 óra között. 4. B – a főnök pénteken telefonál. 5. C – vonattal utaznak Olaszországba.",
+          "hints": [
+            "A hallgatás előtt olvassa el a kérdéseket és a válaszlehetőségeket!",
+            "Figyeljen a napokra és az időpontokra: több is elhangzik."
+          ],
+          "maxPoints": 5,
+          "fields": [
+            {
+              "id": "III-1-f1",
+              "kind": "choice",
+              "label": "1. Wie war die Chefin beim Gespräch?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "sehr nett"
+                },
+                {
+                  "value": "B",
+                  "label": "sehr streng"
+                },
+                {
+                  "value": "C",
+                  "label": "nervös"
+                },
+                {
+                  "value": "D",
+                  "label": "unfreundlich"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.2325,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-1-f2",
+              "kind": "choice",
+              "label": "2. Wo ist das Eiscafé?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "am Bahnhof"
+                },
+                {
+                  "value": "B",
+                  "label": "im Einkaufszentrum"
+                },
+                {
+                  "value": "C",
+                  "label": "am Marktplatz"
+                },
+                {
+                  "value": "D",
+                  "label": "am See"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.3474,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-1-f3",
+              "kind": "choice",
+              "label": "3. Wann soll Mia arbeiten?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "nur am Wochenende"
+                },
+                {
+                  "value": "B",
+                  "label": "jeden Tag am Vormittag"
+                },
+                {
+                  "value": "C",
+                  "label": "nur am Abend"
+                },
+                {
+                  "value": "D",
+                  "label": "vier Tage pro Woche am Nachmittag"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.4624,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-1-f4",
+              "kind": "choice",
+              "label": "4. Wann bekommt Mia eine Antwort?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "heute"
+                },
+                {
+                  "value": "B",
+                  "label": "am Freitag"
+                },
+                {
+                  "value": "C",
+                  "label": "am Samstag"
+                },
+                {
+                  "value": "D",
+                  "label": "nächste Woche"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.5774,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-1-f5",
+              "kind": "choice",
+              "label": "5. Wie wollen Mia und Sophie nach Italien reisen?",
+              "options": [
+                {
+                  "value": "A",
+                  "label": "mit dem Auto"
+                },
+                {
+                  "value": "B",
+                  "label": "mit dem Flugzeug"
+                },
+                {
+                  "value": "C",
+                  "label": "mit dem Zug"
+                },
+                {
+                  "value": "D",
+                  "label": "mit dem Fahrrad"
+                }
+              ],
+              "pdfRect": {
+                "page": 7,
+                "x": 0.7883,
+                "y": 0.6924,
+                "w": 0.1176,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "rules": [
+              {
+                "id": "r1",
+                "points": 5,
+                "fieldIds": [
+                  "III-1-f1",
+                  "III-1-f2",
+                  "III-1-f3",
+                  "III-1-f4",
+                  "III-1-f5"
+                ],
+                "answer": {
+                  "kind": "matching",
+                  "pairs": {
+                    "III-1-f1": "A",
+                    "III-1-f2": "C",
+                    "III-1-f3": "D",
+                    "III-1-f4": "B",
+                    "III-1-f5": "C"
+                  }
+                },
+                "partial": {
+                  "perItem": 1
+                }
+              }
+            ]
+          },
+          "transcript": "**Jonas:** Hallo Mia! Wie war dein Vorstellungsgespräch gestern?\n\n**Mia:** Hallo Jonas! Ich glaube, ganz gut. Am Anfang war ich sehr nervös, aber die Chefin war total nett.\n\n**Jonas:** Und was für ein Job ist das genau?\n\n**Mia:** Ich soll im Sommer im Eiscafé am Marktplatz arbeiten. Vor allem an der Kasse, und manchmal auch draußen an den Tischen.\n\n**Jonas:** Klingt super. Wie viele Stunden musst du denn arbeiten?\n\n**Mia:** Vier Tage pro Woche, immer von zwölf bis achtzehn Uhr. Am Wochenende habe ich frei, das war mir wichtig.\n\n**Jonas:** Und wann weißt du, ob du den Job bekommst?\n\n**Mia:** Die Chefin will mich am Freitag anrufen. Sie muss noch mit zwei anderen Bewerberinnen sprechen.\n\n**Jonas:** Und wofür brauchst du das Geld?\n\n**Mia:** Ich möchte im August mit meiner Freundin Sophie nach Italien fahren. Wir wollen mit dem Zug reisen und auf Campingplätzen übernachten.\n\n**Jonas:** Toll! Dann drücke ich dir die Daumen.\n\n**Mia:** Danke! Und wenn es klappt, bekommst du ein Eis gratis.",
+          "pdfRect": {
+            "page": 7,
+            "x": 0.0941,
+            "y": 0.1745,
+            "w": 0.8119,
+            "h": 0.6352
+          }
+        },
+        {
+          "id": "III-2",
+          "number": "III/2.",
+          "type": "short_answer",
+          "text": "Sie hören die Begrüßung in einer Jugendherberge. Ergänzen Sie die Notizen mit einem Wort oder einer Zahl. Sie hören den Text zweimal.",
+          "topics": [
+            "hallott szöveg értése",
+            "mondatkiegészítés"
+          ],
+          "explanation": "1. 9 (neun) Uhr – a reggeli héttől kilencig tart. 2. 4,50 Euro – ennyibe kerül az ebédcsomag. 3. Eingang – a kulcsok a bejárat melletti irodában vannak. 4. Mittwoch – szerda este grillezés. 5. 22 Uhr – ettől kezdve csend van.",
+          "hints": [
+            "Hallgatás előtt gondolja végig, milyen információ hiányzik: időpont, ár, hely vagy nap!",
+            "Az árakat és az időpontokat számjeggyel is leírhatja."
+          ],
+          "maxPoints": 5,
+          "fields": [
+            {
+              "id": "III-2-f1",
+              "kind": "text",
+              "label": "1. Frühstück: von 7 bis … Uhr",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.1245,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-2-f2",
+              "kind": "text",
+              "label": "2. Lunchpaket: Preis in Euro",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.1625,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-2-f3",
+              "kind": "text",
+              "label": "3. Fahrradschlüssel: im Büro neben dem",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.2005,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-2-f4",
+              "kind": "text",
+              "label": "4. Grillfest am Strand: am … abend",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.2385,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            },
+            {
+              "id": "III-2-f5",
+              "kind": "text",
+              "label": "5. Nachtruhe ab … Uhr",
+              "pdfRect": {
+                "page": 8,
+                "x": 0.6203,
+                "y": 0.2765,
+                "w": 0.2856,
+                "h": 0.0285
+              }
+            }
+          ],
+          "scoring": {
+            "steps": [
+              {
+                "id": "s1",
+                "points": 1,
+                "description": "1. 9 (neun)",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f1"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "9",
+                        "neun"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s2",
+                "points": 1,
+                "description": "2. 4,50 (vier Euro fünfzig)",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f2"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "4,50"
+                      ]
+                    ],
+                    [
+                      [
+                        "vier"
+                      ],
+                      [
+                        "fünfzig"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s3",
+                "points": 1,
+                "description": "3. Eingang",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f3"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "Eingang"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s4",
+                "points": 1,
+                "description": "4. Mittwoch",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f4"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "Mittwoch"
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "s5",
+                "points": 1,
+                "description": "5. 22 (zweiundzwanzig)",
+                "auto": {
+                  "fieldIds": [
+                    "III-2-f5"
+                  ],
+                  "alternatives": [
+                    [
+                      [
+                        "22",
+                        "zweiundzwanzig"
+                      ]
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "transcript": "Herzlich willkommen in der Jugendherberge am See! Mein Name ist Thomas, und ich möchte euch kurz ein paar wichtige Informationen geben.\n\nDas Frühstück gibt es jeden Morgen von sieben bis neun Uhr im Speisesaal im Erdgeschoss. Das Abendessen beginnt um halb sieben.\n\nWenn ihr einen Ausflug macht, könnt ihr an der Rezeption ein Lunchpaket bestellen. Das kostet vier Euro fünfzig. Bitte sagt uns aber bis zwanzig Uhr am Abend vorher Bescheid.\n\nFahrräder könnt ihr bei uns kostenlos ausleihen. Die Schlüssel bekommt ihr im Büro neben dem Eingang.\n\nAm Mittwochabend gibt es ein Grillfest am Strand, und am Donnerstag machen wir eine Bootstour auf dem See.\n\nUnd noch eine Bitte: Ab zweiundzwanzig Uhr ist Nachtruhe. Bitte seid dann leise, damit alle gut schlafen können. Viel Spaß bei uns!",
+          "pdfRect": {
+            "page": 8,
+            "x": 0.0941,
+            "y": 0.0665,
+            "w": 0.8119,
+            "h": 0.2504
+          }
+        }
+      ]
+    },
+    {
+      "id": "IV",
+      "title": "IV. Íráskészség",
+      "timeLimitMinutes": 60,
+      "maxPoints": 11,
+      "instructions": "Írjon e-mailt a megadott szempontok alapján! Ügyeljen a terjedelemre (80–100 szó). Ennél a résznél nyomtatott szótár használható.",
+      "tasks": [
+        {
+          "id": "IV-1",
+          "number": "IV/1.",
+          "type": "long_writing",
+          "text": "Sie waren letzte Woche mit Ihrer Klasse auf Klassenfahrt. Schreiben Sie Ihrem österreichischen Freund Lukas eine E-Mail. Schreiben Sie:\n\n- wohin Sie gefahren sind und wo Sie gewohnt haben,\n- was Ihnen am besten gefallen hat und warum,\n- fragen Sie Lukas nach seinen Plänen für die Sommerferien.\n\nSchreiben Sie 80–100 Wörter.",
+          "maxPoints": 11,
+          "topics": [
+            "íráskészség",
+            "e-mail, levél"
+          ],
+          "wordLimit": {
+            "min": 80,
+            "max": 100
+          },
+          "fields": [
+            {
+              "id": "IV-1-f1",
+              "kind": "essay",
+              "label": "E-Mail:",
+              "pdfRect": {
+                "page": 10,
+                "x": 0.0941,
+                "y": 0.0887,
+                "w": 0.8119,
+                "h": 0.8234
+              }
+            }
+          ],
+          "scoring": {
+            "criteria": [
+              {
+                "id": "c1",
+                "label": "A feladat teljesítése és a szöveg hosszúsága",
+                "maxPoints": 5,
+                "levels": [
+                  {
+                    "points": 5,
+                    "description": "Mindhárom irányító szempontot érdemben kifejti; a terjedelem megfelel az előírtnak (80–100 szó); a megszólítás és az elköszönés illik a műfajhoz."
+                  },
+                  {
+                    "points": 4,
+                    "description": "Mindhárom szempontot kifejti, de egyet csak röviden; vagy a terjedelem kissé eltér az előírttól."
+                  },
+                  {
+                    "points": 3,
+                    "description": "Két szempontot fejt ki, a harmadikat csak említi vagy kihagyja."
+                  },
+                  {
+                    "points": 1,
+                    "description": "Csak egy szempontot fejt ki, vagy a szöveg jóval rövidebb az előírtnál."
+                  },
+                  {
+                    "points": 0,
+                    "description": "A szöveg nem a feladatra felel, vagy 40 szónál rövidebb."
+                  }
+                ]
+              },
+              {
+                "id": "c2",
+                "label": "Szókincs, kifejezésmód",
+                "maxPoints": 3,
+                "levels": [
+                  {
+                    "points": 3,
+                    "description": "A témához illő, változatos szókincs; a hangnem megfelel a baráti e-mailnek."
+                  },
+                  {
+                    "points": 2,
+                    "description": "Többnyire megfelelő, de egyszerű, néhol ismétlődő szókincs."
+                  },
+                  {
+                    "points": 1,
+                    "description": "Szűk szókincs; a hiányok helyenként nehezítik a megértést."
+                  },
+                  {
+                    "points": 0,
+                    "description": "A szókincs nem elegendő a feladat teljesítéséhez."
+                  }
+                ]
+              },
+              {
+                "id": "c3",
+                "label": "Nyelvhelyesség, helyesírás",
+                "maxPoints": 3,
+                "levels": [
+                  {
+                    "points": 3,
+                    "description": "Kevés hiba, amely nem zavarja a megértést."
+                  },
+                  {
+                    "points": 2,
+                    "description": "Több hiba, de a szöveg végig érthető."
+                  },
+                  {
+                    "points": 1,
+                    "description": "Sok hiba, amely helyenként nehezíti a megértést."
+                  },
+                  {
+                    "points": 0,
+                    "description": "A hibák miatt a szöveg nagyrészt érthetetlen."
+                  }
+                ]
+              }
+            ]
+          },
+          "examples": [
+            {
+              "id": "minta-kozepes",
+              "label": "Közepes megoldás",
+              "text": "Hallo Lukas,\n\nwie geht es dir? Letzte Woche war ich mit meiner Klasse vier Tage in Pécs. Wir haben in einem Jugendherberge in der Stadtmitte gewohnt. Die Zimmer waren klein, aber sauber, und das Frühstück war lecker.\n\nAm besten hat mir den Ausflug in den Bergen gefallen, weil das Wetter war sehr schön und wir haben viel gelacht. Am Abend wir haben zusammen Karten gespielt.\n\nWas machst du in den Sommerferien? Fährst du wieder nach Italien? Schreib mir bald!\n\nViele Grüße\nDóra",
+              "scores": {
+                "c1": 4,
+                "c2": 2,
+                "c3": 1
+              },
+              "notes": {
+                "c1": "Mindhárom szempontra válaszol, a terjedelem megfelelő; a második szempont indoklása rövid.",
+                "c2": "A témához illő, de egyszerű szókincs, kevés kötőszó.",
+                "c3": "Sok alapvető hiba: „einem Jugendherberge” (einer), „mir den Ausflug” (der Ausflug), „weil das Wetter war” (weil das Wetter … war), „Am Abend wir haben” (haben wir). Ezek helyenként nehezítik az olvasást."
+              },
+              "comment": "Tartalmilag rendben van, és illik a baráti e-mail műfajához, de a szórendi és a névelőhibák sok pontot visznek el."
+            }
+          ],
+          "explanation": "Jó megoldás: megszólítás (Lieber Lukas / Hallo Lukas), mindhárom szempont kifejtése (hová utaztak és hol laktak, mi tetszett legjobban és miért, kérdés a nyári tervekről), elköszönés (Viele Grüße / Liebe Grüße) és 80–100 szó. Figyeljen a szórendre: a „weil” után az ige a mondat végére kerül, az időhatározóval kezdődő mondatban pedig az ige a második helyen áll („Am Abend haben wir …”).",
+          "hints": [
+            "Mindhárom szempontra írjon legalább két mondatot, és ne felejtse el a kérdést a végén!",
+            "Ellenőrizze a szórendet a „weil” utáni mellékmondatokban és az időhatározóval kezdődő mondatokban!"
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": [
+      "Érettségi Gyakorló"
+    ],
+    "notes": [
+      "Saját készítésű, nem hivatalos feladatsor.",
+      "A hanganyag gépi felolvasás (Piper TTS): Piper thorsten (CC0) és Piper kerstin (CC0).",
+      "A rövidített feladatsor pontjai az igazi vizsga arányait követik (33/18/33/33 helyett 11/6/11/11 vizsgapont)."
+    ]
+  }
+}

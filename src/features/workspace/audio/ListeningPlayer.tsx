@@ -33,10 +33,13 @@ function useAudioSource(exam: Exam, part: Part, packUrl: string | null): Source 
     let objectUrl: string | null = null;
     void fetch(packUrl)
       .then((response) => {
-        if (!response.ok) throw new Error(String(response.status));
+        // A static host may answer a missing file with its HTML error page.
+        if (!response.ok || response.headers.get('content-type')?.startsWith('text/html'))
+          throw new Error(String(response.status));
         return response.blob();
       })
       .then((blob) => {
+        if (blob.size === 0) throw new Error('empty recording');
         if (!active) return;
         objectUrl = URL.createObjectURL(blob);
         setFetched({ url: objectUrl, src: packUrl });

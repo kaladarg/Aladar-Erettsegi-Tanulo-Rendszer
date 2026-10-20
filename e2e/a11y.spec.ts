@@ -26,6 +26,15 @@ const PAGES = [
     '/feladatsorok/matematika-kozep-2026-majus-minta/gyakorlas?nezet=feladatlap',
     'Matematika – Mintafeladatsor – Matematika, középszint',
   ],
+  [
+    '/feladatsorok/angol-kozep-2026-majus-minta/gyakorlas?nezet=urlap',
+    'Angol nyelv – Mintafeladatsor – Angol nyelv, középszint',
+  ],
+  [
+    '/feladatsorok/nemet-kozep-2026-majus-minta/gyakorlas?nezet=urlap',
+    'Német nyelv – Mintafeladatsor – Német nyelv, középszint',
+  ],
+  ['/gyakorlas/kartyak?targy=angol', 'Tanulókártyák'],
 ] as const;
 
 const scan = async (page: Page, label: string) => {

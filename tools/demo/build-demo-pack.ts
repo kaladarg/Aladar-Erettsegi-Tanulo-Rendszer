@@ -3,8 +3,10 @@
  * papers in demoExams.ts: a printable PDF per paper, laid out like a real
  * exam, plus exam.json with exact answer-box coordinates and manifest.json.
  *   npm run demo:build
+ * Listening recordings (hanganyag.mp3) are not generated here: they are made
+ * once with tools/demo/build-demo-audio.py (Piper TTS) and kept as they are.
  */
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import fontkit from '@pdf-lib/fontkit';
 import { PDFDocument, rgb, type PDFFont, type PDFPage } from 'pdf-lib';
@@ -147,9 +149,24 @@ const SMALL_BOX: Partial<Record<Field['kind'], number>> = {
   multi: 110,
 };
 
-function layoutField(layout: Layout, field: DemoTask['fields'][number]): Field {
+/** Options of a choice field printed under its label (when items have their own options). */
+function layoutOptions(layout: Layout, field: DemoTask['fields'][number]) {
+  for (const option of field.options ?? [])
+    layout.text(`${option.value})  ${option.label}`, { x: MARGIN + 14, gap: 0 });
+  layout.y += 6;
+}
+
+function layoutField(
+  layout: Layout,
+  field: DemoTask['fields'][number],
+  withOptions = false,
+): Field {
   const small = SMALL_BOX[field.kind];
   if (small) {
+    if (withOptions) {
+      const labelLines = layout.wrap(field.label ?? '', 10.5, CONTENT_W - small - 16).length;
+      layout.ensure((Math.max(labelLines, 1) + (field.options?.length ?? 0)) * 14.7 + 40);
+    }
     const unitWidth = field.unit ? 34 : 0;
     const labelWidth = CONTENT_W - small - unitWidth - 16;
     const labelLines = layout.wrap(field.label ?? 'Válasz:', 10.5, labelWidth);
@@ -168,6 +185,7 @@ function layoutField(layout: Layout, field: DemoTask['fields'][number]): Field {
       });
     }
     layout.y = top + rowHeight;
+    if (withOptions) layoutOptions(layout, field);
     return { ...field, pdfRect };
   }
   const height = field.kind === 'work' ? 170 : field.kind === 'textarea' ? 90 : 0;
@@ -199,6 +217,8 @@ function estimateTask(layout: Layout, task: DemoTask): number {
     (f) => (f.kind === 'choice' || f.kind === 'multi') && task.type !== 'true_false',
   );
   height += (listed?.options?.length ?? 0) * line;
+  if (!sharedOptions(task))
+    height += task.fields.reduce((sum, f) => sum + (f.options?.length ?? 0) * line + 6, 0);
   for (const field of task.fields) {
     const small = SMALL_BOX[field.kind];
     if (small)
@@ -209,6 +229,15 @@ function estimateTask(layout: Layout, task: DemoTask): number {
     else if (field.kind === 'textarea') height += 120;
   }
   return height;
+}
+
+const optionKey = (field: DemoTask['fields'][number]) =>
+  JSON.stringify(field.options?.map((o) => [o.value, o.label]) ?? null);
+
+/** Whether all choice fields of the task offer the same options (printed once). */
+function sharedOptions(task: DemoTask): boolean {
+  const choices = task.fields.filter((f) => f.kind === 'choice' || f.kind === 'multi');
+  return choices.every((f) => optionKey(f) === optionKey(choices[0]!));
 }
 
 function layoutTask(layout: Layout, task: DemoTask): Task {
@@ -224,12 +253,11 @@ function layoutTask(layout: Layout, task: DemoTask): Task {
   const listed = task.fields.find(
     (f) => (f.kind === 'choice' || f.kind === 'multi') && task.type !== 'true_false',
   );
-  if (listed?.options) {
-    for (const option of listed.options)
-      layout.text(`${option.value})  ${option.label}`, { x: MARGIN + 14, gap: 0 });
-    layout.y += 6;
-  }
-  const fields = task.fields.map((field) => layoutField(layout, field));
+  const shared = sharedOptions(task);
+  if (listed?.options && shared) layoutOptions(layout, listed);
+  const fields = task.fields.map((field) =>
+    layoutField(layout, field, !shared && task.type !== 'true_false' && !!field.options),
+  );
   const end = layout.y;
   layout.y += 14;
   const pdfRect =
@@ -258,7 +286,22 @@ function layoutSource(layout: Layout, source: DemoSource): SourceMaterial {
   return { ...source, pdfRects: [pdfRect] };
 }
 
-export async function renderExam(demo: DemoExam): Promise<{ exam: Exam; pdf: Uint8Array }> {
+const partPointsLabel = (part: DemoExam['parts'][number]) =>
+  part.scale
+    ? `${part.maxPoints} feladatpont (${part.scale.maxPoints} vizsgapont)`
+    : `${part.maxPoints} pont`;
+
+/** Adds the hash of a committed recording next to exam.json, if it is there. */
+async function withAudioHash(part: Part, dir: string | undefined): Promise<Part> {
+  if (!part.audio?.file || !dir) return part;
+  const data = await readFile(join(dir, part.audio.file)).catch(() => null);
+  return data ? { ...part, audio: { ...part.audio, sha256: sha256(data) } } : part;
+}
+
+export async function renderExam(
+  demo: DemoExam,
+  dir?: string,
+): Promise<{ exam: Exam; pdf: Uint8Array }> {
   const doc = await PDFDocument.create();
   doc.registerFontkit(fontkit);
   const regular = await doc.embedFont(await readFile(join(FONT_DIR, 'DejaVuSerif.ttf')), {
@@ -286,7 +329,9 @@ export async function renderExam(demo: DemoExam): Promise<{ exam: Exam; pdf: Uin
     { color: MUTED, size: 10 },
   );
   for (const part of demo.parts) {
-    layout.text(`${part.title}: ${part.timeLimitMinutes} perc, ${part.maxPoints} pont`, { gap: 0 });
+    layout.text(`${part.title}: ${part.timeLimitMinutes} perc, ${partPointsLabel(part)}`, {
+      gap: 0,
+    });
   }
   layout.text(`Összesen: ${demo.maxPoints} pont`, { bold: true, gap: 10 });
 
@@ -296,7 +341,7 @@ export async function renderExam(demo: DemoExam): Promise<{ exam: Exam; pdf: Uin
     if (index > 0) layout.newPage();
     layout.text(part.title, { bold: true, size: 14, gap: 2 });
     layout.text(
-      `Időtartam: ${part.timeLimitMinutes} perc · Elérhető pontszám: ${part.maxPoints} pont`,
+      `Időtartam: ${part.timeLimitMinutes} perc · Elérhető pontszám: ${partPointsLabel(part)}`,
       {
         size: 9.5,
         color: MUTED,
@@ -308,7 +353,12 @@ export async function renderExam(demo: DemoExam): Promise<{ exam: Exam; pdf: Uin
       if (source) sources.set(id, layoutSource(layout, source));
     }
     const { sourceIds: _ids, tasks, ...partRest } = part;
-    parts.push({ ...partRest, tasks: tasks.map((task) => layoutTask(layout, task)) } as Part);
+    parts.push(
+      await withAudioHash(
+        { ...partRest, tasks: tasks.map((task) => layoutTask(layout, task)) } as Part,
+        dir,
+      ),
+    );
   }
 
   const total = doc.getPageCount();
@@ -324,7 +374,13 @@ export async function renderExam(demo: DemoExam): Promise<{ exam: Exam; pdf: Uin
   });
 
   const pdf = await doc.save({ useObjectStreams: false });
-  const { subjectName: _name, parts: _parts, sources: demoSources, ...meta } = demo;
+  const {
+    subjectName: _name,
+    parts: _parts,
+    sources: demoSources,
+    reviewNotes = [],
+    ...meta
+  } = demo;
   const exam: Exam = {
     schemaVersion: 1,
     ...meta,
@@ -337,14 +393,32 @@ export async function renderExam(demo: DemoExam): Promise<{ exam: Exam; pdf: Uin
     review: {
       status: 'reviewed',
       reviewedBy: ['Érettségi Gyakorló'],
-      notes: ['Saját készítésű, nem hivatalos feladatsor.'],
+      notes: ['Saját készítésű, nem hivatalos feladatsor.', ...reviewNotes],
     },
   };
   return { exam, pdf };
 }
 
+/** Recordings are made separately (build-demo-audio.py), so they survive a rebuild. */
+const KEEP = new Set(['hanganyag.mp3']);
+
+/** Removes everything generated before, except the recordings of current papers. */
+async function cleanExams(dir: string) {
+  const ids = new Set(DEMO_EXAMS.map((demo) => demo.id));
+  for (const entry of await readdir(dir, { withFileTypes: true }).catch(() => [])) {
+    const path = join(dir, entry.name);
+    if (!entry.isDirectory() || !ids.has(entry.name)) {
+      await rm(path, { recursive: true, force: true });
+      continue;
+    }
+    for (const file of await readdir(path)) {
+      if (!KEEP.has(file)) await rm(join(path, file), { recursive: true, force: true });
+    }
+  }
+}
+
 export async function buildDemoPack(out = OUT) {
-  await rm(join(out, 'exams'), { recursive: true, force: true });
+  await cleanExams(join(out, 'exams'));
   await mkdir(out, { recursive: true });
   await writeFile(
     join(out, 'pack.json'),
@@ -362,8 +436,8 @@ export async function buildDemoPack(out = OUT) {
     )}\n`,
   );
   for (const demo of DEMO_EXAMS) {
-    const { exam, pdf } = await renderExam(demo);
-    const dir = join(out, 'exams', exam.id);
+    const dir = join(out, 'exams', demo.id);
+    const { exam, pdf } = await renderExam(demo, dir);
     await mkdir(dir, { recursive: true });
     await writeFile(join(dir, 'feladatlap.pdf'), pdf);
     await writeFile(join(dir, 'exam.json'), `${JSON.stringify(exam, null, 2)}\n`);

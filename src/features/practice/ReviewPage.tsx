@@ -2,7 +2,7 @@ import { CalendarClock, Play, RotateCcw } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { DEFAULT_SUBJECTS, findSubject } from '@/content/catalog';
+import { DEFAULT_SUBJECTS, findSubject, subjectShortName } from '@/content/catalog';
 import { examFullTitle } from '@/content/labels';
 import { useManifest } from '@/content/useContent';
 import { Badge } from '@/design/ui/Badge';
@@ -79,7 +79,7 @@ export function ReviewPage() {
               onValueChange={setSubject}
               options={[
                 { value: 'all', label: t('practice.review.all') },
-                ...subjects.map((s) => ({ value: s.id, label: s.name })),
+                ...subjects.map((s) => ({ value: s.id, label: subjectShortName(s) })),
               ]}
             />
           )}

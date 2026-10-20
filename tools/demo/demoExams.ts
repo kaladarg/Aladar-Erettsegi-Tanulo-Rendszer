@@ -1,4 +1,5 @@
 import { HISTORY_ESSAY_EXAMPLES, HUNGARIAN_ESSAY_EXAMPLES } from './demoExamples';
+import { LANGUAGE_DEMO_EXAMS } from './demoLanguages';
 /**
  * Self-written sample papers for the public demo pack and the e2e tests.
  * They follow the structure of real középszint papers but are NOT official
@@ -17,6 +18,8 @@ export type DemoExam = Omit<Exam, 'parts' | 'sources' | 'source' | 'schemaVersio
   subjectName: string;
   parts: DemoPart[];
   sources?: DemoSource[];
+  /** Added to review.notes (e.g. credits for generated recordings). */
+  reviewNotes?: string[];
 };
 
 const TRUE_FALSE = [
@@ -1014,4 +1017,5 @@ export const DEMO_EXAMS: DemoExam[] = [
       },
     ],
   },
+  ...LANGUAGE_DEMO_EXAMS,
 ];

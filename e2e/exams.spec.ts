@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 
 test('browses, filters and opens an exam', async ({ page }) => {
   const filters = page.getByRole('region', { name: 'Szűrők' });
-  await expect(page.getByText('3 feladatsor')).toBeVisible();
+  await expect(page.getByText('5 feladatsor')).toBeVisible();
 
   await filters.getByRole('button', { name: 'Történelem' }).click();
   await expect(page).toHaveURL(/targy=tortenelem/);
@@ -21,7 +21,7 @@ test('browses, filters and opens an exam', async ({ page }) => {
   await filters.getByLabel('Vizsgaidőszak').selectOption('oktober');
   await expect(page.getByText('Nincs ilyen feladatsor')).toBeVisible();
   await page.getByRole('main').getByRole('button', { name: 'Szűrők törlése' }).last().click();
-  await expect(page.getByText('3 feladatsor')).toBeVisible();
+  await expect(page.getByText('5 feladatsor')).toBeVisible();
 
   await page.getByRole('link', { name: new RegExp(MATH) }).click();
   await expect(page.getByRole('heading', { level: 1, name: MATH })).toBeFocused();
@@ -101,7 +101,7 @@ test('unknown exams and broken content sources show friendly errors', async ({ p
   await page.goto('/beallitasok');
   await page.getByRole('button', { name: 'Alapértelmezett forrás' }).click();
   await page.goto('/feladatsorok');
-  await expect(page.getByText('3 feladatsor')).toBeVisible();
+  await expect(page.getByText('5 feladatsor')).toBeVisible();
 });
 
 test('an exam saved for offline use opens without a connection', async ({ page, context }) => {
@@ -112,7 +112,7 @@ test('an exam saved for offline use opens without a connection', async ({ page, 
   await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
 
   await page.goto('/feladatsorok');
-  await expect(page.getByText('3 feladatsor')).toBeVisible();
+  await expect(page.getByText('5 feladatsor')).toBeVisible();
   await page.getByRole('link', { name: new RegExp(MATH) }).click();
   await page.getByRole('button', { name: 'Letöltés offline használatra' }).click();
   await expect(page.getByText('Offline is elérhető', { exact: true })).toBeVisible();
