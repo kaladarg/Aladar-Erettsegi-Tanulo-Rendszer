@@ -13,6 +13,7 @@ import {
   Trash2,
   TriangleAlert,
   Trophy,
+  Backpack,
 } from 'lucide-react';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router';
@@ -153,6 +154,14 @@ function Overview({
       <PracticeCard examId={exam.id} />
       <ExamModeCard exam={exam} />
       <ResultsHistory examId={exam.id} />
+
+      <Link
+        to={`/gyakorlas/segedeszkozok?targy=${exam.subject}`}
+        className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary underline underline-offset-4"
+      >
+        <Backpack aria-hidden="true" className="size-4" />
+        {t('aids.examLink')}
+      </Link>
 
       <section aria-labelledby="summary-title" className="mt-6">
         <h2 id="summary-title" className="sr-only">

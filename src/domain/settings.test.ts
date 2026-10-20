@@ -44,6 +44,9 @@ describe('sanitizeSettings', () => {
       aiModel: 'claude-haiku-5-5',
       examDates: { matematika: '2027-05-04' },
       featuresSeen: 1,
+      lastBackupAt: 1_790_000_000_000,
+      backupSnoozedUntil: 0,
+      installHintDismissed: true,
     } as const;
     expect(sanitizeSettings(valid)).toEqual(valid);
     expect(sanitizeSettings({ examDates: { magyar: 'holnap', tortenelem: 5 } }).examDates).toEqual(

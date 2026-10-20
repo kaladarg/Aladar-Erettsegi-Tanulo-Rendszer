@@ -13,7 +13,7 @@ const PAGES = [
   ['/gyakorlas/hibaim', 'Hibáim'],
   ['/gyakorlas/terv', 'Tervem'],
   ['/gyakorlas/szobeli', 'Szóbeli'],
-  ['/gyakorlas/kartyak', 'Történelem kártyák'],
+  ['/gyakorlas/kartyak', 'Tanulókártyák'],
   ['/tanaroknak', 'Tanároknak'],
   ['/feladatsorok/tortenelem-kozep-2026-majus-minta', 'Mintafeladatsor – Történelem, középszint'],
   [

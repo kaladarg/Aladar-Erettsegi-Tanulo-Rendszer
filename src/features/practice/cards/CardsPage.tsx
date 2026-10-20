@@ -4,12 +4,14 @@ import { useId, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import {
-  DECKS,
-  ERAS,
+  CARD_SUBJECTS,
   filterCards,
   filterFromParams,
   filterToParams,
+  SUBJECT_DECKS,
+  SUBJECT_ERAS,
   type CardFilter,
+  type CardSubject,
   type DeckId,
   type Scope,
 } from '@/content/cards';
@@ -35,6 +37,8 @@ export function CardsPage() {
   const [confirm, setConfirm] = useState(false);
 
   const setFilter = (next: CardFilter) => setParams(filterToParams(next), { replace: true });
+  const subject = filter.subject ?? 'tortenelem';
+  const literature = subject === 'magyar';
   const filtered = filterCards({ ...filter, deck: undefined });
   const all = deckCounts(
     filtered.map((c) => c.id),
@@ -52,15 +56,36 @@ export function CardsPage() {
         {t('practice.cards.draftNote')}
       </p>
 
+      <SegmentedControl<CardSubject>
+        label={t('practice.cards.subject')}
+        value={subject}
+        // A deck or period of one subject does not exist in the other.
+        onValueChange={(next) => setFilter({ subject: next, scope: filter.scope })}
+        options={CARD_SUBJECTS.map((id) => ({
+          value: id,
+          label: t(`practice.cards.subjects.${id}`),
+        }))}
+        className="mb-4"
+      />
       <section aria-label={t('practice.cards.filters')} className="mb-6 grid gap-4 sm:grid-cols-2">
         <SegmentedControl<Scope>
-          label={t('practice.cards.scope')}
+          label={literature ? t('practice.cards.scopeLit') : t('practice.cards.scope')}
           value={filter.scope ?? 'all'}
           onValueChange={(scope) => setFilter({ ...filter, scope })}
           options={[
             { value: 'all', label: t('practice.cards.scopeAll') },
-            { value: 'hungarian', label: t('practice.cards.scopeHungarian') },
-            { value: 'world', label: t('practice.cards.scopeWorld') },
+            {
+              value: 'hungarian',
+              label: literature
+                ? t('practice.cards.scopeHungarianLit')
+                : t('practice.cards.scopeHungarian'),
+            },
+            {
+              value: 'world',
+              label: literature
+                ? t('practice.cards.scopeWorldLit')
+                : t('practice.cards.scopeWorld'),
+            },
           ]}
         />
         <div className="grid gap-1">
@@ -79,7 +104,7 @@ export function CardsPage() {
             className="min-h-11 rounded-md border border-border-strong bg-surface px-3"
           >
             <option value="">{t('practice.cards.allEras')}</option>
-            {ERAS.map((era) => (
+            {SUBJECT_ERAS[subject].map((era) => (
               <option key={era} value={era}>
                 {t(`practice.cards.eras.${era}`)}
               </option>
@@ -106,7 +131,7 @@ export function CardsPage() {
             )}
           </div>
           <ul className="grid gap-4 sm:grid-cols-2">
-            {DECKS.map((deck) => {
+            {SUBJECT_DECKS[subject].map((deck) => {
               const ids = filterCards({ ...filter, deck }).map((c) => c.id);
               if (ids.length === 0) return null;
               const counts = deckCounts(ids, states);

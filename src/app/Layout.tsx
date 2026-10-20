@@ -14,6 +14,7 @@ import { OnboardingDialog } from '@/features/onboarding/OnboardingDialog';
 import { useSettings } from '@/state/settingsStore';
 import { RouteFocus } from './RouteFocus';
 import { StorageWarning } from './StorageWarning';
+import { usePersistentStorage } from './usePersistentStorage';
 
 /** `sideOnly` items stay out of the five-slot bottom bar; Settings links to them. */
 const NAV_ITEMS: { to: string; label: MessageKey; icon: typeof House; sideOnly?: boolean }[] = [
@@ -60,6 +61,7 @@ function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
 
 export function Layout() {
   const loaded = useSettings((state) => state.loaded);
+  usePersistentStorage();
 
   return (
     <div className="min-h-dvh md:grid md:grid-cols-[15rem_1fr]">

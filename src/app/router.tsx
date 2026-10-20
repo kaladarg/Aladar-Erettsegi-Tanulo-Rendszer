@@ -90,6 +90,12 @@ export function createRouter() {
           }),
         },
         {
+          path: 'gyakorlas/segedeszkozok',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/AidsPage')).AidsPage,
+          }),
+        },
+        {
           path: 'gyakorlas/terv',
           lazy: async () => ({
             Component: (await import('@/features/practice/PlanPage')).PlanPage,

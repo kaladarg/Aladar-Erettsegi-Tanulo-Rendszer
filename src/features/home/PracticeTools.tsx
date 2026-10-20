@@ -32,6 +32,8 @@ export function WhatsNew() {
     'home.newItems.practice',
     'home.newItems.review',
     'home.newItems.cards',
+    'home.newItems.aids',
+    'home.newItems.safety',
     'home.newItems.oral',
     'home.newItems.plan',
     'home.newItems.draw',

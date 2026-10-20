@@ -23,9 +23,15 @@ const ERROR_KEYS = {
   corrupt: 'errors.importCorrupt',
 } as const satisfies Record<BackupErrorCode, string>;
 
-export async function exportToFile(): Promise<void> {
+async function backupBlob(): Promise<Blob> {
   const backup = await createBackup();
-  const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+  return new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+}
+
+const markSaved = () => void useSettings.getState().update({ lastBackupAt: Date.now() });
+
+export async function exportToFile(): Promise<void> {
+  const blob = await backupBlob();
   const url = URL.createObjectURL(blob);
   const name = backupFileName();
   const link = document.createElement('a');
@@ -35,7 +41,37 @@ export async function exportToFile(): Promise<void> {
   link.click();
   link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1_000);
+  markSaved();
   toast({ message: t('settings.data.exportDone', { file: name }), tone: 'success' });
+}
+
+/** Whether this browser can hand a file to other apps (Drive, iCloud, mail) via the share sheet. */
+export function canShareFiles(): boolean {
+  try {
+    return (
+      typeof navigator !== 'undefined' &&
+      typeof navigator.canShare === 'function' &&
+      navigator.canShare({ files: [new File(['{}'], 'x.json', { type: 'application/json' })] })
+    );
+  } catch {
+    return false;
+  }
+}
+
+/** Sends the backup through the system share sheet, e.g. to Google Drive or iCloud. */
+export async function shareBackup(): Promise<void> {
+  const name = backupFileName();
+  const file = new File([await backupBlob()], name, { type: 'application/json' });
+  try {
+    await navigator.share({ files: [file], title: name });
+    markSaved();
+    toast({ message: t('safety.shared'), tone: 'success' });
+  } catch (error) {
+    // Closing the share sheet is not an error worth reporting.
+    if ((error as Error)?.name !== 'AbortError') {
+      toast({ message: t('safety.shareFailed'), tone: 'danger' });
+    }
+  }
 }
 
 /** Reads and validates a file; shows a friendly error toast and returns null on failure. */

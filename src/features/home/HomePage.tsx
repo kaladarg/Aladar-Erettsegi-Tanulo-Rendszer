@@ -13,6 +13,7 @@ import { useOnboarding } from '@/state/onboardingStore';
 import { useSettings } from '@/state/settingsStore';
 import { useStatsData } from '../stats/useStatsData';
 import { ContinueCard, Dashboard } from './Dashboard';
+import { DataSafetyReminder } from '../settings/DataSafety';
 import { PracticeTools, WhatsNew } from './PracticeTools';
 
 export function HomePage() {
@@ -30,6 +31,7 @@ export function HomePage() {
   return (
     <>
       <PageHeader title={t('home.greeting')} description={t('home.intro')} />
+      {loaded && <DataSafetyReminder />}
       {loaded && <WhatsNew />}
       {loaded && <ContinueCard data={stats} />}
 

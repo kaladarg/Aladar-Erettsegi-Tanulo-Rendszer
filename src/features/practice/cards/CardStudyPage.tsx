@@ -31,9 +31,12 @@ interface Session {
 
 /** Full-screen study session: one card at a time, flip, then mark. */
 export function CardStudyPage() {
-  usePageTitle(t('practice.cards.title'));
   const [params] = useSearchParams();
   const filter = filterFromParams(params);
+  const title = t('practice.cards.studyTitle', {
+    subject: t(`practice.cards.subjects.${filter.subject ?? 'tortenelem'}`),
+  });
+  usePageTitle(title);
   const events = useLiveQuery(() => db.cardEvents.toArray(), []);
   const [session, setSession] = useState<Session | null>(null);
   const [round, setRound] = useState(0);
@@ -60,7 +63,7 @@ export function CardStudyPage() {
             <X aria-hidden="true" />
           </Link>
         </Button>
-        <h1 className="min-w-0 flex-1 truncate font-semibold">{t('practice.cards.title')}</h1>
+        <h1 className="min-w-0 flex-1 truncate font-semibold">{title}</h1>
       </header>
       <main id="main" tabIndex={-1} className="mx-auto w-full max-w-2xl flex-1 p-4 outline-none">
         {!session ? (

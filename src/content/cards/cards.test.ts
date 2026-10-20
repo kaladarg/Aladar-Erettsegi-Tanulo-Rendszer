@@ -1,8 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { ALL_CARDS, DECKS, ERAS, filterCards, filterFromParams, filterToParams } from '.';
+import {
+  ALL_CARDS,
+  CARD_SUBJECTS,
+  filterCards,
+  filterFromParams,
+  filterToParams,
+  SUBJECT_DECKS,
+  SUBJECT_ERAS,
+} from '.';
 import { MAP_VIEWS, project } from './projection';
 
-describe('history cards', () => {
+describe('study cards', () => {
   it('have unique, stable-looking ids that start with their deck', () => {
     const ids = ALL_CARDS.map((c) => c.id);
     expect(new Set(ids).size).toBe(ids.length);
@@ -10,11 +18,14 @@ describe('history cards', () => {
   });
 
   it('fill every deck with text on both sides', () => {
-    for (const deck of DECKS) expect(filterCards({ deck }).length).toBeGreaterThan(20);
+    for (const subject of CARD_SUBJECTS)
+      for (const deck of SUBJECT_DECKS[subject])
+        expect(filterCards({ subject, deck }).length, deck).toBeGreaterThan(20);
     for (const card of ALL_CARDS) {
       expect(card.front.trim()).not.toBe('');
       expect(card.back.trim()).not.toBe('');
-      expect(ERAS).toContain(card.era);
+      expect(SUBJECT_DECKS[card.subject]).toContain(card.deck);
+      expect(SUBJECT_ERAS[card.subject]).toContain(card.era);
       expect(`${card.front} ${card.back} ${card.note ?? ''}`).not.toContain('—');
     }
   });
@@ -36,9 +47,26 @@ describe('history cards', () => {
 
 describe('filters', () => {
   it('round-trip through the address', () => {
-    const filter = { deck: 'fogalmak', era: 'ujkor', scope: 'hungarian' } as const;
+    const filter = {
+      subject: 'tortenelem',
+      deck: 'fogalmak',
+      era: 'ujkor',
+      scope: 'hungarian',
+    } as const;
     expect(filterFromParams(new URLSearchParams(filterToParams(filter)))).toEqual(filter);
+    const literature = {
+      subject: 'magyar',
+      deck: 'muvek',
+      era: 'romantika',
+      scope: 'all',
+    } as const;
+    expect(filterFromParams(new URLSearchParams(filterToParams(literature)))).toEqual(literature);
+    // A history deck is not valid for literature.
+    expect(
+      filterFromParams(new URLSearchParams('targy=magyar&pakli=evszamok')).deck,
+    ).toBeUndefined();
     expect(filterFromParams(new URLSearchParams('pakli=x&kor=y'))).toEqual({
+      subject: 'tortenelem',
       deck: undefined,
       era: undefined,
       scope: 'all',
@@ -47,6 +75,7 @@ describe('filters', () => {
 
   it('select by scope', () => {
     expect(filterCards({ scope: 'hungarian' }).every((c) => c.hungarian)).toBe(true);
+    expect(filterCards({ subject: 'magyar' }).every((c) => c.subject === 'magyar')).toBe(true);
     expect(filterCards({ scope: 'world' }).every((c) => !c.hungarian)).toBe(true);
   });
 });

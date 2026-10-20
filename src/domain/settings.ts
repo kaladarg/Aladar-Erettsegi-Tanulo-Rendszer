@@ -18,10 +18,16 @@ export interface Settings {
   examDates: Record<string, string>;
   /** Newest feature announcement the student has seen (see CURRENT_FEATURES). */
   featuresSeen: number;
+  /** When the student last saved a backup file (0 = never). */
+  lastBackupAt: number;
+  /** No backup reminder before this time. */
+  backupSnoozedUntil: number;
+  /** The student closed the "add to home screen" hint for iPhone. */
+  installHintDismissed: boolean;
 }
 
 /** Bump when new features deserve a "what's new" note on the home page. */
-export const CURRENT_FEATURES = 1;
+export const CURRENT_FEATURES = 2;
 
 export const AI_MODELS = ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5'] as const;
 export type AiModel = (typeof AI_MODELS)[number];
@@ -39,9 +45,15 @@ export const DEFAULT_SETTINGS: Settings = {
   aiModel: 'claude-sonnet-5-5',
   examDates: {},
   featuresSeen: 0,
+  lastBackupAt: 0,
+  backupSnoozedUntil: 0,
+  installHintDismissed: false,
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
+
+const timestamp = (value: unknown) =>
+  typeof value === 'number' && Number.isFinite(value) && value > 0 ? value : 0;
 
 function sanitizeExamDates(value: unknown): Record<string, string> {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) return {};
@@ -98,5 +110,8 @@ export function sanitizeSettings(input: unknown): Settings {
       typeof raw.featuresSeen === 'number' && Number.isInteger(raw.featuresSeen)
         ? Math.max(0, raw.featuresSeen)
         : 0,
+    lastBackupAt: timestamp(raw.lastBackupAt),
+    backupSnoozedUntil: timestamp(raw.backupSnoozedUntil),
+    installHintDismissed: raw.installHintDismissed === true,
   };
 }

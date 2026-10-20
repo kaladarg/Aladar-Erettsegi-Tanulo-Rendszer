@@ -12,9 +12,9 @@
  * Ids must stay stable: student progress is stored by card id. Fix a card's text in
  * place; never reuse an id for a different card, and give new cards new ids.
  */
-import type { StudyCard } from './types';
+import type { CardInput } from './types';
 
-export const HISTORY_CARDS: StudyCard[] = [
+export const HISTORY_CARDS: CardInput[] = [
   {
     id: 'evszamok-elso-feljegyzett-olumpiai-jatekok',
     deck: 'evszamok',

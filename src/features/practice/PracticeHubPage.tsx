@@ -2,6 +2,7 @@ import {
   CalendarDays,
   ChevronRight,
   GalleryVerticalEnd,
+  Backpack,
   Layers,
   Mic,
   RotateCcw,
@@ -60,6 +61,12 @@ export function PracticeHubPage() {
           icon={<CalendarDays />}
           title={t('practice.hub.planTitle')}
           body={t('practice.hub.planBody')}
+        />
+        <HubCard
+          to="/gyakorlas/segedeszkozok"
+          icon={<Backpack />}
+          title={t('aids.hubTitle')}
+          body={t('aids.hubBody')}
         />
         <HubCard
           to="/tanaroknak"

@@ -6,6 +6,7 @@ import {
   Monitor,
   Moon,
   Plus,
+  Send,
   ShieldCheck,
   Sun,
   Trash2,
@@ -27,7 +28,15 @@ import type { BackupFile } from '@/storage/backup';
 import { useSettings } from '@/state/settingsStore';
 import { AiKeySection } from './AiKeySection';
 import { ContentSourceSection } from './ContentSourceSection';
-import { applyBackup, exportToFile, readBackupFile, resetAllData } from './dataActions';
+import {
+  applyBackup,
+  canShareFiles,
+  exportToFile,
+  readBackupFile,
+  resetAllData,
+  shareBackup,
+} from './dataActions';
+import { DataSafetyStatus } from './DataSafety';
 
 export function SettingsPage() {
   usePageTitle(t('settings.title'));
@@ -186,17 +195,28 @@ function DataSection() {
   const fileInput = useRef<HTMLInputElement>(null);
   const [pending, setPending] = useState<BackupFile | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
+  const [canShare] = useState(canShareFiles);
 
   return (
     <Card aria-labelledby="settings-data">
       <CardTitle id="settings-data">{t('settings.data.title')}</CardTitle>
       <CardDescription>{t('settings.data.description')}</CardDescription>
 
+      <div className="mt-5">
+        <DataSafetyStatus />
+      </div>
+
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <Button variant="secondary" onClick={() => void exportToFile()}>
           <Download aria-hidden="true" />
           {t('settings.data.export')}
         </Button>
+        {canShare && (
+          <Button variant="secondary" onClick={() => void shareBackup()}>
+            <Send aria-hidden="true" />
+            {t('safety.share')}
+          </Button>
+        )}
         <Button variant="secondary" onClick={() => fileInput.current?.click()}>
           <Upload aria-hidden="true" />
           {t('settings.data.import')}

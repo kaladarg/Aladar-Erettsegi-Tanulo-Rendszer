@@ -44,9 +44,11 @@ Items tick themselves off from the week's activity. The home page shows the coun
 
 The plan page downloads an iCalendar file (`erettsegi.ics`, RFC 5545): all-day events for each future exam with reminders a week and half a day before, a weekly planning reminder (day and time chosen by the student) and, optionally, a daily 15-minute review reminder, both repeating until the last exam. Event UIDs are stable, so importing a new file updates the old events in most calendar apps. Nothing is sent anywhere.
 
-## History cards (`/gyakorlas/kartyak`)
+## Study cards (`/gyakorlas/kartyak`)
 
-- Four decks from the középszint history requirements: dates, concepts, people and places (`src/content/cards/historyCards.ts`, 292 cards). They are drafts until a history teacher checks them; card ids are stable because progress is stored by id.
+- History: four decks from the középszint history requirements: dates, concepts, people and places (`src/content/cards/historyCards.ts`, 292 cards).
+- Literature (`?targy=magyar`): authors, works, periods and movements, and literary terms (`src/content/cards/literatureCards.ts`), filtered by Hungarian or world literature and by literary period.
+- Both sets are drafts until a teacher checks them. They are drafts until a history teacher checks them; card ids are stable because progress is stored by id.
 - Filters: Hungarian or world history, and period. Progress per deck: new, learning, learnt, due today.
 - A session takes the due cards first, then up to 15 new ones. The student thinks of the answer, turns the card (space), and marks "Tudtam" (2) or "Nem tudtam" (1). A forgotten card comes back once at the end of the round.
 - Schedule (`src/domain/cards/schedule.ts`): known cards move up a box and return after 1, 3, 7, then 21 days; a forgotten card goes back to the first box. Answers are stored in `cardEvents` and included in backups. Retrieval practice beats rereading for long-term retention ([Roediger & Karpicke, 2006](https://doi.org/10.1111/j.1467-9280.2006.01693.x)).
@@ -63,6 +65,18 @@ The plan page downloads an iCalendar file (`erettsegi.ics`, RFC 5545): all-day e
 ## Example essays
 
 Essay tasks can include sample answers with scores per criterion. On the results page (and after checking an essay in a practice round) students open "Gyakorold a pontozást mintamegoldásokon", score the sample with the official criteria, then compare: per-criterion differences, the reasons for the given points, and whether they tend to be too strict or too lenient. The demo essays have a strong and a middling sample each; the official papers in the private content repository have one middling sample per essay task. All samples are written for the app and are drafts until a teacher checks them.
+
+## Exam aids (`/gyakorlas/segedeszkozok`)
+
+A checklist for the exam day and, per subject, the aids permitted at the written exam, taken from the instructions printed on the official papers (2024–2026) with a short quote, plus links to the Oktatási Hivatal and the exam regulation. The aids themselves (formula tables, atlases, dictionaries) are publishers' books, so the app only lists them. Each exam overview links to its subject's list.
+
+## Data safety
+
+Progress lives only in the browser, which may clear it: Safari removes site data after 7 days without use unless the app is on the home screen ([WebKit](https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/)), and any browser may clear "best effort" storage when space runs low ([MDN](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria)).
+
+- After two active days the app asks the browser for persistent storage (`navigator.storage.persist()`). Chrome and Edge answer silently, Firefox asks the user, Safari grants it to home-screen apps. Settings shows the status and a button to ask again.
+- After three active days without a backup, and at most weekly, the home page asks for a backup: a file download, or on phones the share sheet (Google Drive, iCloud, mail). "Később" snoozes it for a week (`src/domain/backupReminder.ts`).
+- On iPhone and iPad Safari outside the home screen, the same card explains how to add the app to the home screen.
 
 ## Oral exam preparation (`/gyakorlas/szobeli`)
 
