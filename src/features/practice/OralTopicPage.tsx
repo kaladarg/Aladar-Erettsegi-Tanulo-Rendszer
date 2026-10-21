@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { ArrowLeft, Check, Mic, Pause, Play, RotateCcw, Square, Trash2 } from 'lucide-react';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { LANGUAGE_SUBJECTS } from '@/content/oralTopics';
@@ -20,7 +20,9 @@ import {
   markPractised,
   saveOutline,
   saveRecording,
+  saveRecordingChecks,
 } from '@/storage/oral';
+import { checklistScore, oralChecklist, type ChecklistItem } from './oralChecklist';
 
 export function OralTopicPage() {
   const { topicId = '' } = useParams();
@@ -65,7 +67,7 @@ function OralTopic({ row }: { row: OralTopicRow }) {
         <Outline row={row} />
         <div className="grid content-start gap-6">
           <Timers language={LANGUAGE_SUBJECTS.includes(row.subject)} />
-          <Recorder topicId={row.id} />
+          <Recorder row={row} />
         </div>
       </div>
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-between">
@@ -232,7 +234,11 @@ function Timer({ name, defaultMinutes }: { name: string; defaultMinutes: number 
 
 type RecorderState = 'idle' | 'recording' | 'denied';
 
-function Recorder({ topicId }: { topicId: string }) {
+/** A practice answer stops by itself after the length of a középszint answer. */
+const ANSWER_SECONDS = 15 * 60;
+
+function Recorder({ row }: { row: OralTopicRow }) {
+  const topicId = row.id;
   const recordings = useLiveQuery(
     () => db.recordings.where('topicId').equals(topicId).reverse().sortBy('createdAt'),
     [topicId],
@@ -245,7 +251,14 @@ function Recorder({ topicId }: { topicId: string }) {
   useEffect(() => {
     if (state !== 'recording') return;
     const started = Date.now();
-    const interval = setInterval(() => setElapsed((Date.now() - started) / 1000), 500);
+    const interval = setInterval(() => {
+      const seconds = (Date.now() - started) / 1000;
+      setElapsed(seconds);
+      if (seconds >= ANSWER_SECONDS && recorder.current?.state === 'recording') {
+        recorder.current.stop();
+        toast({ message: t('practice.oral.answerTimeUp'), tone: 'neutral' });
+      }
+    }, 500);
     return () => clearInterval(interval);
   }, [state]);
 
@@ -294,8 +307,16 @@ function Recorder({ topicId }: { topicId: string }) {
                 {t('practice.oral.stop')}
               </Button>
               <span role="status" className="flex items-center gap-2 tabular-nums">
-                <span aria-hidden="true" className="size-3 rounded-full bg-danger" />
+                <span
+                  aria-hidden="true"
+                  className="size-3 rounded-full bg-danger motion-safe:animate-pulse"
+                />
                 {t('practice.oral.recording', { time: formatClock(elapsed) })}
+              </span>
+              <span className="text-sm text-muted tabular-nums">
+                {t('practice.oral.remaining', {
+                  time: formatClock(Math.max(0, ANSWER_SECONDS - elapsed)),
+                })}
               </span>
             </>
           ) : (
@@ -306,6 +327,9 @@ function Recorder({ topicId }: { topicId: string }) {
           )}
         </div>
       )}
+      {supported && (
+        <CardDescription className="mt-2">{t('practice.oral.recordHow')}</CardDescription>
+      )}
       {state === 'denied' && (
         <p role="alert" className="mt-3 text-sm text-danger">
           {t('practice.oral.micDenied')}
@@ -315,8 +339,13 @@ function Recorder({ topicId }: { topicId: string }) {
         <p className="mt-4 text-sm text-muted">{t('practice.oral.recordingsEmpty')}</p>
       ) : (
         <ul className="mt-4 grid gap-3">
-          {recordings.map((recording) => (
-            <RecordingItem key={recording.id} recording={recording} />
+          {recordings.map((recording, index) => (
+            <RecordingItem
+              key={recording.id}
+              recording={recording}
+              row={row}
+              newest={index === 0}
+            />
           ))}
         </ul>
       )}
@@ -325,7 +354,15 @@ function Recorder({ topicId }: { topicId: string }) {
   );
 }
 
-function RecordingItem({ recording }: { recording: RecordingRow }) {
+function RecordingItem({
+  recording,
+  row,
+  newest,
+}: {
+  recording: RecordingRow;
+  row: OralTopicRow;
+  newest: boolean;
+}) {
   const audio = useRef<HTMLAudioElement>(null);
   // The object URL lives as long as the player, so the blob is not copied per render.
   useEffect(() => {
@@ -353,6 +390,69 @@ function RecordingItem({ recording }: { recording: RecordingRow }) {
           <Trash2 aria-hidden="true" />
         </Button>
       </div>
+      <SelfCheck recording={recording} row={row} open={newest && !recording.checks} />
     </li>
+  );
+}
+
+/** Listening back with a checklist: what went into the answer, and how it sounded. */
+function SelfCheck({
+  recording,
+  row,
+  open,
+}: {
+  recording: RecordingRow;
+  row: OralTopicRow;
+  open: boolean;
+}) {
+  const items = useMemo(() => oralChecklist(row.subject, row.outline), [row.subject, row.outline]);
+  // Opened for a fresh recording only; afterwards the student opens and closes it.
+  const [startOpen] = useState(open);
+  // Ticks show at once; the stored copy follows.
+  const [checks, setChecks] = useState<Record<string, boolean>>(recording.checks ?? {});
+  const score = checklistScore(items, checks);
+  const general = items.filter((item) => 'key' in item.label);
+  const own = items.filter((item) => 'text' in item.label);
+  const toggle = (key: string, value: boolean) => {
+    const next = { ...checks, [key]: value };
+    setChecks(next);
+    void saveRecordingChecks(recording.id, next);
+  };
+  const renderItem = (item: ChecklistItem) => (
+    <li key={item.key}>
+      <label className="flex min-h-11 cursor-pointer items-start gap-3 py-1">
+        <input
+          type="checkbox"
+          className="mt-0.5 size-5 shrink-0 accent-[var(--c-primary)]"
+          checked={!!checks[item.key]}
+          onChange={(event) => toggle(item.key, event.target.checked)}
+        />
+        <span>
+          {'key' in item.label
+            ? t(item.label.key)
+            : t('practice.oral.mentioned', { point: item.label.text })}
+        </span>
+      </label>
+    </li>
+  );
+  return (
+    <details open={startOpen} className="rounded-md bg-surface-muted p-3">
+      <summary className="cursor-pointer font-medium">
+        {t('practice.oral.selfCheck', { done: score.done, total: score.total })}
+      </summary>
+      <p className="mt-2 text-sm text-muted">{t('practice.oral.selfCheckHow')}</p>
+      <ul className="mt-2 grid">{general.map(renderItem)}</ul>
+      {own.length > 0 && (
+        <>
+          <p className="mt-3 text-sm font-semibold">{t('practice.oral.ownPoints')}</p>
+          <ul className="grid">{own.map(renderItem)}</ul>
+        </>
+      )}
+      {score.total > 0 && score.done === score.total && (
+        <p role="status" className="mt-2 text-sm font-medium text-success">
+          {t('practice.oral.selfCheckAll')}
+        </p>
+      )}
+    </details>
   );
 }

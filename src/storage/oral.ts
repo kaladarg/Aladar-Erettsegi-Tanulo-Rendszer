@@ -74,6 +74,13 @@ export async function saveRecording(topicId: string, blob: Blob, seconds: number
   });
 }
 
+export async function saveRecordingChecks(
+  id: string,
+  checks: Record<string, boolean>,
+): Promise<void> {
+  await db.recordings.update(id, { checks });
+}
+
 export async function deleteRecording(id: string): Promise<void> {
   await db.recordings.delete(id);
 }

@@ -149,6 +149,8 @@ export interface RecordingRow {
   seconds: number;
   mimeType: string;
   blob: Blob;
+  /** The student's own checklist after listening back, by item key. */
+  checks?: Record<string, boolean>;
 }
 
 /** One answer to a study card ("Tudtam" or "Nem tudtam"). */
