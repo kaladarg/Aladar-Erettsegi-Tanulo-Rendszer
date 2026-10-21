@@ -5,41 +5,48 @@
  * Contrast of the text/background pairs is verified in tokens.test.ts.
  */
 :root {
-  /* Surfaces */
-  --c-bg: #faf9f7;
+  /* Surfaces: cool, paper-white, like public education portals */
+  --c-bg: #f3f6fb;
   --c-surface: #ffffff;
-  --c-surface-muted: #f2f0ec;
-  --c-border: #e2ded7;
-  --c-border-strong: #857f75;
+  --c-surface-muted: #edf1f8;
+  --c-border: #dbe2ee;
+  --c-border-strong: #76829a;
 
   /* Text */
-  --c-text: #1c1a17;
-  --c-text-muted: #5c574f;
+  --c-text: #0f1b2d;
+  --c-text-muted: #4a566b;
 
-  /* Brand */
-  --c-primary: #0f766e;
-  --c-primary-hover: #115e59;
+  /* Brand: a calm, trustworthy blue */
+  --c-primary: #1a4fd6;
+  --c-primary-hover: #153fae;
   --c-primary-fg: #ffffff;
-  --c-primary-soft: #ccfbf1;
-  --c-primary-soft-fg: #134e4a;
+  --c-primary-soft: #e4ecff;
+  --c-primary-soft-fg: #12307d;
+  /* Decorative accent (highlights, celebration; never text on white) */
+  --c-accent: #f5b301;
+  --c-accent-soft: #fff4d1;
+  /* Hero band behind page headers */
+  --c-hero-from: #1a4fd6;
+  --c-hero-to: #0d2f86;
+  --c-hero-fg: #ffffff;
 
   /* Semantic */
-  --c-success: #15803d;
-  --c-success-soft: #dcfce7;
-  --c-warning: #a16207;
-  --c-warning-soft: #fef9c3;
-  --c-danger: #b91c1c;
+  --c-success: #157f3c;
+  --c-success-soft: #dcf7e5;
+  --c-warning: #965a00;
+  --c-warning-soft: #fff3cd;
+  --c-danger: #c0262d;
   --c-danger-fg: #ffffff;
-  --c-danger-soft: #fee2e2;
-  --c-info: #1d4ed8;
-  --c-info-soft: #dbeafe;
-  --c-focus: #1d4ed8;
+  --c-danger-soft: #fde4e4;
+  --c-info: #0b62c4;
+  --c-info-soft: #e0efff;
+  --c-focus: #0b62c4;
 
   /* Subject accents */
-  --c-subject-matematika: #1d4ed8;
+  --c-subject-matematika: #4338ca;
   --c-subject-tortenelem: #b45309;
   --c-subject-magyar: #be123c;
-  --c-subject-angol: #6d28d9;
+  --c-subject-angol: #0e7490;
   --c-subject-nemet: #15803d;
 
   /* Typography */
@@ -49,59 +56,70 @@
   --text-scale: 1;
 
   /* Radius */
-  --r-sm: 6px;
-  --r-md: 10px;
-  --r-lg: 16px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 24px;
 
-  /* Elevation */
-  --shadow-1: 0 1px 2px rgb(28 26 23 / 0.06), 0 1px 3px rgb(28 26 23 / 0.08);
-  --shadow-2: 0 4px 12px rgb(28 26 23 / 0.08), 0 2px 4px rgb(28 26 23 / 0.06);
-  --shadow-3: 0 12px 32px rgb(28 26 23 / 0.14), 0 4px 8px rgb(28 26 23 / 0.08);
+  /* Elevation (cool, soft shadows) */
+  --shadow-1: 0 1px 2px rgb(15 27 45 / 0.05), 0 1px 3px rgb(15 27 45 / 0.07);
+  --shadow-2: 0 6px 16px rgb(15 27 45 / 0.08), 0 2px 4px rgb(15 27 45 / 0.05);
+  --shadow-3: 0 16px 40px rgb(15 27 45 / 0.16), 0 4px 10px rgb(15 27 45 / 0.08);
+  --shadow-primary: 0 6px 18px rgb(26 79 214 / 0.28);
 
-  /* Motion */
-  --motion-fast: 120ms;
-  --motion-base: 200ms;
-  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Motion: short, eased, transform/opacity only */
+  --motion-fast: 140ms;
+  --motion-base: 220ms;
+  --motion-slow: 380ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --c-bg: #12110f;
-  --c-surface: #1c1b18;
-  --c-surface-muted: #27251f;
-  --c-border: #38352f;
-  --c-border-strong: #807a70;
+  --c-bg: #0b1220;
+  --c-surface: #121b2d;
+  --c-surface-muted: #1a2438;
+  --c-border: #27334b;
+  --c-border-strong: #7d8aa3;
 
-  --c-text: #f2efe9;
-  --c-text-muted: #b3ada3;
+  --c-text: #e8eef9;
+  --c-text-muted: #a9b4c8;
 
-  --c-primary: #5eead4;
-  --c-primary-hover: #99f6e4;
-  --c-primary-fg: #042f2e;
-  --c-primary-soft: #134e4a;
-  --c-primary-soft-fg: #ccfbf1;
+  --c-primary: #8ab4ff;
+  --c-primary-hover: #b3ceff;
+  --c-primary-fg: #0a1838;
+  --c-primary-soft: #1c2e58;
+  --c-primary-soft-fg: #dbe6ff;
+  --c-accent: #f5c542;
+  --c-accent-soft: #3a2c05;
+  --c-hero-from: #1b3b8f;
+  --c-hero-to: #0f1f4d;
+  --c-hero-fg: #ffffff;
 
   --c-success: #4ade80;
-  --c-success-soft: #14532d;
+  --c-success-soft: #123d24;
   --c-warning: #fbbf24;
-  --c-warning-soft: #422006;
+  --c-warning-soft: #3d2a05;
   --c-danger: #f87171;
-  --c-danger-fg: #1c1a17;
-  --c-danger-soft: #450a0a;
-  --c-info: #93c5fd;
-  --c-info-soft: #172554;
-  --c-focus: #93c5fd;
+  --c-danger-fg: #1c0b0b;
+  --c-danger-soft: #451012;
+  --c-info: #7cc0ff;
+  --c-info-soft: #10284a;
+  --c-focus: #9cc7ff;
 
-  --c-subject-matematika: #93c5fd;
+  --c-subject-matematika: #a5b4fc;
   --c-subject-tortenelem: #fbbf24;
   --c-subject-magyar: #fda4af;
-  --c-subject-angol: #c4b5fd;
+  --c-subject-angol: #67e8f9;
   --c-subject-nemet: #86efac;
 
-  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-2: 0 4px 12px rgb(0 0 0 / 0.45);
-  --shadow-3: 0 12px 32px rgb(0 0 0 / 0.55);
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.45);
+  --shadow-2: 0 6px 16px rgb(0 0 0 / 0.45);
+  --shadow-3: 0 16px 40px rgb(0 0 0 / 0.6);
+  --shadow-primary: 0 6px 18px rgb(0 0 0 / 0.45);
 
   color-scheme: dark;
 }
@@ -113,11 +131,13 @@
 [data-motion='reduced'] {
   --motion-fast: 0ms;
   --motion-base: 0ms;
+  --motion-slow: 0ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
     --motion-fast: 0ms;
     --motion-base: 0ms;
+    --motion-slow: 0ms;
   }
 }

@@ -31,6 +31,10 @@ function contrast(a: string, b: string): number {
 // [foreground, background, minimum ratio] — 4.5 for text, 3 for UI components (WCAG 2.2 AA).
 const PAIRS: [string, string, number][] = [
   ['--c-text', '--c-bg', 4.5],
+  ['--c-hero-fg', '--c-hero-from', 4.5],
+  ['--c-hero-fg', '--c-hero-to', 4.5],
+  ['--c-text', '--c-accent-soft', 4.5],
+  ['--c-primary', '--c-primary-soft', 3],
   ['--c-text', '--c-surface', 4.5],
   ['--c-text', '--c-surface-muted', 4.5],
   ['--c-text-muted', '--c-bg', 4.5],

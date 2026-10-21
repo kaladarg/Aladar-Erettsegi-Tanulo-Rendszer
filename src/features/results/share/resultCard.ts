@@ -42,10 +42,10 @@ export function examLink(examId: string): string {
 
 const SIZE = 1080;
 const ACCENT: Record<string, string> = {
-  matematika: '#1d4ed8',
+  matematika: '#4338ca',
   tortenelem: '#b45309',
   magyar: '#be123c',
-  angol: '#6d28d9',
+  angol: '#0e7490',
   nemet: '#15803d',
 };
 
@@ -76,11 +76,11 @@ export async function drawResultCard(content: CardContent, subjectId: string): P
   const pad = 96;
 
   const background = ctx.createLinearGradient(0, 0, SIZE, SIZE);
-  background.addColorStop(0, '#0f766e');
-  background.addColorStop(1, '#134e4a');
+  background.addColorStop(0, '#1a4fd6');
+  background.addColorStop(1, '#0d2f86');
   ctx.fillStyle = background;
   ctx.fillRect(0, 0, SIZE, SIZE);
-  ctx.fillStyle = ACCENT[subjectId] ?? '#5eead4';
+  ctx.fillStyle = ACCENT[subjectId] ?? '#f5b301';
   ctx.fillRect(0, 0, SIZE, 24);
 
   ctx.fillStyle = '#ffffff';

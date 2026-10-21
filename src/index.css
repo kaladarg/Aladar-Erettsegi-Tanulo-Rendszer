@@ -27,6 +27,11 @@
   --color-info: var(--c-info);
   --color-info-soft: var(--c-info-soft);
   --color-focus: var(--c-focus);
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-hero-from: var(--c-hero-from);
+  --color-hero-to: var(--c-hero-to);
+  --color-hero-fg: var(--c-hero-fg);
   --color-subject-matematika: var(--c-subject-matematika);
   --color-subject-tortenelem: var(--c-subject-tortenelem);
   --color-subject-magyar: var(--c-subject-magyar);
@@ -39,12 +44,16 @@
   --radius-sm: var(--r-sm);
   --radius-md: var(--r-md);
   --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
 
   --shadow-1: var(--shadow-1);
   --shadow-2: var(--shadow-2);
   --shadow-3: var(--shadow-3);
+  --shadow-primary: var(--shadow-primary);
 
   --ease-out: var(--ease-out);
+  --ease-in-out: var(--ease-in-out);
+  --ease-spring: var(--ease-spring);
   --default-transition-duration: var(--motion-base);
   --default-transition-timing-function: var(--ease-out);
 }
@@ -85,6 +94,39 @@
     outline: 3px solid var(--c-focus);
     outline-offset: 2px;
     border-radius: 4px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Lets <details> animate to their natural height where supported. */
+    interpolate-size: allow-keywords;
+  }
+
+  a,
+  button,
+  summary,
+  label,
+  [role='button'] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Elements that show the press ripple (see app/ripple.ts). */
+  [data-ripple] {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size var(--motion-base) var(--ease-out),
+      content-visibility var(--motion-base) allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
   }
 
   ::selection {
@@ -156,5 +198,283 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ motion
+ * Animations use only transform and opacity, so they stay smooth on cheap
+ * phones. Durations come from the motion tokens, which drop to 0 when the
+ * student or the system asks for reduced motion.
+ */
+
+.ripple {
+  position: absolute;
+  z-index: -1;
+  border-radius: 9999px;
+  background: currentColor;
+  opacity: 0.22;
+  transform: scale(0);
+  pointer-events: none;
+  animation: ripple 520ms var(--ease-out) forwards;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}
+
+@keyframes sheet-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes sheet-out-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: none;
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes glow-success {
+  from {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-success) 45%, transparent);
+  }
+  to {
+    box-shadow: 0 0 0 14px transparent;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift, 0), 420px, 0) rotate(var(--spin, 540deg));
+  }
+}
+
+@utility animate-page-in {
+  animation: page-in var(--motion-slow) var(--ease-out) both;
+}
+
+@utility animate-rise-in {
+  animation: rise-in var(--motion-slow) var(--ease-out) both;
+}
+
+@utility animate-pop-in {
+  animation: pop-in var(--motion-slow) var(--ease-spring) both;
+}
+
+@utility animate-shake {
+  animation: shake 420ms var(--ease-out);
+}
+
+@utility animate-glow-success {
+  animation: glow-success 700ms var(--ease-out);
+}
+
+/* Children appear one after another (first 12; the rest together). */
+@utility stagger {
+  & > * {
+    animation: rise-in var(--motion-slow) var(--ease-out) both;
+  }
+  & > :nth-child(2) {
+    animation-delay: 40ms;
+  }
+  & > :nth-child(3) {
+    animation-delay: 80ms;
+  }
+  & > :nth-child(4) {
+    animation-delay: 120ms;
+  }
+  & > :nth-child(5) {
+    animation-delay: 160ms;
+  }
+  & > :nth-child(6) {
+    animation-delay: 200ms;
+  }
+  & > :nth-child(7) {
+    animation-delay: 240ms;
+  }
+  & > :nth-child(8) {
+    animation-delay: 280ms;
+  }
+  & > :nth-child(9) {
+    animation-delay: 320ms;
+  }
+  & > :nth-child(10) {
+    animation-delay: 360ms;
+  }
+  & > :nth-child(11) {
+    animation-delay: 400ms;
+  }
+  & > :nth-child(n + 12) {
+    animation-delay: 440ms;
+  }
+}
+
+/* Interactive cards rise a little under the pointer (not on touch screens). */
+@utility lift {
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-2);
+    }
+  }
+  &:active {
+    transform: translateY(0) scale(0.99);
+  }
+}
+
+/* Radix overlays, dialogs and sheets (data-state is set by Radix). */
+@utility anim-overlay {
+  &[data-state='open'] {
+    animation: fade-in var(--motion-base) var(--ease-out);
+  }
+  &[data-state='closed'] {
+    animation: fade-out var(--motion-fast) ease-in forwards;
+  }
+}
+
+@utility anim-dialog {
+  &[data-state='open'] {
+    animation: dialog-in var(--motion-base) var(--ease-out);
+  }
+  &[data-state='closed'] {
+    animation: dialog-out var(--motion-fast) ease-in forwards;
+  }
+}
+
+@utility anim-sheet {
+  &[data-state='open'] {
+    animation: sheet-in-right var(--motion-slow) var(--ease-out);
+  }
+  &[data-state='closed'] {
+    animation: sheet-out-right var(--motion-base) var(--ease-in-out) forwards;
+  }
+}
+
+@utility anim-toast {
+  &[data-state='open'] {
+    animation: toast-in var(--motion-base) var(--ease-spring);
+  }
+  &[data-state='closed'] {
+    animation: toast-out var(--motion-fast) ease-in forwards;
+  }
+  &[data-swipe='move'] {
+    transform: translateY(var(--radix-toast-swipe-move-y));
+  }
+  &[data-swipe='end'] {
+    animation: toast-out var(--motion-fast) ease-in forwards;
   }
 }

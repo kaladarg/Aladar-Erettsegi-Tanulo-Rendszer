@@ -25,7 +25,7 @@ export function applyAppearance(appearance: Appearance): void {
   root.style.setProperty('--text-scale', String(appearance.textScale));
   document
     .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', theme === 'dark' ? '#12110f' : '#faf9f7');
+    ?.setAttribute('content', theme === 'dark' ? '#0b1220' : '#f3f6fb');
   try {
     const { theme: t, textScale, dyslexicFont, reducedMotion } = appearance;
     localStorage.setItem(

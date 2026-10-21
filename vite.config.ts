@@ -139,8 +139,8 @@ export default defineConfig(({ mode }) => {
           scope: base,
           display: 'standalone',
           orientation: 'any',
-          theme_color: '#0f766e',
-          background_color: '#faf9f7',
+          theme_color: '#1a4fd6',
+          background_color: '#f3f6fb',
           categories: ['education'],
           icons: [
             { src: 'pwa-192.png', sizes: '192x192', type: 'image/png' },
