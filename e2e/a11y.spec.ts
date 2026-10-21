@@ -40,9 +40,12 @@ const PAGES = [
 const scan = async (page: Page, label: string) => {
   // Colours are measured once fades and slides have ended.
   await settle(page);
-  const results = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
-    .analyze();
+  let builder = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']);
+  // On the paper view the answer boxes sit where the official paper prints them, so their size
+  // and spacing are part of the replica (WCAG 2.5.8 "essential" exception). The form view offers
+  // the same fields at full size, and it is scanned with every rule.
+  if (label.includes('nezet=feladatlap')) builder = builder.disableRules(['target-size']);
+  const results = await builder.analyze();
   expect(results.violations, label).toEqual([]);
 };
 

@@ -20,14 +20,23 @@ export { expect };
 
 /** Waits until entrance animations (fades, slides) have finished; endless ones are ignored. */
 export async function settle(page: Page) {
-  await page.evaluate(() =>
-    Promise.all(
-      document
-        .getAnimations()
-        .filter((a) => a.effect?.getComputedTiming().iterations !== Infinity)
-        .map((a) => a.finished.catch(() => undefined)),
-    ),
-  );
+  // A toast or a late page transition can start just after the first wait, so
+  // check again after a short pause until nothing finite is running.
+  for (let round = 0; round < 5; round++) {
+    const running = await page.evaluate(async () => {
+      const finite = () =>
+        document
+          .getAnimations()
+          .filter(
+            (a) =>
+              a.playState === 'running' && a.effect?.getComputedTiming().iterations !== Infinity,
+          );
+      await Promise.all(finite().map((a) => a.finished.catch(() => undefined)));
+      await new Promise((resolve) => setTimeout(resolve, 150));
+      return finite().length;
+    });
+    if (running === 0) return;
+  }
 }
 
 /** The home page greets by time of day. */

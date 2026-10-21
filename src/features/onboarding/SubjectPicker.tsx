@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react';
-import { DEFAULT_SUBJECTS, subjectAccent } from '@/content/catalog';
-import { SubjectIcon } from '@/content/SubjectIcon';
+import { DEFAULT_SUBJECTS } from '@/content/catalog';
+import { SubjectBadge } from '@/content/SubjectIcon';
 import { cn } from '@/lib/cn';
 
 interface SubjectPickerProps {
@@ -25,7 +25,7 @@ export function SubjectPicker({ selected, onChange, legend, hideLegend }: Subjec
             <label
               key={subject.id}
               className={cn(
-                'flex min-h-16 cursor-pointer items-center gap-4 rounded-md border-2 bg-surface px-4 py-3 transition-colors has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus',
+                'group flex min-h-16 cursor-pointer items-center gap-4 rounded-lg border-2 bg-surface px-4 py-3 transition-colors active:scale-[0.99] has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus',
                 checked
                   ? 'border-primary bg-primary-soft/40'
                   : 'border-border hover:border-border-strong',
@@ -37,19 +37,17 @@ export function SubjectPicker({ selected, onChange, legend, hideLegend }: Subjec
                 checked={checked}
                 onChange={() => toggle(subject.id)}
               />
-              <SubjectIcon
-                subject={subject}
-                className={cn('size-7 shrink-0', subjectAccent(subject.id))}
-              />
+              <SubjectBadge subject={subject} size="sm" />
               <span className="flex-1 font-medium">{subject.name}</span>
               <span
                 aria-hidden="true"
                 className={cn(
                   'flex size-6 items-center justify-center rounded-sm border-2',
+                  'transition-colors duration-(--motion-fast)',
                   checked ? 'border-primary bg-primary text-primary-fg' : 'border-border-strong',
                 )}
               >
-                {checked && <Check className="size-4" />}
+                {checked && <Check className="size-4 animate-pop-in" />}
               </span>
             </label>
           );

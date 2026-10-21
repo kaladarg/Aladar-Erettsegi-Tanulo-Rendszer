@@ -118,7 +118,7 @@ export function Dashboard({ data }: { data: StatsData }) {
   const week = recentDays(data.days);
 
   return (
-    <div className="mt-10 grid gap-6 lg:grid-cols-2">
+    <div className="mt-10 grid stagger gap-6 lg:grid-cols-2">
       <CountdownCard />
       <Card aria-labelledby="dash-next">
         <CardTitle id="dash-next" className="flex items-center gap-2">
@@ -164,14 +164,20 @@ export function Dashboard({ data }: { data: StatsData }) {
               <li key={day} className="grid justify-items-center gap-1 text-xs text-muted">
                 <span
                   className={cn(
-                    'size-7 rounded-full border-2',
-                    active ? 'border-primary bg-primary' : 'border-border-strong',
+                    'flex size-8 items-center justify-center rounded-full border-2',
+                    active
+                      ? 'animate-pop-in border-transparent bg-linear-135 from-amber-400 to-orange-600 text-white shadow-1'
+                      : 'border-border-strong',
+                    day === week[week.length - 1]?.day &&
+                      'ring-2 ring-primary ring-offset-2 ring-offset-surface',
                   )}
                   role="img"
                   aria-label={t(active ? 'dashboard.dayActive' : 'dashboard.dayInactive', {
                     day: label,
                   })}
-                />
+                >
+                  {active && <Flame aria-hidden="true" className="size-4" />}
+                </span>
                 <span aria-hidden="true">{formatDate(date, { weekday: 'narrow' })}</span>
               </li>
             );
