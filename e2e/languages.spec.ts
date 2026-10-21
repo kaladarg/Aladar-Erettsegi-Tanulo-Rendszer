@@ -54,23 +54,28 @@ test('a listening task in a topic round brings its recording', async ({ page }) 
   await expect(page.getByRole('region', { name: /Hangfelvétel/ })).toBeVisible();
 });
 
-test('a missing recording can be opened from the device', async ({ page }) => {
-  await page.goto(`/feladatsorok/${ENGLISH}/gyakorlas?nezet=urlap`);
-  // Simulate a pack without the file. (A failed fetch logs a network error, which
-  // is expected here; an empty, unreadable answer is treated the same way.)
-  await page.route('**/hanganyag.mp3', (route) => route.fulfill({ status: 200, body: '' }));
-  await page.reload();
-  const player = page.getByRole('region', { name: /Hangfelvétel/ });
-  await player.scrollIntoViewIfNeeded();
-  await expect(player.getByText(/nincs benne a programban/)).toBeVisible();
-  await player.locator('input[type=file]').setInputFiles({
-    name: 'sajat.mp3',
-    mimeType: 'audio/mpeg',
-    buffer: Buffer.from('ID3'),
+test.describe('without the service worker', () => {
+  // The service worker would fetch the recording itself, past page.route().
+  test.use({ serviceWorkers: 'block' });
+
+  test('a missing recording can be opened from the device', async ({ page }) => {
+    await page.goto(`/feladatsorok/${ENGLISH}/gyakorlas?nezet=urlap`);
+    // Simulate a pack without the file. (A failed fetch logs a network error, which
+    // is expected here; an empty, unreadable answer is treated the same way.)
+    await page.route('**/hanganyag.mp3', (route) => route.fulfill({ status: 200, body: '' }));
+    await page.reload();
+    const player = page.getByRole('region', { name: /Hangfelvétel/ });
+    await player.scrollIntoViewIfNeeded();
+    await expect(player.getByText(/nincs benne a programban/)).toBeVisible();
+    await player.locator('input[type=file]').setInputFiles({
+      name: 'sajat.mp3',
+      mimeType: 'audio/mpeg',
+      buffer: Buffer.from('ID3'),
+    });
+    await expect(player.getByText('Saját fájl: sajat.mp3')).toBeVisible();
+    await player.getByRole('button', { name: 'Eltávolítás' }).click();
+    await expect(player.getByText(/nincs benne a programban/)).toBeVisible();
   });
-  await expect(player.getByText('Saját fájl: sajat.mp3')).toBeVisible();
-  await player.getByRole('button', { name: 'Eltávolítás' }).click();
-  await expect(player.getByText(/nincs benne a programban/)).toBeVisible();
 });
 
 test('language cards, aids and oral topics', async ({ page }) => {
