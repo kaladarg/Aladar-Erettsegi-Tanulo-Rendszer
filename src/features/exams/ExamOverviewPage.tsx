@@ -280,12 +280,16 @@ function Callout({
 
 function Stat({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-border bg-surface p-3 shadow-1 sm:p-4">
-      <dt className="flex items-center gap-1.5 text-xs text-muted sm:text-sm [&_svg]:size-4">
-        <span aria-hidden="true">{icon}</span>
-        {label}
+    <div className="min-w-0 rounded-lg border border-border bg-surface p-3 shadow-1 sm:p-4">
+      {/* On phones the icon sits above the label, so long words such as
+          "Összpontszám" get the full width of the tile and can hyphenate. */}
+      <dt className="flex flex-col gap-1 text-xs wrap-break-word hyphens-auto text-muted sm:flex-row sm:items-center sm:gap-1.5 sm:text-sm [&_svg]:size-4">
+        <span aria-hidden="true" className="shrink-0">
+          {icon}
+        </span>
+        <span className="min-w-0">{label}</span>
       </dt>
-      <dd className="mt-1 text-xl font-bold sm:text-2xl">{value}</dd>
+      <dd className="mt-1 text-xl font-bold wrap-break-word sm:text-2xl">{value}</dd>
     </div>
   );
 }

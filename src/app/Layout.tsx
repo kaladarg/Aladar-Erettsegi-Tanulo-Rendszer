@@ -42,7 +42,7 @@ function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
                   'group flex items-center font-medium transition-colors duration-(--motion-base)',
                   variant === 'side'
                     ? 'min-h-11 gap-3 rounded-md px-3 hover:bg-surface-muted'
-                    : 'min-h-16 flex-col justify-center gap-0.5 px-0.5 text-center text-[0.6875rem] leading-tight',
+                    : 'min-h-16 min-w-0 flex-col justify-center gap-0.5 px-0.5 text-center text-[min(0.6875rem,12px)] leading-tight',
                   isActive
                     ? variant === 'side'
                       ? 'bg-primary-soft font-semibold text-primary-soft-fg hover:bg-primary-soft'
@@ -63,7 +63,7 @@ function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
                     aria-hidden="true"
                     className={cn(
                       'flex items-center justify-center transition-transform duration-(--motion-base) ease-(--ease-spring)',
-                      variant === 'bottom' && 'h-8 w-14 rounded-full',
+                      variant === 'bottom' && 'h-8 w-14 max-w-full rounded-full',
                       variant === 'bottom' && isActive && 'animate-pop-in bg-primary-soft',
                       variant === 'side' && 'group-hover:scale-110',
                     )}
@@ -76,7 +76,9 @@ function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
                       strokeWidth={isActive ? 2.4 : 2}
                     />
                   </span>
-                  {t(label)}
+                  {/* Long labels hyphenate instead of running into the next tab
+                      (the size is capped so large text settings still fit five tabs). */}
+                  <span className="max-w-full wrap-break-word hyphens-auto">{t(label)}</span>
                 </>
               )}
             </NavLink>

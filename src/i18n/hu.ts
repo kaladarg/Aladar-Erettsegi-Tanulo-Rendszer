@@ -91,7 +91,8 @@ export const hu = {
     notFoundBody: 'Lehet, hogy a tartalomcsomag megváltozott. Válassz egy másikat a listából.',
     loadErrorTitle: 'Nem sikerült betölteni a feladatsort',
     summaryTitle: 'Áttekintés',
-    totalPoints: 'Összpontszám',
+    // The soft hyphen lets the word break in narrow stat tiles.
+    totalPoints: 'Össz\u00ADpontszám',
     totalTime: 'Teljes idő',
     minutes: '{minutes} perc',
     taskCount: 'Feladatok',

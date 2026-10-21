@@ -37,8 +37,8 @@ export function ExamModeCard({ exam }: { exam: Exam }) {
       className="mb-6 rounded-lg border border-border bg-surface p-5 shadow-1 sm:p-6"
     >
       <h2 id="exam-mode-title" className="flex items-center gap-2 text-xl font-semibold">
-        <Timer aria-hidden="true" className="size-5" />
-        {t('exam.examTitle')}
+        <Timer aria-hidden="true" className="size-5 shrink-0" />
+        <span className="min-w-0 wrap-break-word hyphens-auto">{t('exam.examTitle')}</span>
       </h2>
       <p className="mt-1 text-muted">
         {t('exam.examBody', { minutes: examMinutes(exam) })} {parts}

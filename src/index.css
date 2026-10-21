@@ -114,7 +114,7 @@
   /* Elements that show the press ripple (see app/ripple.ts). */
   [data-ripple] {
     position: relative;
-    overflow: hidden;
+    overflow: clip;
     isolation: isolate;
   }
 
