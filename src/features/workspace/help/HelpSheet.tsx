@@ -45,10 +45,10 @@ export function HelpSheet() {
   return (
     <Dialog.Root open={open} onOpenChange={(next) => !next && close()}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-black/40" />
+        <Dialog.Overlay className="fixed inset-0 z-40 anim-overlay bg-black/40 backdrop-blur-[2px]" />
         <Dialog.Content
           aria-describedby={undefined}
-          className="fixed inset-y-0 right-0 z-50 flex w-full max-w-lg flex-col overflow-y-auto border-l border-border bg-surface shadow-3"
+          className="fixed inset-y-0 right-0 z-50 flex w-full max-w-lg anim-sheet flex-col overflow-y-auto border-l border-border bg-surface shadow-3"
         >
           <div className="sticky top-0 z-10 grid gap-3 border-b border-border bg-surface p-4">
             <div className="flex items-center justify-between gap-3">

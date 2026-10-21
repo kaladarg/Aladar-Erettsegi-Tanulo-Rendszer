@@ -129,7 +129,7 @@ function MultiOverlay({ task, field, style }: { task: Task; field: Field; style:
       <Popover.Portal>
         <Popover.Content
           sideOffset={6}
-          className="z-40 grid min-w-48 gap-1 rounded-md border border-border bg-surface p-2 text-text shadow-3"
+          className="z-40 grid min-w-48 anim-dialog gap-1 rounded-md border border-border bg-surface p-2 text-text shadow-3"
         >
           {(field.options ?? []).map((option) => {
             const checked = selected.includes(option.value);

@@ -1,18 +1,18 @@
 import { ChevronRight, Library, PlayCircle, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { DEFAULT_LEVELS, DEFAULT_SUBJECTS, subjectAccent } from '@/content/catalog';
-import { SubjectIcon } from '@/content/SubjectIcon';
+import { DEFAULT_LEVELS, DEFAULT_SUBJECTS } from '@/content/catalog';
+import { SubjectBadge } from '@/content/SubjectIcon';
 import { Badge } from '@/design/ui/Badge';
 import { Button } from '@/design/ui/Button';
 import { EmptyState } from '@/design/ui/EmptyState';
-import { PageHeader } from '@/design/ui/PageHeader';
 import { Skeleton } from '@/design/ui/Skeleton';
 import { t } from '@/i18n';
 import { useOnboarding } from '@/state/onboardingStore';
 import { useSettings } from '@/state/settingsStore';
 import { useStatsData } from '../stats/useStatsData';
 import { ContinueCard, Dashboard } from './Dashboard';
+import { HeroBanner } from './HeroBanner';
 import { DataSafetyReminder } from '../settings/DataSafety';
 import { PracticeTools, WhatsNew } from './PracticeTools';
 
@@ -30,7 +30,7 @@ export function HomePage() {
 
   return (
     <>
-      <PageHeader title={t('home.greeting')} description={t('home.intro')} />
+      <HeroBanner data={stats} />
       {loaded && <DataSafetyReminder />}
       {loaded && <WhatsNew />}
       {loaded && <ContinueCard data={stats} />}
@@ -53,20 +53,16 @@ export function HomePage() {
             action={<Button onClick={showOnboarding}>{t('home.chooseSubjects')}</Button>}
           />
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-2">
+          <ul className="grid stagger gap-4 sm:grid-cols-2">
             {subjects.map((subject) => (
               <li key={subject.id}>
                 <Link
                   to={`/feladatsorok?targy=${subject.id}`}
                   aria-label={t('home.browseSubject', { subject: subject.name })}
-                  className="group flex items-center gap-4 rounded-lg border border-border bg-surface p-5 shadow-1 transition-colors hover:border-border-strong"
+                  data-ripple=""
+                  className="group flex lift items-center gap-4 rounded-lg border border-border bg-surface p-5 shadow-1 hover:border-border-strong"
                 >
-                  <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-surface-muted">
-                    <SubjectIcon
-                      subject={subject}
-                      className={`size-6 ${subjectAccent(subject.id)}`}
-                    />
-                  </span>
+                  <SubjectBadge subject={subject} />
                   <div className="min-w-0">
                     <p className="text-lg font-semibold">{subject.name}</p>
                     {level && <Badge className="mt-1">{level.name}</Badge>}

@@ -18,7 +18,7 @@ export function Toaster() {
           duration={item.duration}
           onOpenChange={(open) => !open && dismiss(item.id)}
           className={cn(
-            'flex items-center gap-3 rounded-md border bg-surface p-3 pl-4 shadow-3 motion-safe:animate-[toast-in_var(--motion-base)_var(--ease-out)]',
+            'flex anim-toast items-center gap-3 rounded-lg border bg-surface p-3 pl-4 shadow-3',
             item.tone === 'danger' && 'border-danger',
             item.tone === 'success' && 'border-success',
             item.tone === 'neutral' && 'border-border',

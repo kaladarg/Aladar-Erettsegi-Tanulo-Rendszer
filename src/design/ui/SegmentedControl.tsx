@@ -42,7 +42,8 @@ export function SegmentedControl<T extends string>({
         <RadioGroup.Item
           key={option.value}
           value={option.value}
-          className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-sm px-3 text-sm font-medium text-muted transition-colors hover:text-text data-[state=checked]:bg-surface data-[state=checked]:text-text data-[state=checked]:shadow-1 sm:flex-none [&_svg]:size-4"
+          data-ripple=""
+          className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-sm px-3 text-sm font-medium text-muted transition-[color,background-color,box-shadow,transform] duration-(--motion-base) ease-(--ease-out) hover:text-text active:scale-95 data-[state=checked]:bg-surface data-[state=checked]:font-semibold data-[state=checked]:text-primary data-[state=checked]:shadow-2 sm:flex-none [&_svg]:size-4"
         >
           {option.icon}
           <span className={compact && option.icon ? 'max-md:sr-only' : undefined}>

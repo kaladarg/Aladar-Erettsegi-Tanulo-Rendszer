@@ -13,6 +13,8 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router';
 import { Button } from '@/design/ui/Button';
 import { Card, CardTitle } from '@/design/ui/Card';
+import { TINTS, type Tint } from '@/design/ui/tints';
+import { cn } from '@/lib/cn';
 import { cardStates } from '@/domain/cards/schedule';
 import { dueCards } from '@/domain/practice/review';
 import { CURRENT_FEATURES } from '@/domain/settings';
@@ -89,23 +91,40 @@ export function PracticeTools() {
       <h2 id="home-tools" className="mb-4 text-xl font-semibold">
         {t('home.toolsTitle')}
       </h2>
-      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        <Tool to="/gyakorlas/temakorok" icon={<Layers />} label={t('practice.hub.topicsTitle')} />
+      <ul className="grid stagger grid-cols-2 gap-3 sm:grid-cols-3">
+        <Tool
+          to="/gyakorlas/temakorok"
+          tint="blue"
+          icon={<Layers />}
+          label={t('practice.hub.topicsTitle')}
+        />
         <Tool
           to="/gyakorlas/hibaim"
+          tint="rose"
           icon={<RotateCcw />}
           label={t('practice.hub.reviewTitle')}
           due={dueReviews}
         />
         <Tool
           to="/gyakorlas/kartyak"
+          tint="violet"
           icon={<GalleryVerticalEnd />}
           label={t('practice.hub.cardsTitle')}
           due={dueCardsCount}
         />
-        <Tool to="/gyakorlas/szobeli" icon={<Mic />} label={t('practice.hub.oralTitle')} />
-        <Tool to="/gyakorlas/terv" icon={<CalendarDays />} label={t('practice.hub.planTitle')} />
-        <Tool to="/tanaroknak" icon={<School />} label={t('teacher.hubTitle')} />
+        <Tool
+          to="/gyakorlas/szobeli"
+          tint="orange"
+          icon={<Mic />}
+          label={t('practice.hub.oralTitle')}
+        />
+        <Tool
+          to="/gyakorlas/terv"
+          tint="green"
+          icon={<CalendarDays />}
+          label={t('practice.hub.planTitle')}
+        />
+        <Tool to="/tanaroknak" tint="teal" icon={<School />} label={t('teacher.hubTitle')} />
       </ul>
     </section>
   );
@@ -115,29 +134,35 @@ function Tool({
   to,
   icon,
   label,
+  tint,
   due = 0,
 }: {
   to: string;
   icon: ReactNode;
   label: string;
+  tint: Tint;
   due?: number;
 }) {
   return (
     <li>
       <Link
         to={to}
-        className="flex h-full min-h-16 items-center gap-3 rounded-lg border border-border bg-surface p-3 shadow-1 hover:border-border-strong"
+        data-ripple=""
+        className="group flex h-full min-h-16 lift items-center gap-3 rounded-lg border border-border bg-surface p-3 shadow-1 hover:border-border-strong"
       >
         <span
           aria-hidden="true"
-          className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary-soft text-primary-soft-fg [&_svg]:size-4"
+          className={cn(
+            'flex size-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-(--motion-base) ease-(--ease-spring) group-hover:scale-110 group-hover:-rotate-6 [&_svg]:size-5',
+            TINTS[tint],
+          )}
         >
           {icon}
         </span>
         <span className="min-w-0">
           <span className="block font-medium">{label}</span>
           {due > 0 && (
-            <span className="block text-sm font-semibold text-primary">
+            <span className="mt-0.5 inline-block animate-pop-in rounded-full bg-primary px-2 text-xs font-semibold text-primary-fg">
               {t('home.toolsDue', { count: due })}
             </span>
           )}

@@ -478,3 +478,37 @@
     animation: toast-out var(--motion-fast) ease-in forwards;
   }
 }
+
+@keyframes ring-in {
+  from {
+    stroke-dashoffset: var(--ring-length);
+  }
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateX(28px) rotate(1.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes flip-in {
+  from {
+    opacity: 0;
+    transform: rotateX(-70deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

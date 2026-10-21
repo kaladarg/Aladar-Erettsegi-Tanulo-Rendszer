@@ -1,4 +1,4 @@
-import { expect, finishOnboarding, test } from './fixtures';
+import { expect, finishOnboarding, test, GREETING } from './fixtures';
 
 test('navigation moves focus to the page heading and sets the title', async ({
   page,
@@ -46,7 +46,7 @@ test('unknown pages show a friendly 404', async ({ page }) => {
     page.getByRole('heading', { level: 1, name: 'Ez az oldal nem létezik' }),
   ).toBeVisible();
   await page.getByRole('link', { name: 'Vissza a kezdőlapra' }).click();
-  await expect(page.getByRole('heading', { level: 1, name: 'Jó gyakorlást!' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: GREETING })).toBeVisible();
 });
 
 test('works offline after the first visit', async ({ page, context }) => {

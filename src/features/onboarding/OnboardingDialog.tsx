@@ -76,7 +76,7 @@ export function OnboardingDialog() {
       }}
     >
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-black/50 motion-safe:animate-[fade-in_var(--motion-base)]" />
+        <Dialog.Overlay className="fixed inset-0 z-40 anim-overlay bg-black/50 backdrop-blur-[2px]" />
         <Dialog.Content
           aria-describedby="onboarding-step-body"
           // Focus the dialog itself so the first subject card does not look pre-selected.
@@ -85,7 +85,7 @@ export function OnboardingDialog() {
             (event.currentTarget as HTMLElement).focus();
           }}
           tabIndex={-1}
-          className="fixed inset-x-0 bottom-0 z-50 flex max-h-[92dvh] flex-col overflow-y-auto rounded-t-lg border border-border bg-surface p-6 shadow-3 outline-none sm:top-1/2 sm:right-auto sm:bottom-auto sm:left-1/2 sm:w-[calc(100%-2rem)] sm:max-w-lg sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-lg"
+          className="fixed inset-x-0 bottom-0 z-50 flex max-h-[92dvh] anim-dialog flex-col overflow-y-auto rounded-t-xl border border-border bg-surface p-6 shadow-3 outline-none sm:top-1/2 sm:right-auto sm:bottom-auto sm:left-1/2 sm:w-[calc(100%-2rem)] sm:max-w-lg sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-xl"
         >
           <div className="mb-5 flex items-center justify-between gap-4">
             <p className="text-sm text-muted">

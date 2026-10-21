@@ -13,6 +13,7 @@ export function Button({ className, variant, size, asChild, type, ...props }: Bu
   const Component = asChild ? Slot.Root : 'button';
   return (
     <Component
+      data-ripple={variant === 'link' ? undefined : ''}
       className={cn(buttonVariants({ variant, size }), className)}
       type={asChild ? undefined : (type ?? 'button')}
       {...props}

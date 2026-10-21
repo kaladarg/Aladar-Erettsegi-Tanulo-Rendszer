@@ -29,9 +29,9 @@ export function SwitchField({ label, description, checked, onCheckedChange }: Sw
         checked={checked}
         onCheckedChange={onCheckedChange}
         aria-describedby={description ? descriptionId : undefined}
-        className="relative mt-0.5 inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full border-2 border-border-strong bg-surface-muted transition-colors data-[state=checked]:border-primary data-[state=checked]:bg-primary"
+        className="group relative mt-0.5 inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full border-2 border-border-strong bg-surface-muted transition-colors duration-(--motion-base) data-[state=checked]:border-primary data-[state=checked]:bg-primary"
       >
-        <RadixSwitch.Thumb className="block size-5 translate-x-0.5 rounded-full bg-text shadow-1 transition-transform data-[state=checked]:translate-x-[1.375rem] data-[state=checked]:bg-primary-fg" />
+        <RadixSwitch.Thumb className="block h-5 w-5 translate-x-0.5 rounded-full bg-text shadow-1 transition-[translate,width,background-color] duration-(--motion-base) ease-(--ease-spring) group-active:w-6 data-[state=checked]:translate-x-[1.375rem] data-[state=checked]:bg-primary-fg group-active:data-[state=checked]:translate-x-[1.125rem]" />
       </RadixSwitch.Root>
     </div>
   );

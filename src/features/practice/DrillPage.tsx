@@ -1,5 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { ArrowRight, Check, Flag, SkipForward, X } from 'lucide-react';
+import { ArrowRight, PartyPopper, Check, Flag, SkipForward, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
@@ -20,6 +20,7 @@ import { HelpSheet } from '@/features/workspace/help/HelpSheet';
 import { SelectionLookup } from '@/features/workspace/help/SelectionLookup';
 import { createWorkspace, WorkspaceContext } from '@/features/workspace/WorkspaceContext';
 import { t } from '@/i18n';
+import { cn } from '@/lib/cn';
 import { useAnswers } from '@/state/answerStore';
 import { ListeningPlayer } from '../workspace/audio/ListeningPlayer';
 import { loadReviews } from '@/storage/attempts';
@@ -282,8 +283,20 @@ function CheckedTask({
 
   return (
     <section aria-labelledby="drill-result" className="grid gap-4">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 shadow-1">
-        <h2 id="drill-result" className="text-lg font-bold">
+      <div
+        className={cn(
+          'flex flex-wrap items-center justify-between gap-3 rounded-lg border-2 bg-surface p-4 shadow-1',
+          result.status === 'correct'
+            ? 'animate-glow-success border-success'
+            : result.status === 'wrong' || result.status === 'partial'
+              ? 'animate-shake border-warning'
+              : 'border-border',
+        )}
+      >
+        <h2 id="drill-result" className="flex items-center gap-2 text-lg font-bold">
+          {result.status === 'correct' && (
+            <PartyPopper aria-hidden="true" className="size-5 animate-pop-in text-success" />
+          )}
           {t('practice.resultTitle')}
         </h2>
         <span className="flex items-center gap-2">

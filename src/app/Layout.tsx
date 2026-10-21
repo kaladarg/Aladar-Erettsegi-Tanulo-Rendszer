@@ -7,7 +7,7 @@ import {
   Library,
   Settings as SettingsIcon,
 } from 'lucide-react';
-import { NavLink, Outlet } from 'react-router';
+import { NavLink, Outlet, useLocation } from 'react-router';
 import { t, type MessageKey } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { OnboardingDialog } from '@/features/onboarding/OnboardingDialog';
@@ -35,22 +35,49 @@ function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
             <NavLink
               to={to}
               end={to === '/'}
+              data-ripple=""
               className={({ isActive }) =>
                 cn(
-                  'flex items-center rounded-md font-medium transition-colors',
+                  'group flex items-center font-medium transition-colors duration-(--motion-base)',
                   variant === 'side'
-                    ? 'min-h-11 gap-3 px-3 hover:bg-surface-muted'
-                    : 'min-h-16 flex-col justify-center gap-1 px-0.5 text-center text-[0.6875rem] leading-tight',
+                    ? 'min-h-11 gap-3 rounded-md px-3 hover:bg-surface-muted'
+                    : 'min-h-16 flex-col justify-center gap-0.5 px-0.5 text-center text-[0.6875rem] leading-tight',
                   isActive
                     ? variant === 'side'
-                      ? 'bg-primary-soft text-primary-soft-fg hover:bg-primary-soft'
-                      : 'text-primary'
+                      ? 'bg-primary-soft font-semibold text-primary-soft-fg hover:bg-primary-soft'
+                      : 'font-semibold text-primary'
                     : 'text-muted hover:text-text',
                 )
               }
             >
-              <Icon aria-hidden="true" className="size-5" />
-              {t(label)}
+              {({ isActive }) => (
+                <>
+                  {variant === 'side' && isActive && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-y-2 left-0 w-1 animate-pop-in rounded-full bg-primary"
+                    />
+                  )}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'flex items-center justify-center transition-transform duration-(--motion-base) ease-(--ease-spring)',
+                      variant === 'bottom' && 'h-8 w-14 rounded-full',
+                      variant === 'bottom' && isActive && 'animate-pop-in bg-primary-soft',
+                      variant === 'side' && 'group-hover:scale-110',
+                    )}
+                  >
+                    <Icon
+                      className={cn(
+                        'size-5',
+                        variant === 'bottom' && isActive && 'text-primary-soft-fg',
+                      )}
+                      strokeWidth={isActive ? 2.4 : 2}
+                    />
+                  </span>
+                  {t(label)}
+                </>
+              )}
             </NavLink>
           </li>
         ),
@@ -61,6 +88,7 @@ function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
 
 export function Layout() {
   const loaded = useSettings((state) => state.loaded);
+  const { pathname } = useLocation();
   usePersistentStorage();
 
   return (
@@ -88,7 +116,10 @@ export function Layout() {
       <main id="main" tabIndex={-1} className="outline-none">
         <div className="mx-auto w-full max-w-4xl px-4 pt-6 pb-28 sm:px-6 md:pt-10 md:pb-12">
           <StorageWarning />
-          <Outlet />
+          {/* Each page fades and rises in; the key restarts it on navigation. */}
+          <div key={pathname} className="animate-page-in">
+            <Outlet />
+          </div>
         </div>
       </main>
 
@@ -107,11 +138,14 @@ export function Layout() {
 
 function AppMark() {
   return (
-    <NavLink to="/" className="flex items-center gap-2 rounded-md text-lg font-bold">
-      <span className="flex size-9 items-center justify-center rounded-md bg-primary text-primary-fg">
+    <NavLink to="/" className="group flex items-center gap-2.5 rounded-md text-lg font-bold">
+      <span className="flex size-10 items-center justify-center rounded-lg bg-linear-135 from-hero-from to-hero-to text-hero-fg shadow-primary transition-transform duration-(--motion-base) ease-(--ease-spring) group-hover:scale-105 group-hover:-rotate-6">
         <GraduationCap aria-hidden="true" className="size-5" />
       </span>
-      {t('app.name')}
+      <span className="leading-tight">
+        {t('app.name')}
+        <span className="block text-xs font-medium text-muted">{t('app.edition')}</span>
+      </span>
     </NavLink>
   );
 }

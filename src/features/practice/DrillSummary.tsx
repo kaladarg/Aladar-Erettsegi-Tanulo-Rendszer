@@ -4,6 +4,7 @@ import type { Exam } from '@/content/schema.types';
 import { Badge } from '@/design/ui/Badge';
 import { Button } from '@/design/ui/Button';
 import { Card, CardTitle } from '@/design/ui/Card';
+import { Celebration } from '@/design/ui/Celebration';
 import { outcomeOf, type Outcome } from '@/domain/practice/review';
 import { findTask } from '@/domain/practice/topics';
 import { formatNumber, t } from '@/i18n';
@@ -38,6 +39,8 @@ export function DrillSummary({
   const outcomes = session.items.map((_, i) => outcomeOf(session.checked[i]));
   const count = (o: Outcome) => outcomes.filter((x) => x === o).length;
   const missed = count('partial') + count('wrong');
+  // A round with at least 80% right answers (and something answered) earns confetti.
+  const great = count('correct') > 0 && count('correct') >= outcomes.length * 0.8;
 
   const again = async () => {
     const id = await createDrill({
@@ -53,9 +56,10 @@ export function DrillSummary({
 
   return (
     <>
+      {great && <Celebration />}
       <Card aria-labelledby="drill-summary" className="grid gap-4">
         <CardTitle id="drill-summary">{t('practice.summaryTitle')}</CardTitle>
-        <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <dl className="grid stagger grid-cols-2 gap-3 sm:grid-cols-4">
           {(['correct', 'partial', 'wrong', 'skipped'] as const).map((o) => (
             <div key={o} className="rounded-md bg-surface-muted p-3">
               <dt className="text-sm text-muted">{t(`practice.outcome.${o}`)}</dt>

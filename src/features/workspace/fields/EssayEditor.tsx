@@ -40,7 +40,7 @@ export function EssayEditor({
             event.preventDefault();
             editor.current?.focus();
           }}
-          className="fixed inset-0 z-50 flex flex-col bg-bg outline-none"
+          className="fixed inset-0 z-50 flex anim-dialog flex-col bg-bg outline-none"
         >
           <header className="flex items-center justify-between gap-3 border-b border-border bg-surface px-4 py-2">
             <Dialog.Title className="text-lg font-semibold">

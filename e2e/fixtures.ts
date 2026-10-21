@@ -18,6 +18,9 @@ export const test = base.extend<{ consoleErrors: string[] }>({
 
 export { expect };
 
+/** The home page greets by time of day. */
+export const GREETING = /^(Jó reggelt|Szép napot|Jó estét)!$/;
+
 /** Completes onboarding with the given subjects; ends on the exam browser. */
 export async function finishOnboarding(page: Page, subjects: string[] = ['Matematika']) {
   const dialog = page.getByRole('dialog');

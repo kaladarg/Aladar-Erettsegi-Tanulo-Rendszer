@@ -1,4 +1,4 @@
-import { expect, finishOnboarding, test } from './fixtures';
+import { expect, finishOnboarding, test, GREETING } from './fixtures';
 
 test('first visit walks through onboarding and shows the chosen subjects', async ({ page }) => {
   await page.goto('/');
@@ -28,7 +28,7 @@ test('first visit walks through onboarding and shows the chosen subjects', async
 
   // Onboarding does not come back after a reload.
   await page.reload();
-  await expect(page.getByRole('heading', { level: 1, name: 'Jó gyakorlást!' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: GREETING })).toBeVisible();
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 

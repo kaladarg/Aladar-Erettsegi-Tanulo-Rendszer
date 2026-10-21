@@ -11,6 +11,10 @@ export function PageHeader({ title, description, actions }: PageHeaderProps) {
   return (
     <header className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
       <div>
+        <span
+          aria-hidden="true"
+          className="mb-3 block h-1.5 w-12 origin-left rounded-full bg-linear-90 from-primary to-accent motion-safe:animate-[grow-x_var(--motion-slow)_var(--ease-out)_both]"
+        />
         <h1
           tabIndex={-1}
           data-page-title

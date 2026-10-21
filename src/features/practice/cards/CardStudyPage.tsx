@@ -19,6 +19,8 @@ import { shuffle } from '@/domain/practice/topics';
 import { formatNumber, t } from '@/i18n';
 import { recordCardAnswer } from '@/storage/cards';
 import { db } from '@/storage/db';
+import { cn } from '@/lib/cn';
+import { Celebration } from '@/design/ui/Celebration';
 import { CardMap } from './CardMap';
 
 const NEW_PER_SESSION = 15;
@@ -157,8 +159,9 @@ function Study({
     return (
       <section
         aria-labelledby="cards-done"
-        className="grid gap-4 rounded-lg border border-border bg-surface p-6 shadow-1"
+        className="grid animate-pop-in gap-4 rounded-xl border border-border bg-surface p-6 shadow-2"
       >
+        <Celebration />
         <h2 id="cards-done" className="text-2xl font-bold">
           {t('practice.cards.doneTitle')}
         </h2>
@@ -238,7 +241,10 @@ function CardFace({
   return (
     <article
       aria-label={t(`practice.cards.deck.${card.deck}`)}
-      className="grid gap-4 rounded-lg border border-border bg-surface p-5 shadow-1 sm:p-6"
+      className={cn(
+        'grid gap-4 rounded-xl border border-border bg-surface p-5 shadow-2 [perspective:900px] sm:p-6',
+        'motion-safe:animate-[card-in_var(--motion-slow)_var(--ease-out)_both]',
+      )}
     >
       <p className="text-sm font-medium text-muted">
         {t(`practice.cards.deck.${card.deck}`)} · {t(`practice.cards.eras.${card.era}`)}
@@ -253,7 +259,7 @@ function CardFace({
       )}
       <p className={card.place ? 'text-lg' : 'text-2xl font-semibold'}>{card.front}</p>
       {flipped && (
-        <div className="border-t border-border pt-4">
+        <div className="origin-top border-t border-border pt-4 motion-safe:animate-[flip-in_var(--motion-slow)_var(--ease-out)_both]">
           <h2
             ref={answerHeading}
             tabIndex={-1}

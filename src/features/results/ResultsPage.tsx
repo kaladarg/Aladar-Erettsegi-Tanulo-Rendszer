@@ -8,6 +8,10 @@ import type { Exam } from '@/content/schema.types';
 import { useExam } from '@/content/useContent';
 import { Button } from '@/design/ui/Button';
 import { Card, CardTitle } from '@/design/ui/Card';
+import { Celebration } from '@/design/ui/Celebration';
+import { ProgressRing } from '@/design/ui/ProgressRing';
+import { useCountUp } from '@/design/ui/useCountUp';
+import { cn } from '@/lib/cn';
 import { EmptyState } from '@/design/ui/EmptyState';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { Skeleton } from '@/design/ui/Skeleton';
@@ -151,7 +155,7 @@ function Results({
         }`}
       />
 
-      <ScoreSummary result={result} />
+      <ScoreSummary result={result} attemptId={attempt.id} />
       <div className="mt-4 flex flex-wrap gap-2">
         <ShareResult
           exam={exam}
@@ -286,26 +290,76 @@ function Stat({ label, value, hint }: { label: string; value: string; hint?: Rea
   );
 }
 
-function ScoreSummary({ result }: { result: ExamResult }) {
+const GRADE_TONE: Record<number, string> = {
+  5: 'bg-success-soft text-success',
+  4: 'bg-primary-soft text-primary-soft-fg',
+  3: 'bg-warning-soft text-warning',
+  2: 'bg-warning-soft text-warning',
+  1: 'bg-danger-soft text-danger',
+};
+
+function ScoreSummary({ result, attemptId }: { result: ExamResult; attemptId: string }) {
   const deducted = result.deductions.reduce((s, d) => s + (d.points ?? 0), 0);
+  const points = useCountUp(result.points);
+  // Celebrate a good result once per attempt (not on every visit).
+  const [celebrate] = useState(() => {
+    if (result.percent < 60) return false;
+    try {
+      const key = `celebrated:${attemptId}`;
+      if (sessionStorage.getItem(key)) return false;
+      sessionStorage.setItem(key, '1');
+    } catch {
+      // Storage may be unavailable (private mode); celebrating twice is harmless.
+    }
+    return true;
+  });
   return (
-    <Card aria-labelledby="score-title" className="grid gap-5">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h2 id="score-title" className="text-4xl font-bold tabular-nums sm:text-5xl">
-            {t('results.score', { points: result.points, max: result.maxPoints })}
-          </h2>
-          <p className="mt-1 text-xl text-muted tabular-nums">
-            {t('results.percent', {
+    <Card aria-labelledby="score-title" className="relative grid gap-5 overflow-hidden">
+      {celebrate && <Celebration />}
+      <div className="flex flex-wrap items-center justify-between gap-5">
+        <div className="flex items-center gap-5">
+          <ProgressRing
+            value={result.percent}
+            max={100}
+            size={104}
+            stroke={10}
+            label={t('results.percent', {
               percent: formatNumber(result.percent, { maximumFractionDigits: 0 }),
             })}
-          </p>
+            trackClassName="stroke-surface-muted"
+            barClassName={
+              result.percent >= 60
+                ? 'stroke-success'
+                : result.percent >= 40
+                  ? 'stroke-primary'
+                  : 'stroke-warning'
+            }
+          >
+            <span className="text-2xl font-bold tabular-nums">
+              {formatNumber(result.percent, { maximumFractionDigits: 0 })}%
+            </span>
+          </ProgressRing>
+          <div>
+            <h2 id="score-title" className="text-4xl font-bold tabular-nums sm:text-5xl">
+              {t('results.score', { points, max: result.maxPoints })}
+            </h2>
+            <p className="mt-1 text-xl text-muted tabular-nums">
+              {t('results.percent', {
+                percent: formatNumber(result.percent, { maximumFractionDigits: 0 }),
+              })}
+            </p>
+          </div>
         </div>
         <div className="text-right">
-          <p className="text-xl font-semibold">
+          <p
+            className={cn(
+              'inline-block animate-pop-in rounded-full px-4 py-1.5 text-xl font-bold [animation-delay:600ms]',
+              GRADE_TONE[result.grade.grade] ?? 'bg-surface-muted',
+            )}
+          >
             {t('results.grade', { label: result.grade.label, grade: String(result.grade.grade) })}
           </p>
-          <p className="text-sm text-muted">
+          <p className="mt-1 text-sm text-muted">
             {result.complete ? t('results.gradeNote') : t('results.gradePending')}
           </p>
         </div>

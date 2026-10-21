@@ -6,7 +6,7 @@ import { subjectAccent, type SubjectInfo } from '@/content/catalog';
 import { examDisplayTitle } from '@/content/labels';
 import { storePdf } from '@/content/pdfImport';
 import type { ExamEntry, Manifest } from '@/content/schema.types';
-import { SubjectIcon } from '@/content/SubjectIcon';
+import { SubjectBadge, SubjectIcon } from '@/content/SubjectIcon';
 import { useManifest } from '@/content/useContent';
 import { Badge } from '@/design/ui/Badge';
 import { Button } from '@/design/ui/Button';
@@ -165,7 +165,7 @@ function Browser({ manifest }: { manifest: Manifest }) {
               <h2 id={`year-${group.year}`} className="mb-3 text-xl font-semibold">
                 {group.year}
               </h2>
-              <ul className="grid gap-3">
+              <ul className="grid stagger gap-3">
                 {group.exams.map((exam) => (
                   <li key={exam.id}>
                     <ExamCard
@@ -259,12 +259,11 @@ function ExamCard({
   return (
     <Link
       to={`/feladatsorok/${exam.id}`}
-      className="group flex items-center gap-4 rounded-lg border border-border bg-surface p-4 shadow-1 transition-colors hover:border-border-strong sm:p-5"
+      data-ripple=""
+      className="group flex lift items-center gap-4 rounded-lg border border-border bg-surface p-4 shadow-1 hover:border-border-strong sm:p-5"
     >
       {subject && (
-        <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-surface-muted">
-          <SubjectIcon subject={subject} className={cn('size-6', subjectAccent(subject.id))} />
-        </span>
+        <SubjectBadge subject={subject} />
       )}
       <span className="min-w-0 flex-1">
         <span className="block text-sm text-muted">{subject?.name}</span>

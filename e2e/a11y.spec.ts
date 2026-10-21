@@ -1,9 +1,9 @@
 import AxeBuilder from '@axe-core/playwright';
 import type { Page } from '@playwright/test';
-import { expect, finishOnboarding, test } from './fixtures';
+import { expect, finishOnboarding, test, GREETING } from './fixtures';
 
 const PAGES = [
-  ['/', 'Jó gyakorlást!'],
+  ['/', GREETING],
   ['/beallitasok', 'Beállítások'],
   ['/statisztika', 'Statisztika'],
   ['/nevjegy', 'Névjegy'],

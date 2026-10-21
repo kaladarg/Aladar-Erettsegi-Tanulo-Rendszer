@@ -22,13 +22,13 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        'flex flex-col items-center rounded-lg border border-dashed border-border-strong px-6 py-10 text-center',
+        'flex animate-rise-in flex-col items-center rounded-lg border-2 border-dashed border-border bg-surface/60 px-6 py-10 text-center',
         className,
       )}
     >
       <div
         className={cn(
-          'mb-4 flex size-14 items-center justify-center rounded-full [&_svg]:size-7',
+          'mb-4 flex size-16 items-center justify-center rounded-2xl motion-safe:animate-[float_5s_ease-in-out_infinite] [&_svg]:size-8',
           tone === 'danger' ? 'bg-danger-soft text-danger' : 'bg-primary-soft text-primary-soft-fg',
         )}
         aria-hidden="true"

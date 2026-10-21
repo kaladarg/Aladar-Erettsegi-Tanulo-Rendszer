@@ -284,10 +284,10 @@ function InfoSheet({
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-black/50" />
+        <Dialog.Overlay className="fixed inset-0 z-40 anim-overlay bg-black/50 backdrop-blur-[2px]" />
         <Dialog.Content
           aria-describedby={undefined}
-          className="fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col gap-4 overflow-y-auto border-l border-border bg-surface p-6 shadow-3"
+          className="fixed inset-y-0 right-0 z-50 flex w-full max-w-md anim-sheet flex-col gap-4 overflow-y-auto border-l border-border bg-surface p-6 shadow-3"
         >
           <div className="flex items-center justify-between">
             <Dialog.Title className="text-xl font-semibold">

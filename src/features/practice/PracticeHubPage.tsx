@@ -12,8 +12,10 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { PageHeader } from '@/design/ui/PageHeader';
+import { TINTS, type Tint } from '@/design/ui/tints';
 import { dueCards } from '@/domain/practice/review';
 import { t } from '@/i18n';
+import { cn } from '@/lib/cn';
 import { useReviewCards } from './useReviewCards';
 
 export function PracticeHubPage() {
@@ -23,15 +25,17 @@ export function PracticeHubPage() {
   return (
     <>
       <PageHeader title={t('practice.title')} description={t('practice.intro')} />
-      <ul className="grid gap-4 sm:grid-cols-2">
+      <ul className="grid stagger gap-4 sm:grid-cols-2">
         <HubCard
           to="/gyakorlas/temakorok"
+          tint="blue"
           icon={<Layers />}
           title={t('practice.hub.topicsTitle')}
           body={t('practice.hub.topicsBody')}
         />
         <HubCard
           to="/gyakorlas/hibaim"
+          tint="rose"
           icon={<RotateCcw />}
           title={t('practice.hub.reviewTitle')}
           body={t('practice.hub.reviewBody')}
@@ -46,30 +50,35 @@ export function PracticeHubPage() {
         />
         <HubCard
           to="/gyakorlas/kartyak"
+          tint="violet"
           icon={<GalleryVerticalEnd />}
           title={t('practice.hub.cardsTitle')}
           body={t('practice.hub.cardsBody')}
         />
         <HubCard
           to="/gyakorlas/szobeli"
+          tint="orange"
           icon={<Mic />}
           title={t('practice.hub.oralTitle')}
           body={t('practice.hub.oralBody')}
         />
         <HubCard
           to="/gyakorlas/terv"
+          tint="green"
           icon={<CalendarDays />}
           title={t('practice.hub.planTitle')}
           body={t('practice.hub.planBody')}
         />
         <HubCard
           to="/gyakorlas/segedeszkozok"
+          tint="amber"
           icon={<Backpack />}
           title={t('aids.hubTitle')}
           body={t('aids.hubBody')}
         />
         <HubCard
           to="/tanaroknak"
+          tint="teal"
           icon={<School />}
           title={t('teacher.hubTitle')}
           body={t('teacher.hubBody')}
@@ -82,12 +91,14 @@ export function PracticeHubPage() {
 function HubCard({
   to,
   icon,
+  tint,
   title,
   body,
   status,
   highlight,
 }: {
   to: string;
+  tint: Tint;
   icon: ReactNode;
   title: string;
   body: string;
@@ -98,11 +109,15 @@ function HubCard({
     <li>
       <Link
         to={to}
-        className="group flex h-full gap-4 rounded-lg border border-border bg-surface p-5 shadow-1 hover:border-border-strong"
+        data-ripple=""
+        className="group flex h-full lift gap-4 rounded-lg border border-border bg-surface p-5 shadow-1 hover:border-border-strong"
       >
         <span
           aria-hidden="true"
-          className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary-soft-fg [&_svg]:size-5"
+          className={cn(
+            'flex size-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-(--motion-base) ease-(--ease-spring) group-hover:scale-110 group-hover:-rotate-6 [&_svg]:size-6',
+            TINTS[tint],
+          )}
         >
           {icon}
         </span>
