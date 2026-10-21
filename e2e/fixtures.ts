@@ -18,8 +18,45 @@ export const test = base.extend<{ consoleErrors: string[] }>({
 
 export { expect };
 
+/** Waits until entrance animations (fades, slides) have finished; endless ones are ignored. */
+export async function settle(page: Page) {
+  await page.evaluate(() =>
+    Promise.all(
+      document
+        .getAnimations()
+        .filter((a) => a.effect?.getComputedTiming().iterations !== Infinity)
+        .map((a) => a.finished.catch(() => undefined)),
+    ),
+  );
+}
+
 /** The home page greets by time of day. */
 export const GREETING = /^(Jó reggelt|Szép napot|Jó estét)!$/;
+
+/** Skips the welcome dialog and waits until that is saved, so a reload does not show it again. */
+export async function skipOnboarding(page: Page) {
+  await page.getByRole('dialog').getByRole('button', { name: 'Kihagyom' }).click();
+  await expect(page.getByRole('dialog')).toBeHidden();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          new Promise<boolean>((resolve) => {
+            const open = indexedDB.open('erettsegi-gyakorlo');
+            open.onsuccess = () => {
+              const get = open.result.transaction('settings').objectStore('settings').get('app');
+              get.onsuccess = () => {
+                resolve(!!(get.result as { onboardingDone?: boolean } | undefined)?.onboardingDone);
+                open.result.close();
+              };
+              get.onerror = () => resolve(false);
+            };
+            open.onerror = () => resolve(false);
+          }),
+      ),
+    )
+    .toBe(true);
+}
 
 /** Completes onboarding with the given subjects; ends on the exam browser. */
 export async function finishOnboarding(page: Page, subjects: string[] = ['Matematika']) {

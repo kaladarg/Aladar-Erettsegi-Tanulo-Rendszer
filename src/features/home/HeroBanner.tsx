@@ -39,11 +39,11 @@ export function HeroBanner({ data }: { data: StatsData | undefined }) {
       {/* Decorative shapes drifting slowly in the background. */}
       <span
         aria-hidden="true"
-        className="absolute -top-16 -right-10 -z-10 size-56 rounded-full bg-white/10 motion-safe:animate-[float_9s_ease-in-out_infinite]"
+        className="absolute -top-16 -right-10 -z-10 size-56 rounded-full bg-white/10"
       />
       <span
         aria-hidden="true"
-        className="absolute -bottom-24 left-1/4 -z-10 size-56 rounded-full bg-white/8 motion-safe:animate-[float_12s_ease-in-out_infinite_reverse]"
+        className="absolute -bottom-24 left-1/4 -z-10 size-56 rounded-full bg-white/8"
       />
       <span
         aria-hidden="true"
@@ -98,23 +98,23 @@ export function HeroBanner({ data }: { data: StatsData | undefined }) {
       </div>
 
       <ul className="mt-5 flex flex-wrap gap-2 text-sm font-medium">
-        <li className="flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 backdrop-blur-sm">
+        <li className="flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5">
           <Flame
             aria-hidden="true"
-            className={`size-4 ${days && days.current > 0 ? 'text-accent motion-safe:animate-pulse' : ''}`}
+            className={`size-4 ${days && days.current > 0 ? 'text-accent' : ''}`}
           />
           {days && days.current > 0
             ? t('home.hero.streak', { count: days.current })
             : t('home.hero.streakNone')}
         </li>
         {today && today.cards > 0 && (
-          <li className="flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 backdrop-blur-sm">
+          <li className="flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5">
             <Layers aria-hidden="true" className="size-4" />
             {t('home.hero.cardsToday', { count: today.cards })}
           </li>
         )}
         {next && (
-          <li className="flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 backdrop-blur-sm">
+          <li className="flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5">
             <CalendarClock aria-hidden="true" className="size-4" />
             {t('home.hero.examIn', {
               subject: findSubject(next.subject)?.name ?? next.subject,

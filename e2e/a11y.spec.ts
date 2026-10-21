@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import type { Page } from '@playwright/test';
-import { expect, finishOnboarding, test, GREETING } from './fixtures';
+import { expect, finishOnboarding, settle, test, GREETING } from './fixtures';
 
 const PAGES = [
   ['/', GREETING],
@@ -38,6 +38,8 @@ const PAGES = [
 ] as const;
 
 const scan = async (page: Page, label: string) => {
+  // Colours are measured once fades and slides have ended.
+  await settle(page);
   const results = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
     .analyze();

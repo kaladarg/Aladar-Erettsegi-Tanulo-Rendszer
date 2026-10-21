@@ -1,11 +1,11 @@
 import { readFile } from 'node:fs/promises';
-import { expect, test } from './fixtures';
+import { expect, test, skipOnboarding } from './fixtures';
 
 const HUNGARIAN = 'magyar-kozep-2026-majus-minta';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('dialog').getByRole('button', { name: 'Kihagyom' }).click();
+  await skipOnboarding(page);
 });
 
 test('a mixed round takes tasks from several topics', async ({ page }) => {

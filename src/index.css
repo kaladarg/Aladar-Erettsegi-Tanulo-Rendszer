@@ -97,8 +97,8 @@
   }
 
   html {
-    scroll-behavior: smooth;
-    /* Lets <details> animate to their natural height where supported. */
+    /* Lets <details> animate to their natural height where supported.
+       (No global smooth scrolling: it makes route changes scroll slowly and late.) */
     interpolate-size: allow-keywords;
   }
 

@@ -340,14 +340,15 @@ function ScoreSummary({ result, attemptId }: { result: ExamResult; attemptId: st
             </span>
           </ProgressRing>
           <div>
-            <h2 id="score-title" className="text-4xl font-bold tabular-nums sm:text-5xl">
+            <p className="text-sm font-semibold tracking-wide text-muted uppercase">
+              {t('results.yourScore')}
+            </p>
+            <h2
+              id="score-title"
+              className="text-3xl font-bold whitespace-nowrap tabular-nums sm:text-5xl"
+            >
               {t('results.score', { points, max: result.maxPoints })}
             </h2>
-            <p className="mt-1 text-xl text-muted tabular-nums">
-              {t('results.percent', {
-                percent: formatNumber(result.percent, { maximumFractionDigits: 0 }),
-              })}
-            </p>
           </div>
         </div>
         <div className="text-right">

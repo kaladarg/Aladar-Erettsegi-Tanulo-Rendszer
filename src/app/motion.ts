@@ -1,3 +1,6 @@
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router';
+
 /** True when the student (Settings) or the system asks for less motion. */
 export function motionReduced(): boolean {
   if (typeof document === 'undefined') return true;
@@ -30,4 +33,26 @@ export function installRipple(): () => void {
   };
   document.addEventListener('pointerdown', onDown, { passive: true });
   return () => document.removeEventListener('pointerdown', onDown);
+}
+
+/**
+ * Fades and lifts the page in after each navigation. Uses the Web Animations
+ * API on the existing element, so nothing is remounted.
+ */
+export function usePageTransition() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || motionReduced() || typeof element.animate !== 'function') return;
+    const animation = element.animate(
+      [
+        { opacity: 0, transform: 'translateY(10px)' },
+        { opacity: 1, transform: 'none' },
+      ],
+      { duration: 360, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+    );
+    return () => animation.cancel();
+  }, [pathname]);
+  return ref;
 }

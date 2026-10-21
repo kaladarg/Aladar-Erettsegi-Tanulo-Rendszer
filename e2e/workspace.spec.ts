@@ -1,14 +1,14 @@
 import { readFile } from 'node:fs/promises';
 import type { Page } from '@playwright/test';
-import { expect, test, toastWith } from './fixtures';
+import { expect, test, toastWith, skipOnboarding } from './fixtures';
 
 const MATH = 'matematika-kozep-2026-majus-minta';
 const HISTORY = 'tortenelem-kozep-2026-majus-minta';
 const HUNGARIAN = 'magyar-kozep-2026-majus-minta';
 
-async function skipOnboarding(page: Page) {
+async function openApp(page: Page) {
   await page.goto('/');
-  await page.getByRole('dialog').getByRole('button', { name: 'Kihagyom' }).click();
+  await skipOnboarding(page);
 }
 
 async function openWorkspace(page: Page, examId: string) {
@@ -20,7 +20,7 @@ async function openWorkspace(page: Page, examId: string) {
 const toForm = (page: Page) => page.getByRole('radio', { name: 'Űrlap' }).click();
 const toPdf = (page: Page) => page.getByRole('radio', { name: 'Feladatlap' }).click();
 
-test.beforeEach(async ({ page }) => skipOnboarding(page));
+test.beforeEach(async ({ page }) => openApp(page));
 
 test('PDF mode and form mode share answers, which survive a reload', async ({ page }) => {
   await openWorkspace(page, MATH);

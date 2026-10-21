@@ -1,10 +1,10 @@
-import { expect, test } from './fixtures';
+import { expect, test, skipOnboarding } from './fixtures';
 
 const ENGLISH = 'angol-kozep-2026-majus-minta';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('dialog').getByRole('button', { name: 'Kihagyom' }).click();
+  await skipOnboarding(page);
 });
 
 test('an English paper: listening player, exam points and the transcript', async ({ page }) => {

@@ -1,8 +1,8 @@
-import { expect, test } from './fixtures';
+import { expect, test, skipOnboarding } from './fixtures';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('dialog').getByRole('button', { name: 'Kihagyom' }).click();
+  await skipOnboarding(page);
 });
 
 test('after a few active days the home page asks for a backup', async ({ page }) => {

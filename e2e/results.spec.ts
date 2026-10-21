@@ -1,12 +1,12 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from './fixtures';
+import { expect, test, skipOnboarding } from './fixtures';
 
 const MATH = 'matematika-kozep-2026-majus-minta';
 const HUNGARIAN = 'magyar-kozep-2026-majus-minta';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('dialog').getByRole('button', { name: 'Kihagyom' }).click();
+  await skipOnboarding(page);
 });
 
 async function submit(page: Page) {

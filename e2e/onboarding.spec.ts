@@ -1,4 +1,4 @@
-import { expect, finishOnboarding, test, GREETING } from './fixtures';
+import { expect, finishOnboarding, test, GREETING, skipOnboarding } from './fixtures';
 
 test('first visit walks through onboarding and shows the chosen subjects', async ({ page }) => {
   await page.goto('/');
@@ -34,7 +34,7 @@ test('first visit walks through onboarding and shows the chosen subjects', async
 
 test('onboarding can be skipped and reopened from the home screen', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('dialog').getByRole('button', { name: 'Kihagyom' }).click();
+  await skipOnboarding(page);
   await expect(page.getByText('Még nem választottál tárgyat')).toBeVisible();
 
   await page.getByRole('button', { name: 'Tárgyak kiválasztása' }).click();

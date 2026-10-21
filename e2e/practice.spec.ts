@@ -1,8 +1,8 @@
-import { expect, test, toastWith } from './fixtures';
+import { expect, test, toastWith, skipOnboarding } from './fixtures';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('dialog').getByRole('button', { name: 'Kihagyom' }).click();
+  await skipOnboarding(page);
 });
 
 test('a topic round checks a task and sends the mistake to Hibáim', async ({ page }) => {

@@ -7,11 +7,12 @@ import {
   Library,
   Settings as SettingsIcon,
 } from 'lucide-react';
-import { NavLink, Outlet, useLocation } from 'react-router';
+import { NavLink, Outlet } from 'react-router';
 import { t, type MessageKey } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { OnboardingDialog } from '@/features/onboarding/OnboardingDialog';
 import { useSettings } from '@/state/settingsStore';
+import { usePageTransition } from './motion';
 import { RouteFocus } from './RouteFocus';
 import { StorageWarning } from './StorageWarning';
 import { usePersistentStorage } from './usePersistentStorage';
@@ -88,7 +89,7 @@ function NavItems({ variant }: { variant: 'side' | 'bottom' }) {
 
 export function Layout() {
   const loaded = useSettings((state) => state.loaded);
-  const { pathname } = useLocation();
+  const page = usePageTransition();
   usePersistentStorage();
 
   return (
@@ -117,7 +118,7 @@ export function Layout() {
         <div className="mx-auto w-full max-w-4xl px-4 pt-6 pb-28 sm:px-6 md:pt-10 md:pb-12">
           <StorageWarning />
           {/* Each page fades and rises in; the key restarts it on navigation. */}
-          <div key={pathname} className="animate-page-in">
+          <div ref={page}>
             <Outlet />
           </div>
         </div>

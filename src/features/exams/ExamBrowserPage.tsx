@@ -262,9 +262,7 @@ function ExamCard({
       data-ripple=""
       className="group flex lift items-center gap-4 rounded-lg border border-border bg-surface p-4 shadow-1 hover:border-border-strong sm:p-5"
     >
-      {subject && (
-        <SubjectBadge subject={subject} />
-      )}
+      {subject && <SubjectBadge subject={subject} />}
       <span className="min-w-0 flex-1">
         <span className="block text-sm text-muted">{subject?.name}</span>
         <span className="block text-lg font-semibold">{examDisplayTitle(exam)}</span>

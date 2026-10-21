@@ -567,6 +567,7 @@ export const hu = {
     noAnswer: 'Nem válaszoltál.',
     expected: 'Elfogadható válasz',
     explanation: 'Magyarázat',
+    yourScore: 'Az eredményed',
     transcript: 'Szövegátirat: mi hangzott el a felvételen',
     transcriptNote:
       'Hallgasd meg újra a felvételt az átirattal együtt, és keresd meg, hol hangzottak el a válaszok.',
@@ -661,7 +662,7 @@ export const hu = {
       oralBody: 'Tételek, vázlat, időmérő és hangfelvétel a szóbeli vizsgára.',
       cardsTitle: 'Tanulókártyák',
       cardsBody:
-        'Történelem: évszámok, fogalmak, személyek, térképes helyszínek. Irodalom: szerzők, művek, korszakok, fogalmak.',
+        'Történelem, irodalom, angol és német: évszámok, fogalmak, szerzők, művek, hasznos nyelvi fordulatok, ismétlő rendszerrel.',
       planTitle: 'Tervem',
       planBody: 'Visszaszámlálás a vizsgáig és heti teendők a gyenge pontjaid alapján.',
       open: 'Megnyitás',
