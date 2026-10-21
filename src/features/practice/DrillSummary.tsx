@@ -46,6 +46,7 @@ export function DrillSummary({
     const id = await createDrill({
       kind: session.kind,
       subject: session.subject,
+      subjects: session.subjects,
       topic: session.topic,
       title: session.title,
       assignment: session.assignment,
@@ -58,7 +59,9 @@ export function DrillSummary({
     <>
       {great && <Celebration />}
       <Card aria-labelledby="drill-summary" className="grid gap-4">
-        <CardTitle id="drill-summary">{t('practice.summaryTitle')}</CardTitle>
+        <CardTitle id="drill-summary">
+          {session.kind === 'daily' ? t('practice.daily.doneTitle') : t('practice.summaryTitle')}
+        </CardTitle>
         <dl className="grid stagger grid-cols-2 gap-3 sm:grid-cols-4">
           {(['correct', 'partial', 'wrong', 'skipped'] as const).map((o) => (
             <div key={o} className="rounded-md bg-surface-muted p-3">
@@ -73,7 +76,9 @@ export function DrillSummary({
             : t('practice.summaryAllGood')}
         </p>
         <div className="flex flex-wrap gap-2">
-          <Button onClick={onExit}>{t('practice.backToHub')}</Button>
+          <Button onClick={onExit}>
+            {session.kind === 'daily' ? t('practice.daily.home') : t('practice.backToHub')}
+          </Button>
           <Button variant="secondary" onClick={() => void again()}>
             <RotateCcw aria-hidden="true" />
             {t('practice.again')}

@@ -35,6 +35,13 @@ export function createRouter() {
       }),
     },
     {
+      path: 'gyakorlas/mai-adag',
+      errorElement: <RouteError />,
+      lazy: async () => ({
+        Component: (await import('@/features/practice/daily/DailyPage')).DailyPage,
+      }),
+    },
+    {
       path: 'gyakorlas/kor/:sessionId',
       errorElement: <RouteError />,
       lazy: async () => ({

@@ -1,4 +1,4 @@
-import { CalendarClock, Flame, Layers, Play } from 'lucide-react';
+import { CalendarCheck, CalendarClock, Flame, Layers, Play, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { findSubject } from '@/content/catalog';
@@ -6,6 +6,7 @@ import { Button } from '@/design/ui/Button';
 import { ProgressRing } from '@/design/ui/ProgressRing';
 import { streak } from '@/domain/stats/stats';
 import { formatNumber, t, type MessageKey } from '@/i18n';
+import { useTodaysDaily } from '../practice/daily/useDaily';
 import { usePlan } from '../practice/usePlan';
 import type { StatsData } from '../stats/useStatsData';
 import { DAILY_GOAL, useToday } from './useToday';
@@ -24,6 +25,7 @@ export function HeroBanner({ data }: { data: StatsData | undefined }) {
   const [hour] = useState(() => new Date().getHours());
   const today = useToday();
   const plans = usePlan();
+  const daily = useTodaysDaily();
   const days = data ? streak(data.days) : null;
   const next = plans
     ?.filter((plan) => plan.daysLeft >= 0)
@@ -79,20 +81,35 @@ export function HeroBanner({ data }: { data: StatsData | undefined }) {
       </div>
 
       <div className="mt-5 flex flex-wrap gap-2">
-        <Button asChild className="bg-white text-hero-to shadow-2 hover:bg-white hover:shadow-3">
-          <Link to="/gyakorlas">
-            <Play aria-hidden="true" />
-            {t('home.hero.start')}
+        <Button
+          asChild
+          size="lg"
+          className="bg-white text-hero-to shadow-2 hover:bg-white hover:shadow-3"
+        >
+          <Link
+            to={daily && !daily.finishedAt ? `/gyakorlas/kor/${daily.id}` : '/gyakorlas/mai-adag'}
+          >
+            {daily?.finishedAt ? (
+              <CalendarCheck aria-hidden="true" />
+            ) : (
+              <Sparkles aria-hidden="true" />
+            )}
+            {daily?.finishedAt
+              ? t('practice.daily.heroDone')
+              : daily
+                ? t('practice.daily.heroContinue')
+                : t('practice.daily.heroStart')}
           </Link>
         </Button>
         <Button
           asChild
+          size="lg"
           variant="ghost"
           className="text-hero-fg ring-1 ring-white/40 hover:bg-white/15"
         >
-          <Link to="/gyakorlas/kartyak">
-            <Layers aria-hidden="true" />
-            {t('home.hero.cards')}
+          <Link to="/gyakorlas">
+            <Play aria-hidden="true" />
+            {t('home.hero.start')}
           </Link>
         </Button>
       </div>

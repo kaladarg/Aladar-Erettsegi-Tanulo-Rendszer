@@ -91,8 +91,10 @@ export interface DrillItemResult {
 /** A practice round of single tasks, possibly from several papers. */
 export interface DrillSessionRow {
   id: string;
-  kind: 'topic' | 'review' | 'mixed' | 'assignment';
+  kind: 'topic' | 'review' | 'mixed' | 'assignment' | 'daily';
+  /** Subject of the round; a daily round lists all of its subjects in `subjects`. */
   subject: string;
+  subjects?: string[];
   /** Topic name for topic practice. */
   topic?: string;
   /** Title of a teacher's assignment. */

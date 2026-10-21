@@ -8,7 +8,10 @@ export const drillAttemptId = (sessionId: string, index: number) => `drill-${ses
 const KEEP_FINISHED = 20;
 
 export async function createDrill(
-  session: Pick<DrillSessionRow, 'kind' | 'subject' | 'topic' | 'items' | 'title' | 'assignment'>,
+  session: Pick<
+    DrillSessionRow,
+    'kind' | 'subject' | 'subjects' | 'topic' | 'items' | 'title' | 'assignment'
+  >,
 ): Promise<string> {
   const now = Date.now();
   const id = newAttemptId();

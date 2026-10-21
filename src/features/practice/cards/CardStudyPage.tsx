@@ -26,7 +26,7 @@ import { CardMap } from './CardMap';
 const NEW_PER_SESSION = 15;
 const EXTRA_SIZE = 20;
 
-interface Session {
+export interface Session {
   queue: string[];
   /** Free practice: answers do not change the schedule. */
   extra: boolean;
@@ -100,14 +100,20 @@ export function CardStudyPage() {
   );
 }
 
-function Study({
+/**
+ * Cards one at a time. On its own page the end offers another round; inside
+ * the daily session (`onFinish`) it hands over to the next step instead.
+ */
+export function Study({
   session,
   back,
   onRestart,
+  onFinish,
 }: {
   session: Session;
   back: string;
   onRestart: () => void;
+  onFinish?: () => void;
 }) {
   const [queue, setQueue] = useState(session.queue);
   const [index, setIndex] = useState(0);
@@ -117,6 +123,7 @@ function Study({
   const navigate = useNavigate();
   const flipButton = useRef<HTMLButtonElement>(null);
   const answerHeading = useRef<HTMLHeadingElement>(null);
+  const nextStep = useRef<HTMLButtonElement>(null);
   const card = CARDS_BY_ID.get(queue[index] ?? '');
   const done = index >= queue.length;
 
@@ -152,9 +159,31 @@ function Study({
   // Move focus to the answer when the card is turned, and back to the button for the next card.
   useEffect(() => {
     if (flipped) answerHeading.current?.focus();
+    else if (done) nextStep.current?.focus();
     else flipButton.current?.focus();
-  }, [flipped, index]);
+  }, [flipped, index, done]);
 
+  if (done && onFinish) {
+    return (
+      <section
+        aria-labelledby="cards-done"
+        className="grid animate-pop-in gap-4 rounded-xl border border-border bg-surface p-6 shadow-2"
+      >
+        <h2 id="cards-done" className="text-2xl font-bold">
+          {t('practice.daily.cardsDone')}
+        </h2>
+        <p>
+          {t('practice.cards.doneBody', {
+            known: formatNumber(known),
+            unknown: formatNumber(missed.size),
+          })}
+        </p>
+        <Button ref={nextStep} size="lg" onClick={onFinish}>
+          {t('practice.daily.toTasks')}
+        </Button>
+      </section>
+    );
+  }
   if (done) {
     return (
       <section

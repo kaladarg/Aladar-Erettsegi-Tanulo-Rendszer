@@ -41,6 +41,8 @@ function drillTitle(session: DrillSessionRow): string {
       return session.title || t('practice.assignmentTitle');
     case 'review':
       return t('practice.reviewTitle');
+    case 'daily':
+      return t('practice.daily.title');
   }
 }
 
@@ -51,7 +53,10 @@ export function DrillPage() {
     async () => (await db.drillSessions.get(sessionId)) ?? null,
     [sessionId],
   );
-  const subjects = useMemo(() => (session ? [session.subject] : undefined), [session]);
+  const subjects = useMemo(
+    () => (session ? (session.subjects ?? [session.subject]) : undefined),
+    [session],
+  );
   const { exams, loading } = useExams(subjects);
   const title = session ? drillTitle(session) : t('practice.title');
   usePageTitle(title);
@@ -103,7 +108,10 @@ function Drill({
       <header className="sticky top-0 z-30 border-b border-border bg-surface">
         <div className="flex h-[3.75rem] items-center gap-2 px-2 sm:gap-3 sm:px-4">
           <Button asChild variant="ghost" size="icon">
-            <Link to="/gyakorlas" aria-label={t('practice.exit')}>
+            <Link
+              to={session.kind === 'daily' ? '/' : '/gyakorlas'}
+              aria-label={t('practice.exit')}
+            >
               <X aria-hidden="true" />
             </Link>
           </Button>
@@ -132,7 +140,11 @@ function Drill({
       </header>
       <main id="main" className="mx-auto grid w-full max-w-3xl gap-6 px-4 py-6 sm:px-6">
         {done ? (
-          <DrillSummary session={session} exams={exams} onExit={() => navigate('/gyakorlas')} />
+          <DrillSummary
+            session={session}
+            exams={exams}
+            onExit={() => navigate(session.kind === 'daily' ? '/' : '/gyakorlas')}
+          />
         ) : (
           <DrillItem key={session.index} session={session} exams={exams} />
         )}
@@ -180,7 +192,8 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
           examId: ref.examId,
           taskId: ref.taskId,
           type: found.task.type,
-          subject: session.subject,
+          // A daily round mixes subjects: each task counts for its own.
+          subject: found.exam.subject,
           topics: found.task.topics,
           number: found.task.number,
         },
