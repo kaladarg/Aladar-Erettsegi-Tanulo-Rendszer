@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import type { Exam, Task } from '@/content/schema.types';
 import { WorkedExample } from './WorkedExample';
 
@@ -26,47 +26,39 @@ const task = {
 } as unknown as Task;
 const exam = { id: 'm', parts: [] } as unknown as Exam;
 
-const enabledReveal = () =>
-  screen
-    .getAllByRole<HTMLButtonElement>('button', { name: 'Megnézem' })
-    .find((button) => !button.disabled)!;
-
 describe('WorkedExample', () => {
-  it('shows every line of a full example and lets the student go on', async () => {
-    const onDone = vi.fn();
-    render(<WorkedExample task={task} exam={exam} hidden={0} last onDone={onDone} />);
-    expect(screen.getByText('Kidolgozott példa')).toBeInTheDocument();
+  it('uncovers the solution one step at a time, asking to think ahead', async () => {
+    const user = userEvent.setup();
+    render(
+      <WorkedExample
+        task={task}
+        exam={exam}
+        number={2}
+        actions={<button>Megoldom egyedül</button>}
+      />,
+    );
+    expect(screen.getByText('2. kidolgozott példa')).toBeInTheDocument();
+    expect(screen.queryByText('Szorzás 100-zal.')).not.toBeInTheDocument();
+    expect(screen.getByText(/Hogyan kezdenél hozzá/)).toBeInTheDocument();
+    // The student can stop and try alone at any time.
+    expect(screen.getByRole('button', { name: 'Megoldom egyedül' })).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: /Első lépés/ }));
     expect(screen.getByText('Szorzás 100-zal.')).toBeInTheDocument();
+    expect(screen.getByText(/Mi lehet a következő lépés/)).toBeInTheDocument();
+    expect(screen.getByText('Még 2 lépés van hátra.')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /Következő lépés/ }));
+    expect(screen.getByText('9x + 20 = 200.')).toBeInTheDocument();
+    expect(screen.queryByText('x = 20')).not.toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /Végeredmény/ }));
     expect(screen.getByText('x = 20')).toBeInTheDocument();
-    await userEvent.click(screen.getByRole('button', { name: /Befejezés/ }));
-    expect(onDone).toHaveBeenCalledWith({ same: 0, hidden: 0 });
+    expect(screen.getByText(/Ha már menni fog, próbáld meg egyedül/)).toBeInTheDocument();
   });
 
-  it('hides the last lines and uncovers them one by one', async () => {
-    const user = userEvent.setup();
-    const onDone = vi.fn();
-    render(<WorkedExample task={task} exam={exam} hidden={2} last={false} onDone={onDone} />);
-    expect(screen.getByText('Szorzás 100-zal.')).toBeInTheDocument();
-    expect(screen.queryByText('9x + 20 = 200.')).not.toBeInTheDocument();
-    const next = screen.getByRole('button', { name: /Következő/ });
-    expect(next).toBeDisabled();
-
-    // Only the first hidden line can be written now.
-    const [first, second] = screen.getAllByRole('textbox');
-    expect(second).toBeDisabled();
-    await user.type(first!, '9x + 20 = 200');
-    await user.click(enabledReveal());
-    expect(screen.getByText('9x + 20 = 200.')).toBeInTheDocument();
-    expect(screen.getByText(/megvannak az útmutató kulcsszavai/)).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: /Nekem is ez jött ki/ }));
-
-    await user.type(screen.getAllByRole('textbox')[1]!, 'x = 2');
-    await user.click(enabledReveal());
-    expect(screen.getByText(/nem találtam meg az útmutató kulcsszavait/)).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: /Mást írtam/ }));
-
-    expect(screen.getByText('1 / 2 sort írtál meg jól')).toBeInTheDocument();
-    await user.click(next);
-    expect(onDone).toHaveBeenCalledWith({ same: 1, hidden: 2 });
+  it('can show the whole solution at once', async () => {
+    render(<WorkedExample task={task} exam={exam} number={1} actions={null} />);
+    await userEvent.click(screen.getByRole('button', { name: /Az egész megoldás/ }));
+    for (const text of ['Szorzás 100-zal.', '9x + 20 = 200.', 'x = 20'])
+      expect(screen.getByText(text)).toBeInTheDocument();
   });
 });

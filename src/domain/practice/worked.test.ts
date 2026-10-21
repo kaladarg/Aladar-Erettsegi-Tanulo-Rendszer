@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { Exam, Task } from '@/content/schema.types';
-import { ALONE, hasWorkedSolution, lineMatches, solutionLines, workedSeries } from './worked';
+import type { Task } from '@/content/schema.types';
+import { hasWorkedSolution, nextFromPool, solutionLines, workedPools } from './worked';
 
 const task = (id: string, steps: number, extra: Partial<Task> = {}): Task =>
   ({
@@ -38,51 +38,48 @@ describe('solutionLines', () => {
   });
 });
 
-describe('lineMatches', () => {
-  const [first, , final] = solutionLines(task('1', 2));
-  it('checks keywords and numbers when the scheme has them', () => {
-    expect(lineMatches(first!, 'szorzok 100-zal')).toBe(true);
-    expect(lineMatches(first!, 'szorzok 10-zel')).toBe(false);
-    expect(lineMatches(final!, 'x = 2,50')).toBe(true);
-    expect(lineMatches(final!, 'x = 3')).toBe(false);
-  });
-
-  it('cannot tell without keywords or without an answer', () => {
-    expect(lineMatches(solutionLines(task('1', 2))[1]!, 'bármi')).toBeUndefined();
-    expect(lineMatches(final!, '  ')).toBeUndefined();
-  });
+const candidate = (id: string, steps: number, topics: string[] = ['egyenlet']) => ({
+  ref: { examId: 'm', taskId: id },
+  task: task(id, steps, { topics } as Partial<Task>),
 });
 
-describe('workedSeries', () => {
-  const exam = { id: 'm' } as Exam;
-  const candidate = (id: string, steps: number) => ({
-    ref: { examId: 'm', taskId: id },
-    exam,
-    task: task(id, steps),
-  });
-
-  it('fades from a full example to solving alone, shorter solutions first', () => {
-    const series = workedSeries(
+describe('workedPools', () => {
+  it('starts with the shortest worked solution and puts the most alike tasks next', () => {
+    const pools = workedPools(
       [
-        candidate('a', 4),
-        candidate('b', 1),
-        candidate('c', 3),
-        candidate('d', 2),
-        candidate('e', 0),
+        candidate('a', 4, ['egyenlet', 'törtes egyenlet']),
+        candidate('b', 1, ['egyenlet', 'törtes egyenlet']),
+        candidate('c', 3, ['egyenlet']),
+        candidate('d', 2, ['egyenlet', 'törtes egyenlet']),
+        candidate('e', 0, ['egyenlet', 'törtes egyenlet']),
       ],
       3,
     );
-    expect(series).toHaveLength(4);
-    expect(series.map((s) => s.hidden)).toEqual([0, 1, 2, ALONE]);
-    expect(series[0]!.taskId).toBe('b');
+    expect(pools.examples.map((r) => r.taskId)).toEqual(['b', 'd', 'a', 'c']);
+    // Any task of the topic can be solved alone, the first example excepted.
+    expect(pools.alone.map((r) => r.taskId)).toEqual(['e', 'd', 'a', 'c']);
   });
 
-  it('gives a single worked example when only one task fits', () => {
-    expect(workedSeries([candidate('a', 2)], 1)).toEqual([{ examId: 'm', taskId: 'a', hidden: 0 }]);
+  it('has no examples when no task has a worked solution', () => {
+    expect(workedPools([candidate('a', 0)], 1)).toEqual({
+      examples: [],
+      alone: [{ examId: 'm', taskId: 'a' }],
+    });
   });
+});
 
-  it('keeps the first line visible on short solutions', () => {
-    const series = workedSeries([candidate('a', 1), candidate('b', 1), candidate('c', 1)], 2);
-    expect(series.map((s) => s.hidden)).toEqual([0, 1, ALONE]);
+describe('nextFromPool', () => {
+  const pools = workedPools([candidate('a', 1), candidate('b', 2), candidate('c', 3)], 5);
+
+  it('never offers a task twice in a session', () => {
+    const used = [pools.examples[0]!];
+    const next = nextFromPool(pools, 'example', used)!;
+    expect(next).not.toEqual(used[0]);
+    used.push(next);
+    const alone = nextFromPool(pools, 'alone', used)!;
+    expect(used).not.toContainEqual(alone);
+    used.push(alone);
+    expect(nextFromPool(pools, 'alone', used)).toBeUndefined();
+    expect(nextFromPool(pools, 'example', used)).toBeUndefined();
   });
 });

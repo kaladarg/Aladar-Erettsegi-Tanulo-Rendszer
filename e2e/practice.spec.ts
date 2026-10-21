@@ -69,14 +69,18 @@ test('oral prep: own topics, outline autosave and a practice mark', async ({ pag
   await expect(page.getByText('15:00')).toBeVisible();
 });
 
-test('a worked example walks through the marking steps of a task', async ({ page }) => {
+test('a worked example opens step by step, then the round can end', async ({ page }) => {
   await page.goto('/gyakorlas/temakorok?targy=matematika');
   await page.getByRole('searchbox', { name: 'Keresés' }).fill('számtani');
   await page.getByRole('button', { name: 'Lépésről lépésre: számtani sorozat' }).click();
   await expect(page.getByRole('heading', { level: 1, name: /Lépésről lépésre/ })).toBeVisible();
-  await expect(page.getByText('Kidolgozott példa').first()).toBeVisible();
+  await expect(page.getByText('1. kidolgozott példa')).toBeVisible();
   const solution = page.getByRole('list', { name: 'Megoldás lépésenként' });
-  await expect(solution.getByText('1. lépés', { exact: false }).first()).toBeVisible();
+  await expect(solution.getByRole('listitem')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Első lépés' }).click();
+  await expect(solution.getByRole('listitem')).toHaveCount(1);
+  await expect(page.getByText(/Mi lehet a következő lépés/)).toBeVisible();
+  await page.getByRole('button', { name: 'Az egész megoldás' }).click();
   await expect(solution.getByText(/Végeredmény/)).toBeVisible();
   await page.getByRole('button', { name: 'Befejezés' }).click();
   await expect(page.getByRole('heading', { name: 'Kész a kör!' })).toBeVisible();

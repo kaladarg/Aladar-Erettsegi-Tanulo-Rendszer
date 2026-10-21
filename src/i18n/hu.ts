@@ -205,7 +205,7 @@ export const hu = {
       daily:
         'Mai adag: egy gomb a kezdőlapon, és kapsz egy kb. 15 perces vegyes gyakorlást kártyákkal, a hibáiddal és a gyenge témaköreiddel',
       worked:
-        'Lépésről lépésre: matekból kidolgozott példák, ahol egyre több lépést írsz meg te, végül önállóan oldod meg a feladatot',
+        'Lépésről lépésre: matekból kidolgozott példák lépésenként, annyi, amennyi kell, aztán egy hasonló feladatot egyedül oldasz meg',
       oralCheck:
         'Szóbeli próbafelelet: 15 perces felvétel, utána visszahallgatod, és egy listán kipipálod, mi sikerült',
     },
@@ -643,27 +643,26 @@ export const hu = {
       start: 'Lépésről lépésre',
       startLabel: 'Lépésről lépésre: {topic}',
       fullBadge: 'Kidolgozott példa',
-      fadedBadge: 'Egészítsd ki: {count} sor hiányzik',
-      explainTip:
-        'Olvasd végig a megoldást. Minden lépésnél mondd el magadnak, miért ez jön, és honnan tudod. A következő feladatokban egyre több lépést írsz meg te.',
-      fadedTip:
-        'Az eleje kész, a végét te írod meg. Írd le a következő lépést, aztán nézd meg, mit ír a javítási útmutató.',
+      exampleBadge: '{number}. kidolgozott példa',
       solution: 'Megoldás lépésenként',
       step: '{number}. lépés',
       finalLine: 'Végeredmény',
-      writeStep: 'Írd le ezt a lépést',
-      writeFinal: 'Írd le a végeredményt',
-      reveal: 'Megnézem',
-      scheme: 'Az útmutató szerint:',
-      keywordsYes: 'A válaszodban megvannak az útmutató kulcsszavai.',
-      keywordsNo: 'A válaszodban nem találtam meg az útmutató kulcsszavait. Nézd meg, mi hiányzik.',
-      same: 'Nekem is ez jött ki',
-      different: 'Mást írtam',
-      markedSame: 'Ugyanez jött ki.',
-      markedDifferent: 'Mást írtál: nézd meg még egyszer, hol tért el.',
+      thinkFirst:
+        'Olvasd el a feladatot. Hogyan kezdenél hozzá? Gondold végig, aztán nézd meg az első lépést.',
+      thinkNext: 'Mi lehet a következő lépés, és miért? Gondold végig, mielőtt megnézed.',
+      showFirst: 'Első lépés',
+      showNext: 'Következő lépés',
+      showFinal: 'Végeredmény',
+      showAll: 'Az egész megoldás',
+      stepsLeft: 'Még {count} lépés van hátra.',
       summary: 'A megoldás röviden',
-      score: '{same} / {hidden} sort írtál meg jól',
-      lines: '{same} / {hidden} sor',
+      doneQuestion:
+        'Érted, miért jött egymás után ez a sok lépés? Ha még bizonytalan vagy, nézz meg még egy hasonló példát. Ha már menni fog, próbáld meg egyedül.',
+      another: 'Még egy példa',
+      tryAlone: 'Megoldom egyedül',
+      anotherAlone: 'Még egy önálló feladat',
+      backToExamples: 'Inkább még egy példát kérek',
+      progress: '{examples} példa · {alone} önálló',
     },
     daily: {
       title: 'Mai adag',

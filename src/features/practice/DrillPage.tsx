@@ -1,6 +1,15 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { ArrowRight, PartyPopper, Check, Flag, SkipForward, X } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import {
+  ArrowRight,
+  BookOpenCheck,
+  Check,
+  Flag,
+  PartyPopper,
+  PencilLine,
+  SkipForward,
+  X,
+} from 'lucide-react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { examFullTitle } from '@/content/labels';
@@ -29,11 +38,11 @@ import { db, type DrillSessionRow } from '@/storage/db';
 import {
   drillAttemptId,
   finishDrill,
+  addWorkedItem,
   recordDrillCheck,
-  recordWorkedItem,
   setDrillIndex,
 } from '@/storage/practice';
-import { ALONE } from '@/domain/practice/worked';
+import { ALONE, nextFromPool } from '@/domain/practice/worked';
 import { WorkedExample } from './WorkedExample';
 import { DrillSummary } from './DrillSummary';
 
@@ -128,7 +137,12 @@ function Drill({
           <h1 className="min-w-0 flex-1 truncate font-semibold">{title}</h1>
           {!done && (
             <span className="shrink-0 text-sm font-medium text-muted tabular-nums">
-              {t('practice.progress', { current: shown, total })}
+              {session.kind === 'worked'
+                ? t('practice.worked.progress', {
+                    examples: (session.hidden ?? []).filter((h) => h !== ALONE).length,
+                    alone: (session.hidden ?? []).filter((h) => h === ALONE).length,
+                  })
+                : t('practice.progress', { current: shown, total })}
             </span>
           )}
         </div>
@@ -187,7 +201,7 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
     return createWorkspace(found.exam, pdf, null, true);
   }, [found, manifest, entry]);
 
-  const next = async (result?: ReturnType<typeof scoreTask>) => {
+  const record = async (result?: ReturnType<typeof scoreTask>) => {
     await useAnswers.getState().flush();
     if (result && found) {
       await recordDrillCheck(
@@ -209,6 +223,9 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
         },
       );
     }
+  };
+  const next = async (result?: ReturnType<typeof scoreTask>) => {
+    await record(result);
     await advance();
   };
 
@@ -218,7 +235,43 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
     else await setDrillIndex(session.id, index);
     window.scrollTo({ top: 0 });
   };
-  const hidden = session.kind === 'worked' ? (session.hidden?.[session.index] ?? ALONE) : ALONE;
+
+  // Worked examples: the student chooses what comes next, as long as the topic has more.
+  const worked = session.kind === 'worked';
+  const example = worked && (session.hidden?.[session.index] ?? ALONE) !== ALONE;
+  const canExample = !!session.pools && !!nextFromPool(session.pools, 'example', session.items);
+  const canAlone = !!session.pools && !!nextFromPool(session.pools, 'alone', session.items);
+  const go = async (
+    kind: 'example' | 'alone' | 'finish',
+    result?: ReturnType<typeof scoreTask>,
+  ) => {
+    await record(result);
+    if (kind === 'finish' || !(await addWorkedItem(session.id, kind)))
+      await finishDrill(session.id);
+    window.scrollTo({ top: 0 });
+  };
+  const workedActions = (result?: ReturnType<typeof scoreTask>) => (
+    <>
+      <Button variant="ghost" onClick={() => void go('finish', result)}>
+        {t('practice.finish')}
+      </Button>
+      {canExample && (
+        <Button variant="secondary" onClick={() => void go('example', result)}>
+          <BookOpenCheck aria-hidden="true" />
+          {t('practice.worked.another')}
+        </Button>
+      )}
+      {canAlone && (
+        <Button onClick={() => void go('alone', result)}>
+          <PencilLine aria-hidden="true" />
+          {example ? t('practice.worked.tryAlone') : t('practice.worked.anotherAlone')}
+        </Button>
+      )}
+    </>
+  );
+  const exampleNumber = (session.hidden ?? [])
+    .slice(0, session.index + 1)
+    .filter((h) => h !== ALONE).length;
 
   if (!found || !workspace) {
     return (
@@ -259,37 +312,40 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
         const source = workspace.sources.get(id);
         return source && <SourceCard key={id} source={source} />;
       })}
-      {hidden !== ALONE ? (
+      {example ? (
         <WorkedExample
           task={found.task}
           exam={found.exam}
-          hidden={hidden}
-          last={session.index + 1 >= session.items.length}
-          onDone={(result) =>
-            void recordWorkedItem(session.id, session.index, {
-              points: result.same,
-              maxPoints: result.hidden,
-              pendingPoints: 0,
-            }).then(advance)
-          }
+          number={exampleNumber}
+          actions={workedActions()}
         />
       ) : (
         <TaskCard task={found.task} dimmed={false} />
       )}
-      {hidden !== ALONE ? null : checked ? (
+      {example ? null : checked ? (
         <CheckedTask
           task={found.task}
           exam={found.exam}
           attemptId={attemptId}
           last={session.index + 1 >= session.items.length}
           onNext={(result) => void next(result)}
+          actions={worked ? workedActions : undefined}
         />
       ) : (
         <div className="sticky bottom-0 -mx-4 flex flex-wrap justify-end gap-2 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border">
-          <Button variant="ghost" onClick={() => void next()}>
-            <SkipForward aria-hidden="true" />
-            {t('practice.skip')}
-          </Button>
+          {worked ? (
+            canExample && (
+              <Button variant="ghost" onClick={() => void go('example')}>
+                <BookOpenCheck aria-hidden="true" />
+                {t('practice.worked.backToExamples')}
+              </Button>
+            )
+          ) : (
+            <Button variant="ghost" onClick={() => void next()}>
+              <SkipForward aria-hidden="true" />
+              {t('practice.skip')}
+            </Button>
+          )}
           <Button
             onClick={() => {
               void useAnswers.getState().flush();
@@ -311,12 +367,15 @@ function CheckedTask({
   attemptId,
   last,
   onNext,
+  actions,
 }: {
   task: Task;
   exam: Exam;
   attemptId: string;
   last: boolean;
   onNext: (result: ReturnType<typeof scoreTask>) => void;
+  /** Replaces the "next" button (worked-example sessions offer choices). */
+  actions?: (result: ReturnType<typeof scoreTask>) => ReactNode;
 }) {
   const answers = useAnswers((s) => s.answers);
   const reviews = useLiveQuery(() => loadReviews(attemptId), [attemptId]);
@@ -359,11 +418,15 @@ function CheckedTask({
         exam={exam}
         headingLevel={3}
       />
-      <div className="sticky bottom-0 -mx-4 flex justify-end border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border">
-        <Button onClick={() => onNext(result)}>
-          {last ? t('practice.finish') : t('practice.next')}
-          <ArrowRight aria-hidden="true" />
-        </Button>
+      <div className="sticky bottom-0 -mx-4 flex flex-wrap justify-end gap-2 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border">
+        {actions ? (
+          actions(result)
+        ) : (
+          <Button onClick={() => onNext(result)}>
+            {last ? t('practice.finish') : t('practice.next')}
+            <ArrowRight aria-hidden="true" />
+          </Button>
+        )}
       </div>
     </section>
   );

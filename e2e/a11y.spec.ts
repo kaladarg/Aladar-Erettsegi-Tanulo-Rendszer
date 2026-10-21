@@ -98,6 +98,7 @@ for (const scheme of ['light', 'dark'] as const) {
     // A worked example.
     await page.goto('/gyakorlas/temakorok?targy=matematika');
     await page.getByRole('button', { name: 'Lépésről lépésre: számtani sorozat' }).click();
+    await page.getByRole('button', { name: 'Első lépés' }).click();
     await expect(page.getByRole('list', { name: 'Megoldás lépésenként' })).toBeVisible();
     await scan(page, 'worked example');
 

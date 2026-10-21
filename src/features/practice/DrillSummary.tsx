@@ -38,7 +38,8 @@ export function DrillSummary({
 }) {
   const navigate = useNavigate();
   // A fully worked example is read, not answered: it is not counted.
-  const example = (i: number) => session.kind === 'worked' && session.hidden?.[i] === 0;
+  const example = (i: number) =>
+    session.kind === 'worked' && (session.hidden?.[i] ?? ALONE) !== ALONE;
   // Only tasks solved without help go to the mistakes review.
   const reviewed = (i: number) => session.kind !== 'worked' || session.hidden?.[i] === ALONE;
   const outcomes = session.items.map((_, i) =>
@@ -53,15 +54,21 @@ export function DrillSummary({
   const great = count('correct') > 0 && count('correct') >= answered * 0.8;
 
   const again = async () => {
+    // A worked session starts over from its first example.
+    const restart =
+      session.kind === 'worked'
+        ? { items: session.items.slice(0, 1), hidden: session.hidden?.slice(0, 1) }
+        : { items: session.items, hidden: session.hidden };
     const id = await createDrill({
       kind: session.kind,
       subject: session.subject,
       subjects: session.subjects,
-      hidden: session.hidden,
+      hidden: restart.hidden,
+      pools: session.pools,
       topic: session.topic,
       title: session.title,
       assignment: session.assignment,
-      items: session.items,
+      items: restart.items,
     });
     navigate(`/gyakorlas/kor/${id}`, { replace: true });
   };
@@ -133,12 +140,7 @@ export function DrillSummary({
                   )}
                   {result && outcome !== 'example' && (
                     <span className="text-sm tabular-nums">
-                      {reviewed(i)
-                        ? t('results.taskScore', { points: result.points, max: result.maxPoints })
-                        : t('practice.worked.lines', {
-                            same: result.points,
-                            hidden: result.maxPoints,
-                          })}
+                      {t('results.taskScore', { points: result.points, max: result.maxPoints })}
                     </span>
                   )}
                 </span>

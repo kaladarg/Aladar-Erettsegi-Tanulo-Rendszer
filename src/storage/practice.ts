@@ -1,5 +1,5 @@
 import { mixedRound, shuffle, type TaskRef, type TopicEntry } from '@/domain/practice/topics';
-import { workedSeries } from '@/domain/practice/worked';
+import { ALONE, EXAMPLE, nextFromPool, workedPools } from '@/domain/practice/worked';
 import { newAttemptId } from './attempts';
 import { dayKey, db, type DrillEventRow, type DrillItemResult, type DrillSessionRow } from './db';
 
@@ -11,7 +11,15 @@ const KEEP_FINISHED = 20;
 export async function createDrill(
   session: Pick<
     DrillSessionRow,
-    'kind' | 'subject' | 'subjects' | 'topic' | 'items' | 'hidden' | 'title' | 'assignment'
+    | 'kind'
+    | 'subject'
+    | 'subjects'
+    | 'topic'
+    | 'items'
+    | 'hidden'
+    | 'pools'
+    | 'title'
+    | 'assignment'
   >,
 ): Promise<string> {
   const now = Date.now();
@@ -39,9 +47,9 @@ export const randomMixedRound = (
   ratios?: Map<string, number>,
 ) => mixedRound(topics, size, Date.now(), ratios);
 
-/** A worked-example series from a topic (see `workedSeries`). */
-export const randomWorkedSeries = (candidates: Parameters<typeof workedSeries>[0]) =>
-  workedSeries(candidates, Date.now());
+/** A topic's tasks for a worked-example session (see `workedPools`). */
+export const randomWorkedPools = (candidates: Parameters<typeof workedPools>[0]) =>
+  workedPools(candidates, Date.now());
 
 export async function setDrillIndex(id: string, index: number): Promise<void> {
   await db.drillSessions.update(id, { index, updatedAt: Date.now() });
@@ -73,23 +81,26 @@ export async function recordDrillCheck(
 }
 
 /**
- * Stores how a worked example went. Help was on the page, so it does not
- * feed the mistakes review; the day still counts as a practice day.
+ * Adds the next worked example, or the next task to solve alone, to a worked
+ * session and moves on to it. Returns false when the topic has no more.
+ * Studying an example counts as a practice day, but not for the mistakes review.
  */
-export async function recordWorkedItem(
-  id: string,
-  index: number,
-  result: DrillItemResult,
-): Promise<void> {
+export async function addWorkedItem(id: string, kind: 'example' | 'alone'): Promise<boolean> {
   const now = Date.now();
-  await db.transaction('rw', db.drillSessions, db.activity, async () => {
+  return db.transaction('rw', db.drillSessions, db.activity, async () => {
     const session = await db.drillSessions.get(id);
-    if (!session) return;
+    if (!session?.pools) return false;
+    const next = nextFromPool(session.pools, kind, session.items);
+    if (!next) return false;
+    const items = [...session.items, next];
     await db.drillSessions.update(id, {
-      checked: { ...session.checked, [index]: result },
+      items,
+      hidden: [...(session.hidden ?? []), kind === 'example' ? EXAMPLE : ALONE],
+      index: items.length - 1,
       updatedAt: now,
     });
     await db.activity.put({ day: dayKey(now), updatedAt: now });
+    return true;
   });
 }
 

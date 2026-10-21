@@ -10,12 +10,12 @@ import { PageHeader } from '@/design/ui/PageHeader';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { Skeleton } from '@/design/ui/Skeleton';
 import { findTask, topicIndex, topicKey, type TopicEntry } from '@/domain/practice/topics';
-import { hasWorkedSolution } from '@/domain/practice/worked';
+import { EXAMPLE, hasWorkedSolution } from '@/domain/practice/worked';
 import { scoredAttempts, topicStats } from '@/domain/stats/stats';
 import { formatNumber, t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useSettings } from '@/state/settingsStore';
-import { createDrill, randomMixedRound, randomRound, randomWorkedSeries } from '@/storage/practice';
+import { createDrill, randomMixedRound, randomRound, randomWorkedPools } from '@/storage/practice';
 import { useStatsData } from '../stats/useStatsData';
 import { BackLink } from './BackLink';
 
@@ -76,20 +76,22 @@ export function TopicsPage() {
     navigate(`/gyakorlas/kor/${id}`);
   };
 
-  const workedCandidates = (topic: TopicEntry) =>
+  const topicTasks = (topic: TopicEntry) =>
     topic.tasks.flatMap((ref) => {
       const found = findTask(exams, ref);
-      return found && hasWorkedSolution(found.task) ? [{ ref, ...found }] : [];
+      return found ? [{ ref, task: found.task }] : [];
     });
 
+  // Worked examples of the topic, one after another, until the student tries one alone.
   const startWorked = async (topic: TopicEntry) => {
-    const series = randomWorkedSeries(workedCandidates(topic));
+    const pools = randomWorkedPools(topicTasks(topic));
     const id = await createDrill({
       kind: 'worked',
       subject,
       topic: topic.name,
-      items: series.map(({ examId, taskId }) => ({ examId, taskId })),
-      hidden: series.map((item) => item.hidden),
+      items: [pools.examples[0]!],
+      hidden: [EXAMPLE],
+      pools,
     });
     navigate(`/gyakorlas/kor/${id}`);
   };
@@ -183,7 +185,7 @@ export function TopicsPage() {
         <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {shown.map((topic) => {
             const ratio = ratios.get(topic.key);
-            const worked = workedCandidates(topic).length;
+            const worked = topicTasks(topic).some(({ task }) => hasWorkedSolution(task));
             return (
               <li
                 key={topic.key}
@@ -229,7 +231,7 @@ export function TopicsPage() {
                   <Play aria-hidden="true" />
                   {t('practice.topics.start')}
                 </Button>
-                {worked > 0 && (
+                {worked && (
                   <div className="basis-full">
                     <Button
                       size="sm"

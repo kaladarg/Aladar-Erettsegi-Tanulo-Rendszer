@@ -1,50 +1,39 @@
-import { ArrowRight, BookOpenCheck, Check, Eye, Lightbulb, PencilLine, X } from 'lucide-react';
-import { useId, useMemo, useState } from 'react';
+import { BookOpenCheck, Eye, Lightbulb, ListChecks } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { RichText } from '@/content/RichText';
 import type { Exam, Task } from '@/content/schema.types';
 import { Badge } from '@/design/ui/Badge';
 import { Button } from '@/design/ui/Button';
-import { lineMatches, solutionLines, type SolutionLine } from '@/domain/practice/worked';
+import { solutionLines, type SolutionLine } from '@/domain/practice/worked';
 import { formatNumber, t } from '@/i18n';
-import { cn } from '@/lib/cn';
-
-interface LineState {
-  written: string;
-  revealed: boolean;
-  /** The student's own verdict after comparing. */
-  same?: boolean;
-}
 
 /**
- * A task with its solution written out line by line. With `hidden` > 0 the
- * last lines are covered: the student writes each one, uncovers it and
- * compares. A prompt asks them to explain each shown step to themselves,
- * which is what makes worked examples work (Renkl & Atkinson, 2003).
+ * A task with its solution, uncovered one step at a time. Before each step
+ * the student is asked to think what comes next, so they work along instead
+ * of only reading. The actions (another example, solve one alone, finish)
+ * are always there: the student decides when they are ready.
  */
 export function WorkedExample({
   task,
   exam,
-  hidden,
-  last,
-  onDone,
+  number,
+  actions,
 }: {
   task: Task;
   exam: Exam;
-  hidden: number;
-  last: boolean;
-  onDone: (result: { same: number; hidden: number }) => void;
+  /** Which example of the session this is (1, 2, …). */
+  number: number;
+  actions: ReactNode;
 }) {
   const lines = useMemo(() => solutionLines(task), [task]);
-  const firstHidden = lines.length - hidden;
-  const [states, setStates] = useState<LineState[]>(() =>
-    lines.map(() => ({ written: '', revealed: false })),
-  );
-  const update = (index: number, patch: Partial<LineState>) =>
-    setStates((current) => current.map((s, i) => (i === index ? { ...s, ...patch } : s)));
-  // Lines are uncovered in order: the next one opens once the previous is compared.
-  const active = states.findIndex((s, i) => i >= firstHidden && s.same === undefined);
-  const done = active === -1;
-  const same = states.filter((s, i) => i >= firstHidden && s.same).length;
+  const [shown, setShown] = useState(0);
+  const done = shown >= lines.length;
+  const lastShown = useRef<HTMLLIElement>(null);
+
+  // Keep the newest step in view and give it focus for screen readers.
+  useEffect(() => {
+    if (shown > 0) lastShown.current?.focus();
+  }, [shown]);
 
   return (
     <section aria-labelledby={`worked-${task.id}`} className="grid gap-4">
@@ -53,162 +42,96 @@ export function WorkedExample({
           <h2 id={`worked-${task.id}`} className="text-lg font-bold">
             {t('workspace.taskHeading', { number: task.number })}
           </h2>
-          <Badge tone={hidden === 0 ? 'info' : 'warning'}>
-            {hidden === 0 ? (
-              <BookOpenCheck aria-hidden="true" />
-            ) : (
-              <PencilLine aria-hidden="true" />
-            )}
-            {hidden === 0
-              ? t('practice.worked.fullBadge')
-              : t('practice.worked.fadedBadge', { count: hidden })}
+          <Badge tone="info">
+            <BookOpenCheck aria-hidden="true" />
+            {t('practice.worked.exampleBadge', { number: formatNumber(number) })}
           </Badge>
         </header>
         <RichText text={task.text} lang={exam.language} />
       </article>
 
-      <p className="flex items-start gap-2 rounded-md bg-primary-soft p-3 text-sm text-primary-soft-fg">
-        <Lightbulb aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
-        {hidden === 0 ? t('practice.worked.explainTip') : t('practice.worked.fadedTip')}
-      </p>
-
-      <ol className="grid gap-3" aria-label={t('practice.worked.solution')}>
-        {lines.map((line, index) =>
-          index < firstHidden ? (
-            <ShownLine key={index} line={line} index={index} />
-          ) : (
-            <HiddenLine
+      {shown > 0 && (
+        <ol className="grid gap-3" aria-label={t('practice.worked.solution')}>
+          {lines.slice(0, shown).map((line, index) => (
+            <SolutionStep
               key={index}
               line={line}
               index={index}
-              state={states[index]!}
-              enabled={index === active}
-              onChange={(patch) => update(index, patch)}
+              ref={index === shown - 1 ? lastShown : undefined}
             />
-          ),
-        )}
-      </ol>
-
-      {task.explanation && (done || hidden === 0) && (
-        <details className="rounded-lg border border-border bg-surface p-4">
-          <summary className="cursor-pointer font-semibold">{t('practice.worked.summary')}</summary>
-          <RichText text={task.explanation} className="mt-3" />
-        </details>
+          ))}
+        </ol>
       )}
 
-      <div className="sticky bottom-0 -mx-4 flex flex-wrap items-center justify-end gap-3 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border">
-        {hidden > 0 && done && (
-          <p role="status" className="mr-auto text-sm font-medium">
-            {t('practice.worked.score', {
-              same: formatNumber(same),
-              hidden: formatNumber(hidden),
-            })}
+      {!done ? (
+        <div className="grid gap-3 rounded-lg border-2 border-dashed border-primary bg-surface p-4">
+          <p className="flex items-start gap-2 font-medium">
+            <Lightbulb aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-primary" />
+            {shown === 0 ? t('practice.worked.thinkFirst') : t('practice.worked.thinkNext')}
           </p>
-        )}
-        <Button disabled={!done} onClick={() => onDone({ same, hidden })}>
-          {last ? t('practice.finish') : t('practice.next')}
-          <ArrowRight aria-hidden="true" />
-        </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button onClick={() => setShown(shown + 1)}>
+              <Eye aria-hidden="true" />
+              {shown === 0
+                ? t('practice.worked.showFirst')
+                : lines[shown]?.final
+                  ? t('practice.worked.showFinal')
+                  : t('practice.worked.showNext')}
+            </Button>
+            <Button variant="ghost" onClick={() => setShown(lines.length)}>
+              <ListChecks aria-hidden="true" />
+              {t('practice.worked.showAll')}
+            </Button>
+          </div>
+          <p className="text-sm text-muted">
+            {t('practice.worked.stepsLeft', { count: lines.length - shown })}
+          </p>
+        </div>
+      ) : (
+        <>
+          {task.explanation && (
+            <details className="rounded-lg border border-border bg-surface p-4">
+              <summary className="cursor-pointer font-semibold">
+                {t('practice.worked.summary')}
+              </summary>
+              <RichText text={task.explanation} className="mt-3" />
+            </details>
+          )}
+          <p role="status" className="font-medium">
+            {t('practice.worked.doneQuestion')}
+          </p>
+        </>
+      )}
+
+      <div className="sticky bottom-0 -mx-4 flex flex-wrap items-center justify-end gap-2 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border">
+        {actions}
       </div>
     </section>
   );
 }
 
-function LineHead({ line, index }: { line: SolutionLine; index: number }) {
-  return (
-    <p className="text-sm font-semibold text-muted">
-      {line.final
-        ? t('practice.worked.finalLine')
-        : t('practice.worked.step', { number: formatNumber(index + 1) })}
-      {line.points > 0 && ` · ${t('workspace.taskPoints', { points: line.points })}`}
-    </p>
-  );
-}
-
-function ShownLine({ line, index }: { line: SolutionLine; index: number }) {
-  return (
-    <li className="grid animate-rise-in gap-1 rounded-lg border border-border bg-surface p-4">
-      <LineHead line={line} index={index} />
-      <RichText text={line.text} />
-    </li>
-  );
-}
-
-function HiddenLine({
+function SolutionStep({
   line,
   index,
-  state,
-  enabled,
-  onChange,
+  ref,
 }: {
   line: SolutionLine;
   index: number;
-  state: LineState;
-  enabled: boolean;
-  onChange: (patch: Partial<LineState>) => void;
+  ref?: React.Ref<HTMLLIElement>;
 }) {
-  const id = useId();
-  const match = state.revealed ? lineMatches(line, state.written) : undefined;
   return (
     <li
-      className={cn(
-        'grid gap-3 rounded-lg border-2 border-dashed p-4 transition-colors',
-        enabled ? 'border-primary bg-surface' : 'border-border bg-surface-muted',
-        state.same === true && 'border-solid border-success',
-        state.same === false && 'border-solid border-warning',
-      )}
+      ref={ref}
+      tabIndex={-1}
+      className="grid animate-rise-in gap-1 rounded-lg border border-border bg-surface p-4 outline-none focus-visible:ring-2 focus-visible:ring-primary"
     >
-      <LineHead line={line} index={index} />
-      <label htmlFor={id} className="text-sm font-medium">
-        {line.final ? t('practice.worked.writeFinal') : t('practice.worked.writeStep')}
-      </label>
-      <textarea
-        id={id}
-        rows={2}
-        value={state.written}
-        disabled={!enabled || state.revealed}
-        onChange={(event) => onChange({ written: event.target.value })}
-        className="w-full rounded-md border border-border-strong bg-surface p-2 disabled:opacity-70"
-      />
-      {!state.revealed ? (
-        <Button
-          variant="secondary"
-          className="justify-self-start"
-          disabled={!enabled}
-          onClick={() => onChange({ revealed: true })}
-        >
-          <Eye aria-hidden="true" />
-          {t('practice.worked.reveal')}
-        </Button>
-      ) : (
-        <div className="grid animate-rise-in gap-3">
-          <div className="rounded-md bg-surface-muted p-3">
-            <p className="text-sm font-semibold">{t('practice.worked.scheme')}</p>
-            <RichText text={line.text} />
-          </div>
-          {match !== undefined && (
-            <p role="status" className={cn('text-sm', match ? 'text-success' : 'text-warning')}>
-              {match ? t('practice.worked.keywordsYes') : t('practice.worked.keywordsNo')}
-            </p>
-          )}
-          {state.same === undefined ? (
-            <div className="flex flex-wrap gap-2">
-              <Button size="sm" onClick={() => onChange({ same: true })}>
-                <Check aria-hidden="true" />
-                {t('practice.worked.same')}
-              </Button>
-              <Button size="sm" variant="secondary" onClick={() => onChange({ same: false })}>
-                <X aria-hidden="true" />
-                {t('practice.worked.different')}
-              </Button>
-            </div>
-          ) : (
-            <p className="text-sm font-medium">
-              {state.same ? t('practice.worked.markedSame') : t('practice.worked.markedDifferent')}
-            </p>
-          )}
-        </div>
-      )}
+      <p className="text-sm font-semibold text-muted">
+        {line.final
+          ? t('practice.worked.finalLine')
+          : t('practice.worked.step', { number: formatNumber(index + 1) })}
+        {line.points > 0 && ` · ${t('workspace.taskPoints', { points: line.points })}`}
+      </p>
+      <RichText text={line.text} />
     </li>
   );
 }

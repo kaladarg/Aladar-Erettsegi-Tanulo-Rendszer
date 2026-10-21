@@ -102,8 +102,13 @@ export interface DrillSessionRow {
   /** The assignment link's code, to build the result code at the end. */
   assignment?: string;
   items: { examId: string; taskId: string }[];
-  /** Worked-example series: solution lines hidden per item (-1: solved alone). */
+  /** Worked examples: per item 0 for an example, -1 for a task solved alone. */
   hidden?: number[];
+  /** Worked examples: the topic's tasks still to draw from. */
+  pools?: {
+    examples: { examId: string; taskId: string }[];
+    alone: { examId: string; taskId: string }[];
+  };
   /** Task being worked on. */
   index: number;
   /** Results of checked tasks, by position. */
