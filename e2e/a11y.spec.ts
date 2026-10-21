@@ -91,9 +91,20 @@ for (const scheme of ['light', 'dark'] as const) {
 
     // A practice round with the drawing pad open.
     await page.goto('/gyakorlas/temakorok?targy=matematika');
-    await page.getByRole('button', { name: /Pitagorasz-tétel/ }).click();
+    await page.getByRole('button', { name: 'Gyakorlás: Pitagorasz-tétel' }).click();
     await page.getByRole('button', { name: 'Rajzlap megnyitása' }).click();
     await scan(page, 'drill');
+
+    // A worked example.
+    await page.goto('/gyakorlas/temakorok?targy=matematika');
+    await page.getByRole('button', { name: 'Lépésről lépésre: számtani sorozat' }).click();
+    await expect(page.getByRole('list', { name: 'Megoldás lépésenként' })).toBeVisible();
+    await scan(page, 'worked example');
+
+    // Mai adag overview.
+    await page.goto('/gyakorlas/mai-adag');
+    await expect(page.getByRole('button', { name: 'Kezdjük' })).toBeVisible();
+    await scan(page, 'daily');
 
     // Drawing tools on the paper.
     await page.goto('/feladatsorok/matematika-kozep-2026-majus-minta/gyakorlas?nezet=feladatlap');

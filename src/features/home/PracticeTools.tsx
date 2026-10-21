@@ -31,18 +31,9 @@ export function WhatsNew() {
   if (!onboardingDone || seen >= CURRENT_FEATURES) return null;
   const dismiss = () => void update({ featuresSeen: CURRENT_FEATURES });
   const items: MessageKey[] = [
-    'home.newItems.languages',
-    'home.newItems.phrases',
-    'home.newItems.practice',
-    'home.newItems.review',
-    'home.newItems.cards',
-    'home.newItems.aids',
-    'home.newItems.safety',
-    'home.newItems.oral',
-    'home.newItems.plan',
-    'home.newItems.draw',
-    'home.newItems.essays',
-    'home.newItems.teacher',
+    'home.newItems.daily',
+    'home.newItems.worked',
+    'home.newItems.oralCheck',
   ];
   return (
     <Card aria-labelledby="home-new" className="mb-10 border-primary/40">
@@ -63,7 +54,7 @@ export function WhatsNew() {
       </ul>
       <div className="mt-4 flex flex-wrap gap-2">
         <Button asChild>
-          <Link to="/gyakorlas" onClick={dismiss}>
+          <Link to="/gyakorlas/mai-adag" onClick={dismiss}>
             {t('home.newOpen')}
           </Link>
         </Button>

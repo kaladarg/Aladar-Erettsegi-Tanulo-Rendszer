@@ -100,8 +100,11 @@ test('unknown exams and broken content sources show friendly errors', async ({ p
 
   await page.goto('/beallitasok');
   await page.getByRole('button', { name: 'Alapértelmezett forrás' }).click();
-  await page.goto('/feladatsorok');
-  await expect(page.getByText('5 feladatsor')).toBeVisible();
+  // The setting is written in the background; load the list until it uses it.
+  await expect(async () => {
+    await page.goto('/feladatsorok');
+    await expect(page.getByText('5 feladatsor')).toBeVisible({ timeout: 2000 });
+  }).toPass();
 });
 
 test('an exam saved for offline use opens without a connection', async ({ page, context }) => {

@@ -200,24 +200,16 @@ export const hu = {
   },
   home: {
     newTitle: 'Újdonságok',
-    newBody: 'Új gyakorlási lehetőségek kerültek az alkalmazásba:',
+    newBody: 'Három új gyakorlási lehetőség került az alkalmazásba:',
     newItems: {
-      languages:
-        'Angol és német nyelv: hivatalos középszintű feladatsorok, hallott szöveg értése hangfelvétellel és szövegátirattal, vizsgapont-átszámítás',
-      phrases: 'Nyelvi kártyák: levél- és véleményfordulatok, kötőszavak, szóbeli kifejezések',
-      practice: 'Témakörök és vegyes kör: feladatok témakörönként az összes feladatsorból',
-      review: 'Hibáim: a hibás feladatok néhány nap múlva visszatérnek',
-      cards:
-        'Tanulókártyák: történelem térképes helyszínekkel, irodalom szerzőkkel, művekkel, korszakokkal',
-      oral: 'Szóbeli felkészülés: vázlat, időmérő, hangfelvétel',
-      plan: 'Tervem: visszaszámlálás, heti teendők, emlékeztetők a naptáradba',
-      draw: 'Rajzolás a feladatlapon és rajzlap az űrlapnézetben',
-      essays: 'Mintaesszék: gyakorold a pontozást az eredményoldalon',
-      teacher: 'Tanároknak: feladatsor-link a diákoknak, regisztráció nélkül',
-      aids: 'Segédeszközök és vizsganap: mit használhatsz az írásbelin, mit vigyél magaddal',
-      safety: 'Emlékeztető a haladásod mentésére, hogy semmi ne vesszen el',
+      daily:
+        'Mai adag: egy gomb a kezdőlapon, és kapsz egy kb. 15 perces vegyes gyakorlást kártyákkal, a hibáiddal és a gyenge témaköreiddel',
+      worked:
+        'Lépésről lépésre: matekból kidolgozott példák, ahol egyre több lépést írsz meg te, végül önállóan oldod meg a feladatot',
+      oralCheck:
+        'Szóbeli próbafelelet: 15 perces felvétel, utána visszahallgatod, és egy listán kipipálod, mi sikerült',
     },
-    newOpen: 'Gyakorlás megnyitása',
+    newOpen: 'Mai adag kipróbálása',
     newDismiss: 'Rendben',
     toolsTitle: 'Gyakorolj máshogy is',
     toolsDue: '{count} esedékes',
