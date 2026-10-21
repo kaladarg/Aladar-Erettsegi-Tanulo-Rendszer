@@ -26,7 +26,15 @@ import { ListeningPlayer } from '../workspace/audio/ListeningPlayer';
 import { loadReviews } from '@/storage/attempts';
 import { findSubject } from '@/content/catalog';
 import { db, type DrillSessionRow } from '@/storage/db';
-import { drillAttemptId, finishDrill, recordDrillCheck, setDrillIndex } from '@/storage/practice';
+import {
+  drillAttemptId,
+  finishDrill,
+  recordDrillCheck,
+  recordWorkedItem,
+  setDrillIndex,
+} from '@/storage/practice';
+import { ALONE } from '@/domain/practice/worked';
+import { WorkedExample } from './WorkedExample';
 import { DrillSummary } from './DrillSummary';
 
 function drillTitle(session: DrillSessionRow): string {
@@ -43,6 +51,8 @@ function drillTitle(session: DrillSessionRow): string {
       return t('practice.reviewTitle');
     case 'daily':
       return t('practice.daily.title');
+    case 'worked':
+      return t('practice.worked.title', { topic: session.topic ?? '' });
   }
 }
 
@@ -199,11 +209,16 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
         },
       );
     }
+    await advance();
+  };
+
+  const advance = async () => {
     const index = session.index + 1;
     if (index >= session.items.length) await finishDrill(session.id);
     else await setDrillIndex(session.id, index);
     window.scrollTo({ top: 0 });
   };
+  const hidden = session.kind === 'worked' ? (session.hidden?.[session.index] ?? ALONE) : ALONE;
 
   if (!found || !workspace) {
     return (
@@ -244,8 +259,24 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
         const source = workspace.sources.get(id);
         return source && <SourceCard key={id} source={source} />;
       })}
-      <TaskCard task={found.task} dimmed={false} />
-      {checked ? (
+      {hidden !== ALONE ? (
+        <WorkedExample
+          task={found.task}
+          exam={found.exam}
+          hidden={hidden}
+          last={session.index + 1 >= session.items.length}
+          onDone={(result) =>
+            void recordWorkedItem(session.id, session.index, {
+              points: result.same,
+              maxPoints: result.hidden,
+              pendingPoints: 0,
+            }).then(advance)
+          }
+        />
+      ) : (
+        <TaskCard task={found.task} dimmed={false} />
+      )}
+      {hidden !== ALONE ? null : checked ? (
         <CheckedTask
           task={found.task}
           exam={found.exam}

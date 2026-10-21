@@ -91,7 +91,7 @@ export interface DrillItemResult {
 /** A practice round of single tasks, possibly from several papers. */
 export interface DrillSessionRow {
   id: string;
-  kind: 'topic' | 'review' | 'mixed' | 'assignment' | 'daily';
+  kind: 'topic' | 'review' | 'mixed' | 'assignment' | 'daily' | 'worked';
   /** Subject of the round; a daily round lists all of its subjects in `subjects`. */
   subject: string;
   subjects?: string[];
@@ -102,6 +102,8 @@ export interface DrillSessionRow {
   /** The assignment link's code, to build the result code at the end. */
   assignment?: string;
   items: { examId: string; taskId: string }[];
+  /** Worked-example series: solution lines hidden per item (-1: solved alone). */
+  hidden?: number[];
   /** Task being worked on. */
   index: number;
   /** Results of checked tasks, by position. */

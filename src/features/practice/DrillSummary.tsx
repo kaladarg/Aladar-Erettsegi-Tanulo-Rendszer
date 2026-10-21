@@ -1,4 +1,4 @@
-import { Check, Minus, RotateCcw, SkipForward, X } from 'lucide-react';
+import { BookOpenCheck, Check, Minus, RotateCcw, SkipForward, X } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import type { Exam } from '@/content/schema.types';
 import { Badge } from '@/design/ui/Badge';
@@ -7,6 +7,7 @@ import { Card, CardTitle } from '@/design/ui/Card';
 import { Celebration } from '@/design/ui/Celebration';
 import { outcomeOf, type Outcome } from '@/domain/practice/review';
 import { findTask } from '@/domain/practice/topics';
+import { ALONE } from '@/domain/practice/worked';
 import { formatNumber, t } from '@/i18n';
 import type { DrillSessionRow } from '@/storage/db';
 import { createDrill } from '@/storage/practice';
@@ -36,17 +37,27 @@ export function DrillSummary({
   onExit: () => void;
 }) {
   const navigate = useNavigate();
-  const outcomes = session.items.map((_, i) => outcomeOf(session.checked[i]));
-  const count = (o: Outcome) => outcomes.filter((x) => x === o).length;
-  const missed = count('partial') + count('wrong');
+  // A fully worked example is read, not answered: it is not counted.
+  const example = (i: number) => session.kind === 'worked' && session.hidden?.[i] === 0;
+  // Only tasks solved without help go to the mistakes review.
+  const reviewed = (i: number) => session.kind !== 'worked' || session.hidden?.[i] === ALONE;
+  const outcomes = session.items.map((_, i) =>
+    example(i) ? 'example' : outcomeOf(session.checked[i]),
+  );
+  const count = (o: Outcome | 'example') => outcomes.filter((x) => x === o).length;
+  const missed = outcomes.filter(
+    (o, i) => reviewed(i) && (o === 'partial' || o === 'wrong'),
+  ).length;
   // A round with at least 80% right answers (and something answered) earns confetti.
-  const great = count('correct') > 0 && count('correct') >= outcomes.length * 0.8;
+  const answered = outcomes.length - count('example');
+  const great = count('correct') > 0 && count('correct') >= answered * 0.8;
 
   const again = async () => {
     const id = await createDrill({
       kind: session.kind,
       subject: session.subject,
       subjects: session.subjects,
+      hidden: session.hidden,
       topic: session.topic,
       title: session.title,
       assignment: session.assignment,
@@ -109,13 +120,25 @@ export function DrillSummary({
                   </span>
                 </span>
                 <span className="flex items-center gap-2">
-                  <Badge tone={TONE[outcome]}>
-                    {ICON[outcome]}
-                    {t(`practice.outcome.${outcome}`)}
-                  </Badge>
-                  {result && (
+                  {outcome === 'example' ? (
+                    <Badge tone="info">
+                      <BookOpenCheck aria-hidden="true" />
+                      {t('practice.worked.fullBadge')}
+                    </Badge>
+                  ) : (
+                    <Badge tone={TONE[outcome]}>
+                      {ICON[outcome]}
+                      {t(`practice.outcome.${outcome}`)}
+                    </Badge>
+                  )}
+                  {result && outcome !== 'example' && (
                     <span className="text-sm tabular-nums">
-                      {t('results.taskScore', { points: result.points, max: result.maxPoints })}
+                      {reviewed(i)
+                        ? t('results.taskScore', { points: result.points, max: result.maxPoints })
+                        : t('practice.worked.lines', {
+                            same: result.points,
+                            hidden: result.maxPoints,
+                          })}
                     </span>
                   )}
                 </span>

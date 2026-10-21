@@ -646,6 +646,33 @@ export const hu = {
     summaryReview:
       '{count} feladatban vesztettél pontot. Ezek bekerültek a Hibáim közé, és néhány nap múlva újra elővesszük őket.',
     summaryAllGood: 'Minden ellenőrzött feladat hibátlan lett. Szép munka!',
+    worked: {
+      title: 'Lépésről lépésre: {topic}',
+      start: 'Lépésről lépésre',
+      startLabel: 'Lépésről lépésre: {topic}',
+      fullBadge: 'Kidolgozott példa',
+      fadedBadge: 'Egészítsd ki: {count} sor hiányzik',
+      explainTip:
+        'Olvasd végig a megoldást. Minden lépésnél mondd el magadnak, miért ez jön, és honnan tudod. A következő feladatokban egyre több lépést írsz meg te.',
+      fadedTip:
+        'Az eleje kész, a végét te írod meg. Írd le a következő lépést, aztán nézd meg, mit ír a javítási útmutató.',
+      solution: 'Megoldás lépésenként',
+      step: '{number}. lépés',
+      finalLine: 'Végeredmény',
+      writeStep: 'Írd le ezt a lépést',
+      writeFinal: 'Írd le a végeredményt',
+      reveal: 'Megnézem',
+      scheme: 'Az útmutató szerint:',
+      keywordsYes: 'A válaszodban megvannak az útmutató kulcsszavai.',
+      keywordsNo: 'A válaszodban nem találtam meg az útmutató kulcsszavait. Nézd meg, mi hiányzik.',
+      same: 'Nekem is ez jött ki',
+      different: 'Mást írtam',
+      markedSame: 'Ugyanez jött ki.',
+      markedDifferent: 'Mást írtál: nézd meg még egyszer, hol tért el.',
+      summary: 'A megoldás röviden',
+      score: '{same} / {hidden} sort írtál meg jól',
+      lines: '{same} / {hidden} sor',
+    },
     daily: {
       title: 'Mai adag',
       exit: 'Kilépés a mai adagból',

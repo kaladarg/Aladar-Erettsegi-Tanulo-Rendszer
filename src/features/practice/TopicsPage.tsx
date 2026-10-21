@@ -1,4 +1,4 @@
-import { Play, Search, Shuffle } from 'lucide-react';
+import { Footprints, Play, Search, Shuffle } from 'lucide-react';
 import { useId, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
@@ -9,12 +9,13 @@ import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { Skeleton } from '@/design/ui/Skeleton';
-import { topicIndex, topicKey, type TopicEntry } from '@/domain/practice/topics';
+import { findTask, topicIndex, topicKey, type TopicEntry } from '@/domain/practice/topics';
+import { hasWorkedSolution } from '@/domain/practice/worked';
 import { scoredAttempts, topicStats } from '@/domain/stats/stats';
 import { formatNumber, t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useSettings } from '@/state/settingsStore';
-import { createDrill, randomMixedRound, randomRound } from '@/storage/practice';
+import { createDrill, randomMixedRound, randomRound, randomWorkedSeries } from '@/storage/practice';
 import { useStatsData } from '../stats/useStatsData';
 import { BackLink } from './BackLink';
 
@@ -72,6 +73,24 @@ export function TopicsPage() {
     const pool = picked.length >= 2 ? picked : topics;
     const items = randomMixedRound(pool, ROUND_SIZE, ratios);
     const id = await createDrill({ kind: 'mixed', subject, items });
+    navigate(`/gyakorlas/kor/${id}`);
+  };
+
+  const workedCandidates = (topic: TopicEntry) =>
+    topic.tasks.flatMap((ref) => {
+      const found = findTask(exams, ref);
+      return found && hasWorkedSolution(found.task) ? [{ ref, ...found }] : [];
+    });
+
+  const startWorked = async (topic: TopicEntry) => {
+    const series = randomWorkedSeries(workedCandidates(topic));
+    const id = await createDrill({
+      kind: 'worked',
+      subject,
+      topic: topic.name,
+      items: series.map(({ examId, taskId }) => ({ examId, taskId })),
+      hidden: series.map((item) => item.hidden),
+    });
     navigate(`/gyakorlas/kor/${id}`);
   };
 
@@ -161,13 +180,14 @@ export function TopicsPage() {
       ) : shown.length === 0 ? (
         <p className="text-muted">{t('practice.topics.none')}</p>
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {shown.map((topic) => {
             const ratio = ratios.get(topic.key);
+            const worked = workedCandidates(topic).length;
             return (
               <li
                 key={topic.key}
-                className="flex items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 shadow-1"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 shadow-1"
               >
                 <div className="min-w-0 flex-1">
                   <p className="font-semibold">{topic.name}</p>
@@ -209,6 +229,20 @@ export function TopicsPage() {
                   <Play aria-hidden="true" />
                   {t('practice.topics.start')}
                 </Button>
+                {worked > 0 && (
+                  <div className="basis-full">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="-my-1 -ml-3"
+                      aria-label={t('practice.worked.startLabel', { topic: topic.name })}
+                      onClick={() => void startWorked(topic)}
+                    >
+                      <Footprints aria-hidden="true" />
+                      {t('practice.worked.start')}
+                    </Button>
+                  </div>
+                )}
               </li>
             );
           })}

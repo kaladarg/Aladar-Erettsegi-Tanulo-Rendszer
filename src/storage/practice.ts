@@ -1,4 +1,5 @@
 import { mixedRound, shuffle, type TaskRef, type TopicEntry } from '@/domain/practice/topics';
+import { workedSeries } from '@/domain/practice/worked';
 import { newAttemptId } from './attempts';
 import { dayKey, db, type DrillEventRow, type DrillItemResult, type DrillSessionRow } from './db';
 
@@ -10,7 +11,7 @@ const KEEP_FINISHED = 20;
 export async function createDrill(
   session: Pick<
     DrillSessionRow,
-    'kind' | 'subject' | 'subjects' | 'topic' | 'items' | 'title' | 'assignment'
+    'kind' | 'subject' | 'subjects' | 'topic' | 'items' | 'hidden' | 'title' | 'assignment'
   >,
 ): Promise<string> {
   const now = Date.now();
@@ -38,6 +39,10 @@ export const randomMixedRound = (
   ratios?: Map<string, number>,
 ) => mixedRound(topics, size, Date.now(), ratios);
 
+/** A worked-example series from a topic (see `workedSeries`). */
+export const randomWorkedSeries = (candidates: Parameters<typeof workedSeries>[0]) =>
+  workedSeries(candidates, Date.now());
+
 export async function setDrillIndex(id: string, index: number): Promise<void> {
   await db.drillSessions.update(id, { index, updatedAt: Date.now() });
 }
@@ -63,6 +68,27 @@ export async function recordDrillCheck(
     if (first && marked > 0) {
       await db.drillEvents.add({ ...event, time: now, ratio: result.points / marked });
     }
+    await db.activity.put({ day: dayKey(now), updatedAt: now });
+  });
+}
+
+/**
+ * Stores how a worked example went. Help was on the page, so it does not
+ * feed the mistakes review; the day still counts as a practice day.
+ */
+export async function recordWorkedItem(
+  id: string,
+  index: number,
+  result: DrillItemResult,
+): Promise<void> {
+  const now = Date.now();
+  await db.transaction('rw', db.drillSessions, db.activity, async () => {
+    const session = await db.drillSessions.get(id);
+    if (!session) return;
+    await db.drillSessions.update(id, {
+      checked: { ...session.checked, [index]: result },
+      updatedAt: now,
+    });
     await db.activity.put({ day: dayKey(now), updatedAt: now });
   });
 }
