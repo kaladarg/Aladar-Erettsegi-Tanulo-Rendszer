@@ -8,6 +8,7 @@ import {
   PenLine,
   RotateCcw,
   ShieldCheck,
+  Smile,
   Timer,
 } from 'lucide-react';
 import { Dialog } from 'radix-ui';
@@ -110,6 +111,15 @@ export function OnboardingDialog() {
                   {t('onboarding.welcome.pickAtLeastOne')}
                 </p>
               )}
+              <p className="mt-5 flex gap-3 text-sm text-muted">
+                <Smile aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-primary" />
+                <span>
+                  {t('onboarding.welcome.note')}
+                  <span className="mt-1 block font-semibold text-text italic">
+                    {t('onboarding.welcome.signature')}
+                  </span>
+                </span>
+              </p>
             </Step>
           )}
 

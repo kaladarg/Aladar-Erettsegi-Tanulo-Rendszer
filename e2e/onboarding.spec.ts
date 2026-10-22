@@ -6,6 +6,7 @@ test('first visit walks through onboarding and shows the chosen subjects', async
   await expect(
     dialog.getByRole('heading', { name: 'Szia! Melyik tárgyból készülsz?' }),
   ).toBeVisible();
+  await expect(dialog.getByText('Aladár', { exact: true })).toBeAttached();
 
   // Cannot continue without a subject.
   await dialog.getByRole('button', { name: 'Tovább' }).click();

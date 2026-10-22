@@ -168,6 +168,8 @@ export const hu = {
       title: 'Szia! Melyik tárgyból készülsz?',
       body: 'Válassz egy vagy több tárgyat. Később bármikor módosíthatod a beállításokban.',
       pickAtLeastOne: 'Válassz legalább egy tárgyat a folytatáshoz.',
+      note: 'Én is most készülök az érettségire, ezért raktam össze ezt az oldalt. Remélem, neked is segít. Sok sikert!',
+      signature: 'Aladár',
     },
     how: {
       title: 'Így működik',
