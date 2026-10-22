@@ -14,6 +14,7 @@ import { OnboardingDialog } from '@/features/onboarding/OnboardingDialog';
 import { useSettings } from '@/state/settingsStore';
 import { usePageTransition } from './motion';
 import { RouteFocus } from './RouteFocus';
+import { SiteFooter } from './SiteFooter';
 import { StorageWarning } from './StorageWarning';
 import { usePersistentStorage } from './usePersistentStorage';
 
@@ -123,6 +124,7 @@ export function Layout() {
           <div ref={page}>
             <Outlet />
           </div>
+          <SiteFooter />
         </div>
       </main>
 

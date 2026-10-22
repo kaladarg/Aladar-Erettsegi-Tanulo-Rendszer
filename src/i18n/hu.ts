@@ -10,6 +10,12 @@ export const hu = {
     skipToContent: 'Ugrás a tartalomra',
     mainNav: 'Fő navigáció',
   },
+  footer: {
+    madeBy: 'Készítette: {author}',
+    social: 'Kövess be',
+    facebook: 'Facebook: {name}',
+    instagram: 'Instagram: @{name}',
+  },
   nav: {
     home: 'Kezdőlap',
     exams: 'Feladatsorok',

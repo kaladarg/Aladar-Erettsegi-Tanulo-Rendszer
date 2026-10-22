@@ -63,3 +63,18 @@ test('works offline after the first visit', async ({ page, context }) => {
   await expect(page.getByRole('heading', { level: 1, name: 'Névjegy' })).toBeVisible();
   await context.setOffline(false);
 });
+
+test('the footer names the author and links to their profiles', async ({ page }) => {
+  await page.goto('/');
+  await finishOnboarding(page);
+  const footer = page.locator('footer');
+  await footer.scrollIntoViewIfNeeded();
+  await expect(footer.getByText('Készítette: Králik Aladár')).toBeVisible();
+  await expect(footer.getByRole('link', { name: /Instagram: @aladar\.kralik/ })).toHaveAttribute(
+    'href',
+    'https://www.instagram.com/aladar.kralik/',
+  );
+  // Not hidden behind the bottom navigation on phones.
+  await page.mouse.wheel(0, 10000);
+  await expect(footer.getByRole('link', { name: /Facebook: Králik Aladár/ })).toBeInViewport();
+});

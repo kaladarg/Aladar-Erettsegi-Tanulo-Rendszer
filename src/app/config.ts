@@ -1,5 +1,10 @@
 export const REPO_URL = 'https://github.com/kaladarg/Aladar-Erettsegi-Tanulo-Rendszer';
 export const APP_AUTHOR = 'Králik Aladár';
+/** The author's social profiles, linked from the footer. */
+export const AUTHOR_FACEBOOK_URL =
+  'https://www.facebook.com/search/people/?q=Kr%C3%A1lik%20Alad%C3%A1r';
+export const AUTHOR_INSTAGRAM = 'aladar.kralik';
+export const AUTHOR_INSTAGRAM_URL = `https://www.instagram.com/${AUTHOR_INSTAGRAM}/`;
 /** Where mistakes in tasks, answers and the app itself are reported. */
 export const REPORT_EMAIL = 'kralik.aladar.gergely@gmail.com';
 export const OFFICIAL_ARCHIVE_URL = 'https://www.oktatas.hu/kozneveles/erettsegi/feladatsorok';
