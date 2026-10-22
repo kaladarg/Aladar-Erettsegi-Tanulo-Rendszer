@@ -28,14 +28,13 @@ test('the admission calculator estimates points and remembers the inputs', async
   }).toPass();
 });
 
-test('a paper can be opened as a printable sheet with the answer key', async ({ page }) => {
+test('the original paper PDF can be printed page by page', async ({ page }) => {
   await page.goto('/');
   await finishOnboarding(page);
   await page.goto('/feladatsorok/matematika-kozep-2026-majus-minta');
   await page.getByRole('link', { name: 'Nyomtatható változat' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Matematika');
-  await expect(page.getByRole('heading', { name: 'Megoldókulcs' })).toHaveCount(0);
-  await page.getByLabel('Megoldókulcs a végén').check();
-  await expect(page.getByRole('heading', { name: 'Megoldókulcs' })).toBeVisible();
+  await expect(page.getByRole('status')).toHaveText(/oldal nyomtatásra kész/, { timeout: 30_000 });
+  await expect(page.getByRole('img', { name: 'Feladatlap, 1. oldal' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Nyomtatás' })).toBeEnabled();
 });
