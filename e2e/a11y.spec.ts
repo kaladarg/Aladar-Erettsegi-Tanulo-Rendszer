@@ -17,6 +17,11 @@ const PAGES = [
   ['/gyakorlas/kartyak?targy=magyar', 'Tanulókártyák'],
   ['/gyakorlas/segedeszkozok', 'Segédeszközök és vizsganap'],
   ['/tanaroknak', 'Tanároknak'],
+  ['/gyakorlas/pontszamito', 'Felvételi pontszámító'],
+  [
+    '/feladatsorok/matematika-kozep-2026-majus-minta/nyomtatas',
+    'Matematika – Mintafeladatsor – Matematika, középszint',
+  ],
   ['/feladatsorok/tortenelem-kozep-2026-majus-minta', 'Mintafeladatsor – Történelem, középszint'],
   [
     '/feladatsorok/tortenelem-kozep-2026-majus-minta/gyakorlas?nezet=urlap',

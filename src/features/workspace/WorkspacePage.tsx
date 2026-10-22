@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { FileText, Info, ListChecks, X } from 'lucide-react';
 import { Dialog } from 'radix-ui';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { examDisplayTitle, partInfo } from '@/content/labels';
@@ -28,7 +28,7 @@ import { ChoicePicker } from './ChoicePicker';
 import { FormMode } from './FormMode';
 import { closeCropDocuments } from './pdf/cropDocuments';
 import { PdfMode } from './pdf/PdfMode';
-import type { PdfSource } from './pdf/pdfjs';
+import { usePdfSource } from './pdf/usePdfSource';
 import { SaveStatus } from './SaveStatus';
 import { SubmitButton } from './SubmitButton';
 import { useAttempt } from './useAttempt';
@@ -237,34 +237,6 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
       </main>
     </div>
   );
-}
-
-type PdfState =
-  { status: 'loading' } | { status: 'missing' } | { status: 'ready'; source: PdfSource };
-
-/** The pack's PDF when it ships one, otherwise a PDF the student imported. */
-function usePdfSource(exam: Exam | null, packUrl: string | null, hasPdf: boolean): PdfState {
-  const sha = exam?.source.examPdf.sha256;
-  const [imported, setImported] = useState<{ sha: string; data: ArrayBuffer | null } | null>(null);
-
-  useEffect(() => {
-    if (!sha || hasPdf) return;
-    let active = true;
-    void db.importedPdfs.get(sha).then(async (row) => {
-      const data = row ? await row.blob.arrayBuffer() : null;
-      if (active) setImported({ sha, data });
-    });
-    return () => {
-      active = false;
-    };
-  }, [sha, hasPdf]);
-
-  if (!exam) return { status: 'loading' };
-  if (hasPdf && packUrl) return { status: 'ready', source: { url: packUrl } };
-  if (!imported || imported.sha !== sha) return { status: 'loading' };
-  return imported.data
-    ? { status: 'ready', source: { data: imported.data } }
-    : { status: 'missing' };
 }
 
 function InfoSheet({

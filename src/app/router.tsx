@@ -28,6 +28,13 @@ export function createRouter() {
       }),
     },
     {
+      path: 'feladatsorok/:examId/nyomtatas',
+      errorElement: <RouteError />,
+      lazy: async () => ({
+        Component: (await import('@/features/exams/PrintPage')).PrintPage,
+      }),
+    },
+    {
       path: 'gyakorlas/kartyak/tanulas',
       errorElement: <RouteError />,
       lazy: async () => ({
@@ -106,6 +113,12 @@ export function createRouter() {
           path: 'gyakorlas/terv',
           lazy: async () => ({
             Component: (await import('@/features/practice/PlanPage')).PlanPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/pontszamito',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/AdmissionPage')).AdmissionPage,
           }),
         },
         {

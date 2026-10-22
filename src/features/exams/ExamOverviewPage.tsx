@@ -14,6 +14,7 @@ import {
   TriangleAlert,
   Trophy,
   Backpack,
+  Printer,
 } from 'lucide-react';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router';
@@ -155,13 +156,22 @@ function Overview({
       <ExamModeCard exam={exam} />
       <ResultsHistory examId={exam.id} />
 
-      <Link
-        to={`/gyakorlas/segedeszkozok?targy=${exam.subject}`}
-        className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary underline underline-offset-4"
-      >
-        <Backpack aria-hidden="true" className="size-4" />
-        {t('aids.examLink')}
-      </Link>
+      <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+        <Link
+          to={`/feladatsorok/${exam.id}/nyomtatas`}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary underline underline-offset-4"
+        >
+          <Printer aria-hidden="true" className="size-4" />
+          {t('print.link')}
+        </Link>
+        <Link
+          to={`/gyakorlas/segedeszkozok?targy=${exam.subject}`}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary underline underline-offset-4"
+        >
+          <Backpack aria-hidden="true" className="size-4" />
+          {t('aids.examLink')}
+        </Link>
+      </div>
 
       <section aria-labelledby="summary-title" className="mt-6">
         <h2 id="summary-title" className="sr-only">

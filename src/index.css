@@ -513,3 +513,13 @@
     transform: none;
   }
 }
+
+/* Printable papers: A4 margins and a white page whatever the theme. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  body {
+    background: white;
+  }
+}

@@ -47,6 +47,7 @@ describe('sanitizeSettings', () => {
       lastBackupAt: 1_790_000_000_000,
       backupSnoozedUntil: 0,
       installHintDismissed: true,
+      admission: null,
     } as const;
     expect(sanitizeSettings(valid)).toEqual(valid);
     expect(sanitizeSettings({ examDates: { magyar: 'holnap', tortenelem: 5 } }).examDates).toEqual(

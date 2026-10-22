@@ -1,3 +1,5 @@
+import { sanitizeAdmission, type AdmissionInputs } from './admission';
+
 export type ThemePreference = 'system' | 'light' | 'dark';
 
 export interface Settings {
@@ -24,6 +26,8 @@ export interface Settings {
   backupSnoozedUntil: number;
   /** The student closed the "add to home screen" hint for iPhone. */
   installHintDismissed: boolean;
+  /** What the student typed into the admission points calculator. */
+  admission: AdmissionInputs | null;
 }
 
 /** Bump when new features deserve a "what's new" note on the home page. */
@@ -48,6 +52,7 @@ export const DEFAULT_SETTINGS: Settings = {
   lastBackupAt: 0,
   backupSnoozedUntil: 0,
   installHintDismissed: false,
+  admission: null,
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -113,5 +118,6 @@ export function sanitizeSettings(input: unknown): Settings {
     lastBackupAt: timestamp(raw.lastBackupAt),
     backupSnoozedUntil: timestamp(raw.backupSnoozedUntil),
     installHintDismissed: raw.installHintDismissed === true,
+    admission: sanitizeAdmission(raw.admission),
   };
 }
