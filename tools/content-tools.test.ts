@@ -47,7 +47,7 @@ describe('content:pack and content:review', () => {
     const dir = await copyDemo();
     const { manifest, problems } = await buildPack(dir, '2026-10-18');
     expect(problems).toEqual([]);
-    expect(manifest.exams).toHaveLength(5);
+    expect(manifest.exams).toHaveLength(6);
     expect(
       manifest.exams.every((exam) => exam.hasPdf && exam.sample && exam.status === 'reviewed'),
     ).toBe(true);

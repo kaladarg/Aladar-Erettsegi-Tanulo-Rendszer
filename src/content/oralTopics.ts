@@ -125,10 +125,34 @@ export const BUILTIN_ORAL_TOPICS: BuiltinOralTopic[] = [
   topic('nemet', 'Témakörök', 'utazas', 'Utazás, turizmus'),
   topic('nemet', 'Témakörök', 'tudomany', 'Tudomány és technika'),
   topic('nemet', 'Témakörök', 'gazdasag', 'Gazdaság és pénzügyek'),
+  // Földrajz: a vizsgakövetelmények fő témakörei
+  topic('foldrajz', 'Természetföldrajz', 'terkep', 'Térképi ismeretek és tájékozódás'),
+  topic('foldrajz', 'Természetföldrajz', 'kozmikus', 'A Föld mint égitest, időszámítás'),
+  topic(
+    'foldrajz',
+    'Természetföldrajz',
+    'kozetburok',
+    'A kőzetburok: lemeztektonika, vulkánosság, földrengések',
+  ),
+  topic('foldrajz', 'Természetföldrajz', 'legkor', 'A légkör: időjárás és éghajlat'),
+  topic(
+    'foldrajz',
+    'Természetföldrajz',
+    'vizburok',
+    'A vízburok: tengerek, folyók, felszín alatti vizek',
+  ),
+  topic('foldrajz', 'Természetföldrajz', 'ovezetesseg', 'Talajok és földrajzi övezetesség'),
+  topic('foldrajz', 'Társadalomföldrajz', 'nepesseg', 'Népesség és települések'),
+  topic('foldrajz', 'Társadalomföldrajz', 'vilaggazdasag', 'A világgazdaság és a globalizáció'),
+  topic('foldrajz', 'Társadalomföldrajz', 'penzugy', 'Pénzügyi ismeretek a mindennapokban'),
+  topic('foldrajz', 'Regionális földrajz', 'magyarorszag', 'Magyarország földrajza'),
+  topic('foldrajz', 'Regionális földrajz', 'europa', 'Európa és az Európai Unió'),
+  topic('foldrajz', 'Regionális földrajz', 'kontinensek', 'Az Európán kívüli kontinensek'),
+  topic('foldrajz', 'Regionális földrajz', 'globalis', 'Környezeti és globális problémák'),
 ];
 
 /** Subjects that have built-in oral topics. */
-export const ORAL_TOPIC_SUBJECTS = ['magyar', 'tortenelem', 'angol', 'nemet'];
+export const ORAL_TOPIC_SUBJECTS = ['magyar', 'tortenelem', 'angol', 'nemet', 'foldrajz'];
 
 /** Foreign languages: no preparation time, a different outline. */
 export const LANGUAGE_SUBJECTS = ['angol', 'nemet'];

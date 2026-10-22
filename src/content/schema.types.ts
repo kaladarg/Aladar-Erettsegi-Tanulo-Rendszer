@@ -624,7 +624,7 @@ export interface Manifest {
 export interface Subject {
   id: Slug;
   name: string;
-  icon: 'sigma' | 'landmark' | 'book-open' | 'book' | 'languages';
+  icon: 'sigma' | 'landmark' | 'book-open' | 'book' | 'languages' | 'globe';
 }
 /**
  * This interface was referenced by `Manifest`'s JSON-Schema

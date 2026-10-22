@@ -1374,6 +1374,25 @@ export const hu = {
         description:
           'A Deutsche Welle ingyenes német tanfolyamai és hanganyagai, magyar felülettel is.',
       },
+      nemzetiAtlasz: {
+        name: 'Magyarország Nemzeti Atlasza',
+        description:
+          'A HUN-REN Csillagászati és Földtudományi Kutatóközpont ingyenes online atlasza térképekkel és magyarázatokkal.',
+      },
+      ksh: {
+        name: 'KSH',
+        description:
+          'A Központi Statisztikai Hivatal ingyenes adatai a népességről, a gazdaságról és a településekről.',
+      },
+      met: {
+        name: 'HungaroMet',
+        description: 'Az állami meteorológiai szolgálat éghajlati adatai és ismertetői.',
+      },
+      osm: {
+        name: 'OpenStreetMap',
+        description:
+          'Szabadon használható világtérkép: topográfiai gyakorláshoz keresd meg rajta a neveket.',
+      },
       dwds: {
         name: 'DWDS',
         description: 'A Berlin-Brandenburgi Tudományos Akadémia ingyenes német szótára példákkal.',

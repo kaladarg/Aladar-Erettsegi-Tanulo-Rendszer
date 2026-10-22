@@ -47,6 +47,7 @@ const ACCENT: Record<string, string> = {
   magyar: '#be123c',
   angol: '#0e7490',
   nemet: '#15803d',
+  foldrajz: '#6d28d9',
 };
 
 function wrap(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {

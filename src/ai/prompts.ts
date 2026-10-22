@@ -7,6 +7,7 @@ const SUBJECTS: Record<string, string> = {
   magyar: 'Hungarian language and literature',
   angol: 'English as a foreign language',
   nemet: 'German as a foreign language',
+  foldrajz: 'geography',
 };
 
 /** Extra guidance for foreign-language papers (tasks and texts in English or German). */

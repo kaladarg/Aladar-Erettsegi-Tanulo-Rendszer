@@ -4,7 +4,8 @@
  * for non-commercial use); no paid, freemium or ad-funded services. Names and
  * descriptions are in i18n under `help.resources.<id>`.
  */
-export type ResourceSubject = 'all' | 'matematika' | 'tortenelem' | 'magyar' | 'angol' | 'nemet';
+export type ResourceSubject =
+  'all' | 'matematika' | 'tortenelem' | 'magyar' | 'angol' | 'nemet' | 'foldrajz';
 
 export interface Resource {
   id: ResourceId;
@@ -96,6 +97,15 @@ export const RESOURCES = [
     subjects: ['nemet'],
     searchDomain: 'de.wiktionary.org',
   },
+  {
+    id: 'nemzetiAtlasz',
+    url: 'https://www.nemzetiatlasz.hu',
+    subjects: ['foldrajz'],
+    searchDomain: 'nemzetiatlasz.hu',
+  },
+  { id: 'ksh', url: 'https://www.ksh.hu', subjects: ['foldrajz'], searchDomain: 'ksh.hu' },
+  { id: 'met', url: 'https://www.met.hu', subjects: ['foldrajz'], searchDomain: 'met.hu' },
+  { id: 'osm', url: 'https://www.openstreetmap.org', subjects: ['foldrajz'] },
 ] as const satisfies readonly {
   id: string;
   url: string;

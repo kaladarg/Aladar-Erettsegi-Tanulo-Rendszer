@@ -79,6 +79,21 @@ export const EXAM_AIDS: SubjectAids[] = [
     quote:
       '„Az Olvasott szöveg értése, a Nyelvhelyesség és a Hallott szöveg értése feladatlapokhoz semmilyen segédeszköz nem használható. Az Íráskészség részhez bármilyen nyomtatott szótár használható.” (Német nyelv, középszintű írásbeli vizsga, 2024–2026)',
   },
+  {
+    subject: 'foldrajz',
+    allowed: [
+      'II. feladatlap: középiskolai földrajzi atlasz',
+      'II. feladatlap: zsebszámológép, ha a feladat indokolja (a megoldás menetét le kell írni)',
+      'Vonalzó, kék vagy fekete toll',
+    ],
+    notes: [
+      'Az I. feladatlaphoz (topográfia, 20 perc) semmilyen segédeszköz nem használható, atlasz sem: a térképvázlatokon jelölt helyeket fejből kell tudni.',
+      'Az atlaszt csak a II. feladatlaphoz veheted elő; érdemes vele gyakorolni, hogy gyorsan megtaláld a térképeket.',
+      'A lehetséges helyes válaszok számánál több válasz megadása egyes esetekben pontlevonással jár.',
+    ],
+    quote:
+      '„Az I. feladatlap megoldásához középiskolai atlasz, illetve egyéb segédeszköz nem használható.” „A II. feladatlap megoldásához használhatja a középiskolai atlaszt. Amennyiben indokolt, használjon zsebszámológépet, de a feladatlapban minden esetben tüntesse fel a megoldás menetét is! Ha szükséges, használhat vonalzót is.” (Földrajz, középszintű írásbeli vizsga, 2026. május)',
+  },
 ];
 
 /** What to take to every written exam. */

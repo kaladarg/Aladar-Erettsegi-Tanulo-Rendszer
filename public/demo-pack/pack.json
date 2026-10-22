@@ -28,6 +28,11 @@
       "id": "nemet",
       "name": "Német nyelv",
       "icon": "languages"
+    },
+    {
+      "id": "foldrajz",
+      "name": "Földrajz",
+      "icon": "globe"
     }
   ],
   "levels": [

@@ -30,6 +30,11 @@
       "id": "nemet",
       "name": "Német nyelv",
       "icon": "languages"
+    },
+    {
+      "id": "foldrajz",
+      "name": "Földrajz",
+      "icon": "globe"
     }
   ],
   "levels": [
@@ -53,6 +58,22 @@
       "sha256": "8d2fdaa5bf47755f9dcb38a07945e414152ff8c028dc25cf9c3c7aea0a336131",
       "hasPdf": true,
       "pdfSha256": "96fc46b4f7f26586bd6a938d39ec26ce846eea8205014fb53c96c3943e2da7d7",
+      "status": "reviewed"
+    },
+    {
+      "id": "foldrajz-kozep-2026-majus-minta",
+      "subject": "foldrajz",
+      "level": "kozep",
+      "year": 2026,
+      "session": "majus",
+      "format": "2024",
+      "title": "Mintafeladatsor – Földrajz, középszint",
+      "sample": true,
+      "maxPoints": 14,
+      "path": "exams/foldrajz-kozep-2026-majus-minta/exam.json",
+      "sha256": "6081f7b9839dccab201dccfef49d67b88c5adb1a7ad37366d9ec7883e3ab29bc",
+      "hasPdf": true,
+      "pdfSha256": "986eb5a8c925d429eacda616255878533376f131bc9ded096a4bd0db02a13842",
       "status": "reviewed"
     },
     {

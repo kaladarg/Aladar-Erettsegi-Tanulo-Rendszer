@@ -9273,7 +9273,7 @@ const schema38 = {
       properties: {
         id: { $ref: '#/definitions/Slug' },
         name: { type: 'string', minLength: 1 },
-        icon: { enum: ['sigma', 'landmark', 'book-open', 'book', 'languages'] },
+        icon: { enum: ['sigma', 'landmark', 'book-open', 'book', 'languages', 'globe'] },
       },
     },
     Level: {
@@ -9371,7 +9371,7 @@ const schema40 = {
   properties: {
     id: { $ref: '#/definitions/Slug' },
     name: { type: 'string', minLength: 1 },
-    icon: { enum: ['sigma', 'landmark', 'book-open', 'book', 'languages'] },
+    icon: { enum: ['sigma', 'landmark', 'book-open', 'book', 'languages', 'globe'] },
   },
 };
 function validate113(
@@ -9477,7 +9477,8 @@ function validate113(
                   data2 === 'landmark' ||
                   data2 === 'book-open' ||
                   data2 === 'book' ||
-                  data2 === 'languages'
+                  data2 === 'languages' ||
+                  data2 === 'globe'
                 )) {
                   validate113.errors = [
                     {

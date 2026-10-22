@@ -37,6 +37,7 @@
   --color-subject-magyar: var(--c-subject-magyar);
   --color-subject-angol: var(--c-subject-angol);
   --color-subject-nemet: var(--c-subject-nemet);
+  --color-subject-foldrajz: var(--c-subject-foldrajz);
 
   --font-sans: var(--font-body);
   --font-mono: var(--font-mono);

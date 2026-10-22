@@ -1,4 +1,4 @@
-import { Book, BookOpen, Landmark, Languages, Sigma } from 'lucide-react';
+import { Book, BookOpen, Globe, Landmark, Languages, Sigma } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import type { SubjectInfo } from './catalog';
 
@@ -8,6 +8,7 @@ const icons = {
   'book-open': BookOpen,
   book: Book,
   languages: Languages,
+  globe: Globe,
 };
 
 export function SubjectIcon({ subject, className }: { subject: SubjectInfo; className?: string }) {
@@ -22,6 +23,7 @@ const BADGE: Record<string, string> = {
   magyar: 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300',
   angol: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-300',
   nemet: 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300',
+  foldrajz: 'bg-violet-100 text-violet-800 dark:bg-violet-950 dark:text-violet-300',
 };
 
 /** The subject's icon on a rounded, tinted square that tilts playfully on hover. */

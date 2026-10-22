@@ -18,6 +18,7 @@ const SUBJECT_NAMES: Record<string, string> = {
   magyar: 'magyar nyelv és irodalom',
   angol: 'angol nyelv',
   nemet: 'német nyelv',
+  foldrajz: 'földrajz',
 };
 
 /** For English or German papers: the student writes in that language, help comes in Hungarian. */

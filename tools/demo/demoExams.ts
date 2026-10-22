@@ -1,4 +1,5 @@
 import { HISTORY_ESSAY_EXAMPLES, HUNGARIAN_ESSAY_EXAMPLES } from './demoExamples';
+import { GEOGRAPHY_DEMO_EXAM } from './demoGeography';
 import { LANGUAGE_DEMO_EXAMS } from './demoLanguages';
 /**
  * Self-written sample papers for the public demo pack and the e2e tests.
@@ -1018,4 +1019,5 @@ export const DEMO_EXAMS: DemoExam[] = [
     ],
   },
   ...LANGUAGE_DEMO_EXAMS,
+  GEOGRAPHY_DEMO_EXAM,
 ];

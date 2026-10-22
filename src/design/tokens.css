@@ -48,6 +48,7 @@
   --c-subject-magyar: #be123c;
   --c-subject-angol: #0e7490;
   --c-subject-nemet: #15803d;
+  --c-subject-foldrajz: #6d28d9;
 
   /* Typography */
   --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -115,6 +116,7 @@
   --c-subject-magyar: #fda4af;
   --c-subject-angol: #67e8f9;
   --c-subject-nemet: #86efac;
+  --c-subject-foldrajz: #c4b5fd;
 
   --shadow-1: 0 1px 2px rgb(0 0 0 / 0.45);
   --shadow-2: 0 6px 16px rgb(0 0 0 / 0.45);
