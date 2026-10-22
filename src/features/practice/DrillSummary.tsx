@@ -7,7 +7,6 @@ import { Card, CardTitle } from '@/design/ui/Card';
 import { Celebration } from '@/design/ui/Celebration';
 import { outcomeOf, type Outcome } from '@/domain/practice/review';
 import { findTask } from '@/domain/practice/topics';
-import { ALONE } from '@/domain/practice/worked';
 import { formatNumber, t } from '@/i18n';
 import type { DrillSessionRow } from '@/storage/db';
 import { createDrill } from '@/storage/practice';
@@ -38,10 +37,10 @@ export function DrillSummary({
 }) {
   const navigate = useNavigate();
   // A fully worked example is read, not answered: it is not counted.
-  const example = (i: number) =>
-    session.kind === 'worked' && (session.hidden?.[i] ?? ALONE) !== ALONE;
+  // Tasks of a worked session that were only studied, never checked.
+  const example = (i: number) => session.kind === 'worked' && session.checked[i] === undefined;
   // Only tasks solved without help go to the mistakes review.
-  const reviewed = (i: number) => session.kind !== 'worked' || session.hidden?.[i] === ALONE;
+  const reviewed = (i: number) => !example(i);
   const outcomes = session.items.map((_, i) =>
     example(i) ? 'example' : outcomeOf(session.checked[i]),
   );

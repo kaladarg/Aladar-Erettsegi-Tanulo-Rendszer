@@ -10,23 +10,26 @@ import { formatNumber, t } from '@/i18n';
 /**
  * A task with its solution, uncovered one step at a time. Before each step
  * the student is asked to think what comes next, so they work along instead
- * of only reading. The actions (another example, solve one alone, finish)
- * are always there: the student decides when they are ready.
+ * of only reading. The actions (another example, solve this one alone,
+ * finish) are always there: the student decides when they are ready.
  */
 export function WorkedExample({
   task,
   exam,
   number,
+  showAll = false,
   actions,
 }: {
   task: Task;
   exam: Exam;
   /** Which example of the session this is (1, 2, …). */
   number: number;
+  /** Open every step at once (e.g. after the student tried the task). */
+  showAll?: boolean;
   actions: ReactNode;
 }) {
   const lines = useMemo(() => solutionLines(task), [task]);
-  const [shown, setShown] = useState(0);
+  const [shown, setShown] = useState(showAll ? lines.length : 0);
   const done = shown >= lines.length;
   const lastShown = useRef<HTMLLIElement>(null);
 

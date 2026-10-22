@@ -52,12 +52,18 @@ describe('WorkedExample', () => {
     expect(screen.queryByText('x = 20')).not.toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: /Végeredmény/ }));
     expect(screen.getByText('x = 20')).toBeInTheDocument();
-    expect(screen.getByText(/Ha már menni fog, próbáld meg egyedül/)).toBeInTheDocument();
+    expect(screen.getByText(/ezt a feladatot oldod meg te/)).toBeInTheDocument();
   });
 
   it('can show the whole solution at once', async () => {
     render(<WorkedExample task={task} exam={exam} number={1} actions={null} />);
     await userEvent.click(screen.getByRole('button', { name: /Az egész megoldás/ }));
+    for (const text of ['Szorzás 100-zal.', '9x + 20 = 200.', 'x = 20'])
+      expect(screen.getByText(text)).toBeInTheDocument();
+  });
+
+  it('opens every step at once when the student comes back from trying', () => {
+    render(<WorkedExample task={task} exam={exam} number={1} showAll actions={null} />);
     for (const text of ['Szorzás 100-zal.', '9x + 20 = 200.', 'x = 20'])
       expect(screen.getByText(text)).toBeInTheDocument();
   });

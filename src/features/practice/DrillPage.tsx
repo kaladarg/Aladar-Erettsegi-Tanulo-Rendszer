@@ -4,6 +4,7 @@ import {
   BookOpenCheck,
   Check,
   Flag,
+  ListChecks,
   PartyPopper,
   PencilLine,
   SkipForward,
@@ -41,8 +42,9 @@ import {
   addWorkedItem,
   recordDrillCheck,
   setDrillIndex,
+  setWorkedView,
 } from '@/storage/practice';
-import { ALONE, nextFromPool } from '@/domain/practice/worked';
+import { ALONE, EXAMPLE, nextFromPool } from '@/domain/practice/worked';
 import { WorkedExample } from './WorkedExample';
 import { DrillSummary } from './DrillSummary';
 
@@ -186,6 +188,8 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
   const open = useAnswers((s) => s.open);
   const ready = useAnswers((s) => s.attemptId === attemptId);
   const [checked, setChecked] = useState(session.checked[session.index] !== undefined);
+  // The student opened the breakdown again after trying the task themselves.
+  const [alreadyTried, setAlreadyTried] = useState(false);
 
   useEffect(() => {
     void open(attemptId);
@@ -250,22 +254,42 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
       await finishDrill(session.id);
     window.scrollTo({ top: 0 });
   };
+  const view = async (to: typeof EXAMPLE | typeof ALONE) => {
+    await useAnswers.getState().flush();
+    if (to === EXAMPLE) setAlreadyTried(true);
+    await setWorkedView(session.id, session.index, to);
+    window.scrollTo({ top: 0 });
+  };
   const workedActions = (result?: ReturnType<typeof scoreTask>) => (
     <>
       <Button variant="ghost" onClick={() => void go('finish', result)}>
         {t('practice.finish')}
       </Button>
+      {!example && (
+        <Button variant="secondary" onClick={() => void view(EXAMPLE)}>
+          <ListChecks aria-hidden="true" />
+          {t('practice.worked.showSteps')}
+        </Button>
+      )}
       {canExample && (
         <Button variant="secondary" onClick={() => void go('example', result)}>
           <BookOpenCheck aria-hidden="true" />
           {t('practice.worked.another')}
         </Button>
       )}
-      {canAlone && (
-        <Button onClick={() => void go('alone', result)}>
+      {example ? (
+        // Solve this very task: the solution is hidden and the answer fields appear.
+        <Button onClick={() => void view(ALONE)}>
           <PencilLine aria-hidden="true" />
-          {example ? t('practice.worked.tryAlone') : t('practice.worked.anotherAlone')}
+          {t('practice.worked.tryAlone')}
         </Button>
+      ) : (
+        canAlone && (
+          <Button onClick={() => void go('alone', result)}>
+            <PencilLine aria-hidden="true" />
+            {t('practice.worked.anotherAlone')}
+          </Button>
+        )
       )}
     </>
   );
@@ -317,6 +341,8 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
           task={found.task}
           exam={found.exam}
           number={exampleNumber}
+          // Back from solving it: the whole breakdown is open at once.
+          showAll={session.checked[session.index] !== undefined || alreadyTried}
           actions={workedActions()}
         />
       ) : (
@@ -334,12 +360,10 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
       ) : (
         <div className="sticky bottom-0 -mx-4 flex flex-wrap justify-end gap-2 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border">
           {worked ? (
-            canExample && (
-              <Button variant="ghost" onClick={() => void go('example')}>
-                <BookOpenCheck aria-hidden="true" />
-                {t('practice.worked.backToExamples')}
-              </Button>
-            )
+            <Button variant="ghost" onClick={() => void view(EXAMPLE)}>
+              <ListChecks aria-hidden="true" />
+              {t('practice.worked.showSteps')}
+            </Button>
           ) : (
             <Button variant="ghost" onClick={() => void next()}>
               <SkipForward aria-hidden="true" />

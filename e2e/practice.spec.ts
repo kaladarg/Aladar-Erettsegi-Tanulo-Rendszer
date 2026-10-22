@@ -69,20 +69,33 @@ test('oral prep: own topics, outline autosave and a practice mark', async ({ pag
   await expect(page.getByText('15:00')).toBeVisible();
 });
 
-test('a worked example opens step by step, then the round can end', async ({ page }) => {
+test('a worked example opens step by step, and the same task can be solved alone', async ({
+  page,
+}) => {
   await page.goto('/gyakorlas/temakorok?targy=matematika');
   await page.getByRole('searchbox', { name: 'Keresés' }).fill('számtani');
   await page.getByRole('button', { name: 'Lépésről lépésre: számtani sorozat' }).click();
   await expect(page.getByRole('heading', { level: 1, name: /Lépésről lépésre/ })).toBeVisible();
   await expect(page.getByText('1. kidolgozott példa')).toBeVisible();
-  const solution = page.getByRole('list', { name: 'Megoldás lépésenként' });
-  await expect(solution.getByRole('listitem')).toHaveCount(0);
+  const heading = await page.getByRole('heading', { level: 2 }).first().textContent();
   await page.getByRole('button', { name: 'Első lépés' }).click();
+  const solution = page.getByRole('list', { name: 'Megoldás lépésenként' });
   await expect(solution.getByRole('listitem')).toHaveCount(1);
   await expect(page.getByText(/Mi lehet a következő lépés/)).toBeVisible();
-  await page.getByRole('button', { name: 'Az egész megoldás' }).click();
+
+  // "Megoldom egyedül" hides the solution and asks for this very task.
+  await page.getByRole('button', { name: 'Megoldom egyedül' }).click();
+  await expect(solution).toHaveCount(0);
+  await expect(page.getByRole('heading', { level: 3, name: heading! })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ellenőrzés' })).toBeVisible();
+
+  // The breakdown can come back, fully open, and go away again.
+  await page.getByRole('button', { name: 'Mutasd a lépéseket' }).click();
   await expect(solution.getByText(/Végeredmény/)).toBeVisible();
+  await page.getByRole('button', { name: 'Megoldom egyedül' }).click();
+  await page.getByRole('button', { name: 'Ellenőrzés' }).click();
+  await expect(page.getByRole('heading', { name: 'Eredmény' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Mutasd a lépéseket' })).toBeVisible();
   await page.getByRole('button', { name: 'Befejezés' }).click();
   await expect(page.getByRole('heading', { name: 'Kész a kör!' })).toBeVisible();
-  await expect(page.getByRole('region', { name: 'Feladatok' })).toContainText('Kidolgozott példa');
 });

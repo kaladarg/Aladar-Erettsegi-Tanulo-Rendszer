@@ -657,11 +657,11 @@ export const hu = {
       stepsLeft: 'Még {count} lépés van hátra.',
       summary: 'A megoldás röviden',
       doneQuestion:
-        'Érted, miért jött egymás után ez a sok lépés? Ha még bizonytalan vagy, nézz meg még egy hasonló példát. Ha már menni fog, próbáld meg egyedül.',
+        'Érted, miért jön egymás után ez a sok lépés? Ha még bizonytalan vagy, nézz meg még egy hasonló példát. Ha már menni fog, a „Megoldom egyedül” gombbal ezt a feladatot oldod meg te.',
       another: 'Még egy példa',
       tryAlone: 'Megoldom egyedül',
       anotherAlone: 'Még egy önálló feladat',
-      backToExamples: 'Inkább még egy példát kérek',
+      showSteps: 'Mutasd a lépéseket',
       progress: '{examples} példa · {alone} önálló',
     },
     daily: {

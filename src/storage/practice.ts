@@ -104,6 +104,25 @@ export async function addWorkedItem(id: string, kind: 'example' | 'alone'): Prom
   });
 }
 
+/**
+ * Switches a worked-session task between its worked solution and solving it
+ * alone: "Megoldom egyedül" turns the example on screen into the task to
+ * solve, and the breakdown can be opened again.
+ */
+export async function setWorkedView(
+  id: string,
+  index: number,
+  view: typeof EXAMPLE | typeof ALONE,
+): Promise<void> {
+  await db.transaction('rw', db.drillSessions, async () => {
+    const session = await db.drillSessions.get(id);
+    if (!session) return;
+    const hidden = [...(session.hidden ?? [])];
+    hidden[index] = view;
+    await db.drillSessions.update(id, { hidden, updatedAt: Date.now() });
+  });
+}
+
 export async function finishDrill(id: string): Promise<void> {
   const now = Date.now();
   await db.drillSessions.update(id, { finishedAt: now, updatedAt: now });
