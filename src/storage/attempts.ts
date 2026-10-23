@@ -147,6 +147,22 @@ export async function saveSegmentSeconds(
     });
 }
 
+/** Adds seconds of work per task (exam mode pacing). */
+export async function addTaskSeconds(
+  attemptId: string,
+  seconds: Record<string, number>,
+): Promise<void> {
+  await db.attempts
+    .where('id')
+    .equals(attemptId)
+    .modify((attempt) => {
+      const total = { ...attempt.taskSeconds };
+      for (const [taskId, add] of Object.entries(seconds))
+        total[taskId] = (total[taskId] ?? 0) + add;
+      attempt.taskSeconds = total;
+    });
+}
+
 /** Hands in the current exam segment and moves on to the next one. */
 export async function advanceSegment(attemptId: string, next: number): Promise<void> {
   await db.attempts.update(attemptId, { segment: next, updatedAt: Date.now() });

@@ -19,6 +19,7 @@ import { SwitchField } from '@/design/ui/Switch';
 import { DEDUCTIONS_KEY, type ExamResult } from '@/domain/scoring/exam';
 import { ContentErrorState } from '@/features/exams/ContentErrorState';
 import { formatDate, formatNumber, t } from '@/i18n';
+import { PacingCard } from './PacingCard';
 import { PageDrawings } from './PageDrawings';
 import { CriterionReview } from './ReviewControls';
 import { ShareResult } from './share/ShareDialog';
@@ -164,6 +165,10 @@ function Results({
           submittedAt={attempt.submittedAt!}
         />
       </div>
+
+      {attempt.mode === 'exam' && attempt.taskSeconds && (
+        <PacingCard exam={exam} taskSeconds={attempt.taskSeconds} />
+      )}
 
       {missingChoice && (
         <p className="mt-4 flex items-start gap-2 rounded-md bg-warning-soft p-3 text-sm">

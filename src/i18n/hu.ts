@@ -526,6 +526,20 @@ export const hu = {
     examPaused: 'Az óra csak akkor jár, amikor a feladatsor nyitva van előtted.',
   },
   results: {
+    pacing: {
+      title: 'Időbeosztás',
+      body: 'Becslés: azt mérjük, melyik feladaton dolgoztál (hova írtál, mire koppintottál), amíg aktív voltál. Egy feladat pontértéke alapján annyi idő jut rá, amennyi a pontjaival arányos.',
+      slowIntro: 'Ezek a feladatok vitték el a legtöbb időt a pontértékükhöz képest:',
+      slowItem:
+        '{number} feladat: kb. {spent} perc, a pontértéke alapján kb. {budget} perc jutna rá.',
+      tip: 'Tipp a vizsgára: ha egy feladat elakaszt, jelöld meg, lépj tovább, és a végén térj vissza rá. Így nem marad idő nélkül olyan feladat, amit tudnál.',
+      good: 'Jól osztottad be az idődet: egyik feladat sem vitt el sokkal több időt, mint amennyit a pontértéke alapján érdemes.',
+      allTasks: 'Minden feladat',
+      task: 'Feladat',
+      spent: 'Ráfordított idő',
+      budget: 'Pontérték szerint',
+      minutes: '{minutes} perc',
+    },
     examples: {
       title: 'Gyakorold a pontozást mintamegoldásokon',
       intro:

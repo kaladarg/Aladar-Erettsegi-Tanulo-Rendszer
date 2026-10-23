@@ -115,6 +115,7 @@ export function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
   return (
     <article
       aria-labelledby={`task-${task.id}`}
+      data-task-id={task.id}
       className={cn(
         'rounded-lg border border-border bg-surface p-5 shadow-1 sm:p-6',
         dimmed && 'opacity-60',

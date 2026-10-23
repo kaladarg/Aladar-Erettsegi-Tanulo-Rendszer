@@ -16,6 +16,8 @@ export interface AttemptRow {
   submittedAt?: number;
   /** Time spent per timed segment (a part, or the whole paper), in seconds. */
   partSeconds: Record<string, number>;
+  /** Exam mode: seconds of activity per task id (what the student worked on), for pacing feedback. */
+  taskSeconds?: Record<string, number>;
   /** Exam mode: index of the segment being written; earlier ones are handed in. */
   segment?: number;
   /** Set when the attempt is submitted; updated as review items are marked. */

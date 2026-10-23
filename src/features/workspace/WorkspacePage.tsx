@@ -32,6 +32,7 @@ import { usePdfSource } from './pdf/usePdfSource';
 import { SaveStatus } from './SaveStatus';
 import { SubmitButton } from './SubmitButton';
 import { useAttempt } from './useAttempt';
+import { useTaskTimer } from './useTaskTimer';
 import { createWorkspace, WorkspaceContext } from './WorkspaceContext';
 import { ListeningPlayer } from './audio/ListeningPlayer';
 
@@ -51,6 +52,8 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
   const exam = state.status === 'ready' ? (state.data as Exam) : null;
   const { attemptId, failed } = useAttempt(exam ? exam.id : null, attemptMode);
   const timed = useTimedSegment(exam, attemptMode === 'exam' ? attemptId : null);
+  // Exam mode only: time per task for the pacing feedback on the results page.
+  useTaskTimer(attemptMode === 'exam' ? attemptId : null);
   const navigate = useNavigate();
   const pdf = usePdfSource(
     exam,

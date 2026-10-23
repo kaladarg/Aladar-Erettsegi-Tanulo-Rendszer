@@ -56,6 +56,7 @@ export function OverlayField({
       return (
         <select
           aria-label={name}
+          data-task-id={task.id}
           value={text}
           onChange={(e) => setAnswer(field.id, e.target.value)}
           // Native arrows eat the space of small boxes; the value is centred instead.
@@ -77,6 +78,7 @@ export function OverlayField({
       return (
         <textarea
           aria-label={name}
+          data-task-id={task.id}
           value={text}
           placeholder={field.placeholder}
           onChange={(e) => setAnswer(field.id, e.target.value)}
@@ -98,6 +100,7 @@ export function OverlayField({
       return (
         <input
           aria-label={name}
+          data-task-id={task.id}
           type="text"
           inputMode={field.kind === 'number' ? 'decimal' : 'text'}
           autoComplete="off"
@@ -120,6 +123,7 @@ function MultiOverlay({ task, field, style }: { task: Task; field: Field; style:
   return (
     <Popover.Root>
       <Popover.Trigger
+        data-task-id={task.id}
         aria-label={`${name}. ${selected.length ? t('workspace.multiSelected', { values: selected.join(', ') }) : t('workspace.multiNone')}`}
         style={style}
         className={cn(overlayClass, 'cursor-pointer px-1.5 text-left font-medium')}
@@ -180,6 +184,7 @@ function EssayOverlay({
     <>
       <button
         type="button"
+        data-task-id={task.id}
         onClick={() => setOpen(true)}
         aria-label={`${fieldName(task, field)}: ${t('workspace.writeOpen')}`}
         style={style}
