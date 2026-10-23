@@ -92,7 +92,7 @@ export function PracticeHubPage() {
           body={t('practice.hub.dailyBody')}
         />
         <HubCard
-          to="/gyakorlas/hibaim"
+          to="/gyakorlas/ismetles"
           tint="rose"
           icon={<RotateCcw />}
           title={t('practice.hub.reviewTitle')}

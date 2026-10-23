@@ -121,7 +121,7 @@ export function buildCalendar(input: CalendarInput): string {
       );
     }
     if (input.daily) {
-      const reviewUrl = new URL('gyakorlas/hibaim', input.appUrl).href;
+      const reviewUrl = new URL('gyakorlas/mai-adag', input.appUrl).href;
       lines.push(
         'BEGIN:VEVENT',
         'UID:daily-review@erettsegi-gyakorlo',
@@ -129,10 +129,10 @@ export function buildCalendar(input: CalendarInput): string {
         `DTSTART:${compact(input.today)}T${input.daily.replace(':', '')}00`,
         'DURATION:PT15M',
         `RRULE:FREQ=DAILY;${until}`,
-        `SUMMARY:${text('Érettségi: napi ismétlés (15 perc)')}`,
-        `DESCRIPTION:${text(`Hibáim és kártyák ismétlése:\n${reviewUrl}`)}`,
+        `SUMMARY:${text('Érettségi: Mai adag')}`,
+        `DESCRIPTION:${text(`Mai adag: rövid gyakorlás a választott témádból:\n${reviewUrl}`)}`,
         `URL:${reviewUrl}`,
-        ...alarm('PT0M', 'Érettségi: napi ismétlés'),
+        ...alarm('PT0M', 'Érettségi: jöhet a Mai adag'),
         'END:VEVENT',
       );
     }

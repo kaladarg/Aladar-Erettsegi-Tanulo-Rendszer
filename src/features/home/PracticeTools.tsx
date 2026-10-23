@@ -32,11 +32,7 @@ export function WhatsNew() {
   const update = useSettings((s) => s.update);
   if (!onboardingDone || seen >= CURRENT_FEATURES) return null;
   const dismiss = () => void update({ featuresSeen: CURRENT_FEATURES });
-  const items: MessageKey[] = [
-    'home.newItems.daily',
-    'home.newItems.worked',
-    'home.newItems.oralCheck',
-  ];
+  const items: MessageKey[] = ['home.newItems.daily', 'home.newItems.review'];
   return (
     <Card aria-labelledby="home-new" className="mb-10 border-primary/40">
       <div className="flex items-start justify-between gap-3">
@@ -93,7 +89,7 @@ export function PracticeTools() {
           label={t('practice.hub.topicsTitle')}
         />
         <Tool
-          to="/gyakorlas/hibaim"
+          to="/gyakorlas/ismetles"
           tint="rose"
           icon={<RotateCcw />}
           label={t('practice.hub.reviewTitle')}

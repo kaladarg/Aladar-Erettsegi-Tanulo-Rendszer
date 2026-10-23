@@ -5,7 +5,9 @@ test.beforeEach(async ({ page }) => {
   await skipOnboarding(page);
 });
 
-test('a topic round checks a task and sends the mistake to Hibáim', async ({ page }) => {
+test('a missed task goes to Ismétlés, and the student decides when it is done', async ({
+  page,
+}) => {
   await page.goto('/gyakorlas');
   await expect(page.getByRole('heading', { level: 1, name: 'Gyakorlás' })).toBeVisible();
   await page.getByRole('link', { name: /Témakörök/ }).click();
@@ -17,15 +19,49 @@ test('a topic round checks a task and sends the mistake to Hibáim', async ({ pa
   await page.getByRole('button', { name: 'Ellenőrzés' }).click();
   await expect(page.getByText('0 / 2 pont').first()).toBeVisible();
   await page.getByRole('button', { name: 'Befejezés' }).click();
-
   await expect(page.getByRole('heading', { name: 'Kész a kör!' })).toBeVisible();
   await expect(page.getByText(/1 feladatban vesztettél pontot/)).toBeVisible();
 
-  // A mistake comes back tomorrow, so today's list is empty and "Később" holds it.
+  // The old address still leads here. A miss rests until tomorrow.
   await page.goto('/gyakorlas/hibaim');
-  await expect(page.getByRole('heading', { level: 1, name: 'Hibáim' })).toBeVisible();
-  await expect(page.getByText('Mára minden ismétlés kész.')).toBeVisible();
-  await expect(page.getByRole('region', { name: 'Később' })).toContainText('1.');
+  await expect(page).toHaveURL(/gyakorlas\/ismetles/);
+  await expect(page.getByRole('heading', { level: 1, name: 'Ismétlés' })).toBeVisible();
+  await expect(page.getByText(/Most nincs átnéznivaló/)).toBeVisible();
+  const resting = page.getByRole('region', { name: 'Pihen' });
+  await expect(resting).toContainText('Nem ment elsőre');
+
+  // A review round asks the student how it went, whatever the score.
+  await resting.getByRole('button', { name: 'Átnézem most' }).click();
+  await expect(page).toHaveURL(/gyakorlas\/kor\//);
+  await page.getByRole('textbox', { name: 'x =' }).fill('5');
+  await page.getByRole('button', { name: 'Ellenőrzés' }).click();
+  await expect(page.getByRole('heading', { name: 'Hogy ment?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Jó volt, a gép tévedett' }).click();
+  await expect(page.getByRole('heading', { name: 'Kész a kör!' })).toBeVisible();
+
+  await page.goto('/gyakorlas/ismetles');
+  await page.getByText('Kész (1)').click();
+  await expect(page.getByText('Jó volt a válaszod', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: /Visszateszem a listára/ }).click();
+  await expect(toastWith(page, 'Visszakerült a listára.')).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Átnézésre vár' })).toContainText('Elmentetted');
+  await page.getByRole('button', { name: /^Már megy:/ }).click();
+  await expect(toastWith(page, 'Levetted a listáról.')).toBeVisible();
+});
+
+test('any task can be saved for Ismétlés during a round', async ({ page }) => {
+  await page.goto('/gyakorlas/temakorok');
+  await page.getByRole('searchbox', { name: 'Keresés' }).fill('elsőfokú');
+  await page.getByRole('button', { name: /elsőfokú egyenlet/ }).click();
+  await page.getByRole('button', { name: 'Ellenőrzés' }).click();
+  const save = page.getByRole('button', { name: 'Elmentem ismétlésre' });
+  await save.click();
+  await expect(page.getByRole('button', { name: 'Elmentve ismétlésre' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await page.goto('/gyakorlas/ismetles');
+  await expect(page.getByRole('region', { name: 'Átnézésre vár' })).toContainText('Elmentetted');
 });
 
 test('the study plan counts down to the exam date', async ({ page }) => {

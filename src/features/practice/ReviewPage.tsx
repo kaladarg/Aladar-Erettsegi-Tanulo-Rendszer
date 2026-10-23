@@ -1,4 +1,4 @@
-import { CalendarClock, Play, RotateCcw } from 'lucide-react';
+import { Check, CheckCheck, Clock3, Play, RotateCcw, Sparkles, Undo2 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
@@ -12,19 +12,28 @@ import { EmptyState } from '@/design/ui/EmptyState';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { Skeleton } from '@/design/ui/Skeleton';
-import { dueCards, upcomingCards, type ReviewCard } from '@/domain/practice/review';
-import { formatDate, formatNumber, t } from '@/i18n';
+import {
+  doneCards,
+  dueCards,
+  upcomingCards,
+  type ReviewCard,
+  type ReviewChoice,
+} from '@/domain/practice/review';
+import { formatDate, t } from '@/i18n';
+import { toast } from '@/state/toastStore';
 import { createDrill } from '@/storage/practice';
+import { markReview, undoReviewMark } from '@/storage/review';
 import { BackLink } from './BackLink';
 import { useReviewCards } from './useReviewCards';
 
-const MAX_ROUND = 15;
+const MAX_ROUND = 10;
 
 function parseDay(day: string) {
   const [y, m, d] = day.split('-').map(Number);
   return new Date(y!, m! - 1, d!);
 }
 
+/** Ismétlés: tasks to look at again, and the student decides when they are done. */
 export function ReviewPage() {
   usePageTitle(t('practice.review.title'));
   const cards = useReviewCards();
@@ -38,35 +47,56 @@ export function ReviewPage() {
     [cards, subject],
   );
   const due = dueCards(filtered);
-  const later = upcomingCards(filtered);
+  const resting = upcomingCards(filtered);
+  const done = doneCards(filtered);
   const subjects = DEFAULT_SUBJECTS.filter((s) => (cards ?? []).some((c) => c.subject === s.id));
 
   const start = async (list: ReviewCard[]) => {
-    const items = list.slice(0, MAX_ROUND).map((c) => ({ examId: c.examId, taskId: c.taskId }));
     // A round practises one subject at a time, so the help and lookup fit the tasks.
     const first = list[0]!.subject;
-    const id = await createDrill({
-      kind: 'review',
-      subject: first,
-      items: items.filter((_, i) => list[i]!.subject === first),
-    });
+    const items = list
+      .filter((c) => c.subject === first)
+      .slice(0, MAX_ROUND)
+      .map((c) => ({ examId: c.examId, taskId: c.taskId }));
+    const id = await createDrill({ kind: 'review', subject: first, items });
     navigate(`/gyakorlas/kor/${id}`);
   };
 
-  const describe = (card: ReviewCard) => {
+  const label = (card: ReviewCard) => {
     const entry = entries.find((e) => e.id === card.examId);
     return `${entry ? examFullTitle(entry) : card.examId} · ${t('workspace.taskHeading', { number: card.number })}`;
   };
+
+  const decide = async (card: ReviewCard, choice: ReviewChoice) => {
+    const id = await markReview(card, choice);
+    toast({
+      message:
+        choice === 'accepted'
+          ? t('practice.review.acceptedToast')
+          : choice === 'again' || choice === 'saved'
+            ? t('practice.review.backToast')
+            : t('practice.review.doneToast'),
+      tone: 'success',
+      action: { label: t('common.undo'), onAction: () => void undoReviewMark(id) },
+    });
+  };
+
+  if (cards === undefined)
+    return (
+      <>
+        <BackLink />
+        <PageHeader title={t('practice.review.title')} description={t('practice.review.intro')} />
+        <Skeleton className="h-40" />
+      </>
+    );
 
   return (
     <>
       <BackLink />
       <PageHeader title={t('practice.review.title')} description={t('practice.review.intro')} />
-      {cards === undefined ? (
-        <Skeleton className="h-40" />
-      ) : cards.length === 0 ? (
+      {cards.length === 0 ? (
         <EmptyState
-          icon={<RotateCcw />}
+          icon={<Sparkles />}
           title={t('practice.review.empty')}
           description={t('practice.review.emptyBody')}
         />
@@ -83,9 +113,10 @@ export function ReviewPage() {
               ]}
             />
           )}
+
           <Card aria-labelledby="review-due">
             <CardTitle id="review-due" className="flex items-center gap-2">
-              <CalendarClock aria-hidden="true" className="size-5 text-primary" />
+              <RotateCcw aria-hidden="true" className="size-5 text-primary" />
               {t('practice.review.dueTitle')}
             </CardTitle>
             <CardDescription>
@@ -93,39 +124,79 @@ export function ReviewPage() {
                 ? t('practice.review.dueCount', { count: due.length })
                 : t('practice.review.allDone')}
             </CardDescription>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {due.length > 0 && (
-                <Button onClick={() => void start(due)}>
-                  <Play aria-hidden="true" />
-                  {t('practice.review.start')}
-                </Button>
-              )}
-              {due.length === 0 && filtered.length > 0 && (
-                <Button variant="secondary" onClick={() => void start(later)}>
-                  <Play aria-hidden="true" />
-                  {t('practice.review.startAll')}
-                </Button>
-              )}
-            </div>
             {due.length > 0 && (
-              <ul className="mt-4 grid gap-2">
-                {due.map((card) => (
-                  <ReviewRow key={card.key} card={card} label={describe(card)} />
-                ))}
-              </ul>
+              <>
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <Button onClick={() => void start(due)}>
+                    <Play aria-hidden="true" />
+                    {t('practice.review.start')}
+                  </Button>
+                  <span className="text-sm text-muted">
+                    {t('practice.review.startHint', { count: MAX_ROUND })}
+                  </span>
+                </div>
+                <ul className="mt-4 grid gap-2">
+                  {due.map((card) => (
+                    <ReviewRow
+                      key={card.key}
+                      card={card}
+                      label={label(card)}
+                      onDecide={(choice) => void decide(card, choice)}
+                    />
+                  ))}
+                </ul>
+              </>
             )}
           </Card>
-          {later.length > 0 && (
-            <section aria-labelledby="review-later" className="grid gap-3">
-              <h2 id="review-later" className="text-xl font-semibold">
-                {t('practice.review.upcomingTitle')}
-              </h2>
+
+          {resting.length > 0 && (
+            <section aria-labelledby="review-resting" className="grid gap-3">
+              <div>
+                <h2 id="review-resting" className="flex items-center gap-2 text-xl font-semibold">
+                  <Clock3 aria-hidden="true" className="size-5 text-muted" />
+                  {t('practice.review.restingTitle')}
+                </h2>
+                <p className="text-sm text-muted">{t('practice.review.restingBody')}</p>
+              </div>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="justify-self-start"
+                onClick={() => void start(resting)}
+              >
+                <Play aria-hidden="true" />
+                {t('practice.review.practiseNow')}
+              </Button>
               <ul className="grid gap-2">
-                {later.map((card) => (
-                  <ReviewRow key={card.key} card={card} label={describe(card)} />
+                {resting.map((card) => (
+                  <ReviewRow
+                    key={card.key}
+                    card={card}
+                    label={label(card)}
+                    onDecide={(choice) => void decide(card, choice)}
+                  />
                 ))}
               </ul>
             </section>
+          )}
+
+          {done.length > 0 && (
+            <details className="rounded-lg border border-border bg-surface p-4">
+              <summary className="cursor-pointer font-semibold">
+                {t('practice.review.doneTitle', { count: done.length })}
+              </summary>
+              <p className="mt-2 text-sm text-muted">{t('practice.review.doneBody')}</p>
+              <ul className="mt-3 grid gap-2">
+                {done.map((card) => (
+                  <ReviewRow
+                    key={card.key}
+                    card={card}
+                    label={label(card)}
+                    onDecide={(choice) => void decide(card, choice)}
+                  />
+                ))}
+              </ul>
+            </details>
           )}
           <p className="text-sm text-muted">{t('practice.review.skippedNote')}</p>
         </div>
@@ -134,26 +205,87 @@ export function ReviewPage() {
   );
 }
 
-function ReviewRow({ card, label }: { card: ReviewCard; label: string }) {
+function ReviewRow({
+  card,
+  label,
+  onDecide,
+}: {
+  card: ReviewCard;
+  label: string;
+  onDecide: (choice: ReviewChoice) => void;
+}) {
+  const today = new Date();
+  const resting = card.status === 'open' && parseDay(card.due) > today;
   return (
-    <li className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-border bg-surface p-3">
-      <span className="min-w-0">
-        <span className="block font-medium">{label}</span>
-        <span className="text-sm text-muted">
+    <li className="grid gap-2 rounded-md border border-border bg-surface p-3">
+      <div className="min-w-0">
+        <p className="font-medium">{label}</p>
+        <p className="text-sm text-muted">
           {findSubject(card.subject)?.name}
           {card.topics.length > 0 && ` · ${card.topics.slice(0, 3).join(', ')}`}
-        </span>
-      </span>
-      <span className="flex flex-wrap items-center gap-2 text-sm">
-        <Badge tone={card.box === 0 ? 'warning' : 'info'}>
-          {t('practice.review.stage', { box: formatNumber(card.box + 1) })}
-        </Badge>
-        <span className="text-muted">
-          {t('practice.review.dueOn', {
-            date: formatDate(parseDay(card.due), { month: 'long', day: 'numeric' }),
-          })}
-        </span>
-      </span>
+        </p>
+        <p className="mt-1 flex flex-wrap gap-2">
+          {card.status === 'done' ? (
+            <Badge tone="success">
+              {card.doneReason === 'accepted'
+                ? t('practice.review.acceptedReason')
+                : t('practice.review.doneReason')}
+            </Badge>
+          ) : (
+            <Badge tone={card.source === 'saved' ? 'info' : 'neutral'}>
+              {card.source === 'saved'
+                ? t('practice.review.sourceSaved')
+                : t('practice.review.sourceMissed')}
+            </Badge>
+          )}
+          {card.status === 'open' && card.lastRatio === 1 && (
+            <Badge tone="success">{t('practice.review.lastRight')}</Badge>
+          )}
+          {resting && (
+            <span className="text-sm text-muted">
+              {t('practice.review.restingOn', {
+                date: formatDate(parseDay(card.due), { month: 'long', day: 'numeric' }),
+              })}
+            </span>
+          )}
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {card.status === 'done' ? (
+          <Button
+            size="sm"
+            variant="ghost"
+            aria-label={t('practice.review.putBackLabel', { task: label })}
+            onClick={() => onDecide('saved')}
+          >
+            <Undo2 aria-hidden="true" />
+            {t('practice.review.putBack')}
+          </Button>
+        ) : (
+          <>
+            <Button
+              size="sm"
+              variant="secondary"
+              aria-label={t('practice.review.markDoneLabel', { task: label })}
+              onClick={() => onDecide('done')}
+            >
+              <Check aria-hidden="true" />
+              {t('practice.review.markDone')}
+            </Button>
+            {card.source === 'missed' && (
+              <Button
+                size="sm"
+                variant="ghost"
+                aria-label={t('practice.review.markAcceptedLabel', { task: label })}
+                onClick={() => onDecide('accepted')}
+              >
+                <CheckCheck aria-hidden="true" />
+                {t('practice.review.markAccepted')}
+              </Button>
+            )}
+          </>
+        )}
+      </div>
     </li>
   );
 }

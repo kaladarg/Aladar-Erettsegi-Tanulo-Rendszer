@@ -2,11 +2,13 @@ import { describe, expect, it } from 'vitest';
 import type { AttemptRow } from '@/storage/db';
 import {
   buildCards,
+  doneCards,
   dueCards,
   examEvents,
   outcomeOf,
   upcomingCards,
   type ReviewEvent,
+  type ReviewMark,
 } from './review';
 
 const at = (day: string) => new Date(`${day}T12:00:00`).getTime();
@@ -21,28 +23,53 @@ const event = (day: string, ratio: number, extra: Partial<ReviewEvent> = {}): Re
   ...extra,
 });
 
+const mark = (day: string, choice: ReviewMark['choice'], extra: Partial<ReviewMark> = {}) => ({
+  examId: 'matematika-a',
+  taskId: '1',
+  time: at(day) + 1000,
+  choice,
+  subject: 'matematika',
+  type: 'short_answer' as const,
+  number: '1.',
+  ...extra,
+});
+
 describe('buildCards', () => {
-  it('schedules a mistake for the next day', () => {
+  it('puts a miss on the list from the next day', () => {
     const [card] = buildCards([event('2026-10-01', 0.5)]);
-    expect(card).toMatchObject({ box: 0, due: '2026-10-02', mistakes: 1 });
+    expect(card).toMatchObject({ status: 'open', source: 'missed', due: '2026-10-02' });
   });
 
-  it('moves through 1, 3 and 7 days and leaves after three correct reviews', () => {
+  it('keeps a task until the student says it is done; a right answer is only noted', () => {
     const history = [event('2026-10-01', 0), event('2026-10-02', 1)];
-    expect(buildCards(history)[0]).toMatchObject({ box: 1, due: '2026-10-05' });
-    history.push(event('2026-10-05', 1));
-    expect(buildCards(history)[0]).toMatchObject({ box: 2, due: '2026-10-12' });
-    history.push(event('2026-10-12', 1));
-    expect(buildCards(history)).toEqual([]);
+    expect(buildCards(history)[0]).toMatchObject({ status: 'open', lastRatio: 1 });
+    expect(buildCards(history, [mark('2026-10-02', 'done')])[0]).toMatchObject({
+      status: 'done',
+      doneReason: 'done',
+    });
   });
 
-  it('a new mistake starts over', () => {
-    const cards = buildCards([
-      event('2026-10-01', 0),
-      event('2026-10-02', 1),
-      event('2026-10-05', 0.5),
-    ]);
-    expect(cards[0]).toMatchObject({ box: 0, due: '2026-10-06', mistakes: 2 });
+  it('"Még gyakorolnám" brings it back after a few days', () => {
+    const [card] = buildCards([event('2026-10-01', 0)], [mark('2026-10-02', 'again')]);
+    expect(card).toMatchObject({ status: 'open', due: '2026-10-05' });
+  });
+
+  it('the student can overrule the automatic check', () => {
+    const [card] = buildCards([event('2026-10-01', 0)], [mark('2026-10-01', 'accepted')]);
+    expect(card).toMatchObject({ status: 'done', doneReason: 'accepted' });
+  });
+
+  it('a new miss after "done" puts it back', () => {
+    const cards = buildCards(
+      [event('2026-10-01', 0), event('2026-10-08', 0.5)],
+      [mark('2026-10-02', 'done')],
+    );
+    expect(cards[0]).toMatchObject({ status: 'open', due: '2026-10-09' });
+  });
+
+  it('saved tasks are on the list at once, even when they went right', () => {
+    const [card] = buildCards([event('2026-10-01', 1)], [mark('2026-10-01', 'saved')]);
+    expect(card).toMatchObject({ status: 'open', source: 'saved', due: '2026-10-01' });
   });
 
   it('ignores tasks answered right the first time and essays', () => {
@@ -52,7 +79,7 @@ describe('buildCards', () => {
 
   it('replays events in time order', () => {
     const cards = buildCards([event('2026-10-02', 1), event('2026-10-01', 0)]);
-    expect(cards[0]).toMatchObject({ box: 1 });
+    expect(cards[0]).toMatchObject({ status: 'open', lastRatio: 1 });
   });
 });
 
@@ -64,6 +91,14 @@ describe('due and upcoming', () => {
   it('splits cards by day', () => {
     expect(dueCards(cards, '2026-10-02').map((c) => c.taskId)).toEqual(['a']);
     expect(upcomingCards(cards, '2026-10-02').map((c) => c.taskId)).toEqual(['b']);
+  });
+  it('lists done tasks apart', () => {
+    const all = buildCards(
+      [event('2026-10-01', 0, { taskId: 'a' })],
+      [mark('2026-10-01', 'done', { taskId: 'a' })],
+    );
+    expect(dueCards(all, '2026-10-05')).toEqual([]);
+    expect(doneCards(all).map((c) => c.taskId)).toEqual(['a']);
   });
 });
 

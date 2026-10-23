@@ -250,7 +250,7 @@ function itemText(item: PlanItem): string {
 function itemLink(item: PlanItem, subject: string): string | null {
   switch (item.kind) {
     case 'review':
-      return item.count > 0 ? '/gyakorlas/hibaim' : null;
+      return item.count > 0 ? '/gyakorlas/ismetles' : null;
     case 'topic':
       return `/gyakorlas/temakorok?targy=${subject}&tema=${encodeURIComponent(item.topic)}`;
     case 'topicExplore':

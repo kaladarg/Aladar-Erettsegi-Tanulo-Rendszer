@@ -300,7 +300,7 @@ export function TopicsPage() {
                   <details
                     key={group.area.id}
                     open={groups.length === 1}
-                    className="group/area rounded-lg border border-border bg-surface shadow-1 open:border-border-strong"
+                    className="group/area min-w-0 rounded-lg border border-border bg-surface shadow-1 open:border-border-strong"
                   >
                     <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 p-4 [&::-webkit-details-marker]:hidden">
                       <span className="min-w-0 flex-1">
@@ -323,16 +323,16 @@ export function TopicsPage() {
                         className="size-5 shrink-0 text-muted transition-transform group-open/area:rotate-180"
                       />
                     </summary>
-                    <div className="grid gap-3 border-t border-border p-4">
+                    <div className="grid min-w-0 gap-3 border-t border-border p-3 sm:p-4">
                       {group.topics.length > 1 && (
                         <Button
                           variant="secondary"
                           size="sm"
-                          className="justify-self-start"
+                          className="h-auto max-w-full justify-self-start py-2 text-left whitespace-normal"
                           onClick={() => void startArea(group)}
                         >
                           <Shuffle aria-hidden="true" />
-                          {t('practice.topics.areaRound', { area: group.area.name })}
+                          {t('practice.topics.areaRound')}
                         </Button>
                       )}
                       <TopicList topics={sorted(group.topics)} row={row} />

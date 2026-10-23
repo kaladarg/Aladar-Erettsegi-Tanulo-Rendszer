@@ -1,12 +1,16 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import {
   ArrowRight,
+  Bookmark,
+  BookmarkCheck,
   BookOpenCheck,
   Check,
+  CheckCheck,
   Flag,
   ListChecks,
   PartyPopper,
   PencilLine,
+  RotateCcw,
   SkipForward,
   X,
 } from 'lucide-react';
@@ -45,6 +49,8 @@ import {
   setWorkedView,
 } from '@/storage/practice';
 import { ALONE, EXAMPLE, nextFromPool } from '@/domain/practice/worked';
+import { AGAIN_GAP, type ReviewChoice } from '@/domain/practice/review';
+import { markReview, undoReviewMark } from '@/storage/review';
 import { WorkedExample } from './WorkedExample';
 import { DrillSummary } from './DrillSummary';
 
@@ -352,9 +358,16 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
         <CheckedTask
           task={found.task}
           exam={found.exam}
+          kind={session.kind}
           attemptId={attemptId}
           last={session.index + 1 >= session.items.length}
-          onNext={(result) => void next(result)}
+          onNext={(result) => next(result)}
+          onRate={async (result, choice) => {
+            // Answer first, then the decision, so the decision wins over the score.
+            await record(result);
+            await markReview(reviewInfo(found.task, found.exam), choice);
+            await advance();
+          }}
           actions={worked ? workedActions : undefined}
         />
       ) : (
@@ -388,16 +401,21 @@ function DrillItem({ session, exams }: { session: DrillSessionRow; exams: Map<st
 function CheckedTask({
   task,
   exam,
+  kind,
   attemptId,
   last,
   onNext,
+  onRate,
   actions,
 }: {
   task: Task;
   exam: Exam;
+  kind: DrillSessionRow['kind'];
   attemptId: string;
   last: boolean;
-  onNext: (result: ReturnType<typeof scoreTask>) => void;
+  onNext: (result: ReturnType<typeof scoreTask>) => void | Promise<void>;
+  /** Ismétlés rounds: records the student's decision and moves on. */
+  onRate?: (result: ReturnType<typeof scoreTask>, choice: ReviewChoice) => Promise<void>;
   /** Replaces the "next" button (worked-example sessions offer choices). */
   actions?: (result: ReturnType<typeof scoreTask>) => ReactNode;
 }) {
@@ -442,16 +460,98 @@ function CheckedTask({
         exam={exam}
         headingLevel={3}
       />
-      <div className="sticky bottom-0 -mx-4 flex flex-wrap justify-end gap-2 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border">
-        {actions ? (
-          actions(result)
-        ) : (
-          <Button onClick={() => onNext(result)}>
-            {last ? t('practice.finish') : t('practice.next')}
-            <ArrowRight aria-hidden="true" />
+      {kind === 'review' && onRate && !actions ? (
+        <ReviewRating
+          missed={result.status !== 'correct'}
+          onChoose={(choice) => onRate(result, choice)}
+        />
+      ) : (
+        <div className="sticky bottom-0 -mx-4 flex flex-wrap items-center justify-end gap-2 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border">
+          {kind !== 'worked' && <SaveForReview task={task} exam={exam} />}
+          {actions ? (
+            actions(result)
+          ) : (
+            <Button onClick={() => void onNext(result)}>
+              {last ? t('practice.finish') : t('practice.next')}
+              <ArrowRight aria-hidden="true" />
+            </Button>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
+
+const reviewInfo = (task: Task, exam: Exam) => ({
+  examId: exam.id,
+  taskId: task.id,
+  subject: exam.subject,
+  type: task.type,
+  number: task.number,
+  topics: task.topics,
+});
+
+/** In an Ismétlés round the student, not the score, decides whether a task is done. */
+function ReviewRating({
+  missed,
+  onChoose,
+}: {
+  missed: boolean;
+  onChoose: (choice: ReviewChoice) => Promise<void>;
+}) {
+  const choose = (choice: ReviewChoice) => onChoose(choice);
+  return (
+    <section
+      aria-labelledby="review-rate"
+      className="sticky bottom-0 -mx-4 grid gap-2 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border"
+    >
+      <div>
+        <h3 id="review-rate" className="font-semibold">
+          {t('practice.review.rateTitle')}
+        </h3>
+        <p className="text-sm text-muted">{t('practice.review.rateBody')}</p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={() => void choose('done')}>
+          <Check aria-hidden="true" />
+          {t('practice.review.rateDone')}
+        </Button>
+        <Button variant="secondary" onClick={() => void choose('again')}>
+          <RotateCcw aria-hidden="true" />
+          {t('practice.review.rateAgain')}
+        </Button>
+        {missed && (
+          <Button variant="ghost" onClick={() => void choose('accepted')}>
+            <CheckCheck aria-hidden="true" />
+            {t('practice.review.rateAccepted')}
           </Button>
         )}
       </div>
+      <p className="text-xs text-muted">
+        {t('practice.review.rateAgainNote', { days: AGAIN_GAP })}
+      </p>
     </section>
+  );
+}
+
+/** Saves a task to the Ismétlés list, whatever its score. */
+function SaveForReview({ task, exam }: { task: Task; exam: Exam }) {
+  const [saved, setSaved] = useState<number | null>(null);
+  const toggle = async () => {
+    if (saved !== null) {
+      await undoReviewMark(saved);
+      setSaved(null);
+    } else setSaved(await markReview(reviewInfo(task, exam), 'saved'));
+  };
+  return (
+    <Button
+      variant="ghost"
+      aria-pressed={saved !== null}
+      className="mr-auto"
+      onClick={() => void toggle()}
+    >
+      {saved !== null ? <BookmarkCheck aria-hidden="true" /> : <Bookmark aria-hidden="true" />}
+      {saved !== null ? t('practice.review.saved') : t('practice.review.save')}
+    </Button>
   );
 }

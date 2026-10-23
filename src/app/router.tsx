@@ -1,4 +1,4 @@
-import { createBrowserRouter, createMemoryRouter, type RouteObject } from 'react-router';
+import { createBrowserRouter, createMemoryRouter, Navigate, type RouteObject } from 'react-router';
 import { HomePage } from '@/features/home/HomePage';
 import { NotFoundPage, RouteError } from './ErrorScreens';
 import { Layout } from './Layout';
@@ -99,11 +99,13 @@ export function createRouter() {
           }),
         },
         {
-          path: 'gyakorlas/hibaim',
+          path: 'gyakorlas/ismetles',
           lazy: async () => ({
             Component: (await import('@/features/practice/ReviewPage')).ReviewPage,
           }),
         },
+        // The list was called Hibáim before; old links and calendar entries still work.
+        { path: 'gyakorlas/hibaim', element: <Navigate to="/gyakorlas/ismetles" replace /> },
         {
           path: 'gyakorlas/kartyak',
           lazy: async () => ({

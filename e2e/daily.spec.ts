@@ -5,12 +5,25 @@ test.beforeEach(async ({ page }) => {
   await skipOnboarding(page);
 });
 
-test('Mai adag: cards first, then a mixed round, then done for today', async ({ page }) => {
-  await page.getByRole('link', { name: 'Mai adag (15 perc)' }).click();
+test('Mai adag: pick a subject and a length, cards first, then a round', async ({ page }) => {
+  await page.getByRole('link', { name: 'Mai adag', exact: true }).click();
   await expect(page).toHaveURL(/gyakorlas\/mai-adag/);
-  await expect(page.getByRole('heading', { name: /Mai adag: körülbelül \d+ perc/ })).toBeVisible();
-  await expect(page.getByText(/tanulókártya bemelegítésnek/)).toBeVisible();
-  await expect(page.getByText(/vegyes feladat/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Mit gyakorolsz ma?' })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Történelem' }).click();
+  await expect(page.getByRole('button', { name: 'Történelem' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  // No paper handed in yet: the surprise mix is the default.
+  await expect(page.getByRole('button', { name: /Lepj meg!/ })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await page.getByRole('radio', { name: '5 perc', exact: true }).click();
+  const preview = page.getByRole('status').filter({ hasText: 'Ez vár rád' });
+  await expect(preview).toContainText('3 kártya bemelegítésnek');
+  await expect(preview).toContainText(/\d+ feladat/);
   await page.getByRole('button', { name: 'Kezdjük' }).click();
 
   // The card warm-up: flip and mark every card.
@@ -22,41 +35,39 @@ test('Mai adag: cards first, then a mixed round, then done for today', async ({ 
   await expect(page.getByRole('heading', { name: 'Kártyák kész!' })).toBeVisible();
   await next.click();
 
-  // The task round (mixing subjects with the full archive; the demo papers
-  // have few, long tasks); skip through it.
   await expect(page).toHaveURL(/gyakorlas\/kor\//);
   await expect(page.getByRole('heading', { level: 1, name: 'Mai adag' })).toBeVisible();
-  const papers = new Set<string>();
   const counter = page.getByText(/^\d+ \/ \d+$/);
   const total = Number((await counter.textContent())!.split(' / ')[1]);
   expect(total).toBeGreaterThan(0);
   for (let i = 1; i <= total; i++) {
     await expect(counter).toHaveText(`${i} / ${total}`);
-    const line = await page.locator('main p', { hasText: ' · ' }).first().textContent();
-    papers.add(line!.split(' · ')[0]!);
     await page.getByRole('button', { name: 'Kihagyom' }).click();
   }
-  expect(papers.size).toBeGreaterThan(0);
   await expect(page.getByRole('heading', { name: 'Kész a mai adag!' })).toBeVisible();
   await page.getByRole('button', { name: 'Vissza a kezdőlapra' }).click();
 
-  await expect(page.getByRole('link', { name: 'Mai adag kész' })).toBeVisible();
+  // Done for today; another one can start, with the last choice kept.
   await page.getByRole('link', { name: 'Mai adag kész' }).click();
-  await expect(page.getByRole('heading', { name: 'A mai adag kész' })).toBeVisible();
-  await page.getByRole('button', { name: 'Még egy adag' }).click();
-  await expect(page.getByRole('heading', { name: /Mai adag: körülbelül/ })).toBeVisible();
+  await expect(page.getByText('Ma már megvolt egy adag. Szép munka!')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Történelem' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(page.getByRole('radio', { name: '5 perc', exact: true })).toBeChecked();
 });
 
-test('an unfinished Mai adag is continued from the home page', async ({ page }) => {
+test('Mai adag from chosen areas; an unfinished one can be continued', async ({ page }) => {
   await page.goto('/gyakorlas/mai-adag');
+  await page.getByRole('button', { name: 'Matematika' }).click();
+  const area = page.getByRole('button', { name: /Geometria, trigonometria/ });
+  await area.click();
+  await expect(area).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: /Lepj meg!/ })).toHaveAttribute(
+    'aria-pressed',
+    'false',
+  );
   await page.getByRole('button', { name: 'Kezdjük' }).click();
-  const next = page.getByRole('button', { name: 'Tovább a feladatokra' });
-  while (!(await next.isVisible())) {
-    await page.getByRole('button', { name: 'Megfordítom' }).click();
-    await page.getByRole('button', { name: 'Még tanulom' }).click();
-  }
-  await next.click();
-  await expect(page.getByRole('heading', { level: 1, name: 'Mai adag' })).toBeVisible();
   await expect(page).toHaveURL(/gyakorlas\/kor\//);
   const url = page.url();
 
@@ -68,4 +79,6 @@ test('an unfinished Mai adag is continued from the home page', async ({ page }) 
   await expect(
     page.getByRole('heading', { name: 'Van egy félbehagyott mai adagod' }),
   ).toBeVisible();
+  await page.getByRole('button', { name: 'Újat kezdek' }).click();
+  await expect(page.getByRole('heading', { name: 'Mit gyakorolsz ma?' })).toBeVisible();
 });

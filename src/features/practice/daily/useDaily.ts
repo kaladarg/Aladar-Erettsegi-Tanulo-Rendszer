@@ -1,8 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useMemo } from 'react';
-import { ALL_CARDS, CARD_SUBJECTS } from '@/content/cards';
+import { ALL_CARDS } from '@/content/cards';
 import { DEFAULT_SUBJECTS } from '@/content/catalog';
-import type { Exam } from '@/content/schema.types';
 import { useManifest } from '@/content/useContent';
 import { useExams } from '@/content/useExams';
 import { cardStates } from '@/domain/cards/schedule';
@@ -11,10 +10,12 @@ import {
   estimateMinutes,
   refKey,
   topicRatios,
+  type DailyLength,
   type DailyPlan,
 } from '@/domain/practice/daily';
 import { buildCards, examEvents, isDrillable } from '@/domain/practice/review';
-import { topicIndex } from '@/domain/practice/topics';
+import { groupByArea, type AreaGroup } from '@/domain/practice/topicAreas';
+import { topicIndex, topicKey } from '@/domain/practice/topics';
 import { scoredAttempts, topicStats } from '@/domain/stats/stats';
 import { useSettings } from '@/state/settingsStore';
 import { dayKey, db, type DrillSessionRow } from '@/storage/db';
@@ -32,10 +33,7 @@ export function useTodaysDaily(): DrillSessionRow | null | undefined {
   }, []);
 }
 
-/**
- * Subjects of the daily round: the ones the student picked, or every subject
- * of the content pack when none is picked yet.
- */
+/** Subjects to choose from: the student's own first, then the rest of the pack. */
 export function useDailySubjects(): string[] {
   const chosen = useSettings((s) => s.settings.subjects);
   const { state } = useManifest();
@@ -44,45 +42,50 @@ export function useDailySubjects(): string[] {
       state.status === 'ready'
         ? state.data.manifest.subjects.map((s) => s.id)
         : DEFAULT_SUBJECTS.map((s) => s.id);
-    const picked = chosen.filter((s) => available.includes(s));
-    return picked.length > 0 ? picked : available;
+    return [
+      ...chosen.filter((s) => available.includes(s)),
+      ...available.filter((s) => !chosen.includes(s)),
+    ];
   }, [chosen, state]);
 }
 
-/** Deck order per subject, mixed so new cards alternate between subjects. */
-function cardIdsFor(subjects: string[]): string[] {
-  const lists = CARD_SUBJECTS.filter((s) => subjects.includes(s)).map((s) =>
-    ALL_CARDS.filter((card) => card.subject === s).map((card) => card.id),
-  );
-  const ids: string[] = [];
-  for (let i = 0; lists.some((list) => i < list.length); i++)
-    for (const list of lists) if (i < list.length) ids.push(list[i]!);
-  return ids;
+export interface DailyChoiceInput {
+  subject: string;
+  areas: string[];
+  length: DailyLength;
+}
+
+export interface DailyData {
+  plan: DailyPlan;
+  /** The subject's areas with their topics, for the picker. */
+  areas: AreaGroup[];
+  /** Areas with a weak topic (below 60%), once the student has results. */
+  weakAreas: Set<string>;
+  hasResults: boolean;
 }
 
 /**
- * Builds today's plan once everything it needs has loaded. The seed is the
- * day, so the plan stays the same when the page is opened again (`round`
- * counts extra rounds on the same day).
+ * Builds the plan for the choice once the subject's papers have loaded. The
+ * seed is the day, so the plan stays the same when the page is opened again
+ * (`round` counts extra rounds on the same day).
  */
-export function useDailyPlan(subjects: string[], round = 0): DailyPlan | undefined {
+export function useDailyPlan(choice: DailyChoiceInput, round = 0): DailyData | undefined {
+  const subjects = useMemo(() => [choice.subject], [choice.subject]);
   const { exams, loading } = useExams(subjects);
   const data = useLiveQuery(async () => {
-    const [attempts, drillEvents, cardEvents] = await Promise.all([
+    const [attempts, drillEvents, cardEvents, marks] = await Promise.all([
       db.attempts.toArray(),
       db.drillEvents.toArray(),
       db.cardEvents.toArray(),
+      db.reviewMarks.toArray(),
     ]);
-    return { attempts, drillEvents, cardEvents, today: dayKey(Date.now()) };
+    return { attempts, drillEvents, cardEvents, marks, today: dayKey(Date.now()) };
   }, []);
 
-  return useMemo(() => {
+  const base = useMemo(() => {
     if (loading || !data) return undefined;
-    const { today } = data;
     const minutes = new Map<string, number>();
-    const bySubject = new Map<string, Exam[]>();
-    for (const exam of exams.values()) {
-      bySubject.set(exam.subject, [...(bySubject.get(exam.subject) ?? []), exam]);
+    for (const exam of exams.values())
       for (const part of exam.parts) {
         // A listening task needs its recording; without one in the pack it is left out.
         if (part.audio && !part.audio.file) continue;
@@ -90,19 +93,53 @@ export function useDailyPlan(subjects: string[], round = 0): DailyPlan | undefin
           if (isDrillable(task.type))
             minutes.set(refKey({ examId: exam.id, taskId: task.id }), estimateMinutes(exam, task));
       }
+    const topics = topicIndex([...exams.values()]);
+    const all = topicRatios(topicStats(scoredAttempts(data.attempts)), data.drillEvents);
+    const ratios = new Map<string, number>();
+    for (const topic of topics) {
+      const ratio = all.get(`${choice.subject}|${topicKey(topic.name)}`);
+      if (ratio !== undefined) ratios.set(topic.key, ratio);
     }
-    const topics = new Map(subjects.map((s) => [s, topicIndex(bySubject.get(s) ?? [])]));
-    return dailyPlan({
-      subjects,
-      reviewCards: buildCards([...examEvents(data.attempts), ...data.drillEvents]),
+    const areas = groupByArea(choice.subject, topics);
+    const weakAreas = new Set(
+      areas
+        .filter((group) => group.topics.some((t) => (ratios.get(t.key) ?? 1) < 0.6))
+        .map((group) => group.area.id),
+    );
+    return {
       topics,
-      ratios: topicRatios(topicStats(scoredAttempts(data.attempts)), data.drillEvents),
+      ratios,
       minutes,
-      cardIds: cardIdsFor(subjects),
-      cardStates: cardStates(data.cardEvents),
-      today,
+      areas,
+      weakAreas,
+      reviewCards: buildCards([...examEvents(data.attempts), ...data.drillEvents], data.marks),
+      states: cardStates(data.cardEvents),
+      today: data.today,
+    };
+  }, [loading, data, exams, choice.subject]);
+
+  return useMemo(() => {
+    if (!base) return undefined;
+    const known = new Set(base.areas.map((g) => g.area.id));
+    const plan = dailyPlan({
+      subject: choice.subject,
+      areas: choice.areas.filter((a) => known.has(a)),
+      length: choice.length,
+      reviewCards: base.reviewCards,
+      topics: base.topics,
+      ratios: base.ratios,
+      minutes: base.minutes,
+      cardIds: ALL_CARDS.filter((card) => card.subject === choice.subject).map((card) => card.id),
+      cardStates: base.states,
+      today: base.today,
       // Another round on the same day draws other tasks.
-      seed: Number(today.replaceAll('-', '')) + round * 7919,
+      seed: Number(base.today.replaceAll('-', '')) + round * 7919,
     });
-  }, [loading, data, exams, subjects, round]);
+    return {
+      plan,
+      areas: base.areas,
+      weakAreas: base.weakAreas,
+      hasResults: base.ratios.size > 0,
+    };
+  }, [base, choice.subject, choice.areas, choice.length, round]);
 }

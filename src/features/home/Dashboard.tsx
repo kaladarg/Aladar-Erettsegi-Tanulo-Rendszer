@@ -241,7 +241,7 @@ function CountdownCard() {
         </Button>
         {due > 0 && (
           <Button asChild size="sm">
-            <Link to="/gyakorlas/hibaim">
+            <Link to="/gyakorlas/ismetles">
               <RotateCcw aria-hidden="true" />
               {t('practice.hub.dueToday', { count: due })}
             </Link>

@@ -34,10 +34,32 @@ export interface Settings {
   cardRepeat: CardRepeat;
   /** What the student typed into the admission points calculator. */
   admission: AdmissionInputs | null;
+  /** The last Mai adag choice, offered again next time. */
+  daily: DailyChoice | null;
+}
+
+export interface DailyChoice {
+  subject: string;
+  /** Area ids of the subject; empty means "Lepj meg". */
+  areas: string[];
+  length: 5 | 10 | 15;
+}
+
+function sanitizeDaily(value: unknown): DailyChoice | null {
+  if (typeof value !== 'object' || value === null) return null;
+  const raw = value as Partial<Record<keyof DailyChoice, unknown>>;
+  if (typeof raw.subject !== 'string' || !raw.subject) return null;
+  return {
+    subject: raw.subject,
+    areas: Array.isArray(raw.areas)
+      ? raw.areas.filter((a): a is string => typeof a === 'string').slice(0, 3)
+      : [],
+    length: raw.length === 5 || raw.length === 10 ? raw.length : 15,
+  };
 }
 
 /** Bump when new features deserve a "what's new" note on the home page. */
-export const CURRENT_FEATURES = 4;
+export const CURRENT_FEATURES = 5;
 
 export type CardRepeat = 'none' | 'end';
 
@@ -62,6 +84,7 @@ export const DEFAULT_SETTINGS: Settings = {
   installHintDismissed: false,
   cardRepeat: 'none',
   admission: null,
+  daily: null,
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -129,5 +152,6 @@ export function sanitizeSettings(input: unknown): Settings {
     installHintDismissed: raw.installHintDismissed === true,
     cardRepeat: raw.cardRepeat === 'end' ? 'end' : 'none',
     admission: sanitizeAdmission(raw.admission),
+    daily: sanitizeDaily(raw.daily),
   };
 }

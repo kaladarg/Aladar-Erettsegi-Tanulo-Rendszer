@@ -4,7 +4,7 @@ Everything below runs in the browser and stores data only in IndexedDB. All of i
 
 ## Practice rounds (`/gyakorlas/kor/:id`)
 
-A round is a list of task references (`examId`, `taskId`) in `drillSessions`. Each task gets its own pseudo attempt id `drill-<round>-<index>`, so the shared answer store, autosave, help panel and scoring work unchanged and field ids of different papers never collide. "Ellenőrzés" scores the task with `scoreTask`; steps that need the student's own marking are marked in place with the results-page controls. The first check of each task is logged in `drillEvents` for the mistakes review. Only the 20 newest finished rounds are kept; their history stays in `drillEvents`.
+A round is a list of task references (`examId`, `taskId`) in `drillSessions`. Each task gets its own pseudo attempt id `drill-<round>-<index>`, so the shared answer store, autosave, help panel and scoring work unchanged and field ids of different papers never collide. "Ellenőrzés" scores the task with `scoreTask`; steps that need the student's own marking are marked in place with the results-page controls. The first check of each task is logged in `drillEvents` for the Ismétlés list. Only the 20 newest finished rounds are kept; their history stays in `drillEvents`.
 
 Essays and long writing are never drilled: they need a reader and cannot be checked at once.
 
@@ -16,33 +16,40 @@ Essays and long writing are never drilled: they need a reader and cannot be chec
 
 Students can tick several topics (or none, meaning all) for a mixed round. `mixedRound` gives weak topics (below 60%) up to half of the round, spreads it over many topics (at most two tasks per topic while others are available) and orders it so neighbouring tasks come from different topics. Interleaving helps students learn to choose the method, not only apply it: in a maths study, mixed practice beat blocked practice on a delayed test ([Rohrer & Taylor, 2007](https://doi.org/10.1007/s11251-007-9015-8)).
 
-## Hibáim: spaced review (`/gyakorlas/hibaim`)
+## Topic areas
 
-`buildCards` replays all events (handed-in papers and practice checks) in time order:
+`groupByArea` (`src/domain/practice/topicAreas.ts`) places each free-form topic tag into a few main areas per subject by keyword rules (maths by its chapters, history by period, Hungarian, geography and languages by skill), the first matching area winning. The Témakörök page lists the areas as sections that open on demand, with a mixed round per area and the five weakest topics in a "Gyakorolnivaló" box. Searching lists matching topics from every area.
 
-- a task with lost points enters the queue (box 0) and is due the next day;
-- each correct review moves it on: due again after 3, then 7 days;
-- after the third correct review in a row it leaves the queue;
-- any new mistake sends it back to 1 day.
+## Ismétlés (`/gyakorlas/ismetles`)
 
-Empty and still-pending tasks are skipped, so a half-finished paper does not flood the queue. Because the schedule is derived from events, there is no state to migrate or repair, and older attempts are picked up automatically.
+Replaces the earlier Hibáim schedule, which removed a task only after three correct reviews in a row and so kept tasks whose answers were right but not accepted by the automatic check. `buildCards` replays answers (handed-in papers and practice checks) and the student's decisions (`reviewMarks`) in time order:
 
-Why 1, 3, 7 days: spaced practice and practice testing are the two learning techniques rated most useful in the review by [Dunlosky et al. (2013)](https://doi.org/10.1177/1529100612453266); expanding gaps follow [Cepeda et al. (2006)](https://doi.org/10.1037/0033-2909.132.3.354). The short gaps suit the weeks before the exam.
+- a task with lost points comes onto the list and is suggested from the next day;
+- the student can save any task during a round ("Elmentem ismétlésre"), whatever its score;
+- in an Ismétlés round the student rates each task after checking it: "Most már megy" (off the list), "Még gyakorolnám" (back in 3 days) or, when it was marked wrong, "Jó volt, a gép tévedett" (off the list);
+- a right answer is noted but does not remove the task; only the student does;
+- a new miss after a task was taken off puts it back.
+
+The page shows what waits now, what rests until a later day, and what is done (with "Visszateszem"). The old `/gyakorlas/hibaim` address redirects here. Looking at a missed task again after a gap helps it stick ([Cepeda et al., 2006](https://doi.org/10.1037/0033-2909.132.3.354)); letting the student decide keeps the list meaningful.
+
+## Mai adag (`/gyakorlas/mai-adag`)
+
+The student picks a subject, up to three areas of it (or "Lepj meg" for a mix of the whole subject) and a length of 5, 10 or 15 minutes; the last choice is kept in `settings.daily`. `dailyPlan` (`src/domain/practice/daily.ts`) builds the session: a few study cards where the subject has them (3, 5 or 6), one or two due Ismétlés tasks that belong to the choice, then a mixed round from the chosen topics with weak topics first. Task length is estimated from the time the exam gives per point; when every task of the choice is longer than the time, the shortest one is still offered. No handed-in paper is needed.
 
 ## Study plan and countdown (`/gyakorlas/terv`)
 
 Students enter their written exam dates (`settings.examDates`; dates change every year, so the app does not ship a calendar). Phases by days left: build (> 56), practise (15–56), final (≤ 14), exam day, done. Each week (from Monday) lists:
 
-- due reviews;
+- tasks waiting on the Ismétlés list;
 - one full paper in practice mode (final phase: one timed exam), the newest paper not yet tried;
 - up to two weak topics (below 60%), or "explore a topic" when there is no data yet;
 - oral rehearsal for Hungarian and history outside the build phase.
 
-Items tick themselves off from the week's activity. The home page shows the countdown and the number of due reviews.
+Items tick themselves off from the week's activity. The home page shows the countdown and how many tasks wait on the Ismétlés list.
 
 ### Calendar export
 
-The plan page downloads an iCalendar file (`erettsegi.ics`, RFC 5545): all-day events for each future exam with reminders a week and half a day before, a weekly planning reminder (day and time chosen by the student) and, optionally, a daily 15-minute review reminder, both repeating until the last exam. Event UIDs are stable, so importing a new file updates the old events in most calendar apps. Nothing is sent anywhere.
+The plan page downloads an iCalendar file (`erettsegi.ics`, RFC 5545): all-day events for each future exam with reminders a week and half a day before, a weekly planning reminder (day and time chosen by the student) and, optionally, a daily Mai adag reminder, both repeating until the last exam. Event UIDs are stable, so importing a new file updates the old events in most calendar apps. Nothing is sent anywhere.
 
 ## Study cards (`/gyakorlas/kartyak`)
 

@@ -1,6 +1,7 @@
 import Dexie, { type EntityTable } from 'dexie';
 import type { Task } from '@/content/schema.types';
 import type { Settings } from '@/domain/settings';
+import type { ReviewMark } from '@/domain/practice/review';
 
 export interface SettingsRow extends Settings {
   key: 'app';
@@ -178,6 +179,11 @@ export interface ImportedAudioRow {
   blob: Blob;
 }
 
+/** A decision on the Ismétlés list: done, again later, answer accepted or saved. */
+export interface ReviewMarkRow extends ReviewMark {
+  id?: number;
+}
+
 /** An essay outline from the outline trainer, one per task. */
 export interface EssayOutlineRow {
   /** `<examId>/<taskId>` */
@@ -218,6 +224,7 @@ export class AppDatabase extends Dexie {
   cardEvents!: EntityTable<CardEventRow, 'id'>;
   importedAudio!: EntityTable<ImportedAudioRow, 'key'>;
   essayOutlines!: EntityTable<EssayOutlineRow, 'key'>;
+  reviewMarks!: EntityTable<ReviewMarkRow, 'id'>;
 
   constructor(name = 'erettsegi-gyakorlo') {
     super(name);
@@ -260,6 +267,8 @@ export class AppDatabase extends Dexie {
     this.version(5).stores({ importedAudio: 'key' });
     // Version 6: essay outlines.
     this.version(6).stores({ essayOutlines: 'key, updatedAt' });
+    // Version 7: the student's decisions on the Ismétlés list.
+    this.version(7).stores({ reviewMarks: '++id, [examId+taskId], time' });
   }
 }
 
@@ -285,6 +294,7 @@ export const BACKUP_TABLES = [
   'recordings',
   'cardEvents',
   'essayOutlines',
+  'reviewMarks',
 ] as const;
 export type BackupTable = (typeof BACKUP_TABLES)[number];
 

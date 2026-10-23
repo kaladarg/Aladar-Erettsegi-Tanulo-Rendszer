@@ -52,7 +52,7 @@ test('the study plan downloads a calendar file', async ({ page }) => {
   const download = page.getByRole('button', { name: 'Naptárfájl letöltése' });
   await expect(download).toBeDisabled();
   await page.getByLabel('Matematika írásbeli').fill('2027-05-04');
-  await page.getByLabel('Napi 15 perces ismétlés is').check();
+  await page.getByLabel('Napi emlékeztető a Mai adagra is').check();
   const [file] = await Promise.all([page.waitForEvent('download'), download.click()]);
   expect(file.suggestedFilename()).toBe('erettsegi.ics');
   const text = await readFile((await file.path())!, 'utf8');

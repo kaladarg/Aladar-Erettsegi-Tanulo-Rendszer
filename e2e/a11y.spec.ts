@@ -10,7 +10,7 @@ const PAGES = [
   ['/feladatsorok', 'Feladatsorok'],
   ['/gyakorlas', 'Gyakorlás'],
   ['/gyakorlas/temakorok', 'Témakörök'],
-  ['/gyakorlas/hibaim', 'Hibáim'],
+  ['/gyakorlas/ismetles', 'Ismétlés'],
   ['/gyakorlas/terv', 'Tervem'],
   ['/gyakorlas/szobeli', 'Szóbeli'],
   ['/gyakorlas/kartyak', 'Tanulókártyák'],

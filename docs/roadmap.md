@@ -16,7 +16,7 @@
 - Done: tips for the three May 2024 papers, abandon button for timed exams, Sonnet as the default AI model.
 - Done: axe checks on every screen; Lighthouse CI budget (desktop ≥ 0.9 in all categories), mobile measured in [performance.md](performance.md).
 - Done: all 18 new-format középszint papers (2024 May – 2026 October) in the private content repository.
-- Done: practice features ([practice.md](practice.md)): practice by topic, Hibáim spaced review, study plan and countdown, oral exam preparation, drawing on the paper.
+- Done: practice features ([practice.md](practice.md)): practice by topic, Ismétlés list (formerly Hibáim), study plan and countdown, oral exam preparation, drawing on the paper.
 - Done: literature cards, exam aids page, data safety (persistent storage, backup reminders, iPhone home-screen hint).
 - Done: mixed rounds, history cards with maps, calendar export, teacher links with result codes, example essays with scoring practice, onboarding and home page introduce the tools.
 - Next: mobile performance (prerendering), a manual screen-reader pass, then the v1.0.0 release.

@@ -2,14 +2,19 @@ import { dayKey, type AttemptRow, type DrillItemResult, type TaskSummary } from 
 import type { Task } from '@/content/schema.types';
 
 /**
- * Spaced review of mistakes ("Hibáim"). A task enters the queue when it was
- * answered wrongly or partly right; it comes back after 1 day, then — while it
- * keeps being answered correctly — after 3 and 7 more days, and leaves the
- * queue after the third correct review. A mistake sends it back to 1 day.
- * Spacing and repeated self-testing are among the best-supported study
- * methods (Dunlosky et al., 2013; Cepeda et al., 2006).
+ * "Ismétlés": tasks to look at again. A task comes in when it did not go
+ * fully right, or when the student saves it. The student decides when it is
+ * done: after looking at it again they say "Most már megy" (done) or "Még
+ * gyakorolnám" (back in a few days), and they can also say their answer was
+ * right and only the automatic check did not accept it. There is no
+ * pass-three-times-in-a-row rule: a right answer is noted, not required.
+ * Looking at a missed task again after a gap helps it stick (spacing:
+ * Cepeda et al., 2006); deciding for themselves keeps the list meaningful.
  */
-export const REVIEW_INTERVALS = [1, 3, 7] as const;
+/** A new miss can be looked at again from the next day. */
+export const FIRST_GAP = 1;
+/** "Még gyakorolnám" brings the task back after this many days. */
+export const AGAIN_GAP = 3;
 
 /** Tasks that need a reader (essays) are not drilled: they cannot be checked at once. */
 export const isDrillable = (type: Task['type']) => type !== 'essay' && type !== 'long_writing';
@@ -26,6 +31,28 @@ export interface ReviewEvent {
   number: string;
 }
 
+/** What the student decided about a task on the list. */
+export type ReviewChoice =
+  /** Looked at it, still want to practise: back in a few days. */
+  | 'again'
+  /** Understands it now: off the list. */
+  | 'done'
+  /** The answer was right, the automatic check did not accept it: off the list. */
+  | 'accepted'
+  /** Saved for later by the student. */
+  | 'saved';
+
+export interface ReviewMark {
+  examId: string;
+  taskId: string;
+  time: number;
+  choice: ReviewChoice;
+  subject: string;
+  type: Task['type'];
+  number: string;
+  topics?: string[];
+}
+
 export interface ReviewCard {
   key: string;
   examId: string;
@@ -34,13 +61,16 @@ export interface ReviewCard {
   topics: string[];
   number: string;
   type: Task['type'];
-  /** Correct reviews in a row since the last mistake. */
-  box: number;
-  /** Day (YYYY-MM-DD) the task is due again. */
+  status: 'open' | 'done';
+  /** Why the task is on the list: it went wrong, or the student saved it. */
+  source: 'missed' | 'saved';
+  /** Day (YYYY-MM-DD) from which it is suggested again. */
   due: string;
   lastTime: number;
-  lastRatio: number;
-  mistakes: number;
+  /** Share of points the last time it was answered, if it was. */
+  lastRatio?: number;
+  /** How it left the list. */
+  doneReason?: 'done' | 'accepted';
 }
 
 export const cardKey = (examId: string, taskId: string) => `${examId}|${taskId}`;
@@ -78,54 +108,87 @@ function taskEvent(examId: string, task: TaskSummary, time: number, subject: str
   };
 }
 
-/** Replays all events in time order into the current review cards. */
-export function buildCards(events: ReviewEvent[]): ReviewCard[] {
+/**
+ * Replays answers and the student's decisions in time order into the list.
+ * A new miss after a task was marked done puts it back; a right answer is
+ * only noted.
+ */
+export function buildCards(events: ReviewEvent[], marks: ReviewMark[] = []): ReviewCard[] {
   const cards = new Map<string, ReviewCard>();
-  for (const event of [...events].sort((a, b) => a.time - b.time)) {
-    if (!isDrillable(event.type)) continue;
-    const key = cardKey(event.examId, event.taskId);
-    const day = dayKey(event.time);
+  const timeline = [
+    ...events.map((event) => ({ time: event.time, event, mark: undefined })),
+    ...marks.map((mark) => ({ time: mark.time, event: undefined, mark })),
+  ].sort((a, b) => a.time - b.time);
+  for (const { event, mark } of timeline) {
+    const info = (event ?? mark)!;
+    if (!isDrillable(info.type)) continue;
+    const key = cardKey(info.examId, info.taskId);
+    const day = dayKey(info.time);
     const card = cards.get(key);
-    if (event.ratio < 1) {
+    if (event) {
+      if (event.ratio < 1 && (!card || card.status === 'done')) {
+        cards.set(key, {
+          key,
+          examId: event.examId,
+          taskId: event.taskId,
+          subject: event.subject,
+          topics: event.topics ?? card?.topics ?? [],
+          number: event.number,
+          type: event.type,
+          status: 'open',
+          source: 'missed',
+          due: addDays(day, FIRST_GAP),
+          lastTime: event.time,
+          lastRatio: event.ratio,
+        });
+      } else if (card) {
+        cards.set(key, { ...card, lastTime: event.time, lastRatio: event.ratio });
+      }
+      continue;
+    }
+    const m = mark!;
+    if (m.choice === 'saved') {
       cards.set(key, {
         key,
-        examId: event.examId,
-        taskId: event.taskId,
-        subject: event.subject,
-        topics: event.topics ?? card?.topics ?? [],
-        number: event.number,
-        type: event.type,
-        box: 0,
-        due: addDays(day, REVIEW_INTERVALS[0]),
-        lastTime: event.time,
-        lastRatio: event.ratio,
-        mistakes: (card?.mistakes ?? 0) + 1,
+        examId: m.examId,
+        taskId: m.taskId,
+        subject: m.subject,
+        topics: m.topics ?? card?.topics ?? [],
+        number: m.number,
+        type: m.type,
+        status: 'open',
+        source: card?.status === 'open' ? card.source : 'saved',
+        due: day,
+        lastTime: card?.lastTime ?? m.time,
+        lastRatio: card?.lastRatio,
       });
     } else if (card) {
-      const box = card.box + 1;
-      if (box >= REVIEW_INTERVALS.length) cards.delete(key);
-      else
-        cards.set(key, {
-          ...card,
-          box,
-          due: addDays(day, REVIEW_INTERVALS[box]!),
-          lastTime: event.time,
-          lastRatio: 1,
-        });
+      cards.set(
+        key,
+        m.choice === 'again'
+          ? { ...card, status: 'open', due: addDays(day, AGAIN_GAP), doneReason: undefined }
+          : { ...card, status: 'done', doneReason: m.choice },
+      );
     }
   }
   return [...cards.values()];
 }
 
-/** Cards due today or earlier, the longest-waiting first. */
+/** Open tasks suggested for today or earlier, the longest waiting first. */
 export const dueCards = (cards: ReviewCard[], today = dayKey(Date.now())) =>
   cards
-    .filter((c) => c.due <= today)
+    .filter((c) => c.status === 'open' && c.due <= today)
     .sort((a, b) => a.due.localeCompare(b.due) || a.lastTime - b.lastTime);
 
-/** Cards waiting for a later day, soonest first. */
+/** Open tasks resting until a later day, soonest first. */
 export const upcomingCards = (cards: ReviewCard[], today = dayKey(Date.now())) =>
-  cards.filter((c) => c.due > today).sort((a, b) => a.due.localeCompare(b.due));
+  cards
+    .filter((c) => c.status === 'open' && c.due > today)
+    .sort((a, b) => a.due.localeCompare(b.due));
+
+/** Tasks the student took off the list, the latest first. */
+export const doneCards = (cards: ReviewCard[]) =>
+  cards.filter((c) => c.status === 'done').sort((a, b) => b.lastTime - a.lastTime);
 
 export type Outcome = 'correct' | 'partial' | 'wrong' | 'skipped';
 

@@ -70,23 +70,26 @@ const review = (subject: string, examId: string, taskId: string, due: string): R
   topics: [],
   number: taskId,
   type: 'short_answer',
-  box: 0,
+  status: 'open',
+  source: 'missed',
   due,
   lastTime: 0,
   lastRatio: 0,
-  mistakes: 1,
 });
 
+// Topic names that fall into two maths areas: functions and sets.
 const base = (): DailyInput => {
-  const topics = new Map([
-    ['matematika', [topic('fuggvenyek', ['m|1', 'm|2', 'm|3']), topic('halmazok', ['m|4', 'm|5'])]],
-    ['tortenelem', [topic('okor', ['t|1', 't|2']), topic('kozepkor', ['t|3', 't|4'])]],
-  ]);
+  const topics = [
+    topic('függvények', ['m|1', 'm|2', 'm|3']),
+    topic('számtani sorozat', ['m|4', 'm|5']),
+    topic('halmazok', ['m|6', 'm|7', 'm|8']),
+  ];
   const minutes = new Map<string, number>();
-  for (const list of topics.values())
-    for (const t of list) for (const ref of t.tasks) minutes.set(refKey(ref), 2);
+  for (const t of topics) for (const ref of t.tasks) minutes.set(refKey(ref), 2);
   return {
-    subjects: ['matematika', 'tortenelem'],
+    subject: 'matematika',
+    areas: [],
+    length: 15,
     reviewCards: [],
     topics,
     ratios: new Map(),
@@ -99,63 +102,67 @@ const base = (): DailyInput => {
 };
 
 describe('dailyPlan', () => {
-  it('fills about 15 minutes and alternates subjects', () => {
-    const plan = dailyPlan(base());
-    expect(plan.minutes).toBeLessThanOrEqual(15);
-    expect(plan.tasks.length).toBe(7);
-    const subjects = plan.tasks.map((t) => t.subject);
-    for (let i = 1; i < 4; i++) expect(subjects[i]).not.toBe(subjects[i - 1]);
-    expect(new Set(plan.tasks.map(refKey)).size).toBe(plan.tasks.length);
+  it('fills the chosen length with tasks of the subject, without repeats', () => {
+    for (const length of [5, 10, 15] as const) {
+      const plan = dailyPlan({ ...base(), length });
+      expect(plan.minutes).toBeLessThanOrEqual(length);
+      expect(plan.tasks.length).toBeGreaterThan(0);
+      expect(new Set(plan.tasks.map(refKey)).size).toBe(plan.tasks.length);
+    }
   });
 
-  it('puts due mistakes in, but leaves room for new practice', () => {
+  it('keeps to the chosen areas', () => {
+    const plan = dailyPlan({ ...base(), areas: ['gondolkodas'] });
+    expect(plan.tasks.map((t) => t.taskId).sort()).toEqual(['6', '7', '8']);
+  });
+
+  it('works without any results ("Lepj meg" mixes every topic)', () => {
+    const plan = dailyPlan(base());
+    const topicsUsed = new Set(plan.tasks.map((t) => (Number(t.taskId) <= 5 ? 'f' : 'h')));
+    expect(topicsUsed.size).toBe(2);
+  });
+
+  it('brings in Ismétlés tasks that fit the choice, spread among the others', () => {
     const input = base();
     input.reviewCards = [
-      review('matematika', 'm', '1', '2026-10-20'),
-      review('matematika', 'm', '2', '2026-10-19'),
-      review('matematika', 'm', '3', '2026-10-21'),
-      review('matematika', 'm', '4', '2026-10-21'),
-      review('matematika', 'm', '5', '2026-10-21'),
-      // Not due yet, and a subject that was not chosen.
-      review('matematika', 'x', '9', '2026-10-25'),
+      review('matematika', 'm', '6', '2026-10-20'),
+      review('matematika', 'm', '1', '2026-10-19'),
+      // Not due yet, and another subject.
+      review('matematika', 'm', '7', '2026-10-25'),
       review('angol', 'a', '1', '2026-10-01'),
     ];
-    input.minutes.set('x|9', 2).set('a|1', 2);
-    const plan = dailyPlan(input);
+    input.minutes.set('a|1', 2);
+    const plan = dailyPlan({ ...input, areas: ['gondolkodas'] });
     const reviews = plan.tasks.filter((t) => t.reason === 'review');
-    expect(reviews.map((t) => t.taskId)).toEqual(['2', '1', '3']);
-    expect(plan.tasks.some((t) => t.subject === 'tortenelem')).toBe(true);
-    expect(plan.tasks.some((t) => t.examId === 'x' || t.examId === 'a')).toBe(false);
+    expect(reviews.map((t) => t.taskId)).toEqual(['6']);
+    expect(plan.tasks[0]!.reason).not.toBe('review');
   });
 
   it('marks tasks from weak topics', () => {
     const input = base();
-    input.ratios.set('tortenelem|okor', 0.2);
-    const plan = dailyPlan(input);
-    const weak = plan.tasks.filter((t) => t.reason === 'weak');
+    input.ratios.set('halmazok', 0.2);
+    const weak = dailyPlan(input).tasks.filter((t) => t.reason === 'weak');
     expect(weak.length).toBeGreaterThan(0);
-    expect(weak.every((t) => t.examId === 't' && ['1', '2'].includes(t.taskId))).toBe(true);
+    expect(weak.every((t) => ['6', '7', '8'].includes(t.taskId))).toBe(true);
   });
 
-  it('keeps time for the cards and still offers at least two short tasks', () => {
+  it('starts with a few cards when the subject has them', () => {
+    const input = { ...base(), cardIds: Array.from({ length: 20 }, (_, i) => `c${i}`) };
+    expect(dailyPlan({ ...input, length: 5 }).cards).toHaveLength(3);
+    expect(dailyPlan({ ...input, length: 15 }).cards).toHaveLength(6);
+  });
+
+  it('leaves out tasks too long for the round but never ends up empty', () => {
     const input = base();
-    input.cardIds = Array.from({ length: 20 }, (_, i) => `c${i}`);
-    for (const key of input.minutes.keys()) input.minutes.set(key, 6);
-    const plan = dailyPlan(input);
-    expect(plan.cards).toHaveLength(9);
-    expect(plan.tasks).toHaveLength(2);
+    for (const key of input.minutes.keys()) input.minutes.set(key, key === 'm|2' ? 4 : 30);
+    expect(dailyPlan({ ...input, length: 5 }).tasks.map((t) => t.taskId)).toEqual(['2']);
+    // Only long tasks: the shortest one still comes.
+    for (const key of input.minutes.keys()) input.minutes.set(key, key === 'm|7' ? 20 : 40);
+    expect(dailyPlan({ ...input, length: 5 }).tasks.map((t) => t.taskId)).toEqual(['7']);
   });
 
-  it('leaves out tasks too long for the round', () => {
-    const input = base();
-    for (const key of input.minutes.keys()) input.minutes.set(key, key.startsWith('t|') ? 30 : 2);
-    const plan = dailyPlan(input);
-    expect(plan.tasks.every((t) => t.subject === 'matematika')).toBe(true);
-    expect(plan.minutes).toBeLessThanOrEqual(15);
-  });
-
-  it('is empty when nothing can be practised', () => {
-    const plan = dailyPlan({ ...base(), subjects: [] });
+  it('is empty when the chosen areas have no tasks', () => {
+    const plan = dailyPlan({ ...base(), areas: ['geometria'] });
     expect(plan).toEqual({ cards: [], tasks: [], minutes: 0 });
   });
 });

@@ -12,11 +12,12 @@ export function usePlan(): SubjectPlan[] | undefined {
   const exams = state.status === 'ready' ? state.data.manifest.exams : null;
   return useLiveQuery(async () => {
     if (!exams) return undefined;
-    const [attempts, drills, drillEvents, oralTopics] = await Promise.all([
+    const [attempts, drills, drillEvents, oralTopics, marks] = await Promise.all([
       db.attempts.toArray(),
       db.drillSessions.toArray(),
       db.drillEvents.toArray(),
       db.oralTopics.toArray(),
+      db.reviewMarks.toArray(),
     ]);
     return studyPlan({
       today: dayKey(Date.now()),
@@ -24,7 +25,7 @@ export function usePlan(): SubjectPlan[] | undefined {
       attempts,
       drills,
       oralTopics,
-      cards: buildCards([...examEvents(attempts), ...drillEvents]),
+      cards: buildCards([...examEvents(attempts), ...drillEvents], marks),
       exams,
     });
   }, [examDates, exams]);
