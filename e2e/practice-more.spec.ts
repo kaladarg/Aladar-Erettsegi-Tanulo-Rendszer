@@ -32,7 +32,7 @@ test('history cards: map card, flip, mark and progress', async ({ page }) => {
   await page.keyboard.press('Space');
   await expect(page.getByRole('heading', { name: 'Válasz' })).toBeVisible();
   await page.keyboard.press('1');
-  await expect(page.getByText('3 / 16')).toBeVisible();
+  await expect(page.getByText('3 / 15')).toBeVisible();
 
   // The last mark is written to IndexedDB in the background; a full page load
   // right after it can come first, so load the overview until it shows up.

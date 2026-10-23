@@ -26,12 +26,20 @@ export interface Settings {
   backupSnoozedUntil: number;
   /** The student closed the "add to home screen" hint for iPhone. */
   installHintDismissed: boolean;
+  /**
+   * Study cards: "none" shows every card once per round (the ones not known
+   * can be practised after); "end" brings each card not known back once at
+   * the end of the same round.
+   */
+  cardRepeat: CardRepeat;
   /** What the student typed into the admission points calculator. */
   admission: AdmissionInputs | null;
 }
 
 /** Bump when new features deserve a "what's new" note on the home page. */
 export const CURRENT_FEATURES = 4;
+
+export type CardRepeat = 'none' | 'end';
 
 export const AI_MODELS = ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5'] as const;
 export type AiModel = (typeof AI_MODELS)[number];
@@ -52,6 +60,7 @@ export const DEFAULT_SETTINGS: Settings = {
   lastBackupAt: 0,
   backupSnoozedUntil: 0,
   installHintDismissed: false,
+  cardRepeat: 'none',
   admission: null,
 };
 
@@ -118,6 +127,7 @@ export function sanitizeSettings(input: unknown): Settings {
     lastBackupAt: timestamp(raw.lastBackupAt),
     backupSnoozedUntil: timestamp(raw.backupSnoozedUntil),
     installHintDismissed: raw.installHintDismissed === true,
+    cardRepeat: raw.cardRepeat === 'end' ? 'end' : 'none',
     admission: sanitizeAdmission(raw.admission),
   };
 }

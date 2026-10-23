@@ -47,6 +47,7 @@ describe('sanitizeSettings', () => {
       lastBackupAt: 1_790_000_000_000,
       backupSnoozedUntil: 0,
       installHintDismissed: true,
+      cardRepeat: 'end',
       admission: null,
     } as const;
     expect(sanitizeSettings(valid)).toEqual(valid);

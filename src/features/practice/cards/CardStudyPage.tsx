@@ -1,5 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Check, Layers, RotateCcw, Undo2, X } from 'lucide-react';
+import { Check, Layers, RotateCcw, Settings2, Undo2, X } from 'lucide-react';
+import { Dialog, RadioGroup } from 'radix-ui';
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
@@ -19,6 +20,7 @@ import { formatNumber, t } from '@/i18n';
 import { recordCardAnswer, undoCardAnswer } from '@/storage/cards';
 import { db } from '@/storage/db';
 import { cn } from '@/lib/cn';
+import { useSettings } from '@/state/settingsStore';
 import { Celebration } from '@/design/ui/Celebration';
 import { CardMap } from './CardMap';
 import { deckPage } from './links';
@@ -62,6 +64,8 @@ export function CardStudyPage() {
   const events = useLiveQuery(() => db.cardEvents.toArray(), []);
   const [session, setSession] = useState<Session | null>(null);
   const [round, setRound] = useState(0);
+  // Each new session (another round, or the missed cards again) gets a fresh Study.
+  const [sessionId, setSessionId] = useState(0);
   const [startedRound, setStartedRound] = useState(-1);
   const back = deckPage(filter);
 
@@ -79,6 +83,7 @@ export function CardStudyPage() {
   const startExtra = (seed: number) => {
     const ids = filterCards(filter).map((c) => c.id);
     setSession({ queue: shuffle(ids, seed).slice(0, EXTRA_SIZE), extra: true });
+    setSessionId((n) => n + 1);
   };
 
   return (
@@ -90,6 +95,7 @@ export function CardStudyPage() {
           </Link>
         </Button>
         <h1 className="min-w-0 flex-1 truncate font-semibold">{title}</h1>
+        <RoundSettings />
       </header>
       <main
         id="main"
@@ -116,11 +122,14 @@ export function CardStudyPage() {
           />
         ) : (
           <Study
-            key={`${round}-${session.extra}-${session.queue.join()}`}
+            key={`${round}-${sessionId}`}
             session={session}
             back={back}
             onRestart={() => setRound((r) => r + 1)}
-            onPractice={(ids) => setSession({ queue: ids, extra: true })}
+            onPractice={(ids) => {
+              setSession({ queue: ids, extra: true });
+              setSessionId((n) => n + 1);
+            }}
           />
         )}
       </main>
@@ -159,6 +168,7 @@ export function Study({
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [marks, setMarks] = useState<Mark[]>([]);
+  const repeat = useSettings((s) => s.settings.cardRepeat);
   // The card just marked, flying out on top of the next one.
   const [outgoing, setOutgoing] = useState<{
     card: StudyCard;
@@ -179,9 +189,13 @@ export function Study({
   // The summary counts cards, not marks: a card missed once is "still learning" even if known later.
   const knownCards = new Set(marks.map((m) => m.cardId)).size - missed.length;
 
+  // One mark per card: a quick second tap or key press waits for the next card.
+  const markedIndex = useRef(-1);
   const mark = (wasKnown: boolean, from: Release = STILL) => {
-    if (!card) return;
-    const requeued = !wasKnown && !marks.some((m) => m.cardId === card.id && !m.known);
+    if (!card || markedIndex.current === index) return;
+    markedIndex.current = index;
+    const requeued =
+      repeat === 'end' && !wasKnown && !marks.some((m) => m.cardId === card.id && !m.known);
     const event = session.extra ? undefined : recordCardAnswer(card.id, wasKnown);
     setMarks([...marks, { cardId: card.id, known: wasKnown, requeued, event }]);
     // A card not known comes back once at the end of the round.
@@ -196,6 +210,7 @@ export function Study({
   const undo = () => {
     const last = marks.at(-1);
     if (!last) return;
+    markedIndex.current = -1;
     setOutgoing(null);
     if (last.event) void last.event.then(undoCardAnswer);
     if (last.requeued) setQueue(queue.slice(0, -1));
@@ -626,4 +641,76 @@ function textSize(text: string): string {
   if (text.length <= 120) return 'text-lg font-medium';
   if (text.length <= 180) return 'text-base';
   return 'text-sm sm:text-base';
+}
+
+/** How a round treats cards not known: shown once, or back at the end of the round. */
+function RoundSettings() {
+  const repeat = useSettings((s) => s.settings.cardRepeat);
+  const update = useSettings((s) => s.update);
+  const options = [
+    {
+      value: 'none' as const,
+      title: t('practice.cards.repeatNone'),
+      body: t('practice.cards.repeatNoneBody'),
+      when: t('practice.cards.repeatNoneWhen'),
+    },
+    {
+      value: 'end' as const,
+      title: t('practice.cards.repeatEnd'),
+      body: t('practice.cards.repeatEndBody'),
+      when: t('practice.cards.repeatEndWhen'),
+    },
+  ];
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <Button variant="ghost" size="icon" aria-label={t('practice.cards.settings')}>
+          <Settings2 aria-hidden="true" />
+        </Button>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-40 anim-overlay bg-black/50 backdrop-blur-[2px]" />
+        <Dialog.Content className="fixed inset-x-0 bottom-0 z-50 max-h-[92dvh] anim-dialog overflow-y-auto rounded-t-xl border border-border bg-surface p-6 shadow-3 sm:top-1/2 sm:right-auto sm:bottom-auto sm:left-1/2 sm:w-[calc(100%-2rem)] sm:max-w-md sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-xl">
+          <Dialog.Title className="text-xl font-semibold">
+            {t('practice.cards.settingsTitle')}
+          </Dialog.Title>
+          <Dialog.Description className="mt-1 text-muted">
+            {t('practice.cards.settingsIntro')}
+          </Dialog.Description>
+          <RadioGroup.Root
+            value={repeat}
+            onValueChange={(value) => void update({ cardRepeat: value === 'end' ? 'end' : 'none' })}
+            aria-label={t('practice.cards.settingsTitle')}
+            className="mt-4 grid gap-3"
+          >
+            {options.map((option) => (
+              <RadioGroup.Item
+                key={option.value}
+                value={option.value}
+                className="grid gap-1 rounded-xl border-2 border-border bg-surface p-4 text-left transition-colors data-[state=checked]:border-primary data-[state=checked]:bg-primary-soft"
+              >
+                <span className="flex items-center gap-2 font-semibold">
+                  <span
+                    aria-hidden="true"
+                    className="grid size-5 shrink-0 place-items-center rounded-full border-2 border-current text-primary"
+                  >
+                    {repeat === option.value && (
+                      <span className="size-2.5 rounded-full bg-current" />
+                    )}
+                  </span>
+                  {option.title}
+                </span>
+                <span className="text-sm">{option.body}</span>
+                <span className="text-sm text-muted">{option.when}</span>
+              </RadioGroup.Item>
+            ))}
+          </RadioGroup.Root>
+          <p className="mt-4 text-sm text-muted">{t('practice.cards.settingsNote')}</p>
+          <Dialog.Close asChild>
+            <Button className="mt-4 w-full">{t('practice.cards.done')}</Button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
 }

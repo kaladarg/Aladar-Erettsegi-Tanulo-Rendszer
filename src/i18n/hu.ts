@@ -980,6 +980,20 @@ export const hu = {
       flip: 'Megfordítom',
       flipHint:
         'Kattints a kártyára vagy nyomd meg a szóközt a megfordításhoz · ←: még tanulom · →: tudom · Z: visszavonás',
+      settings: 'Beállítások',
+      settingsTitle: 'Hogyan menjen a kör?',
+      settingsIntro: 'Mi legyen azokkal a kártyákkal, amelyeket balra húzol (még tanulod)?',
+      repeatNone: 'Egyszer végig',
+      repeatNoneBody:
+        'Minden kártya csak egyszer jön, a kör gyorsan végigér. A végén a nem tudott kártyákat egy gombbal külön is gyakorolhatod.',
+      repeatNoneWhen: 'Akkor jó, ha át akarod nézni a paklit, és látni akarod, mennyit tudsz már.',
+      repeatEnd: 'Visszajönnek a kör végén',
+      repeatEndBody:
+        'Amit balra húzol, az a kör végén még egyszer előjön. A kör hosszabb, de rögtön újra megpróbálod.',
+      repeatEndWhen:
+        'Akkor jó, ha most tanulsz új kártyákat: ha kis szünet után újra felidézed, jobban megmarad.',
+      settingsNote: 'Az ismétlés (1, 3, 7, 21 nap) mindkét esetben ugyanúgy működik.',
+      done: 'Kész',
       swipeHint:
         'Koppints a kártyára a megfordításhoz. Húzd jobbra, ha tudod, balra, ha még tanulod.',
       undo: 'Visszavonás',

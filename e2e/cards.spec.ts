@@ -40,7 +40,7 @@ test('flashcards turn over, swipe right to mark known, and undo', async ({ page 
 
   // The arrow key marks "Még tanulom"; undo takes it back.
   await page.keyboard.press('ArrowLeft');
-  await expect(page.getByText('3 / 16')).toBeVisible();
+  await expect(page.getByText('3 / 15')).toBeVisible();
   await page.getByRole('button', { name: 'Visszavonás' }).click();
   await expect(page.getByText('2 / 15')).toBeVisible();
 });
@@ -57,6 +57,8 @@ test('the quiz scores answers and lists the ones to review', async ({ page }) =>
 });
 
 test('matching all pairs stops the clock', async ({ page }) => {
+  // Tries the pairs one by one, which takes a while on a slow device.
+  test.setTimeout(90_000);
   await page.goto('/gyakorlas/kartyak/jatek/parosito?pakli=evszamok');
   const prompts = page.getByRole('list', { name: 'Kérdések' }).getByRole('button');
   const answers = page.getByRole('list', { name: 'Válaszok' }).getByRole('button');
@@ -80,4 +82,45 @@ test('typing accepts answers without accents and can be overridden', async ({ pa
   await expect(page.getByRole('status')).toContainText('Nem ez. A helyes válasz:');
   await page.getByRole('button', { name: 'Jónak számít' }).click();
   await expect(page.getByRole('status')).toHaveText('Helyes!');
+});
+
+/** Marks every card of the round as "Még tanulom", one card at a time. */
+async function missAll(page: import('@playwright/test').Page) {
+  const progress = page.getByText(/^\d+ \/ \d+$/);
+  const total = Number((await progress.textContent())!.split('/ ')[1]);
+  for (let i = 1; i <= total; i++) {
+    await expect(progress).toHaveText(`${i} / ${total}`);
+    await page.keyboard.press('ArrowLeft');
+  }
+}
+
+test('cards not known can come back in the round, and practising them again always works', async ({
+  page,
+}) => {
+  const deck = '/gyakorlas/kartyak/tanulas?targy=angol&pakli=kotoszavak&mind=1';
+  await page.goto(deck);
+  await expect(page.getByText(/^1 \/ \d+$/)).toBeVisible();
+
+  // The menu explains both ways; bringing missed cards back makes the round longer.
+  await page.getByRole('button', { name: 'Beállítások' }).click();
+  const dialog = page.getByRole('dialog', { name: 'Hogyan menjen a kör?' });
+  await expect(dialog.getByRole('radio', { name: /Egyszer végig/ })).toBeChecked();
+  await dialog.getByRole('radio', { name: /Visszajönnek a kör végén/ }).click();
+  await dialog.getByRole('button', { name: 'Kész' }).click();
+  const total = Number((await page.getByText(/^1 \/ \d+$/).textContent())!.split('/ ')[1]);
+  await page.getByRole('button', { name: 'Még tanulom', exact: true }).click();
+  await expect(page.getByText(`2 / ${total + 1}`)).toBeVisible();
+
+  // Back to one pass: practise the missed cards again and again.
+  await page.getByRole('button', { name: 'Beállítások' }).click();
+  await dialog.getByRole('radio', { name: /Egyszer végig/ }).click();
+  await dialog.getByRole('button', { name: 'Kész' }).click();
+  await page.goto(deck);
+  await missAll(page);
+  const again = page.getByRole('button', { name: /Gyakorlom, amit még tanulok/ });
+  for (let round = 0; round < 4; round++) {
+    await again.click();
+    await missAll(page);
+    await expect(again).toBeVisible();
+  }
 });
