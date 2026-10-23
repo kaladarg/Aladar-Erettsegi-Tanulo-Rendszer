@@ -28,11 +28,13 @@ export function CardMap({
   lon,
   view,
   label,
+  className,
 }: {
   lat: number;
   lon: number;
   view: MapViewId;
   label: string;
+  className?: string;
 }) {
   const paths = useMapPaths();
   const v = MAP_VIEWS[view];
@@ -44,7 +46,7 @@ export function CardMap({
       role="img"
       aria-label={label}
       viewBox={`${v.x} ${v.y} ${v.w} ${v.h}`}
-      className="block h-auto w-full rounded-md border border-border"
+      className={className ?? 'block h-auto w-full rounded-md border border-border'}
       style={{ background: 'var(--c-map-water, #cfe8f3)' }}
     >
       <path d={paths.LAND_PATH} fill="#f4f1e8" stroke="#8a8a8a" strokeWidth={unit * 0.8} />

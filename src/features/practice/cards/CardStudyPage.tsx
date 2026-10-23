@@ -26,7 +26,20 @@ import { deckPage } from './links';
 const NEW_PER_SESSION = 15;
 const EXTRA_SIZE = 20;
 /** How far (px) a card must be dragged to count as a swipe. */
-const SWIPE_DISTANCE = 100;
+const SWIPE_DISTANCE = 110;
+/** A quick flick (px per ms) counts as a swipe even when short. */
+const FLICK_SPEED = 0.6;
+
+/** Where and how fast the card was let go. */
+interface Release {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  /** Degrees per px of horizontal drag: grabbed low, the card tilts the other way. */
+  tilt: number;
+}
+const STILL: Release = { x: 0, y: 0, vx: 0, vy: 0, tilt: 1 / 16 };
 
 export interface Session {
   queue: string[];
@@ -150,7 +163,7 @@ export function Study({
   const [outgoing, setOutgoing] = useState<{
     card: StudyCard;
     side: 'left' | 'right';
-    from: number;
+    from: Release;
     flipped: boolean;
     key: number;
   } | null>(null);
@@ -164,7 +177,7 @@ export function Study({
   const learning = marks.length - known;
   const missed = [...new Set(marks.filter((m) => !m.known).map((m) => m.cardId))];
 
-  const mark = (wasKnown: boolean, from = 0) => {
+  const mark = (wasKnown: boolean, from: Release = STILL) => {
     if (!card) return;
     const requeued = !wasKnown && !marks.some((m) => m.cardId === card.id && !m.known);
     const event = session.extra ? undefined : recordCardAnswer(card.id, wasKnown);
@@ -173,7 +186,7 @@ export function Study({
     if (requeued) setQueue([...queue, card.id]);
     const key = Date.now();
     setOutgoing({ card, side: wasKnown ? 'right' : 'left', from, flipped, key });
-    window.setTimeout(() => setOutgoing((o) => (o?.key === key ? null : o)), 220);
+    window.setTimeout(() => setOutgoing((o) => (o?.key === key ? null : o)), 450);
     setFlipped(false);
     setIndex(index + 1);
   };
@@ -283,15 +296,19 @@ export function Study({
       <div className="flex items-center justify-between">
         <span className="min-w-12 rounded-full border border-warning bg-warning-soft px-3 py-1 text-center font-bold text-warning tabular-nums">
           <span className="sr-only">{t('practice.cards.unknown')}: </span>
-          {formatNumber(learning)}
+          <span key={learning} className="inline-block motion-safe:animate-pop-in">
+            {formatNumber(learning)}
+          </span>
         </span>
         <span className="min-w-12 rounded-full border border-success bg-success-soft px-3 py-1 text-center font-bold text-success tabular-nums">
           <span className="sr-only">{t('practice.cards.known')}: </span>
-          {formatNumber(known)}
+          <span key={known} className="inline-block motion-safe:animate-pop-in">
+            {formatNumber(known)}
+          </span>
         </span>
       </div>
 
-      <div className="relative">
+      <div className="relative z-10">
         <SwipeCard
           key={`${index}-${card.id}`}
           card={card}
@@ -357,7 +374,11 @@ export function Study({
   );
 }
 
-/** The card: tap to turn it over, drag it sideways to mark it. */
+/**
+ * The card. A tap turns it over; it can be grabbed and moved freely, and
+ * dragged (or flicked) far enough to the right it counts as known, to the
+ * left as still learning. Let go early, it springs back.
+ */
 function SwipeCard({
   card,
   flipped,
@@ -372,35 +393,64 @@ function SwipeCard({
   again: boolean;
   answerHeading?: React.RefObject<HTMLHeadingElement | null>;
   onFlip?: () => void;
-  onSwipe?: (known: boolean, from: number) => void;
+  onSwipe?: (known: boolean, release: Release) => void;
   /** A marked card flying out from where it was let go. */
-  exit?: { side: 'left' | 'right'; from: number };
+  exit?: { side: 'left' | 'right'; from: Release };
 }) {
-  const [dx, setDx] = useState(exit?.from ?? 0);
+  const [pos, setPos] = useState({ x: exit?.from.x ?? 0, y: exit?.from.y ?? 0 });
+  const [tilt, setTilt] = useState(exit?.from.tilt ?? STILL.tilt);
+  const [dragging, setDragging] = useState(false);
   const [launched, setLaunched] = useState(false);
+  const drag = useRef<{
+    x: number;
+    y: number;
+    id: number;
+    moved: boolean;
+    samples: { x: number; y: number; t: number }[];
+    past: boolean;
+  } | null>(null);
+
   useEffect(() => {
     if (!exit) return;
     const frame = requestAnimationFrame(() => setLaunched(true));
     return () => cancelAnimationFrame(frame);
   }, [exit]);
-  const [dragging, setDragging] = useState(false);
-  const drag = useRef<{ x: number; y: number; id: number; moved: boolean } | null>(null);
 
   const down = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.button !== 0) return;
-    drag.current = { x: event.clientX, y: event.clientY, id: event.pointerId, moved: false };
+    if (event.button !== 0 || exit) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    // Grabbed in the lower half, the card swings the other way, like a real one.
+    setTilt(event.clientY - rect.top > rect.height / 2 ? -1 / 16 : 1 / 16);
+    drag.current = {
+      x: event.clientX,
+      y: event.clientY,
+      id: event.pointerId,
+      moved: false,
+      samples: [{ x: event.clientX, y: event.clientY, t: event.timeStamp }],
+      past: false,
+    };
   };
   const move = (event: PointerEvent<HTMLDivElement>) => {
     const d = drag.current;
     if (!d || d.id !== event.pointerId) return;
     const x = event.clientX - d.x;
     const y = event.clientY - d.y;
-    if (!d.moved && Math.abs(x) > 8 && Math.abs(x) > Math.abs(y)) {
+    if (!d.moved && Math.hypot(x, y) > 6) {
       d.moved = true;
       setDragging(true);
       event.currentTarget.setPointerCapture(event.pointerId);
     }
-    if (d.moved) setDx(x);
+    if (!d.moved) return;
+    d.samples = [...d.samples, { x: event.clientX, y: event.clientY, t: event.timeStamp }].slice(
+      -5,
+    );
+    // A short buzz when the card crosses the line (phones that support it).
+    const past = Math.abs(x) >= SWIPE_DISTANCE;
+    if (past !== d.past) {
+      d.past = past;
+      if (past) navigator.vibrate?.(8);
+    }
+    setPos({ x, y });
   };
   const up = (event: PointerEvent<HTMLDivElement>) => {
     const d = drag.current;
@@ -413,38 +463,74 @@ function SwipeCard({
       return;
     }
     const x = event.clientX - d.x;
-    if (Math.abs(x) >= SWIPE_DISTANCE) onSwipe?.(x > 0, x);
-    else setDx(0);
+    const y = event.clientY - d.y;
+    const first = d.samples[0]!;
+    const time = Math.max(1, event.timeStamp - first.t);
+    const vx = (event.clientX - first.x) / time;
+    const vy = (event.clientY - first.y) / time;
+    const flick = Math.abs(vx) >= FLICK_SPEED && Math.abs(x) > 30 && Math.sign(vx) === Math.sign(x);
+    if (Math.abs(x) >= SWIPE_DISTANCE || flick) onSwipe?.(x > 0, { x, y, vx, vy, tilt });
+    else setPos({ x: 0, y: 0 });
   };
 
-  const offset = exit && launched ? (exit.side === 'right' ? 600 : -600) : dx;
-  const strength = Math.min(1, Math.abs(offset) / SWIPE_DISTANCE);
+  // Flying out: on along the throw, off the screen, spinning a little more.
+  const offset =
+    exit && launched
+      ? {
+          x: (exit.side === 'right' ? 1 : -1) * Math.max(window.innerWidth, 700),
+          y: exit.from.y + exit.from.vy * 250,
+        }
+      : pos;
+  const rotate = offset.x * tilt;
+  const strength = Math.min(1, Math.abs(offset.x) / SWIPE_DISTANCE);
+  const side = offset.x > 0 ? 'right' : offset.x < 0 ? 'left' : null;
   const meta = `${t(`practice.cards.deck.${card.deck}`)} · ${t(`practice.cards.eras.${card.era}`)}`;
   const face =
-    'absolute inset-0 flex flex-col overflow-y-auto rounded-2xl border-2 bg-surface p-5 shadow-2 backface-hidden sm:p-7';
+    'absolute inset-0 flex flex-col overflow-hidden rounded-2xl border-2 bg-surface p-5 backface-hidden sm:p-7';
+  const edge =
+    side === 'right' ? 'border-success' : side === 'left' ? 'border-warning' : 'border-border';
+  const tint = side && (
+    <span
+      aria-hidden="true"
+      style={{ opacity: strength * 0.16 }}
+      className={cn(
+        'pointer-events-none absolute inset-0 rounded-2xl',
+        side === 'right' ? 'bg-success' : 'bg-warning',
+      )}
+    />
+  );
 
   return (
     <div
-      className="relative mx-auto aspect-square w-full max-w-md cursor-pointer touch-pan-y select-none perspective-distant"
+      className={cn(
+        'relative mx-auto aspect-square w-full max-w-md touch-none select-none perspective-distant',
+        // The entrance runs on this wrapper so the card itself stays free to move.
+        !exit && 'motion-safe:animate-[card-in_var(--motion-slow)_var(--ease-out)_both]',
+        exit ? 'pointer-events-none' : dragging ? 'z-30 cursor-grabbing' : 'cursor-grab',
+      )}
       onPointerDown={down}
       onPointerMove={move}
       onPointerUp={up}
       onPointerCancel={() => {
         drag.current = null;
         setDragging(false);
-        setDx(0);
+        setPos({ x: 0, y: 0 });
       }}
     >
       <article
         aria-label={t(`practice.cards.deck.${card.deck}`)}
         className={cn(
-          'relative size-full',
-          !exit && 'motion-safe:animate-[card-in_var(--motion-slow)_var(--ease-out)_both]',
-          !dragging && 'transition-transform duration-(--motion-base) ease-(--ease-out)',
+          'relative size-full rounded-2xl',
+          dragging || (exit && !launched)
+            ? 'shadow-3'
+            : exit
+              ? 'shadow-3 transition-[transform,opacity] duration-[400ms] ease-out'
+              : // Let go too early: spring back with a little overshoot.
+                'shadow-2 transition-[transform,box-shadow] duration-[450ms] ease-[cubic-bezier(.2,1.5,.4,1)]',
         )}
         style={{
-          transform: `translateX(${offset}px) rotate(${offset / 18}deg)`,
-          opacity: exit && launched ? 0 : 1,
+          transform: `translate(${offset.x}px, ${offset.y}px) rotate(${rotate}deg) scale(${dragging || exit ? 1.03 : 1})`,
+          opacity: exit && launched ? 0.4 : 1,
         }}
       >
         <div
@@ -454,64 +540,72 @@ function SwipeCard({
           )}
         >
           {/* Front: the question. */}
-          <div
-            aria-hidden={flipped}
-            className={cn(
-              face,
-              offset > 0 ? 'border-success' : offset < 0 ? 'border-warning' : 'border-border',
-            )}
-          >
-            <p className="text-sm font-medium text-muted">{meta}</p>
-            <div className="flex flex-1 flex-col items-center justify-center gap-3 py-3 text-center">
+          <div aria-hidden={flipped} className={cn(face, edge)}>
+            {tint}
+            <p className="shrink-0 text-sm font-medium text-muted">{meta}</p>
+            <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 pt-2 text-center">
               {card.place && (
-                <div className="w-full max-w-xs">
+                // The map takes the room the hint leaves.
+                <div className="flex min-h-0 w-full flex-1 items-center justify-center">
                   <CardMap
                     lat={card.place.lat}
                     lon={card.place.lon}
                     view={card.place.view}
                     label={t('practice.cards.mapLabel')}
+                    className="block h-full max-h-full w-auto max-w-full rounded-md border border-border"
                   />
                 </div>
               )}
-              <p className={card.place ? 'text-base' : textSize(card.front)}>{card.front}</p>
+              <p
+                className={cn(
+                  'shrink-0',
+                  card.place ? 'text-sm sm:text-base' : textSize(card.front),
+                )}
+              >
+                {card.front}
+              </p>
             </div>
-            {again && <p className="text-center text-xs text-muted">{t('practice.cards.again')}</p>}
+            {again && (
+              <p className="shrink-0 text-center text-xs text-muted">{t('practice.cards.again')}</p>
+            )}
           </div>
           {/* Back: the answer. */}
-          <div
-            aria-hidden={!flipped}
-            className={cn(
-              face,
-              'rotate-y-180',
-              offset > 0 ? 'border-success' : offset < 0 ? 'border-warning' : 'border-border',
-            )}
-          >
+          <div aria-hidden={!flipped} className={cn(face, edge, 'rotate-y-180')}>
+            {tint}
             <h2
               ref={answerHeading}
               tabIndex={-1}
-              className="text-sm font-semibold tracking-wide text-muted uppercase outline-none"
+              className="shrink-0 text-sm font-semibold tracking-wide text-muted uppercase outline-none"
             >
               {t('practice.cards.answer')}
             </h2>
-            <div className="flex flex-1 flex-col items-center justify-center gap-3 py-3 text-center">
-              <p lang={CARD_LANGUAGES[card.subject]} className={textSize(card.back)}>
+            <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 overflow-y-auto text-center">
+              <p
+                lang={CARD_LANGUAGES[card.subject]}
+                className={textSize(card.back + (card.note ?? ''))}
+              >
                 {card.back}
               </p>
-              {card.note && <p className="text-muted">{card.note}</p>}
+              {card.note && <p className="text-sm text-muted sm:text-base">{card.note}</p>}
             </div>
           </div>
         </div>
-        {/* What letting go would do. */}
-        {offset !== 0 && (
+        {/* A stamp shows what letting go would do. */}
+        {side && (
           <span
             aria-hidden="true"
-            style={{ opacity: strength }}
+            style={{
+              opacity: strength,
+              transform: `rotate(${side === 'right' ? -12 : 12}deg) scale(${0.8 + strength * 0.2})`,
+            }}
             className={cn(
-              'pointer-events-none absolute top-5 rounded-full px-3 py-1 text-sm font-bold',
-              offset > 0 ? 'right-5 bg-success text-bg' : 'left-5 bg-warning text-bg',
+              'pointer-events-none absolute top-8 rounded-lg border-4 bg-surface/90 px-3 py-1 text-xl font-extrabold tracking-wide uppercase',
+              side === 'right'
+                ? 'left-6 border-success text-success'
+                : 'right-6 border-warning text-warning',
             )}
           >
-            {offset > 0 ? t('practice.cards.known') : t('practice.cards.unknown')}
+            {side === 'right' ? t('practice.cards.known') : t('practice.cards.unknown')}
           </span>
         )}
       </article>
@@ -523,6 +617,7 @@ function SwipeCard({
 function textSize(text: string): string {
   if (text.length <= 20) return 'text-3xl font-semibold';
   if (text.length <= 60) return 'text-2xl font-semibold';
-  if (text.length <= 140) return 'text-lg font-medium';
-  return 'text-base';
+  if (text.length <= 120) return 'text-lg font-medium';
+  if (text.length <= 180) return 'text-base';
+  return 'text-sm sm:text-base';
 }
