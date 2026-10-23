@@ -17,7 +17,7 @@ test('Mai adag: cards first, then a mixed round, then done for today', async ({ 
   const next = page.getByRole('button', { name: 'Tovább a feladatokra' });
   while (!(await next.isVisible())) {
     await page.getByRole('button', { name: 'Megfordítom' }).click();
-    await page.getByRole('button', { name: 'Tudtam', exact: true }).click();
+    await page.getByRole('button', { name: 'Tudom', exact: true }).click();
   }
   await expect(page.getByRole('heading', { name: 'Kártyák kész!' })).toBeVisible();
   await next.click();
@@ -53,7 +53,7 @@ test('an unfinished Mai adag is continued from the home page', async ({ page }) 
   const next = page.getByRole('button', { name: 'Tovább a feladatokra' });
   while (!(await next.isVisible())) {
     await page.getByRole('button', { name: 'Megfordítom' }).click();
-    await page.getByRole('button', { name: 'Nem tudtam' }).click();
+    await page.getByRole('button', { name: 'Még tanulom' }).click();
   }
   await next.click();
   await expect(page.getByRole('heading', { level: 1, name: 'Mai adag' })).toBeVisible();

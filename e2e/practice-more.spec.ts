@@ -27,8 +27,8 @@ test('history cards: map card, flip, mark and progress', async ({ page }) => {
   await expect(page.getByRole('img', { name: /Térkép, a keresett hely/ })).toBeVisible();
   await page.getByRole('button', { name: 'Megfordítom' }).click();
   await expect(page.getByRole('heading', { name: 'Válasz' })).toBeFocused();
-  await page.getByRole('button', { name: 'Tudtam', exact: true }).click();
-  // Keyboard: space flips, 1 marks "Nem tudtam".
+  await page.getByRole('button', { name: 'Tudom', exact: true }).click();
+  // Keyboard: space flips, 1 marks "Még tanulom".
   await page.keyboard.press('Space');
   await expect(page.getByRole('heading', { name: 'Válasz' })).toBeVisible();
   await page.keyboard.press('1');

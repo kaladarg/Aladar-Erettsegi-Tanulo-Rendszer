@@ -1,5 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Info, Play, RotateCcw } from 'lucide-react';
+import { FolderOpen, Info, Play, RotateCcw } from 'lucide-react';
 import { useId, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
@@ -157,14 +157,23 @@ export function CardsPage() {
                         mastered: formatNumber(counts.mastered),
                       })}
                     </p>
-                    <div className="mt-auto flex flex-wrap items-center gap-3 pt-4">
+                    <div className="mt-auto flex flex-wrap items-center gap-2 pt-4">
                       <Button asChild size="sm">
+                        <Link
+                          to={`/gyakorlas/kartyak/pakli?${filterToParams({ ...filter, deck })}`}
+                          aria-label={t('practice.cards.openLabel', { deck: name })}
+                        >
+                          <FolderOpen aria-hidden="true" />
+                          {t('practice.cards.open')}
+                        </Link>
+                      </Button>
+                      <Button asChild size="sm" variant="secondary">
                         <Link
                           to={studyLink(deck)}
                           aria-label={t('practice.cards.studyLabel', { deck: name })}
                         >
                           <Play aria-hidden="true" />
-                          {t('practice.cards.study')}
+                          {t('practice.cards.quickStudy')}
                         </Link>
                       </Button>
                       {counts.due > 0 && (

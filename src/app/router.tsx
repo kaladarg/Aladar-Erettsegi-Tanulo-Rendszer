@@ -42,6 +42,13 @@ export function createRouter() {
       }),
     },
     {
+      path: 'gyakorlas/kartyak/jatek/:game',
+      errorElement: <RouteError />,
+      lazy: async () => ({
+        Component: (await import('@/features/practice/cards/CardGamePage')).CardGamePage,
+      }),
+    },
+    {
       path: 'gyakorlas/mai-adag',
       errorElement: <RouteError />,
       lazy: async () => ({
@@ -101,6 +108,12 @@ export function createRouter() {
           path: 'gyakorlas/kartyak',
           lazy: async () => ({
             Component: (await import('@/features/practice/cards/CardsPage')).CardsPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/kartyak/pakli',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/cards/DeckPage')).DeckPage,
           }),
         },
         {

@@ -62,8 +62,9 @@ test('literature cards: switch subject, filter and study', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1, name: 'Kártyák: Irodalom' })).toBeVisible();
   await expect(page.getByRole('article')).toContainText('Művek · Romantika');
   await page.getByRole('button', { name: 'Megfordítom' }).click();
-  await page.getByRole('button', { name: 'Tudtam', exact: true }).click();
+  await page.getByRole('button', { name: 'Tudom', exact: true }).click();
+  // Back on the deck page, the card is now being learnt.
   await page.getByRole('link', { name: 'Vissza a kártyákhoz' }).click();
-  await expect(page).toHaveURL(/targy=magyar/);
-  await expect(page.getByRole('region', { name: 'Művek' })).toContainText('1 tanulás alatt');
+  await expect(page).toHaveURL(/pakli\?targy=magyar&pakli=muvek/);
+  await expect(page.getByRole('button', { name: /^1\s*Tanulás alatt/ })).toBeVisible();
 });

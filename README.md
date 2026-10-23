@@ -32,6 +32,7 @@ Nyisd meg az oldalt: **https://kaladarg.github.io/Aladar-Erettsegi-Tanulo-Rendsz
 - A **Felvételi pontszámító** megbecsüli, hány pontot érhetsz el az egyetemi felvételin: az érettségi eredményeidet a gyakorlásaidból tölti ki, a jegyeidet és az intézményi pontokat te írod be. A szabályokat minden ősszel a felvi.hu alapján frissíteni kell (`src/domain/admission.ts`).
 - Minden feladatsor **nyomtatható** az eredeti vizsgafeladatlap PDF-jéből, oldalról oldalra, ahogy a vizsgán kapod; kérésre a hivatalos javítási-értékelési útmutatóval a végén. A nyomtatási ablakban PDF-be is mentheted.
 - Vizsgaszimuláció után az eredményoldal megmutatja, melyik feladat vitt el sokkal több időt, mint amennyi a pontértéke alapján jutna rá.
+- A Tanulókártyák minden paklijának saját oldala van: a kártyák listája a válaszokkal (kereséssel), a haladásod (új, tanulás alatt, megtanulva) és a tanulási módok. A kártyák négyzetesek, koppintásra megfordulnak, és jobbra húzod, ha tudod, balra, ha még tanulod. Játékok: Kvíz (négy válaszból), Párosító (időre) és Beírós (emlékezetből, kis elírást elfogadva).
 - Tanároknak: feladatsor-link és QR-kód a diákoknak, eredménykódok összesítése táblázatba, regisztráció és szerver nélkül.
 - A kezdőlapon folytathatod a félbehagyott feladatsort, ajánlást kapsz a következő lépésre, és látod a gyakorlási sorozatodat. A Statisztika oldal megmutatja a fejlődésedet, az erős és gyenge témaköreidet és a hibatípusokat. Az eredményedet képként megoszthatod (név nélkül).
 

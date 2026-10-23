@@ -1,13 +1,12 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Check, Layers, RotateCcw, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { Check, Layers, RotateCcw, Undo2, X } from 'lucide-react';
+import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import {
   CARDS_BY_ID,
   filterCards,
   filterFromParams,
-  filterToParams,
   type StudyCard,
   CARD_LANGUAGES,
 } from '@/content/cards';
@@ -17,14 +16,17 @@ import { Skeleton } from '@/design/ui/Skeleton';
 import { cardStates, sessionQueue } from '@/domain/cards/schedule';
 import { shuffle } from '@/domain/practice/topics';
 import { formatNumber, t } from '@/i18n';
-import { recordCardAnswer } from '@/storage/cards';
+import { recordCardAnswer, undoCardAnswer } from '@/storage/cards';
 import { db } from '@/storage/db';
 import { cn } from '@/lib/cn';
 import { Celebration } from '@/design/ui/Celebration';
 import { CardMap } from './CardMap';
+import { deckPage } from './links';
 
 const NEW_PER_SESSION = 15;
 const EXTRA_SIZE = 20;
+/** How far (px) a card must be dragged to count as a swipe. */
+const SWIPE_DISTANCE = 100;
 
 export interface Session {
   queue: string[];
@@ -32,10 +34,14 @@ export interface Session {
   extra: boolean;
 }
 
-/** Full-screen study session: one card at a time, flip, then mark. */
+/**
+ * Full-screen study session. `?mind=1` goes through every card of the filter
+ * in order as free practice; otherwise due cards and new ones are studied.
+ */
 export function CardStudyPage() {
   const [params] = useSearchParams();
   const filter = filterFromParams(params);
+  const browseAll = params.get('mind') === '1';
   const title = t('practice.cards.studyTitle', {
     subject: t(`practice.cards.subjects.${filter.subject ?? 'tortenelem'}`),
   });
@@ -44,13 +50,17 @@ export function CardStudyPage() {
   const [session, setSession] = useState<Session | null>(null);
   const [round, setRound] = useState(0);
   const [startedRound, setStartedRound] = useState(-1);
-  const back = `/gyakorlas/kartyak?${filterToParams({ ...filter, deck: undefined })}`;
+  const back = deckPage(filter);
 
   // Build the queue once the progress has loaded, and again for each new round.
   if (events && startedRound !== round) {
     setStartedRound(round);
     const ids = filterCards(filter).map((c) => c.id);
-    setSession({ queue: sessionQueue(ids, cardStates(events), NEW_PER_SESSION), extra: false });
+    setSession(
+      browseAll
+        ? { queue: ids, extra: true }
+        : { queue: sessionQueue(ids, cardStates(events), NEW_PER_SESSION), extra: false },
+    );
   }
 
   const startExtra = (seed: number) => {
@@ -68,9 +78,13 @@ export function CardStudyPage() {
         </Button>
         <h1 className="min-w-0 flex-1 truncate font-semibold">{title}</h1>
       </header>
-      <main id="main" tabIndex={-1} className="mx-auto w-full max-w-2xl flex-1 p-4 outline-none">
+      <main
+        id="main"
+        tabIndex={-1}
+        className="mx-auto w-full max-w-xl flex-1 overflow-x-clip px-4 py-4 outline-none"
+      >
         {!session ? (
-          <Skeleton className="h-80" />
+          <Skeleton className="mx-auto aspect-square w-full max-w-md" />
         ) : session.queue.length === 0 ? (
           <EmptyState
             icon={<Layers />}
@@ -89,10 +103,11 @@ export function CardStudyPage() {
           />
         ) : (
           <Study
-            key={`${round}-${session.extra}`}
+            key={`${round}-${session.extra}-${session.queue.join()}`}
             session={session}
             back={back}
             onRestart={() => setRound((r) => r + 1)}
+            onPractice={(ids) => setSession({ queue: ids, extra: true })}
           />
         )}
       </main>
@@ -100,209 +115,414 @@ export function CardStudyPage() {
   );
 }
 
+interface Mark {
+  cardId: string;
+  known: boolean;
+  /** The card was put back at the end of the round. */
+  requeued: boolean;
+  event?: Promise<number>;
+}
+
 /**
- * Cards one at a time. On its own page the end offers another round; inside
- * the daily session (`onFinish`) it hands over to the next step instead.
+ * Cards one at a time: tap to turn, swipe right if you knew it, left if you
+ * are still learning it. On its own page the end offers another round;
+ * inside the daily session (`onFinish`) it hands over to the next step.
  */
 export function Study({
   session,
   back,
   onRestart,
+  onPractice,
   onFinish,
 }: {
   session: Session;
   back: string;
   onRestart: () => void;
+  /** Practise the given cards again (free practice). */
+  onPractice?: (cardIds: string[]) => void;
   onFinish?: () => void;
 }) {
   const [queue, setQueue] = useState(session.queue);
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
-  const [known, setKnown] = useState(0);
-  const [missed, setMissed] = useState<Set<string>>(new Set());
+  const [marks, setMarks] = useState<Mark[]>([]);
+  // The card just marked, flying out on top of the next one.
+  const [outgoing, setOutgoing] = useState<{
+    card: StudyCard;
+    side: 'left' | 'right';
+    from: number;
+    flipped: boolean;
+    key: number;
+  } | null>(null);
   const navigate = useNavigate();
-  const flipButton = useRef<HTMLButtonElement>(null);
   const answerHeading = useRef<HTMLHeadingElement>(null);
+  const flipButton = useRef<HTMLButtonElement>(null);
   const nextStep = useRef<HTMLButtonElement>(null);
   const card = CARDS_BY_ID.get(queue[index] ?? '');
   const done = index >= queue.length;
+  const known = marks.filter((m) => m.known).length;
+  const learning = marks.length - known;
+  const missed = [...new Set(marks.filter((m) => !m.known).map((m) => m.cardId))];
 
-  const mark = (wasKnown: boolean) => {
+  const mark = (wasKnown: boolean, from = 0) => {
     if (!card) return;
-    if (!session.extra) void recordCardAnswer(card.id, wasKnown);
-    if (wasKnown) {
-      if (!missed.has(card.id)) setKnown((k) => k + 1);
-    } else if (!missed.has(card.id)) {
-      // Comes back once at the end of the round.
-      setMissed(new Set(missed).add(card.id));
-      setQueue([...queue, card.id]);
-    }
+    const requeued = !wasKnown && !marks.some((m) => m.cardId === card.id && !m.known);
+    const event = session.extra ? undefined : recordCardAnswer(card.id, wasKnown);
+    setMarks([...marks, { cardId: card.id, known: wasKnown, requeued, event }]);
+    // A card not known comes back once at the end of the round.
+    if (requeued) setQueue([...queue, card.id]);
+    const key = Date.now();
+    setOutgoing({ card, side: wasKnown ? 'right' : 'left', from, flipped, key });
+    window.setTimeout(() => setOutgoing((o) => (o?.key === key ? null : o)), 220);
     setFlipped(false);
     setIndex(index + 1);
   };
 
-  // Keyboard: space flips, 1 and 2 mark.
+  const undo = () => {
+    const last = marks.at(-1);
+    if (!last) return;
+    setOutgoing(null);
+    if (last.event) void last.event.then(undoCardAnswer);
+    if (last.requeued) setQueue(queue.slice(0, -1));
+    setMarks(marks.slice(0, -1));
+    setFlipped(false);
+    setIndex(index - 1);
+  };
+
+  // Keyboard: space flips, arrows (or 1 and 2) mark, Z takes the last mark back.
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (done || event.target instanceof HTMLInputElement) return;
-      if (!flipped && (event.key === ' ' || event.key === 'Enter')) {
-        if (event.target instanceof HTMLButtonElement) return;
+      if (event.key === ' ' || event.key === 'Enter') {
+        if (event.target instanceof HTMLButtonElement || event.target instanceof HTMLAnchorElement)
+          return;
         event.preventDefault();
-        setFlipped(true);
-      } else if (flipped && event.key === '1') mark(false);
-      else if (flipped && event.key === '2') mark(true);
+        setFlipped((f) => !f);
+      } else if (event.key === 'ArrowLeft' || event.key === '1') mark(false);
+      else if (event.key === 'ArrowRight' || event.key === '2') mark(true);
+      else if (event.key === 'z' || event.key === 'Backspace') undo();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
 
-  // Move focus to the answer when the card is turned, and back to the button for the next card.
+  // Focus follows the card: the answer when turned, the next step at the end.
   useEffect(() => {
     if (flipped) answerHeading.current?.focus();
     else if (done) nextStep.current?.focus();
-    else flipButton.current?.focus();
+    // Space then turns the next card (a focused "Tudom" would mark it instead).
+    else if (document.activeElement?.closest('[data-card-actions]')) flipButton.current?.focus();
   }, [flipped, index, done]);
 
-  if (done && onFinish) {
-    return (
-      <section
-        aria-labelledby="cards-done"
-        className="grid animate-pop-in gap-4 rounded-xl border border-border bg-surface p-6 shadow-2"
-      >
-        <h2 id="cards-done" className="text-2xl font-bold">
-          {t('practice.daily.cardsDone')}
-        </h2>
-        <p>
-          {t('practice.cards.doneBody', {
-            known: formatNumber(known),
-            unknown: formatNumber(missed.size),
-          })}
-        </p>
-        <Button ref={nextStep} size="lg" onClick={onFinish}>
-          {t('practice.daily.toTasks')}
-        </Button>
-      </section>
-    );
-  }
   if (done) {
+    const daily = !!onFinish;
     return (
       <section
         aria-labelledby="cards-done"
-        className="grid animate-pop-in gap-4 rounded-xl border border-border bg-surface p-6 shadow-2"
+        className="mx-auto grid max-w-md animate-pop-in gap-4 rounded-xl border border-border bg-surface p-6 shadow-2"
       >
-        <Celebration />
+        {!daily && <Celebration />}
         <h2 id="cards-done" className="text-2xl font-bold">
-          {t('practice.cards.doneTitle')}
+          {daily ? t('practice.daily.cardsDone') : t('practice.cards.doneTitle')}
         </h2>
-        <p>
-          {session.extra
-            ? t('practice.cards.doneExtra')
-            : t('practice.cards.doneBody', {
-                known: formatNumber(known),
-                unknown: formatNumber(missed.size),
-              })}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <Button onClick={onRestart}>
-            <RotateCcw aria-hidden="true" />
-            {t('practice.cards.restart')}
-          </Button>
-          <Button variant="secondary" onClick={() => navigate(back)}>
-            {t('practice.cards.back')}
-          </Button>
+        <div className="grid grid-cols-2 gap-3 text-center">
+          <p className="rounded-lg bg-success-soft p-3">
+            <span className="block text-3xl font-bold tabular-nums">{formatNumber(known)}</span>
+            {t('practice.cards.known')}
+          </p>
+          <p className="rounded-lg bg-warning-soft p-3">
+            <span className="block text-3xl font-bold tabular-nums">{formatNumber(learning)}</span>
+            {t('practice.cards.unknown')}
+          </p>
         </div>
+        <p className="text-muted">
+          {session.extra ? t('practice.cards.doneExtra') : t('practice.cards.doneSchedule')}
+        </p>
+        {daily ? (
+          <Button ref={nextStep} size="lg" onClick={onFinish}>
+            {t('practice.daily.toTasks')}
+          </Button>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {missed.length > 0 && onPractice && (
+              <Button ref={nextStep} onClick={() => onPractice(missed)}>
+                <RotateCcw aria-hidden="true" />
+                {t('practice.cards.practiceMissed', { count: missed.length })}
+              </Button>
+            )}
+            <Button
+              ref={missed.length > 0 && onPractice ? undefined : nextStep}
+              variant={missed.length > 0 && onPractice ? 'secondary' : 'primary'}
+              onClick={onRestart}
+            >
+              {t('practice.cards.restart')}
+            </Button>
+            <Button variant="ghost" onClick={() => navigate(back)}>
+              {t('practice.cards.back')}
+            </Button>
+          </div>
+        )}
       </section>
     );
   }
   if (!card) return null;
   const total = queue.length;
   return (
-    <div className="grid gap-4">
-      <div className="flex items-center gap-3">
-        <p className="text-sm font-medium text-muted tabular-nums">
+    <div className="mx-auto grid max-w-md gap-4">
+      <div className="grid gap-2">
+        <p className="text-center text-sm font-semibold text-muted tabular-nums">
           {t('practice.cards.progress', { current: index + 1, total })}
         </p>
-        <div
-          aria-hidden="true"
-          className="h-2 flex-1 overflow-hidden rounded-full bg-surface-muted"
-        >
-          <div className="h-full bg-primary" style={{ width: `${(index / total) * 100}%` }} />
+        <div aria-hidden="true" className="h-1.5 overflow-hidden rounded-full bg-surface-muted">
+          <div
+            className="h-full rounded-full bg-primary transition-[width] duration-(--motion-base)"
+            style={{ width: `${(index / total) * 100}%` }}
+          />
         </div>
       </div>
-      <CardFace
-        card={card}
-        flipped={flipped}
-        answerHeading={answerHeading}
-        again={missed.has(card.id)}
-      />
-      {flipped ? (
-        <div className="grid grid-cols-2 gap-3">
-          <Button variant="secondary" size="lg" onClick={() => mark(false)}>
-            <X aria-hidden="true" />
-            {t('practice.cards.unknown')}
-          </Button>
-          <Button size="lg" onClick={() => mark(true)}>
-            <Check aria-hidden="true" />
-            {t('practice.cards.known')}
-          </Button>
-        </div>
-      ) : (
-        <Button ref={flipButton} size="lg" onClick={() => setFlipped(true)}>
+      <div className="flex items-center justify-between">
+        <span className="min-w-12 rounded-full border border-warning bg-warning-soft px-3 py-1 text-center font-bold text-warning tabular-nums">
+          <span className="sr-only">{t('practice.cards.unknown')}: </span>
+          {formatNumber(learning)}
+        </span>
+        <span className="min-w-12 rounded-full border border-success bg-success-soft px-3 py-1 text-center font-bold text-success tabular-nums">
+          <span className="sr-only">{t('practice.cards.known')}: </span>
+          {formatNumber(known)}
+        </span>
+      </div>
+
+      <div className="relative">
+        <SwipeCard
+          key={`${index}-${card.id}`}
+          card={card}
+          flipped={flipped}
+          again={missed.includes(card.id) && marks.at(-1)?.cardId !== card.id}
+          answerHeading={answerHeading}
+          onFlip={() => setFlipped((f) => !f)}
+          onSwipe={mark}
+        />
+        {outgoing && (
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10">
+            <SwipeCard
+              key={outgoing.key}
+              card={outgoing.card}
+              flipped={outgoing.flipped}
+              again={false}
+              exit={{ side: outgoing.side, from: outgoing.from }}
+            />
+          </div>
+        )}
+      </div>
+
+      <div data-card-actions="" className="grid grid-cols-2 gap-3">
+        <Button
+          variant="secondary"
+          size="lg"
+          className="border-warning text-warning hover:bg-warning-soft"
+          onClick={() => mark(false)}
+        >
+          <X aria-hidden="true" />
+          {t('practice.cards.unknown')}
+        </Button>
+        <Button
+          size="lg"
+          className="bg-success text-bg hover:bg-success hover:opacity-90"
+          onClick={() => mark(true)}
+        >
+          <Check aria-hidden="true" />
+          {t('practice.cards.known')}
+        </Button>
+      </div>
+      <div data-card-actions="" className="flex items-center justify-between gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          aria-label={t('practice.cards.undo')}
+          disabled={marks.length === 0}
+          onClick={undo}
+        >
+          <Undo2 aria-hidden="true" />
+        </Button>
+        <Button ref={flipButton} variant="ghost" onClick={() => setFlipped((f) => !f)}>
+          <RotateCcw aria-hidden="true" />
           {t('practice.cards.flip')}
         </Button>
-      )}
-      <p className="text-center text-xs text-muted max-sm:hidden">{t('practice.cards.flipHint')}</p>
+        <span className="size-11" aria-hidden="true" />
+      </div>
+      <p className="text-center text-xs text-muted">
+        <span className="sm:hidden">{t('practice.cards.swipeHint')}</span>
+        <span className="max-sm:hidden">{t('practice.cards.flipHint')}</span>
+      </p>
     </div>
   );
 }
 
-function CardFace({
+/** The card: tap to turn it over, drag it sideways to mark it. */
+function SwipeCard({
   card,
   flipped,
-  answerHeading,
   again,
+  answerHeading,
+  onFlip,
+  onSwipe,
+  exit,
 }: {
   card: StudyCard;
   flipped: boolean;
-  answerHeading: React.RefObject<HTMLHeadingElement | null>;
   again: boolean;
+  answerHeading?: React.RefObject<HTMLHeadingElement | null>;
+  onFlip?: () => void;
+  onSwipe?: (known: boolean, from: number) => void;
+  /** A marked card flying out from where it was let go. */
+  exit?: { side: 'left' | 'right'; from: number };
 }) {
+  const [dx, setDx] = useState(exit?.from ?? 0);
+  const [launched, setLaunched] = useState(false);
+  useEffect(() => {
+    if (!exit) return;
+    const frame = requestAnimationFrame(() => setLaunched(true));
+    return () => cancelAnimationFrame(frame);
+  }, [exit]);
+  const [dragging, setDragging] = useState(false);
+  const drag = useRef<{ x: number; y: number; id: number; moved: boolean } | null>(null);
+
+  const down = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0) return;
+    drag.current = { x: event.clientX, y: event.clientY, id: event.pointerId, moved: false };
+  };
+  const move = (event: PointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    if (!d || d.id !== event.pointerId) return;
+    const x = event.clientX - d.x;
+    const y = event.clientY - d.y;
+    if (!d.moved && Math.abs(x) > 8 && Math.abs(x) > Math.abs(y)) {
+      d.moved = true;
+      setDragging(true);
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
+    if (d.moved) setDx(x);
+  };
+  const up = (event: PointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    drag.current = null;
+    setDragging(false);
+    if (!d || d.id !== event.pointerId) return;
+    if (!d.moved) {
+      // A tap on the card (not on a link or button inside it) turns it over.
+      if (!(event.target as Element).closest('a, button')) onFlip?.();
+      return;
+    }
+    const x = event.clientX - d.x;
+    if (Math.abs(x) >= SWIPE_DISTANCE) onSwipe?.(x > 0, x);
+    else setDx(0);
+  };
+
+  const offset = exit && launched ? (exit.side === 'right' ? 600 : -600) : dx;
+  const strength = Math.min(1, Math.abs(offset) / SWIPE_DISTANCE);
+  const meta = `${t(`practice.cards.deck.${card.deck}`)} · ${t(`practice.cards.eras.${card.era}`)}`;
+  const face =
+    'absolute inset-0 flex flex-col overflow-y-auto rounded-2xl border-2 bg-surface p-5 shadow-2 backface-hidden sm:p-7';
+
   return (
-    <article
-      aria-label={t(`practice.cards.deck.${card.deck}`)}
-      className={cn(
-        'grid gap-4 rounded-xl border border-border bg-surface p-5 shadow-2 [perspective:900px] sm:p-6',
-        'motion-safe:animate-[card-in_var(--motion-slow)_var(--ease-out)_both]',
-      )}
+    <div
+      className="relative mx-auto aspect-square w-full max-w-md cursor-pointer touch-pan-y select-none perspective-distant"
+      onPointerDown={down}
+      onPointerMove={move}
+      onPointerUp={up}
+      onPointerCancel={() => {
+        drag.current = null;
+        setDragging(false);
+        setDx(0);
+      }}
     >
-      <p className="text-sm font-medium text-muted">
-        {t(`practice.cards.deck.${card.deck}`)} · {t(`practice.cards.eras.${card.era}`)}
-      </p>
-      {card.place && (
-        <CardMap
-          lat={card.place.lat}
-          lon={card.place.lon}
-          view={card.place.view}
-          label={t('practice.cards.mapLabel')}
-        />
-      )}
-      <p className={card.place ? 'text-lg' : 'text-2xl font-semibold'}>{card.front}</p>
-      {flipped && (
-        <div className="origin-top border-t border-border pt-4 motion-safe:animate-[flip-in_var(--motion-slow)_var(--ease-out)_both]">
-          <h2
-            ref={answerHeading}
-            tabIndex={-1}
-            className="text-sm font-semibold tracking-wide text-muted uppercase outline-none"
+      <article
+        aria-label={t(`practice.cards.deck.${card.deck}`)}
+        className={cn(
+          'relative size-full',
+          !exit && 'motion-safe:animate-[card-in_var(--motion-slow)_var(--ease-out)_both]',
+          !dragging && 'transition-transform duration-(--motion-base) ease-(--ease-out)',
+        )}
+        style={{
+          transform: `translateX(${offset}px) rotate(${offset / 18}deg)`,
+          opacity: exit && launched ? 0 : 1,
+        }}
+      >
+        <div
+          className={cn(
+            'relative size-full transition-transform duration-(--motion-slow) ease-(--ease-out) transform-3d',
+            flipped && 'rotate-y-180',
+          )}
+        >
+          {/* Front: the question. */}
+          <div
+            aria-hidden={flipped}
+            className={cn(
+              face,
+              offset > 0 ? 'border-success' : offset < 0 ? 'border-warning' : 'border-border',
+            )}
           >
-            {t('practice.cards.answer')}
-          </h2>
-          <p lang={CARD_LANGUAGES[card.subject]} className="mt-1 text-xl font-semibold">
-            {card.back}
-          </p>
-          {card.note && <p className="mt-2 text-muted">{card.note}</p>}
-          {again && <p className="mt-2 text-sm text-muted">{t('practice.cards.again')}</p>}
+            <p className="text-sm font-medium text-muted">{meta}</p>
+            <div className="flex flex-1 flex-col items-center justify-center gap-3 py-3 text-center">
+              {card.place && (
+                <div className="w-full max-w-xs">
+                  <CardMap
+                    lat={card.place.lat}
+                    lon={card.place.lon}
+                    view={card.place.view}
+                    label={t('practice.cards.mapLabel')}
+                  />
+                </div>
+              )}
+              <p className={card.place ? 'text-base' : textSize(card.front)}>{card.front}</p>
+            </div>
+            {again && <p className="text-center text-xs text-muted">{t('practice.cards.again')}</p>}
+          </div>
+          {/* Back: the answer. */}
+          <div
+            aria-hidden={!flipped}
+            className={cn(
+              face,
+              'rotate-y-180',
+              offset > 0 ? 'border-success' : offset < 0 ? 'border-warning' : 'border-border',
+            )}
+          >
+            <h2
+              ref={answerHeading}
+              tabIndex={-1}
+              className="text-sm font-semibold tracking-wide text-muted uppercase outline-none"
+            >
+              {t('practice.cards.answer')}
+            </h2>
+            <div className="flex flex-1 flex-col items-center justify-center gap-3 py-3 text-center">
+              <p lang={CARD_LANGUAGES[card.subject]} className={textSize(card.back)}>
+                {card.back}
+              </p>
+              {card.note && <p className="text-muted">{card.note}</p>}
+            </div>
+          </div>
         </div>
-      )}
-    </article>
+        {/* What letting go would do. */}
+        {offset !== 0 && (
+          <span
+            aria-hidden="true"
+            style={{ opacity: strength }}
+            className={cn(
+              'pointer-events-none absolute top-5 rounded-full px-3 py-1 text-sm font-bold',
+              offset > 0 ? 'right-5 bg-success text-bg' : 'left-5 bg-warning text-bg',
+            )}
+          >
+            {offset > 0 ? t('practice.cards.known') : t('practice.cards.unknown')}
+          </span>
+        )}
+      </article>
+    </div>
   );
+}
+
+/** Short texts large, long definitions smaller, so they fit the square. */
+function textSize(text: string): string {
+  if (text.length <= 20) return 'text-3xl font-semibold';
+  if (text.length <= 60) return 'text-2xl font-semibold';
+  if (text.length <= 140) return 'text-lg font-medium';
+  return 'text-base';
 }
