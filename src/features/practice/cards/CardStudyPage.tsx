@@ -176,6 +176,8 @@ export function Study({
   const known = marks.filter((m) => m.known).length;
   const learning = marks.length - known;
   const missed = [...new Set(marks.filter((m) => !m.known).map((m) => m.cardId))];
+  // The summary counts cards, not marks: a card missed once is "still learning" even if known later.
+  const knownCards = new Set(marks.map((m) => m.cardId)).size - missed.length;
 
   const mark = (wasKnown: boolean, from: Release = STILL) => {
     if (!card) return;
@@ -240,11 +242,15 @@ export function Study({
         </h2>
         <div className="grid grid-cols-2 gap-3 text-center">
           <p className="rounded-lg bg-success-soft p-3">
-            <span className="block text-3xl font-bold tabular-nums">{formatNumber(known)}</span>
+            <span className="block text-3xl font-bold tabular-nums">
+              {formatNumber(knownCards)}
+            </span>
             {t('practice.cards.known')}
           </p>
           <p className="rounded-lg bg-warning-soft p-3">
-            <span className="block text-3xl font-bold tabular-nums">{formatNumber(learning)}</span>
+            <span className="block text-3xl font-bold tabular-nums">
+              {formatNumber(missed.length)}
+            </span>
             {t('practice.cards.unknown')}
           </p>
         </div>
