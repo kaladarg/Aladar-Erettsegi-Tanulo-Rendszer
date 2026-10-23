@@ -10,8 +10,12 @@ test.beforeEach(async ({ page }) => {
 
 test('a mixed round takes tasks from several topics', async ({ page }) => {
   await page.goto('/gyakorlas/temakorok?targy=matematika');
-  await page.getByRole('checkbox', { name: /elsőfokú egyenlet hozzáadása/ }).check();
-  await page.getByRole('checkbox', { name: /százalékszámítás hozzáadása/ }).check();
+  // Topics are grouped into areas that open on demand.
+  await page.getByText('Számok, algebra, egyenletek', { exact: true }).click();
+  await page.getByRole('checkbox', { name: /elsőfokú egyenlet hozzáadása/ }).focus();
+  await page.keyboard.press('Space');
+  await page.getByRole('checkbox', { name: /százalékszámítás hozzáadása/ }).focus();
+  await page.keyboard.press('Space');
   await page.getByRole('button', { name: 'A kijelölt 2 témakör keverése' }).click();
   await expect(page).toHaveURL(/gyakorlas\/kor\//);
   await expect(

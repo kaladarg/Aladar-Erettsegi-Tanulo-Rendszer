@@ -10,8 +10,9 @@ import {
   NotebookPen,
   RotateCcw,
   School,
+  Zap,
 } from 'lucide-react';
-import type { ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { PageHeader } from '@/design/ui/PageHeader';
@@ -19,22 +20,76 @@ import { TINTS, type Tint } from '@/design/ui/tints';
 import { dueCards } from '@/domain/practice/review';
 import { t } from '@/i18n';
 import { cn } from '@/lib/cn';
+import { useSettings } from '@/state/settingsStore';
+import { fitsSubjects, type SubjectTool } from './subjectTools';
 import { useReviewCards } from './useReviewCards';
 
 export function PracticeHubPage() {
   usePageTitle(t('practice.title'));
   const cards = useReviewCards();
+  const chosen = useSettings((s) => s.settings.subjects);
   const due = cards ? dueCards(cards).length : undefined;
+
+  const subjectTools: { tool: SubjectTool; card: ReactElement }[] = [
+    {
+      tool: 'essay',
+      card: (
+        <HubCard
+          key="essay"
+          to="/gyakorlas/esszevazlat"
+          tint="rose"
+          icon={<NotebookPen />}
+          title={t('practice.hub.essayTitle')}
+          body={t('practice.hub.essayBody')}
+          badge={chosen.length > 0 && fitsSubjects('essay', chosen)}
+        />
+      ),
+    },
+    {
+      tool: 'probability',
+      card: (
+        <HubCard
+          key="probability"
+          to="/gyakorlas/valoszinuseg"
+          tint="cyan"
+          icon={<Dices />}
+          title={t('practice.hub.probabilityTitle')}
+          body={t('practice.hub.probabilityBody')}
+          badge={chosen.length > 0 && fitsSubjects('probability', chosen)}
+        />
+      ),
+    },
+    {
+      tool: 'oral',
+      card: (
+        <HubCard
+          key="oral"
+          to="/gyakorlas/szobeli"
+          tint="orange"
+          icon={<Mic />}
+          title={t('practice.hub.oralTitle')}
+          body={t('practice.hub.oralBody')}
+          badge={chosen.length > 0 && fitsSubjects('oral', chosen)}
+        />
+      ),
+    },
+  ];
+  // The student's own tools first; the order is otherwise kept.
+  const ordered = [
+    ...subjectTools.filter((x) => fitsSubjects(x.tool, chosen)),
+    ...subjectTools.filter((x) => !fitsSubjects(x.tool, chosen)),
+  ];
+
   return (
     <>
       <PageHeader title={t('practice.title')} description={t('practice.intro')} />
-      <ul className="grid stagger gap-4 sm:grid-cols-2">
+      <HubGroup id="hub-daily" title={t('practice.hub.groupDaily')}>
         <HubCard
-          to="/gyakorlas/temakorok"
-          tint="blue"
-          icon={<Layers />}
-          title={t('practice.hub.topicsTitle')}
-          body={t('practice.hub.topicsBody')}
+          to="/gyakorlas/mai-adag"
+          tint="indigo"
+          icon={<Zap />}
+          title={t('practice.hub.dailyTitle')}
+          body={t('practice.hub.dailyBody')}
         />
         <HubCard
           to="/gyakorlas/hibaim"
@@ -52,39 +107,34 @@ export function PracticeHubPage() {
           highlight={!!due}
         />
         <HubCard
+          to="/gyakorlas/temakorok"
+          tint="blue"
+          icon={<Layers />}
+          title={t('practice.hub.topicsTitle')}
+          body={t('practice.hub.topicsBody')}
+        />
+        <HubCard
           to="/gyakorlas/kartyak"
           tint="violet"
           icon={<GalleryVerticalEnd />}
           title={t('practice.hub.cardsTitle')}
           body={t('practice.hub.cardsBody')}
         />
-        <HubCard
-          to="/gyakorlas/szobeli"
-          tint="orange"
-          icon={<Mic />}
-          title={t('practice.hub.oralTitle')}
-          body={t('practice.hub.oralBody')}
-        />
+      </HubGroup>
+      <HubGroup
+        id="hub-subject"
+        title={t('practice.hub.groupSubject')}
+        hint={chosen.length > 0 ? t('practice.hub.groupSubjectHint') : undefined}
+      >
+        {ordered.map((x) => x.card)}
+      </HubGroup>
+      <HubGroup id="hub-planning" title={t('practice.hub.groupPlanning')}>
         <HubCard
           to="/gyakorlas/terv"
           tint="green"
           icon={<CalendarDays />}
           title={t('practice.hub.planTitle')}
           body={t('practice.hub.planBody')}
-        />
-        <HubCard
-          to="/gyakorlas/esszevazlat"
-          tint="rose"
-          icon={<NotebookPen />}
-          title={t('practice.hub.essayTitle')}
-          body={t('practice.hub.essayBody')}
-        />
-        <HubCard
-          to="/gyakorlas/valoszinuseg"
-          tint="cyan"
-          icon={<Dices />}
-          title={t('practice.hub.probabilityTitle')}
-          body={t('practice.hub.probabilityBody')}
         />
         <HubCard
           to="/gyakorlas/pontszamito"
@@ -100,15 +150,37 @@ export function PracticeHubPage() {
           title={t('aids.hubTitle')}
           body={t('aids.hubBody')}
         />
-        <HubCard
-          to="/tanaroknak"
-          tint="teal"
-          icon={<School />}
-          title={t('teacher.hubTitle')}
-          body={t('teacher.hubBody')}
-        />
-      </ul>
+      </HubGroup>
+      <Link
+        to="/tanaroknak"
+        className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-text"
+      >
+        <School aria-hidden="true" className="size-4" />
+        {t('teacher.hubTitle')}: {t('teacher.hubBody')}
+      </Link>
     </>
+  );
+}
+
+function HubGroup({
+  id,
+  title,
+  hint,
+  children,
+}: {
+  id: string;
+  title: string;
+  hint?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section aria-labelledby={id} className="mb-8">
+      <h2 id={id} className="text-xl font-bold">
+        {title}
+      </h2>
+      {hint && <p className="text-sm text-muted">{hint}</p>}
+      <ul className="mt-3 grid stagger gap-4 sm:grid-cols-2">{children}</ul>
+    </section>
   );
 }
 
@@ -120,6 +192,7 @@ function HubCard({
   body,
   status,
   highlight,
+  badge,
 }: {
   to: string;
   tint: Tint;
@@ -128,6 +201,8 @@ function HubCard({
   body: string;
   status?: string;
   highlight?: boolean;
+  /** Mark the tool as one for the student's own subjects. */
+  badge?: boolean;
 }) {
   return (
     <li>
@@ -153,6 +228,11 @@ function HubCard({
               className="size-4 text-muted group-hover:translate-x-0.5 motion-safe:transition-transform"
             />
           </span>
+          {badge && (
+            <span className="mt-1 inline-block rounded-full bg-primary-soft px-2 py-0.5 text-xs font-semibold text-primary-soft-fg">
+              {t('practice.hub.forYou')}
+            </span>
+          )}
           <span className="mt-1 block text-muted">{body}</span>
           {status && (
             <span

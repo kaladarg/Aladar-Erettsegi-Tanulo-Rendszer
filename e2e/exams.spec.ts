@@ -11,6 +11,15 @@ test.beforeEach(async ({ page }) => {
 
 test('browses, filters and opens an exam', async ({ page }) => {
   const filters = page.getByRole('region', { name: 'Szűrők' });
+  // The student's own subjects first (onboarding chose two).
+  await expect(filters.getByRole('button', { name: 'Saját tárgyaim' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(page.getByText('2 feladatsor')).toBeVisible();
+  await expect(page.getByText('Még nem kezdted el').first()).toBeVisible();
+  await filters.getByRole('button', { name: 'Minden tárgy' }).click();
+  await expect(page).toHaveURL(/targy=mind/);
   await expect(page.getByText('6 feladatsor')).toBeVisible();
 
   await filters.getByRole('button', { name: 'Történelem' }).click();
@@ -21,7 +30,7 @@ test('browses, filters and opens an exam', async ({ page }) => {
   await filters.getByLabel('Vizsgaidőszak').selectOption('oktober');
   await expect(page.getByText('Nincs ilyen feladatsor')).toBeVisible();
   await page.getByRole('main').getByRole('button', { name: 'Szűrők törlése' }).last().click();
-  await expect(page.getByText('6 feladatsor')).toBeVisible();
+  await expect(page.getByText('2 feladatsor')).toBeVisible();
 
   await page.getByRole('link', { name: new RegExp(MATH) }).click();
   await expect(page.getByRole('heading', { level: 1, name: MATH })).toBeFocused();
@@ -103,7 +112,7 @@ test('unknown exams and broken content sources show friendly errors', async ({ p
   // The setting is written in the background; load the list until it uses it.
   await expect(async () => {
     await page.goto('/feladatsorok');
-    await expect(page.getByText('6 feladatsor')).toBeVisible({ timeout: 2000 });
+    await expect(page.getByText('2 feladatsor')).toBeVisible({ timeout: 2000 });
   }).toPass();
 });
 
@@ -115,7 +124,7 @@ test('an exam saved for offline use opens without a connection', async ({ page, 
   await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
 
   await page.goto('/feladatsorok');
-  await expect(page.getByText('6 feladatsor')).toBeVisible();
+  await expect(page.getByText('2 feladatsor')).toBeVisible();
   await page.getByRole('link', { name: new RegExp(MATH) }).click();
   await page.getByRole('button', { name: 'Letöltés offline használatra' }).click();
   await expect(page.getByText('Offline is elérhető', { exact: true })).toBeVisible();

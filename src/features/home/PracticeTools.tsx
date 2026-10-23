@@ -1,11 +1,12 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import {
   CalendarDays,
+  Dices,
   GalleryVerticalEnd,
   Layers,
   Mic,
+  NotebookPen,
   RotateCcw,
-  School,
   Sparkles,
   X,
 } from 'lucide-react';
@@ -21,6 +22,7 @@ import { CURRENT_FEATURES } from '@/domain/settings';
 import { t, type MessageKey } from '@/i18n';
 import { useSettings } from '@/state/settingsStore';
 import { dayKey, db } from '@/storage/db';
+import { fitsSubjects } from '../practice/subjectTools';
 import { useReviewCards } from '../practice/useReviewCards';
 
 /** One-time note for students who used the app before these features existed. */
@@ -69,6 +71,7 @@ export function WhatsNew() {
 /** Shortcuts to the practice tools, with what is due today. */
 export function PracticeTools() {
   const reviews = useReviewCards();
+  const chosen = useSettings((s) => s.settings.subjects);
   // Counted from the progress alone, so the home page does not load the card texts.
   const dueCardsCount =
     useLiveQuery(async () => {
@@ -103,19 +106,36 @@ export function PracticeTools() {
           label={t('practice.hub.cardsTitle')}
           due={dueCardsCount}
         />
-        <Tool
-          to="/gyakorlas/szobeli"
-          tint="orange"
-          icon={<Mic />}
-          label={t('practice.hub.oralTitle')}
-        />
+        {fitsSubjects('probability', chosen) && (
+          <Tool
+            to="/gyakorlas/valoszinuseg"
+            tint="cyan"
+            icon={<Dices />}
+            label={t('home.toolProbability')}
+          />
+        )}
+        {fitsSubjects('essay', chosen) && (
+          <Tool
+            to="/gyakorlas/esszevazlat"
+            tint="rose"
+            icon={<NotebookPen />}
+            label={t('home.toolEssay')}
+          />
+        )}
+        {fitsSubjects('oral', chosen) && (
+          <Tool
+            to="/gyakorlas/szobeli"
+            tint="orange"
+            icon={<Mic />}
+            label={t('practice.hub.oralTitle')}
+          />
+        )}
         <Tool
           to="/gyakorlas/terv"
           tint="green"
           icon={<CalendarDays />}
           label={t('practice.hub.planTitle')}
         />
-        <Tool to="/tanaroknak" tint="teal" icon={<School />} label={t('teacher.hubTitle')} />
       </ul>
     </section>
   );
@@ -139,7 +159,7 @@ function Tool({
       <Link
         to={to}
         data-ripple=""
-        className="group flex h-full min-h-16 lift items-center gap-3 rounded-lg border border-border bg-surface p-3 shadow-1 hover:border-border-strong"
+        className="group flex h-full min-h-16 lift flex-col items-start gap-2 rounded-lg border border-border bg-surface p-3 shadow-1 hover:border-border-strong min-[420px]:flex-row min-[420px]:items-center min-[420px]:gap-3"
       >
         <span
           aria-hidden="true"
@@ -151,7 +171,7 @@ function Tool({
           {icon}
         </span>
         <span className="min-w-0">
-          <span className="block font-medium">{label}</span>
+          <span className="block font-medium wrap-break-word hyphens-auto">{label}</span>
           {due > 0 && (
             <span className="mt-0.5 inline-block animate-pop-in rounded-full bg-primary px-2 text-xs font-semibold text-primary-fg">
               {t('home.toolsDue', { count: due })}

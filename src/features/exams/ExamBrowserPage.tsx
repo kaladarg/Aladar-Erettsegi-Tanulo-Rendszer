@@ -5,9 +5,10 @@ import { usePageTitle } from '@/app/usePageTitle';
 import { subjectAccent, type SubjectInfo } from '@/content/catalog';
 import { examDisplayTitle } from '@/content/labels';
 import { storePdf } from '@/content/pdfImport';
-import type { ExamEntry, Manifest } from '@/content/schema.types';
+import type { Exam, ExamEntry, Manifest } from '@/content/schema.types';
 import { SubjectBadge, SubjectIcon } from '@/content/SubjectIcon';
 import { useManifest } from '@/content/useContent';
+import { useExams } from '@/content/useExams';
 import { Badge } from '@/design/ui/Badge';
 import { Button } from '@/design/ui/Button';
 import { EmptyState } from '@/design/ui/EmptyState';
@@ -15,6 +16,7 @@ import { PageHeader } from '@/design/ui/PageHeader';
 import { Skeleton } from '@/design/ui/Skeleton';
 import { t } from '@/i18n';
 import { cn } from '@/lib/cn';
+import { useSettings } from '@/state/settingsStore';
 import { toast } from '@/state/toastStore';
 import { useExamProgress, type ExamProgress } from '@/storage/progress';
 import { ContentErrorState } from './ContentErrorState';
@@ -23,6 +25,20 @@ import { usePdfPicker } from './usePdfPicker';
 
 /** Query parameter names (Hungarian, they show up in shared links). */
 const PARAM = { subject: 'targy', year: 'ev', session: 'idoszak' } as const;
+/** `targy=mind`: every subject, even when the student chose their own. */
+const ALL = 'mind';
+
+/** Tasks (as numbered on the paper) with an answer, and in total. */
+function taskCounts(exam: Exam, answered: Set<string>): { done: number; total: number } {
+  const numbers = new Map<string, boolean>();
+  for (const part of exam.parts)
+    for (const task of part.tasks) {
+      const number = task.group ?? task.number;
+      const done = task.fields.some((field) => answered.has(field.id));
+      numbers.set(number, (numbers.get(number) ?? false) || done);
+    }
+  return { done: [...numbers.values()].filter(Boolean).length, total: numbers.size };
+}
 
 export function ExamBrowserPage() {
   usePageTitle(t('exams.title'));
@@ -58,7 +74,12 @@ function BrowserSkeleton() {
 function Browser({ manifest }: { manifest: Manifest }) {
   const [params, setParams] = useSearchParams();
   const progress = useExamProgress();
-  const subject = params.get(PARAM.subject) ?? '';
+  const chosen = useSettings((s) => s.settings.subjects);
+  const mine = manifest.subjects.filter((s) => chosen.includes(s.id)).map((s) => s.id);
+  const requested = params.get(PARAM.subject) ?? '';
+  // With no subject in the link, the student's own subjects are shown.
+  const subject = requested === ALL ? '' : requested;
+  const onlyMine = !requested && mine.length > 0;
   const year = params.get(PARAM.year) ?? '';
   const session = params.get(PARAM.session) ?? '';
 
@@ -68,10 +89,26 @@ function Browser({ manifest }: { manifest: Manifest }) {
   );
   const filtered = manifest.exams.filter(
     (exam) =>
-      (!subject || exam.subject === subject) &&
+      (onlyMine ? mine.includes(exam.subject) : !subject || exam.subject === subject) &&
       (!year || String(exam.year) === year) &&
       (!session || exam.session === session),
   );
+  // Papers with an unfinished attempt are loaded to count their answered tasks.
+  const openSubjects = [
+    ...new Set(
+      filtered.filter((exam) => progress?.get(exam.id)?.answeredFields).map((e) => e.subject),
+    ),
+  ];
+  const { exams: loaded } = useExams(openSubjects);
+  const counts = (exam: ExamEntry) => {
+    const answered = progress?.get(exam.id)?.answeredFields;
+    const full = loaded.get(exam.id);
+    return answered && full ? taskCounts(full, answered) : undefined;
+  };
+  const subjectsInOrder = [
+    ...manifest.subjects.filter((s) => mine.includes(s.id)),
+    ...manifest.subjects.filter((s) => !mine.includes(s.id)),
+  ];
   const groups = years
     .map((y) => ({ year: y, exams: filtered.filter((exam) => exam.year === y) }))
     .filter((group) => group.exams.length > 0);
@@ -97,10 +134,18 @@ function Browser({ manifest }: { manifest: Manifest }) {
     <>
       <section aria-label={t('exams.filtersLabel')} className="mb-6 grid gap-4">
         <div role="group" aria-label={t('exams.subjectFilter')} className="flex flex-wrap gap-2">
-          <FilterChip active={!subject} onClick={() => setParam(PARAM.subject, '')}>
+          {mine.length > 0 && (
+            <FilterChip active={onlyMine} onClick={() => setParam(PARAM.subject, '')}>
+              {t('exams.mySubjects')}
+            </FilterChip>
+          )}
+          <FilterChip
+            active={!subject && !onlyMine}
+            onClick={() => setParam(PARAM.subject, mine.length > 0 ? ALL : '')}
+          >
             {t('exams.allSubjects')}
           </FilterChip>
-          {manifest.subjects.map((s) => (
+          {subjectsInOrder.map((s) => (
             <FilterChip
               key={s.id}
               active={subject === s.id}
@@ -131,7 +176,7 @@ function Browser({ manifest }: { manifest: Manifest }) {
               { value: 'oktober', label: t('session.oktober') },
             ]}
           />
-          {(subject || year || session) && (
+          {(requested || year || session) && (
             <Button
               variant="ghost"
               size="sm"
@@ -172,6 +217,7 @@ function Browser({ manifest }: { manifest: Manifest }) {
                       exam={exam}
                       subject={manifest.subjects.find((s) => s.id === exam.subject)}
                       progress={progress?.get(exam.id)}
+                      tasks={counts(exam)}
                     />
                   </li>
                 ))}
@@ -251,10 +297,12 @@ function ExamCard({
   exam,
   subject,
   progress,
+  tasks,
 }: {
   exam: ExamEntry;
   subject: SubjectInfo | undefined;
   progress: ExamProgress | undefined;
+  tasks?: { done: number; total: number };
 }) {
   return (
     <Link
@@ -272,7 +320,7 @@ function ExamCard({
           </span>
           {exam.sample && <Badge tone="primary">{t('exams.sampleBadge')}</Badge>}
           {exam.status === 'draft' && <Badge tone="warning">{t('exams.draftBadge')}</Badge>}
-          <ProgressBadge progress={progress} />
+          <ProgressBadge progress={progress} tasks={tasks} showUntouched />
         </span>
       </span>
       <ChevronRight

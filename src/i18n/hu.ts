@@ -60,6 +60,7 @@ export const hu = {
     intro: 'Válassz egy feladatsort a tárgyaid közül. Szűrhetsz évre és vizsgaidőszakra is.',
     filtersLabel: 'Szűrők',
     allSubjects: 'Minden tárgy',
+    mySubjects: 'Saját tárgyaim',
     subjectFilter: 'Tárgy',
     yearFilter: 'Év',
     sessionFilter: 'Vizsgaidőszak',
@@ -70,6 +71,8 @@ export const hu = {
     sampleBadge: 'Minta',
     draftBadge: 'Ellenőrzés alatt',
     inProgressBadge: 'Folyamatban',
+    inProgressCount: 'Folyamatban: {done} / {total} feladat',
+    notStarted: 'Még nem kezdted el',
     doneBadge: 'Legjobb: {percent}',
     pointsShort: '{points} pont',
     emptyTitle: 'Nincs ilyen feladatsor',
@@ -241,6 +244,8 @@ export const hu = {
     newDismiss: 'Rendben',
     toolsTitle: 'Gyakorolj máshogy is',
     toolsDue: '{count} esedékes',
+    toolProbability: 'Valószínűség',
+    toolEssay: 'Esszévázlat',
     greeting: 'Jó gyakorlást!',
     hero: {
       morning: 'Jó reggelt!',
@@ -808,6 +813,14 @@ export const hu = {
       admissionTitle: 'Felvételi pontszámító',
       admissionBody:
         'Hány pontot érhetsz el a felvételin? Becslés a jegyeidből és a gyakorlásaidból.',
+      dailyTitle: 'Mai adag',
+      dailyBody:
+        'Kb. 15 perces vegyes gyakorlás kártyákkal, a hibáiddal és a gyenge témaköreiddel.',
+      groupDaily: 'Napi gyakorlás',
+      groupSubject: 'Tárgyankénti eszközök',
+      groupSubjectHint: 'Elöl a te tárgyaidhoz valók.',
+      groupPlanning: 'Tervezés és vizsganap',
+      forYou: 'A te tárgyadhoz',
       open: 'Megnyitás',
       dueToday: '{count} feladat vár ma ismétlésre',
       dueNone: 'Ma nincs ismétlendő feladat',
@@ -840,6 +853,15 @@ export const hu = {
       clearSelection: 'Kijelölés törlése',
       essaysNote:
         'Az esszék és a hosszabb szövegalkotások nem szerepelnek itt, mert azokat nem lehet azonnal ellenőrizni.',
+      areasTitle: 'Területek',
+      areasHint:
+        'Nyiss ki egy területet, és válassz témakört, vagy gyakorold az egész területet vegyesen.',
+      areaCount: '{topics} témakör · {tasks} feladat',
+      areaWeak: '{count} gyenge pont',
+      areaRound: 'Vegyes kör ebből: {area}',
+      focusTitle: 'Gyakorolnivaló',
+      focusBody: 'Ezekben a témakörökben ment eddig a legkevésbé. Érdemes ezekkel kezdeni.',
+      results: '{count} találat',
     },
     plan: {
       title: 'Tervem',

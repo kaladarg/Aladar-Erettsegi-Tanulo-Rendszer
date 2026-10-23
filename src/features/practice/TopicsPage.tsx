@@ -1,5 +1,5 @@
-import { Footprints, Play, Search, Shuffle } from 'lucide-react';
-import { useId, useMemo, useState } from 'react';
+import { ChevronDown, Footprints, Play, Search, Shuffle, Target } from 'lucide-react';
+import { useId, useMemo, useState, type ReactNode } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { DEFAULT_SUBJECTS, subjectShortName } from '@/content/catalog';
@@ -9,6 +9,7 @@ import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { Skeleton } from '@/design/ui/Skeleton';
+import { groupByArea, type AreaGroup } from '@/domain/practice/topicAreas';
 import { findTask, topicIndex, topicKey, type TopicEntry } from '@/domain/practice/topics';
 import { EXAMPLE, hasWorkedSolution } from '@/domain/practice/worked';
 import { scoredAttempts, topicStats } from '@/domain/stats/stats';
@@ -20,6 +21,8 @@ import { useStatsData } from '../stats/useStatsData';
 import { BackLink } from './BackLink';
 
 const ROUND_SIZE = 10;
+const WEAK = 0.6;
+const FOCUS_COUNT = 5;
 type Sort = 'common' | 'weak' | 'abc';
 
 export function TopicsPage() {
@@ -48,17 +51,25 @@ export function TopicsPage() {
     return map;
   }, [stats, subject]);
 
-  const shown = topics
-    .filter((topic) =>
-      topic.name.toLocaleLowerCase('hu').includes(query.trim().toLocaleLowerCase('hu')),
-    )
-    .sort((a, b) =>
+  const sorted = (list: TopicEntry[]) =>
+    [...list].sort((a, b) =>
       sort === 'abc'
         ? a.name.localeCompare(b.name, 'hu')
         : sort === 'weak'
           ? (ratios.get(a.key) ?? 2) - (ratios.get(b.key) ?? 2)
           : 0,
     );
+  const searching = query.trim() !== '';
+  const shown = sorted(
+    topics.filter((topic) =>
+      topic.name.toLocaleLowerCase('hu').includes(query.trim().toLocaleLowerCase('hu')),
+    ),
+  );
+  const groups = groupByArea(subject, topics);
+  const focus = topics
+    .filter((topic) => (ratios.get(topic.key) ?? 1) < WEAK)
+    .sort((a, b) => ratios.get(a.key)! - ratios.get(b.key)!)
+    .slice(0, FOCUS_COUNT);
 
   const toggle = (key: string) =>
     setSelected((current) => {
@@ -96,10 +107,82 @@ export function TopicsPage() {
     navigate(`/gyakorlas/kor/${id}`);
   };
 
+  const startArea = async (group: AreaGroup) => {
+    const items = randomMixedRound(group.topics, ROUND_SIZE, ratios);
+    const id = await createDrill({ kind: 'topic', subject, topic: group.area.name, items });
+    navigate(`/gyakorlas/kor/${id}`);
+  };
+
   const start = async (topic: TopicEntry) => {
     const items = randomRound(topic.tasks, ROUND_SIZE);
     const id = await createDrill({ kind: 'topic', subject, topic: topic.name, items });
     navigate(`/gyakorlas/kor/${id}`);
+  };
+
+  const row = (topic: TopicEntry) => {
+    const ratio = ratios.get(topic.key);
+    const worked = topicTasks(topic).some(({ task }) => hasWorkedSolution(task));
+    return (
+      <li
+        key={topic.key}
+        className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 shadow-1"
+      >
+        <div className="min-w-0 flex-1">
+          <p className="font-semibold">{topic.name}</p>
+          <p className="text-sm text-muted">
+            {t('practice.topics.count', {
+              count: topic.tasks.length,
+              points: topic.points,
+            })}
+          </p>
+          {ratio !== undefined && (
+            <p
+              className={cn(
+                'text-sm font-medium',
+                ratio < 0.6 ? 'text-warning' : ratio >= 0.8 ? 'text-success' : 'text-muted',
+              )}
+            >
+              {t(ratio < 0.6 ? 'practice.topics.weak' : 'practice.topics.strong', {
+                percent: formatNumber(Math.round(ratio * 100)),
+              })}
+            </p>
+          )}
+        </div>
+        <label className="flex shrink-0 cursor-pointer flex-col items-center gap-1 text-xs text-muted">
+          <input
+            type="checkbox"
+            className="size-5 accent-[var(--c-primary)]"
+            checked={selected.has(topic.key)}
+            aria-label={t('practice.topics.selectLabel', { topic: topic.name })}
+            onChange={() => toggle(topic.key)}
+          />
+          <span aria-hidden="true">{t('practice.topics.select')}</span>
+        </label>
+        <Button
+          size="sm"
+          className="shrink-0"
+          aria-label={t('practice.topics.startLabel', { topic: topic.name })}
+          onClick={() => void start(topic)}
+        >
+          <Play aria-hidden="true" />
+          {t('practice.topics.start')}
+        </Button>
+        {worked && (
+          <div className="basis-full">
+            <Button
+              size="sm"
+              variant="ghost"
+              className="-my-1 -ml-3"
+              aria-label={t('practice.worked.startLabel', { topic: topic.name })}
+              onClick={() => void startWorked(topic)}
+            >
+              <Footprints aria-hidden="true" />
+              {t('practice.worked.start')}
+            </Button>
+          </div>
+        )}
+      </li>
+    );
   };
 
   return (
@@ -179,78 +262,99 @@ export function TopicsPage() {
             <Skeleton key={i} className="h-24" />
           ))}
         </div>
-      ) : shown.length === 0 ? (
-        <p className="text-muted">{t('practice.topics.none')}</p>
+      ) : searching ? (
+        <section aria-label={t('practice.topics.results', { count: shown.length })}>
+          <p role="status" className="mb-3 text-sm text-muted">
+            {t('practice.topics.results', { count: shown.length })}
+          </p>
+          {shown.length === 0 ? (
+            <p className="text-muted">{t('practice.topics.none')}</p>
+          ) : (
+            <TopicList topics={shown} row={row} />
+          )}
+        </section>
       ) : (
-        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {shown.map((topic) => {
-            const ratio = ratios.get(topic.key);
-            const worked = topicTasks(topic).some(({ task }) => hasWorkedSolution(task));
-            return (
-              <li
-                key={topic.key}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 shadow-1"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="font-semibold">{topic.name}</p>
-                  <p className="text-sm text-muted">
-                    {t('practice.topics.count', {
-                      count: topic.tasks.length,
-                      points: topic.points,
-                    })}
-                  </p>
-                  {ratio !== undefined && (
-                    <p
-                      className={cn(
-                        'text-sm font-medium',
-                        ratio < 0.6 ? 'text-warning' : ratio >= 0.8 ? 'text-success' : 'text-muted',
+        <>
+          {focus.length > 0 && (
+            <section
+              aria-labelledby="topics-focus"
+              className="mb-6 rounded-lg border-2 border-warning/60 bg-warning-soft/40 p-4"
+            >
+              <h2 id="topics-focus" className="flex items-center gap-2 text-lg font-bold">
+                <Target aria-hidden="true" className="size-5 text-warning" />
+                {t('practice.topics.focusTitle')}
+              </h2>
+              <p className="mb-3 text-sm text-muted">{t('practice.topics.focusBody')}</p>
+              <TopicList topics={focus} row={row} />
+            </section>
+          )}
+          <section aria-labelledby="topics-areas">
+            <h2 id="topics-areas" className="text-xl font-bold">
+              {t('practice.topics.areasTitle')}
+            </h2>
+            <p className="mb-3 text-sm text-muted">{t('practice.topics.areasHint')}</p>
+            <div className="grid gap-3">
+              {groups.map((group) => {
+                const weak = group.topics.filter((x) => (ratios.get(x.key) ?? 1) < WEAK).length;
+                return (
+                  <details
+                    key={group.area.id}
+                    open={groups.length === 1}
+                    className="group/area rounded-lg border border-border bg-surface shadow-1 open:border-border-strong"
+                  >
+                    <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 p-4 [&::-webkit-details-marker]:hidden">
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-lg font-semibold">{group.area.name}</span>
+                        <span className="block text-sm text-muted">
+                          {t('practice.topics.areaCount', {
+                            topics: group.topics.length,
+                            tasks: group.tasks,
+                          })}
+                          {weak > 0 && (
+                            <span className="font-medium text-warning">
+                              {' · '}
+                              {t('practice.topics.areaWeak', { count: weak })}
+                            </span>
+                          )}
+                        </span>
+                      </span>
+                      <ChevronDown
+                        aria-hidden="true"
+                        className="size-5 shrink-0 text-muted transition-transform group-open/area:rotate-180"
+                      />
+                    </summary>
+                    <div className="grid gap-3 border-t border-border p-4">
+                      {group.topics.length > 1 && (
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="justify-self-start"
+                          onClick={() => void startArea(group)}
+                        >
+                          <Shuffle aria-hidden="true" />
+                          {t('practice.topics.areaRound', { area: group.area.name })}
+                        </Button>
                       )}
-                    >
-                      {t(ratio < 0.6 ? 'practice.topics.weak' : 'practice.topics.strong', {
-                        percent: formatNumber(Math.round(ratio * 100)),
-                      })}
-                    </p>
-                  )}
-                </div>
-                <label className="flex shrink-0 cursor-pointer flex-col items-center gap-1 text-xs text-muted">
-                  <input
-                    type="checkbox"
-                    className="size-5 accent-[var(--c-primary)]"
-                    checked={selected.has(topic.key)}
-                    aria-label={t('practice.topics.selectLabel', { topic: topic.name })}
-                    onChange={() => toggle(topic.key)}
-                  />
-                  <span aria-hidden="true">{t('practice.topics.select')}</span>
-                </label>
-                <Button
-                  size="sm"
-                  className="shrink-0"
-                  aria-label={t('practice.topics.startLabel', { topic: topic.name })}
-                  onClick={() => void start(topic)}
-                >
-                  <Play aria-hidden="true" />
-                  {t('practice.topics.start')}
-                </Button>
-                {worked && (
-                  <div className="basis-full">
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="-my-1 -ml-3"
-                      aria-label={t('practice.worked.startLabel', { topic: topic.name })}
-                      onClick={() => void startWorked(topic)}
-                    >
-                      <Footprints aria-hidden="true" />
-                      {t('practice.worked.start')}
-                    </Button>
-                  </div>
-                )}
-              </li>
-            );
-          })}
-        </ul>
+                      <TopicList topics={sorted(group.topics)} row={row} />
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </section>
+        </>
       )}
       <p className="mt-6 text-sm text-muted">{t('practice.topics.essaysNote')}</p>
     </>
   );
+}
+
+function TopicList({
+  topics,
+  row,
+}: {
+  topics: TopicEntry[];
+  row: (topic: TopicEntry) => ReactNode;
+}) {
+  return <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">{topics.map(row)}</ul>;
 }

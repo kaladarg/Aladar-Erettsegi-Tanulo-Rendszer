@@ -103,12 +103,15 @@ for (const scheme of ['light', 'dark'] as const) {
 
     // A practice round with the drawing pad open.
     await page.goto('/gyakorlas/temakorok?targy=matematika');
+    await page.getByText('Geometria, trigonometria', { exact: true }).click();
+    await scan(page, 'topic area open');
     await page.getByRole('button', { name: 'Gyakorlás: Pitagorasz-tétel' }).click();
     await page.getByRole('button', { name: 'Rajzlap megnyitása' }).click();
     await scan(page, 'drill');
 
     // A worked example.
     await page.goto('/gyakorlas/temakorok?targy=matematika');
+    await page.getByText('Függvények, sorozatok', { exact: true }).click();
     await page.getByRole('button', { name: 'Lépésről lépésre: számtani sorozat' }).click();
     await page.getByRole('button', { name: 'Első lépés' }).click();
     await expect(page.getByRole('list', { name: 'Megoldás lépésenként' })).toBeVisible();

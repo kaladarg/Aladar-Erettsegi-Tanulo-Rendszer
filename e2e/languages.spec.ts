@@ -46,6 +46,7 @@ test('exam mode plays the recording through, without pause or rewind', async ({ 
 
 test('a listening task in a topic round brings its recording', async ({ page }) => {
   await page.goto('/gyakorlas/temakorok?targy=angol');
+  await page.getByText('Hallott szöveg értése', { exact: true }).click();
   await page
     .getByRole('button', { name: /hallott szöveg értése/ })
     .first()
