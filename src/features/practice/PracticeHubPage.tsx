@@ -1,5 +1,6 @@
 import {
   CalendarDays,
+  Dices,
   ChevronRight,
   GalleryVerticalEnd,
   GraduationCap,
@@ -69,6 +70,13 @@ export function PracticeHubPage() {
           icon={<CalendarDays />}
           title={t('practice.hub.planTitle')}
           body={t('practice.hub.planBody')}
+        />
+        <HubCard
+          to="/gyakorlas/valoszinuseg"
+          tint="cyan"
+          icon={<Dices />}
+          title={t('practice.hub.probabilityTitle')}
+          body={t('practice.hub.probabilityBody')}
         />
         <HubCard
           to="/gyakorlas/pontszamito"

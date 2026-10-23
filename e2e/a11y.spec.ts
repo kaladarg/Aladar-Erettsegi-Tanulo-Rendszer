@@ -22,6 +22,7 @@ const PAGES = [
   ['/gyakorlas/segedeszkozok', 'Segédeszközök és vizsganap'],
   ['/tanaroknak', 'Tanároknak'],
   ['/gyakorlas/pontszamito', 'Felvételi pontszámító'],
+  ['/gyakorlas/valoszinuseg', 'Valószínűség lépésről lépésre'],
   [
     '/feladatsorok/matematika-kozep-2026-majus-minta/nyomtatas',
     'Matematika – Mintafeladatsor – Matematika, középszint',

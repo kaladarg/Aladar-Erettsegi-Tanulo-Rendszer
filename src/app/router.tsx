@@ -129,6 +129,12 @@ export function createRouter() {
           }),
         },
         {
+          path: 'gyakorlas/valoszinuseg',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/ProbabilityPage')).ProbabilityPage,
+          }),
+        },
+        {
           path: 'gyakorlas/pontszamito',
           lazy: async () => ({
             Component: (await import('@/features/practice/AdmissionPage')).AdmissionPage,

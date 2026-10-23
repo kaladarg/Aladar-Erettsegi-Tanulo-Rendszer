@@ -799,6 +799,12 @@ export const hu = {
         'Történelem, irodalom, angol és német: évszámok, fogalmak, szerzők, művek, hasznos nyelvi fordulatok, ismétlő rendszerrel.',
       planTitle: 'Tervem',
       planBody: 'Visszaszámlálás a vizsgáig és heti teendők a gyenge pontjaid alapján.',
+      probabilityTitle: 'Valószínűség lépésről lépésre',
+      probabilityBody:
+        'Matek: a négy alapötlet, kidolgozott példák és mindig új gyakorlófeladat azonnali ellenőrzéssel.',
+      essayTitle: 'Esszévázlat-edző',
+      essayBody:
+        'Történelem és magyar: tervezd meg az esszét időre, a javítókulcs szempontjai szerint.',
       admissionTitle: 'Felvételi pontszámító',
       admissionBody:
         'Hány pontot érhetsz el a felvételin? Becslés a jegyeidből és a gyakorlásaidból.',
@@ -1279,6 +1285,77 @@ export const hu = {
       'A {year}. évi felvételi szabályai szerint (ellenőrizve: {date}). Ez becslés: a pontos szabályokat és a ponthatárokat mindig a felvi.hu-n nézd meg.',
     felvi: 'Pontszámítás a felvi.hu-n',
     reset: 'Mindent törlök',
+  },
+  probability: {
+    title: 'Valószínűség lépésről lépésre',
+    intro:
+      'A valószínűségi feladatok többsége néhány alapötletre épül. Nézd meg az ötletet, kövesd végig a kidolgozott példát, aztán oldj meg egyedül annyi új feladatot, amennyit szeretnél.',
+    ideasTitle: 'A négy alapötlet',
+    ideas: {
+      classicTitle: 'Klasszikus valószínűség',
+      classicBody:
+        'Ha minden eset egyformán valószínű: $P = \\dfrac{\\text{kedvező esetek}}{\\text{összes eset}}$. Az eredmény mindig 0 és 1 közé esik.',
+      complementTitle: 'Ellentett esemény',
+      complementBody:
+        'A „legalább egy” típusú kérdéseknél egyszerűbb azt számolni, ami nem jó: $P(A) = 1 - P(\\overline{A})$.',
+      productTitle: 'Független események',
+      productBody:
+        'Ha az egyik nem befolyásolja a másikat (két dobás), a valószínűségek összeszorozhatók: $P(A \\text{ és } B) = P(A) \\cdot P(B)$.',
+      combinationTitle: 'Kombináció',
+      combinationBody:
+        'Ha a kiválasztás sorrendje nem számít: $n$ elemből $k$ elem $\\binom{n}{k}$-féleképpen választható ki. Számológépen: nCr.',
+    },
+    kindsTitle: 'Feladattípusok',
+    kindsLabel: 'Feladattípus',
+    kinds: {
+      'egy-huzas': 'Egy húzás',
+      'ket-kocka': 'Két kocka',
+      'legalabb-egy': 'Legalább egy',
+      'ket-huzas': 'Húzás visszatevés nélkül',
+      kivalasztas: 'Kiválasztás',
+      erme: 'Pénzfeldobás',
+    },
+    when: {
+      'egy-huzas':
+        'Egy dolgot választunk véletlenszerűen: számold meg a kedvező és az összes esetet.',
+      'ket-kocka':
+        'Két kocka: 36 egyenlően valószínű számpár van. Írd fel a kedvező párokat, a sorrend számít.',
+      'legalabb-egy':
+        'Ha a kérdésben „legalább egy” szerepel, számold ki az ellentett eseményt, és vond ki 1-ből.',
+      'ket-huzas':
+        'Visszatevés nélkül a második húzásnál eggyel kevesebb golyó van. Szorozd össze a lépések valószínűségét.',
+      kivalasztas:
+        'Csoportot választunk, a sorrend nem számít: kombinációval számold az összes és a kedvező esetet.',
+      erme: 'Pontosan $k$ fej $n$ dobásból: válaszd ki, melyik $k$ dobás legyen fej, és oszd el $2^n$-nel.',
+    },
+    whenTitle: 'Mikor ezt használd?',
+    exampleTitle: 'Kidolgozott példa',
+    thinkFirst: 'Mielőtt megnézed: mi lehet az első lépés?',
+    thinkNext: 'Mi jöhet ezután? Gondold végig, aztán nézd meg.',
+    showFirst: 'Első lépés',
+    showNext: 'Következő lépés',
+    showAll: 'Mindet mutasd',
+    step: '{number}. lépés',
+    stepsLeft: 'Még {count} lépés van hátra.',
+    exampleDone: 'Megvan a megoldás. Próbálj ki egy hasonlót egyedül!',
+    tryTitle: 'Most te jössz',
+    answerLabel: 'Válaszod',
+    answerHint: 'Írhatod törtként (5/36), tizedes törtként (0,139) vagy százalékként (13,9%).',
+    check: 'Ellenőrzés',
+    hint: 'Kérek egy tippet',
+    solution: 'Megmutatom a megoldást',
+    next: 'Új feladat',
+    right: 'Helyes! A pontos érték: {answer}.',
+    wrong: 'Még nem jó. Nézd meg a következő tippet, vagy próbáld újra.',
+    unreadable:
+      'Ezt nem tudom értelmezni. Írd törtként (5/36), tizedes törtként (0,139) vagy százalékként (13,9%).',
+    revealed: 'A pontos érték: {answer}.',
+    tally: 'Ebben a körben: {right} / {total} helyes',
+    roundingNote:
+      'Tizedes törtnél legalább két tizedesjegyet írj. Az érettségin a pontos tört vagy a kerekített érték is elfogadható, ha a megoldás menete látszik.',
+    realTitle: 'Valódi érettségi feladatok',
+    realBody: 'Ha már megy, gyakorolj a korábbi feladatsorok valószínűségi feladataival is.',
+    realLink: 'Valószínűségi feladatok a feladatsorokból',
   },
   aids: {
     title: 'Segédeszközök és vizsganap',
