@@ -68,6 +68,7 @@ const REQUIRED_KEYS: Record<BackupTable, string[]> = {
   oralTopics: ['id', 'subject'],
   recordings: ['id', 'topicId', 'data'],
   cardEvents: ['cardId', 'time'],
+  essayOutlines: ['key', 'examId', 'taskId'],
 };
 
 /** Recordings are stored as Blobs; in the backup file they are base64 data URLs. */

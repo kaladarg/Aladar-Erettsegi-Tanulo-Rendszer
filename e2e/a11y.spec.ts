@@ -23,6 +23,8 @@ const PAGES = [
   ['/tanaroknak', 'Tanároknak'],
   ['/gyakorlas/pontszamito', 'Felvételi pontszámító'],
   ['/gyakorlas/valoszinuseg', 'Valószínűség lépésről lépésre'],
+  ['/gyakorlas/esszevazlat', 'Esszévázlat-edző'],
+  ['/gyakorlas/esszevazlat/tortenelem-kozep-2026-majus-minta/6', 'Vázlat: 6. feladat'],
   [
     '/feladatsorok/matematika-kozep-2026-majus-minta/nyomtatas',
     'Matematika – Mintafeladatsor – Matematika, középszint',

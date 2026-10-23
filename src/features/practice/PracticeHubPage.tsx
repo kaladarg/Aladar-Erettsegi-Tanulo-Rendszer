@@ -7,6 +7,7 @@ import {
   Backpack,
   Layers,
   Mic,
+  NotebookPen,
   RotateCcw,
   School,
 } from 'lucide-react';
@@ -70,6 +71,13 @@ export function PracticeHubPage() {
           icon={<CalendarDays />}
           title={t('practice.hub.planTitle')}
           body={t('practice.hub.planBody')}
+        />
+        <HubCard
+          to="/gyakorlas/esszevazlat"
+          tint="rose"
+          icon={<NotebookPen />}
+          title={t('practice.hub.essayTitle')}
+          body={t('practice.hub.essayBody')}
         />
         <HubCard
           to="/gyakorlas/valoszinuseg"

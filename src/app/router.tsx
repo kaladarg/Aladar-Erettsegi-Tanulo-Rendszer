@@ -129,6 +129,19 @@ export function createRouter() {
           }),
         },
         {
+          path: 'gyakorlas/esszevazlat',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/essay/EssayPickerPage')).EssayPickerPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/esszevazlat/:examId/:taskId',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/essay/EssayOutlinePage'))
+              .EssayOutlinePage,
+          }),
+        },
+        {
           path: 'gyakorlas/valoszinuseg',
           lazy: async () => ({
             Component: (await import('@/features/practice/ProbabilityPage')).ProbabilityPage,

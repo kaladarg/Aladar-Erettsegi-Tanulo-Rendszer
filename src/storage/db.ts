@@ -178,6 +178,25 @@ export interface ImportedAudioRow {
   blob: Blob;
 }
 
+/** An essay outline from the outline trainer, one per task. */
+export interface EssayOutlineRow {
+  /** `<examId>/<taskId>` */
+  key: string;
+  examId: string;
+  taskId: string;
+  /** Slot id (or `<id>.fact` / `<id>.point`) → the student's text. */
+  values: Record<string, string>;
+  /** Indexes of the task's questions the student ticked as planned for. */
+  directives: number[];
+  /** The student's own rating per criterion id after comparing with the key. */
+  ratings: Record<string, 'full' | 'partial' | 'none'>;
+  /** Planning time used, in seconds. */
+  seconds: number;
+  /** The student compared the outline with the key. */
+  compared: boolean;
+  updatedAt: number;
+}
+
 /** Values that never leave the device, not even in exports (e.g. the AI key). */
 export interface SecretRow {
   key: string;
@@ -198,6 +217,7 @@ export class AppDatabase extends Dexie {
   recordings!: EntityTable<RecordingRow, 'id'>;
   cardEvents!: EntityTable<CardEventRow, 'id'>;
   importedAudio!: EntityTable<ImportedAudioRow, 'key'>;
+  essayOutlines!: EntityTable<EssayOutlineRow, 'key'>;
 
   constructor(name = 'erettsegi-gyakorlo') {
     super(name);
@@ -238,6 +258,8 @@ export class AppDatabase extends Dexie {
     this.version(4).stores({ cardEvents: '++id, cardId, time' });
     // Version 5: listening recordings opened by the student (foreign-language papers).
     this.version(5).stores({ importedAudio: 'key' });
+    // Version 6: essay outlines.
+    this.version(6).stores({ essayOutlines: 'key, updatedAt' });
   }
 }
 
@@ -262,6 +284,7 @@ export const BACKUP_TABLES = [
   'oralTopics',
   'recordings',
   'cardEvents',
+  'essayOutlines',
 ] as const;
 export type BackupTable = (typeof BACKUP_TABLES)[number];
 
