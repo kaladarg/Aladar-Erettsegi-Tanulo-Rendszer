@@ -158,3 +158,9 @@ npm run dev:content                  # the app loads ../erettsegi-gyakorlo-conte
 3. Optionally add an accent color token (`--c-subject-<id>`) in `src/design/tokens.css`, with a contrast test.
 
 No UI code changes are needed: subjects, levels and exams come from the manifest.
+
+### Levels in the app
+
+Each exam's `level` is `kozep` or `emelt`. Students choose a level per subject (onboarding and Settings, stored as `settings.levels`). Topic practice and Mai adag use `fitsLevel` in `src/content/useExams.ts`: an emelt student practises both levels, a középszint student only középszint. Emelt papers show "<title>, emelt" (`examDisplayTitle`) and an "Emelt szint" badge. Their `gradeBands` (25/33/47/60%) cover the written part only, so the grade is an estimate; say so in `review.notes`.
+
+A paper with `review.status: "reviewed"` shows the "Ellenőrizve" badge.

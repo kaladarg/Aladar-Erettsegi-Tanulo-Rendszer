@@ -6,7 +6,7 @@ A free, open-source, ad-free web app for practicing the Hungarian _érettségi_ 
 
 Made by **Králik Aladár**. Mistakes, questions and suggestions: [kralik.aladar.gergely@gmail.com](mailto:kralik.aladar.gergely@gmail.com).
 
-> Status: phase 6 of 7 (statistics, home dashboard, result sharing). See [docs/roadmap.md](docs/roadmap.md).
+> Status: phase 7 of 7 (archive, emelt szint, release prep). See [docs/roadmap.md](docs/roadmap.md).
 
 | Mobile (light)                                                   | Desktop (dark)                                                    |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -36,7 +36,9 @@ Nyisd meg az oldalt: **https://kaladarg.github.io/Aladar-Erettsegi-Tanulo-Rendsz
 - Vizsgaszimuláció után az eredményoldal megmutatja, melyik feladat vitt el sokkal több időt, mint amennyi a pontértéke alapján jutna rá.
 - A Tanulókártyák minden paklijának saját oldala van: a kártyák listája a válaszokkal (kereséssel), a haladásod (új, tanulás alatt, megtanulva) és a tanulási módok. A kártyák négyzetesek, koppintásra megfordulnak, és jobbra húzod, ha tudod, balra, ha még tanulod. Játékok: Kvíz (négy válaszból), Párosító (időre) és Beírós (emlékezetből, kis elírást elfogadva).
 - Tanároknak: feladatsor-link és QR-kód a diákoknak, eredménykódok összesítése táblázatba, regisztráció és szerver nélkül.
-- A kezdőlapon folytathatod a félbehagyott feladatsort, ajánlást kapsz a következő lépésre, és látod a gyakorlási sorozatodat. A Statisztika oldal megmutatja a fejlődésedet, az erős és gyenge témaköreidet és a hibatípusokat. Az eredményedet képként megoszthatod (név nélkül).
+- Középszintű és emelt szintű feladatsorok is vannak. Az első indításkor tárgyanként megadod a szintet és a vizsga dátumát (később a Beállításokban módosíthatod); a Feladatsorok oldalon szintre szűrhetsz, a témakörös gyakorlás és a Mai adag pedig a saját szintedhez illő feladatokat adja. Emelt szinten a jegy csak becslés az írásbeli alapján. A javítási útmutatóval egyeztetett feladatsorokon „Ellenőrizve” jelölés látható.
+- A kezdőlapon egy kártya mutatja a következő lépést, a „Folytatás” gombbal pedig egy koppintással ott folytatod, ahol abbahagytad (feladatsor, kör vagy esszévázlat). Vasárnap és hétfőn heti összefoglalót kapsz. Feladatsor közben felül látod a címet és a haladást, és a feladatlistából bármelyik feladatra ugorhatsz.
+- A kezdőlapon látod a gyakorlási sorozatodat is. A Statisztika oldal megmutatja a fejlődésedet, az erős és gyenge témaköreidet és a hibatípusokat. Az eredményedet képként megoszthatod (név nélkül).
 
 ## Quick start (developers)
 
