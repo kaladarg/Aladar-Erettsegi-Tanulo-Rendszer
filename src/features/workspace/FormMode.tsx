@@ -1,4 +1,5 @@
 import { LifeBuoy } from 'lucide-react';
+import { useEffect } from 'react';
 import { partMeta } from '@/content/labels';
 import { RichText } from '@/content/RichText';
 import type { Part, SourceMaterial, Task } from '@/content/schema.types';
@@ -12,12 +13,26 @@ import { FormField } from './fields/FormField';
 import { DrawingPad } from './ink/DrawingPad';
 import { PdfCrop } from './pdf/PdfCrop';
 import { useHelp } from './help/helpStore';
+import { GOTO_TASK } from './taskNav';
 import { useWorkspace } from './WorkspaceContext';
 
 /** All tasks as a simple, accessible list. Shares answers with PDF mode. */
 export function FormMode() {
   const { exam, activePartIds } = useWorkspace();
   const parts = exam.parts.filter((part) => !activePartIds || activePartIds.has(part.id));
+  // The task list asks for a task: scroll to its card and move focus to its heading.
+  useEffect(() => {
+    const onGoto = (event: Event) => {
+      const taskId = (event as CustomEvent<string>).detail;
+      const card = document.querySelector<HTMLElement>(
+        `article[data-task-id="${CSS.escape(taskId)}"]`,
+      );
+      card?.scrollIntoView({ block: 'start' });
+      card?.querySelector<HTMLElement>('h3')?.focus({ preventScroll: true });
+    };
+    window.addEventListener(GOTO_TASK, onGoto);
+    return () => window.removeEventListener(GOTO_TASK, onGoto);
+  }, []);
   return (
     <div className="mx-auto grid w-full max-w-3xl gap-10 px-4 py-6 sm:px-6">
       {parts.map((part) => (
@@ -117,12 +132,12 @@ export function TaskCard({ task, dimmed }: { task: Task; dimmed: boolean }) {
       aria-labelledby={`task-${task.id}`}
       data-task-id={task.id}
       className={cn(
-        'rounded-lg border border-border bg-surface p-5 shadow-1 sm:p-6',
+        'scroll-mt-32 rounded-lg border border-border bg-surface p-5 shadow-1 sm:p-6',
         dimmed && 'opacity-60',
       )}
     >
       <header className="mb-3 flex items-baseline justify-between gap-3">
-        <h3 id={`task-${task.id}`} className="text-lg font-bold">
+        <h3 id={`task-${task.id}`} tabIndex={-1} className="text-lg font-bold outline-none">
           {t('workspace.taskHeading', { number: task.number })}
         </h3>
         <span className="flex shrink-0 items-center gap-2 text-sm font-medium text-muted">

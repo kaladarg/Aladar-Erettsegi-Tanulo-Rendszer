@@ -1,9 +1,8 @@
-import { ChevronRight, Library, PlayCircle, ShieldCheck } from 'lucide-react';
+import { Library, PlayCircle, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { DEFAULT_LEVELS, DEFAULT_SUBJECTS } from '@/content/catalog';
+import { DEFAULT_SUBJECTS } from '@/content/catalog';
 import { SubjectBadge } from '@/content/SubjectIcon';
-import { Badge } from '@/design/ui/Badge';
 import { Button } from '@/design/ui/Button';
 import { EmptyState } from '@/design/ui/EmptyState';
 import { Skeleton } from '@/design/ui/Skeleton';
@@ -11,7 +10,9 @@ import { t } from '@/i18n';
 import { useOnboarding } from '@/state/onboardingStore';
 import { useSettings } from '@/state/settingsStore';
 import { useStatsData } from '../stats/useStatsData';
-import { ContinueCard, Dashboard } from './Dashboard';
+import { NextStepCard } from './Dashboard';
+import { ResumeCard } from './Resume';
+import { WeeklySummary } from './WeeklySummary';
 import { HeroBanner } from './HeroBanner';
 import { DataSafetyReminder } from '../settings/DataSafety';
 import { PracticeTools, WhatsNew } from './PracticeTools';
@@ -26,25 +27,26 @@ export function HomePage() {
   const selected = useSettings((state) => state.settings.subjects);
   const showOnboarding = useOnboarding((state) => state.show);
   const subjects = DEFAULT_SUBJECTS.filter((subject) => selected.includes(subject.id));
-  const level = DEFAULT_LEVELS[0];
 
   return (
     <>
       <HeroBanner data={stats} />
       {loaded && <DataSafetyReminder />}
       {loaded && <WhatsNew />}
-      {loaded && <ContinueCard data={stats} />}
+      {loaded && (
+        <div className="grid gap-4">
+          <WeeklySummary data={stats} />
+          <ResumeCard />
+          <NextStepCard data={stats} />
+        </div>
+      )}
 
-      <section aria-labelledby="home-subjects">
-        <h2 id="home-subjects" className="mb-4 text-xl font-semibold">
+      <section aria-labelledby="home-subjects" className="mt-8">
+        <h2 id="home-subjects" className="mb-3 text-xl font-semibold">
           {t('home.yourSubjects')}
         </h2>
-
         {!loaded ? (
-          <div className="grid gap-4 sm:grid-cols-2" aria-busy="true">
-            <Skeleton className="h-28" />
-            <Skeleton className="h-28" />
-          </div>
+          <Skeleton className="h-12" aria-busy="true" />
         ) : subjects.length === 0 ? (
           <EmptyState
             icon={<PlayCircle />}
@@ -53,40 +55,34 @@ export function HomePage() {
             action={<Button onClick={showOnboarding}>{t('home.chooseSubjects')}</Button>}
           />
         ) : (
-          <ul className="grid stagger gap-4 sm:grid-cols-2">
+          // A compact row: the subject pages are one tap away, without a card each.
+          <ul className="flex flex-wrap gap-2">
             {subjects.map((subject) => (
               <li key={subject.id}>
                 <Link
                   to={`/feladatsorok?targy=${subject.id}`}
                   aria-label={t('home.browseSubject', { subject: subject.name })}
                   data-ripple=""
-                  className="group flex lift items-center gap-4 rounded-lg border border-border bg-surface p-5 shadow-1 hover:border-border-strong"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border bg-surface py-1 pr-4 pl-1 font-medium shadow-1 hover:border-border-strong"
                 >
-                  <SubjectBadge subject={subject} />
-                  <div className="min-w-0">
-                    <p className="text-lg font-semibold">{subject.name}</p>
-                    {level && <Badge className="mt-1">{level.name}</Badge>}
-                  </div>
-                  <ChevronRight
-                    aria-hidden="true"
-                    className="ml-auto size-5 shrink-0 text-muted transition-transform group-hover:translate-x-0.5"
-                  />
+                  <SubjectBadge subject={subject} size="sm" />
+                  {subject.name}
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                to="/feladatsorok"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 font-medium text-primary underline-offset-4 hover:underline"
+              >
+                <Library aria-hidden="true" className="size-4" />
+                {t('home.subjectsAll')}
+              </Link>
+            </li>
           </ul>
-        )}
-        {loaded && (
-          <Button asChild variant="secondary" className="mt-4">
-            <Link to="/feladatsorok">
-              <Library aria-hidden="true" />
-              {t('home.browseAll')}
-            </Link>
-          </Button>
         )}
       </section>
 
-      {loaded && <Dashboard data={stats} />}
       {loaded && <PracticeTools />}
 
       <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">

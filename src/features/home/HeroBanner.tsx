@@ -80,7 +80,7 @@ export function HeroBanner({ data }: { data: StatsData | undefined }) {
         </ProgressRing>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-5 flex flex-wrap items-center gap-2">
         <Button
           asChild
           size="lg"
@@ -101,17 +101,15 @@ export function HeroBanner({ data }: { data: StatsData | undefined }) {
                 : t('practice.daily.heroStart')}
           </Link>
         </Button>
-        <Button
-          asChild
-          size="lg"
-          variant="ghost"
-          className="text-hero-fg ring-1 ring-white/40 hover:bg-white/15"
+        {/* One main button; the rest of the practice tools are a quiet link. */}
+        <Link
+          to="/gyakorlas"
+          data-ripple=""
+          className="relative inline-flex min-h-12 items-center gap-1.5 overflow-hidden rounded-md px-3 font-semibold text-hero-fg underline-offset-4 hover:underline"
         >
-          <Link to="/gyakorlas">
-            <Play aria-hidden="true" />
-            {t('home.hero.start')}
-          </Link>
-        </Button>
+          <Play aria-hidden="true" className="size-4" />
+          {t('home.hero.start')}
+        </Link>
       </div>
 
       <ul className="mt-5 flex flex-wrap gap-2 text-sm font-medium">

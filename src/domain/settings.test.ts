@@ -50,6 +50,7 @@ describe('sanitizeSettings', () => {
       cardRepeat: 'end',
       admission: null,
       daily: { subject: 'matematika', areas: ['valstat'], length: 10 },
+      levels: { matematika: 'emelt' },
     } as const;
     expect(sanitizeSettings(valid)).toEqual(valid);
     expect(sanitizeSettings({ examDates: { magyar: 'holnap', tortenelem: 5 } }).examDates).toEqual(

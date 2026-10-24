@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { ALL_CARDS } from '@/content/cards';
 import { DEFAULT_SUBJECTS } from '@/content/catalog';
 import { useManifest } from '@/content/useContent';
-import { useExams } from '@/content/useExams';
+import { fitsLevel, useExams } from '@/content/useExams';
 import { cardStates } from '@/domain/cards/schedule';
 import {
   dailyPlan,
@@ -71,7 +71,12 @@ export interface DailyData {
  */
 export function useDailyPlan(choice: DailyChoiceInput, round = 0): DailyData | undefined {
   const subjects = useMemo(() => [choice.subject], [choice.subject]);
-  const { exams, loading } = useExams(subjects);
+  const { exams: loaded, loading } = useExams(subjects);
+  const ownLevel = useSettings((s) => s.settings.levels[choice.subject]);
+  const exams = useMemo(
+    () => new Map([...loaded].filter(([, exam]) => fitsLevel(exam.level, ownLevel))),
+    [loaded, ownLevel],
+  );
   const data = useLiveQuery(async () => {
     const [attempts, drillEvents, cardEvents, marks] = await Promise.all([
       db.attempts.toArray(),

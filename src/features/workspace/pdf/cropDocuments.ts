@@ -19,3 +19,8 @@ export async function closeCropDocuments(): Promise<void> {
   documents.clear();
   await Promise.all(all.map((doc) => doc.then((d) => d.destroy()).catch(() => undefined)));
 }
+
+/** Starts opening the paper for figures before the first one is on screen. */
+export function preloadCrops(source: PdfSource) {
+  void documentFor(source).catch(() => undefined);
+}

@@ -19,12 +19,14 @@ import { TEXT_SCALE_STEPS, stepTextScale, type ThemePreference } from '@/domain/
 import { Button } from '@/design/ui/Button';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { ConfirmDialog } from '@/design/ui/ConfirmDialog';
+import { findSubject } from '@/content/catalog';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
 import { SwitchField } from '@/design/ui/Switch';
 import { SubjectPicker } from '@/features/onboarding/SubjectPicker';
 import { formatDate, formatNumber, t } from '@/i18n';
 import type { BackupFile } from '@/storage/backup';
+import type { ExamLevelId } from '@/domain/settings';
 import { useSettings } from '@/state/settingsStore';
 import { AiKeySection } from './AiKeySection';
 import { ContentSourceSection } from './ContentSourceSection';
@@ -110,6 +112,30 @@ export function SettingsPage() {
               onChange={(subjects) => void update({ subjects })}
             />
           </div>
+          {settings.subjects.length > 0 && (
+            <div className="mt-5 grid gap-3">
+              <h3 className="font-semibold">{t('settings.subjects.levelsTitle')}</h3>
+              {settings.subjects.map((id) => {
+                const name = findSubject(id)?.name ?? id;
+                return (
+                  <div key={id} className="flex flex-wrap items-center justify-between gap-2">
+                    <span>{name}</span>
+                    <SegmentedControl<ExamLevelId>
+                      label={t('onboarding.exams.levelLabel', { subject: name })}
+                      value={settings.levels[id] ?? 'kozep'}
+                      onValueChange={(level) =>
+                        void update({ levels: { ...settings.levels, [id]: level } })
+                      }
+                      options={[
+                        { value: 'kozep', label: t('onboarding.exams.kozep') },
+                        { value: 'emelt', label: t('onboarding.exams.emelt') },
+                      ]}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </Card>
 
         <DataSection />

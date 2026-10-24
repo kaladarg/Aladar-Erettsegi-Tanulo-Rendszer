@@ -1,10 +1,21 @@
-import { ChevronDown, ChevronUp, Download, FileWarning, Maximize, Minus, Plus } from 'lucide-react';
+import {
+  ChevronDown,
+  ChevronUp,
+  Download,
+  FileWarning,
+  Maximize,
+  Minus,
+  Pencil,
+  Plus,
+} from 'lucide-react';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from '@/design/ui/Button';
 import { EmptyState } from '@/design/ui/EmptyState';
 import { Skeleton } from '@/design/ui/Skeleton';
 import { formatNumber, t } from '@/i18n';
+import { cn } from '@/lib/cn';
+import { GOTO_TASK } from '../taskNav';
 import { InkToolbar } from '../ink/InkToolbar';
 import { inkKeys, useInk } from '../ink/inkStore';
 import { useWorkspace } from '../WorkspaceContext';
@@ -34,6 +45,8 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
   const pages = useRef(new Map<number, HTMLElement>());
   const sourceKey = 'url' in source ? source.url : source.data;
   const inkMode = useInk((state) => state.mode);
+  const [inkOpen, setInkOpen] = useState(false);
+  const showInk = inkOpen || inkMode !== 'off';
 
   // Leaving the paper turns drawing off, so fields are clickable again next time.
   useEffect(() => () => useInk.getState().setMode('off'), []);
@@ -117,11 +130,56 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
     return () => observer.disconnect();
   }, [doc, sizes.length]);
 
-  const goToPage = (page: number) => {
-    const target = Math.min(Math.max(1, page), sizes.length);
-    pages.current.get(target)?.scrollIntoView({ block: 'start' });
-    setCurrentPage(target);
-  };
+  const goToPage = useCallback(
+    (page: number) => {
+      const target = Math.min(Math.max(1, page), sizes.length);
+      pages.current.get(target)?.scrollIntoView({ block: 'start' });
+      setCurrentPage(target);
+    },
+    [sizes.length],
+  );
+
+  // The page where a task's answer fields are (the first one with any).
+  const pageOfTask = useCallback(
+    (taskId: string) => {
+      const found = [...itemsByPage]
+        .filter(([, items]) => items.some((item) => 'task' in item && item.task.id === taskId))
+        .map(([page]) => page);
+      return found.length ? Math.min(...found) : undefined;
+    },
+    [itemsByPage],
+  );
+
+  // Open on the first page with a task, not on the cover and the instructions.
+  const opened = useRef(false);
+  useEffect(() => {
+    if (!doc || opened.current || editing) return;
+    opened.current = true;
+    const first = Math.min(
+      ...[...itemsByPage].filter(([, items]) => items.length > 0).map(([page]) => page),
+    );
+    if (Number.isFinite(first) && first > 1 && window.scrollY < 50)
+      requestAnimationFrame(() => requestAnimationFrame(() => goToPage(first)));
+  }, [doc, itemsByPage, editing, goToPage]);
+
+  // The task list asks for a task: go to its page, then to its first field.
+  useEffect(() => {
+    const onGoto = (event: Event) => {
+      const taskId = (event as CustomEvent<string>).detail;
+      const page = pageOfTask(taskId);
+      if (page === undefined) return;
+      goToPage(page);
+      window.setTimeout(() => {
+        const field = pages.current
+          .get(page)
+          ?.querySelector<HTMLElement>(`[data-task-id="${CSS.escape(taskId)}"]`);
+        field?.scrollIntoView({ block: 'center' });
+        field?.focus({ preventScroll: true });
+      }, 300);
+    };
+    window.addEventListener(GOTO_TASK, onGoto);
+    return () => window.removeEventListener(GOTO_TASK, onGoto);
+  }, [pageOfTask, goToPage]);
   const stepZoom = (direction: 1 | -1) => {
     const index = ZOOM_STEPS.findIndex((step) => step >= zoom - 1e-6);
     setZoom(
@@ -148,16 +206,17 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
   return (
     <div className="flex flex-col">
       <p className="sr-only">{t('workspace.pdfScreenReaderHint')}</p>
-      <div className="sticky top-[3.75rem] z-20 border-b border-border bg-surface/95 backdrop-blur">
+      <div className="sticky top-[var(--ws-top,3.75rem)] z-20 border-b border-border bg-surface/95 backdrop-blur">
         <div
           role="toolbar"
           aria-label={t('workspace.toolbarLabel')}
-          className="flex flex-wrap items-center justify-center gap-1 px-2 py-1"
+          className="flex flex-nowrap items-center justify-center gap-0.5 px-1 py-1 sm:flex-wrap sm:gap-1 sm:px-2"
         >
           <Button
             variant="ghost"
             size="icon"
             aria-label={t('workspace.zoomOut')}
+            className="max-sm:size-9"
             disabled={zoom <= ZOOM_STEPS[0]!}
             onClick={() => stepZoom(-1)}
           >
@@ -167,7 +226,7 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
             aria-label={t('workspace.zoomLevel', {
               percent: formatNumber(zoom, { style: 'percent' }),
             })}
-            className="w-14 text-center text-sm tabular-nums"
+            className="w-12 text-center text-sm tabular-nums sm:w-14"
           >
             {formatNumber(zoom, { style: 'percent' })}
           </output>
@@ -175,6 +234,7 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
             variant="ghost"
             size="icon"
             aria-label={t('workspace.zoomIn')}
+            className="max-sm:size-9"
             disabled={zoom >= ZOOM_STEPS.at(-1)!}
             onClick={() => stepZoom(1)}
           >
@@ -184,16 +244,18 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
             variant="ghost"
             size="icon"
             aria-label={t('workspace.zoomFit')}
+            className="max-sm:hidden"
             disabled={zoom === 1}
             onClick={() => setZoom(1)}
           >
             <Maximize aria-hidden="true" />
           </Button>
-          <span aria-hidden="true" className="mx-2 h-6 w-px bg-border" />
+          <span aria-hidden="true" className="mx-1 h-6 w-px bg-border sm:mx-2" />
           <Button
             variant="ghost"
             size="icon"
             aria-label={t('workspace.pagePrev')}
+            className="max-sm:size-9"
             disabled={currentPage <= 1}
             onClick={() => goToPage(currentPage - 1)}
           >
@@ -207,7 +269,7 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
               max={sizes.length || 1}
               value={currentPage}
               onChange={(event) => goToPage(Number(event.target.value))}
-              className="h-9 w-12 rounded-sm border border-border-strong bg-surface text-center"
+              className="h-9 w-10 rounded-sm border border-border-strong bg-surface text-center sm:w-12"
             />
             <span aria-hidden="true">/ {sizes.length || '–'}</span>
           </label>
@@ -215,16 +277,36 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
             variant="ghost"
             size="icon"
             aria-label={t('workspace.pageNext')}
+            className="max-sm:size-9"
             disabled={currentPage >= sizes.length}
             onClick={() => goToPage(currentPage + 1)}
           >
             <ChevronDown aria-hidden="true" />
           </Button>
+          {!editing && (
+            <>
+              <span aria-hidden="true" className="mx-1 h-6 w-px bg-border sm:hidden" />
+              {/* Phones: the drawing tools fold into one button to keep a single row. */}
+              <Button
+                variant={showInk ? 'primary' : 'ghost'}
+                size="icon"
+                aria-pressed={showInk}
+                aria-label={t('workspace.ink.toolsLabel')}
+                className="size-9 sm:hidden"
+                onClick={() => setInkOpen(!showInk)}
+              >
+                <Pencil aria-hidden="true" />
+              </Button>
+            </>
+          )}
         </div>
         {!editing && (
           <InkToolbar
             clearKeys={inkKeys}
-            className="justify-center border-t border-border px-2 py-1"
+            className={cn(
+              'justify-center border-t border-border px-2 py-1',
+              !showInk && 'max-sm:hidden',
+            )}
           />
         )}
         {!editing && inkMode !== 'off' && (

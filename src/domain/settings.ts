@@ -36,6 +36,19 @@ export interface Settings {
   admission: AdmissionInputs | null;
   /** The last Mai adag choice, offered again next time. */
   daily: DailyChoice | null;
+  /** Exam level per subject id; subjects not listed are középszint. */
+  levels: Record<string, ExamLevelId>;
+}
+
+export type ExamLevelId = 'kozep' | 'emelt';
+
+function sanitizeLevels(value: unknown): Record<string, ExamLevelId> {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return {};
+  return Object.fromEntries(
+    Object.entries(value).filter(
+      (entry): entry is [string, ExamLevelId] => entry[1] === 'kozep' || entry[1] === 'emelt',
+    ),
+  );
 }
 
 export interface DailyChoice {
@@ -85,6 +98,7 @@ export const DEFAULT_SETTINGS: Settings = {
   cardRepeat: 'none',
   admission: null,
   daily: null,
+  levels: {},
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -153,5 +167,6 @@ export function sanitizeSettings(input: unknown): Settings {
     cardRepeat: raw.cardRepeat === 'end' ? 'end' : 'none',
     admission: sanitizeAdmission(raw.admission),
     daily: sanitizeDaily(raw.daily),
+    levels: sanitizeLevels(raw.levels),
   };
 }

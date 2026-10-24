@@ -87,7 +87,7 @@ export function ListeningPlayer({
   return (
     <section
       aria-labelledby={titleId}
-      className="sticky top-[3.75rem] z-20 border-b border-border bg-surface shadow-1"
+      className="sticky top-[var(--ws-top,3.75rem)] z-20 border-b border-border bg-surface shadow-1"
     >
       <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-4 gap-y-2 px-3 py-2 sm:px-4">
         <h2 id={titleId} className="flex items-center gap-2 text-sm font-semibold">

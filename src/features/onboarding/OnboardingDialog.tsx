@@ -15,19 +15,23 @@ import { Dialog } from 'radix-ui';
 import { useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from '@/design/ui/Button';
-import { CURRENT_FEATURES } from '@/domain/settings';
+import { findSubject } from '@/content/catalog';
+import { SegmentedControl } from '@/design/ui/SegmentedControl';
+import { CURRENT_FEATURES, type ExamLevelId } from '@/domain/settings';
 import { t } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { useOnboarding } from '@/state/onboardingStore';
 import { useSettings } from '@/state/settingsStore';
 import { SubjectPicker } from './SubjectPicker';
 
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 5;
 
 /** First-run introduction: pick subjects, learn how it works, start. */
 export function OnboardingDialog() {
   const onboardingDone = useSettings((state) => state.settings.onboardingDone);
   const savedSubjects = useSettings((state) => state.settings.subjects);
+  const savedDates = useSettings((state) => state.settings.examDates);
+  const savedLevels = useSettings((state) => state.settings.levels);
   const update = useSettings((state) => state.update);
   const reopened = useOnboarding((state) => state.open);
   const closeReopened = useOnboarding((state) => state.close);
@@ -37,6 +41,8 @@ export function OnboardingDialog() {
   const open = (!onboardingDone && !suppressed) || reopened;
   const [step, setStep] = useState(0);
   const [subjects, setSubjects] = useState<string[]>(savedSubjects);
+  const [dates, setDates] = useState<Record<string, string>>(savedDates);
+  const [levels, setLevels] = useState<Record<string, ExamLevelId>>(savedLevels);
   const [showHint, setShowHint] = useState(false);
   const [wasOpen, setWasOpen] = useState(open);
 
@@ -45,13 +51,21 @@ export function OnboardingDialog() {
     setWasOpen(open);
     if (open) {
       setSubjects(savedSubjects);
+      setDates(savedDates);
+      setLevels(savedLevels);
       setStep(0);
       setShowHint(false);
     }
   }
 
   const finish = async (openExams = false) => {
-    await update({ onboardingDone: true, subjects, featuresSeen: CURRENT_FEATURES });
+    await update({
+      onboardingDone: true,
+      subjects,
+      featuresSeen: CURRENT_FEATURES,
+      examDates: Object.fromEntries(Object.entries(dates).filter(([, day]) => day)),
+      levels,
+    });
     closeReopened();
     setStep(0);
     if (openExams) {
@@ -124,6 +138,43 @@ export function OnboardingDialog() {
           )}
 
           {step === 1 && (
+            <Step title={t('onboarding.exams.title')} body={t('onboarding.exams.body')}>
+              <ul className="grid gap-4">
+                {subjects.map((id) => {
+                  const subject = findSubject(id);
+                  return (
+                    <li key={id} className="grid gap-2 rounded-lg border border-border p-3">
+                      <p className="font-semibold">{subject?.name ?? id}</p>
+                      <SegmentedControl<ExamLevelId>
+                        label={t('onboarding.exams.levelLabel', { subject: subject?.name ?? id })}
+                        value={levels[id] ?? 'kozep'}
+                        onValueChange={(level) => setLevels((l) => ({ ...l, [id]: level }))}
+                        options={[
+                          { value: 'kozep', label: t('onboarding.exams.kozep') },
+                          { value: 'emelt', label: t('onboarding.exams.emelt') },
+                        ]}
+                      />
+                      <label className="grid gap-1 text-sm font-medium">
+                        {t('onboarding.exams.dateLabel')}
+                        <input
+                          type="date"
+                          value={dates[id] ?? ''}
+                          onChange={(event) => {
+                            const day = event.target.value;
+                            setDates((d) => ({ ...d, [id]: day }));
+                          }}
+                          className="min-h-11 rounded-md border border-border-strong bg-surface px-3 text-base font-normal"
+                        />
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className="mt-3 text-sm text-muted">{t('onboarding.exams.later')}</p>
+            </Step>
+          )}
+
+          {step === 2 && (
             <Step title={t('onboarding.how.title')}>
               <ul className="grid gap-4">
                 <Feature icon={<BookOpenCheck />} title={t('onboarding.how.paperTitle')}>
@@ -139,7 +190,7 @@ export function OnboardingDialog() {
             </Step>
           )}
 
-          {step === 2 && (
+          {step === 3 && (
             <Step title={t('onboarding.tools.title')}>
               <ul className="grid gap-4">
                 <Feature icon={<Layers />} title={t('onboarding.tools.topicsTitle')}>
@@ -161,7 +212,7 @@ export function OnboardingDialog() {
             </Step>
           )}
 
-          {step === 3 && (
+          {step === 4 && (
             <Step title={t('onboarding.start.title')} body={t('onboarding.start.body')} />
           )}
 

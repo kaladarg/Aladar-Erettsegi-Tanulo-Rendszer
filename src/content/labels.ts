@@ -2,15 +2,16 @@ import { t } from '@/i18n';
 import { findSubject } from './catalog';
 import type { ExamEntry, Part } from './schema.types';
 
-type Titled = Pick<ExamEntry, 'year' | 'session' | 'title' | 'sample'>;
+type Titled = Pick<ExamEntry, 'year' | 'session' | 'title' | 'sample'> & { level?: string };
 
-/** "2024. május" for official papers, the paper's own title for samples. */
+/** "2024. május" for official papers ("2024. május, emelt" at emelt level), the paper's own title for samples. */
 export function examDisplayTitle(exam: Titled): string {
   if (exam.sample) return exam.title;
-  return t('exams.officialTitle', {
+  const title = t('exams.officialTitle', {
     year: String(exam.year),
     session: t(`session.${exam.session}`),
   });
+  return exam.level === 'emelt' ? t('exams.emeltTitle', { title }) : title;
 }
 
 /** "Matematika, 2024. május"; samples carry the subject in their own title. */

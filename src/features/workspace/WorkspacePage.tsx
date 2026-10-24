@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { FileText, Info, ListChecks, X } from 'lucide-react';
 import { Dialog } from 'radix-ui';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, type CSSProperties } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { examDisplayTitle, partInfo } from '@/content/labels';
@@ -26,11 +26,12 @@ import { HelpButton, HelpSheet } from './help/HelpSheet';
 import { SelectionLookup } from './help/SelectionLookup';
 import { ChoicePicker } from './ChoicePicker';
 import { FormMode } from './FormMode';
-import { closeCropDocuments } from './pdf/cropDocuments';
+import { closeCropDocuments, preloadCrops } from './pdf/cropDocuments';
 import { PdfMode } from './pdf/PdfMode';
 import { usePdfSource } from './pdf/usePdfSource';
 import { SaveStatus } from './SaveStatus';
 import { SubmitButton } from './SubmitButton';
+import { TaskNavigator } from './TaskNavigator';
 import { useAttempt } from './useAttempt';
 import { useTaskTimer } from './useTaskTimer';
 import { createWorkspace, WorkspaceContext } from './WorkspaceContext';
@@ -111,58 +112,82 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
     }
   }, [exam, attemptId, timed, navigate]);
   useEffect(() => () => void closeCropDocuments(), []);
+  // Form mode shows figures cut from the paper: open it right away.
+  useEffect(() => {
+    if (mode === 'form' && pdfSource) preloadCrops(pdfSource);
+  }, [mode, pdfSource]);
 
   return (
-    <div className="min-h-dvh bg-bg">
-      <header className="sticky top-0 z-30 flex h-[3.75rem] items-center gap-2 border-b border-border bg-surface px-2 sm:gap-3 sm:px-4">
-        <Button asChild variant="ghost" size="icon">
-          <Link to={`/feladatsorok/${examId}`} aria-label={t('workspace.exit')}>
-            <X aria-hidden="true" />
-          </Link>
-        </Button>
-        <h1 className="min-w-16 flex-1 truncate font-semibold">{title}</h1>
-        {exam && attemptId && <SaveStatus />}
-        {exam && attemptId && timed && (
-          <ExamClock
-            key={`${attemptId}:${timed.segment.id}`}
-            attemptId={attemptId}
-            segment={timed.segment}
-            initialSeconds={timed.initialSeconds}
-            onExpire={() => void onExpire()}
-          />
-        )}
-        {exam && attemptId && (attemptMode === 'practice' || timed) && (
-          <SubmitButton exam={exam} attemptId={attemptId} nextSegment={timed?.next} />
-        )}
-        {exam && (
-          <>
-            <SegmentedControl<Mode>
-              label={t('workspace.modeLabel')}
-              value={mode}
-              onValueChange={setMode}
-              compact
-              className="w-auto shrink-0 sm:w-auto"
-              options={[
-                {
-                  value: 'pdf',
-                  label: t('workspace.modePdf'),
-                  icon: <FileText aria-hidden="true" />,
-                },
-                {
-                  value: 'form',
-                  label: t('workspace.modeForm'),
-                  icon: <ListChecks aria-hidden="true" />,
-                },
-              ]}
+    // The header is two rows (bar and progress strip); sticky toolbars sit under it.
+    <div
+      className="min-h-dvh bg-bg"
+      style={{ '--ws-top': exam ? '6rem' : '3.75rem' } as CSSProperties}
+    >
+      <header className="sticky top-0 z-30 border-b border-border bg-surface">
+        <div className="flex h-[3.75rem] items-center gap-2 px-2 sm:gap-3 sm:px-4">
+          <Button asChild variant="ghost" size="icon">
+            <Link to={`/feladatsorok/${examId}`} aria-label={t('workspace.exit')}>
+              <X aria-hidden="true" />
+            </Link>
+          </Button>
+          {/* Subject above the session, so neither is cut off on a phone. */}
+          <h1 className="min-w-16 flex-1 leading-tight">
+            {exam ? (
+              <>
+                <span className="block truncate text-xs font-medium text-muted">
+                  {subject?.name}
+                </span>
+                <span className="sr-only"> – </span>
+                <span className="block truncate font-semibold">{examDisplayTitle(exam)}</span>
+              </>
+            ) : (
+              <span className="block truncate font-semibold">{title}</span>
+            )}
+          </h1>
+          {exam && attemptId && <SaveStatus />}
+          {exam && attemptId && timed && (
+            <ExamClock
+              key={`${attemptId}:${timed.segment.id}`}
+              attemptId={attemptId}
+              segment={timed.segment}
+              initialSeconds={timed.initialSeconds}
+              onExpire={() => void onExpire()}
             />
-            {attemptMode === 'practice' && <HelpButton />}
-            <InfoSheet
-              exam={exam}
-              abandonAttemptId={attemptMode === 'exam' ? attemptId : null}
-              onAbandoned={() => navigate(`/feladatsorok/${exam.id}`)}
-            />
-          </>
-        )}
+          )}
+          {exam && attemptId && (attemptMode === 'practice' || timed) && (
+            <SubmitButton exam={exam} attemptId={attemptId} nextSegment={timed?.next} />
+          )}
+          {exam && (
+            <>
+              <SegmentedControl<Mode>
+                label={t('workspace.modeLabel')}
+                value={mode}
+                onValueChange={setMode}
+                compact
+                className="w-auto shrink-0 sm:w-auto"
+                options={[
+                  {
+                    value: 'pdf',
+                    label: t('workspace.modePdf'),
+                    icon: <FileText aria-hidden="true" />,
+                  },
+                  {
+                    value: 'form',
+                    label: t('workspace.modeForm'),
+                    icon: <ListChecks aria-hidden="true" />,
+                  },
+                ]}
+              />
+              {attemptMode === 'practice' && <HelpButton />}
+              <InfoSheet
+                exam={exam}
+                abandonAttemptId={attemptMode === 'exam' ? attemptId : null}
+                onAbandoned={() => navigate(`/feladatsorok/${exam.id}`)}
+              />
+            </>
+          )}
+        </div>
+        {exam && attemptId && <TaskNavigator exam={exam} activePartIds={activePartIds} />}
       </header>
 
       <main id="main">

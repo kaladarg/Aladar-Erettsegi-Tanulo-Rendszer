@@ -3,7 +3,7 @@ import { useId, useMemo, useState, type ReactNode } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { DEFAULT_SUBJECTS, subjectShortName } from '@/content/catalog';
-import { useExams } from '@/content/useExams';
+import { fitsLevel, useExams } from '@/content/useExams';
 import { Button } from '@/design/ui/Button';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { PageHeader } from '@/design/ui/PageHeader';
@@ -34,7 +34,12 @@ export function TopicsPage() {
     chosen.find((s) => DEFAULT_SUBJECTS.some((d) => d.id === s)) ??
     'matematika';
   const subjects = useMemo(() => [subject], [subject]);
-  const { exams, loading } = useExams(subjects);
+  const { exams: loaded, loading } = useExams(subjects);
+  const ownLevel = useSettings((s) => s.settings.levels[subject]);
+  const exams = useMemo(
+    () => new Map([...loaded].filter(([, exam]) => fitsLevel(exam.level, ownLevel))),
+    [loaded, ownLevel],
+  );
   const stats = useStatsData();
   const [query, setQuery] = useState(params.get('tema') ?? '');
   const [sort, setSort] = useState<Sort>('common');

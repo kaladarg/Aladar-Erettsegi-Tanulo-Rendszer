@@ -24,7 +24,10 @@ export const DEFAULT_SUBJECTS: SubjectInfo[] = [
   { id: 'foldrajz', name: 'Földrajz', icon: 'globe' },
 ];
 
-export const DEFAULT_LEVELS: LevelInfo[] = [{ id: 'kozep', name: 'Középszint' }];
+export const DEFAULT_LEVELS: LevelInfo[] = [
+  { id: 'kozep', name: 'Középszint' },
+  { id: 'emelt', name: 'Emelt szint' },
+];
 
 export function findSubject(id: string, subjects = DEFAULT_SUBJECTS): SubjectInfo | undefined {
   return subjects.find((subject) => subject.id === id);

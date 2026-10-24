@@ -1,4 +1,4 @@
-import { ChevronRight, FileUp, Info, SearchX } from 'lucide-react';
+import { ChevronRight, FileUp, Info, SearchX, ShieldCheck } from 'lucide-react';
 import { useMemo } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
@@ -19,12 +19,13 @@ import { cn } from '@/lib/cn';
 import { useSettings } from '@/state/settingsStore';
 import { toast } from '@/state/toastStore';
 import { useExamProgress, type ExamProgress } from '@/storage/progress';
+import { ResumeCard } from '../home/Resume';
 import { ContentErrorState } from './ContentErrorState';
 import { ProgressBadge } from './ProgressBadge';
 import { usePdfPicker } from './usePdfPicker';
 
 /** Query parameter names (Hungarian, they show up in shared links). */
-const PARAM = { subject: 'targy', year: 'ev', session: 'idoszak' } as const;
+const PARAM = { subject: 'targy', year: 'ev', session: 'idoszak', level: 'szint' } as const;
 /** `targy=mind`: every subject, even when the student chose their own. */
 const ALL = 'mind';
 
@@ -51,6 +52,7 @@ export function ExamBrowserPage() {
         description={t('exams.intro')}
         actions={state.status === 'ready' ? <OpenPdfButton manifest={state.data.manifest} /> : null}
       />
+      <ResumeCard compact className="mb-6" />
       {state.status === 'loading' && <BrowserSkeleton />}
       {state.status === 'error' && (
         <ContentErrorState error={state.error} title={t('exams.loadErrorTitle')} onRetry={retry} />
@@ -75,6 +77,9 @@ function Browser({ manifest }: { manifest: Manifest }) {
   const [params, setParams] = useSearchParams();
   const progress = useExamProgress();
   const chosen = useSettings((s) => s.settings.subjects);
+  const ownLevels = useSettings((s) => s.settings.levels);
+  const level = params.get(PARAM.level) ?? '';
+  const multiLevel = manifest.levels.length > 1;
   const mine = manifest.subjects.filter((s) => chosen.includes(s.id)).map((s) => s.id);
   const requested = params.get(PARAM.subject) ?? '';
   // With no subject in the link, the student's own subjects are shown.
@@ -90,6 +95,10 @@ function Browser({ manifest }: { manifest: Manifest }) {
   const filtered = manifest.exams.filter(
     (exam) =>
       (onlyMine ? mine.includes(exam.subject) : !subject || exam.subject === subject) &&
+      // Own subjects at the student's own level, unless a level is picked.
+      (level
+        ? exam.level === level
+        : !onlyMine || exam.level === (ownLevels[exam.subject] ?? 'kozep')) &&
       (!year || String(exam.year) === year) &&
       (!session || exam.session === session),
   );
@@ -156,6 +165,22 @@ function Browser({ manifest }: { manifest: Manifest }) {
             </FilterChip>
           ))}
         </div>
+        {multiLevel && (
+          <div role="group" aria-label={t('exams.levelFilter')} className="flex flex-wrap gap-2">
+            <FilterChip active={!level} onClick={() => setParam(PARAM.level, '')}>
+              {t('exams.allLevels')}
+            </FilterChip>
+            {manifest.levels.map((l) => (
+              <FilterChip
+                key={l.id}
+                active={level === l.id}
+                onClick={() => setParam(PARAM.level, l.id)}
+              >
+                {l.name}
+              </FilterChip>
+            ))}
+          </div>
+        )}
         <div className="grid grid-cols-2 gap-3 sm:flex sm:items-end">
           <SelectField
             label={t('exams.yearFilter')}
@@ -176,7 +201,7 @@ function Browser({ manifest }: { manifest: Manifest }) {
               { value: 'oktober', label: t('session.oktober') },
             ]}
           />
-          {(requested || year || session) && (
+          {(requested || year || session || level) && (
             <Button
               variant="ghost"
               size="sm"
@@ -319,7 +344,14 @@ function ExamCard({
             {t('exams.pointsShort', { points: exam.maxPoints })}
           </span>
           {exam.sample && <Badge tone="primary">{t('exams.sampleBadge')}</Badge>}
+          {exam.level === 'emelt' && <Badge tone="info">{t('exams.emeltBadge')}</Badge>}
           {exam.status === 'draft' && <Badge tone="warning">{t('exams.draftBadge')}</Badge>}
+          {exam.status === 'reviewed' && !exam.sample && (
+            <Badge tone="success">
+              <ShieldCheck aria-hidden="true" />
+              {t('exams.reviewedBadge')}
+            </Badge>
+          )}
           <ProgressBadge progress={progress} tasks={tasks} showUntouched />
         </span>
       </span>

@@ -38,3 +38,11 @@ export function useExams(subjects?: string[]): ExamsState {
     return { exams: new Map(), loading: state.status !== 'error', failed: 0 };
   return result.value;
 }
+
+/**
+ * Whether a paper suits the student's level in its subject: emelt students
+ * practise both levels, középszint students only középszint.
+ */
+export function fitsLevel(examLevel: string, ownLevel: string | undefined): boolean {
+  return (ownLevel ?? 'kozep') === 'emelt' || examLevel !== 'emelt';
+}

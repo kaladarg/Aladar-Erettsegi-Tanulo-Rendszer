@@ -68,7 +68,10 @@ test('zoom and page navigation', async ({ page }) => {
   await expect(page.locator('[data-page="1"] canvas')).toBeVisible();
   await page.getByRole('button', { name: 'Nagyítás', exact: true }).click();
   await expect(page.getByRole('toolbar').locator('output')).toHaveText('125%');
-  await page.getByRole('button', { name: 'Igazítás a szélességhez' }).click();
+  // Phones keep one toolbar row: no fit button there, zooming out does the same.
+  const fit = page.getByRole('button', { name: 'Igazítás a szélességhez' });
+  if (await fit.isVisible()) await fit.click();
+  else await page.getByRole('button', { name: 'Kicsinyítés' }).click();
   await expect(page.getByRole('toolbar').locator('output')).toHaveText('100%');
   await page.getByRole('button', { name: 'Következő oldal' }).click();
   await expect(page.getByRole('spinbutton', { name: 'Ugrás oldalra' })).toHaveValue('2');

@@ -15,6 +15,7 @@ import {
   Trophy,
   Backpack,
   Printer,
+  ShieldCheck,
 } from 'lucide-react';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router';
@@ -144,6 +145,12 @@ function Overview({
       <div className="-mt-4 mb-6 flex flex-wrap gap-2">
         {exam.sample && <Badge tone="primary">{t('exams.sampleBadge')}</Badge>}
         {exam.review.status === 'draft' && <Badge tone="warning">{t('exams.draftBadge')}</Badge>}
+        {exam.review.status === 'reviewed' && !exam.sample && (
+          <Badge tone="success">
+            <ShieldCheck aria-hidden="true" />
+            {t('exams.reviewedBadge')}
+          </Badge>
+        )}
         <ProgressBadge progress={progress} />
       </div>
 
@@ -205,28 +212,29 @@ function Overview({
               ))}
               <ul className="mt-4 divide-y divide-border border-t border-border">
                 {part.tasks.map((task) => (
-                  <li key={task.id} className="flex items-start gap-3 py-3">
-                    <span className="w-14 shrink-0 font-semibold tabular-nums">{task.number}</span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block">{t(`taskType.${task.type}`)}</span>
-                      {task.topics && task.topics.length > 0 && (
-                        <span className="mt-1 flex flex-wrap gap-1">
-                          {task.topics.map((topic) => (
-                            <Badge key={topic}>{topic}</Badge>
-                          ))}
-                        </span>
-                      )}
-                    </span>
-                    <span className="shrink-0 text-sm font-medium text-muted tabular-nums">
-                      {t('exam.taskPoints', { points: task.maxPoints })}
-                    </span>
-                    <a
-                      href={reportMistakeUrl(reportEmail, exam.id, task)}
-                      aria-label={`${t('exam.reportTask')}: ${task.number}`}
-                      className="-my-2 flex size-11 shrink-0 items-center justify-center rounded-md text-muted hover:bg-surface-muted hover:text-text"
-                    >
-                      <Flag aria-hidden="true" className="size-4" />
-                    </a>
+                  <li key={task.id} className="py-3">
+                    <div className="flex items-center gap-3">
+                      <span className="w-14 shrink-0 font-semibold tabular-nums">
+                        {task.number}
+                      </span>
+                      <span className="min-w-0 flex-1">{t(`taskType.${task.type}`)}</span>
+                      <span className="shrink-0 text-sm font-medium text-muted tabular-nums">
+                        {t('exam.taskPoints', { points: task.maxPoints })}
+                      </span>
+                      <a
+                        href={reportMistakeUrl(reportEmail, exam.id, task)}
+                        aria-label={`${t('exam.reportTask')}: ${task.number}`}
+                        className="-my-2 flex size-11 shrink-0 items-center justify-center rounded-md text-muted hover:bg-surface-muted hover:text-text"
+                      >
+                        <Flag aria-hidden="true" className="size-4" />
+                      </a>
+                    </div>
+                    {task.topics && task.topics.length > 0 && (
+                      // One quiet line under the task, aligned with its type.
+                      <p className="mt-0.5 pl-[4.25rem] text-sm text-muted">
+                        {task.topics.join(' · ')}
+                      </p>
+                    )}
                   </li>
                 ))}
               </ul>

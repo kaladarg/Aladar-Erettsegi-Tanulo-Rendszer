@@ -23,11 +23,10 @@ async function submit(page: Page) {
 }
 
 test('a new student gets a first recommendation and an empty statistics page', async ({ page }) => {
-  const next = page.getByRole('region', { name: 'Ajánlott következő lépés' });
-  await expect(next.getByRole('link', { name: /Új feladatsor:/ }).first()).toBeVisible();
-  await expect(page.getByRole('region', { name: 'Gyakorlási sorozat' })).toContainText(
-    'Ma kezdhetsz egy új sorozatot.',
-  );
+  const next = page.getByRole('region', { name: 'Következő lépés' });
+  await expect(next).toContainText('Új feladatsor:');
+  await expect(next.getByRole('link', { name: /Megnézem/ })).toBeVisible();
+  await expect(page.getByText('Indíts egy sorozatot ma')).toBeVisible();
   await page.getByRole('navigation').first().getByRole('link', { name: 'Statisztika' }).click();
   await expect(page.getByRole('heading', { name: 'Még nincs mit kimutatni' })).toBeVisible();
 });
@@ -36,9 +35,9 @@ test('an unfinished paper can be continued from the home page', async ({ page })
   await practiseMath(page);
   await expect(page.getByRole('status').filter({ hasText: 'Mentve' })).toBeAttached();
   await page.goto('/');
-  const resume = page.getByRole('region', { name: 'Folytasd, ahol abbahagytad' });
+  const resume = page.getByRole('region', { name: 'Folytatás' });
   await expect(resume).toContainText('Mintafeladatsor – Matematika, középszint');
-  await resume.getByRole('link', { name: 'Folytatás' }).click();
+  await resume.getByRole('link', { name: 'Folytatom' }).click();
   await expect(page).toHaveURL(new RegExp(`${MATH}/gyakorlas`));
   await expect(page.getByRole('textbox', { name: 'x =' })).toHaveValue('6');
 });
@@ -48,11 +47,10 @@ test('after handing in, statistics show progress, topics and mistake types', asy
   await submit(page);
 
   await page.goto('/');
-  const streak = page.getByRole('region', { name: 'Gyakorlási sorozat' });
-  await expect(streak).toContainText('1 napja gyakorolsz egymás után');
-  await expect(streak).toContainText('Ma már gyakoroltál.');
-  const next = page.getByRole('region', { name: 'Ajánlott következő lépés' });
-  await expect(next.getByRole('link', { name: /Gyakorold:/ }).first()).toBeVisible();
+  await expect(page.getByText('1 napos sorozat')).toBeVisible();
+  // The weakest topic is the one next step (task 8 still waits for marking first).
+  const next = page.getByRole('region', { name: 'Következő lépés' });
+  await expect(next).toContainText(/Fejezd be a pontozást|Gyakorold:/);
 
   await page.goto('/statisztika');
   await expect(page.getByRole('heading', { level: 1, name: 'Statisztika' })).toBeVisible();
