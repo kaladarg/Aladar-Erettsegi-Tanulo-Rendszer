@@ -536,3 +536,22 @@
     break-after: auto;
   }
 }
+
+/*
+ * Outside any layer on purpose: a host page that frames the app (the private
+ * preview) adds plain `body` and `:root` rules, which would beat the layered
+ * base styles and leave a white page with black text in dark mode.
+ */
+html:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+html:root[data-theme='light'] {
+  color-scheme: light;
+}
+html:root body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font: inherit;
+  font-family: var(--font-body);
+  line-height: inherit;
+}

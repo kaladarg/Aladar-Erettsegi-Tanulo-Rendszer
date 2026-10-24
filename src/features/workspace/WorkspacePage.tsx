@@ -217,18 +217,6 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
         ) : (
           workspace && (
             <WorkspaceContext.Provider value={workspace}>
-              {mode === 'pdf' &&
-                workspace.exam.parts
-                  .filter((part) => part.audio && (!activePartIds || activePartIds.has(part.id)))
-                  .map((part) => (
-                    <ListeningPlayer
-                      key={part.id}
-                      exam={workspace.exam}
-                      part={part}
-                      examMode={attemptMode === 'exam'}
-                      packUrl={workspace.audioUrl(part)}
-                    />
-                  ))}
               {workspace.helpEnabled && (
                 <>
                   <HelpSheet />
@@ -242,6 +230,18 @@ export function WorkspacePage({ attemptMode = 'practice' }: { attemptMode?: Atte
                   source={pdf.source}
                   editing={params.get('szerkeszto') === '1'}
                   onSwitchToForm={() => setMode('form')}
+                  audio={workspace.exam.parts
+                    .filter((part) => part.audio && (!activePartIds || activePartIds.has(part.id)))
+                    .map((part) => (
+                      <ListeningPlayer
+                        key={part.id}
+                        embedded
+                        exam={workspace.exam}
+                        part={part}
+                        examMode={attemptMode === 'exam'}
+                        packUrl={workspace.audioUrl(part)}
+                      />
+                    ))}
                 />
               ) : pdf.status === 'missing' ? (
                 <div className="mx-auto max-w-xl p-6">

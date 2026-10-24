@@ -9,7 +9,7 @@ import {
   Plus,
 } from 'lucide-react';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Button } from '@/design/ui/Button';
 import { EmptyState } from '@/design/ui/EmptyState';
 import { Skeleton } from '@/design/ui/Skeleton';
@@ -27,13 +27,15 @@ import { openPdf, type OpenedPdf, type PdfSource } from './pdfjs';
 const ZOOM_STEPS = [0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3];
 
 interface PdfModeProps {
+  /** Listening players, kept in the sticky toolbar so they stay reachable while scrolling. */
+  audio?: ReactNode;
   source: PdfSource;
   editing: boolean;
   onSwitchToForm: () => void;
 }
 
 /** The real exam paper with answer fields over the answer boxes. */
-export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
+export function PdfMode({ source, editing, onSwitchToForm, audio }: PdfModeProps) {
   const { exam, activePartIds } = useWorkspace();
   const [doc, setDoc] = useState<PDFDocumentProxy | null>(null);
   const [sizes, setSizes] = useState<{ w: number; h: number }[]>([]);
@@ -314,6 +316,7 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
             {t('workspace.ink.drawHint')}
           </p>
         )}
+        {audio}
       </div>
 
       {editing && <EditorBar />}

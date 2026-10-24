@@ -6,6 +6,7 @@ import { cardContent, examLink } from './resultCard';
 const exam = {
   id: 'matematika-kozep-2024-majus',
   subject: 'matematika',
+  level: 'kozep',
   year: 2024,
   session: 'majus',
   title: 'Matematika középszint',
@@ -21,6 +22,13 @@ const result = (complete: boolean) =>
   }) as ExamResult;
 
 describe('result card', () => {
+  it("names the paper's own level once", () => {
+    const emelt = { ...exam, level: 'emelt' } as typeof exam;
+    const content = cardContent(emelt, result(true), 'exam', new Date(2026, 9, 18).getTime());
+    expect(content.subject).toBe('Matematika · Emelt szint');
+    expect(content.exam).toBe('2024. május');
+  });
+
   it('shows the paper and the result only', () => {
     const content = cardContent(exam, result(true), 'exam', new Date(2026, 9, 18).getTime());
     expect(content).toEqual({

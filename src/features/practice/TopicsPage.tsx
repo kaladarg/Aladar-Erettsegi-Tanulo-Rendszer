@@ -24,6 +24,7 @@ const ROUND_SIZE = 10;
 const WEAK = 0.6;
 const FOCUS_COUNT = 5;
 type Sort = 'common' | 'weak' | 'abc';
+type LevelFilter = 'all' | 'kozep' | 'emelt';
 
 export function TopicsPage() {
   usePageTitle(t('practice.topics.title'));
@@ -36,10 +37,35 @@ export function TopicsPage() {
   const subjects = useMemo(() => [subject], [subject]);
   const { exams: loaded, loading } = useExams(subjects);
   const ownLevel = useSettings((s) => s.settings.levels[subject]);
+  const hasEmelt = [...loaded.values()].some((exam) => exam.level === 'emelt');
+  // Középszint students see középszint by default, emelt students both levels.
+  const levelParam = params.get('szint');
+  const level: LevelFilter =
+    levelParam === 'kozep' || levelParam === 'emelt' || levelParam === 'all'
+      ? levelParam
+      : fitsLevel('emelt', ownLevel)
+        ? 'all'
+        : 'kozep';
   const exams = useMemo(
-    () => new Map([...loaded].filter(([, exam]) => fitsLevel(exam.level, ownLevel))),
-    [loaded, ownLevel],
+    () =>
+      new Map(
+        [...loaded].filter(([, exam]) => level === 'all' || !hasEmelt || exam.level === level),
+      ),
+    [loaded, level, hasEmelt],
   );
+  // Which levels each topic's tasks come from, over every paper of the subject.
+  const topicLevels = useMemo(() => {
+    const map = new Map<string, Set<string>>();
+    for (const topic of topicIndex([...loaded.values()])) {
+      const levels = new Set<string>();
+      for (const ref of topic.tasks) {
+        const exam = loaded.get(ref.examId);
+        if (exam) levels.add(exam.level);
+      }
+      map.set(topic.key, levels);
+    }
+    return map;
+  }, [loaded]);
   const stats = useStatsData();
   const [query, setQuery] = useState(params.get('tema') ?? '');
   const [sort, setSort] = useState<Sort>('common');
@@ -132,8 +158,10 @@ export function TopicsPage() {
         key={topic.key}
         className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 shadow-1"
       >
-        <div className="min-w-0 flex-1">
-          <p className="font-semibold">{topic.name}</p>
+        {/* A long topic name takes its own line instead of running under the controls. */}
+        <div className="min-w-0 flex-1 basis-44">
+          <p className="font-semibold [overflow-wrap:anywhere] hyphens-auto">{topic.name}</p>
+          {hasEmelt && <LevelBadge levels={topicLevels.get(topic.key)} />}
           <p className="text-sm text-muted">
             {t('practice.topics.count', {
               count: topic.tasks.length,
@@ -204,6 +232,21 @@ export function TopicsPage() {
           }}
           options={DEFAULT_SUBJECTS.map((s) => ({ value: s.id, label: subjectShortName(s) }))}
         />
+        {hasEmelt && (
+          <SegmentedControl<LevelFilter>
+            label={t('practice.topics.levelLabel')}
+            value={level}
+            onValueChange={(value) => {
+              setSelected(new Set());
+              setParams({ targy: subject, szint: value }, { replace: true });
+            }}
+            options={[
+              { value: 'kozep', label: t('practice.topics.levelKozep') },
+              { value: 'emelt', label: t('practice.topics.levelEmelt') },
+              { value: 'all', label: t('practice.topics.levelAll') },
+            ]}
+          />
+        )}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="grid flex-1 gap-1">
             <label htmlFor={searchId} className="text-sm font-medium">
@@ -362,4 +405,31 @@ function TopicList({
   row: (topic: TopicEntry) => ReactNode;
 }) {
   return <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">{topics.map(row)}</ul>;
+}
+
+/** Whether a topic appears in középszint papers, emelt papers or both. */
+function LevelBadge({ levels }: { levels?: Set<string> }) {
+  if (!levels || levels.size === 0) return null;
+  const both = levels.has('kozep') && levels.has('emelt');
+  const emelt = !both && levels.has('emelt');
+  return (
+    <p
+      className={cn(
+        'mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-semibold',
+        both
+          ? 'bg-surface-muted text-muted'
+          : emelt
+            ? 'bg-primary-soft text-primary-soft-fg'
+            : 'bg-success-soft text-text',
+      )}
+    >
+      {t(
+        both
+          ? 'practice.topics.bothLevels'
+          : emelt
+            ? 'practice.topics.onlyEmelt'
+            : 'practice.topics.onlyKozep',
+      )}
+    </p>
+  );
 }

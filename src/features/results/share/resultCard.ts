@@ -1,4 +1,4 @@
-import { findSubject } from '@/content/catalog';
+import { DEFAULT_LEVELS, findSubject } from '@/content/catalog';
 import { examDisplayTitle } from '@/content/labels';
 import type { Exam } from '@/content/schema.types';
 import type { ExamResult } from '@/domain/scoring/exam';
@@ -21,8 +21,11 @@ export function cardContent(
   submittedAt: number,
 ): CardContent {
   return {
-    subject: `${findSubject(exam.subject)?.name ?? exam.subject} · ${t('home.levelLabel')}`,
-    exam: examDisplayTitle(exam),
+    subject: `${findSubject(exam.subject)?.name ?? exam.subject} · ${
+      DEFAULT_LEVELS.find((level) => level.id === exam.level)?.name ?? exam.level
+    }`,
+    // The level is already named on the line above.
+    exam: examDisplayTitle({ ...exam, level: undefined }),
     percent: `${formatNumber(Math.round(result.percent))}%`,
     grade: result.complete
       ? t('results.grade', { label: result.grade.label, grade: String(result.grade.grade) })

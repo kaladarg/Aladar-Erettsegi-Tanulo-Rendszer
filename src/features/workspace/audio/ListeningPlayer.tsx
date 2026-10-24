@@ -5,6 +5,7 @@ import type { Exam, Part } from '@/content/schema.types';
 import { Button } from '@/design/ui/Button';
 import { formatClock as clock } from '@/domain/examTiming';
 import { t } from '@/i18n';
+import { cn } from '@/lib/cn';
 import { useAnswer, useAnswers } from '@/state/answerStore';
 import { toast } from '@/state/toastStore';
 import { audioPositionKey } from './clock';
@@ -76,7 +77,10 @@ export function ListeningPlayer({
   part,
   packUrl,
   examMode,
+  embedded = false,
 }: {
+  /** Inside another sticky bar (PDF mode): no stickiness or shadow of its own. */
+  embedded?: boolean;
   exam: Exam;
   part: Part;
   packUrl: string | null;
@@ -87,10 +91,20 @@ export function ListeningPlayer({
   return (
     <section
       aria-labelledby={titleId}
-      className="sticky top-[var(--ws-top,3.75rem)] z-20 border-b border-border bg-surface shadow-1"
+      className={cn(
+        'border-border bg-surface',
+        embedded ? 'border-t' : 'sticky top-[var(--ws-top,3.75rem)] z-20 border-b shadow-1',
+      )}
     >
       <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-4 gap-y-2 px-3 py-2 sm:px-4">
-        <h2 id={titleId} className="flex items-center gap-2 text-sm font-semibold">
+        <h2
+          id={titleId}
+          // Phones: the paper toolbar already takes room; the heading stays for screen readers.
+          className={cn(
+            'flex items-center gap-2 text-sm font-semibold',
+            embedded && 'max-sm:sr-only',
+          )}
+        >
           <Headphones aria-hidden="true" className="size-4 text-primary" />
           {t('workspace.audio.title', { part: part.title })}
         </h2>
