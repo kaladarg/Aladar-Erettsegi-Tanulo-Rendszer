@@ -1,6 +1,6 @@
 import { t } from '@/i18n';
 import { findSubject } from './catalog';
-import type { ExamEntry, Part } from './schema.types';
+import type { ExamEntry, Part, Task } from './schema.types';
 
 type Titled = Pick<ExamEntry, 'year' | 'session' | 'title' | 'sample'> & { level?: string };
 
@@ -42,4 +42,12 @@ export function partInfo(part: Part): string {
         minutes: part.timeLimitMinutes,
         points: part.maxPoints,
       });
+}
+
+/**
+ * The number a task is counted under: sub-tasks (16. a, b) share their group,
+ * but a group that only links tasks for a choice ("13-16") keeps each number.
+ */
+export function taskUnitNumber(task: Pick<Task, 'number' | 'group'>): string {
+  return task.group && task.number.startsWith(task.group) ? task.group : task.number;
 }

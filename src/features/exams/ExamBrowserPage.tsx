@@ -22,6 +22,7 @@ import { useExamProgress, type ExamProgress } from '@/storage/progress';
 import { ResumeCard } from '../home/Resume';
 import { ContentErrorState } from './ContentErrorState';
 import { ProgressBadge } from './ProgressBadge';
+import { taskEntries } from '../workspace/taskNav';
 import { usePdfPicker } from './usePdfPicker';
 
 /** Query parameter names (Hungarian, they show up in shared links). */
@@ -31,14 +32,12 @@ const ALL = 'mind';
 
 /** Tasks (as numbered on the paper) with an answer, and in total. */
 function taskCounts(exam: Exam, answered: Set<string>): { done: number; total: number } {
-  const numbers = new Map<string, boolean>();
-  for (const part of exam.parts)
-    for (const task of part.tasks) {
-      const number = task.group ?? task.number;
-      const done = task.fields.some((field) => answered.has(field.id));
-      numbers.set(number, (numbers.get(number) ?? false) || done);
-    }
-  return { done: [...numbers.values()].filter(Boolean).length, total: numbers.size };
+  const answers = Object.fromEntries([...answered].map((id) => [id, true]));
+  const parts = taskEntries(exam, answers, null);
+  return {
+    done: parts.reduce((n, p) => n + p.done, 0),
+    total: parts.reduce((n, p) => n + p.total, 0),
+  };
 }
 
 export function ExamBrowserPage() {

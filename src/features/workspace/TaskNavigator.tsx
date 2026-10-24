@@ -26,14 +26,14 @@ export function TaskNavigator({
     () => taskEntries(exam, answers, activePartIds),
     [exam, answers, activePartIds],
   );
-  const all = groups.flatMap((g) => g.entries);
-  const done = all.filter((e) => e.done).length;
-  const share = all.length ? done / all.length : 0;
+  const total = groups.reduce((n, g) => n + g.total, 0);
+  const done = groups.reduce((n, g) => n + g.done, 0);
+  const share = total ? done / total : 0;
 
   return (
     <div className="relative flex h-9 items-center gap-3 border-t border-border px-3 sm:px-4">
       <p className="flex-1 truncate text-sm text-muted" aria-live="polite">
-        {t('workspace.progress', { done: formatNumber(done), total: formatNumber(all.length) })}
+        {t('workspace.progress', { done: formatNumber(done), total: formatNumber(total) })}
       </p>
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Trigger asChild>
@@ -61,7 +61,7 @@ export function TaskNavigator({
             <p className="mb-4 text-sm text-muted">
               {t('workspace.progress', {
                 done: formatNumber(done),
-                total: formatNumber(all.length),
+                total: formatNumber(total),
               })}
             </p>
             {groups.map(({ part, entries }) => (
@@ -86,6 +86,7 @@ export function TaskNavigator({
                           entry.done
                             ? 'border-primary bg-primary-soft text-primary-soft-fg'
                             : 'border-border bg-surface hover:border-border-strong',
+                          entry.unchosen && 'opacity-50',
                         )}
                       >
                         {entry.number.replace(/\.$/, '')}

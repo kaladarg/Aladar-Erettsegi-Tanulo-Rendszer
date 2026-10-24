@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { examDisplayTitle } from '@/content/labels';
 import { examFileUrl } from '@/content/loader';
-import type { Exam } from '@/content/schema.types';
+import type { Exam, GradeBand } from '@/content/schema.types';
 import { useExam } from '@/content/useContent';
 import { Button } from '@/design/ui/Button';
 import { Card, CardTitle } from '@/design/ui/Card';
@@ -16,7 +16,7 @@ import { EmptyState } from '@/design/ui/EmptyState';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { Skeleton } from '@/design/ui/Skeleton';
 import { SwitchField } from '@/design/ui/Switch';
-import { DEDUCTIONS_KEY, type ExamResult } from '@/domain/scoring/exam';
+import { DEDUCTIONS_KEY, DEFAULT_GRADE_BANDS, type ExamResult } from '@/domain/scoring/exam';
 import { ContentErrorState } from '@/features/exams/ContentErrorState';
 import { formatDate, formatNumber, t } from '@/i18n';
 import { PacingCard } from './PacingCard';
@@ -156,7 +156,7 @@ function Results({
         }`}
       />
 
-      <ScoreSummary result={result} attemptId={attempt.id} />
+      <ScoreSummary result={result} attemptId={attempt.id} bands={exam.gradeBands} />
       <div className="mt-4 flex flex-wrap gap-2">
         <ShareResult
           exam={exam}
@@ -303,7 +303,21 @@ const GRADE_TONE: Record<number, string> = {
   1: 'bg-danger-soft text-danger',
 };
 
-function ScoreSummary({ result, attemptId }: { result: ExamResult; attemptId: string }) {
+function ScoreSummary({
+  result,
+  attemptId,
+  bands = DEFAULT_GRADE_BANDS,
+}: {
+  result: ExamResult;
+  attemptId: string;
+  bands?: GradeBand[];
+}) {
+  // The limits for grades 2 to 5, lowest first, as the paper's own grade bands set them.
+  const limits = [...bands]
+    .filter((band) => band.minPercent > 0)
+    .sort((a, b) => a.minPercent - b.minPercent)
+    .map((band) => `${formatNumber(band.minPercent)}%`)
+    .join(', ');
   const deducted = result.deductions.reduce((s, d) => s + (d.points ?? 0), 0);
   const points = useCountUp(result.points);
   // Celebrate a good result once per attempt (not on every visit).
@@ -366,7 +380,7 @@ function ScoreSummary({ result, attemptId }: { result: ExamResult; attemptId: st
             {t('results.grade', { label: result.grade.label, grade: String(result.grade.grade) })}
           </p>
           <p className="mt-1 text-sm text-muted">
-            {result.complete ? t('results.gradeNote') : t('results.gradePending')}
+            {result.complete ? t('results.gradeNote', { limits }) : t('results.gradePending')}
           </p>
         </div>
       </div>

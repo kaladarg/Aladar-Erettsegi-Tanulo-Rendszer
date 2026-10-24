@@ -25,11 +25,12 @@ export function reportMistakeUrl(
 }
 
 /** A pre-filled email about a problem with the app itself. */
-export function reportBugUrl(): string {
+export function reportBugUrl(details?: string): string {
   const body = [
     'Mi történt?',
     '',
     '',
+    ...(details ? ['Hibaüzenet:', details, ''] : []),
     'Mit vártál helyette?',
     '',
     '',

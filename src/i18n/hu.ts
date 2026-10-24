@@ -5,8 +5,8 @@
 export const hu = {
   app: {
     name: 'Érettségi Gyakorló',
-    edition: 'Középszint · 2026',
-    tagline: 'Ingyenes, reklámmentes gyakorlás a középszintű érettségire.',
+    edition: 'Közép- és emelt szint · 2026',
+    tagline: 'Ingyenes, reklámmentes gyakorlás a közép- és emelt szintű érettségire.',
     skipToContent: 'Ugrás a tartalomra',
     mainNav: 'Fő navigáció',
   },
@@ -641,7 +641,7 @@ export const hu = {
     score: '{points} / {max} pont',
     percent: '{percent}%',
     grade: 'Becsült jegy: {label} ({grade})',
-    gradeNote: 'Csak az írásbeli alapján, a középszintű ponthatárokkal (25%, 40%, 60%, 80%).',
+    gradeNote: 'Becslés csak az írásbeli alapján, a feladatsor ponthatáraival ({limits}).',
     gradePending: 'A jegy még változhat, amíg minden tételt nem pontoztál.',
     scaledNote:
       'Idegen nyelvből a feladatpontokat a javítási útmutató táblázata vizsgapontra számítja át; az összpontszám vizsgapont. Az alábbi számok feladatpontok.',
@@ -2092,6 +2092,8 @@ export const hu = {
     genericTitle: 'Hoppá, valami elromlott',
     genericBody: 'Ne aggódj, a válaszaid el vannak mentve. Töltsd újra az oldalt, és folytathatod.',
     reload: 'Oldal újratöltése',
+    details: 'Hiba részletei',
+    report: 'Hiba jelentése e-mailben',
     notFoundTitle: 'Ez az oldal nem létezik',
     notFoundBody: 'Lehet, hogy elírtad a címet, vagy az oldal időközben megszűnt.',
     goHome: 'Vissza a kezdőlapra',
