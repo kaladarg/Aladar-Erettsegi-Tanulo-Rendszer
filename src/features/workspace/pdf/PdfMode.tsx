@@ -291,7 +291,7 @@ export function PdfMode({ source, editing, onSwitchToForm }: PdfModeProps) {
                 variant={showInk ? 'primary' : 'ghost'}
                 size="icon"
                 aria-pressed={showInk}
-                aria-label={t('workspace.ink.toolsLabel')}
+                aria-label={t('workspace.ink.toggleLabel')}
                 className="size-9 sm:hidden"
                 onClick={() => setInkOpen(!showInk)}
               >

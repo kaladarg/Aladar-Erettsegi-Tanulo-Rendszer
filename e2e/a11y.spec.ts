@@ -125,7 +125,8 @@ for (const scheme of ['light', 'dark'] as const) {
     // Drawing tools on the paper.
     await page.goto('/feladatsorok/matematika-kozep-2026-majus-minta/gyakorlas?nezet=feladatlap');
     // Phones fold the drawing tools behind one button.
-    const inkToggle = page.getByRole('button', { name: 'Rajzeszközök' });
+    const inkToggle = page.getByRole('button', { name: 'Rajzeszközök megjelenítése' });
+    await expect(page.getByRole('toolbar', { name: 'Feladatsor eszköztár' })).toBeVisible();
     if (await inkToggle.isVisible()) await inkToggle.click();
     await page
       .getByRole('toolbar', { name: 'Rajzeszközök' })

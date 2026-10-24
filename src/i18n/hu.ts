@@ -478,6 +478,7 @@ export const hu = {
     },
     ink: {
       toolsLabel: 'Rajzeszközök',
+      toggleLabel: 'Rajzeszközök megjelenítése',
       off: 'Kitöltés',
       offLabel: 'Kitöltés: rajzolás kikapcsolva',
       pen: 'Toll',
