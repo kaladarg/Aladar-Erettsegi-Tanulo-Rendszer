@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topics 4.1, 4.2, 4.5, 4.6 and 4.7 (eszmék, ipari forradalom, munkásmozgalom, polgári állam, gyarmatosítás). */
 const unit: GuideUnit = {
-  id: 'tortenelem-ujkor-eszmek-ipar',
+  id: 'ujkor-eszmek-ipar',
   subject: 'tortenelem',
   order: 42,
   title: 'Eszmék és ipari forradalom: liberalizmus, gyárak, szocializmus, nemzetállam, gyarmatok',
@@ -84,7 +84,7 @@ const unit: GuideUnit = {
     {
       id: 'politikai-eszmek-19-szazad',
       subject: 'tortenelem',
-      unitId: 'tortenelem-ujkor-eszmek-ipar',
+      unitId: 'ujkor-eszmek-ipar',
       title: 'Új politikai eszmék: liberalizmus, nacionalizmus, konzervativizmus',
       level: 'kozep',
       requirement: {
@@ -278,7 +278,7 @@ const unit: GuideUnit = {
     {
       id: 'ipari-forradalom-elso-hullama',
       subject: 'tortenelem',
-      unitId: 'tortenelem-ujkor-eszmek-ipar',
+      unitId: 'ujkor-eszmek-ipar',
       title: 'Az ipari forradalom első hulláma',
       level: 'kozep',
       requirement: {
@@ -467,7 +467,7 @@ const unit: GuideUnit = {
     {
       id: 'ipari-forradalom-masodik-hullama',
       subject: 'tortenelem',
-      unitId: 'tortenelem-ujkor-eszmek-ipar',
+      unitId: 'ujkor-eszmek-ipar',
       title: 'Az ipari forradalom második hulláma',
       level: 'kozep',
       requirement: {
@@ -700,7 +700,7 @@ const unit: GuideUnit = {
     {
       id: 'szocializmus-munkasmozgalom',
       subject: 'tortenelem',
-      unitId: 'tortenelem-ujkor-eszmek-ipar',
+      unitId: 'ujkor-eszmek-ipar',
       title: 'A szocializmus eszméje és a munkásmozgalom',
       level: 'kozep',
       requirement: {
@@ -908,7 +908,7 @@ const unit: GuideUnit = {
     {
       id: 'polgari-nemzetallam',
       subject: 'tortenelem',
-      unitId: 'tortenelem-ujkor-eszmek-ipar',
+      unitId: 'ujkor-eszmek-ipar',
       title: 'A polgári nemzetállam: Németország, az USA és Magyarország',
       level: 'kozep',
       requirement: {
@@ -1136,7 +1136,7 @@ const unit: GuideUnit = {
     {
       id: 'gyarmatositas-imperializmus',
       subject: 'tortenelem',
-      unitId: 'tortenelem-ujkor-eszmek-ipar',
+      unitId: 'ujkor-eszmek-ipar',
       title: 'A gyarmatosítás és az imperializmus kora',
       level: 'emelt',
       requirement: {

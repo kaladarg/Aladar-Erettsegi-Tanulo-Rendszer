@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topics 5.8 (Magyarország a második világháborúban) and 5.9 (A holokauszt Európában és Magyarországon). */
 const unit: GuideUnit = {
-  id: 'tortenelem-masodik-vh-magyarorszag-holokauszt',
+  id: 'masodik-vh-magyarorszag-holokauszt',
   subject: 'tortenelem',
   order: 56,
   title: 'Magyarország a második világháborúban és a holokauszt',
@@ -97,7 +97,7 @@ const unit: GuideUnit = {
     {
       id: 'teruleti-revizio-es-hadba-sodrodas',
       subject: 'tortenelem',
-      unitId: 'tortenelem-masodik-vh-magyarorszag-holokauszt',
+      unitId: 'masodik-vh-magyarorszag-holokauszt',
       title: 'A területi revízió lépései és az ország hadba sodródása',
       level: 'kozep',
       requirement: {
@@ -305,7 +305,7 @@ const unit: GuideUnit = {
     {
       id: 'magyar-haborus-reszvetel-1944-marciusig',
       subject: 'tortenelem',
-      unitId: 'tortenelem-masodik-vh-magyarorszag-holokauszt',
+      unitId: 'masodik-vh-magyarorszag-holokauszt',
       title: 'Magyarország háborús részvétele 1944 márciusig',
       level: 'emelt',
       requirement: {
@@ -469,7 +469,7 @@ const unit: GuideUnit = {
     {
       id: 'holokauszt-europaban',
       subject: 'tortenelem',
-      unitId: 'tortenelem-masodik-vh-magyarorszag-holokauszt',
+      unitId: 'masodik-vh-magyarorszag-holokauszt',
       title: 'A holokauszt Európában',
       level: 'kozep',
       requirement: {
@@ -666,7 +666,7 @@ const unit: GuideUnit = {
     {
       id: 'zsidotorvenyek-es-jogfosztas-magyarorszagon',
       subject: 'tortenelem',
-      unitId: 'tortenelem-masodik-vh-magyarorszag-holokauszt',
+      unitId: 'masodik-vh-magyarorszag-holokauszt',
       title: 'Zsidótörvények és jogfosztás Magyarországon 1944 márciusa előtt',
       level: 'kozep',
       requirement: {
@@ -844,7 +844,7 @@ const unit: GuideUnit = {
     {
       id: 'nemet-megszallas-es-deportalasok-1944',
       subject: 'tortenelem',
-      unitId: 'tortenelem-masodik-vh-magyarorszag-holokauszt',
+      unitId: 'masodik-vh-magyarorszag-holokauszt',
       title: 'A német megszállás és a magyarországi zsidóság deportálása',
       level: 'kozep',
       requirement: {
@@ -1062,7 +1062,7 @@ const unit: GuideUnit = {
     {
       id: 'nyilas-hatalomatvetel-es-a-haboru-vege',
       subject: 'tortenelem',
-      unitId: 'tortenelem-masodik-vh-magyarorszag-holokauszt',
+      unitId: 'masodik-vh-magyarorszag-holokauszt',
       title: 'A nyilas hatalomátvétel és a háború vége Magyarországon',
       level: 'kozep',
       requirement: {

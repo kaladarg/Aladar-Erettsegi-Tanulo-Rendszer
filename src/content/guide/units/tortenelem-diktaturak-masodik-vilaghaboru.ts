@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topics 5.4 (Állam, ideológia és gazdaság a két világháború között) and 5.7 (A második világháború). */
 const unit: GuideUnit = {
-  id: 'tortenelem-diktaturak-masodik-vilaghaboru',
+  id: 'diktaturak-masodik-vilaghaboru',
   subject: 'tortenelem',
   order: 54,
   title: 'Diktatúrák és a második világháború',
@@ -137,7 +137,7 @@ const unit: GuideUnit = {
     {
       id: 'nemzetiszocialista-nemetorszag',
       subject: 'tortenelem',
-      unitId: 'tortenelem-diktaturak-masodik-vilaghaboru',
+      unitId: 'diktaturak-masodik-vilaghaboru',
       title: 'A nemzetiszocialista Németország',
       level: 'kozep',
       requirement: { kozep: 'A nemzetiszocialista Németország' },
@@ -402,7 +402,7 @@ const unit: GuideUnit = {
     {
       id: 'sztalini-szovjetunio',
       subject: 'tortenelem',
-      unitId: 'tortenelem-diktaturak-masodik-vilaghaboru',
+      unitId: 'diktaturak-masodik-vilaghaboru',
       title: 'A kommunista Szovjetunió: a sztálini diktatúra',
       level: 'kozep',
       requirement: { kozep: 'A kommunista Szovjetunió' },
@@ -646,7 +646,7 @@ const unit: GuideUnit = {
     {
       id: 'fasiszta-allam-new-deal',
       subject: 'tortenelem',
-      unitId: 'tortenelem-diktaturak-masodik-vilaghaboru',
+      unitId: 'diktaturak-masodik-vilaghaboru',
       title: 'A fasiszta állam és a válságkezelés az USA-ban',
       level: 'emelt',
       requirement: {
@@ -870,7 +870,7 @@ const unit: GuideUnit = {
     {
       id: 'masodik-vilaghaboru-kitorese-menete',
       subject: 'tortenelem',
-      unitId: 'tortenelem-diktaturak-masodik-vilaghaboru',
+      unitId: 'diktaturak-masodik-vilaghaboru',
       title: 'A második világháború kitörése és menete',
       level: 'kozep',
       requirement: {
@@ -1094,7 +1094,7 @@ const unit: GuideUnit = {
     {
       id: 'masodik-vilaghaboru-jellege',
       subject: 'tortenelem',
-      unitId: 'tortenelem-diktaturak-masodik-vilaghaboru',
+      unitId: 'diktaturak-masodik-vilaghaboru',
       title: 'A második világháború jellege: totális háború, bűnök, ellenállás',
       level: 'kozep',
       requirement: {
@@ -1301,7 +1301,7 @@ const unit: GuideUnit = {
     {
       id: 'masodik-vilaghaboru-frontok-fordulopontok',
       subject: 'tortenelem',
-      unitId: 'tortenelem-diktaturak-masodik-vilaghaboru',
+      unitId: 'diktaturak-masodik-vilaghaboru',
       title: 'Frontok, fordulópontok és a háború lezárása',
       level: 'emelt',
       requirement: { emelt: 'A második világháború: frontok, fordulópontok, a háború lezárása' },

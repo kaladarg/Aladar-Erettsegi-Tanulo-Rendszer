@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topics 3.1 (A földrajzi felfedezések és következményeik) and 3.2 (A reformáció és a katolikus megújulás). */
 const unit: GuideUnit = {
-  id: 'tortenelem-felfedezesek-reformacio',
+  id: 'felfedezesek-reformacio',
   subject: 'tortenelem',
   order: 28,
   title: 'Földrajzi felfedezések, korai kapitalizmus, reformáció és katolikus megújulás',
@@ -78,7 +78,7 @@ const unit: GuideUnit = {
     {
       id: 'portugal-spanyol-felfedezesek',
       subject: 'tortenelem',
-      unitId: 'tortenelem-felfedezesek-reformacio',
+      unitId: 'felfedezesek-reformacio',
       title: 'A portugál és spanyol felfedezések',
       level: 'kozep',
       requirement: {
@@ -254,7 +254,7 @@ const unit: GuideUnit = {
     {
       id: 'korai-kapitalizmus-arforradalom',
       subject: 'tortenelem',
-      unitId: 'tortenelem-felfedezesek-reformacio',
+      unitId: 'felfedezesek-reformacio',
       title: 'A korai kapitalizmus: árforradalom, manufaktúra, bank és tőzsde',
       level: 'kozep',
       requirement: {
@@ -439,7 +439,7 @@ const unit: GuideUnit = {
     {
       id: 'gyarmatositas-vilagkereskedelem-magyar-gazdasag',
       subject: 'tortenelem',
-      unitId: 'tortenelem-felfedezesek-reformacio',
+      unitId: 'felfedezesek-reformacio',
       title: 'Gyarmatosítás, világkereskedelem és Magyarország gazdasága (16–17. század)',
       level: 'emelt',
       requirement: {
@@ -595,7 +595,7 @@ const unit: GuideUnit = {
     {
       id: 'reformacio-luther-kalvin',
       subject: 'tortenelem',
-      unitId: 'tortenelem-felfedezesek-reformacio',
+      unitId: 'felfedezesek-reformacio',
       title: 'A reformáció: Luther, Kálvin és a protestáns egyházak',
       level: 'kozep',
       requirement: {
@@ -852,7 +852,7 @@ const unit: GuideUnit = {
     {
       id: 'katolikus-megujulas-barokk',
       subject: 'tortenelem',
-      unitId: 'tortenelem-felfedezesek-reformacio',
+      unitId: 'felfedezesek-reformacio',
       title: 'Az ellenreformáció, a katolikus megújulás és a barokk',
       level: 'kozep',
       requirement: {

@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topics 7.1 (Nemzetközi együttműködés, globális világ), 7.2 (Politikai intézmények) and 7.3 (Nemzet). */
 const unit: GuideUnit = {
-  id: 'tortenelem-jelenkor',
+  id: 'jelenkor',
   subject: 'tortenelem',
   order: 70,
   title: 'A jelenkor: az Európai Unió, a politikai intézmények és a nemzet',
@@ -99,7 +99,7 @@ const unit: GuideUnit = {
     {
       id: 'eu-szervei-es-mukodese',
       subject: 'tortenelem',
-      unitId: 'tortenelem-jelenkor',
+      unitId: 'jelenkor',
       title: 'Az Európai Unió főbb szervei és működése',
       level: 'kozep',
       requirement: {
@@ -316,7 +316,7 @@ const unit: GuideUnit = {
     {
       id: 'europai-integracio-allomasai',
       subject: 'tortenelem',
-      unitId: 'tortenelem-jelenkor',
+      unitId: 'jelenkor',
       title: 'Az európai integráció állomásai, Magyarország a nyugati integrációban',
       level: 'emelt',
       requirement: {
@@ -577,7 +577,7 @@ const unit: GuideUnit = {
     {
       id: 'demografia-es-globalis-vilag',
       subject: 'tortenelem',
-      unitId: 'tortenelem-jelenkor',
+      unitId: 'jelenkor',
       title: 'Demográfiai változások és a globális világ',
       level: 'kozep',
       requirement: {
@@ -814,7 +814,7 @@ const unit: GuideUnit = {
     {
       id: 'alaptorveny-es-hatalmi-agak',
       subject: 'tortenelem',
-      unitId: 'tortenelem-jelenkor',
+      unitId: 'jelenkor',
       title: 'Az Alaptörvény és a hatalmi ágak intézményei',
       level: 'kozep',
       requirement: {
@@ -1047,7 +1047,7 @@ const unit: GuideUnit = {
     {
       id: 'valasztasi-rendszer-es-onkormanyzatok',
       subject: 'tortenelem',
-      unitId: 'tortenelem-jelenkor',
+      unitId: 'jelenkor',
       title: 'A választási rendszer és az önkormányzatok',
       level: 'kozep',
       requirement: {
@@ -1257,7 +1257,7 @@ const unit: GuideUnit = {
     {
       id: 'hataron-tuli-magyarok-es-nemzetisegek',
       subject: 'tortenelem',
-      unitId: 'tortenelem-jelenkor',
+      unitId: 'jelenkor',
       title: 'Nemzet és kisebbségek: a határon túli magyarok és a magyarországi nemzetiségek',
       level: 'kozep',
       requirement: {

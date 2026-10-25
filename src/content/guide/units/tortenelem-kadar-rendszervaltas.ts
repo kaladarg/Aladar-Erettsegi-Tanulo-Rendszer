@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topics 6.5 (A kádári diktatúra) and 6.6 (A rendszerváltoztatás Magyarországon). */
 const unit: GuideUnit = {
-  id: 'tortenelem-kadar-rendszervaltas',
+  id: 'kadar-rendszervaltas',
   subject: 'tortenelem',
   order: 65,
   title: 'A kádári diktatúra és a rendszerváltoztatás',
@@ -98,7 +98,7 @@ const unit: GuideUnit = {
     {
       id: 'kadar-hatalomra-jutasa-megtorlas',
       subject: 'tortenelem',
-      unitId: 'tortenelem-kadar-rendszervaltas',
+      unitId: 'kadar-rendszervaltas',
       title: 'Kádár hatalomra jutása, a megtorlás és a konszolidáció',
       level: 'kozep',
       requirement: {
@@ -289,7 +289,7 @@ const unit: GuideUnit = {
     {
       id: 'kadari-partallam-kulturpolitika',
       subject: 'tortenelem',
-      unitId: 'tortenelem-kadar-rendszervaltas',
+      unitId: 'kadar-rendszervaltas',
       title: 'A pártállam, az elnyomás változó formái és a kultúrpolitika',
       level: 'kozep',
       requirement: {
@@ -488,7 +488,7 @@ const unit: GuideUnit = {
     {
       id: 'teeszesites-tervgazdasag-eletmod',
       subject: 'tortenelem',
-      unitId: 'tortenelem-kadar-rendszervaltas',
+      unitId: 'kadar-rendszervaltas',
       title: 'Téeszesítés, tervgazdaság, életmód és az eladósodás',
       level: 'kozep',
       requirement: {
@@ -702,7 +702,7 @@ const unit: GuideUnit = {
     {
       id: 'partallam-valsaga-ellenzek-1988',
       subject: 'tortenelem',
-      unitId: 'tortenelem-kadar-rendszervaltas',
+      unitId: 'kadar-rendszervaltas',
       title: 'A pártállam válsága és az ellenzék megszerveződése 1988-ig',
       level: 'emelt',
       requirement: {
@@ -893,7 +893,7 @@ const unit: GuideUnit = {
     {
       id: 'rendszervaltoztatas-1989-1991',
       subject: 'tortenelem',
-      unitId: 'tortenelem-kadar-rendszervaltas',
+      unitId: 'kadar-rendszervaltas',
       title: 'A rendszerváltoztatás 1989–1991',
       level: 'kozep',
       requirement: { kozep: 'A rendszerváltoztatás (1989–1991)' },
@@ -1101,7 +1101,7 @@ const unit: GuideUnit = {
     {
       id: 'piacgazdasagra-valtas-privatizacio',
       subject: 'tortenelem',
-      unitId: 'tortenelem-kadar-rendszervaltas',
+      unitId: 'kadar-rendszervaltas',
       title: 'Az áttérés a piacgazdaságra: privatizáció, külföldi tőke, külkereskedelem',
       level: 'emelt',
       requirement: {

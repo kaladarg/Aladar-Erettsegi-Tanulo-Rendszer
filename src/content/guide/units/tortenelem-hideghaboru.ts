@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topics 6.1 (A hidegháború kora) and 6.2 (A kétpólusú világ felbomlása). */
 const unit: GuideUnit = {
-  id: 'tortenelem-hideghaboru',
+  id: 'hideghaboru',
   subject: 'tortenelem',
   order: 58,
   title: 'A hidegháború kora és a kétpólusú világ felbomlása',
@@ -107,7 +107,7 @@ const unit: GuideUnit = {
     {
       id: 'hideghaboru-kialakulasa-ket-tomb',
       subject: 'tortenelem',
-      unitId: 'tortenelem-hideghaboru',
+      unitId: 'hideghaboru',
       title: 'A hidegháború kialakulása és a két tömb',
       level: 'kozep',
       requirement: {
@@ -366,7 +366,7 @@ const unit: GuideUnit = {
     {
       id: 'dekolonizacio-india-kina-izrael',
       subject: 'tortenelem',
-      unitId: 'tortenelem-hideghaboru',
+      unitId: 'hideghaboru',
       title: 'Dekolonizáció, India, Kína és Izrael',
       level: 'kozep',
       requirement: {
@@ -563,7 +563,7 @@ const unit: GuideUnit = {
     {
       id: 'hideghaboru-forro-pontjai',
       subject: 'tortenelem',
-      unitId: 'tortenelem-hideghaboru',
+      unitId: 'hideghaboru',
       title: 'Korea, Szuez, Kuba, Vietnam: a hidegháború forró pontjai',
       level: 'emelt',
       requirement: {
@@ -750,7 +750,7 @@ const unit: GuideUnit = {
     {
       id: 'enyhules-pragai-tavasz-afganisztan',
       subject: 'tortenelem',
-      unitId: 'tortenelem-hideghaboru',
+      unitId: 'hideghaboru',
       title: 'Enyhülés és újabb szembenállás: Prága, Helsinki, Afganisztán',
       level: 'emelt',
       requirement: {
@@ -922,7 +922,7 @@ const unit: GuideUnit = {
     {
       id: 'szovjet-tomb-osszeomlasa-nemet-egyesites',
       subject: 'tortenelem',
-      unitId: 'tortenelem-hideghaboru',
+      unitId: 'hideghaboru',
       title: 'A szovjet tömb összeomlása és Németország egyesítése',
       level: 'kozep',
       requirement: {
@@ -1145,7 +1145,7 @@ const unit: GuideUnit = {
     {
       id: 'jugoszlavia-csehszlovakia-felbomlasa',
       subject: 'tortenelem',
-      unitId: 'tortenelem-hideghaboru',
+      unitId: 'hideghaboru',
       title: 'Jugoszlávia felbomlása és Csehszlovákia szétválása',
       level: 'kozep',
       requirement: {
