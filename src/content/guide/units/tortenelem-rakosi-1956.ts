@@ -13,7 +13,7 @@ const unit: GuideUnit = {
   intro:
     'A kommunisták hatalomra jutása, a Rákosi-diktatúra működése, majd az 1956-os forradalom és szabadságharc, leverése és a megtorlás.',
   requirementSource:
-    'A témák, fogalmak, személyek, évszámok és helyszínek az érettségi részletes vizsgakövetelményeinek 6. témaköréből (hidegháború, 1945–1990) valók, a 6.3 és 6.4 témához tartozó tételek. Ami emelt szintű, azt külön jelöljük.',
+    'A témák és az emelt szintű lexika az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (6. témakör); a középszintű fogalmak, személyek, évszámok és helyszínek a 2020-as történelem kerettantervből. A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   requirements: {
     terms: {
       kozep: [
@@ -35,11 +35,11 @@ const unit: GuideUnit = {
         'Molotov-koktél',
         'munkástanács',
         'sortüzek',
+        'földosztás',
+        'szalámitaktika',
       ],
       emelt: [
         'Szövetséges Ellenőrző Bizottság (SZEB)',
-        'földosztás',
-        'szalámitaktika',
         'B-listázás',
         'népfront',
         'munkaverseny',
@@ -58,15 +58,10 @@ const unit: GuideUnit = {
         'Iván Kovács László',
         'Pongrátz Gergely',
         'Kádár János',
-      ],
-      emelt: [
-        'Nagy Ferenc',
         'Tildy Zoltán',
         'Kovács Béla',
-        'Péter Gábor',
-        'Szabó János',
-        'Mansfeld Péter',
       ],
+      emelt: ['Nagy Ferenc', 'Péter Gábor', 'Szabó János', 'Mansfeld Péter'],
     },
     dates: {
       kozep: [
@@ -78,14 +73,14 @@ const unit: GuideUnit = {
         '1956. október 25. a Kossuth téri sortűz',
         '1956. november 4. a szovjet támadás',
         '1958 Nagy Imre és társainak kivégzése',
-      ],
-      emelt: [
         '1945 választás Magyarországon, földosztás',
         '1947 kékcédulás választások',
-        '1946 a svábok kitelepítésének kezdete, a forint bevezetése, a köztársaság kikiáltása',
+      ],
+      emelt: [
+        '1946 a svábok kitelepítésének kezdete, 1946 a forint bevezetése, a köztársaság kikiáltása',
         '1953 Sztálin halála',
-        '1953–1955 Nagy Imre első kormánya',
-        '1956 az SZKP XX. kongresszusa, lengyel munkásfelkelés, szuezi válság',
+        '1953–55 Nagy Imre első kormánya',
+        '1956 az SZKP XX. kongresszusa, lengyel munkásfelkelés, 1956 szuezi válság',
         '1956. október 28. a forradalom győzelme',
       ],
     },
@@ -213,7 +208,6 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          emelt: true,
           text: 'A Rákosi-féle terror kiterjedt a párton belülre is: a „szovjet típusú” rendszer lényegéhez tartozott, hogy időről időre ellenséget keresett. 1949 után a legtöbb koncepciós perben korábbi kommunista vezetők, katonatisztek és szociáldemokraták is a vádlottak padjára kerültek. A perek egyszerre szolgáltak a belső ellenfelek eltávolítására és a félelemkeltésre.',
         },
       ],
@@ -300,7 +294,6 @@ const unit: GuideUnit = {
           answer: 0,
           explanation:
             'A tanácsok a szovjet mintára épültek, és a pártszervek irányítása alatt álltak.',
-          emelt: true,
         },
       ],
       sources: [
@@ -703,7 +696,11 @@ const unit: GuideUnit = {
               date: '1955. április',
               text: 'Nagy Imrét eltávolítják a miniszterelnöki székből (később kizárják a pártból).',
             },
-            { date: '1956. február', text: 'Az SZKP XX. kongresszusa: Hruscsov Sztálin-bírálata.' },
+            {
+              date: '1956. február',
+              text: 'Az SZKP XX. kongresszusa: Hruscsov Sztálin-bírálata.',
+              emelt: true,
+            },
             { date: '1956. július', text: 'Rákosit leváltják, helyére Gerő Ernő lép.' },
             {
               date: '1956. október 6.',
@@ -969,7 +966,6 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          emelt: true,
           text: 'A forradalom sajátos jellemzője volt a spontaneitás: nem volt egységes irányító szervezet, ezért a vezetők (Nagy Imre, Maléter) sokszor csak követték az eseményeket. A forradalom egyszerre volt **nemzeti szabadságharc** (szovjet csapatok ellen) és **demokratikus forradalom** (diktatúra ellen), ezért a hivatalos kifejezés: „forradalom és szabadságharc”.',
         },
       ],

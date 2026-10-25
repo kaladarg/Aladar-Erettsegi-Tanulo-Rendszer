@@ -13,7 +13,7 @@ const unit: GuideUnit = {
   intro:
     'Hogyan állt talpra Magyarország Trianon után? A Horthy-rendszer kialakulása, a bethleni konszolidáció, a világgazdasági válság hatása, Klebelsberg kultúrpolitikája és a korszak társadalma.',
   requirementSource:
-    'A témák, fogalmak, személyek és évszámok az érettségi részletes vizsgakövetelményeinek 5. témaköréből (A két világháború kora) valók, csak a magyarországi politikára, gazdaságra, oktatásra és társadalomra vonatkozó elemek. Ami emelt szintű, azt külön jelöljük.',
+    'A témák és az emelt szintű lexika az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (5. témakör); a középszintű fogalmak, személyek, évszámok és helyszínek a 2020-as történelem kerettantervből. A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   requirements: {
     terms: {
       kozep: [
@@ -23,16 +23,16 @@ const unit: GuideUnit = {
         'pengő',
         'Magyar Nemzeti Bank',
         'Szent István-i állameszme',
+        'numerus clausus',
+        'magyar népi mozgalom',
       ],
       emelt: [
         'legitimizmus',
         'Collegium Hungaricum',
         'dzsentri',
         'vitézi rend',
-        'numerus clausus',
         'protekcionizmus',
         'közmunkaprogram',
-        'magyar népi mozgalom',
       ],
     },
     people: {
@@ -42,12 +42,17 @@ const unit: GuideUnit = {
         'Bethlen István',
         'Klebelsberg Kuno',
         'Szent-Györgyi Albert',
+        'Gömbös Gyula',
       ],
-      emelt: ['Gömbös Gyula'],
+      emelt: [],
     },
     dates: {
-      kozep: ['1920–1944 a Horthy-rendszer', '1921–1931 Bethlen miniszterelnöksége'],
-      emelt: ['1921 a Habsburg-ház trónfosztása', '1929 a gazdasági világválság kezdete'],
+      kozep: [
+        '1920–1944 a Horthy-rendszer',
+        '1921–1931 Bethlen miniszterelnöksége',
+        '1929 a gazdasági világválság kezdete',
+      ],
+      emelt: ['1921 a Habsburg-ház trónfosztása'],
     },
     places: { kozep: [], emelt: [] },
   },
@@ -692,7 +697,6 @@ const unit: GuideUnit = {
             {
               term: 'numerus clausus',
               text: '„Zárt szám”: az egyetemi felvételek korlátozása. Az 1920-as törvény a zsidó származású jelentkezők kiszorítását szolgálta; 1928-ban módosították.',
-              emelt: true,
             },
             {
               term: 'Collegium Hungaricum',
@@ -734,7 +738,6 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          emelt: true,
           text: 'A kultúrpolitika a **keresztény-nemzeti** ideológiát is szolgálta: **Szekfű Gyula** *Három nemzedék* (1920) című műve a dualizmus liberalizmusát tette felelőssé a háborús vereségért és a forradalmakért, és a rendszer történelemszemléletét befolyásolta. Az 1930-as években **Hóman Bálint** miniszter alatt a kultúrpolitika jobbra tolódott és a revíziós gondolatot erősítette.',
         },
         {
@@ -861,7 +864,6 @@ const unit: GuideUnit = {
             {
               term: 'magyar népi mozgalom',
               text: 'Az 1930-as évek értelmiségi csoportja (népi írók), amely a parasztság nyomorára figyelmeztetett, földreformot és „harmadik utat” követelt.',
-              emelt: true,
             },
           ],
         },
