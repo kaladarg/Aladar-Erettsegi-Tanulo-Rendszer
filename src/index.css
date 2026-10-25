@@ -555,3 +555,11 @@ html:root body {
   font-family: var(--font-body);
   line-height: inherit;
 }
+
+/* Memoriter poems: a book face for reading and writing verse; the dyslexia font still wins. */
+.poem {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+}
+:root[data-font='dyslexic'] .poem {
+  font-family: var(--font-dyslexic);
+}

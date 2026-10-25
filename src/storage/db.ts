@@ -193,6 +193,17 @@ export interface GuideProgressRow {
   updatedAt: number;
 }
 
+/** Memoriter learning progress (one row per poem). */
+export interface MemoriterProgressRow {
+  id: string;
+  /** Best recitation score, 0–100. */
+  bestScore?: number;
+  attempts: number;
+  /** The student marked the poem as known. */
+  known?: boolean;
+  updatedAt: number;
+}
+
 /** An essay outline from the outline trainer, one per task. */
 export interface EssayOutlineRow {
   /** `<examId>/<taskId>` */
@@ -235,6 +246,7 @@ export class AppDatabase extends Dexie {
   essayOutlines!: EntityTable<EssayOutlineRow, 'key'>;
   reviewMarks!: EntityTable<ReviewMarkRow, 'id'>;
   guideProgress!: EntityTable<GuideProgressRow, 'pageId'>;
+  memoriterProgress!: EntityTable<MemoriterProgressRow, 'id'>;
 
   constructor(name = 'erettsegi-gyakorlo') {
     super(name);
@@ -281,6 +293,8 @@ export class AppDatabase extends Dexie {
     this.version(7).stores({ reviewMarks: '++id, [examId+taskId], time' });
     // Version 8: study guide progress.
     this.version(8).stores({ guideProgress: 'pageId, updatedAt' });
+    // Version 9: memoriter progress.
+    this.version(9).stores({ memoriterProgress: 'id, updatedAt' });
   }
 }
 
@@ -308,6 +322,7 @@ export const BACKUP_TABLES = [
   'essayOutlines',
   'reviewMarks',
   'guideProgress',
+  'memoriterProgress',
 ] as const;
 export type BackupTable = (typeof BACKUP_TABLES)[number];
 

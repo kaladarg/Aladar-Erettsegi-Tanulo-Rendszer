@@ -1,4 +1,5 @@
 import {
+  BookHeart,
   BookOpen,
   CalendarDays,
   Dices,
@@ -43,6 +44,20 @@ export function PracticeHubPage() {
           title={t('practice.hub.essayTitle')}
           body={t('practice.hub.essayBody')}
           badge={chosen.length > 0 && fitsSubjects('essay', chosen)}
+        />
+      ),
+    },
+    {
+      tool: 'memoriter',
+      card: (
+        <HubCard
+          key="memoriter"
+          to="/gyakorlas/memoriterek"
+          tint="rose"
+          icon={<BookHeart />}
+          title={t('practice.hub.memoriterTitle')}
+          body={t('practice.hub.memoriterBody')}
+          badge={chosen.length > 0 && fitsSubjects('memoriter', chosen)}
         />
       ),
     },

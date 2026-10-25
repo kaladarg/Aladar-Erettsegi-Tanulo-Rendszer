@@ -71,6 +71,7 @@ const REQUIRED_KEYS: Record<BackupTable, string[]> = {
   essayOutlines: ['key', 'examId', 'taskId'],
   reviewMarks: ['examId', 'taskId', 'time', 'choice'],
   guideProgress: ['pageId'],
+  memoriterProgress: ['id'],
 };
 
 /** Recordings are stored as Blobs; in the backup file they are base64 data URLs. */

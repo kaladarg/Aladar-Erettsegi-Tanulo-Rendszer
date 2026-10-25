@@ -1,6 +1,7 @@
 /** Practice tools that belong to some subjects only, to put them first for those students. */
 export const SUBJECT_TOOLS = {
   essay: ['tortenelem', 'magyar'],
+  memoriter: ['magyar'],
   probability: ['matematika'],
   oral: ['tortenelem', 'magyar', 'angol', 'nemet', 'foldrajz'],
 } as const;

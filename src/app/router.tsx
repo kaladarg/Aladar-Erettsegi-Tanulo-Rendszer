@@ -168,6 +168,18 @@ export function createRouter() {
           }),
         },
         {
+          path: 'gyakorlas/memoriterek',
+          lazy: async () => ({
+            Component: (await import('@/features/memoriter/MemoriterListPage')).MemoriterListPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/memoriterek/:poemId',
+          lazy: async () => ({
+            Component: (await import('@/features/memoriter/MemoriterPage')).MemoriterPage,
+          }),
+        },
+        {
           path: 'tananyag',
           lazy: async () => ({
             Component: (await import('@/features/guide/GuideHubPage')).GuideHubPage,

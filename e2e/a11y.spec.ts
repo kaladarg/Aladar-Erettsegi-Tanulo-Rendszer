@@ -48,6 +48,10 @@ const PAGES = [
   ],
   ['/gyakorlas/kartyak?targy=angol', 'Tanulókártyák'],
   ['/tananyag?szint=emelt', 'Tananyag'],
+  ['/gyakorlas/memoriterek', 'Memoriterek'],
+  ['/gyakorlas/memoriterek/kolcsey-himnusz', 'Himnusz'],
+  ['/gyakorlas/memoriterek/vorosmarty-szozat?mod=tanulas', 'Szózat'],
+  ['/gyakorlas/memoriterek/arany-toldi-esteje?mod=felmondas', 'Toldi estéje'],
   [
     '/tananyag/szabadsagharc-esemenyei?resz=reszletesen&szint=emelt',
     'A szabadságharc főbb eseményei',
