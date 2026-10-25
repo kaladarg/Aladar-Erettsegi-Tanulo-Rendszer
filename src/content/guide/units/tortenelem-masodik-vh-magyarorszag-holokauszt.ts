@@ -350,7 +350,7 @@ const unit: GuideUnit = {
         {
           kind: 'text',
           emelt: true,
-          text: 'A Délvidéken 1942 januárjában **partizánellenes razzia** kezdődött Bácskában. A magyar hadsereg és csendőrség a hadművelet során nagyszámú civilt végzett ki, főleg szerbeket és zsidókat. Az áldozatok összes számáról a becslések eltérnek (általában 3000–4000 körüli értéket adnak), ebből Újvidéken több mint ezer ember halt meg. A felelősök ellen 1943-ban eljárás indult Magyarországon, de a németek segítségével Németországba szöktek; a háború után többeket Jugoszláviában és Magyarországon elítéltek.',
+          text: 'A Délvidéken 1942 januárjában **partizánellenes razzia** kezdődött Bácskában. A magyar hadsereg és csendőrség a hadművelet során nagyszámú civilt végzett ki, főleg szerbeket és zsidókat. Az áldozatok összes számáról a becslések eltérnek (a források többezres nagyságrendet említenek), ebből Újvidéken több mint ezer ember halt meg. A felelősök ellen 1943-ban eljárás indult Magyarországon, de a németek segítségével Németországba szöktek; a háború után többeket Jugoszláviában és Magyarországon elítéltek.',
         },
         { kind: 'heading', text: 'A Don-kanyar' },
         {
@@ -754,7 +754,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Kamenyec-Podolszkij' },
         {
           kind: 'text',
-          text: '**1941 augusztusában** a magyar hatóságok „állampolgárság nélkülinek” minősített, főleg Kárpátaljáról származó zsidókat toloncoltak át a német megszállási övezetbe, a Kamenyec-Podolszkij környékére. A magyar hatóságok által átadott embereket német egységek **augusztus végén** nagyrészt legyilkolták. Az áldozatok számára a becslések 16 és 23 ezer között mozognak.',
+          text: '**1941 augusztusában** a magyar hatóságok „állampolgárság nélkülinek” minősített, főleg Kárpátaljáról származó zsidókat toloncoltak át a német megszállási övezetbe, a Kamenyec-Podolszkij környékére. A magyar hatóságok által átadott embereket német egységek **augusztus végén** nagyrészt legyilkolták. Az áldozatok számára a becslések 14 és 23 ezer között mozognak.',
         },
         {
           kind: 'text',
@@ -908,7 +908,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A deportálások' },
         {
           kind: 'text',
-          text: 'A gettókból **marhavagonokban** hurcolták el az embereket. A deportálások az ország keleti részéről indultak, és zónánként haladtak nyugat felé, a főváros kivételével. A transzportok célja elsősorban **Auschwitz-Birkenau** volt, ahol a legtöbb deportáltat megérkezés után a gázkamrákba küldték, a munkaképeseket kényszermunkára fogták. A német jelentések 437 ezer körüli számot adnak; a becslések szerint **mintegy 430–440 ezer** embert hurcoltak el, mintegy nyolc hét alatt.',
+          text: 'A gettókból **marhavagonokban** hurcolták el az embereket. A deportálások az ország keleti részéről indultak, és zónánként haladtak nyugat felé, a főváros kivételével. A transzportok célja elsősorban **Auschwitz-Birkenau** volt, ahol a legtöbb deportáltat megérkezés után a gázkamrákba küldték, a munkaképeseket kényszermunkára fogták. A források 437–440 ezer körüli számot adnak; a becslések szerint **mintegy 430–440 ezer** embert hurcoltak el, mintegy nyolc hét alatt.',
         },
         {
           kind: 'timeline',
@@ -967,7 +967,7 @@ const unit: GuideUnit = {
             },
             {
               name: 'Apor Vilmos',
-              text: 'Győri megyéspüspök, egyházi épületében menekülteket rejtegetett. 1945 húsvétján halt meg, miután egy szovjet katona megsebesítette, mert a bújtatott nőket védte.',
+              text: 'Győri megyéspüspök, egyházi épületében menekülteket rejtegetett. 1945 húsvéthétfőjén halt meg, miután márciusban egy szovjet katona megsebesítette, mert a bújtatott nőket védte.',
             },
           ],
         },
@@ -1113,7 +1113,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: '**1944. október 15-én** Horthy rádióban bejelentette, hogy fegyverszünetet kér. A német kommandósok már előzőleg elrabolták fiát, Horthy Miklós ifjabbat, és a kormányzót a kiáltvány visszavonására kényszerítették. A kiáltványt a legtöbb parancsnok nem hajtotta végre, a front nem állt meg. Horthyt Németországba vitték, a hatalmat **Szálasi Ferenc** vette át, akit a kormányzó kényszer hatására miniszterelnökké nevezett ki.',
+          text: '**1944. október 15-én** Horthy rádióban bejelentette, hogy fegyverszünetet kér. A német kommandósok ugyanazon a napon elrabolták fiát, Horthy Miklós ifjabbat, és a kormányzót a kiáltvány visszavonására kényszerítették. A kiáltványt a legtöbb parancsnok nem hajtotta végre, a front nem állt meg. Horthyt Németországba vitték, a hatalmat **Szálasi Ferenc** vette át, akit a kormányzó kényszer hatására miniszterelnökké nevezett ki.',
         },
         { kind: 'heading', text: 'A nyilas uralom' },
         {
@@ -1152,7 +1152,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Szovjet megszállás: hadifogság és malenkij robot' },
         {
           kind: 'text',
-          text: 'A szovjet katonai hatóságok a front mögött katonákat és civileket fogtak el, és kényszermunkára hurcoltak a Szovjetunióba (**malenkij robot**). A fogságba esett magyarok számáról a becslések eltérnek; a leggyakoribb érték **600–700 ezer fő** (a hadifoglyokkal együtt, a civilek száma ennél jóval kisebb). Sokan meghaltak, mások csak évek múlva térhettek haza.',
+          text: 'A szovjet katonai hatóságok a front mögött katonákat és civileket fogtak el, és kényszermunkára hurcoltak a Szovjetunióba (**malenkij robot**). A fogságba esett és elhurcolt magyarok számáról a becslések eltérnek; hadifoglyokkal együtt **több százezer főről** van szó. Sokan meghaltak, mások csak évek múlva térhettek haza.',
         },
       ],
       exam: [
