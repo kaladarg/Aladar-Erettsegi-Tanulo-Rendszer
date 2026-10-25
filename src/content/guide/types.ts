@@ -6,7 +6,7 @@
  */
 import type { CardFilter } from '@/content/cards';
 
-export type GuideSubject = 'tortenelem' | 'matematika' | 'magyar';
+export type GuideSubject = 'tortenelem' | 'matematika' | 'magyar' | 'foldrajz';
 /** Where a page or a block belongs: középszint material, emelt only, or both levels. */
 export type GuideLevel = 'kozep' | 'emelt' | 'both';
 

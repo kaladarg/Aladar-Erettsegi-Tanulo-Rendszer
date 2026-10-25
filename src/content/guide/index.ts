@@ -8,7 +8,7 @@ const modules = import.meta.glob<GuideUnit>('./units/*.ts', { eager: true, impor
 /** All units, in the order of the syllabus within each subject. */
 export const GUIDE_UNITS: GuideUnit[] = Object.values(modules).sort((a, b) => a.order - b.order);
 
-export const GUIDE_SUBJECTS: GuideSubject[] = ['tortenelem', 'matematika', 'magyar'];
+export const GUIDE_SUBJECTS: GuideSubject[] = ['tortenelem', 'matematika', 'magyar', 'foldrajz'];
 
 export function findGuidePage(id: string): { unit: GuideUnit; page: GuidePage } | undefined {
   for (const unit of GUIDE_UNITS) {
