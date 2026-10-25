@@ -890,7 +890,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A szociális helyzet' },
         {
           kind: 'text',
-          text: 'Az 1920-as években a kormány a társadalmi béke megőrzése érdekében szociális intézkedéseket is hozott: **1927-ben** törvény szabályozta a kötelező **betegbiztosítást** (az **OTI** működésével). A válság idején azonban a szegénység nagyobb lett, a munkanélküli-segély kevés volt, és a nyomortelepek Budapest szélén megsokasodtak.',
+          text: 'Az 1920-as években a kormány a társadalmi béke megőrzése érdekében szociális intézkedéseket is hozott: **1927-ben** törvény szabályozta a kötelező **betegbiztosítást**. A válság idején azonban a szegénység nagyobb lett, a munkanélküli-segély kevés volt, és a nyomortelepek Budapest szélén megsokasodtak.',
         },
         { kind: 'heading', text: 'Életmód és szabadidő' },
         {
@@ -983,13 +983,13 @@ const unit: GuideUnit = {
           question: 'Mit jelentett az 1927-es szociális törvény?',
           options: [
             'Általános választójogot adott a nőknek.',
-            'Kiterjesztette a kötelező betegbiztosítást, és létrehozta az Országos Társadalombiztosító Intézetet (OTI).',
+            'Szabályozta a kötelező betegség- és baleseti biztosítást.',
             'Eltörölte a földbirtokot.',
             'Megszüntette a numerus clausust.',
           ],
           answer: 1,
           explanation:
-            'Az 1927-es törvény a betegbiztosítást a munkások szélesebb körére terjesztette ki, és létrehozta az OTI-t; a korszak egyik fontos szociális intézkedése volt.',
+            'Az 1927-es törvény a kötelező betegség- és baleseti biztosítást szabályozta; a korszak egyik fontos szociális intézkedése volt.',
         },
       ],
       sources: [

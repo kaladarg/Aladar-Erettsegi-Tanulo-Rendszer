@@ -350,7 +350,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A választójog' },
         {
           kind: 'text',
-          text: 'Az 1874. évi törvény a vagyonhoz és az adóhoz, illetve a műveltséghez kötötte a választójogot: a lakosságnak csak 6–8%-a szavazhatott, a nők és a nincstelenek nem. A választás **nyílt szavazás** volt vidéken (a szavazó nyilvánosan mondta meg, kire szavaz, ami lehetővé tette a nyomásgyakorlást és a vesztegetést), **titkos** csak a nagyobb városokban. A kormánypárt ezért szinte mindig megnyerte a választást.',
+          text: 'Az 1874. évi törvény a vagyonhoz és az adóhoz, illetve a műveltséghez kötötte a választójogot: a becslések szerint a lakosságnak nagyjából 6–8%-a szavazhatott, a nők és a nincstelenek nem. A választás **nyílt szavazás** volt vidéken (a szavazó nyilvánosan mondta meg, kire szavaz, ami lehetővé tette a nyomásgyakorlást és a vesztegetést), **titkos** csak a nagyobb városokban. A kormánypárt ezért szinte mindig megnyerte a választást.',
         },
         {
           kind: 'compare',
@@ -361,7 +361,7 @@ const unit: GuideUnit = {
               label: 'Alap',
               cells: ['cenzus (vagyon vagy műveltség)', 'cenzus (vagyon vagy műveltség)'],
             },
-            { label: 'Szavazók aránya', cells: ['kb. 7–9%', 'kb. 6–8%'] },
+            { label: 'Szavazók aránya', cells: ['a becslések eltérnek', 'kb. 6–8%'] },
             { label: 'Szavazás módja', cells: ['nyílt', 'vidéken nyílt, a nagyvárosokban titkos'] },
           ],
         },
@@ -494,7 +494,7 @@ const unit: GuideUnit = {
             },
             {
               term: 'kivándorlás',
-              text: 'Az országot elhagyó tömegek mozgása (főleg Amerikába); a dualizmus végére mintegy másfél millió ember hagyta el az országot.',
+              text: 'Az országot elhagyó tömegek mozgása (főleg Amerikába); csak az első világháború előtti másfél évtizedben mintegy másfél millióan vándoroltak ki, közel negyedük később visszatért.',
             },
             {
               term: 'Millennium',
@@ -889,7 +889,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Kivándorlás' },
         {
           kind: 'text',
-          text: 'Az 1880-as évektől tömegek hagyták el az országot, főleg az Egyesült Államokba (a dualizmus végéig mintegy másfél millió ember). A kivándorlók többsége a nincstelen vagy törpebirtokos paraszt volt, a nemzetiségek (szlovákok, ruszinok, németek) aránya pedig magasabb volt a lakosságban betöltött részüknél.',
+          text: 'Az 1880-as évektől tömegek hagyták el az országot, főleg az Egyesült Államokba (csak az első világháború előtti másfél évtizedben mintegy másfél millióan, közel negyedük később visszatért). A kivándorlók többsége a nincstelen vagy törpebirtokos paraszt volt, a nemzetiségek (szlovákok, ruszinok, németek) aránya pedig magasabb volt a lakosságban betöltött részüknél.',
         },
         {
           kind: 'heading',

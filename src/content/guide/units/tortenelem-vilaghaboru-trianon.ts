@@ -222,7 +222,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Magyarország a háborúban' },
         {
           kind: 'text',
-          text: 'Magyarország az Osztrák–Magyar Monarchia részeként lépett be a háborúba, a magyar katonák a Monarchia közös hadseregében és a honvédségben szolgáltak. Harcoltak a **szerb**, az orosz (**keleti**), 1915-től az **olasz** (isonzói), 1916-tól a **román** fronton is. A veszteség óriási volt: a magyar halottak száma megközelítette a félmilliót, és sok százezer magyar katona került **hadifogságba**, főleg Oroszországban és Olaszországban. A hátország ellátása romlott, nőtt az infláció, a háború végére a lakosság a békét követelte.',
+          text: 'Magyarország az Osztrák–Magyar Monarchia részeként lépett be a háborúba, a magyar katonák a Monarchia közös hadseregében és a honvédségben szolgáltak. Harcoltak a **szerb**, az orosz (**keleti**), 1915-től az **olasz** (isonzói), 1916-tól a **román** fronton is. A veszteség óriási volt: a magyar halottak számát a becslések kb. 530 ezer és 660 ezer közé teszik, és sok százezer magyar katona került **hadifogságba**, főleg Oroszországban és Olaszországban. A hátország ellátása romlott, nőtt az infláció, a háború végére a lakosság a békét követelte.',
         },
         {
           kind: 'timeline',

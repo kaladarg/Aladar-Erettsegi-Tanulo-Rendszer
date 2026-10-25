@@ -518,7 +518,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'Erdély egyedülálló vallási helyzetet teremtett Európában. Az 1557-es tordai országgyűlés már a katolikus és az evangélikus vallás szabad gyakorlását engedélyezte. **1568-ban** János Zsigmond **tordai országgyűlése** kimondta: mindenki a maga hite szerint prédikálhat, és ezt nem büntethetik. Később a **négy bevett vallás** (katolikus, evangélikus, református, unitárius) egyenjogú volt.',
+          text: 'Erdély egyedülálló vallási helyzetet teremtett Európában. Az 1557-es tordai országgyűlés már a lutheránus vallás törvényes elismerését hozta, ez azonban még nem volt teljes vallásszabadság (a források értelmezése eltér). **1568-ban** János Zsigmond **tordai országgyűlése** kimondta: mindenki a maga hite szerint prédikálhat, és ezt nem büntethetik. Később a **négy bevett vallás** (katolikus, evangélikus, református, unitárius) egyenjogú volt.',
         },
         {
           kind: 'warning',
