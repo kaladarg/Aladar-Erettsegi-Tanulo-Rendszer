@@ -134,7 +134,10 @@ export function useDailyPlan(choice: DailyChoiceInput, round = 0): DailyData | u
       topics: base.topics,
       ratios: base.ratios,
       minutes: base.minutes,
-      cardIds: ALL_CARDS.filter((card) => card.subject === choice.subject).map((card) => card.id),
+      // Emelt-only cards only for students taking the subject at emelt szint.
+      cardIds: ALL_CARDS.filter(
+        (card) => card.subject === choice.subject && (!card.emelt || ownLevel === 'emelt'),
+      ).map((card) => card.id),
       cardStates: base.states,
       today: base.today,
       // Another round on the same day draws other tasks.
@@ -146,5 +149,5 @@ export function useDailyPlan(choice: DailyChoiceInput, round = 0): DailyData | u
       weakAreas: base.weakAreas,
       hasResults: base.ratios.size > 0,
     };
-  }, [base, choice.subject, choice.areas, choice.length, round]);
+  }, [base, choice.subject, choice.areas, choice.length, round, ownLevel]);
 }

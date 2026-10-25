@@ -602,7 +602,7 @@ const unit: GuideUnit = {
           items: [
             'II. rész (16 pontos feladat egy része): függvényvizsgálat deriválttal, érintő egyenlete.',
             'Szélsőérték-feladat geometriai vagy gazdasági szövegből (doboz térfogata, költség minimuma).',
-            'Integrálással kombinálva: terület két görbe között.',
+            'Integrálással kombinálva: a függvény grafikonja alatti terület kiszámítása.',
           ],
         },
         {

@@ -49,7 +49,7 @@ export function OralPage() {
     <>
       <BackLink />
       <PageHeader title={t('practice.oral.title')} description={t('practice.oral.intro')} />
-      <div className="grid gap-6">
+      <div className="grid grid-cols-1 gap-6">
         <SegmentedControl
           label={t('practice.oral.subject')}
           value={subject}
@@ -90,7 +90,7 @@ export function OralPage() {
               <h3 className="mb-2 text-sm font-semibold tracking-wide text-muted uppercase">
                 {group}
               </h3>
-              <ul className="grid gap-2">
+              <ul className="grid grid-cols-1 gap-2">
                 {builtins
                   .filter((b) => b.group === group)
                   .map((builtin) => (
@@ -126,7 +126,7 @@ function TopicRow({
   return (
     <li className="flex items-center gap-3 rounded-md border border-border p-3">
       <div className="min-w-0 flex-1">
-        <p className="font-medium">{title}</p>
+        <p className="font-medium break-words">{title}</p>
         <p className="text-sm text-muted">
           {practised > 0
             ? t('practice.oral.practised', { count: practised })

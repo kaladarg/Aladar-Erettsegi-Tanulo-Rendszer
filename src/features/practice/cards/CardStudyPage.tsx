@@ -603,7 +603,11 @@ function SwipeCard({
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 overflow-y-auto text-center">
               <p
                 lang={CARD_LANGUAGES[card.subject]}
-                className={textSize(card.back + (card.note ?? ''))}
+                className={cn(
+                  textSize(card.back + (card.note ?? '')),
+                  'whitespace-pre-line',
+                  card.back.includes('\n') && 'text-left',
+                )}
               >
                 {card.back}
               </p>

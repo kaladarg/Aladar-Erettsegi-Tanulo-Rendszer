@@ -320,7 +320,9 @@ function TermList({
                   <p className="font-semibold">{card.front}</p>
                 </div>
                 <div className="min-w-0 border-border max-sm:border-t max-sm:pt-2 sm:border-l sm:pl-6">
-                  <p lang={CARD_LANGUAGES[card.subject]}>{card.back}</p>
+                  <p lang={CARD_LANGUAGES[card.subject]} className="whitespace-pre-line">
+                    {card.back}
+                  </p>
                   {card.note && <p className="mt-1 text-sm text-muted">{card.note}</p>}
                   {card.emelt && (
                     <p className="mt-1 text-sm font-semibold text-primary">

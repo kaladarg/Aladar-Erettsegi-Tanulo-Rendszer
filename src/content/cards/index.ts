@@ -10,7 +10,7 @@ export type { CardSubject, DeckId, Era, StudyCard } from './types';
 export const CARD_SUBJECTS: CardSubject[] = [
   'tortenelem',
   'magyar',
-  // 'matematika' is added when its deck is written.
+  'matematika',
   'angol',
   'nemet',
 ];

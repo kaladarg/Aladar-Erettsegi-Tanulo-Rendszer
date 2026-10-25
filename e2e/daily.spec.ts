@@ -68,6 +68,13 @@ test('Mai adag from chosen areas; an unfinished one can be continued', async ({ 
     'false',
   );
   await page.getByRole('button', { name: 'Kezdjük' }).click();
+  // Maths has a card warm-up (definitions and theorems) before the tasks.
+  const next = page.getByRole('button', { name: 'Tovább a feladatokra' });
+  while (!(await next.isVisible())) {
+    await page.getByRole('button', { name: 'Megfordítom' }).click();
+    await page.getByRole('button', { name: 'Tudom', exact: true }).click();
+  }
+  await next.click();
   await expect(page).toHaveURL(/gyakorlas\/kor\//);
   const url = page.url();
 
