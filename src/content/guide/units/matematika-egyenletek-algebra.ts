@@ -474,13 +474,7 @@ const unit: GuideUnit = {
           text: 'Szöveges feladat pontozása: ismeretlenek megadása, egyenlet felírása, megoldás, ellenőrzés a szöveg alapján, válasz mondatban. Mindegyikre jár pont.',
         },
       ],
-      topicMatch: [
-        'elsőfokú egyenlet',
-        '=egyenlet',
-        '=egyenletek',
-        'egyenletrendszer',
-        'szöveges feladat',
-      ],
+      topicMatch: ['elsőfokú egyenlet', '=egyenlet', '=egyenletek', 'egyenletrendszer'],
       quiz: [
         {
           question: 'Mi a megoldása a $2(x + 3) = x - 5$ egyenletnek?',
