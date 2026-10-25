@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topic 2.6 (A vegyesházi királyok kora). */
 const unit: GuideUnit = {
-  id: 'tortenelem-vegyeshazi-kiralyok',
+  id: 'vegyeshazi-kiralyok',
   subject: 'tortenelem',
   order: 25,
   title: 'A vegyesházi királyok kora',
@@ -99,7 +99,7 @@ const unit: GuideUnit = {
     {
       id: 'anjou-karoly-robert-kiralyi-hatalom',
       subject: 'tortenelem',
-      unitId: 'tortenelem-vegyeshazi-kiralyok',
+      unitId: 'vegyeshazi-kiralyok',
       title: 'I. (Anjou) Károly: a királyi hatalom újjáépítése',
       level: 'kozep',
       requirement: {
@@ -156,11 +156,11 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Az Árpád-ház kihalása és a trónharc' },
         {
           kind: 'text',
-          text: '**III. András 1301-ben** fiú utód nélkül halt meg, így az Árpád-ház férfiága kihalt. Három trónkövetelő lépett fel: a cseh **Vencel**, a bajor **Ottó** és a nápolyi **Anjou-házból** származó **Károly Róbert**, akinek a nagyanyja Árpád-házi hercegnő volt. Mindhárom mögött külföldi hatalom és hazai főúri párt állt. Közben a nagy tartományurak (például a Csák, az Aba és a Kőszegi család) a királyi vármegyék hatalmát átvették, saját vármegyéjükben szinte önállóan uralkodtak.',
+          text: '**III. András 1301-ben** fiú utód nélkül halt meg, így az Árpád-ház férfiága kihalt. Három trónkövetelő lépett fel: a cseh **Vencel**, a bajor **Ottó** és az **Anjou-házból** származó **Károly Róbert**, akinek a nagyanyja Árpád-házi hercegnő volt. Mindhárom mögött külföldi hatalom és hazai főúri párt állt. Közben a nagy tartományurak (például a Csák, az Aba és a Kőszegi család) a királyi vármegyék hatalmát átvették, saját vármegyéjükben szinte önállóan uralkodtak.',
         },
         {
           kind: 'text',
-          text: 'Károlyt a **pápa** és az egyház nagy része támogatta. Uralkodását **1308-tól** számítjuk. A **Szent Koronával** csak **1310-ben**, Székesfehérváron koronázták meg: ettől vált mindenki számára törvényes királlyá. A tartományurak ellen évtizedekig kellett harcolnia. A korszak fordulópontja az **1312-es rozgonyi csata** volt, ahol a kassai polgárok és a király hívei legyőzték az Aba család haderejét. A legerősebb ellenfél, **Csák Máté** halála (1321) után a tartományúri hatalom összeomlott.',
+          text: 'Károlyt a **pápa** és az egyház nagy része támogatta. Uralkodását **1308-tól** számítjuk. A **Szent Koronával** csak **1310-ben**, Székesfehérváron koronázták meg: ettől vált mindenki számára törvényes királlyá. A tartományurak ellen évtizedekig kellett harcolnia. A korszak fordulópontja az **1312-es rozgonyi csata** volt, ahol a király hívei legyőzték az Aba család haderejét. A legerősebb ellenfél, **Csák Máté** halála (1321) után a tartományúri hatalom összeomlott.',
         },
         { kind: 'heading', text: 'Visegrád és az új hatalmi rendszer' },
         {
@@ -174,7 +174,7 @@ const unit: GuideUnit = {
             '**Pénzügy**: a bányákból (arany, ezüst: például Körmöcbánya), a pénzverésből, a vámokból és a sóból származó **regálé** adta a király jövedelmének nagy részét. Magyarország a 14. században Európa jelentős aranytermelője volt.',
             '**Pénz**: a **1325-től** vert **aranyforint** stabil fizetőeszköz volt, amely a nemzetközi kereskedelemben is jól használható volt.',
             '**Adó**: a **kapuadó** a jobbágyportánként beszedett állami adó volt, amely a királyi bevételeket növelte.',
-            '**Hivatalrendszer**: a főméltóságokat Károly **honorbirtokokkal** jutalmazta; aki a tisztségét elvesztette, a birtokát is elveszítette. Így a főurak a király kegyétől függtek.',
+            '**Hivatalrendszer**: a főméltóságokat Károly hivatalhoz kötött birtokokkal jutalmazta; aki a tisztségét elvesztette, a birtokát is elveszítette. Így a főurak a király kegyétől függtek.',
           ],
         },
         {
@@ -238,7 +238,7 @@ const unit: GuideUnit = {
           text: 'Az „Anjou-kor” kulcsszavai röviden: tartományurak legyőzése + regálék + aranyforint + visegrádi székhely. Ha magyarázatot kér a feladat, mindig azt kösd össze, hogy a jövedelmek miatt nem függött az országgyűléstől.',
         },
       ],
-      topicMatch: ['anjou-kor', 'i. károly', 'késő középkor'],
+      topicMatch: ['anjou-kor', 'i. károly'],
       cards: { subject: 'tortenelem', era: 'kozepkor' },
       quiz: [
         {
@@ -287,21 +287,23 @@ const unit: GuideUnit = {
             'A király által elzálogosított birtok.',
           ],
           answer: 2,
-          explanation:
-            'A honorbirtok hivatalhoz kötött volt, így a főurak a királytól függtek.',
+          explanation: 'A honorbirtok hivatalhoz kötött volt, így a főurak a királytól függtek.',
           emelt: true,
         },
       ],
       sources: [
         { label: 'Wikipédia: I. Károly magyar király', url: wiki('I. Károly magyar király') },
-        { label: 'Wikipédia: Visegrádi királytalálkozó', url: wiki('visegrádi királytalálkozó 1335') },
+        {
+          label: 'Wikipédia: Visegrádi királytalálkozó',
+          url: wiki('visegrádi királytalálkozó 1335'),
+        },
         { label: 'Wikipédia: Aranyforint', url: wiki('aranyforint Károly Róbert') },
       ],
     },
     {
       id: 'nagy-lajos-kulpolitika-1351',
       subject: 'tortenelem',
-      unitId: 'tortenelem-vegyeshazi-kiralyok',
+      unitId: 'vegyeshazi-kiralyok',
       title: 'Nagy Lajos külpolitikája és az 1351-es törvények',
       level: 'emelt',
       requirement: {
@@ -379,7 +381,12 @@ const unit: GuideUnit = {
               lon: 21.26,
               note: 'az 1374-es privilégium helyszíne',
             },
-            { name: 'Zára', lat: 44.12, lon: 15.23, note: 'dalmát kikötő, az 1358-as béke névadója' },
+            {
+              name: 'Zára',
+              lat: 44.12,
+              lon: 15.23,
+              note: 'dalmát kikötő, az 1358-as béke névadója',
+            },
           ],
         },
         { kind: 'heading', text: 'Az 1351-es törvények' },
@@ -489,14 +496,20 @@ const unit: GuideUnit = {
       ],
       sources: [
         { label: 'Wikipédia: I. Lajos magyar király', url: wiki('I. (Nagy) Lajos magyar király') },
-        { label: 'Wikipédia: Az 1351-es törvények', url: wiki('1351 törvények Nagy Lajos kilenced') },
-        { label: 'Wikipédia: Lengyel–magyar perszonálunió', url: wiki('Nagy Lajos lengyel király 1370') },
+        {
+          label: 'Wikipédia: Az 1351-es törvények',
+          url: wiki('1351 törvények Nagy Lajos kilenced'),
+        },
+        {
+          label: 'Wikipédia: Lengyel–magyar perszonálunió',
+          url: wiki('Nagy Lajos lengyel király 1370'),
+        },
       ],
     },
     {
       id: 'zsigmond-torok-veszely-nikapoly',
       subject: 'tortenelem',
-      unitId: 'tortenelem-vegyeshazi-kiralyok',
+      unitId: 'vegyeshazi-kiralyok',
       title: 'Luxemburgi Zsigmond és az oszmán veszély',
       level: 'kozep',
       requirement: {
@@ -548,7 +561,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Az oszmánok megjelenése a határon' },
         {
           kind: 'text',
-          text: 'Az **Oszmán Birodalom** a 14. század végén már a Balkán nagy részén terjeszkedett. Szerbia a **rigómezei csata** (1389) után az oszmánok hűbérese lett, így a török hatalom a magyar déli határig ért. Zsigmond ezért a Dunától délre, a Balkánon próbálta feltartóztatni őket.',
+          text: 'Az **Oszmán Birodalom** a 14. század végén már a Balkán nagy részén terjeszkedett. Szerbia a 14. század végén az oszmánok hűbérese lett, így a török hatalom a magyar déli határig ért. Zsigmond ezért a Dunától délre, a Balkánon próbálta feltartóztatni őket.',
         },
         {
           kind: 'text',
@@ -587,19 +600,18 @@ const unit: GuideUnit = {
             'Évszámok: 1387, 1396, 1437.',
             'Fogalmak: bandérium, végvár, perszonálunió (a Lajos-kori kapcsolatban).',
             'Rövid kifejtés: miért veszített Zsigmond Nikápolynál, és mit tett utána a védelemért?',
-            'Emelt: 1389, a rigómezei csata jelentősége.',
           ],
         },
         {
           kind: 'warning',
-          text: 'Gyakori hiba: összekeverni a nikápolyi (1396) és a várnai (1444) vereséget, vagy a rigómezei csatát (1389) a második rigómezei csatával (1448). Mindhárom a Balkánon történt.',
+          text: 'Gyakori hiba: összekeverni a nikápolyi (1396) és a várnai (1444) vereséget. Mindkettő a Balkánon történt, de nem ugyanaz a hadjárat.',
         },
         {
           kind: 'tip',
           text: 'Ha időrendet kérnek a törökellenes harcokról, ezt a sort jegyezd meg: Nikápoly (1396), Várna (1444), Nándorfehérvár (1456).',
         },
       ],
-      topicMatch: ['késő középkor', 'i. károly és hunyadi mátyás'],
+      topicMatch: ['i. károly és hunyadi mátyás'],
       cards: { subject: 'tortenelem', era: 'kozepkor' },
       quiz: [
         {
@@ -651,7 +663,7 @@ const unit: GuideUnit = {
     {
       id: 'hunyadi-janos-torokellenes-harcai',
       subject: 'tortenelem',
-      unitId: 'tortenelem-vegyeshazi-kiralyok',
+      unitId: 'vegyeshazi-kiralyok',
       title: 'Hunyadi János törökellenes harcai',
       level: 'kozep',
       requirement: {
@@ -703,7 +715,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Hunyadi emelkedése' },
         {
           kind: 'text',
-          text: '**Zsigmond halála (1437)** után a trónért harcok folytak. Végül a lengyel **I. Ulászló** (Jagelló) lett magyar király (1440–1444). Hunyadi János ekkor már a **déli határvédelem** egyik vezetője volt, **1441-től** nándorfehérvári kapitány és **erdélyi vajda** lett. Gazdag birtokokat szerzett, és saját sereget tarthatott. Sikerei **1442-ben** (Nagyszeben, a Vaskapu) megmutatták, hogy az oszmánok legyőzhetők.',
+          text: '**Zsigmond halála (1437)** után a trónért harcok folytak. Végül a lengyel **I. Ulászló** (Jagelló) lett magyar király (1440–1444). Hunyadi János ekkor már a **déli határvédelem** egyik vezetője volt, **1441-től** nándorfehérvári kapitány és **erdélyi vajda** lett. Gazdag birtokokat szerzett, és saját sereget tarthatott. Sikerei **1442-ben** (Erdélyben, majd a Vaskapunál) megmutatták, hogy az oszmánok legyőzhetők.',
         },
         {
           kind: 'text',
@@ -735,6 +747,7 @@ const unit: GuideUnit = {
               lat: 45.8,
               lon: 24.15,
               note: '1442: Hunyadi győzelme',
+              emelt: true,
             },
             { name: 'Szeged', lat: 46.25, lon: 20.15, note: '1444: itt kötöttek békét' },
             {
@@ -749,7 +762,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Nándorfehérvár, 1456' },
         {
           kind: 'text',
-          text: 'Az oszmánok a konstantinápolyi hódítás (1453) után északra fordultak. **II. Mehmed** szultán 1456 nyarán hatalmas sereggel Nándorfehérvárt vette ostrom alá, amely a magyar–oszmán határ kulcsa volt. Hunyadi hajóhaddal tört át a Dunán, és a várvédőket megsegítette. A pápa által hirdetett keresztes hadjáratban a ferences **Kapisztrán János** mozgósította a szegény keresztes katonákat. **1456. július 22-én** a keresztesek és a védők visszaverték a török támadást, a szultán elvonult.',
+          text: 'Az oszmánok a bizánci főváros 1453-as elfoglalása után északra fordultak. Az oszmán szultán 1456 nyarán hatalmas sereggel Nándorfehérvárt vette ostrom alá, amely a magyar–oszmán határ kulcsa volt. Hunyadi hajóhaddal tört át a Dunán, és a várvédőket megsegítette. A pápa által hirdetett keresztes hadjáratban a szegény keresztes katonák is részt vettek. **1456. július 22-én** a keresztesek és a védők visszaverték a török támadást, a szultán elvonult.',
         },
         {
           kind: 'text',
@@ -778,6 +791,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'tip',
+          emelt: true,
           text: 'Az emelt szintű feladat gyakran nevek összekapcsolását kéri: Kapisztrán János (keresztes sereg), Szilágyi Mihály (várvédő), II. Mehmed (az ostromló szultán), Hunyadi János (a hajóhad és a sereg vezére).',
         },
       ],
@@ -789,14 +803,14 @@ const unit: GuideUnit = {
           options: ['Nikápolynál', 'Rigómezőn', 'Nándorfehérvárnál', 'Várnánál'],
           answer: 3,
           explanation:
-            'I. Ulászló 1444-ben Várnánál esett el. Nikápoly 1396, Rigómező 1389 és 1448, Nándorfehérvár 1456.',
+            'I. Ulászló 1444-ben Várnánál esett el. Nikápoly 1396, Nándorfehérvár 1456 eseménye.',
         },
         {
           question: 'Mikor volt a nándorfehérvári diadal?',
           options: ['1444', '1448', '1456', '1458'],
           answer: 2,
           explanation:
-            '1456-ban Hunyadi János és Kapisztrán János visszaverte II. Mehmed ostromát. 1458 Mátyás királlyá választásának éve.',
+            '1456-ban Hunyadi János visszaverte az oszmán ostromot. 1458 Mátyás királlyá választásának éve.',
         },
         {
           question: 'Mit jelent a kormányzói tisztség Hunyadi esetében?',
@@ -836,7 +850,7 @@ const unit: GuideUnit = {
     {
       id: 'matyas-kozpontositott-hatalom-jovedelmek',
       subject: 'tortenelem',
-      unitId: 'tortenelem-vegyeshazi-kiralyok',
+      unitId: 'vegyeshazi-kiralyok',
       title: 'Hunyadi Mátyás: a központosított királyi hatalom',
       level: 'kozep',
       requirement: {
@@ -1024,7 +1038,7 @@ const unit: GuideUnit = {
     {
       id: 'matyas-kulpolitika-reneszansz-udvar',
       subject: 'tortenelem',
-      unitId: 'tortenelem-vegyeshazi-kiralyok',
+      unitId: 'vegyeshazi-kiralyok',
       title: 'Mátyás törökellenes harcai, birodalomépítés és reneszánsz udvar',
       level: 'both',
       requirement: {
@@ -1039,8 +1053,8 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Öt perc alatt',
           items: [
-            'Mátyás **külpolitikájának** két fő iránya volt: délen a **török védelem** (boszniai és szerbiai végvárak), nyugaton a **terjeszkedés**: **Csehország** és az **osztrák tartományok** megszerzése.',
-            'A cseh háború (1468–1478) után Mátyás cseh király lett, a morvaországi és sziléziai területek is hozzá kerültek. **1485-ben elfoglalta Bécset**, ahol haláláig lakott (1490).',
+            'Mátyás **külpolitikájának** két fő iránya volt: délen a **török védelem** (a déli végvárak), nyugaton a **terjeszkedés**: **Csehország** és az **osztrák tartományok** megszerzése.',
+            'A cseh háború (1468–1478) után Mátyás cseh király lett, a morvaországi és sziléziai területek is hozzá kerültek. elfoglalta **Bécset**, ahol haláláig lakott (1490).',
             'Ez a **dunai birodalom** terve volt, amelyet fiának, **Corvin Jánosnak** akart átadni.',
             'Mátyás udvara a **reneszánsz** egyik közép-európai központja volt: humanisták, olasz művészek, a híres **Corvina-könyvtár**, a budai és visegrádi palota.',
             'Mátyás halála után **II. Ulászló** (Jagelló) következett; a királyi hatalom gyengült, 1526-ban **Mohács** következett.',
@@ -1049,7 +1063,7 @@ const unit: GuideUnit = {
         {
           kind: 'timeline',
           items: [
-            { date: '1463', text: 'Boszniai hadjárat, Jajca megszerzése.' },
+            { date: '1463', text: 'Jajca megszerzése, a déli védvonal előterének megerősítése.' },
             { date: '1468–1478', text: 'A cseh háború; 1478-ban az olmützi béke.' },
             { date: '1476', text: 'Mátyás házassága Aragóniai Beatrixszal.' },
             { date: '1479', text: 'A kenyérmezei csata.', emelt: true },
@@ -1075,7 +1089,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A törökkel szemben: védekezés' },
         {
           kind: 'text',
-          text: 'Mátyás a törökellenes háborút apja módszerével folytatta, de óvatosabban. **1463-ban** boszniai hadjáratot vezetett: elfoglalta **Jajcát**, és a boszniai területen védőövezetet hozott létre. Később a déli védvonalat (**Szabács** 1476) erősítette. Erdélyben a törökök betörését **1479-ben a kenyérmezei csatában** állították meg: itt **Báthory István** és **Kinizsi Pál** győzte le az oszmán sereget. Az oszmánokkal ezután hosszabb békét is kötött (1483), mert a nyugati terveire összpontosított.',
+          text: 'Mátyás a törökellenes háborút apja módszerével folytatta, de óvatosabban. **1463-ban** hadjáratot vezetett a déli határ előterében: elfoglalta **Jajcát**, és ott védőövezetet hozott létre. Később a déli védvonalat (**Szabács** 1476) erősítette. Erdélyben a törökök betörését a **kenyérmezei csatában** állították meg: itt **Báthory István** és **Kinizsi Pál** győzte le az oszmán sereget. Az oszmánokkal ezután hosszabb békét is kötött (1483), mert a nyugati terveire összpontosított.',
         },
         {
           kind: 'keypoints',
@@ -1090,29 +1104,33 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Nyugat felé: cseh és osztrák háborúk' },
         {
           kind: 'text',
-          text: 'A pápa **1468-ban** keresztes hadjáratot hirdetett a huszita cseh király, Podjebrád György ellen, és Mátyás vállalta a háborút. **1469-ben** a katolikus morva és sziléziai rendek **cseh királlyá** választották. Végül a cseh háborút az **1478-as olmützi béke** zárta le: Mátyás megtartotta Morvaországot, Sziléziát és a Lausitzot, a cseh királyi cím és Csehország maga pedig a Jagelló Ulászlóé lett.',
+          text: 'A pápa **1468-ban** keresztes hadjáratot hirdetett a huszita cseh király, Podjebrád György ellen, és Mátyás vállalta a háborút. **1469-ben** a katolikus morva és sziléziai rendek **cseh királlyá** választották. Végül a cseh háborút az **1478-as olmützi béke** zárta le: Mátyás megtartotta Morvaországot, Sziléziát és a Lausitzot, Csehország maga pedig a Jagelló Ulászlóé maradt.',
         },
         {
           kind: 'text',
-          text: 'Ezután **III. Frigyes császár** ellen fordult. Az **osztrák tartományokat** megtámadva **1485-ben elfoglalta Bécset**, **1487-ben** Bécsújhelyt. Székhelyét Bécsbe tette át. Mátyás ekkor Közép-Európa legerősebb uralkodói közé tartozott.',
+          text: 'Ezután **III. Frigyes császár** ellen fordult. Az **osztrák tartományokat** megtámadva elfoglalta **Bécset**, majd **1487-ben** Bécsújhelyt. Székhelyét Bécsbe tette át. Mátyás ekkor Közép-Európa legerősebb uralkodói közé tartozott.',
         },
         {
           kind: 'map',
           title: 'Mátyás nyugati és déli területei',
           places: [
             { name: 'Buda', lat: 47.5, lon: 19.04, note: 'a királyi székhely' },
-            { name: 'Visegrád', lat: 47.79, lon: 18.97, note: 'nyári palota, reneszánsz építkezés' },
-            { name: 'Bécs', lat: 48.21, lon: 16.37, note: '1485: elfoglalása, ott halt meg' },
+            {
+              name: 'Visegrád',
+              lat: 47.79,
+              lon: 18.97,
+              note: 'nyári palota, reneszánsz építkezés',
+            },
+            { name: 'Bécs', lat: 48.21, lon: 16.37, note: 'Mátyás elfoglalta, itt halt meg' },
             { name: 'Bécsújhely', lat: 47.81, lon: 16.24, note: '1487' },
             { name: 'Olmütz', lat: 49.59, lon: 17.25, note: '1478: a cseh háborút lezáró béke' },
-            { name: 'Jajca', lat: 44.34, lon: 17.27, note: '1463: boszniai hadjárat' },
+            { name: 'Jajca', lat: 44.34, lon: 17.27, note: '1463: Mátyás hadjárata' },
             { name: 'Szabács', lat: 44.75, lon: 19.69, note: '1476: a déli védvonal erődje' },
             {
               name: 'Kenyérmező',
               lat: 45.85,
               lon: 23.2,
-              note: '1479: győzelem az oszmánok felett (Erdély)',
-              emelt: true,
+              note: 'győzelem az oszmánok felett (Erdély)',
             },
           ],
         },
@@ -1136,7 +1154,7 @@ const unit: GuideUnit = {
         {
           kind: 'text',
           emelt: true,
-          text: '**Vitéz János**, Mátyás nevelője és kancellárja, esztergomi érsek a magyar humanizmus vezetője volt. Később azonban Mátyás ellen szervezkedő főpapok és főurak közé sodródott (1471), ezért kegyvesztett lett. **Janus Pannonius**, a pécsi püspök, unokaöccse, ugyanebben az évben a szervezkedés után menekülés közben halt meg.',
+          text: '**Vitéz János**, Mátyás nevelője és kancellárja, esztergomi érsek a magyar humanizmus vezetője volt. Később azonban Mátyás ellen szervezkedő főpapok és főurak közé sodródott (1471), ezért kegyvesztett lett. **Janus Pannonius**, a pécsi püspök, Vitéz unokaöccse is érintett volt, és a szervezkedés után menekülés közben, 1472-ben halt meg.',
         },
         { kind: 'heading', text: 'Út Mohácshoz' },
         {
@@ -1154,7 +1172,7 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Így kérdezik',
           items: [
-            'Évszámok: 1458–1490, 1485 (emelt: Bécs), 1479 (emelt: Kenyérmező).',
+            'Évszámok: 1458–1490; emelten 1479 (kenyérmezei csata) és 1485 (Bécs elfoglalása).',
             'Térképi feladat: Bécs, Csehország, Buda, Nándorfehérvár.',
             'Fogalmak: Corvina, reneszánsz, fekete sereg.',
             'Esszé: Hunyadi Mátyás belpolitikája és külpolitikája; hogyan viszonyult a központosítás a birodalomépítéshez?',
@@ -1176,7 +1194,7 @@ const unit: GuideUnit = {
           text: 'Mérleg-feladatnál mindig adj pozitívumot és hátrányt is: pozitív a stabilitás és a művelődés, hátrány az adóteher és az, hogy a törökellenes védelmet a nyugati háborúk miatt háttérbe szorította.',
         },
       ],
-      topicMatch: ['hunyadi mátyás', '=mátyás', 'késő középkor', 'i. károly és hunyadi mátyás'],
+      topicMatch: ['hunyadi mátyás', '=mátyás', 'i. károly és hunyadi mátyás'],
       cards: { subject: 'tortenelem', era: 'kozepkor' },
       quiz: [
         {

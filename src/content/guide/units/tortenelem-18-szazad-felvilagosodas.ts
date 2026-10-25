@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Exam requirement topics 3.5 (Magyarország a Habsburg Birodalomban) and 3.6 (A felvilágosodás). */
 const unit: GuideUnit = {
-  id: 'tortenelem-18-szazad-felvilagosodas',
+  id: '18-szazad-felvilagosodas',
   subject: 'tortenelem',
   order: 35,
   title: 'A 18. század: Rákóczi, újranépesülés, felvilágosult abszolutizmus és a felvilágosodás',
@@ -26,7 +26,6 @@ const unit: GuideUnit = {
         'alkotmányos monarchia',
         'hatalmi ágak megosztása',
         'társadalmi szerződés',
-        'Emberi és polgári jogok nyilatkozata',
         'jogegyenlőség',
         'népfelség',
         'elnök',
@@ -38,8 +37,6 @@ const unit: GuideUnit = {
         'úrbéri rendelet',
         'vámrendelet (kettős vámhatár)',
         'Ratio Educationis',
-        'betelepítés',
-        'betelepülés',
         'Szent Szövetség',
       ],
       emelt: [
@@ -113,7 +110,7 @@ const unit: GuideUnit = {
     {
       id: 'rakoczi-szabadsagharc-okai-celjai-szatmari-beke',
       subject: 'tortenelem',
-      unitId: 'tortenelem-18-szazad-felvilagosodas',
+      unitId: '18-szazad-felvilagosodas',
       title: 'A Rákóczi-szabadságharc (1703–1711) és a szatmári béke',
       level: 'kozep',
       requirement: {
@@ -175,10 +172,20 @@ const unit: GuideUnit = {
           kind: 'map',
           title: 'A Rákóczi-szabadságharc fontos helyszínei',
           places: [
-            { name: 'Munkács', lat: 48.44, lon: 22.72, note: 'Rákóczi birtoka, a fejedelem egyik fontos vára' },
-            { name: 'Tarpa', lat: 48.11, lon: 22.55, note: '1703, a tiszaháti jobbágyok csatlakozása' },
-            { name: 'Szécsény', lat: 48.08, lon: 19.52, note: '1705, országgyűlés' },
-            { name: 'Ónod', lat: 48.0, lon: 20.93, note: '1707, országgyűlés' },
+            {
+              name: 'Munkács',
+              lat: 48.44,
+              lon: 22.72,
+              note: 'Rákóczi birtoka, a fejedelem egyik fontos vára',
+            },
+            {
+              name: 'Tarpa',
+              lat: 48.11,
+              lon: 22.55,
+              note: '1703, a tiszaháti jobbágyok csatlakozása',
+            },
+            { name: 'Szécsény', lat: 48.08, lon: 19.52, note: '1705, országgyűlés', emelt: true },
+            { name: 'Ónod', lat: 48.0, lon: 20.93, note: '1707, országgyűlés', emelt: true },
             { name: 'Trencsén', lat: 48.89, lon: 18.04, note: '1708, kuruc vereség' },
             { name: 'Szatmár', lat: 47.79, lon: 22.88, note: '1711, a béke helyszíne' },
           ],
@@ -186,7 +193,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A kitörés és a célok' },
         {
           kind: 'text',
-          text: '1703 tavaszán Rákóczi felhívást adott ki a nemzethez (a **brezáni kiáltvány**), amelyben a fegyveres ellenállásra szólított. A kiáltvány jelszava a Habsburg-uralom alóli szabadulás volt. Tiszaháton a jobbágyok ( **Esze Tamás** tarpai kurucai) csatlakoztak először. Rákóczi a hozzá csatlakozó jobbágyoknak **szabadságot ígért**, ezért a felkelés gyorsan terjedt: a sereg zömét a jobbágyok és a kisnemesek adták. 1703 végére a kurucok az ország nagy részét ellenőrizték, kivéve a nyugati országrészt és a nagyobb császári várakat.',
+          text: '1703 tavaszán Rákóczi felhívást adott ki a nemzethez (a **brezáni kiáltvány**), amelyben a fegyveres ellenállásra szólított. Tiszaháton a jobbágyok (**Esze Tamás** tarpai kurucai) csatlakoztak először. Rákóczi a hozzá csatlakozó jobbágyoknak **szabadságot ígért**, ezért a felkelés gyorsan terjedt: a sereg zömét a jobbágyok és a kisnemesek adták. 1703 végére a kurucok az ország nagy részét ellenőrizték, kivéve a nyugati országrészt és a nagyobb császári várakat.',
         },
         {
           kind: 'keypoints',
@@ -240,7 +247,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A szatmári béke (1711)' },
         {
           kind: 'text',
-          text: 'Rákóczi 1711 elején Lengyelországba ment, hogy orosz vagy más külföldi támogatást szerezzen. Távollétében **Károlyi Sándor**, a kuruc sereg egyik vezére tárgyalt a Habsburg-oldal főparancsnokával, **Pálffy Jánossal**. A békét **1711. április 30-án Szatmáron** kötötték meg.',
+          text: 'Rákóczi 1711 elején Lengyelországba ment, hogy orosz vagy más külföldi támogatást szerezzen. Távollétében a kuruc sereg egyik vezére tárgyalt a Habsburg-oldal főparancsnokával, **Pálffy Jánossal**. A békét **1711. április 30-án Szatmáron** kötötték meg, a kuruc sereg május 1-jén tette le a fegyvert.',
         },
         {
           kind: 'keypoints',
@@ -255,7 +262,7 @@ const unit: GuideUnit = {
         {
           kind: 'text',
           emelt: true,
-          text: '**Károlyi Sándor** tehát a Habsburgokkal kötött megállapodás kulcsfigurája lett: a kuruc hadsereg zöme az ő vezetésével tette le a fegyvert Majténynél. Ez a szerepe a történetírásban vitatott: egyesek a felkelés végének realista lezárójaként, mások árulóként értékelik.',
+          text: 'A szatmári békét kuruc részről **Károlyi Sándor** kötötte meg a Habsburg-oldal főparancsnokával, Pálffy Jánossal; a kuruc hadsereg zöme az ő vezetésével tette le a fegyvert Majténynél. Ez a szerepe a történetírásban vitatott: egyesek a felkelés végének realista lezárójaként, mások árulóként értékelik.',
         },
         { kind: 'heading', text: 'Eredmények' },
         {
@@ -271,12 +278,16 @@ const unit: GuideUnit = {
             'Forrásrészlet (brezáni kiáltvány, ónodi határozat, szatmári béke): milyen célt, jogot vagy sérelmet fogalmaz meg a szöveg?',
             'Időrend: a szabadságharc és a békekötés évszáma (1703–1711, 1711).',
             'Rövid kifejtés: miért tört ki, mi volt a célja és mi lett az eredménye a Rákóczi-szabadságharcnak?',
-            'Emelt szint: szécsényi (1705) és ónodi (1707) országgyűlés, Károlyi Sándor szerepe.',
           ],
         },
         {
           kind: 'warning',
-          text: 'Gyakori hiba: összekeverni a Rákóczi-szabadságharcot (1703–1711) a Thököly-felkeléssel vagy az 1848–49-es szabadságharccal, illetve azt írni, hogy Rákóczi aláírta a szatmári békét. A békét Károlyi Sándor kötötte, Rákóczi emigrált. A szatmári béke nem a kurucok győzelme volt, hanem kompromisszum.',
+          text: 'Gyakori hiba: összekeverni a Rákóczi-szabadságharcot (1703–1711) a Thököly-felkeléssel vagy az 1848–49-es szabadságharccal, illetve azt írni, hogy Rákóczi aláírta a szatmári békét. A békét a kuruc vezérek kötötték, Rákóczi emigrált. A szatmári béke nem a kurucok győzelme volt, hanem kompromisszum.',
+        },
+        {
+          kind: 'tip',
+          text: 'Emelt szinten tudnod kell a szécsényi (1705) és az ónodi (1707) országgyűlés tartalmát, és Károlyi Sándor szerepét a béke megkötésében.',
+          emelt: true,
         },
         {
           kind: 'tip',
@@ -340,7 +351,7 @@ const unit: GuideUnit = {
     {
       id: 'torok-kiuzese-habsburg-kormanyzat',
       subject: 'tortenelem',
-      unitId: 'tortenelem-18-szazad-felvilagosodas',
+      unitId: '18-szazad-felvilagosodas',
       title: 'A török kiűzése és Magyarország a Habsburg Birodalomban',
       level: 'emelt',
       requirement: {
@@ -421,8 +432,14 @@ const unit: GuideUnit = {
               text: 'A nagyharsányi (második mohácsi) csata: a Lotharingiai Károly vezette sereg győz.',
             },
             { date: '1697', text: 'A zentai csata: Savoyai Jenő szétveri a török főerőt.' },
-            { date: '1699', text: 'A karlócai béke: a török kiürítette Magyarországot és Erdélyt.' },
-            { date: '1716', text: 'Savoyai Jenő győz Pétervárad alatt, majd visszafoglalja Temesvárt.' },
+            {
+              date: '1699',
+              text: 'A karlócai béke: a török kiürítette Magyarországot és Erdélyt.',
+            },
+            {
+              date: '1716',
+              text: 'Savoyai Jenő győz Pétervárad alatt, majd visszafoglalja Temesvárt.',
+            },
           ],
         },
         {
@@ -435,7 +452,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'Az **1687-es pozsonyi országgyűlés** elfogadta a **Habsburg-ház férfiágú örökösödését**: ezzel a magyar trón örökös lett, a rendek elvesztették a szabad királyválasztás jogát. Eltörölték az **Aranybulla ellenállási záradékát** (31. cikk) is, amely a királlyal szembeni fegyveres ellenállást a nemesek jogának mondta ki. I. Lipót fiát, Józsefet még ebben az évben megkoronázták. Erdély is Habsburg-fennhatóság alá került (Leopold-diploma, 1691), de külön kormányzatot kapott.',
+          text: 'Az **1687-es pozsonyi országgyűlés** elfogadta a **Habsburg-ház férfiágú örökösödését**: ezzel a magyar trón örökös lett, a rendek elvesztették a szabad királyválasztás jogát. Eltörölték az **Aranybulla ellenállási záradékát** (31. cikk) is, amely a királlyal szembeni fegyveres ellenállást a nemesek jogának mondta ki. I. Lipót fiát, Józsefet még ebben az évben megkoronázták. Erdély is Habsburg-fennhatóság alá került (Leopold-diploma, 1690), de külön kormányzatot kapott.',
         },
         {
           kind: 'text',
@@ -450,18 +467,39 @@ const unit: GuideUnit = {
         {
           kind: 'compare',
           title: 'A magyar és a birodalmi kormányzat szervei',
-          columns: ['Szerv', 'Feladata'],
+          columns: ['Székhelye, jellege', 'Feladata'],
           rows: [
-            { label: 'Magyar Kancellária (Bécs)', cells: ['magyar ügyek a király mellett', 'az uralkodó és a magyar rendek kapcsolata'] },
-            { label: 'Udvari Haditanács (Bécs)', cells: ['hadügyek', 'a hadsereg és a Határőrvidék irányítása'] },
-            { label: 'Helytartótanács (Pozsony)', cells: ['kormányszerv Magyarországon', 'a király távollétében intézte az ország ügyeit'] },
-            { label: 'Országgyűlés', cells: ['a rendek képviselete', 'törvényhozás, adómegajánlás (ritkán ülésezett)'] },
-            { label: 'Vármegyék', cells: ['rendi önkormányzat', 'az adó és a katonaállítás helyi irányítása'] },
+            {
+              label: 'Magyar Kancellária',
+              cells: [
+                'Bécs, magyar ügyek a király mellett',
+                'az uralkodó és a magyar rendek kapcsolata',
+              ],
+            },
+            {
+              label: 'Udvari Haditanács',
+              cells: ['Bécs, birodalmi szerv', 'a hadsereg és a Határőrvidék irányítása'],
+            },
+            {
+              label: 'Helytartótanács',
+              cells: [
+                'Pozsony, kormányszerv Magyarországon',
+                'a király távollétében intézte az ország ügyeit',
+              ],
+            },
+            {
+              label: 'Országgyűlés',
+              cells: ['a rendek képviselete', 'törvényhozás, adómegajánlás (ritkán ülésezett)'],
+            },
+            {
+              label: 'Vármegyék',
+              cells: ['rendi önkormányzat', 'az adó és a katonaállítás helyi irányítása'],
+            },
           ],
         },
         {
           kind: 'text',
-          text: 'A Habsburgok **központosítani** akartak, de a magyar rendi önkormányzat (vármegyék, országgyűlés) fennmaradt. Magyarország nem vált a birodalom egyszerű tartományává, hanem **önálló jogrendű, rendi alkotmányos állam maradt** a Habsburg Birodalomban. Az **1715-ös országgyűlés** elfogadta az állandó hadsereg fenntartását, és ettől kezdve a nemesség adómentességének és a jobbágyok adóztatásának rendje is szilárdult.',
+          text: 'A Habsburgok **központosítani** akartak, de a magyar rendi önkormányzat (vármegyék, országgyűlés) fennmaradt. Magyarország nem vált a birodalom egyszerű tartományává, hanem **önálló jogrendű, rendi alkotmányos állam maradt** a Habsburg Birodalomban. Az **1715-ös országgyűlés** elfogadta az állandó hadsereg fenntartását.',
         },
       ],
       exam: [
@@ -522,7 +560,8 @@ const unit: GuideUnit = {
           emelt: true,
         },
         {
-          question: 'Melyik szerv székelt Pozsonyban, és a király távollétében irányította az ország ügyeit?',
+          question:
+            'Melyik szerv székelt Pozsonyban, és a király távollétében irányította az ország ügyeit?',
           options: ['Udvari Haditanács', 'Helytartótanács', 'Magyar Kancellária', 'Szenátus'],
           answer: 1,
           explanation:
@@ -539,7 +578,7 @@ const unit: GuideUnit = {
     {
       id: 'ujranepesules-nemzetisegek-18-szazad',
       subject: 'tortenelem',
-      unitId: 'tortenelem-18-szazad-felvilagosodas',
+      unitId: '18-szazad-felvilagosodas',
       title: 'Magyarország újranépesülése és újranépesítése',
       level: 'kozep',
       requirement: {
@@ -553,8 +592,8 @@ const unit: GuideUnit = {
           items: [
             'A másfél évszázados török uralom és a háborúk után az Alföld és a Dunántúl déli része **elnéptelenedett**.',
             'A 18. században a lakosság **több mint megkétszereződött**: természetes szaporodás, **belső vándorlás**, **betelepülés** (spontán) és **betelepítés** (szervezett).',
-            'A betelepülők: **szerbek**, **románok**, **szlovákok**, **ruszinok**, **németek (svábok)**. Ennek eredményeként a magyarság aránya csökkent, az ország **soknemzetiségűvé** vált.',
-            'A Dél-Magyarországon fekvő **Temesköz** (Bánság) a bécsi udvar közvetlen irányítása alá került; a **Határőrvidék** katonai igazgatású terület volt.',
+            'A betelepülők: **szerbek**, **románok**, **szlovákok**, **ruszinok**, **németek**. Ennek eredményeként a magyarság aránya csökkent, az ország **soknemzetiségűvé** vált.',
+            'Délen a **Határőrvidék** katonai igazgatású terület volt, ahol a szerbek sok helyen katonai szolgálatot vállaltak.',
           ],
         },
         {
@@ -566,7 +605,7 @@ const unit: GuideUnit = {
             },
             {
               term: 'betelepítés',
-              text: 'Szervezett, a földesúr vagy az állam által irányított letelepítés (például a németek a Bánságban).',
+              text: 'Szervezett, a földesúr vagy az állam által irányított letelepítés (például a német telepesek).',
             },
             {
               term: 'svábok',
@@ -601,11 +640,21 @@ const unit: GuideUnit = {
           kind: 'map',
           title: 'Az újranépesülés fontos területei',
           places: [
-            { name: 'Temesvár', lat: 45.75, lon: 21.23, note: 'a Bánság központja, német betelepítés' },
+            {
+              name: 'Temesvár',
+              lat: 45.75,
+              lon: 21.23,
+              note: 'Dél-Magyarország központja, német betelepítés',
+            },
             { name: 'Karlóca', lat: 45.2, lon: 19.93, note: 'a szerbek egyházi központja' },
-            { name: 'Újvidék', lat: 45.25, lon: 19.84, note: 'a Délvidék szerb és német lakosságú városa' },
+            {
+              name: 'Újvidék',
+              lat: 45.25,
+              lon: 19.84,
+              note: 'a Délvidék szerb és német lakosságú városa',
+            },
             { name: 'Békéscsaba', lat: 46.68, lon: 21.09, note: 'szlovák betelepülők' },
-            { name: 'Szatmár', lat: 47.79, lon: 22.88, note: 'Károlyi-birtok, német telepesek' },
+            { name: 'Szatmár', lat: 47.79, lon: 22.88, note: 'nagybirtok, német telepesek' },
             { name: 'Bonyhád', lat: 46.3, lon: 18.53, note: 'Tolna, német falvak' },
           ],
         },
@@ -617,15 +666,24 @@ const unit: GuideUnit = {
           rows: [
             {
               label: 'Szerbek',
-              cells: ['a török elől menekülők', '1690 körül Csernojevics Arzén pátriárka vezetésével a Délvidékre; külön kiváltságokat kaptak, sokan a Határőrvidéken szolgáltak'],
+              cells: [
+                'a török elől menekülők',
+                '1690 körül Csernojevics Arzén pátriárka vezetésével a Délvidékre; külön kiváltságokat kaptak, sokan a Határőrvidéken szolgáltak',
+              ],
             },
             {
               label: 'Románok',
-              cells: ['Erdély és a Havasalföld felől', 'az erdélyi Partium, a Bánság és a keleti országrész; többségük ortodox, egy részük görög katolikus lett'],
+              cells: [
+                'Erdély és a Havasalföld felől',
+                'a keleti országrész és a Dél-Magyarország; többségük ortodox vallású maradt',
+              ],
             },
             {
               label: 'Szlovákok',
-              cells: ['a felvidéki megyékből', 'az Alföld északi és középső tájaira (például Békéscsaba)'],
+              cells: [
+                'a felvidéki megyékből',
+                'az Alföld északi és középső tájaira (például Békéscsaba)',
+              ],
             },
             {
               label: 'Ruszinok',
@@ -633,18 +691,21 @@ const unit: GuideUnit = {
             },
             {
               label: 'Németek (svábok)',
-              cells: ['a Német-római Birodalom déli és nyugati tartományai', 'a Bánság, Baranya, Tolna, Bácska, a Dunántúl és Szatmár'],
+              cells: [
+                'a Német-római Birodalom déli és nyugati tartományai',
+                'Dél-Magyarország, Baranya, Tolna, Bácska, a Dunántúl és Szatmár',
+              ],
             },
           ],
         },
         {
           kind: 'text',
-          text: 'A németek betelepítése három nagy hullámban zajlott. A **Bánságot** a Habsburg-udvar 1716 után közvetlen katonai-kamarai igazgatás alá vonta (**Mercy** gróf kormányzása alatt), és a területre szervezetten német telepeseket hozott. A hullámok Mária Terézia és II. József uralkodása idején is folytatódtak. Az 1778-as megyésítés után a Bánságot Magyarországhoz csatolták. A nagybirtokosok (például **Károlyi Sándor** Szatmárban) szintén német telepeseket fogadtak, mert azok jobb művelési módszereket hoztak.',
+          text: 'A németek betelepítése több hullámban zajlott: a 18. század elejétől a nagybirtokosok (például a szatmári Károlyi-uradalom), majd az udvar is szervezetten hozott német telepeseket, mert azok jól értettek a földműveléshez. A hullámok Mária Terézia és II. József uralkodása idején is folytatódtak.',
         },
         {
           kind: 'text',
           emelt: true,
-          text: 'A románok egy része Erdélyben **1700 körül** a Rómával való unió révén **görög katolikus** lett: ez az egyház a keleti szertartást megtartotta, de a pápa főségét elfogadta. A svábokat a Bánság mellett Tolnában, Baranyában és a Duna mentén is megtaláljuk; ezt a területet gyakran „Sváb-Törökországnak” is nevezik.',
+          text: 'A **Bánságot** (Temesköz) a Habsburg-udvar 1716 után közvetlen katonai-kamarai igazgatás alá vonta (**Mercy** gróf kormányzása alatt), és ide szervezetten német telepeseket hozott; 1778-ban Magyarországhoz csatolták. A románok egy része Erdélyben **1700 körül** a Rómával való unió révén **görög katolikus** lett: ez az egyház a keleti szertartást megtartotta, de a pápa főségét elfogadta. A svábokat a Bánság mellett Tolnában, Baranyában és a Duna mentén is megtaláljuk; ezt a területet gyakran „Sváb-Törökországnak” is nevezik.',
         },
         { kind: 'heading', text: 'Következmények' },
         {
@@ -665,7 +726,7 @@ const unit: GuideUnit = {
           items: [
             'Térkép és táblázat: melyik nép hová települt, milyen úton (betelepülés vagy betelepítés)?',
             'Rövid kifejtés: miért csökkent a magyarság aránya a 18. században?',
-            'Fogalmak: betelepítés, betelepülés, Határőrvidék, svábok (emelt).',
+            'Fogalmak: betelepítés, betelepülés, Határőrvidék.',
             'Forrásrészlet telepesek kedvezményeiről vagy a bánsági németek helyzetéről.',
           ],
         },
@@ -724,13 +785,16 @@ const unit: GuideUnit = {
       sources: [
         { label: 'Wikipédia: a Bánság betelepítése', url: wiki('Bánság betelepítése 18. század') },
         { label: 'Wikipédia: dunai svábok', url: wiki('dunai svábok') },
-        { label: 'Wikipédia: Magyarország népessége', url: wiki('Magyarország népessége a 18. században') },
+        {
+          label: 'Wikipédia: Magyarország népessége',
+          url: wiki('Magyarország népessége a 18. században'),
+        },
       ],
     },
     {
       id: 'maria-terezia-ii-jozsef-reformjai',
       subject: 'tortenelem',
-      unitId: 'tortenelem-18-szazad-felvilagosodas',
+      unitId: '18-szazad-felvilagosodas',
       title: 'Mária Terézia és II. József reformjai',
       level: 'kozep',
       requirement: {
@@ -783,7 +847,7 @@ const unit: GuideUnit = {
             '**1754 vámrendelet**: kettős vámhatár: a birodalom osztrák és magyar területe között is vámvonal húzódott. Magyarországot ez főként nyersanyag-termelő és az osztrák ipar felvevőpiaca szerepébe szorította.',
             '**1767 úrbéri rendelet**: egységesen szabályozta a jobbágytelek nagyságát (talajminőség szerint) és a földesúri szolgáltatásokat. Egy egész telek után legfeljebb heti egy nap igás vagy két nap kézi robot, kilenced, pénzbeli adó járt. Védte a jobbágyot a földesúri önkénytől, de a földesúri jogok nagy része megmaradt.',
             '**1777 Ratio Educationis**: népiskolától az egyetemig épített állami iskolarendszer; az állam átvette az oktatás ellenőrzését (a felekezeti iskolákét is).',
-            '**Katonai és igazgatási központosítás**: a Határőrvidék erősítése, a Bánság és a vármegyék feletti felügyelet.',
+            '**Katonai és igazgatási központosítás**: a Határőrvidék erősítése.',
             '**1760**: létrejött a magyar nemesi testőrség Bécsben; a testőríró nemzedék (Bessenyei György) a magyar felvilágosodás első vezéralakjai közé tartozott.',
           ],
         },
@@ -801,7 +865,6 @@ const unit: GuideUnit = {
             '**1784 nyelvrendelet**: a birodalom egységes hivatali nyelve a német lett (a latin helyett). Ez a magyar nemességet felháborította, és mozgalmat indított a magyar nyelv védelmére.',
             '**Egyházpolitika**: sok szerzetesrendet feloszlatott, a vagyonukat az állam vette át, plébániákat szervezett. A papnevelés állami felügyelet alá került.',
             '**Népszámlálás** (1784–1787) és földmérés, az adózás igazságosabb kivetésére. A nemességet is adóztatni akarta (1789-es adórendelet).',
-            '**Helytartótanács Budára** költözött (1784).',
           ],
         },
         {
@@ -827,7 +890,10 @@ const unit: GuideUnit = {
             },
             {
               label: 'Vallás',
-              cells: ['katolikus politika, a protestánsok korlátozva', 'türelmi rendelet, a szerzetesrendek megszüntetése'],
+              cells: [
+                'katolikus politika, a protestánsok korlátozva',
+                'türelmi rendelet, a szerzetesrendek megszüntetése',
+              ],
             },
           ],
         },
@@ -864,7 +930,8 @@ const unit: GuideUnit = {
       cards: { subject: 'tortenelem', era: 'koraujkor' },
       quiz: [
         {
-          question: 'Melyik rendelet határozta meg a jobbágytelek nagyságát és a földesúri terheket?',
+          question:
+            'Melyik rendelet határozta meg a jobbágytelek nagyságát és a földesúri terheket?',
           options: [
             'A türelmi rendelet (1781)',
             'Az úrbéri rendelet (1767)',
@@ -889,12 +956,7 @@ const unit: GuideUnit = {
         },
         {
           question: 'Melyik rendeletet adta ki II. József 1781-ben?',
-          options: [
-            'Nyelvrendelet',
-            'Ratio Educationis',
-            'Vámrendelet',
-            'Türelmi rendelet',
-          ],
+          options: ['Nyelvrendelet', 'Ratio Educationis', 'Vámrendelet', 'Türelmi rendelet'],
           answer: 3,
           explanation:
             'A türelmi rendelet (1781) a protestánsok és az ortodoxok vallásgyakorlását és hivatalviselését engedélyezte.',
@@ -933,13 +995,14 @@ const unit: GuideUnit = {
     {
       id: 'felvilagosodas-brit-amerikai-allamberendezkedes',
       subject: 'tortenelem',
-      unitId: 'tortenelem-18-szazad-felvilagosodas',
+      unitId: '18-szazad-felvilagosodas',
       title: 'A felvilágosodás eszméi, a brit monarchia és az amerikai köztársaság',
       level: 'kozep',
       requirement: {
         kozep:
           'A brit alkotmányos monarchia és az amerikai köztársaság működése; A felvilágosodás államelméletei',
-        emelt: 'Az európai világkép változása (alapvető kérdések, tudományos gondolkodás, társadalomkép, vallás)',
+        emelt:
+          'Az európai világkép változása (alapvető kérdések, tudományos gondolkodás, társadalomkép, vallás)',
       },
       minutes: 12,
       summary: [
@@ -1009,7 +1072,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'A gondolatokat az **Enciklopédia** (Diderot és d\'Alembert) népszerűsítette a művelt polgárság körében. A felvilágosult nézetek két úton hatottak: **forradalmakban** (amerikai, francia) és **felvilágosult abszolutizmusban** (II. József, Nagy Frigyes).',
+          text: "A gondolatokat az **Enciklopédia** (Diderot és d'Alembert) népszerűsítette a művelt polgárság körében. A felvilágosult nézetek két úton hatottak: **forradalmakban** (amerikai, francia) és **felvilágosult abszolutizmusban** (II. József, Nagy Frigyes).",
         },
         { kind: 'heading', text: 'A brit alkotmányos monarchia' },
         {
@@ -1040,9 +1103,18 @@ const unit: GuideUnit = {
           title: 'Az 1787-es amerikai alkotmány',
           columns: ['Hatalmi ág', 'Szerv'],
           rows: [
-            { label: 'Törvényhozás', cells: ['Kongresszus', 'Szenátus (az államokat képviseli) és Képviselőház (a népet)'] },
-            { label: 'Végrehajtás', cells: ['Elnök', 'államfő és kormányfő egy személyben, négyévente választják'] },
-            { label: 'Igazságszolgáltatás', cells: ['Legfelsőbb Bíróság', 'az alkotmányosságot is védi'] },
+            {
+              label: 'Törvényhozás',
+              cells: ['Kongresszus', 'Szenátus (az államokat képviseli) és Képviselőház (a népet)'],
+            },
+            {
+              label: 'Végrehajtás',
+              cells: ['Elnök', 'államfő és kormányfő egy személyben, négyévente választják'],
+            },
+            {
+              label: 'Igazságszolgáltatás',
+              cells: ['Legfelsőbb Bíróság', 'az alkotmányosságot is védi'],
+            },
           ],
         },
         {
@@ -1061,8 +1133,14 @@ const unit: GuideUnit = {
           rows: [
             { label: 'Államforma', cells: ['alkotmányos monarchia', 'köztársaság'] },
             { label: 'Államfő', cells: ['király (örökletes)', 'elnök (választott)'] },
-            { label: 'Alkotmány', cells: ['történelmi törvények és szokások', 'egyetlen írott alkotmány (1787)'] },
-            { label: 'Kormány', cells: ['a parlamentnek felelős', 'az elnök vezeti, a Kongresszustól független'] },
+            {
+              label: 'Alkotmány',
+              cells: ['történelmi törvények és szokások', 'egyetlen írott alkotmány (1787)'],
+            },
+            {
+              label: 'Kormány',
+              cells: ['a parlamentnek felelős', 'az elnök vezeti, a Kongresszustól független'],
+            },
           ],
         },
         {
@@ -1096,11 +1174,7 @@ const unit: GuideUnit = {
           text: 'Az amerikai alkotmány működését mindig a hatalmi ágakkal magyarázd: törvényhozás (Kongresszus), végrehajtás (elnök), bíráskodás (Legfelsőbb Bíróság). A brit rendszernél a parlament fölényét és a király korlátait (1689) emeld ki.',
         },
       ],
-      topicMatch: [
-        'felvilágosodás',
-        'brit és az amerikai',
-        'angol alkotmányos monarchia',
-      ],
+      topicMatch: ['felvilágosodás', 'brit és az amerikai', 'angol alkotmányos monarchia'],
       cards: { subject: 'tortenelem', era: 'koraujkor' },
       quiz: [
         {
@@ -1167,8 +1241,8 @@ const unit: GuideUnit = {
     {
       id: 'francia-forradalom-jakobinus-napoleon',
       subject: 'tortenelem',
-      unitId: 'tortenelem-18-szazad-felvilagosodas',
-      title: 'A francia forradalom, a jakobinus diktatúra és Napóleon',
+      unitId: '18-szazad-felvilagosodas',
+      title: 'A francia forradalom és Napóleon',
       level: 'kozep',
       requirement: {
         kozep:
@@ -1183,8 +1257,16 @@ const unit: GuideUnit = {
           items: [
             '**1789**: a rendi gyűlés összehívása után a harmadik rend nemzetgyűlésnek nyilvánította magát; **július 14.**: a **Bastille** ostroma; **augusztus 26.**: az **Emberi és polgári jogok nyilatkozata**.',
             '**1791**: alkotmányos monarchia, cenzusos választójog. **1792**: köztársaság. **1793. január**: XVI. Lajos kivégzése.',
+            '**1799**: Napóleon hatalomátvétele; **1804**: császár. Európa-szerte háborúk, **1815**: Waterloo.',
+          ],
+        },
+        {
+          kind: 'keypoints',
+          title: 'Emelt szinten még',
+          emelt: true,
+          items: [
             '**1793–1794**: a **jakobinus diktatúra** (Robespierre): terror, forradalmi törvényszék, ármaximálás. **1794. júliusban** Robespierre bukása.',
-            '**1799**: Napóleon hatalomátvétele; **1804**: császár. Európa-szerte háborúk, **1815**: Waterloo, a bécsi kongresszus.',
+            '**1805** austerlitzi csata, **1813** lipcsei csata, **kontinentális zárlat**; a **bécsi kongresszus** (1814–1815) elvei.',
           ],
         },
         {
@@ -1200,11 +1282,11 @@ const unit: GuideUnit = {
             },
             {
               term: 'jakobinus',
-              text: 'A legradikálisabb forradalmi klub tagja (Robespierre, Danton); a jakobinusok irányították a diktatúrát (1793–94).',
+              text: 'A legradikálisabb forradalmi klub tagja (Robespierre, Danton); a jakobinusok kemény, terrorra épülő hatalmat építettek ki.',
             },
             {
               term: 'diktatúra',
-              text: 'Korlátlan, a törvényektől független uralom; a jakobinus diktatúra a terrorra épült.',
+              text: 'Korlátlan, a törvényektől független uralom, amely az ellenzék elnyomására épül.',
             },
             {
               term: 'kontinentális zárlat',
@@ -1235,7 +1317,10 @@ const unit: GuideUnit = {
               date: '1789. június',
               text: 'A harmadik rend nemzetgyűlésnek nyilvánítja magát; a labdaházi eskü: alkotmányt követelnek.',
             },
-            { date: '1789. július 14.', text: 'A párizsiak elfoglalják a Bastille börtönt: a forradalom jelképe.' },
+            {
+              date: '1789. július 14.',
+              text: 'A párizsiak elfoglalják a Bastille börtönt: a forradalom jelképe.',
+            },
             {
               date: '1789. augusztus 4.',
               text: 'A feudális kiváltságok és a jobbágyi terhek eltörlése.',
@@ -1300,7 +1385,10 @@ const unit: GuideUnit = {
               text: 'A lipcsei csata (a népek csatája): Napóleon vereséget szenved.',
               emelt: true,
             },
-            { date: '1814–1815', text: 'Lemondás, Elba; a száz nap; Waterloo (1815. június 18.), Szent Ilona.' },
+            {
+              date: '1814–1815',
+              text: 'Lemondás, Elba; a száz nap; Waterloo (1815. június 18.), Szent Ilona.',
+            },
           ],
         },
         {
@@ -1327,16 +1415,20 @@ const unit: GuideUnit = {
             'Forrásrészlet az Emberi és polgári jogok nyilatkozatából: milyen elveket fogalmaz meg (népfelség, jogegyenlőség, tulajdon)?',
             'Okok, események és következmények a francia forradalomról.',
             'Évszám–esemény párosítás: 1789 Bastille, 1793 Lajos kivégzése, 1799 Napóleon, 1815 Waterloo.',
-            'Emelt szint: a jakobinus diktatúra jellemzése, a napóleoni háborúk fordulópontjai, a bécsi kongresszus elvei.',
           ],
         },
         {
           kind: 'warning',
-          text: 'Gyakori hiba: a jakobinus diktatúrát a Napóleoni Császársággal vagy az Emberi jogok nyilatkozatának 1789-es elfogadásával összekeverni. A nyilatkozat 1789 (szabadságeszmék), a jakobinus diktatúra 1793–1794 (terror), Napóleon 1799-től. A forradalom nem egy esemény volt, hanem több szakasz: alkotmányos monarchia, köztársaság, terror, direktórium, Napóleon.',
+          text: 'Gyakori hiba: a jakobinusok terrorját a Napóleoni Császársággal vagy az Emberi és polgári jogok nyilatkozatának 1789-es elfogadásával összekeverni. A nyilatkozat 1789 (szabadságeszmék), a terror a köztársaság idején volt, Napóleon 1799-től uralkodik. A forradalom több szakaszból állt: alkotmányos monarchia, köztársaság, terror, direktórium, Napóleon.',
         },
         {
           kind: 'tip',
-          text: 'A forradalom hatását két szinten mondd: eszmék (jogegyenlőség, népfelség, a kiváltságok eltörlése) és következmények (Európa-szerte háborúk, nemzeti és liberális mozgalmak). Emelt szinten emeld ki a terror ellentmondását: a szabadság nevében diktatúra.',
+          emelt: true,
+          text: 'Emelt szinten a jakobinus diktatúrát (1793–1794) így jellemezd: a Közjóléti Bizottság, Robespierre, a terror és a maximum; ellentmondása, hogy a szabadság nevében korlátozta a szabadságot. A bécsi kongresszusnál a legitimitás, az egyensúly és a restauráció elvét említsd.',
+        },
+        {
+          kind: 'tip',
+          text: 'A forradalom hatását két szinten mondd: eszmék (jogegyenlőség, népfelség, a kiváltságok eltörlése) és következmények (Európa-szerte háborúk, nemzeti és liberális mozgalmak).',
         },
       ],
       topicMatch: ['francia forradalom', 'emberi és polgári jogok', 'jakobinus diktatúra'],
