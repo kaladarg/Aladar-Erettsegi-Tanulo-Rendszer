@@ -56,7 +56,7 @@ const unit: GuideUnit = {
         'Maléter Pál',
         'Nagy Imre',
         'Iván Kovács László',
-        'Pongrácz Gergely',
+        'Pongrátz Gergely',
         'Kádár János',
       ],
       emelt: [
@@ -707,7 +707,7 @@ const unit: GuideUnit = {
             { date: '1956. július', text: 'Rákosit leváltják, helyére Gerő Ernő lép.' },
             {
               date: '1956. október 6.',
-              text: 'Rajk László újratemetése: kb. százezres tömeg vesz részt.',
+              text: 'Rajk László újratemetése: százezres nagyságrendű tömeg vesz részt.',
             },
           ],
         },
@@ -905,11 +905,11 @@ const unit: GuideUnit = {
             },
             {
               date: '1956. október 25.',
-              text: 'A **Kossuth téri sortűz**: a tüntetőkre lőnek, több tucat halott. Gerő helyett Kádár János az MDP első titkára.',
+              text: 'A **Kossuth téri sortűz**: a tüntetőkre lőnek; a halottak száma vitatott, a téren legalább 61, a környéken együtt legalább 75 áldozatot azonosítottak, a becslések ennél jóval magasabbak is. Gerő helyett Kádár János az MDP első titkára.',
             },
             {
               date: '1956. október 26.',
-              text: '**Mosonmagyaróvár**: sortűz a tüntetők közé, több tucat halott.',
+              text: '**Mosonmagyaróvár**: sortűz a tüntetők közé; legalább 50 halott, a becslések eltérnek.',
             },
             {
               date: '1956. október 28.',
@@ -931,7 +931,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'A harcokban a **pesti srácok** (fiatal felkelők) keményen álltak ellen a szovjet harckocsik ellen: a **Molotov-koktélt** is bevetették. A leghíresebb fegyveres csoport a **Corvin közi** volt, amelynek vezetői **Pongrácz Gergely** és **Iván Kovács László** voltak. **Maléter Pál**, a Kilián laktanya parancsnoka a felkelők oldalára állt, Nagy Imre kormányában honvédelmi miniszter lett; 1956. november 3–4. éjszaka a szovjet fél tárgyalásra hívta, de letartóztatták.',
+          text: 'A harcokban a **pesti srácok** (fiatal felkelők) keményen álltak ellen a szovjet harckocsik ellen: a **Molotov-koktélt** is bevetették. A leghíresebb fegyveres csoport a **Corvin közi** volt, amelyet előbb **Iván Kovács László**, november 1-jétől **Pongrátz Gergely** vezetett. **Maléter Pál**, a Kilián laktanya parancsnoka a felkelők oldalára állt, Nagy Imre kormányában honvédelmi miniszter lett; 1956. november 3–4. éjszaka a szovjet fél tárgyalásra hívta, de letartóztatták.',
         },
         {
           kind: 'text',
@@ -943,7 +943,7 @@ const unit: GuideUnit = {
           items: [
             {
               name: 'Szabó János',
-              text: '„Szabó bácsi”, a Széna téri felkelőcsoport parancsnoka 1956-ban; később kivégezték.',
+              text: '„Szabó bácsi”, a Széna téri felkelőcsoport parancsnoka 1956-ban; 1957 januárjában kivégezték.',
               emelt: true,
             },
           ],
@@ -955,14 +955,14 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'Az áldozatok: kb. 2500–3000 magyar és kb. 700 szovjet katona halt meg, mintegy **200 ezren** hagyták el az országot (emigráció). Az ellenállás ezután is folytatódott: a munkástanácsok és sztrájkok (1956 decemberében), a salgótarjáni sortűz (**december 8.**) még sok halottat követelt.',
+          text: 'Az áldozatok: kb. 2600 magyar (a KSH korabeli adata szerint) és kb. 700 szovjet katona halt meg, mintegy **200 ezren** hagyták el az országot (emigráció). Az ellenállás ezután is folytatódott: a munkástanácsok és sztrájkok (1956 decemberében), a salgótarjáni sortűz (**december 8.**) még sok halottat követelt.',
         },
         { kind: 'heading', text: 'A megtorlás' },
         {
           kind: 'keypoints',
           items: [
             '1956 decemberétől **statárium** és gyorsított bírósági eljárások működtek.',
-            'Több mint **kétszázat végeztek ki**, tízezreket börtönöztek be vagy internáltak.',
+            'Kb. **230 embert végeztek ki** (a pontos szám forrásonként eltér), tízezreket börtönöztek be vagy internáltak.',
             '**1958. június 16-án** kivégezték **Nagy Imrét**, **Maléter Pált** és **Gimes Miklóst**; titokban temették el őket.',
             '**Mansfeld Péter** a kivégzettek közül a legfiatalabb: fiatalkorúként tartóztatták le, 1959-ben végezték ki.',
           ],
