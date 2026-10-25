@@ -5,7 +5,7 @@ const wiki = (query: string) =>
 
 /** Magyar nyelv és irodalom: Arany János életműve (kötelező életmű-szerző). */
 const unit: GuideUnit = {
-  id: 'magyar-arany',
+  id: 'arany',
   subject: 'magyar',
   order: 52,
   title: 'Arany János életműve',
@@ -19,7 +19,7 @@ const unit: GuideUnit = {
     {
       id: 'arany-eletut-palyaszakaszok',
       subject: 'magyar',
-      unitId: 'magyar-arany',
+      unitId: 'arany',
       title: 'Arany életútja, pályaszakaszai, hatása',
       level: 'emelt',
       requirement: {
@@ -189,7 +189,7 @@ const unit: GuideUnit = {
     {
       id: 'arany-toldi-trilogia',
       subject: 'magyar',
-      unitId: 'magyar-arany',
+      unitId: 'arany',
       title: 'A Toldi-trilógia: Toldi, Toldi estéje, Toldi szerelme',
       level: 'kozep',
       requirement: {
@@ -374,7 +374,7 @@ const unit: GuideUnit = {
     {
       id: 'arany-balladak',
       subject: 'magyar',
-      unitId: 'magyar-arany',
+      unitId: 'arany',
       title: 'Arany balladái',
       level: 'kozep',
       requirement: {
@@ -562,7 +562,7 @@ const unit: GuideUnit = {
     {
       id: 'arany-lirai-szamvetes-1850-es-evek',
       subject: 'magyar',
-      unitId: 'magyar-arany',
+      unitId: 'arany',
       title: 'Az 1850-es évek lírája: Letészem a lantot, Kertben',
       level: 'kozep',
       requirement: {
@@ -747,7 +747,7 @@ const unit: GuideUnit = {
     {
       id: 'arany-oszikek-epilogus',
       subject: 'magyar',
-      unitId: 'magyar-arany',
+      unitId: 'arany',
       title: 'A késői költészet: Őszikék, Epilógus',
       level: 'kozep',
       requirement: {
