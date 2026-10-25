@@ -9,11 +9,12 @@ const unit: GuideUnit = {
   subject: 'matematika',
   order: 42,
   title: 'Trigonometria',
-  requirementRef: 'Trigonometria',
+  requirementRef:
+    '4.5 Trigonometria; 2.8.2.4 Trigonometrikus egyenletek; 3.2 Függvények; 4.3.1.4 Kör (szögmérés); 4.7 Kerület, terület',
   intro:
     'A szögfüggvényektől a derékszögű háromszögben a szinusz- és koszinusztételen át a szöveges mérési feladatokig; emelt szinten trigonometrikus egyenletek, azonosságok és addíciós tételek.',
   requirementSource:
-    'A matematika témakör az érettségi vizsgakövetelmények „Trigonometria” fejezetét követi (középszint és emelt szint). Ezt a részt még össze kell vetni a hivatalos dokumentummal; ami emelt szintű, azt külön jelöljük.',
+    'A követelmények az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (2.8.2.4, 3.2, 4.3.1.4, 4.5, 4.7). A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   pages: [
     {
       id: 'szogfuggvenyek-derekszogu-haromszog',
@@ -111,8 +112,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          emelt: true,
-          text: 'Emelt szinten a nevezetes szögek értékeit gyakran **pontos alakban** kell használni (gyökös kifejezéssel, számológép nélkül), és az azonosságok bizonyítása is szerepelhet; erről az utolsó oldal szól.',
+          text: 'A nevezetes szögek értékeit gyakran **pontos alakban** (gyökös kifejezéssel) kell megadni.',
         },
       ],
       exam: [
@@ -169,7 +169,6 @@ const unit: GuideUnit = {
           options: ['$\\frac{5}{4}$', '$\\frac{3}{2}$', '$\\frac{1}{4}$', '2'],
           answer: 0,
           explanation: '$\\frac{1}{2} \\cdot \\frac{1}{2} + 1 = \\frac{1}{4} + 1 = \\frac{5}{4}$.',
-          emelt: true,
         },
       ],
       sources: [
@@ -185,15 +184,23 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'Szögfüggvények értelmezése tetszőleges szögre (egységkör), fok és radián; a szinusz-, koszinusz- és tangensfüggvény grafikonja, tulajdonságai',
+          'Szög mérése fokban; a tompaszögek szögfüggvényei a kiegészítő szögek szögfüggvényeiből',
         emelt:
-          'Szögfüggvények transzformációi ($a\\sin(bx + c) + d$), periódus, értékkészlet; redukciós összefüggések',
+          'Szögfüggvények értelmezése forgásszögekre (egységkör), szögmérés radiánban; a szinusz-, koszinusz- és tangensfüggvény grafikonja és tulajdonságai (periódus, paritás, korlátosság); a függvények transzformációi ($a\\sin(bx + c) + d$); redukciós összefüggések',
       },
       minutes: 13,
       summary: [
         {
           kind: 'keypoints',
           title: 'Öt perc alatt',
+          items: [
+            'Fokban mérünk: a teljes kör $360^\\circ$. A tompaszögek szögfüggvényei a kiegészítő szög szögfüggvényeiből adódnak: $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$, $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$.',
+          ],
+        },
+        {
+          kind: 'keypoints',
+          emelt: true,
+          title: 'Emelt szint',
           items: [
             '**Egységkör**: az $\\alpha$ szöghöz tartozó pont koordinátái $(\\cos\\alpha;\\ \\sin\\alpha)$; $\\operatorname{tg}\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}$ ($\\cos\\alpha \\ne 0$).',
             '**Radián**: $180^\\circ = \\pi$ rad, vagyis $1\\ \\text{rad} \\approx 57{,}3^\\circ$. Például $90^\\circ = \\frac{\\pi}{2}$, $60^\\circ = \\frac{\\pi}{3}$.',
@@ -204,6 +211,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'plot',
+          emelt: true,
           title: 'A szinusz- és koszinuszfüggvény',
           x: [-7, 7],
           y: [-1.5, 1.5],
@@ -219,36 +227,42 @@ const unit: GuideUnit = {
         },
       ],
       details: [
-        { kind: 'heading', text: 'Szög mérése: fok és radián' },
+        { kind: 'heading', text: 'Szög mérése: fok és radián', emelt: true },
         {
           kind: 'formula',
+          emelt: true,
           tex: '\\alpha_{\\text{rad}} = \\alpha_{\\text{fok}} \\cdot \\frac{\\pi}{180^\\circ} \\qquad \\alpha_{\\text{fok}} = \\alpha_{\\text{rad}} \\cdot \\frac{180^\\circ}{\\pi}',
         },
         {
           kind: 'text',
+          emelt: true,
           text: 'A radián a szöghöz tartozó körív hossza az egységkörben. Teljes kör: $360^\\circ = 2\\pi$. A számológépen figyelj az üzemmódra (DEG vagy RAD).',
         },
-        { kind: 'heading', text: 'Egységkör és előjelek' },
+        { kind: 'heading', text: 'Egységkör és előjelek', emelt: true },
         {
           kind: 'text',
+          emelt: true,
           text: 'Az $\\alpha$ forgásszöghöz tartozó pont az egységkörön $P(\\cos\\alpha;\\ \\sin\\alpha)$. Így a szögfüggvények bármely szögre értelmezettek, és az előjelüket a pont síknegyede adja. A periódus miatt $\\sin(\\alpha + 360^\\circ) = \\sin\\alpha$, $\\cos(\\alpha + 360^\\circ) = \\cos\\alpha$, $\\operatorname{tg}(\\alpha + 180^\\circ) = \\operatorname{tg}\\alpha$.',
         },
         {
           kind: 'formula',
+          emelt: true,
           tex: '\\sin(180^\\circ - \\alpha) = \\sin\\alpha \\qquad \\cos(180^\\circ - \\alpha) = -\\cos\\alpha \\qquad \\sin(-\\alpha) = -\\sin\\alpha \\qquad \\cos(-\\alpha) = \\cos\\alpha',
           caption: 'a tompaszögek számításához és az egyenletekhez is kell',
         },
         {
           kind: 'example',
+          emelt: true,
           title: 'Kidolgozott példa: értékek tetszőleges szögre',
           problem:
             'Határozza meg a pontos értékét: $\\sin 150^\\circ$, $\\cos 210^\\circ$, $\\operatorname{tg} 135^\\circ$!',
           solution:
             '$\\sin 150^\\circ = \\sin(180^\\circ - 30^\\circ) = \\sin 30^\\circ = \\frac{1}{2}$.\n\n$\\cos 210^\\circ = \\cos(180^\\circ + 30^\\circ) = -\\cos 30^\\circ = -\\frac{\\sqrt{3}}{2}$ (a III. síknegyedben a koszinusz negatív).\n\n$\\operatorname{tg} 135^\\circ = \\frac{\\sin 135^\\circ}{\\cos 135^\\circ} = \\frac{\\sqrt{2}/2}{-\\sqrt{2}/2} = -1$.',
         },
-        { kind: 'heading', text: 'A tangensfüggvény grafikonja' },
+        { kind: 'heading', text: 'A tangensfüggvény grafikonja', emelt: true },
         {
           kind: 'plot',
+          emelt: true,
           title: 'tg x (két periódus)',
           x: [-4.5, 4.5],
           y: [-5, 5],
@@ -263,10 +277,12 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
+          emelt: true,
           text: 'A tangens az $x = \\frac{\\pi}{2} + k\\pi$ helyeken nincs értelmezve (függőleges aszimptoták), egy periódusán belül szigorúan nő, és páratlan függvény.',
         },
         {
           kind: 'compare',
+          emelt: true,
           title: 'A három függvény összehasonlítása',
           columns: ['$\\sin x$ / $\\cos x$', '$\\operatorname{tg} x$'],
           rows: [
@@ -308,6 +324,7 @@ const unit: GuideUnit = {
       exam: [
         {
           kind: 'keypoints',
+          emelt: true,
           title: 'Így kérdezik',
           items: [
             'Fokok átváltása radiánba és vissza; a $\\cos$ vagy $\\sin$ függvény egy adott pontban felvett értéke.',
@@ -317,10 +334,12 @@ const unit: GuideUnit = {
         },
         {
           kind: 'warning',
+          emelt: true,
           text: 'A $\\sin(2x)$ periódusa nem $2\\pi \\cdot 2$, hanem $\\frac{2\\pi}{2} = \\pi$: a nagyobb $b$ **rövidebb** periódust jelent. A $\\sin x + 2$ (eltolás) és a $\\sin(x + 2)$ (vízszintes eltolás) sem ugyanaz.',
         },
         {
           kind: 'tip',
+          emelt: true,
           text: 'Jegyezd meg a szinusz-grafikon öt pontját egy periódusban: $0,\\ 1,\\ 0,\\ -1,\\ 0$ az $x = 0,\\ \\frac{\\pi}{2},\\ \\pi,\\ \\frac{3\\pi}{2},\\ 2\\pi$ helyeken. Ebből minden transzformált alak gyorsan felrajzolható.',
         },
       ],
@@ -336,6 +355,7 @@ const unit: GuideUnit = {
           ],
           answer: 3,
           explanation: '$60^\\circ = \\frac{60}{180}\\pi = \\frac{\\pi}{3}$.',
+          emelt: true,
         },
         {
           question: 'Mennyi $\\cos 120^\\circ$?',
@@ -354,6 +374,7 @@ const unit: GuideUnit = {
           options: ['$\\mathbb{R}$', '$[0; 1]$', '$[-1; 1]$', '$[-\\pi; \\pi]$'],
           answer: 2,
           explanation: 'A pont koordinátái az egységkörön $-1$ és $1$ közé esnek.',
+          emelt: true,
         },
         {
           question: 'Melyik helyen NINCS értelmezve a $\\operatorname{tg} x$?',
@@ -361,6 +382,7 @@ const unit: GuideUnit = {
           answer: 3,
           explanation:
             '$\\operatorname{tg} x = \\frac{\\sin x}{\\cos x}$, és $\\cos\\frac{\\pi}{2} = 0$.',
+          emelt: true,
         },
         {
           question: 'Mi az $f(x) = 3\\sin(2x) - 1$ függvény periódusa és értékkészlete?',
@@ -392,7 +414,7 @@ const unit: GuideUnit = {
         kozep:
           'A szinusztétel és a koszinusztétel alkalmazása háromszögek oldalainak, szögeinek kiszámítására; a háromszög területe két oldalból és a közbezárt szögből',
         emelt:
-          'A körülírt kör sugara a szinusztételben; az egyértelműség vizsgálata (két oldal és a nagyobbikkal szemközti szög hiánya, két megoldás); összetett, több háromszöget érintő feladatok',
+          'A koszinusztétel bizonyítása; a háromszög területének képletei: bizonyítással t = sr, és t = √(s(s-a)(s-b)(s-c)) (Heron-képlet)',
       },
       minutes: 14,
       summary: [
@@ -576,7 +598,7 @@ const unit: GuideUnit = {
       level: 'kozep',
       requirement: {
         kozep:
-          'Szögfüggvények és háromszögtételek alkalmazása gyakorlati feladatokban: magasság- és távolságmérés, emelkedési szög, navigáció, síkidomok és testek adatai',
+          'A szögfüggvények és a háromszögtételek alkalmazása gyakorlati, szöveges feladatokban; egyszerű feladatok síkidomokra és testekre',
       },
       minutes: 12,
       summary: [
@@ -632,10 +654,9 @@ const unit: GuideUnit = {
           kind: 'warning',
           text: 'A „12%-os emelkedő” **nem** $12^\\circ$! A százalék a tangenssel arányos, a szög ennél jóval kisebb.',
         },
-        { kind: 'heading', text: 'Egy minta a síkidomokra', emelt: true },
+        { kind: 'heading', text: 'Egy minta a síkidomokra' },
         {
           kind: 'example',
-          emelt: true,
           title: 'Paralelogramma területe és átlói',
           problem:
             'Egy paralelogramma oldalai 8 cm és 11 cm, az általuk bezárt szög $60^\\circ$. Számítsa ki a területét és a rövidebb átlóját!',
@@ -709,7 +730,7 @@ const unit: GuideUnit = {
       level: 'emelt',
       requirement: {
         emelt:
-          'Trigonometrikus egyenletek és egyenlőtlenségek megoldása; azonosságok bizonyítása; az addíciós tételek és a kétszeres szög függvényei',
+          'Definíciók és azonosságok közvetlen alkalmazását igénylő, másodfokúra visszavezethető trigonometrikus egyenletek megoldása; trigonometrikus egyenlőtlenségek; az addíciós összefüggések és a kétszeres szög szögfüggvényei',
       },
       minutes: 15,
       summary: [

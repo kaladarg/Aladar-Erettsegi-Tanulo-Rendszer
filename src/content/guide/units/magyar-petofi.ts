@@ -259,7 +259,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Az alföld (1844)' },
         {
           kind: 'text',
-          text: 'A vers a szülőföld dicsérete. Az első szakasz egy **elutasítással** kezdődik: a költő a Kárpátokról mond le. A Kárpátok a romantika **fenséges** tája, de a költő az **Alföldet** választja. Az alföldi tájon a **szabadság** és a **végtelen** érzése, a pusztai élet apró képei (nyáj, kút, a délibáb) és a személyes emlékek kapcsolódnak össze. A vers a szülőföldhöz való **személyes kötődést** mutatja: az Alföld a költő otthona és költészetének forrása.',
+          text: 'A vers a szülőföld dicsérete. Az első szakasz egy **elutasítással** kezdődik: *„Mit nekem te zordon Kárpátoknak / Fenyvesekkel vadregényes tája!”* A költő a Kárpátokról mond le. A Kárpátok a romantika **fenséges** tája, de a költő az **Alföldet** választja. Az alföldi tájon a **szabadság** és a **végtelen** érzése, a pusztai élet apró képei (nyáj, kút, a délibáb) és a személyes emlékek kapcsolódnak össze. A vers a szülőföldhöz való **személyes kötődést** mutatja: az Alföld a költő otthona és költészetének forrása.',
         },
         {
           kind: 'keypoints',
@@ -615,7 +615,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Egy gondolat bánt engemet' },
         {
           kind: 'text',
-          text: 'A vers híres nyitánya a kényelmes, ágyban, párnák közt bekövetkező halált utasítja el A költő nem a békés, hétköznapi halált kívánja, hanem a **hősi halált a szabadságért**. A párnák a kényelmes, tétlen élet jelképei; a csatatér a vállalt küzdelemé. A vers az **ellentétre** épül: a nyugalmas, értelmetlen halál és az áldozatos, értelmes halál. Közben megjelenik a **világszabadság** gondolata is: a harc a szabadság egyetemes ügye.',
+          text: 'A vers híres nyitánya: *„Egy gondolat bánt engemet: / Ágyban, párnák közt halni meg!”* A költő ezt a kényelmes halált utasítja el, helyette azt kívánja: *„Ott essem el én, / A harc mezején”*. A költő nem a békés, hétköznapi halált kívánja, hanem a **hősi halált a szabadságért**. A párnák a kényelmes, tétlen élet jelképei; a csatatér a vállalt küzdelemé. A vers az **ellentétre** épül: a nyugalmas, értelmetlen halál és az áldozatos, értelmes halál. Közben megjelenik a **világszabadság** gondolata is: a harc a szabadság egyetemes ügye.',
         },
         {
           kind: 'text',
@@ -629,7 +629,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Nemzeti dal (1848)' },
         {
           kind: 'text',
-          text: 'A *Nemzeti dal* **1848. március 15-én** a forradalom jelképévé vált: a márciusi ifjak cenzúra nélkül kinyomtatták. A cím a közösségi műfajra utal. A vers **felszólítással** indul: a haza a magyarokat talpra hívja. Ezt követi a **döntési kérdés**: *„Rabok legyünk vagy szabadok? / Ez a kérdés, válasszatok!”*. A **refrén** (az eskü) a közösség válasza: a vers így a költő és a nép **párbeszéde**.',
+          text: 'A *Nemzeti dal* **1848. március 15-én** a forradalom jelképévé vált: a márciusi ifjak cenzúra nélkül kinyomtatták. A cím a közösségi műfajra utal. A vers **felszólítással** indul: *„Talpra magyar, hí a haza! / Itt az idő, most vagy soha!”* Ezt követi a **döntési kérdés**: *„Rabok legyünk, vagy szabadok? / Ez a kérdés, válasszatok!”* A **refrén** a közösség esküje: *„A magyarok istenére / Esküszünk, / Esküszünk, hogy rabok tovább / Nem leszünk!”*; a vers így a költő és a nép **párbeszéde**.',
         },
         {
           kind: 'keypoints',

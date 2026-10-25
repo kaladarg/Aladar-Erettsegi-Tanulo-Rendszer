@@ -25,11 +25,12 @@ const unit: GuideUnit = {
   subject: 'matematika',
   order: 44,
   title: 'Koordináta-geometria',
-  requirementRef: 'Koordináta-geometria',
+  requirementRef:
+    '4.1.2 Ponthalmazok (kör, parabola); 4.4 Vektorok síkban és térben; 4.6 Koordinátageometria',
   intro:
     'Vektorok, távolság, felezőpont és súlypont, az egyenes különböző egyenletei, párhuzamos és merőleges egyenesek, a kör egyenlete; emelten a kör és az egyenes kölcsönös helyzete, az érintő egyenlete és a parabola.',
   requirementSource:
-    'A matematika témakör a középszintű és az emelt szintű érettségi vizsgakövetelmények „Koordináta-geometria” fejezetét követi. Ezt a részt még össze kell vetni a hivatalos dokumentummal; ami emelt szintű, azt külön jelöljük.',
+    'A követelmények az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (4.1.2, 4.4, 4.6). A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   pages: [
     {
       id: 'vektorok-pontok-koordinatai',
@@ -39,8 +40,9 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'Pontok és vektorok koordinátái; vektorműveletek koordinátákkal; két pont távolsága, szakasz felezőpontja, háromszög súlypontja',
-        emelt: 'Skalárszorzat koordinátákkal; két vektor szöge, merőlegesség vizsgálata',
+          'Pontok és vektorok koordinátái; vektorműveletek koordinátákkal; két pont távolsága, szakasz felezőpontja',
+        emelt:
+          'Skalárszorzat definíciója és koordinátákból számítása; vektorok hajlásszöge koordinátákkal; a szakasz harmadoló pontjainak és a háromszög súlypontjának koordinátái (igazolással)',
       },
       minutes: 11,
       summary: [
@@ -52,6 +54,13 @@ const unit: GuideUnit = {
             'Vektorok összeadása, kivonása és számmal szorzása koordinátánként történik.',
             'A vektor hossza: $|\\mathbf{a}| = \\sqrt{a_1^2 + a_2^2}$. Két pont távolsága az $\\overrightarrow{AB}$ vektor hossza.',
             '**Felezőpont**: $F\\left(\\frac{x_1 + x_2}{2};\\ \\frac{y_1 + y_2}{2}\\right)$.',
+          ],
+        },
+        {
+          kind: 'keypoints',
+          emelt: true,
+          title: 'Emelt szint',
+          items: [
             '**Súlypont**: $S\\left(\\frac{x_1 + x_2 + x_3}{3};\\ \\frac{y_1 + y_2 + y_3}{3}\\right)$.',
           ],
         },
@@ -105,7 +114,12 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'A felezőpont a két végpont koordinátáinak számtani közepe. A háromszög súlypontja a három csúcs koordinátáinak számtani közepe; a súlypont a súlyvonalakat a csúcstól számítva $2 : 1$ arányban osztja.',
+          text: 'A felezőpont a két végpont koordinátáinak számtani közepe.',
+        },
+        {
+          kind: 'text',
+          emelt: true,
+          text: 'A háromszög súlypontja a három csúcs koordinátáinak számtani közepe; a súlypont a súlyvonalakat a csúcstól számítva $2 : 1$ arányban osztja.',
         },
         {
           kind: 'example',
@@ -181,6 +195,7 @@ const unit: GuideUnit = {
           answer: 2,
           explanation:
             'A koordináták számtani közepe: $\\frac{0 + 6 + 3}{3} = 3$ és $\\frac{0 + 3 + 9}{3} = 4$.',
+          emelt: true,
         },
         {
           question: 'Az $\\mathbf{a} = (2; -3)$ és $\\mathbf{b} = (6; 4)$ vektorokra melyik igaz?',
@@ -209,24 +224,34 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'Az egyenes meghatározó adatai: meredekség, irányvektor, normálvektor; az egyenes egyenletei; egyenes felírása két pontjából',
-        emelt: 'Egyenes egyenletének felírása összetett feltételekből; paraméteres feladatok',
+          'Egyenes egyenlete y = mx + b és x = c alakban; egyenesek metszéspontjának koordinátái; meredekséggel megadott egyenesek párhuzamossága és merőlegessége',
+        emelt:
+          'Az egyenes egyenletének többféle alakban való felírása és levezetése, különböző kiindulási adatokból (normálvektor, irányvektor, két pont)',
       },
       minutes: 11,
       summary: [
         {
           kind: 'keypoints',
-          title: 'Öt perc alatt',
+          emelt: true,
+          title: 'Emelt szint',
           items: [
             '**Normálvektoros egyenlet**: $Ax + By = C$. Az $\\mathbf{n} = (A; B)$ az egyenesre merőleges **normálvektor**. $C = A x_0 + B y_0$, ahol $P_0(x_0; y_0)$ az egyenes egy pontja.',
             '**Irányvektor**: az egyenessel párhuzamos vektor, $\\mathbf{v} = (v_1; v_2)$. Ha $\\mathbf{v} = (v_1; v_2)$, akkor egy normálvektor $\\mathbf{n} = (v_2; -v_1)$.',
-            '**Meredekség**: $m = \\frac{v_2}{v_1} = \\frac{y_2 - y_1}{x_2 - x_1}$, és $m = \\tan\\alpha$, ahol $\\alpha$ az egyenes és az $x$ tengely pozitív iránya által bezárt szög.',
+            '**Hajlásszög**: $m = \\tan\\alpha$, ahol $\\alpha$ az egyenes és az $x$ tengely pozitív iránya által bezárt szög.',
+          ],
+        },
+        {
+          kind: 'keypoints',
+          title: 'Öt perc alatt',
+          items: [
+            '**Meredekség**: $m = \\frac{y_2 - y_1}{x_2 - x_1}$.',
             '**Iránytényezős alak**: $y = mx + b$; a $b$ az $y$ tengellyel vett metszéspont.',
             'Az $x$ tengellyel párhuzamos egyenes: $y = c$. Az $y$ tengellyel párhuzamos egyenes: $x = c$ (ennek nincs meredeksége).',
           ],
         },
         {
           kind: 'plot',
+          emelt: true,
           equalAxes: true,
           title: 'A P(2; −1) és Q(5; 3) pontokon átmenő egyenes: 4x − 3y = 11',
           x: [-3, 7],
@@ -242,13 +267,15 @@ const unit: GuideUnit = {
         },
       ],
       details: [
-        { kind: 'heading', text: 'Mi határoz meg egy egyenest?' },
+        { kind: 'heading', text: 'Mi határoz meg egy egyenest?', emelt: true },
         {
           kind: 'text',
+          emelt: true,
           text: 'Egy egyenest meghatároz **két pontja**, vagy **egy pontja és az iránya**. Az irányt megadhatjuk irányvektorral, normálvektorral vagy meredekséggel. Ezek egymásból könnyen kiszámíthatók, ezért a feladat az, hogy a megadott adatból felírjuk a számunkra legkényelmesebbet.',
         },
         {
           kind: 'compare',
+          emelt: true,
           title: 'Az egyenes megadási módjai',
           columns: ['Adat', 'Egyenlet'],
           rows: [
@@ -275,6 +302,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'example',
+          emelt: true,
           title: 'Kidolgozott példa: egyenes két pontból',
           problem:
             'Írja fel annak az egyenesnek az egyenletét, amely átmegy a $P(2; -1)$ és a $Q(5; 3)$ pontokon! Adja meg a meredekségét és a tengelymetszeteit is!',
@@ -316,6 +344,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'tip',
+          emelt: true,
           text: 'Az irányvektorból normálvektort úgy kapsz, hogy a két koordinátát felcseréled, és az egyiknek előjelet váltasz: $(3; 4) \\to (4; -3)$. Ellenőrzés: a skalárszorzatuk 0, mert $3 \\cdot 4 + 4 \\cdot (-3) = 0$.',
         },
       ],
@@ -326,6 +355,7 @@ const unit: GuideUnit = {
           options: ['$3x - y = 11$', '$3x + y = 11$', '$x - 3y = -13$', '$3x - y = 1$'],
           answer: 3,
           explanation: '$C = 3 \\cdot 2 - 1 \\cdot 5 = 1$, tehát $3x - y = 1$.',
+          emelt: true,
         },
         {
           question: 'Mennyi a $4x + 2y = 8$ egyenletű egyenes meredeksége?',
@@ -339,6 +369,7 @@ const unit: GuideUnit = {
           answer: 1,
           explanation:
             'A normálvektor $(5; -2)$, erre merőleges az irányvektor: $(2; 5)$, mert $5 \\cdot 2 + (-2) \\cdot 5 = 0$.',
+          emelt: true,
         },
         {
           question: 'Mi az $(1; 1)$ és $(3; 7)$ pontokon átmenő egyenes iránytényezős egyenlete?',
@@ -351,6 +382,7 @@ const unit: GuideUnit = {
           answer: 0,
           explanation:
             '$m = \\frac{7 - 1}{3 - 1} = 3$, és $y - 1 = 3(x - 1)$, vagyis $y = 3x - 2$.',
+          emelt: true,
         },
         {
           question: 'Mekkora területű háromszöget zár be a $2x + y = 6$ egyenes a tengelyekkel?',
@@ -374,8 +406,9 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'Két egyenes kölcsönös helyzete: párhuzamosság, merőlegesség; metszéspont kiszámítása egyenletrendszerrel',
-        emelt: 'Pont és egyenes távolsága; két egyenes szöge',
+          'Két egyenes kölcsönös helyzete: meredekséggel megadott egyenesek párhuzamossága és merőlegessége; metszéspont kiszámítása egyenletrendszerrel',
+        emelt:
+          'Egyenesek párhuzamosságának és merőlegességének feltételei általános alakban (normálvektorral); két egyenes hajlásszöge; pont és egyenes távolsága',
       },
       minutes: 12,
       summary: [
@@ -431,10 +464,12 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
+          emelt: true,
           text: 'A merőleges egyenes normálvektora az eredeti egyenes irányvektora, és fordítva. Ezért az $Ax + By = C$ egyenessel párhuzamos egyenes normálvektora is $(A; B)$, a merőlegesé pedig $(B; -A)$.',
         },
         {
           kind: 'example',
+          emelt: true,
           title: 'Kidolgozott példa: párhuzamos, merőleges, metszéspont',
           problem:
             'Az $e$ egyenes egyenlete $3x + 4y = 10$, a $P$ pont koordinátái $(5; 5)$. Írja fel a $P$ ponton átmenő, $e$-vel párhuzamos és $e$-re merőleges egyenes egyenletét, majd számítsa ki a merőleges egyenes és $e$ metszéspontját!',
@@ -443,6 +478,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'example',
+          emelt: true,
           title: 'Kidolgozott példa: magasságvonal',
           problem:
             'Az $A(-2; 1)$, $B(4; 5)$, $C(1; -3)$ háromszögben írja fel a $C$ csúcsból induló magasságvonal egyenletét!',
@@ -486,6 +522,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'tip',
+          emelt: true,
           text: 'Az **oldalfelező merőleges** felírásához két adat kell: a szakasz felezőpontja (ezen megy át) és a szakasz irányvektora (ez lesz a normálvektora). Ez a kör és a háromszög feladatoknál is előjön.',
         },
       ],
@@ -517,6 +554,7 @@ const unit: GuideUnit = {
           answer: 2,
           explanation:
             'A normálvektorok skalárszorzata 0: $(3; 2) \\cdot (2; -3) = 6 - 6 = 0$. A $6x + 4y = 7$ párhuzamos az eredetivel.',
+          emelt: true,
         },
         {
           question: 'Milyen messze van az origó a $3x + 4y = 20$ egyenestől?',
@@ -539,10 +577,9 @@ const unit: GuideUnit = {
       title: 'A kör egyenlete',
       level: 'both',
       requirement: {
-        kozep:
-          'A kör középponti egyenlete; a kör középpontjának és sugarának meghatározása az egyenletből; pont helyzete a körhöz képest',
+        kozep: 'Adott középpontú és sugarú kör egyenletének felírása',
         emelt:
-          'A kör egyenletének felírása összetett feltételekből (három pont, érintési feltétel)',
+          'A kör egyenletének levezetése; a kör és a kétismeretlenes másodfokú egyenlet kapcsolata; a kör középpontjának és sugarának meghatározása általános alakú egyenletből',
       },
       minutes: 11,
       summary: [
@@ -552,9 +589,16 @@ const unit: GuideUnit = {
           items: [
             'A $K(u; v)$ középpontú, $r$ sugarú kör egyenlete: $(x - u)^2 + (y - v)^2 = r^2$.',
             'Az origó középpontú kör: $x^2 + y^2 = r^2$.',
-            'A kör egyenletét **teljes négyzetté alakítással** olvashatod le, ha $x^2 + y^2 + px + qy + s = 0$ alakban kapod.',
             'Egy $P(x_0; y_0)$ pont **a körön** van, ha $(x_0 - u)^2 + (y_0 - v)^2 = r^2$; **belül**, ha az érték kisebb; **kívül**, ha nagyobb.',
             'A kör nem függvény grafikonja: az ábrázoláshoz két félkör kell (felső és alsó).',
+          ],
+        },
+        {
+          kind: 'keypoints',
+          emelt: true,
+          title: 'Emelt szint',
+          items: [
+            'A kör egyenletét **teljes négyzetté alakítással** olvashatod le, ha $x^2 + y^2 + px + qy + s = 0$ alakban kapod.',
           ],
         },
         {
@@ -592,6 +636,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'example',
+          emelt: true,
           title: 'Kidolgozott példa: kör az egyenletből',
           problem:
             'Adja meg annak a körnek a középpontját és sugarát, amelynek egyenlete $x^2 + y^2 - 4x + 6y - 12 = 0$!',
@@ -637,6 +682,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'warning',
+          emelt: true,
           text: 'Ha az egyenlet $x^2 + y^2 + px + qy + s = 0$ alakú, a teljes négyzetté alakítás után a jobb oldal $r^2$. Ha ez nem pozitív, nincs ilyen kör (egy pont vagy üres halmaz). Mindig nézd meg az előjelet, és ne írj sugárként $r^2$-t.',
         },
         {
@@ -667,6 +713,7 @@ const unit: GuideUnit = {
           ],
           answer: 0,
           explanation: '$(x - 3)^2 + (y + 4)^2 = 9 + 16 = 25$, tehát $K(3; -4)$ és $r = 5$.',
+          emelt: true,
         },
         {
           question: 'Hol van a $P(2; 3)$ pont az $(x - 1)^2 + (y + 1)^2 = 17$ körhöz képest?',
