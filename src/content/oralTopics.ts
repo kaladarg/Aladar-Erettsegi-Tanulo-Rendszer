@@ -125,6 +125,28 @@ export const BUILTIN_ORAL_TOPICS: BuiltinOralTopic[] = [
   topic('nemet', 'Témakörök', 'utazas', 'Utazás, turizmus'),
   topic('nemet', 'Témakörök', 'tudomany', 'Tudomány és technika'),
   topic('nemet', 'Témakörök', 'gazdasag', 'Gazdaság és pénzügyek'),
+  // Matematika: tipikus tételcímek (iskolánként eltérnek), az öt témakör szerint
+  topic('matematika', 'Gondolkodási módszerek', 'halmazok', 'Halmazok, halmazműveletek'),
+  topic('matematika', 'Gondolkodási módszerek', 'logika', 'Logika: kijelentések, tagadás, „ha…akkor”, „akkor és csak akkor”'),
+  topic('matematika', 'Gondolkodási módszerek', 'kombinatorika', 'Kombinatorika: sorbarendezések és kiválasztások'),
+  topic('matematika', 'Gondolkodási módszerek', 'grafok', 'Gráfok'),
+  topic('matematika', 'Számelmélet, algebra', 'oszthatosag', 'Oszthatóság, prímszámok, számrendszerek'),
+  topic('matematika', 'Számelmélet, algebra', 'szamhalmazok', 'Számhalmazok, abszolútérték, intervallumok'),
+  topic('matematika', 'Számelmélet, algebra', 'hatvany-logaritmus', 'Hatvány, gyök, logaritmus'),
+  topic('matematika', 'Számelmélet, algebra', 'masodfoku', 'Másodfokú egyenletek'),
+  topic('matematika', 'Számelmélet, algebra', 'egyenlotlensegek', 'Egyenletek, egyenlőtlenségek megoldási módszerei'),
+  topic('matematika', 'Függvények, analízis', 'fuggvenyek', 'A függvény fogalma, elemi függvények és jellemzésük'),
+  topic('matematika', 'Függvények, analízis', 'transzformaciok', 'Függvénytranszformációk'),
+  topic('matematika', 'Függvények, analízis', 'sorozatok', 'Számtani és mértani sorozatok'),
+  topic('matematika', 'Függvények, analízis', 'kamatos-kamat', 'Kamatos kamat, törlesztés, megtakarítás'),
+  topic('matematika', 'Geometria', 'pitagorasz', 'A Pitagorasz-tétel és alkalmazásai'),
+  topic('matematika', 'Geometria', 'haromszogek', 'Háromszögek nevezetes vonalai, pontjai és körei'),
+  topic('matematika', 'Geometria', 'kor', 'A kör és részei, a Thalész-tétel'),
+  topic('matematika', 'Geometria', 'trigonometria', 'Szögfüggvények, szinusz- és koszinusztétel'),
+  topic('matematika', 'Geometria', 'vektorok-koordinatageometria', 'Vektorok és koordinátageometria'),
+  topic('matematika', 'Geometria', 'testek', 'Felszín és térfogat: testek'),
+  topic('matematika', 'Valószínűség, statisztika', 'statisztika', 'Leíró statisztika: átlag, medián, szórás'),
+  topic('matematika', 'Valószínűség, statisztika', 'valoszinuseg', 'Valószínűség-számítás: klasszikus és geometriai modell'),
   // Földrajz: a vizsgakövetelmények fő témakörei
   topic('foldrajz', 'Természetföldrajz', 'terkep', 'Térképi ismeretek és tájékozódás'),
   topic('foldrajz', 'Természetföldrajz', 'kozmikus', 'A Föld mint égitest, időszámítás'),
@@ -152,7 +174,14 @@ export const BUILTIN_ORAL_TOPICS: BuiltinOralTopic[] = [
 ];
 
 /** Subjects that have built-in oral topics. */
-export const ORAL_TOPIC_SUBJECTS = ['magyar', 'tortenelem', 'angol', 'nemet', 'foldrajz'];
+export const ORAL_TOPIC_SUBJECTS = [
+  'magyar',
+  'tortenelem',
+  'matematika',
+  'angol',
+  'nemet',
+  'foldrajz',
+];
 
 /** Foreign languages: no preparation time, a different outline. */
 export const LANGUAGE_SUBJECTS = ['angol', 'nemet'];
