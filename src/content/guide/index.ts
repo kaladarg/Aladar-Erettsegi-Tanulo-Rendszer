@@ -1,13 +1,14 @@
-import { REFORM_1848 } from './historyReform1848';
-import { FUNCTIONS } from './mathFunctions';
 import type { GuideBlock, GuidePage, GuideSubject, GuideUnit } from './types';
 
 export type * from './types';
 
-/** All units, in the order of the syllabus within each subject. */
-export const GUIDE_UNITS: GuideUnit[] = [REFORM_1848, FUNCTIONS];
+/** Every file in ./units is one unit (default export), so units can be added without touching this file. */
+const modules = import.meta.glob<GuideUnit>('./units/*.ts', { eager: true, import: 'default' });
 
-export const GUIDE_SUBJECTS: GuideSubject[] = ['tortenelem', 'matematika'];
+/** All units, in the order of the syllabus within each subject. */
+export const GUIDE_UNITS: GuideUnit[] = Object.values(modules).sort((a, b) => a.order - b.order);
+
+export const GUIDE_SUBJECTS: GuideSubject[] = ['tortenelem', 'matematika', 'magyar'];
 
 export function findGuidePage(id: string): { unit: GuideUnit; page: GuidePage } | undefined {
   for (const unit of GUIDE_UNITS) {

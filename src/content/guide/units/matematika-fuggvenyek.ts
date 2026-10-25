@@ -1,12 +1,13 @@
-import type { GuideUnit } from './types';
+import type { GuideUnit } from '../types';
 
 const wiki = (query: string) =>
   `https://hu.wikipedia.org/w/index.php?search=${encodeURIComponent(query)}`;
 
 /** Exam requirement topic: Függvények, az analízis elemei. */
-export const FUNCTIONS: GuideUnit = {
+const unit: GuideUnit = {
   id: 'fuggvenyek',
   subject: 'matematika',
+  order: 30,
   title: 'Függvények és az analízis elemei',
   requirementRef: 'Függvények, az analízis elemei',
   intro:
@@ -139,7 +140,7 @@ export const FUNCTIONS: GuideUnit = {
           text: 'Szélsőértéknél két dolgot kell megadni: a szélsőérték **helyét** ($x$) és **értékét** ($f(x)$). Ha csak az egyiket írod, az pontlevonással jár.',
         },
       ],
-      topicMatch: ['függvénytulajdonság', 'függvények', 'zérushely', 'monotonitás', 'szélsőérték'],
+      topicMatch: ['függvénytulajdonság', '=függvények', 'zérushely', 'monotonitás', 'szélsőérték'],
       quiz: [
         {
           question: 'Mi az $f(x) = (x + 2)^2 - 1$ függvény értékkészlete ($x \\in \\mathbb{R}$)?',
@@ -641,3 +642,5 @@ export const FUNCTIONS: GuideUnit = {
     },
   ],
 };
+
+export default unit;

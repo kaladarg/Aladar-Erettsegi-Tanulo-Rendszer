@@ -1,12 +1,13 @@
-import type { GuideUnit } from './types';
+import type { GuideUnit } from '../types';
 
 const wiki = (query: string) =>
   `https://hu.wikipedia.org/w/index.php?search=${encodeURIComponent(query)}`;
 
 /** Exam requirement topics 4.3 (A reformkor) and 4.4 (A forradalom és szabadságharc). */
-export const REFORM_1848: GuideUnit = {
+const unit: GuideUnit = {
   id: 'reformkor-1848',
   subject: 'tortenelem',
+  order: 40,
   title: 'A reformkor és az 1848–49-es forradalom és szabadságharc',
   requirementRef: '4.3–4.4',
   intro:
@@ -1098,3 +1099,5 @@ export const REFORM_1848: GuideUnit = {
     },
   ],
 };
+
+export default unit;

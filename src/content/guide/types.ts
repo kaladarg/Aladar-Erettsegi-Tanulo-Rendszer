@@ -6,7 +6,7 @@
  */
 import type { CardFilter } from '@/content/cards';
 
-export type GuideSubject = 'tortenelem' | 'matematika';
+export type GuideSubject = 'tortenelem' | 'matematika' | 'magyar';
 /** Where a page or a block belongs: középszint material, emelt only, or both levels. */
 export type GuideLevel = 'kozep' | 'emelt' | 'both';
 
@@ -92,6 +92,8 @@ export interface GuidePage {
 export interface GuideUnit {
   id: string;
   subject: GuideSubject;
+  /** Place in the subject's syllabus (units are listed in this order). */
+  order: number;
   title: string;
   /** The requirement topics the unit covers, e.g. "4.3–4.4". */
   requirementRef: string;

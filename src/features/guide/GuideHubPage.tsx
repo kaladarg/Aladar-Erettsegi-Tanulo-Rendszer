@@ -1,7 +1,7 @@
 import { BookOpen, CheckCircle2, ChevronRight, Clock, Info } from 'lucide-react';
 import { useSearchParams, Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { findSubject } from '@/content/catalog';
+import { findSubject, subjectShortName } from '@/content/catalog';
 import {
   GUIDE_SUBJECTS,
   GUIDE_UNITS,
@@ -47,7 +47,10 @@ export function GuideHubPage() {
           label={t('guide.subject')}
           value={subject}
           onValueChange={(value) => setParams({ targy: value }, { replace: true })}
-          options={GUIDE_SUBJECTS.map((id) => ({ value: id, label: findSubject(id)?.name ?? id }))}
+          options={GUIDE_SUBJECTS.map((id) => {
+            const info = findSubject(id);
+            return { value: id, label: info ? subjectShortName(info) : id };
+          })}
         />
         <SegmentedControl<LevelView>
           label={t('guide.level')}
