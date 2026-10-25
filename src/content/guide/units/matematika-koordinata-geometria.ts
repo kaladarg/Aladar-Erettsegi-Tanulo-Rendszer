@@ -67,7 +67,7 @@ const unit: GuideUnit = {
         {
           kind: 'plot',
           equalAxes: true,
-          title: 'Az A(−2; 1), B(4; 5), C(1; −3) háromszög és súlypontja',
+          title: 'Az A(−2; 1), B(4; 5), C(1; −3) háromszög',
           x: [-4, 6],
           y: [-5, 7],
           functions: [
@@ -79,7 +79,6 @@ const unit: GuideUnit = {
             { x: -2, y: 1, label: 'A(−2; 1)' },
             { x: 4, y: 5, label: 'B(4; 5)' },
             { x: 1, y: -3, label: 'C(1; −3)' },
-            { x: 1, y: 1, label: 'S(1; 1)' },
           ],
         },
       ],
@@ -125,9 +124,9 @@ const unit: GuideUnit = {
           kind: 'example',
           title: 'Kidolgozott példa: háromszög adatai',
           problem:
-            'Az $ABC$ háromszög csúcsai $A(-2; 1)$, $B(4; 5)$, $C(1; -3)$. Számítsa ki az $AB$ oldal hosszát és felezőpontját, a háromszög kerületét és súlypontját!',
+            'Az $ABC$ háromszög csúcsai $A(-2; 1)$, $B(4; 5)$, $C(1; -3)$. Számítsa ki az $AB$ oldal hosszát és felezőpontját, valamint a háromszög kerületét! (Emelt szinten a súlypontot is.)',
           solution:
-            '$\\overrightarrow{AB} = (6; 4)$, így $AB = \\sqrt{36 + 16} = \\sqrt{52} = 2\\sqrt{13} \\approx 7{,}21$.\n\nAz $AB$ felezőpontja: $F\\left(\\frac{-2 + 4}{2};\\ \\frac{1 + 5}{2}\\right) = (1; 3)$.\n\nA többi oldal: $\\overrightarrow{BC} = (-3; -8)$, $BC = \\sqrt{9 + 64} = \\sqrt{73} \\approx 8{,}54$; $\\overrightarrow{AC} = (3; -4)$, $AC = \\sqrt{9 + 16} = 5$.\n\nKerület: $\\sqrt{52} + \\sqrt{73} + 5 \\approx 20{,}8$.\n\nSúlypont: $S\\left(\\frac{-2 + 4 + 1}{3};\\ \\frac{1 + 5 - 3}{3}\\right) = (1; 1)$.',
+            '$\\overrightarrow{AB} = (6; 4)$, így $AB = \\sqrt{36 + 16} = \\sqrt{52} = 2\\sqrt{13} \\approx 7{,}21$.\n\nAz $AB$ felezőpontja: $F\\left(\\frac{-2 + 4}{2};\\ \\frac{1 + 5}{2}\\right) = (1; 3)$.\n\nA többi oldal: $\\overrightarrow{BC} = (-3; -8)$, $BC = \\sqrt{9 + 64} = \\sqrt{73} \\approx 8{,}54$; $\\overrightarrow{AC} = (3; -4)$, $AC = \\sqrt{9 + 16} = 5$.\n\nKerület: $\\sqrt{52} + \\sqrt{73} + 5 \\approx 20{,}8$.\n\nEmelt szinten a súlypont is kell: $S\\left(\\frac{-2 + 4 + 1}{3};\\ \\frac{1 + 5 - 3}{3}\\right) = (1; 1)$.',
         },
         {
           kind: 'warning',
@@ -154,9 +153,9 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Így kérdezik',
           items: [
-            'I. rész: két pont távolsága, felezőpont vagy súlypont koordinátái, egy vektor koordinátái.',
+            'I. rész: két pont távolsága, felezőpont koordinátái, egy vektor koordinátái (emelt szinten a súlypont is).',
             'Hiányzó csúcs kiszámítása: például adott a szakasz egyik végpontja és a felezőpontja, add meg a másik végpontot.',
-            'II. rész: háromszög vagy négyszög adatai (oldalak, kerület, súlypont, terület) koordinátákkal megadott csúcsokból.',
+            'II. rész: háromszög vagy négyszög adatai (oldalak, kerület, terület; emelt szinten súlypont) koordinátákkal megadott csúcsokból.',
           ],
         },
         {
@@ -333,7 +332,7 @@ const unit: GuideUnit = {
           title: 'Így kérdezik',
           items: [
             'Írja fel az adott két ponton átmenő egyenes egyenletét.',
-            'Adja meg az egyenes meredekségét, egy irányvektorát vagy egy normálvektorát az egyenlete alapján.',
+            'Adja meg az egyenes meredekségét az egyenlete alapján (emelt szinten egy irányvektorát vagy normálvektorát is).',
             'Döntse el, hogy egy adott pont rajta van-e az egyenesen (helyettesítsd be).',
             'II. rész: háromszög oldalegyeneseinek felírása, majd magasságvonal, súlyvonal, oldalfelező merőleges.',
           ],
@@ -448,13 +447,6 @@ const unit: GuideUnit = {
             {
               label: 'meredekséggel',
               cells: ['$m_1 = m_2$', '$m_1 \\cdot m_2 = -1$'],
-            },
-            {
-              label: 'normálvektorral',
-              cells: [
-                '$\\mathbf{n}_1 = \\lambda\\mathbf{n}_2$',
-                '$\\mathbf{n}_1 \\cdot \\mathbf{n}_2 = 0$',
-              ],
             },
             {
               label: 'példa az $e$: $2x + 3y = 6$ egyenesre',

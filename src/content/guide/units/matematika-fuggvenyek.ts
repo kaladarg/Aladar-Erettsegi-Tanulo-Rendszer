@@ -410,7 +410,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A logaritmus' },
         {
           kind: 'text',
-          text: '$\\log_2 8 = 3$, mert $2^3 = 8$. $\\lg$ a 10-es alapú, $\\ln$ az $e \\approx 2{,}718$ alapú logaritmus. Csak **pozitív** számnak van logaritmusa, és az alap is pozitív, 1-től különböző.',
+          text: '$\\log_2 8 = 3$, mert $2^3 = 8$. $\\lg$ a 10-es alapú logaritmus. Csak **pozitív** számnak van logaritmusa, és az alap is pozitív, 1-től különböző.',
         },
         {
           kind: 'formula',
@@ -523,7 +523,7 @@ const unit: GuideUnit = {
             "Ha $f'(x) > 0$ egy intervallumon, ott $f$ **nő**; ha $f'(x) < 0$, **csökken**.",
             "Szélsőérték ott lehet, ahol $f'(x) = 0$, és a derivált **előjelet vált** (+ → −: maximum, − → +: minimum).",
             "Érintő egyenlete az $x_0$ helyen: $y - f(x_0) = f'(x_0)(x - x_0)$.",
-            "Alapderiváltak: $(x^n)' = n x^{n-1}$, $(\\sin x)' = \\cos x$, $(\\cos x)' = -\\sin x$, $(e^x)' = e^x$, $(\\ln x)' = \\frac{1}{x}$.",
+            "Alapderiváltak: $(x^n)' = n x^{n-1}$, $(\\sin x)' = \\cos x$, $(\\cos x)' = -\\sin x$.",
           ],
         },
         {
