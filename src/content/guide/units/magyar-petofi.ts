@@ -9,22 +9,22 @@ const unit: GuideUnit = {
   subject: 'magyar',
   order: 50,
   title: 'Petőfi Sándor életműve',
-  requirementRef: 'Életművek: Petőfi Sándor',
+  requirementRef:
+    '2.1 Szerzők, művek, 1. témakör: Életművek a magyar irodalomból. Kötelező szerzők',
   intro:
     'A magyar romantika legnépszerűbb költője: a népies dal és a tájleíró vers, a Júlia-versek, a két nagy elbeszélő költemény, majd a forradalmi és látnoki líra. Életút, főbb művek, értelmezési szempontok és a műelemzés menete.',
   requirementSource:
-    'A témakör az érettségi középszintű és emelt szintű követelményeit követi (Petőfi Sándor életműve). A pontos művek és elvárások listáját ellenőrizd a hivatalos vizsgakövetelményben és a tanárod listáján.',
+    'A követelmények az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (2.1 Szerzők, művek, 1. témakör). A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   pages: [
     {
       id: 'petofi-eletut-palyaszakaszok',
       subject: 'magyar',
       unitId: 'petofi',
       title: 'Petőfi életútja és pályaszakaszai',
-      level: 'kozep',
+      level: 'emelt',
       requirement: {
-        kozep: 'Petőfi Sándor életútja, költészetének fő szakaszai és témakörei',
         emelt:
-          'Petőfi pályájának alakulása, költészetének helye a magyar irodalomban és a romantikában',
+          'Az életút, az életmű legjelentősebb tényei; kronológiai tájékozottság; a pályaszakaszokat jellemző főbb témák és kérdésfeltevések; a pályaképre ható irányzatok és szellemi kötődések.',
       },
       minutes: 9,
       summary: [
@@ -53,7 +53,7 @@ const unit: GuideUnit = {
             },
             {
               date: '1846',
-              text: 'Megalakul a Tízek Társasága; ekkor írja az *Egy gondolat bánt engemet* című költeményt.',
+              text: 'Megalakul a Tízek Társasága, a baráti írókör; a szervezésben Petőfi és Vahot Imre neve is szerepel.',
             },
             {
               date: '1847',
@@ -77,7 +77,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: '1846-ban baráti írókkal megalakította a **Tízek Társaságát** (tagja volt például Jókai Mór); ez a baráti kör a fiatal írók közös fellépését szolgálta. 1847-től szoros barátság fűzte **Arany Jánoshoz**: Petőfi lelkesen köszöntötte a *Toldi*t.',
+          text: '1846-ban baráti írók köre alakult **Tízek Társasága** néven (tagja volt például Jókai Mór); a szervezésben Petőfi mellett Vahot Imre neve is szerepel. A baráti kör a fiatal írók közös fellépését szolgálta. 1847-től szoros barátság fűzte **Arany Jánoshoz**: Petőfi lelkesen köszöntötte a *Toldi*t.',
         },
         { kind: 'heading', text: 'Szendrey Júlia és az érett líra' },
         {
@@ -203,9 +203,9 @@ const unit: GuideUnit = {
       level: 'kozep',
       requirement: {
         kozep:
-          'Petőfi népies költészete (népies dalok), tájleíró költészete (Az alföld, A Tisza) és szerelmi lírája (Szeptember végén)',
+          'Lírai művek értelmezése: a népies dalok, a tájleíró versek (Az alföld, A Tisza) és a Szeptember végén; műrészletek értelmezése és memoriterek; a művek kapcsolatai és elhelyezése az életműben.',
         emelt:
-          'A népiesség és a tájköltészet, a szerelmi líra értelmezése, a kötődés a romantikához',
+          'Kötetek, ciklusok, témák, motívumok; a művek hatása, fogadtatása egy-két példa alapján.',
       },
       minutes: 12,
       summary: [
@@ -259,7 +259,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Az alföld (1844)' },
         {
           kind: 'text',
-          text: 'A vers a szülőföld dicsérete. Az első szakasz egy **elutasítással** kezdődik: *„Mit nekem te zordon Kárpátoknak / Fenyvesekkel vadregényes tája!”* A Kárpátok a romantika **fenséges** tája, de a költő az **Alföldet** választja. Az alföldi tájon a **szabadság** és a **végtelen** érzése, a pusztai élet apró képei (nyáj, kút, a délibáb) és a személyes emlékek kapcsolódnak össze. A vers a szülőföldhöz való **személyes kötődést** mutatja: az Alföld a költő otthona és költészetének forrása.',
+          text: 'A vers a szülőföld dicsérete. Az első szakasz egy **elutasítással** kezdődik: a költő a Kárpátokról mond le. A Kárpátok a romantika **fenséges** tája, de a költő az **Alföldet** választja. Az alföldi tájon a **szabadság** és a **végtelen** érzése, a pusztai élet apró képei (nyáj, kút, a délibáb) és a személyes emlékek kapcsolódnak össze. A vers a szülőföldhöz való **személyes kötődést** mutatja: az Alföld a költő otthona és költészetének forrása.',
         },
         {
           kind: 'keypoints',
@@ -353,7 +353,7 @@ const unit: GuideUnit = {
           options: ['A Tisza', 'Szeptember végén', 'Az alföld', 'Nemzeti dal'],
           answer: 2,
           explanation:
-            '*Az alföld* nyitánya: „Mit nekem te zordon Kárpátoknak…”; a költő az Alföldet választja.',
+            '*Az alföld* nyitánya: a költő elutasítja a Kárpátokat; az Alföldet választja.',
         },
         {
           question: 'Melyik vers a Júlia-versek közé tartozik?',
@@ -406,8 +406,10 @@ const unit: GuideUnit = {
       title: 'Elbeszélő költészet: A helység kalapácsa és a János vitéz',
       level: 'kozep',
       requirement: {
-        kozep: 'Petőfi elbeszélő költészete: A helység kalapácsa, János vitéz',
-        emelt: 'A két elbeszélő költemény műfaji, szerkezeti és hangnemi összehasonlítása',
+        kozep:
+          'Az elbeszélő művek (A helység kalapácsa, János vitéz) értelmezése: téma, műfaj, kompozíció, jellemző motívumok; a művek elhelyezése az életműben és a korszakban; műrészletek értelmezése.',
+        emelt:
+          'A művekben felvetett kérdések gondolati, filozófiai és esztétikai vonatkozásai; különféle kritikák, interpretációk.',
       },
       minutes: 11,
       summary: [
@@ -569,8 +571,9 @@ const unit: GuideUnit = {
       level: 'kozep',
       requirement: {
         kozep:
-          'Petőfi forradalmi, látnoki költészete: Nemzeti dal, A XIX. század költői, Egy gondolat bánt engemet',
-        emelt: 'A költői szerepvállalás, a világszabadság eszménye, a vátesz-költő kérdése',
+          'A forradalmi és látnoki művek (Nemzeti dal, A XIX. század költői, Egy gondolat bánt engemet) értelmezése: téma, kifejezésmód, jellemző motívumok; memoriterek szöveghű előadása; a művekben felvetett kérdések történeti, társadalmi vonatkozásai.',
+        emelt:
+          'A pályaképre ható irányzatok és szellemi kötődések; a művekben felvetett kérdések gondolati, esztétikai vonatkozásai; a szerző hatása és utóélete.',
       },
       minutes: 12,
       summary: [
@@ -579,9 +582,9 @@ const unit: GuideUnit = {
           title: 'Öt perc alatt',
           items: [
             'A forradalmi líra Petőfi **közéleti szerepvállalásából** nő ki: a költő nemcsak az érzéseit, hanem a közösség kérdéseit is megszólaltatja.',
-            '*Egy gondolat bánt engemet* (1846): a költő a **szabadságért vívott harcban** akar meghalni, nem ágyban, párnák közt.',
+            '*Egy gondolat bánt engemet* (keletkezési ideje a forrásokban eltér): a költő a **szabadságért vívott harcban** akar meghalni, nem ágyban, párnák közt.',
             '*A XIX. század költői* (1847): a **költő hivatásáról** szól; a kor költője a nép és az új eszmék szolgálatában áll.',
-            '*Nemzeti dal* (1848. március 15.): a **forradalom himnusza**, refrénje az eskü: *„Esküszünk, esküszünk, hogy rabok tovább nem leszünk!”*',
+            '*Nemzeti dal* (1848. március 15.): a **forradalom himnusza**, refrénje az eskü: a közösség megesküszik, hogy nem lesz rab',
             'A **látnok** (vátesz) költő előre jelzi a jövőt, és vezeti a közösséget.',
           ],
         },
@@ -609,14 +612,14 @@ const unit: GuideUnit = {
         },
       ],
       details: [
-        { kind: 'heading', text: 'Egy gondolat bánt engemet (1846)' },
+        { kind: 'heading', text: 'Egy gondolat bánt engemet' },
         {
           kind: 'text',
-          text: 'A vers híres nyitánya: *„Egy gondolat bánt engemet: / Ágyban, párnák közt halni meg!”* A költő nem a békés, hétköznapi halált kívánja, hanem a **hősi halált a szabadságért**. A párnák a kényelmes, tétlen élet jelképei; a csatatér a vállalt küzdelemé. A vers az **ellentétre** épül: a nyugalmas, értelmetlen halál és az áldozatos, értelmes halál. Közben megjelenik a **világszabadság** gondolata is: a harc a szabadság egyetemes ügye.',
+          text: 'A vers híres nyitánya a kényelmes, ágyban, párnák közt bekövetkező halált utasítja el A költő nem a békés, hétköznapi halált kívánja, hanem a **hősi halált a szabadságért**. A párnák a kényelmes, tétlen élet jelképei; a csatatér a vállalt küzdelemé. A vers az **ellentétre** épül: a nyugalmas, értelmetlen halál és az áldozatos, értelmes halál. Közben megjelenik a **világszabadság** gondolata is: a harc a szabadság egyetemes ügye.',
         },
         {
           kind: 'text',
-          text: 'Egyik legismertebb sora: *„Ott essem el én a harc mezején…”*. A költői szerepvállalás tehát nemcsak elképzelés: a költő a **halálát is a közösség ügyének szenteli**. A vers prófétai jellegű, mert az életút végét előre megsejteti.',
+          text: 'Egyik legismertebb gondolata, hogy a költő a harc mezején akar elesni. A költői szerepvállalás tehát nemcsak elképzelés: a költő a **halálát is a közösség ügyének szenteli**. A vers prófétai jellegű, mert az életút végét előre megsejteti.',
         },
         { kind: 'heading', text: 'A XIX. század költői (1847)' },
         {
@@ -626,7 +629,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Nemzeti dal (1848)' },
         {
           kind: 'text',
-          text: 'A *Nemzeti dal* **1848. március 15-én** a forradalom jelképévé vált: a márciusi ifjak cenzúra nélkül kinyomtatták. A cím a közösségi műfajra utal. A vers **felszólítással** indul: *„Talpra magyar, hí a haza!”*. Ezt követi a **döntési kérdés**: *„Rabok legyünk vagy szabadok? / Ez a kérdés, válasszatok!”*. A **refrén** (az eskü) a közösség válasza: a vers így a költő és a nép **párbeszéde**.',
+          text: 'A *Nemzeti dal* **1848. március 15-én** a forradalom jelképévé vált: a márciusi ifjak cenzúra nélkül kinyomtatták. A cím a közösségi műfajra utal. A vers **felszólítással** indul: a haza a magyarokat talpra hívja. Ezt követi a **döntési kérdés**: *„Rabok legyünk vagy szabadok? / Ez a kérdés, válasszatok!”*. A **refrén** (az eskü) a közösség válasza: a vers így a költő és a nép **párbeszéde**.',
         },
         {
           kind: 'keypoints',
@@ -696,8 +699,7 @@ const unit: GuideUnit = {
           question: 'Melyik vers refrénje az eskü?',
           options: ['Az alföld', 'Szeptember végén', 'A Tisza', 'Nemzeti dal'],
           answer: 3,
-          explanation:
-            'A *Nemzeti dal* refrénje a közösség esküje: „Esküszünk, hogy rabok tovább nem leszünk”.',
+          explanation: 'A *Nemzeti dal* refrénje a közösség esküje, a rabság elutasítása.',
         },
         {
           question: 'Mit kíván a költő az *Egy gondolat bánt engemet* című versben?',
@@ -761,7 +763,8 @@ const unit: GuideUnit = {
       title: 'Világszabadság, Az apostol, romantika és verselés',
       level: 'emelt',
       requirement: {
-        emelt: 'A világszabadság eszménye, Az apostol, Petőfi és a romantika viszonya, verselés',
+        emelt:
+          'A pályaképre ható irányzatok és szellemi kötődések (romantika); a művekben felvetett gondolati, filozófiai és esztétikai kérdések; a szerző hatása és utóélete.',
       },
       minutes: 10,
       summary: [
@@ -773,7 +776,7 @@ const unit: GuideUnit = {
             '*Az apostol* (1848) hosszú, **elbeszélő–lírai költemény**: hőse **Szilveszter**, aki a nép szabadságáért küzd; a mű a költő önkifejezése is.',
             'Petőfi a **romantika** nagy költője, de a romantikát **népiességgel** és hétköznapi nyelvvel ötvözi.',
             '**Verselés**: a Petőfi-versek többsége **ütemhangsúlyos** (népies ritmus), az időmértékes verselés az antik eposzok hagyománya (hexameter).',
-            'A *Nemzeti dal* ütemhangsúlyos **felező nyolcas** (4+4), a *János vitéz* **felező tizenkettes** (6+6).',
+            'A *János vitéz* ütemhangsúlyos **felező tizenkettes** (6+6) sorokban íródott.',
           ],
         },
         {
@@ -791,7 +794,7 @@ const unit: GuideUnit = {
               term: 'időmértékes verselés',
               text: 'A ritmust a hosszú és rövid szótagok szabályos sorrendje adja (például az antik eposzok hexametere).',
             },
-            { term: 'felező nyolcas', text: 'Nyolc szótagos, 4+4 tagolású sor (*Nemzeti dal*).' },
+            { term: 'felező nyolcas', text: 'Nyolc szótagos, 4+4 tagolású sor.' },
             {
               term: 'felező tizenkettes',
               text: 'Tizenkét szótagos, 6+6 tagolású sor (*János vitéz*).',
@@ -900,15 +903,11 @@ const unit: GuideUnit = {
           explanation: 'Az apostol hőse Szilveszter, aki a nép szabadságáért harcol.',
         },
         {
-          question: 'Milyen verselésű a *Nemzeti dal*?',
-          options: [
-            'időmértékes hexameter',
-            'ütemhangsúlyos felező nyolcas',
-            'szapphói strófa',
-            'alkaioszi strófa',
-          ],
+          question: 'Milyen műfajú a *Nemzeti dal*?',
+          options: ['elégia', 'kardal és induló', 'komikus eposz', 'verses népmese'],
           answer: 1,
-          explanation: 'A *Nemzeti dal* 8 szótagos, 4+4 tagolású ütemhangsúlyos sorokból áll.',
+          explanation:
+            'A *Nemzeti dal* induló és kardal: közösségi, felszólító jellegű költemény refrénnel.',
         },
         {
           question: 'Melyik Petőfi-mű az eposz paródiája?',
