@@ -27,13 +27,16 @@ export function LevelBadge({ page }: { page: GuidePage }) {
   return <Badge tone="success">{t('guide.levelKozep')}</Badge>;
 }
 
+// Subjects without written units yet stay out of the switcher.
+const SUBJECTS_WITH_UNITS = GUIDE_SUBJECTS.filter((s) => GUIDE_UNITS.some((u) => u.subject === s));
+
 export function GuideHubPage() {
   usePageTitle(t('guide.title'));
   const chosen = useSettings((s) => s.settings.subjects);
   const [params, setParams] = useSearchParams();
   const subject: GuideSubject =
-    GUIDE_SUBJECTS.find((s) => s === params.get('targy')) ??
-    GUIDE_SUBJECTS.find((s) => chosen.includes(s)) ??
+    SUBJECTS_WITH_UNITS.find((s) => s === params.get('targy')) ??
+    SUBJECTS_WITH_UNITS.find((s) => chosen.includes(s)) ??
     'tortenelem';
   const [view, setView] = useLevelView(subject);
   const progress = useGuideProgress();
@@ -47,7 +50,7 @@ export function GuideHubPage() {
           label={t('guide.subject')}
           value={subject}
           onValueChange={(value) => setParams({ targy: value }, { replace: true })}
-          options={GUIDE_SUBJECTS.map((id) => {
+          options={SUBJECTS_WITH_UNITS.map((id) => {
             const info = findSubject(id);
             return { value: id, label: info ? subjectShortName(info) : id };
           })}
