@@ -40,12 +40,7 @@ const unit: GuideUnit = {
         'Bocskai István',
         'Zrínyi Miklós (a költő és hadvezér)',
       ],
-      emelt: [
-        'Tomori Pál',
-        'Fráter György',
-        'Báthori István',
-        'I. Rákóczi György',
-      ],
+      emelt: ['Tomori Pál', 'Fráter György', 'Báthori István', 'I. Rákóczi György'],
     },
     dates: {
       kozep: [

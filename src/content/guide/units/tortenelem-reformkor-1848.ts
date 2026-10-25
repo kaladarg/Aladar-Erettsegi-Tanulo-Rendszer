@@ -804,7 +804,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Az udvar és a nemzetiségek (1848 nyara)' },
         {
           kind: 'text',
-          text: 'A júliusban Pesten összeült **népképviseleti országgyűlés** Kossuth javaslatára 200 ezer újonc kiállítását és 42 millió forint hitelt szavazott meg a haza védelmére. Közben a délvidéki **szerbek** fegyveres felkelésbe kezdtek, a horvát bán, **Jelačić** pedig nyíltan szembefordult a magyar kormánnyal. Az udvar egyre nyíltabban támogatta őket.',
+          text: 'A júliusban Pesten összeült **népképviseleti országgyűlés** Kossuth javaslatára 200 ezer újonc kiállítását és 42 millió forint hitelt szavazott meg a haza védelmére. Közben a délvidéki **szerbek** fegyveres felkelésbe kezdtek, a horvát bán pedig nyíltan szembefordult a magyar kormánnyal. Az udvar egyre nyíltabban támogatta őket.',
         },
         { kind: 'heading', text: 'Önvédelmi harc (1848 ősze és tele)' },
         {
@@ -821,7 +821,7 @@ const unit: GuideUnit = {
             },
             {
               date: '1848. szeptember 29.',
-              text: 'Pákozdi csata: a magyar sereg megállítja Jelačićot.',
+              text: 'Pákozdi csata: a magyar sereg megállítja a horvát bánt.',
             },
             {
               date: '1848. október 30.',
