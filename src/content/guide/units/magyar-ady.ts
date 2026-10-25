@@ -386,7 +386,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: '*Párisban járt az ősz* (1906): egy párizsi nyári pillanatba beleszövődik az ősz, azaz az elmúlás. A szerelem és a halál közel kerül egymáshoz: a szerelem is mulandó, és a kapcsolat végét előlegezi.',
+          text: '*Párisban járt az ősz* (1907, *Vér és arany*): egy párizsi nyári pillanatba beleszövődik az ősz, azaz az elmúlás. A szerelem és a halál közel kerül egymáshoz: a szerelem is mulandó, és a kapcsolat végét előlegezi.',
         },
         {
           kind: 'text',
@@ -718,7 +718,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Ember az embertelenségben' },
         {
           kind: 'text',
-          text: 'A vers (1916) a háború **embertelen világában** kérdezi, mit jelent embernek maradni. A cím is ellentétre épül (**ember – embertelenség**), ami a vers gondolati magja. A beszélő nem hősként, hanem emberként, felelősséggel és fájdalommal áll a világ előtt: az emberség vállalása a legfőbb érték.',
+          text: 'A vers a háború éveiben született, és a háború **embertelen világában** kérdezi, mit jelent embernek maradni. A cím is ellentétre épül (**ember – embertelenség**), ami a vers gondolati magja. A beszélő nem hősként, hanem emberként, felelősséggel és fájdalommal áll a világ előtt: az emberség vállalása a legfőbb érték.',
         },
         {
           kind: 'text',
@@ -874,7 +874,7 @@ const unit: GuideUnit = {
             { date: '1910', text: '*A Minden-Titkok versei*.' },
             {
               date: '1912',
-              text: '*A menekülő Élet*: ebben a körben a szakítás, az *Elbocsátó, szép üzenet* is szerepel.',
+              text: '*A menekülő Élet*: a Léda-kapcsolat lezárásának idején jelent meg.',
             },
             { date: '1918', text: '*A halottak élén*: a háborús versek kötete.' },
           ],

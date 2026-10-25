@@ -44,14 +44,14 @@ const unit: GuideUnit = {
           items: [
             { date: '1817', text: 'Nagyszalontán született.' },
             {
-              date: '1846',
-              text: 'A *Toldi* elnyeri a Kisfaludy Társaság pályázatának díját; 1847-ben megjelenik.',
+              date: '1847',
+              text: 'A *Toldi* (1846-ban íródott) elnyeri a Kisfaludy Társaság pályázatának díját, és megjelenik.',
             },
             { date: '1847', text: 'Petőfi és Arany barátsága, a költői levélváltás kezdete.' },
             { date: '1851', text: 'Nagykőrösre költözik, a református gimnázium tanára.' },
             { date: '1860', text: 'Pestre költözik; a Kisfaludy Társaság igazgatója.' },
             { date: '1865', text: 'Az MTA titkára lesz.' },
-            { date: '1877–1882', text: 'Az *Őszikék* versei.' },
+            { date: '1877–1880', text: 'Az *Őszikék* versei.' },
             { date: '1882', text: 'Meghal Budapesten.' },
           ],
         },
@@ -64,7 +64,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: '1845-ben a Kisfaludy Társaság pályázatára komikus eposzt írt (*Az elveszett alkotmány*), 1846-ban a *Toldi*val nyert. Ez emelte országos hírű költővé; Petőfi lelkes verssel köszöntötte, és szoros barátság alakult ki közöttük.',
+          text: '1845-ben a Kisfaludy Társaság pályázatára komikus eposzt írt (*Az elveszett alkotmány*), a *Toldit* 1846-ban írta, a díjat 1847 februárjában nyerte el. Ez emelte országos hírű költővé; Petőfi lelkes verssel köszöntötte, és szoros barátság alakult ki közöttük.',
         },
         { kind: 'heading', text: 'Nagykőrös: a hallgatás és a balladák évtizede' },
         {
@@ -74,12 +74,12 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Pest: intézmények, eposz, fordítás' },
         {
           kind: 'text',
-          text: '1860-tól Pesten él: a **Kisfaludy Társaság** igazgatója, szerkesztője az irodalmi folyóiratoknak, 1865-től az **MTA titkára**. Ebben az időszakban elsősorban a nagyepikai terv foglalkoztatja (*Buda halála*, a hun mondakör) és a **műfordítás**; lefordította többek között Shakespeare néhány drámáját (például a *Hamlet*et). A pályán belül egyre inkább háttérbe szorul a költői alkotás az irodalomszervezés javára.',
+          text: '1860-tól Pesten él: a **Kisfaludy Társaság** igazgatója, szerkesztője az irodalmi folyóiratoknak, 1865-től az **MTA titkára**. Ebben az időszakban elsősorban a nagyepikai terv foglalkoztatja (*Buda halála*, a hun mondakör) és a **műfordítás**; később több Shakespeare-drámát is lefordított (például a *Hamlet*et). A pályán belül egyre inkább háttérbe szorul a költői alkotás az irodalomszervezés javára.',
         },
         { kind: 'heading', text: 'Az öregkor: Őszikék' },
         {
           kind: 'text',
-          text: 'Az 1870-es évek második felében visszavonult, a **Margitszigeten** töltött éveiben újra verselni kezdett. Az **Őszikék** (1877–1882) versei az öregedő költő számvetései: a mulandóság, az emlékezés, a költői pálya értékelése, humor és keserűség keveréke. A ciklus 1883-ban, a költő halála után jelent meg, ezért posztumusz kötetnek tekintjük.',
+          text: 'Az 1870-es évek második felében visszavonult, a **Margitszigeten** töltött éveiben újra verselni kezdett. Az **Őszikék** (1877–1880) versei az öregedő költő számvetései: a mulandóság, az emlékezés, a költői pálya értékelése, humor és keserűség keveréke. A versek csak részben jelentek meg a költő életében (15 vers az *Összes Munkák*ban); a teljes ciklus a halála után, a hagyatékból látott napvilágot.',
         },
         {
           kind: 'compare',
@@ -162,7 +162,7 @@ const unit: GuideUnit = {
           options: ['Versek (1844)', 'Őszikék', 'Toldi', 'Nemzeti dal'],
           answer: 1,
           explanation:
-            'Az *Őszikék* az 1877–1882 között írt öregkori versek gyűjteménye; a *Versek* Petőfi első kötete.',
+            'Az *Őszikék* az 1877–1880 között írt öregkori versek gyűjteménye; a *Versek* Petőfi első kötete.',
         },
         {
           question: 'Melyik volt Arany első nagy sikere, amely országos hírűvé tette?',
@@ -392,7 +392,7 @@ const unit: GuideUnit = {
             'A **ballada** lírai-epikai-drámai műnemi határokat átlépő műfaj: tragikus tárgyú, tömör, kihagyásos (**balladai homály**), párbeszédes, drámai csúcsponttal.',
             '*Ágnes asszony* (1853): **bűn és bűnhődés**, lelkiismeret, megőrülés; a vérfoltos lepedő mosása.',
             '*Szondi két apródja* (1856): Szondi György **drégelyi hőstette** (1552) és a megtört hűségű apródok szembeállítása Ali pasával: hűség és hatalom.',
-            '*A walesi bárdok* (1857): a bárdok megtagadják I. Edward dicséretét; a **költő és a hatalom** viszonya, rejtett szabadságharc utáni utalással.',
+            '*A walesi bárdok* (1857–1861, megjelent 1863): a bárdok megtagadják I. Edward dicséretét; a **költő és a hatalom** viszonya, rejtett szabadságharc utáni utalással.',
             '*Tengeri-hántás* (1877): késői, falusi környezetű, balladás hangulatú alkotás.',
           ],
         },
@@ -438,7 +438,7 @@ const unit: GuideUnit = {
           kind: 'text',
           text: 'A történelmi háttér: **1552, Drégely vára**. **Szondi György** a vár kapitánya, a török ellen hősi halált halt. A ballada **Ali budai pasa** sátra előtt játszódik: a pasa az apródokat arra kényszerítené, hogy őt dicsérjék, ők azonban **Szondi emlékét éneklik**. A mű szerkezete a **szembeállításra** épül: a hűséges apródok és a hatalmas, de dicséretre éhes pasa, a keresztény–török ellentét mellett az **erkölcsi nagyság** és a puszta erő különbsége. Az apródok éneke egyben **hőskölteményt** idéz meg: az emlékezet erkölcsi erő.',
         },
-        { kind: 'heading', text: 'A walesi bárdok (1857): költő és hatalom' },
+        { kind: 'heading', text: 'A walesi bárdok (1857–1861): költő és hatalom' },
         {
           kind: 'text',
           text: 'A ballada háttere a **I. Edward** angol király által meghódított Wales. A király lakomáján a **walesi bárdoktól** dicsőítő éneket várnak, de a bárdok **megtagadják a hízelgést**, és vállalják a halált is. A király a bárdokat elpusztítja, a vers a **hatalom bűnét** és a művész szabadságát állítja szembe. A mű az 1848–49 utáni **Habsburg-elnyomás** idején keletkezett, és **allegóriaként** olvasható: a magyar költők sem dicsérik a hatalmat. A cenzúra miatt a közvetlen politikai kimondás nem volt lehetséges.',
@@ -460,7 +460,7 @@ const unit: GuideUnit = {
               ],
             },
             {
-              label: 'A walesi bárdok (1857)',
+              label: 'A walesi bárdok (1857–1861)',
               cells: ['bárdok és király; allegória', 'a költő nem hódol a zsarnokság előtt'],
             },
           ],
@@ -487,7 +487,7 @@ const unit: GuideUnit = {
           problem:
             'Elemezd *A walesi bárdok* című balladát a költő és a hatalom viszonya szempontjából.',
           solution:
-            '**Bevezetés**: 1857, történelmi ballada; I. Edward és a walesi bárdok, allegorikus olvasat az 1848–49 utáni elnyomásról.\n**Szerkezet**: a király és a lakoma, a dicséret elvárása, a bárdok megtagadása és sorsa, a király magára marad.\n**Képek, ellentétek**: király és bárdok, hatalom és erkölcsi erő, dicsőítés és igazmondás.\n**Hangnem**: komor, drámai, ünnepélyes.\n**Értelmezés**: a költő nem szolgálja a zsarnokot; a vers a hallgatás és a halál árán is vállalt igazság mellett áll.\n**Zárás**: a ballada az 1850-es évek magyar helyzetére is vonatkozik, ezért a hatalom–művész viszony időtlen példája.',
+            '**Bevezetés**: 1857–1861 között készült, történelmi ballada; I. Edward és a walesi bárdok, allegorikus olvasat az 1848–49 utáni elnyomásról.\n**Szerkezet**: a király és a lakoma, a dicséret elvárása, a bárdok megtagadása és sorsa, a király magára marad.\n**Képek, ellentétek**: király és bárdok, hatalom és erkölcsi erő, dicsőítés és igazmondás.\n**Hangnem**: komor, drámai, ünnepélyes.\n**Értelmezés**: a költő nem szolgálja a zsarnokot; a vers a hallgatás és a halál árán is vállalt igazság mellett áll.\n**Zárás**: a ballada az 1850-es évek magyar helyzetére is vonatkozik, ezért a hatalom–művész viszony időtlen példája.',
         },
         {
           kind: 'warning',
@@ -762,7 +762,7 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Öt perc alatt',
           items: [
-            'Az **Őszikék** (1877–1882) az **öregkor költészete**: számvetés, emlékezés, a mulandóság és a költői pálya értékelése.',
+            'Az **Őszikék** (1877–1880) az **öregkor költészete**: számvetés, emlékezés, a mulandóság és a költői pálya értékelése.',
             'A versek **személyesek**, közvetlen hangúak, gyakran **humorral és iróniával** oldott fájdalmat fejeznek ki.',
             'Az *Epilógus* (1877) a költői pálya lezárása: a költő visszatekint az életművére, és számot vet a költészet értelmével.',
             'A késői versek **kötetlenebb**, szabadabb szerkezetűek, a nyelvük egyszerű, mégis sűrített.',
@@ -774,7 +774,7 @@ const unit: GuideUnit = {
           items: [
             {
               term: 'Őszikék',
-              text: 'Arany öregkori versgyűjteménye (1877–1882); a költő halála után jelent meg.',
+              text: 'Arany öregkori versgyűjteménye (1877–1880); a teljes ciklus a költő halála után jelent meg.',
             },
             {
               term: 'számvető költemény',
