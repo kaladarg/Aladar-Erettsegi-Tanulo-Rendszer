@@ -184,6 +184,15 @@ export interface ReviewMarkRow extends ReviewMark {
   id?: number;
 }
 
+/** Study guide: when a page was read and the best self-check result, one row per page. */
+export interface GuideProgressRow {
+  pageId: string;
+  readAt?: number;
+  quizCorrect?: number;
+  quizTotal?: number;
+  updatedAt: number;
+}
+
 /** An essay outline from the outline trainer, one per task. */
 export interface EssayOutlineRow {
   /** `<examId>/<taskId>` */
@@ -225,6 +234,7 @@ export class AppDatabase extends Dexie {
   importedAudio!: EntityTable<ImportedAudioRow, 'key'>;
   essayOutlines!: EntityTable<EssayOutlineRow, 'key'>;
   reviewMarks!: EntityTable<ReviewMarkRow, 'id'>;
+  guideProgress!: EntityTable<GuideProgressRow, 'pageId'>;
 
   constructor(name = 'erettsegi-gyakorlo') {
     super(name);
@@ -269,6 +279,8 @@ export class AppDatabase extends Dexie {
     this.version(6).stores({ essayOutlines: 'key, updatedAt' });
     // Version 7: the student's decisions on the Ismétlés list.
     this.version(7).stores({ reviewMarks: '++id, [examId+taskId], time' });
+    // Version 8: study guide progress.
+    this.version(8).stores({ guideProgress: 'pageId, updatedAt' });
   }
 }
 
@@ -295,6 +307,7 @@ export const BACKUP_TABLES = [
   'cardEvents',
   'essayOutlines',
   'reviewMarks',
+  'guideProgress',
 ] as const;
 export type BackupTable = (typeof BACKUP_TABLES)[number];
 

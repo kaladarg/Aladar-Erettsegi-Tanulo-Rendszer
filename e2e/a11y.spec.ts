@@ -47,6 +47,13 @@ const PAGES = [
     'Német nyelv – Mintafeladatsor – Német nyelv, középszint',
   ],
   ['/gyakorlas/kartyak?targy=angol', 'Tanulókártyák'],
+  ['/tananyag?szint=emelt', 'Tananyag'],
+  [
+    '/tananyag/szabadsagharc-esemenyei?resz=reszletesen&szint=emelt',
+    'A szabadságharc főbb eseményei',
+  ],
+  ['/tananyag/alapfuggvenyek-transzformaciok?szint=emelt', 'Alapfüggvények és transzformációk'],
+  ['/tananyag/fuggveny-fogalma?resz=vizsgan', 'A függvény fogalma és tulajdonságai'],
 ] as const;
 
 const scan = async (page: Page, label: string) => {

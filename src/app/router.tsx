@@ -168,6 +168,18 @@ export function createRouter() {
           }),
         },
         {
+          path: 'tananyag',
+          lazy: async () => ({
+            Component: (await import('@/features/guide/GuideHubPage')).GuideHubPage,
+          }),
+        },
+        {
+          path: 'tananyag/:pageId',
+          lazy: async () => ({
+            Component: (await import('@/features/guide/GuideReaderPage')).GuideReaderPage,
+          }),
+        },
+        {
           path: 'tanaroknak',
           lazy: async () => ({
             Component: (await import('@/features/teacher/TeacherPage')).TeacherPage,

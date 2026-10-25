@@ -1,4 +1,5 @@
 import {
+  BookOpen,
   CalendarDays,
   Dices,
   ChevronRight,
@@ -84,6 +85,13 @@ export function PracticeHubPage() {
     <>
       <PageHeader title={t('practice.title')} description={t('practice.intro')} />
       <HubGroup id="hub-daily" title={t('practice.hub.groupDaily')}>
+        <HubCard
+          to="/tananyag"
+          tint="teal"
+          icon={<BookOpen />}
+          title={t('practice.hub.guideTitle')}
+          body={t('practice.hub.guideBody')}
+        />
         <HubCard
           to="/gyakorlas/mai-adag"
           tint="indigo"
