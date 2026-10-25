@@ -662,7 +662,7 @@ const unit: GuideUnit = {
           text: 'Térbeli testnél (például négyzet alapú gúla) a keresett szöget keresd egy **derékszögű háromszögben**: az alapélre merőleges magasság és az alap félátlója vagy az oldallap magassága adja.',
         },
       ],
-      topicMatch: ['=trigonometria', 'háromszögek', 'sokszögek', 'hasonló háromszögek'],
+      topicMatch: ['=trigonometria'],
       quiz: [
         {
           question:

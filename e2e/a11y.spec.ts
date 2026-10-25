@@ -54,6 +54,12 @@ const PAGES = [
   ],
   ['/tananyag/alapfuggvenyek-transzformaciok?szint=emelt', 'Alapfüggvények és transzformációk'],
   ['/tananyag/fuggveny-fogalma?resz=vizsgan', 'A függvény fogalma és tulajdonságai'],
+  ['/tananyag?targy=magyar&szint=emelt', 'Tananyag'],
+  [
+    '/tananyag/petofi-nepiesseg-tajleiras-szerelem?resz=vizsgan',
+    'Népiesség, tájleíró költészet és szerelmi líra',
+  ],
+  ['/tananyag/kor-egyenlete?szint=emelt', 'A kör egyenlete'],
 ] as const;
 
 const scan = async (page: Page, label: string) => {

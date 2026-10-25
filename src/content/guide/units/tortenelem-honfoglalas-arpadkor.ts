@@ -577,7 +577,7 @@ const unit: GuideUnit = {
       ],
       topicMatch: [
         'szent) istván',
-        'államszervezet',
+        'magyar államszervezet',
         'középkori magyar egyház',
         'egyházi méltóságok',
       ],

@@ -57,6 +57,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'plot',
+          equalAxes: true,
           title: 'Az A(−2; 1), B(4; 5), C(1; −3) háromszög és súlypontja',
           x: [-4, 6],
           y: [-5, 7],
@@ -226,6 +227,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'plot',
+          equalAxes: true,
           title: 'A P(2; −1) és Q(5; 3) pontokon átmenő egyenes: 4x − 3y = 11',
           x: [-3, 7],
           y: [-5, 5],
@@ -389,6 +391,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'plot',
+          equalAxes: true,
           title: 'Az e: 3x + 4y = 10 egyenes, párhuzamosa és merőlegese a P(5; 5) ponton át',
           x: [-1, 8],
           y: [-2, 8],
@@ -486,7 +489,7 @@ const unit: GuideUnit = {
           text: 'Az **oldalfelező merőleges** felírásához két adat kell: a szakasz felezőpontja (ezen megy át) és a szakasz irányvektora (ez lesz a normálvektora). Ez a kör és a háromszög feladatoknál is előjön.',
         },
       ],
-      topicMatch: ['egyenesek helyzete', 'metszéspont', 'párhuzamos'],
+      topicMatch: ['egyenes egyenlete', 'koordináta-geometria'],
       quiz: [
         {
           question:
@@ -556,6 +559,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'plot',
+          equalAxes: true,
           title: 'A (x − 3)² + (y − 4)² = 20 kör (két félkörből)',
           x: [-2, 8],
           y: [-1, 9],
@@ -722,6 +726,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'plot',
+          equalAxes: true,
           title: 'Az x² + y² = 25 kör, érintője (3; 4)-ben és a szelő y = x + 1',
           x: [-7, 7],
           y: [-7, 7],
@@ -782,6 +787,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'plot',
+          equalAxes: true,
           title: 'Az x² = 8y parabola (p = 4), fókusza és vezéregyenese',
           x: [-8, 8],
           y: [-4, 9],

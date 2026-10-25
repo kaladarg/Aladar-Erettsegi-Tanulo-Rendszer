@@ -201,24 +201,38 @@ function Block({ block }: { block: GuideBlock }) {
 function FunctionPlot({ block }: { block: Extract<GuideBlock, { kind: 'plot' }> }) {
   const titleId = useId();
   const W = 320;
-  const H = 240;
   const [x0, x1] = block.x;
   const [y0, y1] = block.y;
+  // Equal axes keep circles round: the height follows the y range.
+  const H = block.equalAxes ? Math.round((W * (y1 - y0)) / (x1 - x0)) : 240;
   const sx = (x: number) => ((x - x0) / (x1 - x0)) * W;
   const sy = (y: number) => H - ((y - y0) / (y1 - y0)) * H;
+  const visible = (y: number) => Number.isFinite(y) && y >= y0 - (y1 - y0) && y <= y1 + (y1 - y0);
+  /** The x between a and b where the curve starts or stops (e.g. the side of a half circle). */
+  const edge = (fn: (x: number) => number, inside: number, outside: number) => {
+    for (let i = 0; i < 30; i++) {
+      const mid = (inside + outside) / 2;
+      if (visible(fn(mid))) inside = mid;
+      else outside = mid;
+    }
+    return inside;
+  };
   const path = (fn: (x: number) => number) => {
     let d = '';
     let pen = false;
     const steps = 480;
+    const point = (x: number) => `${sx(x).toFixed(1)},${sy(fn(x)).toFixed(1)}`;
     for (let i = 0; i <= steps; i++) {
       const x = x0 + ((x1 - x0) * i) / steps;
-      const y = fn(x);
+      const prev = x0 + ((x1 - x0) * (i - 1)) / steps;
       // Leave gaps where the function is undefined or runs far off the plot.
-      if (!Number.isFinite(y) || y < y0 - (y1 - y0) || y > y1 + (y1 - y0)) {
+      if (!visible(fn(x))) {
+        if (pen) d += `L${point(edge(fn, prev, x))}`;
         pen = false;
         continue;
       }
-      d += `${pen ? 'L' : 'M'}${sx(x).toFixed(1)},${sy(y).toFixed(1)}`;
+      if (!pen && i > 0) d += `M${point(edge(fn, x, prev))}L${point(x)}`;
+      else d += `${pen ? 'L' : 'M'}${point(x)}`;
       pen = true;
     }
     return d;

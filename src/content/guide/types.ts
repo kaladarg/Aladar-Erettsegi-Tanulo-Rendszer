@@ -40,6 +40,8 @@ export type GuideBlock =
       x: [number, number];
       y: [number, number];
       functions: { label: string; fn: (x: number) => number }[];
+      /** Same scale on both axes (circles stay round); the plot's height follows the y range. */
+      equalAxes?: boolean;
       points?: { x: number; y: number; label: string }[];
     } & Leveled)
   | ({ kind: 'example'; title: string; problem: string; solution: string } & Leveled)
