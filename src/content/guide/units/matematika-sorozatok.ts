@@ -9,11 +9,12 @@ const unit: GuideUnit = {
   subject: 'matematika',
   order: 35,
   title: 'Sorozatok',
-  requirementRef: 'Sorozatok',
+  requirementRef:
+    '1.2.1 Fogalmak, tételek és bizonyítások; 2.7.1 Százalékszámítás; 3.3 Sorozatok; 3.3.1 Számtani és mértani sorozatok; 3.3.2 Végtelen mértani sor; 3.3.3 Kamatos kamat, járadékszámítás',
   intro:
     'A sorozat fogalmától a számtani és mértani sorozaton és a kamatos kamaton át, emelt szinten a monotonitásig, korlátosságig, határértékig és a teljes indukcióig.',
   requirementSource:
-    'A matematika témakör az érettségi vizsgakövetelmények (középszint és emelt szint) „Sorozatok” fejezetét követi. Ezt a részt még össze kell vetni a hivatalos dokumentummal; ami emelt szintű, azt külön jelöljük.',
+    'A követelmények az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (1.2.1, 2.7.1, 3.3, 3.3.1, 3.3.2, 3.3.3). A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   pages: [
     {
       id: 'szamtani-sorozat',
@@ -23,8 +24,9 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'A sorozat fogalma, megadása képlettel és rekurzióval; számtani sorozat n-edik tagja és az első n tag összege',
-        emelt: 'Összetettebb feladatok számtani sorozatokkal, az összegképlet alkalmazása',
+          'A számsorozat fogalma és megadási módjai (utasítás, képlet, rekurzív definíció); a számtani sorozat n-edik tagja és első n tagjának összege, az összegképlet bizonyítása; feladatok a számtani sorozat fogalmával és az a_n, S_n összefüggésekkel',
+        emelt:
+          'A számtani sorozat általános tagjára vonatkozó összefüggés levezetése; összetettebb feladatok számtani sorozatokkal',
       },
       minutes: 12,
       summary: [
@@ -107,15 +109,13 @@ const unit: GuideUnit = {
           kind: 'tip',
           text: 'Három szomszédos tagot érdemes $x - d$, $x$, $x + d$ alakban felvenni: az összeg egyszerűsödik. Négy tagnál $x - 3d$, $x - d$, $x + d$, $x + 3d$ a kényelmes jelölés.',
         },
-        { kind: 'heading', text: 'Összegből a tag', emelt: true },
+        { kind: 'heading', text: 'Összegből a tag' },
         {
           kind: 'text',
-          emelt: true,
           text: 'Ha csak az összegek ismertek, a tagot a különbségükből kapjuk: $a_1 = S_1$ és $n \\ge 2$ esetén $a_n = S_n - S_{n-1}$. Példa: ha $S_n = n^2 + 2n$, akkor $a_1 = 3$ és $a_n = n^2 + 2n - \\big((n-1)^2 + 2(n-1)\\big) = 2n + 1$. Ez $n = 1$-re is $3$-at ad, tehát a sorozat számtani, $d = 2$.',
         },
         {
           kind: 'example',
-          emelt: true,
           title: 'Kidolgozott példa 3.: hány tagot kell összeadni?',
           problem:
             'Hány tagját kell összeadni az 5, 9, 13, 17, … sorozatnak, hogy az összeg 230 legyen?',
@@ -174,7 +174,6 @@ const unit: GuideUnit = {
           options: ['11', '24', '35', '9'],
           answer: 0,
           explanation: '$a_5 = S_5 - S_4 = 35 - 24 = 11$.',
-          emelt: true,
         },
       ],
       sources: [
@@ -189,8 +188,10 @@ const unit: GuideUnit = {
       title: 'Mértani sorozat',
       level: 'both',
       requirement: {
-        kozep: 'Mértani sorozat n-edik tagja és az első n tag összege',
-        emelt: 'A végtelen mértani sor összege, összetett feladatok számtani és mértani sorozattal',
+        kozep:
+          'A mértani sorozat fogalma (hányados), n-edik tagja és első n tagjának összege, az összegképlet bizonyítása; feladatok a mértani sorozat fogalmával és az a_n, S_n összefüggésekkel',
+        emelt:
+          'A mértani sorozat általános tagjára vonatkozó összefüggés levezetése; a végtelen mértani sor fogalma és összege; összetett feladatok számtani és mértani sorozattal',
       },
       minutes: 12,
       summary: [
@@ -202,6 +203,13 @@ const unit: GuideUnit = {
             'n-edik tag: $a_n = a_1 \\cdot q^{\\,n-1}$.',
             'Első $n$ tag összege ($q \\ne 1$): $S_n = a_1 \\cdot \\frac{q^n - 1}{q - 1}$. Ha $q = 1$, akkor $S_n = n \\cdot a_1$.',
             'Szomszédos tagokra: $a_n^2 = a_{n-1} \\cdot a_{n+1}$ (a tag a szomszédai mértani közepe).',
+          ],
+        },
+        {
+          kind: 'keypoints',
+          title: 'Emelt szinten',
+          emelt: true,
+          items: [
             'Ha $|q| > 1$, a tagok abszolút értéke nő; ha $|q| < 1$, a tagok nullához tartanak.',
           ],
         },
@@ -353,8 +361,9 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'Százalékszámítás, kamatos kamat, százalékos növekedés és csökkenés mértani sorozattal',
-        emelt: 'Rendszeres betétek, törlesztőrészletek, összetett pénzügyi számítások',
+          'A százalék fogalma és alkalmazása; kamatos kamat képlete, bármelyik ismeretlen adat kiszámítása; gyűjtőjáradék és törlesztőrészlet; megtakarítási, befektetési és hitelfelvételi feladatok',
+        emelt:
+          'Nincs külön emelt szintű követelmény ebben a témában; a középszintű anyag (kamatos kamat, gyűjtőjáradék, törlesztőrészlet) emelt szinten is része a vizsgának',
       },
       minutes: 12,
       summary: [
@@ -415,15 +424,13 @@ const unit: GuideUnit = {
           kind: 'warning',
           text: 'Az „éves kamatláb” és az „éves kamat” nem azonos a havi vagy negyedéves tőkésítéssel. Ha a feladat szerint a kamatot havonta írják jóvá, akkor a periódusonkénti szorzót és az időszakok számát kell használni (például 12 év alatt $n = 144$ hónap). Mindig olvasd el, mikor történik a tőkésítés.',
         },
-        { kind: 'heading', text: 'Rendszeres betét', emelt: true },
+        { kind: 'heading', text: 'Rendszeres betét' },
         {
           kind: 'text',
-          emelt: true,
           text: 'Ha minden év végén ugyanannyit teszel a számlára, az egyes befizetések eltérő ideig kamatoznak, és az értékeik mértani sorozatot alkotnak. Az utolsó befizetés még nem kamatozik, az első $n - 1$ évig.',
         },
         {
           kind: 'example',
-          emelt: true,
           title: 'Kidolgozott példa 4.: rendszeres megtakarítás',
           problem:
             'Valaki 3 éven át minden év végén 50 000 Ft-ot tesz egy számlára, amely évi 10%-kal kamatozik. Mennyi pénz lesz a számlán az utolsó befizetés után?',
@@ -438,7 +445,7 @@ const unit: GuideUnit = {
           items: [
             'I. rész: százalékos változás, két egymás utáni változás eredője, kamatos kamat egy-két évre.',
             'II. rész: szöveges feladat bankbetétről, hitelről, népességnövekedésről; a kérdések: mennyi lesz, mennyi volt, hány év alatt, mekkora a kamatláb.',
-            'Emelt: rendszeres betét vagy törlesztőrészlet, a mértani összegképlet felismerése.',
+            'Rendszeres betét vagy törlesztőrészlet (gyűjtőjáradék), a mértani összegképlet felismerése.',
           ],
         },
         {
@@ -484,7 +491,6 @@ const unit: GuideUnit = {
           options: ['150 000 Ft', '165 500 Ft', '166 550 Ft', '181 500 Ft'],
           answer: 1,
           explanation: '$50\\,000(1{,}21 + 1{,}1 + 1) = 50\\,000 \\cdot 3{,}31 = 165\\,500$ Ft.',
-          emelt: true,
         },
       ],
       sources: [
@@ -500,7 +506,7 @@ const unit: GuideUnit = {
       level: 'emelt',
       requirement: {
         emelt:
-          'Sorozatok tulajdonságai (monotonitás, korlátosság), a sorozat határértéke, konvergencia; határérték-számítás',
+          'Sorozat jellemzése (monotonitás, korlátosság); a konvergencia szemléletes fogalma és a konvergens sorozat definíciója egyszerű sorozatokban; konvergens sorozatok összegének, különbségének, szorzatának és hányadosának határértéke',
       },
       minutes: 14,
       summary: [
@@ -671,7 +677,8 @@ const unit: GuideUnit = {
       title: 'Teljes indukció',
       level: 'emelt',
       requirement: {
-        emelt: 'A teljes indukció módszere; egyszerű állítások bizonyítása teljes indukcióval',
+        emelt:
+          'A teljes indukció bizonyítási típus ismerete; példa mondása alkalmazására (a direkt és indirekt bizonyítás, a skatulyaelv mellett)',
       },
       minutes: 12,
       summary: [

@@ -9,11 +9,12 @@ const unit: GuideUnit = {
   subject: 'matematika',
   order: 30,
   title: 'Függvények és az analízis elemei',
-  requirementRef: 'Függvények, az analízis elemei',
+  requirementRef:
+    '2.5 Hatvány, gyök, logaritmus; 2.8.2.2–2.8.2.3 Exponenciális és logaritmusos egyenletek; 3.1 A függvény; 3.2 Egyváltozós valós függvények; 3.2.1 A függvények grafikonja, függvénytranszformációk; 3.2.2 A függvények jellemzése; 3.4.2 Differenciálszámítás',
   intro:
     'A függvény fogalmától az alapfüggvényeken és a transzformációkon át az exponenciális és logaritmusfüggvényig, emelt szinten a deriválással végzett függvényvizsgálatig.',
   requirementSource:
-    'A matematika témakör a 2024-től érvényes érettségi vizsgakövetelmények „Függvények, az analízis elemei” fejezetét követi. Ezt a részt még össze kell vetni a hivatalos dokumentummal; ami emelt szintű, azt külön jelöljük.',
+    'A követelmények az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (2.5, 2.8.2.2–2.8.2.3, 3.1, 3.2, 3.2.1, 3.2.2, 3.4.2). A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   pages: [
     {
       id: 'fuggveny-fogalma',
@@ -23,8 +24,9 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'A függvény fogalma, megadása, ábrázolása; értelmezési tartomány, értékkészlet, zérushely, monotonitás, szélsőérték',
-        emelt: 'Paritás, periodicitás, korlátosság; inverz függvény, összetett függvény',
+          'A függvény fogalma és alapvető fogalmai (értelmezési tartomány, hozzárendelés, képhalmaz, helyettesítési érték, értékkészlet); függvény megadása képlettel; zérushely, növekedés, fogyás és szélsőérték grafikonról',
+        emelt:
+          'Az alapvető függvénytani fogalmak pontos definíciója; páros, páratlan, periodikus és korlátos függvények; inverzfüggvény és összetett függvény',
       },
       minutes: 10,
       summary: [
@@ -188,8 +190,9 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'Lineáris, abszolútérték-, másodfokú, négyzetgyök- és fordított arányosság függvény; egyszerű transzformációk',
-        emelt: 'Transzformációk összetett alkalmazása, f(ax) típusú változtatás',
+          'Lineáris (ax + b), másodfokú (ax² + bx + c), négyzetgyök- és fordított arányosság (1/x) függvény; egyszerű transzformációk: f(x) + c, f(x + c), c·f(x), |f(x)|',
+        emelt:
+          'Az abszolútérték-függvény (x ↦ |x|); az alapfüggvények transzformáltjainak ábrázolása c·f(x + b) + d és c·f(ax) + d alakban',
       },
       minutes: 11,
       summary: [
@@ -198,12 +201,17 @@ const unit: GuideUnit = {
           title: 'Öt perc alatt',
           items: [
             '**Lineáris**: $f(x) = mx + b$; $m$ a meredekség, $b$ az $y$ tengellyel vett metszéspont.',
-            '**Abszolútérték**: $|x|$, V alakú grafikon, csúcsa az origó.',
             '**Másodfokú**: $x^2$, parabola; $a(x - u)^2 + v$ alakban a csúcs $(u; v)$.',
             '**Négyzetgyök**: $\\sqrt{x}$, csak $x \\ge 0$-ra értelmezett.',
             '**Fordított arányosság**: $\\frac{1}{x}$, hiperbola, $x \\ne 0$.',
             'Eltolás: $f(x) + c$ felfelé ($c > 0$); $f(x - c)$ jobbra ($c > 0$). Tükrözés: $-f(x)$ az $x$ tengelyre.',
           ],
+        },
+        {
+          kind: 'keypoints',
+          title: 'Emelt szinten',
+          emelt: true,
+          items: ['**Abszolútérték**: $|x|$, V alakú grafikon, csúcsa az origó.'],
         },
         {
           kind: 'plot',
@@ -212,7 +220,6 @@ const unit: GuideUnit = {
           y: [-3, 5],
           functions: [
             { label: 'x²', fn: (x) => x * x },
-            { label: '|x|', fn: (x) => Math.abs(x) },
             { label: '√x', fn: (x) => (x >= 0 ? Math.sqrt(x) : NaN) },
             { label: '1/x', fn: (x) => (Math.abs(x) < 0.05 ? NaN : 1 / x) },
           ],
@@ -267,6 +274,7 @@ const unit: GuideUnit = {
             'Ábrázolja a $g(x) = |x + 1| - 2$ függvényt, és adja meg a zérushelyeit és a minimumát!',
           solution:
             'Az $|x|$ grafikonját 1-gyel balra, majd 2-vel lefelé toljuk: a csúcs $(-1; -2)$, ez a minimum (helye $x = -1$, értéke $-2$).\n\nZérushelyek: $|x + 1| = 2$, ebből $x + 1 = 2$ vagy $x + 1 = -2$, vagyis $x = 1$ vagy $x = -3$.',
+          emelt: true,
         },
         {
           kind: 'text',
@@ -353,9 +361,9 @@ const unit: GuideUnit = {
       level: 'both',
       requirement: {
         kozep:
-          'Az exponenciális függvény és tulajdonságai; a logaritmus fogalma és azonosságai; exponenciális folyamatok',
+          'Az exponenciális függvény (a^x) és tulajdonságai; a hatványozás azonosságai; a logaritmus fogalma, tetszőleges alapú logaritmus kiszámítása 10-es alapú logaritmussal; egyszerű exponenciális egyenletek',
         emelt:
-          'A logaritmusfüggvény mint az exponenciális függvény inverze; exponenciális és logaritmusos egyenletek, egyenlőtlenségek',
+          'A logaritmusfüggvény mint az exponenciális függvény inverze; a szorzat, hányados és hatvány logaritmusának azonosságai; logaritmusos egyenletek; exponenciális folyamatok modellezése',
       },
       minutes: 12,
       summary: [
@@ -366,24 +374,27 @@ const unit: GuideUnit = {
             '**Exponenciális függvény**: $f(x) = a^x$, ahol $a > 0$ és $a \\ne 1$.',
             'Ha $a > 1$, szigorúan **nő**; ha $0 < a < 1$, szigorúan **csökken**. Mindig átmegy a $(0; 1)$ ponton, értékkészlete $]0; \\infty[$.',
             '**Logaritmus**: $\\log_a b$ az a kitevő, amelyre $a$-t emelve $b$-t kapunk: $a^{\\log_a b} = b$.',
-            'Azonosságok: $\\log_a(xy) = \\log_a x + \\log_a y$; $\\log_a \\frac{x}{y} = \\log_a x - \\log_a y$; $\\log_a x^k = k \\log_a x$.',
             'Exponenciális folyamat: $N(t) = N_0 \\cdot q^t$ (kamatos kamat, szaporodás, radioaktív bomlás).',
           ],
         },
         {
+          kind: 'keypoints',
+          title: 'Emelt szinten',
+          emelt: true,
+          items: [
+            'Azonosságok: $\\log_a(xy) = \\log_a x + \\log_a y$; $\\log_a \\frac{x}{y} = \\log_a x - \\log_a y$; $\\log_a x^k = k \\log_a x$.',
+          ],
+        },
+        {
           kind: 'plot',
-          title: 'Exponenciális és logaritmusfüggvény',
+          title: 'Exponenciális függvények',
           x: [-3, 5],
           y: [-3, 6],
           functions: [
             { label: '2ˣ', fn: (x) => 2 ** x },
             { label: '(1/2)ˣ', fn: (x) => 0.5 ** x },
-            { label: 'log₂ x', fn: (x) => (x > 0.01 ? Math.log2(x) : NaN) },
           ],
-          points: [
-            { x: 0, y: 1, label: '(0; 1)' },
-            { x: 1, y: 0, label: '(1; 0)' },
-          ],
+          points: [{ x: 0, y: 1, label: '(0; 1)' }],
         },
       ],
       details: [
@@ -471,6 +482,7 @@ const unit: GuideUnit = {
           options: ['1', '2', '3', '4'],
           answer: 1,
           explanation: '$\\log_2 \\frac{12}{3} = \\log_2 4 = 2$.',
+          emelt: true,
         },
         {
           question: 'Melyik függvény szigorúan csökkenő?',
@@ -499,7 +511,7 @@ const unit: GuideUnit = {
       level: 'emelt',
       requirement: {
         emelt:
-          'A derivált fogalma, deriválási szabályok; érintő egyenlete; monotonitás és szélsőérték vizsgálata a derivált segítségével; szélsőérték-feladatok',
+          'A differencia- és differenciálhányados definíciója; az összeg-, különbség-, konstansszoros-, szorzat-, hányados- és összetett függvény deriválási szabálya; érintő egyenlete; monotonitás, szélsőérték és szélsőérték-feladatok a derivált segítségével; polinomfüggvények vizsgálata (konvexitás)',
       },
       minutes: 14,
       summary: [
