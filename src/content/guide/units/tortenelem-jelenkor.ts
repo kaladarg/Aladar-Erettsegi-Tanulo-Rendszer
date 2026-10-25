@@ -633,7 +633,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A világ népessége 1945 óta' },
         {
           kind: 'text',
-          text: 'A 20. század közepén a világ népessége nagyjából két és fél milliárd volt, a 21. század első évtizedeiben nyolcmilliárd körül. A gyors növekedés oka főleg az, hogy az **orvostudomány, a higiénia és a mezőgazdasági termelés** fejlődése csökkentette a halandóságot, a születésszám viszont ott, ahol a társadalom még hagyományos volt, magas maradt (**demográfiai átmenet**). A fejlett országokban a gyermekvállalás csökkent, így a népesség **elöregedik**: egyre több a nyugdíjas, egyre kevesebb az aktív korú. Afrika szubszaharai részén a születésszám még ma is jóval magasabb, mint Európában.',
+          text: 'A 20. század közepén a világ népessége nagyjából két és fél milliárd volt, 2022-ben érte el a nyolcmilliárdot. A gyors növekedés oka főleg az, hogy az **orvostudomány, a higiénia és a mezőgazdasági termelés** fejlődése csökkentette a halandóságot, a születésszám viszont ott, ahol a társadalom még hagyományos volt, magas maradt (**demográfiai átmenet**). A fejlett országokban a gyermekvállalás csökkent, így a népesség **elöregedik**: egyre több a nyugdíjas, egyre kevesebb az aktív korú. Afrika szubszaharai részén a születésszám még ma is jóval magasabb, mint Európában.',
         },
         { kind: 'heading', text: 'Népmozgások a világban' },
         {
@@ -1396,7 +1396,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: '**Magyarország támogatása**: az Alaptörvény **D. cikke** szerint Magyarország felelősséget visel a határain kívül élő magyarok sorsáért, és segíti közösségeik fennmaradását. Ennek eszközei: **kulturális és oktatási támogatások**, ösztöndíjak, és a **kedvezményes (egyszerűsített) honosítás** 2011-től, amellyel magyar származású, magyarul tudó személyek állampolgárságot kaphatnak lakóhely nélkül is. Az első évtized alatt több mint egymillió ember kapott magyar állampolgárságot. A **2004-es népszavazás** a kettős állampolgárságról azért maradt eredménytelen, mert az igen szavazatok aránya nem érte el a választójogosultak 25 százalékát.',
+          text: '**Magyarország támogatása**: az Alaptörvény **D. cikke** szerint Magyarország felelősséget visel a határain kívül élő magyarok sorsáért, és segíti közösségeik fennmaradását. Ennek eszközei: **kulturális és oktatási támogatások**, ösztöndíjak, és a **kedvezményes (egyszerűsített) honosítás** 2011-től, amellyel magyar származású, magyarul tudó személyek állampolgárságot kaphatnak lakóhely nélkül is. Az első évtizedben a becslések szerint közel egymillió ember kapott magyar állampolgárságot (a pontos szám forrásonként eltér). A **2004-es népszavazás** a kettős állampolgárságról azért maradt eredménytelen, mert az igen szavazatok aránya nem érte el a választójogosultak 25 százalékát.',
         },
         {
           kind: 'people',
@@ -1411,7 +1411,7 @@ const unit: GuideUnit = {
             },
             {
               name: 'Esterházy János',
-              text: 'A felvidéki magyarság politikusa; a második világháború alatt a szlovák parlamentben nem szavazta meg a zsidók deportálását lehetővé tévő törvényt. A kommunista rendszer elítélte, 1957-ben fogságban halt meg.',
+              text: 'A felvidéki magyarság politikusa; a források szerint a második világháború alatt a szlovák parlamentben egyedüliként nem szavazta meg a zsidók deportálását lehetővé tévő törvényt. A kommunista rendszer elítélte, 1957-ben fogságban halt meg.',
             },
           ],
         },

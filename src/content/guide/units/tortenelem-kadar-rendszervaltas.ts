@@ -153,7 +153,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A megtorlás' },
         {
           kind: 'text',
-          text: 'A megtorlás a forradalom résztvevőit és a vezetőit sújtotta: letartóztatások, bírósági perek, **internálás**, börtönbüntetés és kivégzések. **Nagy Imrét, Maléter Pált és Gimes Miklóst 1958. június 16-án végezték ki**, a nevezetes per többi vádlottja is súlyos büntetést kapott. A kivégzettek számáról a források eltérő adatokat közölnek, a legtöbbet idézett adat 229 körül van. Mintegy kétszázezren hagyták el az országot 1956 végén és 1957-ben.',
+          text: 'A megtorlás a forradalom résztvevőit és a vezetőit sújtotta: letartóztatások, bírósági perek, **internálás**, börtönbüntetés és kivégzések. **Nagy Imrét, Maléter Pált és Gimes Miklóst 1958. június 16-án végezték ki**, a nevezetes per többi vádlottja is súlyos büntetést kapott. A kivégzettek számáról a források eltérő adatokat közölnek, a legtöbbet idézett adat 229 körül van. A források szerint mintegy 175–195 ezren hagyták el az országot 1956 végén és 1957-ben.',
         },
         {
           kind: 'keypoints',
@@ -580,7 +580,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'Az egyéni boldogulás útja gyakran a **kiegészítő jövedelem** volt: a **maszek** kisiparosok és kiskereskedők, a háztáji gazdálkodás, a mellékes munka. Az 1982-ben engedélyezett vállalati gazdasági munkaközösségek (vgmk) szintén ezt a rugalmasabb gazdálkodást szolgálták.',
+          text: 'Az egyéni boldogulás útja gyakran a **kiegészítő jövedelem** volt: a **maszek** kisiparosok és kiskereskedők, a háztáji gazdálkodás, a mellékes munka. A vállalati gazdasági munkaközösségek (vgmk) szintén ezt a rugalmasabb gazdálkodást szolgálták.',
         },
         {
           kind: 'text',
@@ -768,14 +768,14 @@ const unit: GuideUnit = {
             },
             {
               label: 'Kiadványok, szervezetek',
-              cells: ['szamizdat (Beszélő, 1981), SZETA', 'irodalmi folyóiratok, találkozók'],
+              cells: ['szamizdat (Beszélő, 1981 körül), SZETA', 'irodalmi folyóiratok, találkozók'],
             },
             { label: 'Későbbi pártok', cells: ['SZDSZ', 'MDF'] },
           ],
         },
         {
           kind: 'text',
-          text: 'A **demokratikus ellenzék** az 1970-es évek végén szerveződött. Tagjai (például Kis János, Bence György, Haraszti Miklós) a hatalom elleni nyílt fellépés helyett a jogok betartását követelték. Segélyezték az üldözötteket (**SZETA**, a Szegényeket Támogató Alap, 1979), szamizdat-kiadványokat készítettek (**Beszélő**, 1981). A hatalom rendőri eszközökkel zaklatta őket, de nem tudta teljesen elhallgattatni őket.',
+          text: 'A **demokratikus ellenzék** az 1970-es évek végén szerveződött. Tagjai (például Kis János, Bence György, Haraszti Miklós) a hatalom elleni nyílt fellépés helyett a jogok betartását követelték. Segélyezték az üldözötteket (**SZETA**, a Szegényeket Támogató Alap, 1979), szamizdat-kiadványokat készítettek (**Beszélő**, 1981 körül). A hatalom rendőri eszközökkel zaklatta őket, de nem tudta teljesen elhallgattatni őket.',
         },
         {
           kind: 'text',
@@ -785,10 +785,10 @@ const unit: GuideUnit = {
           kind: 'timeline',
           items: [
             {
-              date: '1977–79',
-              text: 'A demokratikus ellenzék első nyilvános megmozdulásai, 1979-ben a SZETA.',
+              date: '1979 körül',
+              text: 'A demokratikus ellenzék első szervezett kezdeményezése: a SZETA.',
             },
-            { date: '1981', text: 'Megjelenik a Beszélő szamizdat folyóirat.' },
+            { date: '1981 körül', text: 'Megjelenik a Beszélő szamizdat folyóirat.' },
             {
               date: '1984',
               text: 'A Duna Kör megalakulása: a bős–nagymarosi vízlépcső elleni környezetvédelmi mozgalom indul.',
@@ -965,7 +965,7 @@ const unit: GuideUnit = {
         {
           kind: 'text',
           emelt: true,
-          text: 'Az ellenzék közös fóruma az **Ellenzéki Kerekasztal** volt (1989 márciusától). Az SZDSZ és a Fidesz kezdeményezésére **1989. november 26-án** népszavazást tartottak négy kérdésben: az elnökválasztás időpontja, a pártok kitiltása a munkahelyekről, az MSZMP vagyonáról való elszámolás és a munkásőrség feloszlatása. Az első kérdésben (az elnököt a parlamenti választás után válasszák) az igen szavazatok aránya nagyon szoros volt, néhány ezer szavazat döntött. Ez határozta meg a következő menetrendet: előbb a parlamenti választás, utána az elnök megválasztása.',
+          text: 'Az ellenzék közös fóruma az **Ellenzéki Kerekasztal** volt (1989 márciusától). Az SZDSZ és a Fidesz kezdeményezésére **1989. november 26-án** népszavazást tartottak négy kérdésben: az elnökválasztás időpontja, a pártok kitiltása a munkahelyekről, az MSZMP vagyonáról való elszámolás és a munkásőrség feloszlatása. Az első kérdésben (az elnököt a parlamenti választás után válasszák) az igen szavazatok aránya nagyon szoros volt, mintegy 6000 szavazat döntött. Ez határozta meg a következő menetrendet: előbb a parlamenti választás, utána az elnök megválasztása.',
         },
         { kind: 'heading', text: 'Szimbolikus események 1989-ben' },
         {
@@ -1152,7 +1152,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Az átalakulási válság' },
         {
           kind: 'text',
-          text: 'A gazdasági szerkezetváltás **súlyos költségekkel** járt. Az 1990-es évek elején a gazdaság teljesítménye jelentősen visszaesett, a nehézipar és a bányászat sok üzeme bezárt, a mezőgazdasági termelés is visszaesett. Megjelent a **munkanélküliség**, amelyet addig hivatalosan nem ismertek: a mértéke az évtized elején tíz százalék fölé emelkedett. Magas volt az infláció, sokan elvesztették a megszokott biztonságot. A kárpótlás és a téeszek átalakítása (a termelőszövetkezeti vagyon felosztása) átalakította a földtulajdont és a falusi életet.',
+          text: 'A gazdasági szerkezetváltás **súlyos költségekkel** járt. Az 1990-es évek elején a gazdaság teljesítménye jelentősen visszaesett, a nehézipar és a bányászat sok üzeme bezárt, a mezőgazdasági termelés is visszaesett. Megjelent a **munkanélküliség**, amelyet addig hivatalosan nem ismertek: a mértéke 1993 elejére tíz százalék fölé emelkedett. Magas volt az infláció, sokan elvesztették a megszokott biztonságot. A kárpótlás és a téeszek átalakítása (a termelőszövetkezeti vagyon felosztása) átalakította a földtulajdont és a falusi életet.',
         },
         { kind: 'heading', text: 'Privatizáció' },
         {
@@ -1185,7 +1185,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A külföldi tőke szerepe' },
         {
           kind: 'text',
-          text: 'Magyarország az 1990-es években a térség egyik fő **külföldi működőtőke-fogadója** volt. A külföldi befektetők új gyárakat építettek (például a **Suzuki** esztergomi üzeme 1991-től, az **Audi** győri üzeme 1993-tól), és megvették a magyar vállalatokat. Ez **új technológiát, piacot és munkahelyeket** hozott, de gazdasági függést és a jövedelmek (profit) egy részének kiáramlását is jelentette. Az autóipar, az elektronika és a szolgáltató ágazatok jelentősen kötődtek a külföldi tőkéhez.',
+          text: 'Magyarország az 1990-es években a térség egyik fő **külföldi működőtőke-fogadója** volt. A külföldi befektetők új gyárakat építettek (például a **Suzuki** esztergomi üzeme 1992-től, az **Audi** győri gyára 1993-ban alakult), és megvették a magyar vállalatokat. Ez **új technológiát, piacot és munkahelyeket** hozott, de gazdasági függést és a jövedelmek (profit) egy részének kiáramlását is jelentette. Az autóipar, az elektronika és a szolgáltató ágazatok jelentősen kötődtek a külföldi tőkéhez.',
         },
         { kind: 'heading', text: 'A külkereskedelem átalakulása' },
         {
