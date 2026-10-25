@@ -42,6 +42,7 @@ export function CardsPage() {
   const literature = subject === 'magyar';
   // Language cards have registers instead of periods and no Hungarian/world split.
   const language = !!CARD_LANGUAGES[subject];
+  const math = subject === 'matematika';
   const filtered = filterCards({ ...filter, deck: undefined });
   const all = deckCounts(
     filtered.map((c) => c.id),
@@ -71,7 +72,7 @@ export function CardsPage() {
         className="mb-4"
       />
       <section aria-label={t('practice.cards.filters')} className="mb-6 grid gap-4 sm:grid-cols-2">
-        {!language && (
+        {!language && !math && (
           <SegmentedControl<Scope>
             label={literature ? t('practice.cards.scopeLit') : t('practice.cards.scope')}
             value={filter.scope ?? 'all'}
@@ -95,7 +96,11 @@ export function CardsPage() {
         )}
         <div className="grid gap-1">
           <label htmlFor={eraId} className="text-sm font-medium">
-            {language ? t('practice.cards.register') : t('practice.cards.era')}
+            {language
+              ? t('practice.cards.register')
+              : math
+                ? t('practice.cards.topicArea')
+                : t('practice.cards.era')}
           </label>
           <select
             id={eraId}
@@ -109,7 +114,11 @@ export function CardsPage() {
             className="min-h-11 rounded-md border border-border-strong bg-surface px-3"
           >
             <option value="">
-              {language ? t('practice.cards.allRegisters') : t('practice.cards.allEras')}
+              {language
+                ? t('practice.cards.allRegisters')
+                : math
+                  ? t('practice.cards.allTopicAreas')
+                  : t('practice.cards.allEras')}
             </option>
             {SUBJECT_ERAS[subject].map((era) => (
               <option key={era} value={era}>

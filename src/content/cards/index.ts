@@ -2,11 +2,18 @@ import { ENGLISH_CARDS } from './englishCards';
 import { GERMAN_CARDS } from './germanCards';
 import { HISTORY_CARDS } from './historyCards';
 import { LITERATURE_CARDS } from './literatureCards';
+import { MATH_CARDS } from './mathCards';
 import type { CardSubject, DeckId, Era, StudyCard } from './types';
 
 export type { CardSubject, DeckId, Era, StudyCard } from './types';
 
-export const CARD_SUBJECTS: CardSubject[] = ['tortenelem', 'magyar', 'angol', 'nemet'];
+export const CARD_SUBJECTS: CardSubject[] = [
+  'tortenelem',
+  'magyar',
+  'matematika',
+  'angol',
+  'nemet',
+];
 
 /** Subjects whose cards are phrases in a foreign language (with its BCP 47 tag). */
 export const CARD_LANGUAGES: Partial<Record<CardSubject, string>> = { angol: 'en', nemet: 'de' };
@@ -17,6 +24,7 @@ const REGISTERS: Era[] = ['informalis', 'formalis', 'semleges'];
 export const SUBJECT_DECKS: Record<CardSubject, DeckId[]> = {
   tortenelem: ['evszamok', 'fogalmak', 'szemelyek', 'topografia'],
   magyar: ['szerzok', 'muvek', 'korszakok', 'irodalmi-fogalmak'],
+  matematika: ['definiciok', 'tetelek', 'bizonyitasok'],
   angol: LANGUAGE_DECKS,
   nemet: LANGUAGE_DECKS,
 };
@@ -35,6 +43,7 @@ export const SUBJECT_ERAS: Record<CardSubject, Era[]> = {
     'kesomodern',
     'kortars',
   ],
+  matematika: ['gondolkodas', 'algebra', 'fuggvenyek', 'geometria', 'valoszinuseg'],
   angol: REGISTERS,
   nemet: REGISTERS,
 };
@@ -53,6 +62,7 @@ export interface CardFilter {
 export const ALL_CARDS: StudyCard[] = [
   ...HISTORY_CARDS.map((card) => ({ ...card, subject: 'tortenelem' as const })),
   ...LITERATURE_CARDS.map((card) => ({ ...card, subject: 'magyar' as const })),
+  ...MATH_CARDS.map((card) => ({ ...card, subject: 'matematika' as const })),
   ...ENGLISH_CARDS.map((card) => ({ ...card, subject: 'angol' as const })),
   ...GERMAN_CARDS.map((card) => ({ ...card, subject: 'nemet' as const })),
 ];

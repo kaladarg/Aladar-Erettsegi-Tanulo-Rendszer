@@ -3,13 +3,15 @@
  * turns over and marks as known or not. Review status of the built-in decks:
  * draft, until a teacher checks them.
  */
-export type CardSubject = 'tortenelem' | 'magyar' | 'angol' | 'nemet';
+export type CardSubject = 'tortenelem' | 'magyar' | 'matematika' | 'angol' | 'nemet';
 
 export type HistoryDeckId = 'evszamok' | 'fogalmak' | 'szemelyek' | 'topografia';
 export type LiteratureDeckId = 'szerzok' | 'muvek' | 'korszakok' | 'irodalmi-fogalmak';
 /** Foreign languages: phrases for the writing tasks and the oral exam. */
 export type LanguageDeckId = 'levelfordulatok' | 'kotoszavak' | 'velemeny' | 'szobeli';
-export type DeckId = HistoryDeckId | LiteratureDeckId | LanguageDeckId;
+/** Maths: what the oral exam asks to state, define and prove. */
+export type MathDeckId = 'definiciok' | 'tetelek' | 'bizonyitasok';
+export type DeckId = HistoryDeckId | LiteratureDeckId | LanguageDeckId | MathDeckId;
 
 /** History periods, in the order of the history syllabus. */
 export type HistoryEra = 'okor' | 'kozepkor' | 'koraujkor' | 'ujkor' | 'jelenkor20' | 'jelenkor21';
@@ -27,7 +29,9 @@ export type LiteratureEra =
   | 'kortars';
 /** Foreign languages use the register instead of a period. */
 export type LanguageEra = 'informalis' | 'formalis' | 'semleges';
-export type Era = HistoryEra | LiteratureEra | LanguageEra;
+/** Maths uses the five topic areas of the exam requirements instead of a period. */
+export type MathEra = 'gondolkodas' | 'algebra' | 'fuggvenyek' | 'geometria' | 'valoszinuseg';
+export type Era = HistoryEra | LiteratureEra | LanguageEra | MathEra;
 
 export interface StudyCard {
   /** Stable id: `<deck>-<slug>`; never reuse an id for a different card. */
@@ -43,6 +47,8 @@ export interface StudyCard {
   back: string;
   /** Optional extra line on the answer side (context, why it matters). */
   note?: string;
+  /** Only required at emelt szint. */
+  emelt?: boolean;
   /** Place cards: position and which map view to show. */
   place?: { lat: number; lon: number; view: 'europe' | 'hungary' };
 }

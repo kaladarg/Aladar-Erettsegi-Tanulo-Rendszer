@@ -608,6 +608,11 @@ function SwipeCard({
                 {card.back}
               </p>
               {card.note && <p className="text-sm text-muted sm:text-base">{card.note}</p>}
+              {card.emelt && (
+                <p className="text-sm font-semibold text-primary">
+                  {t('practice.cards.emeltOnly')}
+                </p>
+              )}
             </div>
           </div>
         </div>
