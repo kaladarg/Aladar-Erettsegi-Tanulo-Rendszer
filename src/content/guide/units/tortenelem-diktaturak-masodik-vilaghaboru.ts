@@ -214,7 +214,7 @@ const unit: GuideUnit = {
             },
             {
               date: '1934. június 30.',
-              text: '„A hosszú kések éjszakája”: az SA vezetőit (köztük Röhmöt) és más ellenfeleket a Hitler és az SS meggyilkoltatta. A hadsereg vezetése tudomásul vette a gyilkosságokat.',
+              text: '„A hosszú kések éjszakája”: az SA vezetőit (köztük Röhmöt) és más ellenfeleket a Hitler és az SS meggyilkoltatta.',
             },
             {
               date: '1934. augusztus',
@@ -811,7 +811,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'tip',
-          text: 'Ha a válságkezelések összehasonlítását kérik, használj három oszlopot: **USA** (állami beavatkozás, demokrácia), **Németország** (fegyverkezés, diktatúra), **Szovjetunió** (a tervgazdaság, amelyet a válság alig érintett).',
+          text: 'Ha a válságkezelések összehasonlítását kérik, használj három oszlopot: **USA** (állami beavatkozás, demokrácia), **Németország** (fegyverkezés, diktatúra), **Szovjetunió** (a tervgazdaság, amelyet a világpiaci válság kevésbé érintett).',
         },
       ],
       topicMatch: ['=fasizmus'],
@@ -975,7 +975,7 @@ const unit: GuideUnit = {
             {
               label: 'Csatlósok, további országok',
               cells: [
-                'Magyarország, Románia, Bulgária, Szlovákia, Finnország',
+                'Magyarország, Románia, Bulgária, Szlovákia; Finnország együtt hadviselő fél volt',
                 'Franciaország (a szabad franciák), Lengyelország, Jugoszlávia, Kína és mások',
               ],
             },
@@ -1351,7 +1351,7 @@ const unit: GuideUnit = {
             },
             {
               date: '1943. nyár',
-              text: '**Kurszk**: a német támadás (Citadella-hadművelet) kudarca, a háború legnagyobb páncéloscsatája; utána a Vörös Hadsereg folyamatosan előre nyomult.',
+              text: '**Kurszk**: a német támadás (Citadella-hadművelet) kudarca, a háború egyik legnagyobb páncéloscsatája (a prohorovkai ütközet); utána a Vörös Hadsereg folyamatosan előre nyomult.',
             },
             {
               date: '1944. nyár',
