@@ -416,7 +416,7 @@ const unit: GuideUnit = {
         {
           kind: 'text',
           emelt: true,
-          text: 'Az új államok jelentős része a hidegháborúban sem az USA, sem a Szovjetunió oldalához nem akart tartozni. Ezeket az országokat nevezzük a **harmadik világnak**: gazdaságilag elmaradott, gyakran szegény, korábbi gyarmati országokat. A semlegességet hirdető **el nem kötelezettek mozgalma** a bandungi konferencián (1955) indult, és olyan vezetők álltak mögötte, mint Nehru (India), Nasszer (Egyiptom) és **Tito** (Jugoszlávia). A szuperhatalmak a harmadik világban is versengtek a befolyásért, katonai és gazdasági segítséggel.',
+          text: 'Az új államok jelentős része a hidegháborúban sem az USA, sem a Szovjetunió oldalához nem akart tartozni. Ezeket az országokat nevezzük a **harmadik világnak**: gazdaságilag elmaradott, gyakran szegény, korábbi gyarmati országokat. A semlegességet hirdető **el nem kötelezettek mozgalma** a bandungi konferencián (1955) gyökerezik, formálisan a belgrádi csúcstalálkozón (1961) alakult meg, és olyan vezetők álltak mögötte, mint Nehru (India), Nasszer (Egyiptom) és **Tito** (Jugoszlávia). A szuperhatalmak a harmadik világban is versengtek a befolyásért, katonai és gazdasági segítséggel.',
         },
         { kind: 'heading', text: 'India' },
         {
@@ -1220,7 +1220,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: '**Bosznia-Hercegovinában** három nagy népcsoport élt: bosnyákok (muszlimok), szerbek és horvátok. Az **1992-es** függetlenségi népszavazás után kitört a háború (1992–1995). Jellemzője az **etnikai tisztogatás** (a lakosság erőszakos elűzése), Szarajevó több évig tartó ostroma és a tömeges menekülés. A háború legsúlyosabb eseménye a **srebrenicai** mészárlás volt (1995 júliusa): mintegy nyolcezer boszniai muszlim férfit és fiút gyilkoltak meg. A háború végén a NATO légi csapásokat mért a boszniai szerb pozíciókra. **1995 novemberében–decemberében** megkötötték a **daytoni békemegállapodást**: Bosznia-Hercegovina egységes állam maradt, két részre (entitásra) osztva: a bosnyák–horvát Föderációra és a Boszniai Szerb Köztársaságra. A háborúban sok százezer ember vált menekültté; a halálos áldozatok számáról a becslések eltérnek (általában több tízezer és százezer közötti nagyságrendet adnak).',
+          text: '**Bosznia-Hercegovinában** három nagy népcsoport élt: bosnyákok (muszlimok), szerbek és horvátok. Az **1992-es** függetlenségi népszavazás után kitört a háború (1992–1995). Jellemzője az **etnikai tisztogatás** (a lakosság erőszakos elűzése), Szarajevó több évig tartó ostroma és a tömeges menekülés. A háború legsúlyosabb eseménye a **srebrenicai** mészárlás volt (1995 júliusa): mintegy nyolcezer boszniai muszlim férfit és fiút gyilkoltak meg. A háború végén a NATO légi csapásokat mért a boszniai szerb pozíciókra. **1995 novemberében** a daytoni (Wright-Patterson) légibázison paraffálták, **decemberében** Párizsban írták alá a **daytoni békemegállapodást**: Bosznia-Hercegovina egységes állam maradt, két részre (entitásra) osztva: a bosnyák–horvát Föderációra és a Boszniai Szerb Köztársaságra. A háborúban sok százezer ember vált menekültté; a halálos áldozatok számáról a becslések eltérnek (általában több tízezer és százezer közötti nagyságrendet adnak).',
         },
         {
           kind: 'text',
