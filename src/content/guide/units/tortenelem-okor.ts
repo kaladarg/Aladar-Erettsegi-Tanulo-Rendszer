@@ -189,13 +189,7 @@ const unit: GuideUnit = {
         'Nílus',
         'Hun Birodalom',
       ],
-      emelt: [
-        'Hispania',
-        'Gallia',
-        'Actium',
-        'Olümposz',
-        'Delphoi',
-      ],
+      emelt: ['Hispania', 'Gallia', 'Actium', 'Olümposz', 'Delphoi'],
     },
   },
   pages: [
@@ -970,10 +964,7 @@ const unit: GuideUnit = {
             },
             {
               label: 'Jellemző épület',
-              cells: [
-                'templom (Parthenon), színház, stadion',
-                'amfiteátrum, fürdő, vízvezeték',
-              ],
+              cells: ['templom (Parthenon), színház, stadion', 'amfiteátrum, fürdő, vízvezeték'],
             },
           ],
         },
@@ -1381,9 +1372,7 @@ const unit: GuideUnit = {
         {
           kind: 'keypoints',
           emelt: true,
-          items: [
-            '**380** után: **Nagy Theodosius** idején a kereszténység **államvallás** lett.',
-          ],
+          items: ['**380** után: **Nagy Theodosius** idején a kereszténység **államvallás** lett.'],
         },
         {
           kind: 'text',

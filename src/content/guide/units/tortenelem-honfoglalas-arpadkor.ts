@@ -13,7 +13,7 @@ const unit: GuideUnit = {
   intro:
     'A magyarok útja a honfoglalástól az államalapításon át a tatárjárásig: a kalandozások, István államszervezése, az Aranybulla és IV. Béla újjáépítése.',
   requirementSource:
-    'A témák, fogalmak, személyek, évszámok és helyszínek az érettségi részletes vizsgakövetelményeinek 2. témaköréből (középkor) valók, a 2.4 és 2.5 sorához tartozó tételek. Ami emelt szintű, azt külön jelöljük.',
+    'A témák és az emelt szintű lexika az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (2. témakör); a középszintű fogalmak, személyek, évszámok és helyszínek a 2020-as történelem kerettantervből. A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   requirements: {
     terms: {
       kozep: [
@@ -29,8 +29,6 @@ const unit: GuideUnit = {
         'vármegye',
         'nádor',
         'ispán',
-        'szerviens',
-        'ellenállási záradék',
         'sarkalatos nemesi jogok',
         'regálé',
         'kunok',
@@ -41,15 +39,20 @@ const unit: GuideUnit = {
         'tized',
         'szent',
         'kolostor',
+        'finnugor',
+        'kettős kereszt',
+        'Képes krónika',
       ],
       emelt: [
-        'finnugor',
+        'Magna Charta Libertatum',
+        'szerviens',
+        'ellenállási záradék',
         'Magyar Nagyfejedelemség',
         'királyi és nemesi vármegye',
-        'bán',
-        'kettős kereszt',
         'legenda',
-        'Képes Krónika',
+        'bán',
+        'káptalan',
+        'honorbirtok',
       ],
     },
     people: {
@@ -66,8 +69,11 @@ const unit: GuideUnit = {
         'IV. Béla',
         'Szent Erzsébet',
         'Szent Margit',
+        'I. (Szent) László',
+        'Könyves Kálmán',
+        'III. Béla',
       ],
-      emelt: ['Anonymus', 'II. Szilveszter', 'I. (Szent) László', 'Könyves Kálmán', 'III. Béla'],
+      emelt: ['Anonymus', 'II. Szilveszter pápa'],
     },
     dates: {
       kozep: [
@@ -121,7 +127,7 @@ const unit: GuideUnit = {
             'A törzsszövetség vezetője **Álmos**, majd fia, **Árpád** volt. A hét magyar törzshöz csatlakoztak a **kabarok** is.',
             'A **honfoglalás (895)** okai: a besenyők nyomása, a bizánci–bolgár háborúba keveredés, valamint a Kárpát-medence gyenge védelme és gazdag legelői.',
             'A magyarok a **Vereckei-hágón** át érkeztek a **Kárpát-medencébe**; a megszerzett területet **907-ben a pozsonyi csatában** védték meg a bajorokkal szemben.',
-            'A **kalandozások** (a 10. század közepéig) zsákmányszerző, adóztató hadjáratok voltak nyugatra és Bizánc felé. Az **955-ös augsburgi vereség** és a Bizánc elleni kudarcok után véget értek.',
+            'A **kalandozások** (a 10. század közepéig) zsákmányszerző, adóztató hadjáratok voltak nyugatra és Bizánc felé. A nyugati vereségek és a Bizánc elleni kudarcok után véget értek.',
           ],
         },
         {
@@ -169,7 +175,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'A hagyomány szerint a törzsek **vérszerződéssel** erősítették meg az egységet, és Árpádot választották meg vezetőjüknek. Ezt **Anonymus** (a *Gesta Hungarorum* szerzője) írja le, aki csak a 12–13. század fordulóján alkotott, ezért az ő leírásait forráskritikával kell kezelni.',
+          text: 'A hagyomány szerint a törzsek **vérszerződéssel** erősítették meg az egységet, és Árpádot választották meg vezetőjüknek. Ezt a 12–13. században született krónika írja le, amelynek szerzője csak a 12–13. század fordulóján alkotott, ezért leírásait forráskritikával kell kezelni.',
         },
         { kind: 'heading', text: 'Miért indultak el?' },
         {
@@ -202,16 +208,16 @@ const unit: GuideUnit = {
             {
               date: '955',
               text: 'Az augsburgi (Lech-mezei) csatában I. Ottó német király legyőzi a magyarokat.',
+              emelt: true,
             },
           ],
         },
         {
           kind: 'text',
-          text: 'Az **augsburgi csata** után a nyugati kalandozások véget értek; a magyar vezetők megértették, hogy az állandó háborúzás helyett a letelepedett államszervezet felé kell fordulniuk. A bizánci hadjáratok is a 10. század végére lezárultak. A katonai kudarcok és a belső átalakulás vezetett a keresztény államalapításhoz.',
+          text: 'A nyugati vereségek után a kalandozások véget értek; a magyar vezetők megértették, hogy az állandó háborúzás helyett a letelepedett államszervezet felé kell fordulniuk. A bizánci hadjáratok is a 10. század végére lezárultak. A katonai kudarcok és a belső átalakulás vezetett a keresztény államalapításhoz.',
         },
         {
           kind: 'text',
-          emelt: true,
           text: 'A magyar honfoglalás időpontját a szakirodalom 895–896-ra teszi. A **kettős honfoglalás elmélete** (László Gyula) szerint már a 670 körül érkező késő avarok magyar nyelvűek voltak, így két hullámban érkeztek magyarok a Kárpát-medencébe. A kutatók többsége ezt nem fogadja el, de a követelményben szereplő fogalom.',
         },
       ],
@@ -221,8 +227,8 @@ const unit: GuideUnit = {
           title: 'Így kérdezik',
           items: [
             'Térkép: a magyarok vándorlása az Etelközből a Kárpát-medencébe, a Vereckei-hágó helye.',
-            'Forrásrészlet (Anonymus, Bölcs Leó, a Képes Krónika): mi a forrás, mit állít, mennyire megbízható?',
-            'Évszámok: 895, 907, 955. Mi történt, mi lett a következménye?',
+            'Forrásrészlet (Bölcs Leó, a Képes krónika): mi a forrás, mit állít, mennyire megbízható?',
+            'Évszámok: 895, 907. Mi történt, mi lett a következménye?',
             'Esszé vagy rövid válasz: a honfoglalás okai és a kalandozások célja, kudarcának okai.',
           ],
         },
@@ -232,6 +238,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'tip',
+          emelt: true,
           text: 'Az 907-es pozsonyi csata a honfoglalás megszilárdítása, a 955-ös augsburgi csata a nyugati kalandozások vége. A kettő nem keverhető össze: az egyik győzelem, a másik vereség.',
         },
       ],
@@ -240,6 +247,7 @@ const unit: GuideUnit = {
       quiz: [
         {
           question: 'Melyik területen éltek a magyarok a honfoglalás előtt?',
+          emelt: true,
           options: ['Magna Hungaria', 'Etelköz', 'Kárpát-medence', 'Pannónia'],
           answer: 1,
           explanation:
@@ -274,6 +282,7 @@ const unit: GuideUnit = {
           ],
           answer: 1,
           explanation: 'Az augsburgi vereség (955) után a nyugati hadjáratok megszűntek.',
+          emelt: true,
         },
         {
           question: 'Mit állít a kettős honfoglalás elmélete?',
@@ -286,7 +295,6 @@ const unit: GuideUnit = {
           answer: 0,
           explanation:
             'László Gyula szerint a késő avarok egy része magyar nyelvű volt, ezért két hullámban érkeztek magyarok.',
-          emelt: true,
         },
       ],
       sources: [
@@ -445,9 +453,9 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Öt perc alatt',
           items: [
-            '**Géza fejedelem** (972–997) a kalandozások kudarca után a **nyugati kereszténység** felé fordult, és megkezdte a központosítást.',
+            '**Géza fejedelem** a kalandozások kudarca után a **nyugati kereszténység** felé fordult, és megkezdte a központosítást.',
             'Fia, **István** (uralkodása 997/1000–1038) legyőzte a lázadó **Koppányt**, és **az ezredforduló körül királlyá koronázták** (Esztergom).',
-            'Az **egyházszervezet**: 10 egyházmegye, két érsekség (**Esztergom**, **Kalocsa**), a **pannonhalmi** bencés apátság, a **tized**.',
+            'Az **egyházszervezet**: 10 egyházmegye, két érsekség (köztük **Esztergom**), a **pannonhalmi** bencés apátság, a **tized**.',
             'A világi igazgatás alapja a **vármegye** (királyi vár és a hozzá tartozó terület), vezetője az **ispán**.',
             'A **földbirtokrendszer**: a királyi birtok volt a legnagyobb; mellette egyházi birtokok és az előkelők birtokai álltak.',
           ],
@@ -474,8 +482,8 @@ const unit: GuideUnit = {
               lon: 17.76,
               note: 'a bencés apátság (Géza alapította, 996)',
             },
-            { name: 'Kalocsa', lat: 46.53, lon: 18.98, note: 'az érsekség székhelye' },
-            { name: 'Pécs', lat: 46.07, lon: 18.23, note: 'püspökség' },
+            { name: 'Kalocsa', lat: 46.53, lon: 18.98, note: 'az érsekség székhelye', emelt: true },
+            { name: 'Pécs', lat: 46.07, lon: 18.23, note: 'püspökség', emelt: true },
           ],
         },
         {
@@ -502,7 +510,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Géza és az új irány' },
         {
           kind: 'text',
-          text: 'A kalandozások kudarca után a magyar vezetők rájöttek, hogy a pogány életforma hosszú távon nem tartható fenn. **Géza fejedelem** (972–997) a német császársággal és a nyugati egyházzal építette ki a kapcsolatokat: német és cseh térítők érkeztek az országba, ő pedig fiát bajor hercegnővel házasította össze. Géza erőszakos eszközökkel központosította a hatalmat: a törzsi vezetőket leigázta, és a hatalmat az Árpád-ház kezében összpontosította. Megalapította a **pannonhalmi** apátságot is (996). Maga is megkeresztelkedett, de a régi hitet sem hagyta el teljesen.',
+          text: 'A kalandozások kudarca után a magyar vezetők rájöttek, hogy a pogány életforma hosszú távon nem tartható fenn. **Géza fejedelem** a német császársággal és a nyugati egyházzal építette ki a kapcsolatokat: német és cseh térítők érkeztek az országba, ő pedig fiát bajor hercegnővel házasította össze. Géza erőszakos eszközökkel központosította a hatalmat: a törzsi vezetőket leigázta, és a hatalmat az Árpád-ház kezében összpontosította. Megalapította a **pannonhalmi** apátságot is (996). Maga is megkeresztelkedett, de a régi hitet sem hagyta el teljesen.',
         },
         { kind: 'heading', text: 'István és a koronázás' },
         {
@@ -594,7 +602,7 @@ const unit: GuideUnit = {
           question: 'Melyik város volt az egyik érsekségi központ István idején?',
           options: ['Esztergom', 'Székesfehérvár', 'Muhi', 'Visegrád'],
           answer: 0,
-          explanation: 'Az érsekségek Esztergom és Kalocsa voltak.',
+          explanation: 'Esztergom volt István egyik érsekségének székhelye.',
         },
         {
           question: 'Ki vezette a vármegyét?',
@@ -602,6 +610,7 @@ const unit: GuideUnit = {
           answer: 1,
           explanation:
             'A vármegye élén a király által kinevezett ispán állt; a nádor a király helyettese volt.',
+          emelt: true,
         },
         {
           question: 'Mi volt a tized?',
@@ -770,9 +779,9 @@ const unit: GuideUnit = {
           title: 'Öt perc alatt',
           items: [
             '**II. András** (1205–1235) túl sok birtokot adományozott el híveinek, így gyengült a királyi hatalom és romlott a pénzügyi helyzet.',
-            'A **szerviensek** (a király szolgálatában álló kisebb birtokosok) és a nagybirtokosok elégedetlenek voltak.',
+            'A **kisebb birtokosok** (a király szolgálatában álló nemesek) és a nagybirtokosok elégedetlenek voltak.',
             '**1222-ben** a király kiadta az **Aranybullát**: a nemesek jogait rögzítő, aranypecséttel ellátott oklevelet.',
-            'Legfontosabb elemei: **törvényes ítélet nélkül nem fogható el** nemes, a nemes adómentes, hadba csak országon belül köteles menni, évente **Székesfehérváron** gyűlést tartanak; az **ellenállási záradék**.',
+            'Legfontosabb elemei: **törvényes ítélet nélkül nem fogható el** nemes, a nemes adómentes, hadba csak országon belül köteles menni, évente **Székesfehérváron** gyűlést tartanak; a király szegése esetén a nemesek jogosan szembeszállhatnak vele.',
           ],
         },
         {
@@ -780,10 +789,12 @@ const unit: GuideUnit = {
           items: [
             {
               term: 'szerviens',
+              emelt: true,
               text: 'A király szolgálatában álló kisebb birtokos, később a köznemesség egyik őse.',
             },
             {
               term: 'ellenállási záradék',
+              emelt: true,
               text: 'Az Aranybulla záradéka: ha a király megszegi az oklevelet, a nemesek jogosan szembeszállhatnak vele.',
             },
             {
@@ -818,7 +829,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'A **szerviensek** (a király szolgálatában álló kisebb birtokosok) azt kifogásolták, hogy a király a nagy adományokkal a főurakat favorizálja, őket pedig mellőzi. A király 1222-ben, a **székesfehérvári országgyűlésen** engedett, és kiadta az **Aranybullát** (arany pecsétről, a *bullá*ról kapta a nevét).',
+          text: 'A **kisebb birtokosok** (a király szolgálatában álló nemesek) azt kifogásolták, hogy a király a nagy adományokkal a főurakat favorizálja, őket pedig mellőzi. A király 1222-ben, a **székesfehérvári országgyűlésen** engedett, és kiadta az **Aranybullát** (arany pecsétről, a *bullá*ról kapta a nevét).',
         },
         { kind: 'heading', text: 'Az Aranybulla legfontosabb elemei' },
         {
@@ -839,7 +850,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'II. András **1224-ben** kiadta az **Andreanumot**, amely az erdélyi **szászok** (**Szászföld**) kiváltságait biztosította: önálló bíráskodás, szabad bíróválasztás, adófizetés. Lánya, **Szent Erzsébet** (Thüringiai Lajos felesége) a szegények és betegek gondozójaként lett szent.',
+          text: 'II. András **1224-ben** kiadta az **Andreanumot**, amely az erdélyi **szászok** kiváltságait biztosította: önálló bíráskodás, szabad bíróválasztás, adófizetés. Lánya, **Szent Erzsébet** (Thüringiai Lajos felesége) a szegények és betegek gondozójaként lett szent.',
         },
         {
           kind: 'text',
@@ -852,18 +863,23 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Így kérdezik',
           items: [
-            'Forrásrészlet az Aranybullából: melyik jogot rögzíti (adómentesség, személyes szabadság, ellenállási záradék)?',
-            'Fogalmak: szerviens, ellenállási záradék, regálé.',
+            'Forrásrészlet az Aranybullából: melyik jogot rögzíti (adómentesség, személyes szabadság)?',
+            'Fogalmak: regálé, sarkalatos nemesi jogok.',
             'Esszé: az Aranybulla okai és jelentősége a rendi fejlődésben.',
           ],
         },
         {
+          kind: 'keypoints',
+          emelt: true,
+          items: ['Fogalmak: szerviens, ellenállási záradék.'],
+        },
+        {
           kind: 'warning',
-          text: 'Gyakori hiba: azt írni, hogy az Aranybulla a jobbágyok jogait védte. Az **elsősorban a nemesek** (szerviensek) jogait szabályozta; a jobbágyság nem tartozott a bulla védettjei közé.',
+          text: 'Gyakori hiba: azt írni, hogy az Aranybulla a jobbágyok jogait védte. Az **elsősorban a nemesek** (kisebb birtokosok) jogait szabályozta; a jobbágyság nem tartozott a bulla védettjei közé.',
         },
         {
           kind: 'tip',
-          text: 'Az Aranybulla okai közül mindig említs belső (adományozások, a szerviensek elégedetlensége) és pénzügyi (regálék bérbeadása) tényezőt. A jelentősége: a király hatalma törvényekhez kötött, a nemesség jogai írásban rögzültek.',
+          text: 'Az Aranybulla okai közül mindig említs belső (adományozások, a kisebb birtokosok elégedetlensége) és pénzügyi (regálék bérbeadása) tényezőt. A jelentősége: a király hatalma törvényekhez kötött, a nemesség jogai írásban rögzültek.',
         },
       ],
       topicMatch: ['aranybulla', 'ii. andr'],
@@ -889,6 +905,7 @@ const unit: GuideUnit = {
         },
         {
           question: 'Mit mond ki az ellenállási záradék?',
+          emelt: true,
           options: [
             'A nemesek jogosan szembeszállhatnak a királlyal, ha az megszegi a bullát.',
             'A király köteles adót fizetni.',
@@ -933,7 +950,7 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Öt perc alatt',
           items: [
-            '**IV. Béla** (1235–1270) a királyi hatalom megerősítésére törekedett: visszavette az adományokat, és ezzel szembekerült a nemességgel.',
+            '**IV. Béla** a királyi hatalom megerősítésére törekedett: visszavette az adományokat, és ezzel szembekerült a nemességgel.',
             'A **tatárok (mongolok)** Batu kán vezetésével **1241-ben** a **Vereckei-hágón** át törtek be az országba.',
             '**1241. április 11-én** a **muhi csatában** legyőzték a magyar sereget; Béla elmenekült.',
             'A tatárok 1242-ben kivonultak, de az ország nagy része elpusztult.',
@@ -958,10 +975,10 @@ const unit: GuideUnit = {
         {
           kind: 'timeline',
           items: [
-            { date: '1235', text: 'IV. Béla trónra lép.' },
+            { date: '1235', text: 'IV. Béla trónra lép.', emelt: true },
             { date: '1241', text: 'A tatárok betörnek, a muhi csata.' },
             { date: '1242', text: 'A tatárok kivonulnak az országból.' },
-            { date: '1270', text: 'IV. Béla halála.' },
+            { date: '1270', text: 'IV. Béla halála.', emelt: true },
           ],
         },
       ],
@@ -982,7 +999,6 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          emelt: true,
           text: 'A tatárjárás fő forrása **Rogerius mester** *Siralmas éneke* (*Carmen miserabile*), aki szemtanúként számol be a pusztításról. Forrásként használhatod a pusztítás és a menekülés bemutatására.',
         },
         { kind: 'heading', text: 'Az újjáépítés' },
@@ -1010,7 +1026,7 @@ const unit: GuideUnit = {
           items: [
             'Térkép: a tatárok útja (Vereckei-hágó, Muhi, Esztergom, Buda).',
             'Forrás: Rogerius vagy IV. Béla levele a pápához; mit mutat a pusztításról?',
-            'Évszámok: 1241–1242, 1235–1270.',
+            'Évszámok: 1241–1242.',
             'Esszé: a tatárjárás okai, következményei és az újjáépítés intézkedései.',
           ],
         },
