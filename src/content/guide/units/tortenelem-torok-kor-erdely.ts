@@ -13,7 +13,7 @@ const unit: GuideUnit = {
   intro:
     'Az ország három részre szakadása Mohács után, a végvárak harca, majd Erdély útja: vallási türelem, fejedelmi állam, Bocskai, Bethlen és Zrínyi Miklós.',
   requirementSource:
-    'A témák, fogalmak, személyek, évszámok és helyszínek az érettségi részletes vizsgakövetelményeinek 3. témaköréből (kora újkor) valók, a 3.3 és 3.4 pontokhoz tartozó tételek. Ami emelt szintű, azt külön jelöljük.',
+    'A témák és az emelt szintű lexika az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (3. témakör); a középszintű fogalmak, személyek, évszámok és helyszínek a 2020-as történelem kerettantervből. A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   requirements: {
     terms: {
       kozep: [
@@ -37,14 +37,14 @@ const unit: GuideUnit = {
         'Dobó István',
         'Zrínyi Miklós (a szigetvári hős)',
         'Bethlen Gábor',
+        'Bocskai István',
+        'Zrínyi Miklós (a költő és hadvezér)',
       ],
       emelt: [
         'Tomori Pál',
         'Fráter György',
-        'Báthory István',
-        'Bocskai István',
+        'Báthori István',
         'I. Rákóczi György',
-        'Zrínyi Miklós (a költő és hadvezér)',
       ],
     },
     dates: {
@@ -54,15 +54,15 @@ const unit: GuideUnit = {
         '1552 Eger védelme',
         '1566 Szigetvár eleste',
         '1568 a tordai határozat',
+        '1648 a vesztfáliai békék',
+        '1664 a vasvári béke',
       ],
       emelt: [
         '1568 drinápolyi béke',
         '1570 speyeri szerződés',
         '1606 bécsi béke',
         '1613–1629 Bethlen fejedelemsége',
-        '1648 a vesztfáliai békék',
         '1664 Zrínyi téli hadjárata',
-        '1664 vasvári béke',
       ],
     },
     places: {
@@ -80,7 +80,7 @@ const unit: GuideUnit = {
         'Debrecen',
         'Temesvár',
       ],
-      emelt: ['Nagyszombat', 'Partium', 'Bánság/Temesköz'],
+      emelt: ['Partium', 'Bánság/Temesköz'],
     },
   },
   pages: [
@@ -101,7 +101,7 @@ const unit: GuideUnit = {
           items: [
             'A 15. században Hunyadi János és Hunyadi Mátyás még meg tudta állítani az oszmánokat. A Jagelló-korban (1490–1526) a központi hatalom gyenge volt, a nemesség széthúzott.',
             '**1521**: elesett Nándorfehérvár, a déli kapu. **I. Szulejmán** szultán 1526-ban újra támadott.',
-            '**1526. augusztus 29.**: a **mohácsi csata**. A magyar sereg alig két óra alatt vereséget szenvedett, **II. Lajos** király a menekülésben meghalt, a vezérek (köztük **Tomori Pál**) is elestek.',
+            '**1526. augusztus 29.**: a **mohácsi csata**. A magyar sereg alig két óra alatt vereséget szenvedett, **II. Lajos** király a menekülésben meghalt, a vezérek is elestek.',
             'Mohács után két király volt: **Szapolyai János** (Székesfehérvár, 1526. november) és **I. Ferdinánd** (Pozsony, 1526. december).',
             'A mohácsi vereség önmagában még nem szakította három részre az országot: az igazi szakadás **1541-ben** következett be.',
           ],
@@ -133,7 +133,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'A magyar sereg (mintegy 25–30 ezer ember) **Mohácsnál** ütközött meg az oszmánokkal. Fővezére **Tomori Pál** kalocsai érsek volt. A király mellé nem csatlakozott időben **Szapolyai János** erdélyi vajda serege, és a szövetségesek (cseh, német segítség) sem érkeztek meg. A csata után **II. Lajos** a menekülés közben a Csele-patakba fulladt. Elesett a főpapok és főurak jelentős része is.',
+          text: 'A magyar sereg (mintegy 25–30 ezer ember) **Mohácsnál** ütközött meg az oszmánokkal. Fővezére a kalocsai érsek volt. A király mellé nem csatlakozott időben **Szapolyai János** erdélyi vajda serege, és a szövetségesek (cseh, német segítség) sem érkeztek meg. A csata után **II. Lajos** a menekülés közben a Csele-patakba fulladt. Elesett a főpapok és főurak jelentős része is.',
         },
         {
           kind: 'warning',
@@ -172,7 +172,6 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          emelt: true,
           text: 'A kettős választás mögött jogi vita is állt: a magyar rendek a szabad királyválasztás jogára hivatkoztak, a Habsburgok pedig a családi szerződésekre és a rokonságra. Ferdinánd később elfoglalta Budát (1527), Szapolyai viszont a szultán támogatását kérte, és ezzel az oszmánokat is bevonta a magyar belharcba.',
         },
       ],
@@ -211,6 +210,7 @@ const unit: GuideUnit = {
           answer: 3,
           explanation:
             'Tomori Pál kalocsai érsek vezette a sereget. Szapolyai nem érkezett meg időben.',
+          emelt: true,
         },
         {
           question: 'Mi történt II. Lajossal a csata után?',
@@ -242,7 +242,6 @@ const unit: GuideUnit = {
           answer: 1,
           explanation:
             'Ferdinánd Lajos felesége révén sógora volt, és az 1515-ös házassági szerződésre hivatkozott.',
-          emelt: true,
         },
       ],
       sources: [
@@ -269,7 +268,7 @@ const unit: GuideUnit = {
             '**1541**: Szulejmán Budát elfoglalta. Az ország három részre szakadt: **királyi Magyarország** (Habsburg), **Hódoltság** (oszmán uralom), **Erdély** (a keleti országrész, később Erdélyi Fejedelemség).',
             'A Habsburg-ellenes és a török elleni harc a **végvárakon** folyt. A hős védők: **Dobó István** (Eger, **1552**) és **Zrínyi Miklós** (Szigetvár, **1566**).',
             '**1566**: Szigetvár elesett, de az ostrom alatt meghalt **Szulejmán** is.',
-            '**1568**: a **drinápolyi béke** (Habsburg és Oszmán Birodalom) rögzítette a határokat; ugyanekkor Erdélyben a **tordai határozat** vallási türelmet hirdetett.',
+            '**1568**: a Habsburg és az oszmán határok a helyükön maradtak; ugyanekkor Erdélyben a **tordai határozat** vallási türelmet hirdetett.',
           ],
         },
         {
@@ -296,7 +295,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Buda eleste és a három rész' },
         {
           kind: 'text',
-          text: 'Szapolyai 1540-ben meghalt; halála idején született kisfia, **János Zsigmond**. Ferdinánd katonái Budát ostromolták, mire Szulejmán 1541-ben **cselvetéssel bevette Budát**, és a közép országrészt közvetlen oszmán uralom alá vonta. A Dunától keletre eső terület Erdéllyel és a Tiszántúl egy részével a kis János Zsigmond és anyja, **Izabella királyné** (a tanácsadó **Fráter György** vezetésével) alatt maradt, oszmán védnökség alatt.',
+          text: 'Szapolyai 1540-ben meghalt; halála idején született kisfia, **János Zsigmond**. Ferdinánd katonái Budát ostromolták, mire Szulejmán 1541-ben **cselvetéssel bevette Budát**, és a közép országrészt közvetlen oszmán uralom alá vonta. A Dunától keletre eső terület Erdéllyel és a Tiszántúl egy részével a kis János Zsigmond és anyja, **Izabella királyné** alatt maradt, oszmán védnökség alatt.',
         },
         {
           kind: 'compare',
@@ -314,7 +313,7 @@ const unit: GuideUnit = {
             {
               label: 'Terület',
               cells: [
-                'a Dunántúl déli–középső része, a Duna–Tisza köze, a Tiszántúl nagy része (később a Bánság is)',
+                'a Dunántúl déli–középső része, a Duna–Tisza köze, a Tiszántúl nagy része',
                 'a nyugati és északi sáv (nyugati Dunántúl, Felvidék, Horvátország)',
               ],
             },
@@ -339,7 +338,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A királyi Magyarország és a végvárak' },
         {
           kind: 'text',
-          text: 'Ferdinánd a Habsburg-örökös tartományokkal együtt irányította az országot. Magyarország központja **Pozsony** lett (országgyűlés, koronázás). A török határán **végvárrendszert** építettek ki: várak sora, zsoldos katonasággal, amelyet a magyar rendek adója és a birodalmi segély tartott fenn. A hadi kérdéseket az **Udvari Haditanács** irányította Bécsből.',
+          text: 'Ferdinánd a Habsburg-örökös tartományokkal együtt irányította az országot. Magyarország központja **Pozsony** lett (országgyűlés, koronázás). A török határán **végvárrendszert** építettek ki: várak sora, zsoldos katonasággal, amelyet a magyar rendek adója és a birodalmi segély tartott fenn. A hadi kérdéseket Bécsből irányították.',
         },
         { kind: 'heading', text: 'A várháborúk (1541–1568)' },
         {
@@ -354,7 +353,7 @@ const unit: GuideUnit = {
               date: '1566',
               text: '**Szigetvár** ostroma: Zrínyi Miklós kitörésben esik el, a vár elesik, az ostrom alatt Szulejmán is meghal.',
             },
-            { date: '1568', text: 'Drinápolyi béke: a határok a helyükön maradnak.' },
+            { date: '1568', text: 'Drinápolyi béke: a határok a helyükön maradnak.', emelt: true },
           ],
         },
         {
@@ -404,7 +403,7 @@ const unit: GuideUnit = {
         },
         {
           question: 'Ki védte sikeresen Egert 1552-ben?',
-          options: ['Zrínyi Miklós', 'Jurisics Miklós', 'Dobó István', 'Fráter György'],
+          options: ['Zrínyi Miklós', 'Jurisics Miklós', 'Dobó István', 'Bethlen Gábor'],
           answer: 2,
           explanation:
             'Dobó István. Zrínyi Szigetvárt védte 1566-ban, Jurisics pedig Kőszeget 1532-ben.',
@@ -439,7 +438,6 @@ const unit: GuideUnit = {
           answer: 2,
           explanation:
             'A hódoltsági lakosok a szultánnak adóztak, de a magyar földesurak és az egyház is beszedte a járandóságát.',
-          emelt: true,
         },
       ],
       sources: [
@@ -466,7 +464,7 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Öt perc alatt',
           items: [
-            'Erdélyben **magyarok**, **székelyek**, **szászok** és **románok** éltek. A magyar nemesség, a székelyek és a szászok alkották a **három rendi nemzetet**; a románok nem tartoztak közéjük.',
+            'Erdélyben **magyarok**, **székelyek**, **szászok** és **románok** éltek. A magyar nemesség, a székelyek és a szászok rendi jogú nemzetek voltak; a románok nem tartoztak közéjük.',
             'Vallások: katolikus, evangélikus (főleg szászok), református (főleg magyarok) és **unitárius**. Ortodox (görögkeleti) hitű volt a legtöbb román.',
             '**1568**: a **tordai országgyűlés** határozata: a hit Isten ajándéka, szabad a prédikálás. Ez Európában példátlan **vallási türelem** volt.',
             'A négy **bevett vallás** (katolikus, evangélikus, református, unitárius) egyenjogú volt; az ortodoxok csak tűrtek maradtak.',
@@ -527,6 +525,7 @@ const unit: GuideUnit = {
         {
           kind: 'compare',
           title: 'A három rendi nemzet és a románok',
+          emelt: true,
           columns: ['Három rendi nemzet', 'Románok'],
           rows: [
             {
@@ -551,13 +550,13 @@ const unit: GuideUnit = {
           items: [
             'Forrás: a tordai országgyűlési határozat szövege; mit mond a vallásszabadságról?',
             'Statisztika vagy táblázat: Erdély lakosságának vallási és etnikai megoszlása.',
-            'Fogalmak: unitárius, vallási türelem, három rendi nemzet.',
+            'Fogalmak: unitárius, vallási türelem.',
             'Esszé vagy rövid válasz: miben volt más Erdély helyzete, mint a nyugati országoké?',
           ],
         },
         {
           kind: 'tip',
-          text: 'A „sajátos” helyzetet mindig összehasonlítással mutasd meg: máshol Európában a vallásháborúk idején az uralkodó vallása kötelező volt (például az 1555-ös augsburgi vallásbéke elve), Erdélyben viszont a rendek négy vallást egyaránt elfogadtak.',
+          text: 'A „sajátos” helyzetet mindig összehasonlítással mutasd meg: máshol Európában a vallásháborúk idején az uralkodó vallása kötelező volt, Erdélyben viszont a rendek négy vallást egyaránt elfogadtak.',
         },
         {
           kind: 'warning',
@@ -590,6 +589,7 @@ const unit: GuideUnit = {
           options: ['magyar nemesség', 'székelyek', 'szászok', 'románok'],
           answer: 3,
           explanation: 'A románok nem alkottak rendi nemzetet, bár a lakosság nagy részét adták.',
+          emelt: true,
         },
         {
           question: 'Melyik vallásúak voltak főleg az erdélyi szászok?',

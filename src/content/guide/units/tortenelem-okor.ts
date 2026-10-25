@@ -13,7 +13,7 @@ const unit: GuideUnit = {
   intro:
     'Az athéni demokrácia és a római köztársaság, Caesar és Augustus, a hunok, a görög és római építészet, az ókori írások, filozófia és jog, valamint a zsidó, a keresztény és az ókori keleti vallások.',
   requirementSource:
-    'A témák, fogalmak, személyek, évszámok és helyszínek az érettségi részletes vizsgakövetelményeinek 1. témaköréből (Az ókor) valók. Ami emelt szintű, azt külön jelöljük.',
+    'A témák és az emelt szintű lexika az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (1. témakör); a középszintű fogalmak, személyek, évszámok és helyszínek a 2020-as történelem kerettantervből. A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   requirements: {
     terms: {
       kozep: [
@@ -53,17 +53,31 @@ const unit: GuideUnit = {
         'zsinat',
         'jósda',
         'olümpiai játékok',
-      ],
-      emelt: [
-        'arisztokratikus köztársaság',
-        'esküdtbíróság',
-        'türannisz',
         'patrícius',
         'plebejus',
         'consul',
         'senatus',
         'dictator',
         'néptribunus',
+        'provincia',
+        'limes',
+        'légió',
+        'öntözéses földművelés',
+        'hieroglifa',
+        'ékírás',
+        'fáraó',
+        'piramis',
+        'múmia',
+        'filozófia',
+        'népvándorlás',
+        'hunok',
+        'nagy fal',
+        'kasztrendszer',
+      ],
+      emelt: [
+        'arisztokratikus köztársaság',
+        'esküdtbíróság',
+        'türannisz',
         'cenzor',
         'triumvirátus',
         'principátus',
@@ -71,32 +85,18 @@ const unit: GuideUnit = {
         'bazilika',
         'Forum Romanum',
         'Circus Maximus',
-        'provincia',
-        'légió',
-        'limes',
-        'népvándorlás',
-        'hunok',
         'újraelosztás',
         'árupénz',
-        'öntözéses földművelés',
-        'hieroglifa',
-        'ékírás',
         'betűírás',
-        'filozófia',
         'szofizmus',
         'zsinagóga',
         'államvallás',
         'dogma',
-        'fáraó',
-        'piramis',
-        'múmia',
         'brahmanizmus/hinduizmus',
-        'kasztrendszer',
         'buddhizmus',
         'lélekvándorlás/reinkarnáció',
-        'nirvána',
         'taoizmus',
-        'nagy fal',
+        'az ókori Izrael állama',
       ],
     },
     people: {
@@ -115,27 +115,27 @@ const unit: GuideUnit = {
         'Szent Péter',
         'Szent Pál',
         'Constantinus',
-        'Zeusz',
-        'Pallasz Athéné',
         'Romulus',
-      ],
-      emelt: [
         'Julius Caesar',
-        'Pompeius',
-        'Antonius',
         'Attila',
         'Hammurapi',
-        'Szókratész',
         'Platón',
         'Arisztotelész',
-        'Nagy Theodosius',
         'Kheopsz',
+      ],
+      emelt: [
+        'Pompeius',
+        'Antonius',
+        'Szókratész',
+        'Nagy Theodosius',
         'Ré',
         'Ízisz',
-        'Oziris',
+        'Ozirisz',
         'Buddha',
+        'Zeusz',
         'Aphrodité',
         'Arész',
+        'Athéné',
         'Poszeidon',
         'Héra',
       ],
@@ -153,14 +153,14 @@ const unit: GuideUnit = {
         '313 a milánói rendelet',
         '325 a niceai zsinat',
         'Kr. e. 776 az első feljegyzett olümpiai játékok',
+        'Kr. e. 44 Caesar halála',
+        '395 a Római Birodalom kettéosztása',
+        '476 a Nyugatrómai Birodalom bukása',
       ],
       emelt: [
         'Kr. e. 6. század Szolón reformja',
-        'Kr. e. 44 Caesar halála',
         'Kr. e. 31 az actiumi csata',
-        '395 a Római Birodalom kettéosztása',
         '451 a catalaunumi csata',
-        '476 a Nyugatrómai Birodalom bukása',
       ],
     },
     places: {
@@ -184,15 +184,15 @@ const unit: GuideUnit = {
         'Egyiptom',
         'Spárta',
         'Marathón',
+        'Mezopotámia',
+        'Babilon',
+        'Nílus',
+        'Hun Birodalom',
       ],
       emelt: [
         'Hispania',
         'Gallia',
         'Actium',
-        'Hun Birodalom',
-        'Mezopotámia',
-        'Babilon',
-        'Nílus',
         'Olümposz',
         'Delphoi',
       ],
@@ -334,7 +334,12 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Vallás és közösség: a görög politeizmus' },
         {
           kind: 'text',
-          text: 'A görögök **többistenhívők** (politeisták) voltak. Isteneik emberi tulajdonságokkal bírtak, és a **mondák** szereplői voltak. **Zeusz** az istenek királya, **Pallasz Athéné** Athén védőistennője (neki szentelték az Akropolisz templomát). A **jósda** (Delphoiban) az istenek akaratát közvetítette. Az **olümpiai játékok** idejére a harcoló városok szent békét kötöttek.',
+          text: 'A görögök **többistenhívők** (politeisták) voltak. Isteneik emberi tulajdonságokkal bírtak, és a **mondák** szereplői voltak. Az **olümpiai játékok** idejére a harcoló városok szent békét kötöttek.',
+        },
+        {
+          kind: 'text',
+          emelt: true,
+          text: '**Zeusz** az istenek királya, **Pallasz Athéné** Athén védőistennője (neki szentelték az Akropolisz templomát). A delphoi **jósda** az istenek akaratát közvetítette.',
         },
       ],
       exam: [
@@ -418,7 +423,6 @@ const unit: GuideUnit = {
           answer: 2,
           explanation:
             'A hadvezéreket, a sztratégoszokat választották, mert hozzáértés kellett hozzájuk; a legtöbb más tisztséget sorsolták.',
-          emelt: true,
         },
       ],
       sources: [
@@ -868,7 +872,7 @@ const unit: GuideUnit = {
           items: [
             'A **görög** építészet a harmóniát és az arányt kereste: az építészet csúcsa az oszlopos **templom** (Athénban az **Akropolisz**), jellemző épület még a színház és a stadion.',
             'A **római** építészet a tömegek kiszolgálására épült: boltív, dongaboltozat, kupola és beton teszi lehetővé a hatalmas épületeket (**amfiteátrum**, fürdő, vízvezeték, út).',
-            'Római jellegzetességek: **Colosseum**, **bazilika**, **Forum Romanum**, **Circus Maximus**; a provinciákban (Aquincum, Savaria) is épültek hasonló létesítmények.',
+            'Római jellegzetesség a nagy **amfiteátrum** és a közéleti terek; a provinciákban (Aquincum, Savaria) is épültek hasonló létesítmények.',
             'A mai épületek, színházak, stadionok és bíróságok közvetlen mintája az antik építészet.',
           ],
         },
@@ -877,7 +881,7 @@ const unit: GuideUnit = {
           items: [
             {
               term: 'Akropolisz',
-              text: 'Athén magaslati vára, szentélyek és templomok együttese; legismertebb épülete a **Parthenon**, Pallasz Athéné temploma.',
+              text: 'Athén magaslati vára, szentélyek és templomok együttese; legismertebb épülete a **Parthenon**, a város védőistennőjének temploma.',
             },
             {
               term: 'amfiteátrum',
@@ -889,18 +893,22 @@ const unit: GuideUnit = {
             },
             {
               term: 'Colosseum',
+              emelt: true,
               text: 'Róma legnagyobb amfiteátruma, a Flavius-dinasztia építette a Kr. u. 1. században.',
             },
             {
               term: 'bazilika',
+              emelt: true,
               text: 'Hosszanti, oszlopsorokkal tagolt csarnok: a rómaiaknál törvénykezési és kereskedelmi célú épület, később a keresztény templomok mintája.',
             },
             {
               term: 'Forum Romanum',
+              emelt: true,
               text: 'Róma köz- és vallási életének központja: tér templomokkal, bazilikákkal, a senatus épületével.',
             },
             {
               term: 'Circus Maximus',
+              emelt: true,
               text: 'Róma legnagyobb versenypályája, szekérversenyek színhelye.',
             },
           ],
@@ -914,7 +922,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'A legismertebb példa az athéni **Akropolisz** a **Parthenonnal**, amelyet Pallasz Athénének, a város védőistennőjének szenteltek. Az Akropolisz nagy épületei a Kr. e. 5. század közepén, Periklész korában készültek, a demokrácia fénykorának büszke jelei. A görögök **színházat** (félkör alakú, lejtős nézőtér) és **stadiont** (az olümpiai játékokhoz) is építettek. A polisz központja az **agora** volt.',
+          text: 'A legismertebb példa az athéni **Akropolisz** a **Parthenonnal**, amelyet a város védőistennőjének szenteltek. Az Akropolisz nagy épületei a Kr. e. 5. század közepén, Periklész korában készültek, a demokrácia fénykorának büszke jelei. A görögök **színházat** (félkör alakú, lejtős nézőtér) és **stadiont** (az olümpiai játékokhoz) is építettek. A polisz központja az **agora** volt.',
         },
         { kind: 'heading', text: 'A római építészet' },
         {
@@ -925,12 +933,19 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Fontosabb római épülettípusok',
           items: [
-            '**Amfiteátrum**: a gladiátorharcok és állatviadalok színtere; a legnagyobb a római **Colosseum**.',
+            '**Amfiteátrum**: a gladiátorharcok és állatviadalok színtere; a legnagyobb Rómában állt.',
+            '**Fürdők, vízvezetékek, utak**: a római életmód és a birodalom működésének alapja.',
+            '**Diadalív, oszlop**: a győzelmek emlékműve.',
+          ],
+        },
+        {
+          kind: 'keypoints',
+          title: 'Emelt: további épülettípusok',
+          emelt: true,
+          items: [
             '**Circus**: a szekérversenyek pályája (**Circus Maximus**).',
             '**Bazilika**: törvénykezés és kereskedelem hosszanti csarnoka.',
             '**Forum**: tér a város közéletéhez (**Forum Romanum**).',
-            '**Fürdők, vízvezetékek, utak**: a római életmód és a birodalom működésének alapja.',
-            '**Diadalív, oszlop**: a győzelmek emlékműve.',
           ],
         },
         {
@@ -957,7 +972,7 @@ const unit: GuideUnit = {
               label: 'Jellemző épület',
               cells: [
                 'templom (Parthenon), színház, stadion',
-                'amfiteátrum, fürdő, vízvezeték, bazilika',
+                'amfiteátrum, fürdő, vízvezeték',
               ],
             },
           ],
@@ -973,14 +988,14 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Így kérdezik',
           items: [
-            'Képfelismerés: melyik épület (Parthenon, Colosseum, vízvezeték, színház) és melyik kultúrához tartozik?',
-            'Párosítás: épülettípus és funkció (amfiteátrum: gladiátorjáték; bazilika: törvénykezés; Circus Maximus: szekérverseny).',
+            'Képfelismerés: melyik épület (Parthenon, amfiteátrum, vízvezeték, színház) és melyik kultúrához tartozik?',
+            'Párosítás: épülettípus és funkció (amfiteátrum: gladiátorjáték; fürdő: tisztálkodás és közösségi élet).',
             'Rövid válasz: mi a különbség a görög és a római építészet között?',
           ],
         },
         {
           kind: 'warning',
-          text: 'Gyakori hiba: a Colosseumot és az **amfiteátrumot** színháznak nevezni. A színház félkör alakú, drámák színhelye (görög eredetű), az amfiteátrum ovális, gladiátorharcok helye (római).',
+          text: 'Gyakori hiba: az **amfiteátrumot** színháznak nevezni. A színház félkör alakú, drámák színhelye (görög eredetű), az amfiteátrum ovális, gladiátorharcok helye (római).',
         },
         {
           kind: 'tip',
@@ -992,10 +1007,10 @@ const unit: GuideUnit = {
       quiz: [
         {
           question: 'Melyik épület állt az athéni Akropoliszon?',
-          options: ['Colosseum', 'Circus Maximus', 'Parthenon', 'Forum Romanum'],
-          answer: 2,
+          options: ['Amfiteátrum', 'Parthenon', 'Fürdő', 'Vízvezeték'],
+          answer: 1,
           explanation:
-            'A Parthenon Pallasz Athéné temploma volt az Akropoliszon; a többi római épület.',
+            'A Parthenon az Akropoliszon állt, Athén védőistennőjének temploma volt; az amfiteátrum, a fürdő és a vízvezeték római épület.',
         },
         {
           question: 'Mire használták az amfiteátrumot?',
@@ -1260,7 +1275,7 @@ const unit: GuideUnit = {
       title: 'Az ókor vallásai: zsidó monoteizmus, kereszténység, politeizmus',
       level: 'kozep',
       requirement: {
-        kozep: 'A zsidó monoteizmus; A kereszténység kialakulása, tanai, elterjedése',
+        kozep: 'A zsidó monoteizmus; a kereszténység kialakulása, tanai, elterjedése',
         emelt: 'Politeizmus az ókori Keleten',
       },
       minutes: 12,
@@ -1361,6 +1376,12 @@ const unit: GuideUnit = {
             '**313**: a **milánói rendelet** (Constantinus császár) szabaddá tette a keresztény vallás gyakorlását.',
             '**325**: a **niceai zsinat** Constantinus összehívására; meghatározta a hit alapját (hitvallás), elítélte az Arius-féle tanítást.',
             '**330**: Constantinus **Konstantinápolyt** a birodalom új fővárosává tette.',
+          ],
+        },
+        {
+          kind: 'keypoints',
+          emelt: true,
+          items: [
             '**380** után: **Nagy Theodosius** idején a kereszténység **államvallás** lett.',
           ],
         },
@@ -1415,6 +1436,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'warning',
+          emelt: true,
           text: 'Gyakori hiba: összekeverni a **313-as milánói rendeletet** (a kereszténység szabad vallás lett) a **380-as thesszalonikai rendelettel** (államvallás), és a **325-ös niceai zsinattal** (hitvallás). Nem Constantinus tette államvallássá!',
         },
         {
@@ -1455,6 +1477,7 @@ const unit: GuideUnit = {
           answer: 1,
           explanation:
             'A milánói rendelet vallásszabadságot adott a keresztényeknek; államvallás csak a 4. század végén lett.',
+          emelt: true,
         },
         {
           question: 'Ki volt a kereszténység legnagyobb hatású hittérítője (misszionáriusa)?',

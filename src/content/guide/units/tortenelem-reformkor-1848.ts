@@ -13,7 +13,7 @@ const unit: GuideUnit = {
   intro:
     'A polgári átalakulás magyar útja: a reformkori viták, a pesti forradalom és az áprilisi törvények, majd a szabadságharc és a megtorlás.',
   requirementSource:
-    'A témák, fogalmak, személyek, évszámok és helyszínek az érettségi részletes vizsgakövetelményeinek 4. témaköréből valók. Ami emelt szintű, azt külön jelöljük.',
+    'A témák és az emelt szintű lexika az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (4. témakör); a középszintű fogalmak, személyek, évszámok és helyszínek a 2020-as történelem kerettantervből. A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   requirements: {
     terms: {
       kozep: [
@@ -36,9 +36,9 @@ const unit: GuideUnit = {
         'honvédség',
         'Függetlenségi nyilatkozat',
         'emigráció',
+        'alsó- és felsőtábla',
       ],
       emelt: [
-        'alsó- és felsőtábla',
         'zsellér',
         'követutasítás',
         'Pesti Hírlap',
@@ -73,7 +73,7 @@ const unit: GuideUnit = {
         'Windisch-Grätz',
         'Gábor Áron',
         'Damjanich János',
-        'I. Miklós cár',
+        'I. Miklós orosz cár',
       ],
     },
     dates: {
@@ -90,7 +90,7 @@ const unit: GuideUnit = {
         '1849. augusztus 13. a világosi fegyverletétel',
         '1849. október 6. az aradi vértanúk és Batthyány kivégzése',
       ],
-      emelt: ['1849. április az isaszegi csata'],
+      emelt: ['1849. április isaszegi csata'],
     },
     places: {
       kozep: ['Pest-Buda', 'Pákozd', 'Isaszeg', 'Világos', 'Komárom', 'Arad'],
@@ -283,7 +283,7 @@ const unit: GuideUnit = {
           title: 'Öt perc alatt',
           items: [
             '**Széchenyi István**: fokozatos, gazdasági reformokkal induló átalakulás, a bécsi udvarral együttműködve. Fő műve a *Hitel* (1830).',
-            '**Kossuth Lajos**: gyorsabb, politikai és gazdasági átalakulás egyszerre, érdekegyesítés, a közvélemény mozgósítása. Fő fóruma a *Pesti Hírlap* (1841–1844).',
+            '**Kossuth Lajos**: gyorsabb, politikai és gazdasági átalakulás egyszerre, érdekegyesítés, a közvélemény mozgósítása. Fő fóruma a reformellenzéki sajtó (1841–1844).',
             'Vitájuk 1841-ben robbant ki: Széchenyi *A Kelet népe* című művében támadta Kossuthot, aki a *Felelet*-ben válaszolt.',
             'A cél közös volt (polgári átalakulás), a módszer és a tempó különbözött.',
           ],
@@ -338,11 +338,11 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Kossuth Lajos és a nyilvánosság' },
         {
           kind: 'text',
-          text: 'Köznemesi családból származó ügyvéd volt. Az 1832–36-os országgyűlésről kéziratos **Országgyűlési Tudósítások**at szerkesztett, ezért elítélték és börtönbe zárták (1837–1840). Kiszabadulása után a ***Pesti Hírlap*** szerkesztője lett (1841–1844): vezércikkeiben az érdekegyesítést, a kötelező örökváltságot, a közteherviselést és a népképviseletet hirdette.',
+          text: 'Köznemesi családból származó ügyvéd volt. Az 1832–36-os országgyűlésről kéziratos **Országgyűlési Tudósítások**at szerkesztett, ezért elítélték és börtönbe zárták (1837–1840). Kiszabadulása után a reformellenzéki lap szerkesztője lett (1841–1844): vezércikkeiben az érdekegyesítést, a kötelező örökváltságot, a közteherviselést és a népképviseletet hirdette.',
         },
         {
           kind: 'text',
-          text: 'A gazdaságban a hazai ipart akarta védeni: a **Védegylet** (1844) tagjai vállalták, hogy csak hazai iparcikket vásárolnak. Kossuth Friedrich List német közgazdász nyomán a védővámokat tartotta szükségesnek.',
+          text: 'A gazdaságban a hazai ipart akarta védeni: egy 1844-es egyesület tagjai vállalták, hogy csak hazai iparcikket vásárolnak. Kossuth Friedrich List német közgazdász nyomán a védővámokat tartotta szükségesnek.',
         },
         { kind: 'heading', text: 'A vita' },
         {
@@ -368,7 +368,6 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          emelt: true,
           text: 'A vita nemcsak taktikai volt. Széchenyi a birodalmon belüli fokozatos fejlődést tartotta biztonságosnak, és attól tartott, hogy a gyors magyarosítás és a politikai radikalizmus a nemzetiségeket és az udvart is szembefordítja a magyarsággal. 1848–49 eseményei bizonyos értelemben mindkettőjüket igazolták: Kossuth programja megvalósult, de a nemzetiségi és az udvarral szembeni konfliktus, amitől Széchenyi félt, be is következett.',
         },
       ],
@@ -377,7 +376,7 @@ const unit: GuideUnit = {
           kind: 'keypoints',
           title: 'Így kérdezik',
           items: [
-            'Idézet alapján: Széchenyitől vagy Kossuthtól származik? (Hitel-részlet, Pesti Hírlap-vezércikk.)',
+            'Idézet alapján: Széchenyitől vagy Kossuthtól származik? (Hitel-részlet, vezércikk.)',
             'Táblázat: a két program összehasonlítása szempontok szerint.',
             'Esszé: Széchenyi és Kossuth reformprogramjának összevetése.',
           ],
@@ -396,7 +395,7 @@ const unit: GuideUnit = {
       quiz: [
         {
           question: 'Melyik Széchenyi műve, amely a hitelhiányt és az ősiséget elemzi?',
-          options: ['Felelet', 'Hitel', 'Balítéletekről', 'Pesti Hírlap'],
+          options: ['Felelet', 'Hitel', 'Balítéletekről', 'Kelet népe'],
           answer: 1,
           explanation: 'A Hitel (1830). A Felelet Kossuthé, a Balítéletekről Wesselényié.',
         },
@@ -422,6 +421,7 @@ const unit: GuideUnit = {
           answer: 1,
           explanation:
             'A Védegylet (1844) tagjai csak hazai iparcikket vettek, hogy védjék a magyar ipart.',
+          emelt: true,
         },
         {
           question: 'Melyik műben támadta Széchenyi Kossuthot 1841-ben?',
@@ -434,6 +434,7 @@ const unit: GuideUnit = {
           options: ['Kossuth Lajos', 'Petőfi Sándor', 'Deák Ferenc', 'Kölcsey Ferenc'],
           answer: 0,
           explanation: 'Kossuth Lajos; vezércikkei tették a lapot a reformellenzék fórumává.',
+          emelt: true,
         },
       ],
       sources: [
@@ -681,7 +682,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'warning',
-          text: 'Nyitott kérdések maradtak: a hadügy és a pénzügy viszonya a birodalomhoz nem volt pontosan rendezve, a **zsellérek** és a majorsági földeken élők nem kaptak földet, és a nemzetiségek kollektív jogait nem ismerték el. Ezek a kérdések 1848 nyarán konfliktusokhoz vezettek.',
+          text: 'Nyitott kérdések maradtak: a hadügy és a pénzügy viszonya a birodalomhoz nem volt pontosan rendezve, a földnélküliek és a majorsági földeken élők nem kaptak földet, és a nemzetiségek kollektív jogait nem ismerték el. Ezek a kérdések 1848 nyarán konfliktusokhoz vezettek.',
         },
         {
           kind: 'text',
@@ -779,8 +780,8 @@ const unit: GuideUnit = {
           title: 'Öt perc alatt',
           items: [
             '1848 nyarán a bécsi udvar a nemzetiségek (szerbek, horvátok, románok) mozgalmait is felhasználva fordult szembe az áprilisi törvényekkel.',
-            'Szeptemberben **Jelačić** horvát bán támadott; **1848. szeptember 29.** a **pákozdi csata** az új honvédsereg első sikere.',
-            'Télen a császári sereg (Windisch-Grätz) elfoglalta Pestet, a kormány Debrecenbe költözött.',
+            'Szeptemberben a horvát bán támadott; **1848. szeptember 29.** a **pákozdi csata** az új honvédsereg első sikere.',
+            'Télen a császári sereg elfoglalta Pestet, a kormány Debrecenbe költözött.',
             '**1849 tavasza**: a **tavaszi hadjárat** győzelmei (Görgei Artúr), közben **április 14.**: **Függetlenségi nyilatkozat**, május 21.: Buda visszavétele.',
             'Az orosz beavatkozás után **1849. augusztus 13.** a **világosi fegyverletétel**; **október 6.** az aradi vértanúk és Batthyány kivégzése.',
           ],
@@ -811,7 +812,7 @@ const unit: GuideUnit = {
           items: [
             {
               date: '1848. szeptember 11.',
-              text: 'Jelačić átlépi a Drávát, megtámadja Magyarországot.',
+              text: 'A horvát bán átlépi a Drávát, megtámadja Magyarországot.',
             },
             {
               date: '1848. szeptember',
@@ -832,7 +833,7 @@ const unit: GuideUnit = {
             },
             {
               date: '1849. január',
-              text: 'Windisch-Grätz elfoglalja Pest-Budát; a kormány és az országgyűlés Debrecenbe költözik.',
+              text: 'A császári sereg elfoglalja Pest-Budát; a kormány és az országgyűlés Debrecenbe költözik.',
             },
             {
               date: '1849. március 4.',
@@ -843,21 +844,31 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'Erdélyben **Bem József** lengyel tábornok vezetésével a honvédek 1849 tavaszára szinte az egész tartományt felszabadították. A honvédsereg ágyúit többek között a székely **Gábor Áron** öntötte.',
+          text: 'Erdélyben **Bem József** lengyel tábornok vezetésével a honvédek 1849 tavaszára szinte az egész tartományt felszabadították.',
+        },
+        {
+          kind: 'text',
+          emelt: true,
+          text: 'A honvédsereg ágyúit többek között a székely **Gábor Áron** öntötte.',
         },
         { kind: 'heading', text: 'A tavaszi hadjárat és a Függetlenségi nyilatkozat' },
         {
           kind: 'text',
-          text: 'A **tavaszi hadjárat** (1849. április–május) Görgei Artúr vezetésével sorozatos győzelmeket hozott: Hatvan, Tápióbicske, **Isaszeg** (április 6.), Vác, Nagysalló, majd **Komárom** felmentése. **Damjanich János** hadteste kiemelkedően harcolt. **1849. május 21-én** a honvédek visszafoglalták **Buda** várát.',
+          text: 'A **tavaszi hadjárat** (1849. április–május) Görgei Artúr vezetésével sorozatos győzelmeket hozott: Hatvan, Tápióbicske, **Isaszeg** (április 6.), Vác, Nagysalló, majd **Komárom** felmentése. **1849. május 21-én** a honvédek visszafoglalták **Buda** várát.',
         },
         {
           kind: 'text',
-          text: '**1849. április 14-én** Debrecenben az országgyűlés kimondta a **Függetlenségi nyilatkozatot**: a Habsburg-Lotaringiai házat trónfosztottnak nyilvánította, Kossuthot kormányzó-elnökké választotta. A trónfosztás válasz volt az olmützi alkotmányra, de megosztotta a vezetőket: Görgei és a mérsékeltek politikailag hibásnak tartották.',
+          emelt: true,
+          text: '**Damjanich János** hadteste kiemelkedően harcolt.',
+        },
+        {
+          kind: 'text',
+          text: '**1849. április 14-én** Debrecenben az országgyűlés kimondta a **Függetlenségi nyilatkozatot**: a Habsburg-Lotaringiai házat trónfosztottnak nyilvánította, Kossuthot kormányzó-elnökké választotta. A trónfosztás válasz volt a birodalmi központosításra, de megosztotta a vezetőket: Görgei és a mérsékeltek politikailag hibásnak tartották.',
         },
         { kind: 'heading', text: 'A szabadságharc leverése' },
         {
           kind: 'text',
-          text: 'Ferenc József **I. Miklós orosz cár** segítségét kérte; 1849 nyarán mintegy 200 ezer orosz katona vonult be, az osztrák sereget pedig **Haynau** vezette. A túlerővel szemben a honvédsereg vereségeket szenvedett (Segesvár, ahol Petőfi eltűnt; Temesvár). Kossuth augusztus 11-én lemondott és átadta a hatalmat Görgeinek, aki **1849. augusztus 13-án Világosnál** letette a fegyvert az orosz csapatok előtt. **Komárom** vára **Klapka György** vezetésével október elejéig kitartott, és szabad elvonulást harcolt ki.',
+          text: 'Ferenc József orosz segítséget kért; 1849 nyarán mintegy 200 ezer orosz katona vonult be, az osztrák sereget pedig **Haynau** vezette. A túlerővel szemben a honvédsereg vereségeket szenvedett (Segesvár, ahol Petőfi eltűnt; Temesvár). Kossuth augusztus 11-én lemondott és átadta a hatalmat Görgeinek, aki **1849. augusztus 13-án Világosnál** letette a fegyvert az orosz csapatok előtt. **Komárom** vára **Klapka György** vezetésével október elejéig kitartott, és szabad elvonulást harcolt ki.',
         },
         {
           kind: 'text',
@@ -898,11 +909,11 @@ const unit: GuideUnit = {
           options: ['Isaszeg', 'Pákozd', 'Schwechat', 'Kápolna'],
           answer: 1,
           explanation:
-            'Pákozd (1848. szeptember 29.): megállították Jelačićot. Schwechat és Kápolna vereség volt.',
+            'Pákozd (1848. szeptember 29.): megállították a horvát bánt. Schwechat és Kápolna vereség volt.',
         },
         {
           question: 'Ki vezette a tavaszi hadjáratot?',
-          options: ['Bem József', 'Görgei Artúr', 'Klapka György', 'Jelačić'],
+          options: ['Bem József', 'Görgei Artúr', 'Klapka György', 'Kossuth Lajos'],
           answer: 1,
           explanation: 'Görgei Artúr; Bem az erdélyi hadjáratot vezette.',
         },
