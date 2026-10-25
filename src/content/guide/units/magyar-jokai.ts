@@ -386,7 +386,7 @@ const unit: GuideUnit = {
             },
             {
               name: 'Timéa',
-              text: 'Brazovics lánya, Timár felesége; a kötelesség és a társadalmi világ alakja.',
+              text: 'Ali Csorbadzsi lánya, Brazovicsék nevelt lánya, Timár felesége; a kötelesség és a társadalmi világ alakja.',
             },
             {
               name: 'Noémi',
