@@ -823,7 +823,7 @@ const unit: GuideUnit = {
           items: [
             'Kosztolányi világlátása: a lét **megismerhetetlen**, az ember **egyedi** és halandó; mégis érdemes élni, és a pillanat, a hétköznap **értéket** hordoz.',
             'Szemléletére az **esztétikai** magatartás jellemző; az értelmezők ezt gyakran *homo aestheticus* néven emlegetik.',
-            '**Nyelvszemlélet**: a nyelv az ember lelkének kifejezője; nyelvművelő esszéi (például *Édes anyanyelvünk*, 1929) és fordításai is fontosak.',
+            '**Nyelvszemlélet**: a nyelv az ember lelkének kifejezője; nyelvművelő esszéi (halála után *Édes anyanyelvünk* címmel is összegyűjtötték őket) és fordításai is fontosak.',
             '**Műfordítóként** a világirodalmat közvetítette (pl. *Modern költők*, 1913).',
             '**Utóélet**: a magyar prózai és lírai hagyomány egyik alapszerzője; művei színpadi és filmes adaptációkban is élnek.',
           ],
@@ -842,7 +842,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Nyelv és műfordítás' },
         {
           kind: 'text',
-          text: 'Kosztolányi a **nyelvet** az ember lelkének tükrének tekintette. Nyelvi tárgyú esszéi (például az *Édes anyanyelvünk*, 1929) a nyelvhasználat szépségét és helyességét vizsgálták. Fontos tevékenysége a **műfordítás**: a világirodalom költőit tolmácsolta magyarul, és ez a munka a költői nyelv csiszolásához is hozzájárult.',
+          text: 'Kosztolányi a **nyelvet** az ember lelkének tükrének tekintette. Nyelvi tárgyú esszéi (halála után *Édes anyanyelvünk* címmel is összegyűjtötték őket) a nyelvhasználat szépségét és helyességét vizsgálták. Fontos tevékenysége a **műfordítás**: a világirodalom költőit tolmácsolta magyarul, és ez a munka a költői nyelv csiszolásához is hozzájárult.',
         },
         {
           kind: 'terms',
@@ -910,7 +910,8 @@ const unit: GuideUnit = {
           question: 'Melyik Kosztolányi nyelvi tárgyú esszégyűjteményének a címe?',
           options: ['Számadás', 'Édes anyanyelvünk', 'Meztelenül', 'Négy fal között'],
           answer: 1,
-          explanation: 'Az *Édes anyanyelvünk* (1929) nyelvművelő esszék gyűjteménye.',
+          explanation:
+            'Az *Édes anyanyelvünk* Kosztolányi nyelvművelő írásainak gyűjteménye (halála után állították össze).',
         },
         {
           question: 'Mit jelent a *homo aestheticus* kifejezés az értelmezésekben?',

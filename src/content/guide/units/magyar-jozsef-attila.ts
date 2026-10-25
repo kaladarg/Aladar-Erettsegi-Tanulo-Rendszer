@@ -559,7 +559,7 @@ const unit: GuideUnit = {
           kind: 'text',
           text: 'Az *Óda* a **szerelmi költészet** és a világszemlélet találkozása. A műfaj neve a magasztos hangot jelzi, de a vers hangja emberi és közvetlen. A szerelem itt nem elzárt magánügy: a szeretett nő a **természet és az emberi világ** összefüggéseinek része, a két ember kapcsolata a világ rendjében ölt értelmet. A vers hatalmas képei a **természeti és kozmikus** erőket egy személyes vallomásba fogják össze.',
         },
-        { kind: 'heading', text: 'Eszmélet (1933)' },
+        { kind: 'heading', text: 'Eszmélet (1933–1934)' },
         {
           kind: 'text',
           text: 'Az *Eszmélet* **tudatra ébredés**-vers: a költő a világ rendjét, a lét törvényeit és az ember helyét kutatja. A vers **ellentétekből és párhuzamokból** épül fel: a végtelen és a véges, a természet és az ember, a külső világ és a belső tudat. Az *Eszmélet* a világot **anyagi, összefüggő rendszerként** látja, amelyben az ember a dolgozó és gondolkodó lény. A vers hangja mértéktartó, a gondolatmenet szigorú.',
@@ -571,7 +571,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A Dunánál (1936)' },
         {
           kind: 'text',
-          text: 'A vers nyitánya: *„A rakodópart alsó kövén ültem, / néztem, hogy folyik, habzik tova a Duna.”* A **folyó** a **múlt és jelen** egybefolyásának jelképe. A költő a Duna partján ülve a személyes emlékeken át jut el a **nép és a nemzet sorsáig**. A vers három nagy gondolati egységre tagolódik: a folyó és a lírai én szemlélődése, a múlt és az ősök, a közös történelem; végül a **jövő**, a közös tennivaló kérdése.',
+          text: 'A vers nyitánya: *„A rakodópart alsó kövén ültem, / néztem, hogy úszik el a dinnyehéj.”* A **folyó** a **múlt és jelen** egybefolyásának jelképe. A költő a Duna partján ülve a személyes emlékeken át jut el a **nép és a nemzet sorsáig**. A vers három nagy gondolati egységre tagolódik: a folyó és a lírai én szemlélődése, a múlt és az ősök, a közös történelem; végül a **jövő**, a közös tennivaló kérdése.',
         },
         {
           kind: 'text',
@@ -580,7 +580,7 @@ const unit: GuideUnit = {
         {
           kind: 'compare',
           title: 'A három gondolati vers összevetése',
-          columns: ['Óda és Eszmélet (1933)', 'A Dunánál (1936)'],
+          columns: ['Óda (1933) és Eszmélet (1934)', 'A Dunánál (1936)'],
           rows: [
             {
               label: 'Középpont',
