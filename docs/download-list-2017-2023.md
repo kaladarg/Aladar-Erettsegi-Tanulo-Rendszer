@@ -1,0 +1,404 @@
+# Download list: older érettségi papers (2017–2023)
+
+Folder per exam: `old-format/<exam-id>/source/` in the private content repo (erettsegi-gyakorlo-content).
+Files keep the official name without the level prefix (e.g. `k_mat_19maj_fl.pdf` is saved as `mat_19maj_fl.pdf`).
+
+Order: 1. matematika, 2. angol and német, 3. földrajz.
+
+## matematika (26 papers)
+
+- `matematika-kozep-2017-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_mat_17maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_mat_17maj_ut.pdf
+- `matematika-emelt-2017-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_mat_17maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_mat_17maj_ut.pdf
+- `matematika-kozep-2017-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_mat_17okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_mat_17okt_ut.pdf
+- `matematika-emelt-2017-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_mat_17okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_mat_17okt_ut.pdf
+- `matematika-kozep-2018-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_mat_18maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_mat_18maj_ut.pdf
+- `matematika-emelt-2018-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_mat_18maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_mat_18maj_ut.pdf
+- `matematika-kozep-2018-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_mat_18okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_mat_18okt_ut.pdf
+- `matematika-emelt-2018-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_mat_18okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_mat_18okt_ut.pdf
+- `matematika-kozep-2019-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_mat_19maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_mat_19maj_ut.pdf
+- `matematika-emelt-2019-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_mat_19maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_mat_19maj_ut.pdf
+- `matematika-kozep-2019-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_mat_19okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_mat_19okt_ut.pdf
+- `matematika-emelt-2019-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_mat_19okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_mat_19okt_ut.pdf
+- `matematika-kozep-2020-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_mat_20maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_mat_20maj_ut.pdf
+- `matematika-emelt-2020-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_mat_20maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_mat_20maj_ut.pdf
+- `matematika-kozep-2020-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_mat_20okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_mat_20okt_ut.pdf
+- `matematika-emelt-2020-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_mat_20okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_mat_20okt_ut.pdf
+- `matematika-kozep-2021-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_mat_21maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_mat_21maj_ut.pdf
+- `matematika-emelt-2021-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_mat_21maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_mat_21maj_ut.pdf
+- `matematika-kozep-2021-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_mat_21okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_mat_21okt_ut.pdf
+- `matematika-emelt-2021-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_mat_21okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_mat_21okt_ut.pdf
+- `matematika-kozep-2022-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_mat_22maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_mat_22maj_ut.pdf
+- `matematika-emelt-2022-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_mat_22maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_mat_22maj_ut.pdf
+- `matematika-kozep-2022-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_mat_22okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_mat_22okt_ut.pdf
+- `matematika-emelt-2022-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_mat_22okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_mat_22okt_ut.pdf
+- `matematika-emelt-2023-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_mat_23maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_mat_23maj_ut.pdf
+- `matematika-emelt-2023-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_mat_23okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_mat_23okt_ut.pdf
+
+## angol (28 papers)
+
+- `angol-kozep-2017-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_angol_17maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_angol_17maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_angol_17maj_fl.mp3
+- `angol-emelt-2017-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_angol_17maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_angol_17maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_angol_17maj_fl.mp3
+- `angol-kozep-2017-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_angol_17okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_angol_17okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_angol_17okt_fl.mp3
+- `angol-emelt-2017-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_angol_17okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_angol_17okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_angol_17okt_fl.mp3
+- `angol-kozep-2018-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_angol_18maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_angol_18maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_angol_18maj_fl.mp3
+- `angol-emelt-2018-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_angol_18maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_angol_18maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_angol_18maj_fl.mp3
+- `angol-kozep-2018-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_angol_18okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_angol_18okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_angol_18okt_fl.mp3
+- `angol-emelt-2018-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_angol_18okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_angol_18okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_angol_18okt_fl.mp3
+- `angol-kozep-2019-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_angol_19maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_angol_19maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_angol_19maj_fl.mp3
+- `angol-emelt-2019-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_angol_19maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_angol_19maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_angol_19maj_fl.mp3
+- `angol-kozep-2019-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_angol_19okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_angol_19okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_angol_19okt_fl.mp3
+- `angol-emelt-2019-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_angol_19okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_angol_19okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_angol_19okt_fl.mp3
+- `angol-kozep-2020-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_angol_20maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_angol_20maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_angol_20maj_fl.mp3
+- `angol-emelt-2020-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_angol_20maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_angol_20maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_angol_20maj_fl.mp3
+- `angol-kozep-2020-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_angol_20okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_angol_20okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_angol_20okt_fl.mp3
+- `angol-emelt-2020-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_angol_20okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_angol_20okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_angol_20okt_fl.mp3
+- `angol-kozep-2021-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_angol_21maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_angol_21maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_angol_21maj_fl.mp3
+- `angol-emelt-2021-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_angol_21maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_angol_21maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_angol_21maj_fl.mp3
+- `angol-kozep-2021-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_angol_21okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_angol_21okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_angol_21okt_fl.mp3
+- `angol-emelt-2021-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_angol_21okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_angol_21okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_angol_21okt_fl.mp3
+- `angol-kozep-2022-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_angol_22maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_angol_22maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_angol_22maj_fl.mp3
+- `angol-emelt-2022-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_angol_22maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_angol_22maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_angol_22maj_fl.mp3
+- `angol-kozep-2022-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_angol_22okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_angol_22okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_angol_22okt_fl.mp3
+- `angol-emelt-2022-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_angol_22okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_angol_22okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_angol_22okt_fl.mp3
+- `angol-kozep-2023-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_kozep/k_angol_23maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_kozep/k_angol_23maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_kozep/k_angol_23maj_fl.mp3
+- `angol-emelt-2023-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_angol_23maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_angol_23maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_angol_23maj_fl.mp3
+- `angol-kozep-2023-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_kozep/k_angol_23okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_kozep/k_angol_23okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_kozep/k_angol_23okt_fl.mp3
+- `angol-emelt-2023-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_angol_23okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_angol_23okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_angol_23okt_fl.mp3
+
+## nemet (28 papers)
+
+- `nemet-kozep-2017-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_nemet_17maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_nemet_17maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_nemet_17maj_fl.mp3
+- `nemet-emelt-2017-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_nemet_17maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_nemet_17maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_nemet_17maj_fl.mp3
+- `nemet-kozep-2017-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_nemet_17okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_nemet_17okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_nemet_17okt_fl.mp3
+- `nemet-emelt-2017-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_nemet_17okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_nemet_17okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_nemet_17okt_fl.mp3
+- `nemet-kozep-2018-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_nemet_18maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_nemet_18maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_nemet_18maj_fl.mp3
+- `nemet-emelt-2018-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_nemet_18maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_nemet_18maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_nemet_18maj_fl.mp3
+- `nemet-kozep-2018-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_nemet_18okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_nemet_18okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_nemet_18okt_fl.mp3
+- `nemet-emelt-2018-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_nemet_18okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_nemet_18okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_nemet_18okt_fl.mp3
+- `nemet-kozep-2019-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_nemet_19maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_nemet_19maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_nemet_19maj_fl.mp3
+- `nemet-emelt-2019-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_nemet_19maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_nemet_19maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_nemet_19maj_fl.mp3
+- `nemet-kozep-2019-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_nemet_19okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_nemet_19okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_nemet_19okt_fl.mp3
+- `nemet-emelt-2019-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_nemet_19okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_nemet_19okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_nemet_19okt_fl.mp3
+- `nemet-kozep-2020-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_nemet_20maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_nemet_20maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_nemet_20maj_fl.mp3
+- `nemet-emelt-2020-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_nemet_20maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_nemet_20maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_nemet_20maj_fl.mp3
+- `nemet-kozep-2020-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_nemet_20okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_nemet_20okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_nemet_20okt_fl.mp3
+- `nemet-emelt-2020-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_nemet_20okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_nemet_20okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_nemet_20okt_fl.mp3
+- `nemet-kozep-2021-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_nemet_21maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_nemet_21maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_nemet_21maj_fl.mp3
+- `nemet-emelt-2021-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_nemet_21maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_nemet_21maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_nemet_21maj_fl.mp3
+- `nemet-kozep-2021-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_nemet_21okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_nemet_21okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_nemet_21okt_fl.mp3
+- `nemet-emelt-2021-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_nemet_21okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_nemet_21okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_nemet_21okt_fl.mp3
+- `nemet-kozep-2022-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_nemet_22maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_nemet_22maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_nemet_22maj_fl.mp3
+- `nemet-emelt-2022-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_nemet_22maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_nemet_22maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_nemet_22maj_fl.mp3
+- `nemet-kozep-2022-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_nemet_22okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_nemet_22okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_nemet_22okt_fl.mp3
+- `nemet-emelt-2022-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_nemet_22okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_nemet_22okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_nemet_22okt_fl.mp3
+- `nemet-kozep-2023-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_kozep/k_nemet_23maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_kozep/k_nemet_23maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_kozep/k_nemet_23maj_fl.mp3
+- `nemet-emelt-2023-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_nemet_23maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_nemet_23maj_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_nemet_23maj_fl.mp3
+- `nemet-kozep-2023-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_kozep/k_nemet_23okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_kozep/k_nemet_23okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_kozep/k_nemet_23okt_fl.mp3
+- `nemet-emelt-2023-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_nemet_23okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_nemet_23okt_ut.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_nemet_23okt_fl.mp3
+
+## foldrajz (28 papers)
+
+- `foldrajz-kozep-2017-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_fldr_17maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_kozep/k_fldr_17maj_ut.pdf
+- `foldrajz-emelt-2017-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_fldr_17maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017tavasz_emelt/e_fldr_17maj_ut.pdf
+- `foldrajz-kozep-2017-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_fldr_17okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_kozep/k_fldr_17okt_ut.pdf
+- `foldrajz-emelt-2017-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_fldr_17okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2017osz_emelt/e_fldr_17okt_ut.pdf
+- `foldrajz-kozep-2018-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_fldr_18maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_kozep/k_fldr_18maj_ut.pdf
+- `foldrajz-emelt-2018-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_fldr_18maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018tavasz_emelt/e_fldr_18maj_ut.pdf
+- `foldrajz-kozep-2018-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_fldr_18okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_kozep/k_fldr_18okt_ut.pdf
+- `foldrajz-emelt-2018-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_fldr_18okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2018osz_emelt/e_fldr_18okt_ut.pdf
+- `foldrajz-kozep-2019-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_fldr_19maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_kozep/k_fldr_19maj_ut.pdf
+- `foldrajz-emelt-2019-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_fldr_19maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019tavasz_emelt/e_fldr_19maj_ut.pdf
+- `foldrajz-kozep-2019-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_fldr_19okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_kozep/k_fldr_19okt_ut.pdf
+- `foldrajz-emelt-2019-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_fldr_19okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2019osz_emelt/e_fldr_19okt_ut.pdf
+- `foldrajz-kozep-2020-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_fldr_20maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_kozep/k_fldr_20maj_ut.pdf
+- `foldrajz-emelt-2020-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_fldr_20maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020tavasz_emelt/e_fldr_20maj_ut.pdf
+- `foldrajz-kozep-2020-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_fldr_20okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_kozep/k_fldr_20okt_ut.pdf
+- `foldrajz-emelt-2020-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_fldr_20okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2020osz_emelt/e_fldr_20okt_ut.pdf
+- `foldrajz-kozep-2021-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_fldr_21maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_kozep/k_fldr_21maj_ut.pdf
+- `foldrajz-emelt-2021-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_fldr_21maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021tavasz_emelt/e_fldr_21maj_ut.pdf
+- `foldrajz-kozep-2021-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_fldr_21okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_kozep/k_fldr_21okt_ut.pdf
+- `foldrajz-emelt-2021-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_fldr_21okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2021osz_emelt/e_fldr_21okt_ut.pdf
+- `foldrajz-kozep-2022-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_fldr_22maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_kozep/k_fldr_22maj_ut.pdf
+- `foldrajz-emelt-2022-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_fldr_22maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022tavasz_emelt/e_fldr_22maj_ut.pdf
+- `foldrajz-kozep-2022-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_fldr_22okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_kozep/k_fldr_22okt_ut.pdf
+- `foldrajz-emelt-2022-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_fldr_22okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2022osz_emelt/e_fldr_22okt_ut.pdf
+- `foldrajz-kozep-2023-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_kozep/k_fldr_23maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_kozep/k_fldr_23maj_ut.pdf
+- `foldrajz-emelt-2023-majus`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_fldr_23maj_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023tavasz_emelt/e_fldr_23maj_ut.pdf
+- `foldrajz-kozep-2023-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_kozep/k_fldr_23okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_kozep/k_fldr_23okt_ut.pdf
+- `foldrajz-emelt-2023-oktober`
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_fldr_23okt_fl.pdf
+  - https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2023osz_emelt/e_fldr_23okt_ut.pdf
