@@ -685,7 +685,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'III. Béla' },
         {
           kind: 'text',
-          text: 'Béla fiatalon **Bizáncban** nevelkedett (a császár udvarában), majd a magyar trónra lépett. Uralkodása alatt a királyi hatalom megerősödött: bevezette a **kancelláriát** (az írásbeliség hivatalos központja), és az **Árpád-ház jövedelmeit** összeíratta. Külpolitikailag visszaszerezte a **Dalmáciát**, és Halics (Galícia) ügyeiben is beavatkozott. A **kettős kereszt** a királyi jelkép lett. Béla uralkodása a középkori magyar állam egyik csúcsa volt.',
+          text: 'Béla fiatalon **Bizáncban** nevelkedett (a császár udvarában), majd a magyar trónra lépett. Uralkodása alatt a királyi hatalom megerősödött: bevezette a **kancelláriát** (az írásbeliség hivatalos központja), és az **Árpád-ház jövedelmeit** összeíratta. Külpolitikailag visszaszerezte a **Dalmáciát**, és Halics (Galícia) ügyeiben is beavatkozott. Béla uralkodása a középkori magyar állam egyik csúcsa volt.',
         },
         {
           kind: 'people',
@@ -835,7 +835,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'Az Aranybulla első látásra csak a nemességet védte, de hosszú távon az alkotmányos gondolkodás alapja lett, mert kimondta, hogy a király is köteles betartani a törvényt. Az ellenállási záradékot **1231-ben**, a bulla megújításakor kihagyták.',
+          text: 'Az Aranybulla első látásra csak a nemességet védte, de hosszú távon az alkotmányos gondolkodás alapja lett, mert kimondta, hogy a király is köteles betartani a törvényt. A záradék sorsáról a bulla későbbi megújításai után a források eltérően írnak.',
         },
         {
           kind: 'text',
@@ -844,7 +844,7 @@ const unit: GuideUnit = {
         {
           kind: 'text',
           emelt: true,
-          text: 'Az Aranybullát gyakran az angol **Magna Charta Libertatummal** (1215) hasonlítják össze: mindkettő az uralkodó hatalmát korlátozta, és az uralkodó is a törvény alatt áll. Az Aranybulla ellenállási záradéka (*ius resistendi*) sarkalatos nemesi jog lett, és 1687-ig érvényben maradt.',
+          text: 'Az Aranybullát gyakran az angol **Magna Charta Libertatummal** (1215) hasonlítják össze: mindkettő az uralkodó hatalmát korlátozta, és az uralkodó is a törvény alatt áll. Az Aranybulla ellenállási záradéka (*ius resistendi*) sarkalatos nemesi jog lett; a rendek 1687-ben a soproni országgyűlésen lemondtak róla, a magyar közfelfogás szerint azonban a jog ezután is élt.',
         },
       ],
       exam: [
