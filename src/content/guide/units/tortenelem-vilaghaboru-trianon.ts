@@ -13,7 +13,7 @@ const unit: GuideUnit = {
   intro:
     'A nagy háború és következményei: az első világháború menete, az 1918–1919-es magyarországi forradalmak és az ellenforradalom, az oroszországi bolsevik hatalomátvétel, végül a Párizs környéki békék és Trianon.',
   requirementSource:
-    'A témák, fogalmak, személyek, évszámok és helyszínek az érettségi részletes vizsgakövetelményeinek 5. témaköréből (A két világháború kora) valók, az 5.1–5.3 pontokhoz tartozó részek. Ami emelt szintű, azt külön jelöljük.',
+    'A témák és az emelt szintű lexika az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (5. témakör); a középszintű fogalmak, személyek, évszámok és helyszínek a 2020-as történelem kerettantervből. A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   requirements: {
     terms: {
       kozep: [
@@ -41,10 +41,10 @@ const unit: GuideUnit = {
         'revízió',
         'bolsevik',
         'szovjet',
+        'örmény népirtás',
       ],
       emelt: [
         'Schlieffen-terv',
-        'örmény népirtás',
         'jegyrendszer',
         'Magyar Nemzeti Tanács',
         'pacifizmus',
@@ -70,6 +70,7 @@ const unit: GuideUnit = {
     },
     dates: {
       kozep: [
+        '1914. június 28. a szarajevói merénylet',
         '1914–1918 az első világháború',
         '1917 a bolsevik hatalomátvétel',
         '1918. október 31. forradalom Magyarországon',
@@ -77,15 +78,15 @@ const unit: GuideUnit = {
         '1920. június 4. a trianoni békediktátum',
       ],
       emelt: [
-        '1914. június 28. a szarajevói merénylet',
-        '1914. július 28. az első világháború kirobbanása',
+        '1914. július 28., az első világháború kirobbanása',
         '1915 gorlicei áttörés',
         '1915–1917 az isonzói csaták',
         '1916 Románia belépése az antant oldalán',
         'verduni „vérszivattyú”',
-        '1917 az Amerikai Egyesült Államok belépése a világháborúba',
+        '1917 USA belépése a világháborúba',
         '1918. november 3. padovai fegyverszünet',
         '1919 a versailles-i béke',
+        '1921 a soproni népszavazás',
       ],
     },
     places: {
@@ -104,7 +105,7 @@ const unit: GuideUnit = {
         'Ausztria',
         'trianoni Magyarország',
       ],
-      emelt: ['Przemyśl', 'Otranto', 'Balassagyarmat'],
+      emelt: ['Przemyśl', 'Otrantó', 'Balassagyarmat', 'Danzig'],
     },
   },
   pages: [
@@ -115,7 +116,7 @@ const unit: GuideUnit = {
       title: 'Az első világháború menete és jellemzői',
       level: 'kozep',
       requirement: {
-        kozep: 'A háború jellemzői, hadviselő felek, Magyarország részvétele a háborúban',
+        kozep: 'A háború jellemzői, hadviselő felek – Magyarország részvétele a háborúban',
         emelt: 'A világháború kirobbanása, a nyugati front, tengeri hadviselés',
       },
       minutes: 12,
@@ -232,6 +233,7 @@ const unit: GuideUnit = {
             {
               date: '1915',
               text: 'Olaszország az antant oldalán belép; megkezdődnek az isonzói csaták.',
+              emelt: true,
             },
             {
               date: '1916. november',
@@ -264,7 +266,6 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          emelt: true,
           text: 'Az **örmény népirtás** (1915–1916): az Oszmán Birodalom a háború leple alatt az örmény lakosság tömeges kitelepítését és legyilkolását hajtotta végre; ez a 20. század első nagy népirtása.',
         },
         {
@@ -378,7 +379,7 @@ const unit: GuideUnit = {
       level: 'kozep',
       requirement: {
         kozep:
-          'A forradalmi átalakulás kísérletei (tanácsköztársaság), ellenforradalom Magyarországon 1918–1920-ban',
+          'A forradalmi átalakulás kísérlete, tanácsköztársaság, ellenforradalom Magyarországon 1918–1920-ban',
       },
       minutes: 12,
       summary: [
@@ -499,7 +500,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'text',
-          text: 'A hatalomátvétellel együtt járt a **fehérterror**: a **fehér különítményesek** (**Prónay Pál**, Ostenburg-Moravek Gyula, Héjjas Iván csapatai) a tanácsköztársaság támogatóit, kommunistákat, zsidókat és baloldaliakat fosztogattak, bántalmaztak, gyilkoltak. A tetteseket sokáig nem vonták felelősségre.',
+          text: 'A hatalomátvétellel együtt járt a **fehérterror**: a **fehér különítményesek** a tanácsköztársaság támogatóit, kommunistákat, zsidókat és baloldaliakat fosztogattak, bántalmaztak, gyilkoltak. A tetteseket sokáig nem vonták felelősségre.',
         },
         {
           kind: 'text',
@@ -959,6 +960,7 @@ const unit: GuideUnit = {
         },
         {
           kind: 'warning',
+          emelt: true,
           text: 'Gyakori hiba: a trianoni békét **Versailles-szal** keverni. A versailles-i béke Németországgal készült (1919), a trianoni Magyarországgal (1920). Mindkettő a párizsi békerendszer része, de más ország sorsát dönti el. Az aláírás helye is csalóka: a Nagy-Trianon-palota ugyan Versailles-ban áll, mégis a trianoni békét írták alá benne.',
         },
         {

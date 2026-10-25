@@ -13,7 +13,7 @@ const unit: GuideUnit = {
   intro:
     'Az 1867-es kiegyezéstől az első világháborúig: a kiegyezés okai és közös ügyei, a dualista államszervezet, a gazdasági fellendülés, Budapest születése, a nemzetiségi kérdés és a pártok küzdelmei.',
   requirementSource:
-    'A témák, fogalmak, személyek, évszámok és helyszínek az érettségi részletes vizsgakövetelményeinek 4. témaköréből (4.5, 4.8 és 4.9) valók. Ami emelt szintű, azt külön jelöljük.',
+    'A témák és az emelt szintű lexika az érettségi 2024-től érvényes részletes vizsgakövetelményeiből valók (4. témakör); a középszintű fogalmak, személyek, évszámok és helyszínek a 2020-as történelem kerettantervből. A leckék próbaváltozatok, tanári ellenőrzésük még hátravan.',
   requirements: {
     terms: {
       kozep: [
@@ -22,7 +22,6 @@ const unit: GuideUnit = {
         'közjogi kérdés',
         'nyílt és titkos szavazás',
         'dzsentri',
-        'MÁV',
         'Millennium',
         'urbanizáció',
         'kivándorlás',
@@ -30,15 +29,15 @@ const unit: GuideUnit = {
         'cionizmus',
         'emancipáció',
         'autonómia',
+        'monopólium',
+        'Szabadelvű Párt',
       ],
       emelt: [
-        'monopólium',
         'kartell',
         'szecesszió',
         'historizmus',
         'pánszlávizmus',
         'delegáció',
-        'Szabadelvű Párt',
         'obstrukció',
         'koalíció',
         'Nemzeti Munkapárt',
@@ -470,7 +469,7 @@ const unit: GuideUnit = {
       title: 'A gazdasági kiegyezés és a dualista gazdaság',
       level: 'kozep',
       requirement: {
-        kozep: 'Gazdasági kiegyezés és állami gazdaságpolitika, a dualista Magyarország',
+        kozep: 'Gazdasági kiegyezés és állami gazdaságpolitika a dualista Magyarországon',
       },
       minutes: 10,
       summary: [
@@ -503,7 +502,6 @@ const unit: GuideUnit = {
             {
               term: 'monopólium',
               text: 'Egy cég uralja a piacot, mert nincs versenytársa.',
-              emelt: true,
             },
             {
               term: 'kartell',
@@ -963,6 +961,7 @@ const unit: GuideUnit = {
           answer: 0,
           explanation:
             'A cionizmus alapítója Herzl Tivadar (Theodor Herzl), a Pesten született újságíró.',
+          emelt: true,
         },
         {
           question: 'Mit követelt a román memorandum (1892)?',
@@ -1001,7 +1000,7 @@ const unit: GuideUnit = {
       level: 'emelt',
       requirement: {
         emelt:
-          'Politikai eszmék és pártrendszer (kormánypárt, közjogi ellenzék, agrármozgalmak, nemzetiségi pártok) a dualizmus kori Magyarországon. A zsidóság és a németség szerepe a polgárosodásban',
+          'Politikai eszmék és pártrendszer (kormánypárt, közjogi ellenzék, agrármozgalmak, világnézeti pártok) a dualizmus kori Magyarországon. A zsidóság és a németség szerepe a polgárosodásban',
       },
       minutes: 10,
       summary: [
@@ -1022,7 +1021,6 @@ const unit: GuideUnit = {
             {
               term: 'Szabadelvű Párt',
               text: 'A dualizmus domináns kormánypártja (1875–1905), a 67-es kiegyezés híve.',
-              emelt: true,
             },
             {
               term: 'obstrukció',
