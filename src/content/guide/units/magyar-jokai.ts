@@ -49,7 +49,10 @@ const unit: GuideUnit = {
               date: '1846',
               text: 'Megjelenik első regénye, a *Hétköznapok*; Petőfi barátja és a Tízek Társaságának tagja.',
             },
-            { date: '1848. március 15.', text: 'Részt vesz a forradalomban a pesti ifjak között.' },
+            {
+              date: '1848. március 15.',
+              text: 'Részt vesz a pesti forradalomban a márciusi ifjak között.',
+            },
             {
               date: '1849 után',
               text: 'A szabadságharc bukása: bujkálás, majd az irodalmi pálya folytatása.',
@@ -70,12 +73,12 @@ const unit: GuideUnit = {
         { kind: 'heading', text: '1848–49: forradalom és szabadságharc' },
         {
           kind: 'text',
-          text: '**1848. március 15-én** Jókai a pesti forradalom ifjúságának tagja volt. A **12 pont** megfogalmazásában a márciusi ifjak közt vett részt. A szabadságharc idején újságíróként és íróként szolgálta az ügyet, Petőfivel együtt szerkesztett lapot is. A szabadságharc bukása után bujkálnia kellett; ebben az időszakban a felesége, **Laborfalvi Róza** színésznő támogatta.',
+          text: '**1848. március 15-én** Jókai a pesti forradalmi ifjúság tagja volt. A szabadságharc idején íróként és újságíróként szolgálta az ügyet. A szabadságharc bukása után bujkálnia kellett; ebben az időszakban a felesége, **Laborfalvi Róza** színésznő támogatta.',
         },
         { kind: 'heading', text: 'A kiegyezés előtt és után' },
         {
           kind: 'text',
-          text: 'Az 1850-es években fokozatosan visszatért az irodalmi életbe. Regényeit sorozatban közölték a lapok, és hatalmas olvasótábort szerzett. A kiegyezés (1867) után **országgyűlési képviselő** is lett, és az irodalmi élet egyik legfontosabb alakjaként a nemzet ünnepelt írója maradt. A regényei a kor magyar társadalmának ábrándos és hősies önképét fogalmazták meg.',
+          text: 'Az 1850-es években fokozatosan visszatért az irodalmi életbe. Regényeit sorozatban közölték a lapok, és hatalmas olvasótábort szerzett. Később **országgyűlési képviselő** is lett, és az irodalmi élet egyik legfontosabb alakjaként a nemzet ünnepelt írója maradt. A regényei a kor magyar társadalmának ábrándos és hősies önképét fogalmazták meg.',
         },
         {
           kind: 'compare',
@@ -173,7 +176,7 @@ const unit: GuideUnit = {
       sources: [
         { label: 'Wikipédia: Jókai Mór', url: wiki('Jókai Mór') },
         { label: 'Wikipédia: Tízek Társasága', url: wiki('Tízek Társasága') },
-        { label: 'Wikipédia: A 12 pont', url: wiki('12 pont 1848') },
+        { label: 'Wikipédia: Március 15.', url: wiki('1848. március 15. pesti forradalom') },
       ],
     },
     {
@@ -241,7 +244,10 @@ const unit: GuideUnit = {
             { label: 'Példa', cells: ['*A kőszívű ember fiai*', '*Az arany ember*'] },
             {
               label: 'Téma',
-              cells: ['a nemzeti sors, 1848–49, hazafiság', 'pénz, erkölcs, boldogság, kettős élet'],
+              cells: [
+                'a nemzeti sors, 1848–49, hazafiság',
+                'pénz, erkölcs, boldogság, kettős élet',
+              ],
             },
             {
               label: 'Hős',
@@ -356,7 +362,7 @@ const unit: GuideUnit = {
             '*Az arany ember* (1872) Jókai egyik legismertebb regénye: társadalmi és kalandregény, romantikus alapokon.',
             'A főhős **Timár Mihály**, aki kettős életet él: a komáromi gazdag kereskedő és a **Senki szigetén** élő egyszerű ember.',
             'Fő kérdés: **mit ér a vagyon, és mi a boldogság?** A mű az anyagi gazdagság és a lelki béke ellentétét állítja szembe.',
-            'Központi női alakok: **Timéa** (a törvényes feleség), **Noémi** (a szigeten élő szerelem) és **Athalie**.',
+            'Központi női alakok: **Timéa** (a törvényes feleség) és **Noémi** (a szigeten élő szerelem).',
             'Főbb motívumok: **sziget**, **arany**, **kettős élet**, **természet és civilizáció**.',
           ],
         },
@@ -365,20 +371,28 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'A cselekmény vázlata' },
         {
           kind: 'text',
-          text: '**Timár Mihály** hajóskapitány, akit a környezete tisztel, mert becsületes, ügyes. A **Szent Borbála** nevű hajó útján rábízták **Ali Csorbadzsi** vagyonát. A főhős úgy dönt, hogy megtartja a vagyont, és ebből gazdag kereskedő lesz **Komáromban**. Elveszi **Timéát**, a tönkrement Brazovics Athanáz lányát, de a szíve a **Senki szigetén** élő **Noémihez** húzza. Timár tehát két világban él: Komáromban a tekintélyes, gazdag férj, a szigeten a szabad, boldog ember.',
+          text: '**Timár Mihály** hajóskapitány, akit a környezete tisztel, mert becsületes, ügyes. A **Szent Borbála** nevű hajó útján rábízták **Ali Csorbadzsi** vagyonát. A főhős úgy dönt, hogy megtartja a vagyont, és ebből gazdag kereskedő lesz **Komáromban**. Elveszi **Timéát**, Ali Csorbadzsi lányát, aki Brazovics Athanáz házában nőtt fel, de a szíve a **Senki szigetén** élő **Noémihez** húzza. Timár tehát két világban él: Komáromban a tekintélyes, gazdag férj, a szigeten a szabad, boldog ember.',
         },
         {
           kind: 'text',
-          text: 'A bonyodalmakat a titok, a lelkiismeret és az emberek fenyegetése hozza: **Krisztyán Tódor** (aki a háttérben zsarolja) és a kor rideg, pénzsóvár környezete. A végén Timár számot vet az életével, lemond a vagyonról és a társadalmi szerepéről, de a sziget idilli világát nem tudja visszaállítani.',
+          text: 'A bonyodalmakat a titok, a lelkiismeret és az emberek fenyegetése hozza: **Krisztyán Tódor** (aki a háttérben zsarolja) és a kor rideg, pénzsóvár környezete. A végén Timár számot vet az életével, és belátja, hogy a kettős élet nem tartható fenn; a sziget idilli világa sem őrizhető meg a külvilág elől.',
         },
         {
           kind: 'people',
           items: [
-            { name: 'Timár Mihály', text: 'a főhős, a kettős életű, „arany ember”: energikus, tehetséges, de a bűntudata és a vágyai szétfeszítik.' },
-            { name: 'Timéa', text: 'Brazovics lánya, Timár felesége; a kötelesség és a társadalmi világ alakja.' },
-            { name: 'Noémi', text: 'a Senki szigetének lakója, természetközeli, ideális, a boldogság és a szabadság jelképe.' },
+            {
+              name: 'Timár Mihály',
+              text: 'a főhős, a kettős életű, „arany ember”: energikus, tehetséges, de a bűntudata és a vágyai szétfeszítik.',
+            },
+            {
+              name: 'Timéa',
+              text: 'Brazovics lánya, Timár felesége; a kötelesség és a társadalmi világ alakja.',
+            },
+            {
+              name: 'Noémi',
+              text: 'a Senki szigetének lakója, természetközeli, ideális, a boldogság és a szabadság jelképe.',
+            },
             { name: 'Krisztyán Tódor', text: 'a zsaroló, a kor önző, erkölcstelen típusa.' },
-            { name: 'Athalie', text: 'Krisztyán Tódor társa; a számító, pénzközpontú világ alakja.' },
           ],
         },
         { kind: 'heading', text: 'Értelmezés: témák, motívumok, kompozíció' },
@@ -391,9 +405,15 @@ const unit: GuideUnit = {
           title: 'A két világ a regényben',
           columns: ['Komárom (a társadalom)', 'Senki szigete (a természet)'],
           rows: [
-            { label: 'Érték', cells: ['pénz, rang, tekintély', 'szabadság, szerelem, egyszerűség'] },
+            {
+              label: 'Érték',
+              cells: ['pénz, rang, tekintély', 'szabadság, szerelem, egyszerűség'],
+            },
             { label: 'Nő', cells: ['Timéa', 'Noémi'] },
-            { label: 'Hős szerepe', cells: ['gazdag kereskedő, a „megtartott” titkokkal', 'őszinte, boldog ember'] },
+            {
+              label: 'Hős szerepe',
+              cells: ['gazdag kereskedő, a „megtartott” titkokkal', 'őszinte, boldog ember'],
+            },
           ],
         },
         {
@@ -423,8 +443,7 @@ const unit: GuideUnit = {
         {
           kind: 'example',
           title: 'Válaszvázlat: „Mit jelent a Senki szigete a regényben?”',
-          problem:
-            'Fejtsd ki röviden, mit jelképez a Senki szigete *Az arany ember* világában!',
+          problem: 'Fejtsd ki röviden, mit jelképez a Senki szigete *Az arany ember* világában!',
           solution:
             '**1.** Bevezetés: Jókai romantikus regénye, két tér szembeállítása. **2.** A sziget jellemzői: elzárt, természetközeli, a civilizáción kívüli. **3.** Jelentése: a szabadság, az ártatlan szerelem és a boldogság jelképe, Noémi és Timár belső békéjének helye. **4.** Ellentét: Komárom, a pénz és a társadalmi elvárások világa. **5.** Kicsengés: az ideális világ törékeny, a mű a vagyon és a boldogság viszonyát kérdezi.',
         },
@@ -522,12 +541,12 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Egy magyar nábob és a folytatása' },
         {
           kind: 'text',
-          text: 'Az *Egy magyar nábob* a reformkori nemesi világot ábrázolja. **Kárpáthy János** a hatalmas vagyonú, különc nábob, akinek igazi erénye a hazafias gondolkodás. Mellette a reformeszmék, az **ősi nemesi életforma** és az újítók közötti feszültség jelenik meg. A történet a *Kárpáthy Zoltán* című folytatással egészül ki. A regény a reformkor szellemét **ünnepli, de ironikusan is látja**: a pazarlás, a hiúság és a hazafiság együtt szerepel benne.',
+          text: 'Az *Egy magyar nábob* a reformkori nemesi világot ábrázolja. **Kárpáthy János** a hatalmas vagyonú, különc nábob, akinek igazi erénye a hazafias gondolkodás. Mellette a reformeszmék és az **ősi nemesi életforma** közötti feszültség jelenik meg. A történet a *Kárpáthy Zoltán* című folytatással egészül ki. A regény a reformkor szellemét **ünnepli, de ironikusan is látja**: a pazarlás, a hiúság és a hazafiság együtt szerepel benne.',
         },
         { kind: 'heading', text: 'A kőszívű ember fiai' },
         {
           kind: 'text',
-          text: 'A regény a **Baradlay család** története. A hívó cím az apára, **Baradlay Kázmérra** utal, akit a kortársai „kőszívű embernek” tartottak, de fiai és özvegye a legnagyobb áldozatot vállalják a hazáért. A három fiú, **Ödön, Richárd és Jenő** más-más életutat jár be, de mindegyikük a haza ügyét szolgálja a szabadságharcban. Az **anya**, **Baradlayné** az erkölcsi erő és a hűség jelképe.',
+          text: 'A regény a **Baradlay család** története. A cím az apára, **Baradlay Kázmérra** utal, a regény az ő halálával indul; az özvegye és a fiai a legnagyobb áldozatot vállalják a hazáért. A három fiú, **Ödön, Richárd és Jenő** más-más életutat jár be, de mindegyikük a haza ügyét szolgálja a szabadságharcban. Az **anya**, **Baradlayné** az erkölcsi erő és a hűség jelképe.',
         },
         {
           kind: 'text',
@@ -567,8 +586,7 @@ const unit: GuideUnit = {
         {
           kind: 'example',
           title: 'Összehasonlítás vázlata',
-          problem:
-            'Hasonlítsd össze röviden *A kőszívű ember fiai* és *Az arany ember* hősét!',
+          problem: 'Hasonlítsd össze röviden *A kőszívű ember fiai* és *Az arany ember* hősét!',
           solution:
             '**Hasonlóság:** mindkét regény romantikus, kivételes hősökkel, erkölcsi próbával. **Különbség:** a Baradlay-fiúk **közösségi hősök**, a haza és a család szolgálatában állnak; Timár **egyéni hős**, a belső, erkölcsi küzdelem áll a középpontban. Az egyik a **nemzeti sors**, a másik a **pénz és boldogság** kérdését vizsgálja.',
         },
@@ -582,9 +600,15 @@ const unit: GuideUnit = {
       quiz: [
         {
           question: 'Melyik korszakot ábrázolja *A kőszívű ember fiai*?',
-          options: ['A reformkort', 'Az 1848–49-es szabadságharcot', 'A török kort', 'A kiegyezést'],
+          options: [
+            'A reformkort',
+            'Az 1848–49-es szabadságharcot',
+            'A török kort',
+            'A kiegyezést',
+          ],
           answer: 1,
-          explanation: 'A regény a Baradlay család sorsát a szabadságharc eseményei között mutatja.',
+          explanation:
+            'A regény a Baradlay család sorsát a szabadságharc eseményei között mutatja.',
         },
         {
           question: 'Hány fia van a Baradlay családnak a regényben?',
@@ -672,7 +696,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Jókai és kora, Mikszáth' },
         {
           kind: 'text',
-          text: '**Mikszáth Kálmán** (1847–1910) Jókai fiatalabb kortársa, tanítványa és méltatója volt. Mikszáth az anekdotikus, ironikus elbeszélő hagyományt Jókaitól tanulta, de az ábrázolásban a **realizmus** felé lépett: a hősök kisszerűbbek, a hang ironikusabb. Mikszáth írt Jókai életéről is (*Jókai Mór élete és kora*). A két író viszonya jól mutatja a romantikus és a realista próza **azonosságát és változását**.',
+          text: '**Mikszáth Kálmán** (1847–1910) Jókai fiatalabb pályatársa, tisztelője és életrajzírója volt. Mikszáth az anekdotikus, ironikus elbeszélő hagyományt Jókaitól tanulta, de az ábrázolásban a **realizmus** felé lépett: a hősök kisszerűbbek, a hang ironikusabb. Mikszáth írt Jókai életéről is (*Jókai Mór élete és kora*). A két író viszonya jól mutatja a romantikus és a realista próza **azonosságát és változását**.',
         },
         {
           kind: 'compare',
