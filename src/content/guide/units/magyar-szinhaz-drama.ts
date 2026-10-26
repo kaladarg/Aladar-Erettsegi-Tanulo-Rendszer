@@ -1051,7 +1051,7 @@ const unit: GuideUnit = {
         { kind: 'heading', text: 'Egy 20. századi magyar dráma: Örkény István' },
         {
           kind: 'text',
-          text: '**Örkény István** (1912–1979) a magyar **groteszk** látásmód legjelentősebb írója; az **Egyperces novellák** (1968) szerzője, a drámái a **Tóték** (1967) és a **Macskajáték** (1969). A **Tóték** a második világháború idején egy faluban játszódik. Egy **őrnagy** a frontról érkezik a Tót családhoz, a család engedelmesen kiszolgálja, a kedvességgel igyekszik az őrnagy kedvében járni, de közben a **kiszolgáltatottság és az erőszak** válik uralkodóvá, végül a család férfi tagja, Tót Lajos megöli az őrnagyot. A mű a hatalom és a kiszolgáltatottság, a tehetetlenség és az ellenállás kérdéséről szól, **groteszk** formában.',
+          text: '**Örkény István** (1912–1979) a magyar **groteszk** látásmód legjelentősebb írója; az **Egyperces novellák** (1968) szerzője, a drámái a **Tóték** (1967) és a **Macskajáték**. A **Tóték** a második világháború idején egy faluban játszódik. Egy **őrnagy** a frontról érkezik a Tót családhoz, a család engedelmesen kiszolgálja, a kedvességgel igyekszik az őrnagy kedvében járni, de közben a **kiszolgáltatottság és az erőszak** válik uralkodóvá, végül a család férfi tagja, Tót Lajos megöli az őrnagyot. A mű a hatalom és a kiszolgáltatottság, a tehetetlenség és az ellenállás kérdéséről szól, **groteszk** formában.',
         },
         {
           kind: 'text',
