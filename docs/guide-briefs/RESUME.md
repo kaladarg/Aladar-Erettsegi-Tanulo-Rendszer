@@ -11,12 +11,10 @@ They refer to scratchpad paths (official requirement text extracts) that do not 
 - Földrajz: topics 1–6 (térkép és kozmikus tér, kőzetburok, levegő- és vízburok, geoszférák és övezetesség,
   népesség és települések, világgazdaság).
 
-## Still to write (földrajz)
-| File | Unit id | Order | Topic in the requirements |
-|---|---|---|---|
-| foldrajz-magyarorszag.ts | magyarorszag | 70 | 7. Magyarország (7.1–7.8), topográfia list 7 |
-| foldrajz-europa.ts | europa | 80 | 8. Európa (8.1–8.4), topográfia list 6 |
-| foldrajz-kontinensek.ts | kontinensek | 90 | 9. Európán kívüli kontinensek, topográfia lists 1–5 |
-| foldrajz-globalis-kihivasok.ts | globalis-kihivasok | 100 | 10. Globális kihívások (10.1–10.5) |
+## Földrajz 7–10
+Written on 2026-10-27 in a shorter form (3 pages each, no official place-name lists in `requirements`):
+foldrajz-magyarorszag.ts, foldrajz-europa.ts, foldrajz-kontinensek.ts, foldrajz-globalis-kihivasok.ts.
+They can be expanded later to the full format.
 
-Then: földrajz place-name cards and emelt oral topics (steps 5–6 of the plan).
+## Next
+Földrajz place-name cards and emelt oral topics (steps 5–6 of the plan).
