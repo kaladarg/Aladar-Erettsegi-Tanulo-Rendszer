@@ -12,9 +12,9 @@ They refer to scratchpad paths (official requirement text extracts) that do not 
   népesség és települések, világgazdaság).
 
 ## Földrajz 7–10
-Written on 2026-10-27 in a shorter form (3 pages each, no official place-name lists in `requirements`):
+Rewritten on 2026-10-27 against the official 2024 requirements: every sub-topic (7.1–7.9, 8.1–8.4.5, 9.1–9.6, 10.1–10.5)
 foldrajz-magyarorszag.ts, foldrajz-europa.ts, foldrajz-kontinensek.ts, foldrajz-globalis-kihivasok.ts.
-They can be expanded later to the full format.
+has a page or section, with the official requirement cells, the official topográfia lists and the topic 10 fogalmak.
 
 ## Next
 Földrajz place-name cards and emelt oral topics (steps 5–6 of the plan).
