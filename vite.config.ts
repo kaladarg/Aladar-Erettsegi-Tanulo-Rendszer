@@ -156,7 +156,7 @@ export default defineConfig(({ mode }) => {
         workbox: {
           globPatterns: ['**/*.{js,mjs,css,html,svg,png,woff2,webmanifest}'],
           // The pdf.js worker is ~1.3 MB; allow it in the offline precache.
-          maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+          maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
           // Hungarian needs only the latin and latin-ext font subsets offline.
           navigateFallback: 'index.html',
           cleanupOutdatedCaches: true,
