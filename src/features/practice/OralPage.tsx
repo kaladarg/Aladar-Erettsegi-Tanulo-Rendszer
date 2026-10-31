@@ -7,18 +7,39 @@ import { findSubject, subjectShortName } from '@/content/catalog';
 import {
   BUILTIN_ORAL_TOPICS,
   ORAL_TOPIC_SUBJECTS,
+  topicInLevel,
   type BuiltinOralTopic,
+  type OralLevel,
 } from '@/content/oralTopics';
 import { Button } from '@/design/ui/Button';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { SegmentedControl } from '@/design/ui/SegmentedControl';
-import { t } from '@/i18n';
+import { t, type MessageKey } from '@/i18n';
 import { useSettings } from '@/state/settingsStore';
 import { toast } from '@/state/toastStore';
 import { db, type OralTopicRow } from '@/storage/db';
 import { addOwnTopics, ensureBuiltinTopic } from '@/storage/oral';
 import { BackLink } from './BackLink';
+
+const FORMAT_NOTE: Record<OralLevel, Record<string, MessageKey>> = {
+  kozep: {
+    magyar: 'practice.oral.format.kozep.magyar',
+    tortenelem: 'practice.oral.format.kozep.tortenelem',
+    matematika: 'practice.oral.format.kozep.matematika',
+    angol: 'practice.oral.format.kozep.nyelv',
+    nemet: 'practice.oral.format.kozep.nyelv',
+    foldrajz: 'practice.oral.format.kozep.foldrajz',
+  },
+  emelt: {
+    magyar: 'practice.oral.format.emelt.magyar',
+    tortenelem: 'practice.oral.format.emelt.tortenelem',
+    matematika: 'practice.oral.format.emelt.matematika',
+    angol: 'practice.oral.format.emelt.nyelv',
+    nemet: 'practice.oral.format.emelt.nyelv',
+    foldrajz: 'practice.oral.format.emelt.foldrajz',
+  },
+};
 
 export function OralPage() {
   usePageTitle(t('practice.oral.title'));
@@ -29,6 +50,14 @@ export function OralPage() {
     requested && ORAL_TOPIC_SUBJECTS.includes(requested)
       ? requested
       : (chosen.find((s) => ORAL_TOPIC_SUBJECTS.includes(s)) ?? ORAL_TOPIC_SUBJECTS[0]!);
+  const studentLevel = useSettings((s) => s.settings.levels[subject]);
+  const levelParam = params.get('szint');
+  const level: OralLevel =
+    levelParam === 'emelt' || levelParam === 'kozep'
+      ? levelParam
+      : studentLevel === 'emelt'
+        ? 'emelt'
+        : 'kozep';
   const rows = useLiveQuery(
     () => db.oralTopics.where('subject').equals(subject).toArray(),
     [subject],
@@ -37,7 +66,9 @@ export function OralPage() {
 
   const stored = new Map((rows ?? []).filter((r) => r.builtinId).map((r) => [r.builtinId!, r]));
   const own = (rows ?? []).filter((r) => !r.builtinId).sort((a, b) => a.createdAt - b.createdAt);
-  const builtins = BUILTIN_ORAL_TOPICS.filter((b) => b.subject === subject);
+  const builtins = BUILTIN_ORAL_TOPICS.filter(
+    (b) => b.subject === subject && topicInLevel(b, level),
+  );
   const groups = [...new Set(builtins.map((b) => b.group))];
 
   const openBuiltin = async (builtin: BuiltinOralTopic) => {
@@ -59,6 +90,17 @@ export function OralPage() {
             label: subjectShortName(findSubject(id) ?? { id, name: id }),
           }))}
         />
+
+        <SegmentedControl<OralLevel>
+          label={t('practice.oral.level')}
+          value={level}
+          onValueChange={(value) => setParams({ targy: subject, szint: value }, { replace: true })}
+          options={[
+            { value: 'kozep', label: t('practice.oral.levelKozep') },
+            { value: 'emelt', label: t('practice.oral.levelEmelt') },
+          ]}
+        />
+        <p className="text-sm text-muted">{t(FORMAT_NOTE[level][subject]!)}</p>
 
         <Card aria-labelledby="oral-own">
           <CardTitle id="oral-own">{t('practice.oral.ownTitle')}</CardTitle>

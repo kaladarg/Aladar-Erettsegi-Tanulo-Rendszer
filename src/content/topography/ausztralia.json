@@ -1,0 +1,134 @@
+{
+  "region": "ausztralia",
+  "regionName": "Ausztrália és Óceánia",
+  "places": [
+    {
+      "name": "Ausztráliai-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Ausztrália középső részének nagy, száraz síksága, a Nagy-Artézi-medencétől nyugatra; félsivatag.",
+      "lat": -27.0,
+      "lon": 135.0
+    },
+    {
+      "name": "Nagy-Artézi-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Ausztrália keleti-középső részének hatalmas artézi víztároló medencéje, a Nagy-Vízválasztó-hegységtől nyugatra.",
+      "lat": -24.0,
+      "lon": 143.0
+    },
+    {
+      "name": "Nagy-korallzátony",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Föld legnagyobb korallzátonyrendszere Ausztrália északkeleti partjainál, Queensland előtt.",
+      "lat": -18.3,
+      "lon": 147.7
+    },
+    {
+      "name": "Nagy-Vízválasztó-hegység",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Ausztrália keleti partját követő hegység; a keleti partot és a belső medencéket választja el.",
+      "lat": -33.0,
+      "lon": 150.0
+    },
+    {
+      "name": "Melanézia",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Az Óceánia északnyugati szigetvilága Ausztráliától északkeletre; sötétebb bőrű lakosság (Pápua Új-Guinea, Fidzsi).",
+      "lat": -8.0,
+      "lon": 160.0
+    },
+    {
+      "name": "Mikronézia",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Az Egyenlítő körüli, kis korall- és vulkáni szigetek csoportja a Csendes-óceán nyugati részén.",
+      "lat": 7.0,
+      "lon": 155.0
+    },
+    {
+      "name": "Polinézia",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "A Csendes-óceán középső és keleti részén lévő háromszög alakú szigetvilág: Hawaii, Húsvét-sziget, Új-Zéland.",
+      "lat": -15.0,
+      "lon": -150.0
+    },
+    {
+      "name": "Tasmánia",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Ausztrália déli részén, a szárazföldtől délre fekvő nagy sziget; az állam fővárosa Hobart.",
+      "lat": -42.0,
+      "lon": 146.5
+    },
+    {
+      "name": "Új-Guinea",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "A Föld második legnagyobb szigete Ausztráliától északra; nyugati fele Indonéziáé, keleti Pápua Új-Guineáé.",
+      "lat": -5.5,
+      "lon": 141.0
+    },
+    {
+      "name": "Murray",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Ausztrália leghosszabb folyója, a Nagy-Vízválasztó-hegységből a Déli-óceánba tart.",
+      "lat": -35.55,
+      "lon": 139.3
+    },
+    {
+      "name": "Ausztrália",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "A déli félgömbön fekvő önálló földrész és ország; fővárosa Canberra.",
+      "lat": -25.0,
+      "lon": 134.0
+    },
+    {
+      "name": "Új-Zéland",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Két nagy szigetből álló ország Ausztráliától délkeletre a Csendes-óceánban; fővárosa Wellington.",
+      "lat": -41.0,
+      "lon": 173.0
+    },
+    {
+      "name": "Canberra",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ausztrália tervezett fővárosa az ország délkeleti részén, Sydney és Melbourne között.",
+      "lat": -35.2809,
+      "lon": 149.13
+    },
+    {
+      "name": "Melbourne",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ausztrália második legnagyobb városa, Victoria államban, a déli parton.",
+      "lat": -37.8136,
+      "lon": 144.9631
+    },
+    {
+      "name": "Sydney",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ausztrália legnagyobb városa Új-Dél-Wales keleti partján; Operaház.",
+      "lat": -33.8688,
+      "lon": 151.2093
+    },
+    {
+      "name": "Wellington",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Új-Zéland fővárosa az Északi-sziget déli csücskén.",
+      "lat": -41.2866,
+      "lon": 174.7756
+    }
+  ]
+}

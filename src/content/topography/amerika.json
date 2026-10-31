@@ -1,0 +1,670 @@
+{
+  "region": "amerika",
+  "regionName": "Amerika",
+  "places": [
+    {
+      "name": "Észak-Amerika",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Az Amerika északi földrésze: Kanada, az USA és Mexikó; nyugaton Kordillerák, keleten Appalache.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Dél-Amerika",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Amerika déli földrésze a Panama-csatornától délre; nyugaton az Andok, benne az Amazonas-medencével.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Közép-Amerika",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Mexikó déli részétől a Panama-szorosig tartó szárazföldi híd; sok vulkán, kis országok.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Latin-Amerika",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Mexikótól Dél-Amerika déli csücskéig, spanyol és portugál nyelvű térség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Alaszka",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az USA legészakibb és legnagyobb állama Észak-Amerika északnyugati csücskén; Denali, olaj.",
+      "lat": 64.0,
+      "lon": -152.0
+    },
+    {
+      "name": "Amazonas-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Amerika északi részén fekvő hatalmas medence, a Föld legnagyobb esőerdejével.",
+      "lat": -4.0,
+      "lon": -62.0
+    },
+    {
+      "name": "Andok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Amerika nyugati peremén húzódó, a Föld leghosszabb hegylánca; Aconcagua (6962 m).",
+      "lat": -20.0,
+      "lon": -68.0
+    },
+    {
+      "name": "Antillák",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Karib-tengert Közép-Amerikától elhatároló szigetcsoport (Nagy- és Kis-Antillák).",
+      "lat": 19.0,
+      "lon": -72.0
+    },
+    {
+      "name": "Appalache-hegység (Appalache)",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-Amerika keleti részének ősi, lepusztult hegysége; szénbányászat.",
+      "lat": 38.0,
+      "lon": -80.0
+    },
+    {
+      "name": "Brazil-felföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Amerika keleti részének nagy fennsíkja, Brazíliában; vas- és színesfémérc.",
+      "lat": -15.0,
+      "lon": -47.0
+    },
+    {
+      "name": "Floridai-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az USA délkeleti csücskén a Mexikói-öböl és az Atlanti-óceán között; turizmus, Miami.",
+      "lat": 28.0,
+      "lon": -82.0
+    },
+    {
+      "name": "Grönland",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Föld legnagyobb szigete Észak-Amerika északkeleti részén, jégpajzs borítja; dán fennhatóság.",
+      "lat": 72.0,
+      "lon": -40.0
+    },
+    {
+      "name": "Guyanai-hegyvidék",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Amerika északi részén lévő ősföldi hegyvidék; az Angel-vízesés és a tepuik.",
+      "lat": 5.0,
+      "lon": -61.0
+    },
+    {
+      "name": "Hawaii-szigetek",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Vulkáni szigetcsoport a Csendes-óceán közepén, az USA 50. állama; Mauna Loa, Kilauea.",
+      "lat": 20.5,
+      "lon": -156.5
+    },
+    {
+      "name": "Kaliforniai-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Mexikó nyugati, a Csendes-óceán és a Kaliforniai-öböl közötti hosszú félszigete (Baja California).",
+      "lat": 27.0,
+      "lon": -113.0
+    },
+    {
+      "name": "Kordillerák",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-Amerika nyugati hegylánca Alaszkától Mexikóig; Sziklás-hegység, Sierra Nevada.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Labrador-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kanada keleti részén, a Hudson-öböl és az Atlanti-óceán között; kanadai ősföld, tavak, vasérc.",
+      "lat": 54.0,
+      "lon": -65.0
+    },
+    {
+      "name": "Mexikói-fennsík",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Mexikó belső magasföldje a két Sierra Madre között; itt van Mexikóváros.",
+      "lat": 23.0,
+      "lon": -102.0
+    },
+    {
+      "name": "Mississippi-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az USA középső részén a Mississippi mentén húzódó nagy síkság.",
+      "lat": 35.0,
+      "lon": -90.0
+    },
+    {
+      "name": "Mount St. Helens",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Működő vulkán az USA északnyugati részén, Washington államban; 1980-as nagy kitörés.",
+      "lat": 46.1914,
+      "lon": -122.1956
+    },
+    {
+      "name": "Paraná-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Amerika déli részén, a Paraná és az Uruguay folyó mentén (Pampa); mezőgazdaság, marhatenyésztés.",
+      "lat": -32.0,
+      "lon": -60.0
+    },
+    {
+      "name": "Préri",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-Amerika középső füves síksága a Sziklás-hegység előtt; búzatermesztés.",
+      "lat": 43.0,
+      "lon": -100.0
+    },
+    {
+      "name": "Sziklás-hegység",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-Amerika nyugati hegylánca; a Kontinentális-vízválasztó vonul rajta, Yellowstone.",
+      "lat": 45.0,
+      "lon": -110.0
+    },
+    {
+      "name": "Szilícium-völgy",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kalifornia déli San Francisco-öböl menti, elektronikai és informatikai ipari központ.",
+      "lat": 37.3875,
+      "lon": -122.0575
+    },
+    {
+      "name": "Atacama-sivatag",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Dél-Amerika nyugati partján, Chilében; a Föld egyik legszárazabb helye (Humboldt-áramlás).",
+      "lat": -24.5,
+      "lon": -69.25
+    },
+    {
+      "name": "Bahama-szigetek",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Szigetország az Atlanti-óceánban Florida délkeleti partjai mellett; turizmus.",
+      "lat": 24.25,
+      "lon": -76.0
+    },
+    {
+      "name": "Orinoco-medence",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Dél-Amerika északi részén az Orinoco folyó medencéje; a Llanos füves síkság.",
+      "lat": 7.0,
+      "lon": -67.0
+    },
+    {
+      "name": "Popocatépetl",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Mexikóváros közelében lévő aktív vulkán (kb. 5400 m), Mexikó második legmagasabb csúcsa.",
+      "lat": 19.0225,
+      "lon": -98.6278
+    },
+    {
+      "name": "Yellowstone Nemzeti Park",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Az USA északnyugati részén (Wyoming), a világ első nemzeti parkja; gejzírek, szupervulkán.",
+      "lat": 44.6,
+      "lon": -110.5
+    },
+    {
+      "name": "Amazonas",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Föld vízben leggazdagabb folyója, Dél-Amerikában; az Atlanti-óceánba torkollik.",
+      "lat": -0.3,
+      "lon": -50.0
+    },
+    {
+      "name": "Colorado",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az USA délnyugati részén átfolyó folyó; a Grand Canyont vájta.",
+      "lat": 36.1,
+      "lon": -112.1
+    },
+    {
+      "name": "Karib (Antilla)-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Atlanti-óceán melléktenger Közép-Amerika és az Antillák között.",
+      "lat": 15.0,
+      "lon": -75.0
+    },
+    {
+      "name": "Mexikói-öböl",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Atlanti-óceán öble az USA, Mexikó és Kuba között; kőolajkitermelés, innen indul a Golf-áramlás.",
+      "lat": 25.0,
+      "lon": -90.0
+    },
+    {
+      "name": "Mississippi",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az USA leghosszabb folyója, Észak-Amerika középső részén; a Mexikói-öbölbe torkollik.",
+      "lat": 29.15,
+      "lon": -89.25
+    },
+    {
+      "name": "Nagy-tavak (Erie-, Felső-, Huron-, Michigan-, Ontario-tó)",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az USA és Kanada határán lévő öt nagy tó; a Föld legnagyobb édesvízkészlete.",
+      "lat": 45.0,
+      "lon": -84.0
+    },
+    {
+      "name": "Niagara-vízesés",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Erie- és az Ontario-tó között, az USA és Kanada határán lévő híres vízesés.",
+      "lat": 43.0799,
+      "lon": -79.0747
+    },
+    {
+      "name": "Panama-csatorna",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Mesterséges csatorna Panamában, amely az Atlanti- és a Csendes-óceánt köti össze.",
+      "lat": 9.08,
+      "lon": -79.68
+    },
+    {
+      "name": "Paraná",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Dél-Amerika második leghosszabb folyója, a La Plata-öbölbe torkollik; Itaipu-gát.",
+      "lat": -33.7,
+      "lon": -58.4
+    },
+    {
+      "name": "Szent Lőrinc-folyó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Nagy-tavakat az Atlanti-óceánnal összekötő folyó Kanadában; Montréal és Québec.",
+      "lat": 48.5,
+      "lon": -69.0
+    },
+    {
+      "name": "Hudson-öböl",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Kanada északi részén lévő nagy, sekély beltenger az Atlanti-óceán mellékvízeként.",
+      "lat": 60.0,
+      "lon": -85.0
+    },
+    {
+      "name": "Itaipu-gát",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "A Paraná folyón, Brazília és Paraguay határán álló nagy vízerőmű.",
+      "lat": -25.4086,
+      "lon": -54.5894
+    },
+    {
+      "name": "Kráter-tó",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Az USA Oregon államában, kialudt vulkán kalderájában kialakult tó; az USA legmélyebb tava.",
+      "lat": 42.9446,
+      "lon": -122.109
+    },
+    {
+      "name": "La Plata",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Dél-Amerika déli részén, a Paraná és az Uruguay folyó közös tölcsértorkolata; Buenos Aires.",
+      "lat": -35.2,
+      "lon": -57.0
+    },
+    {
+      "name": "Orinoco",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Dél-Amerikában Venezuelán átfolyó folyó, nagy deltával az Atlanti-óceánba torkollik.",
+      "lat": 9.0,
+      "lon": -61.5
+    },
+    {
+      "name": "Amerikai Egyesült Államok",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Észak-Amerika déli részén fekvő, a Föld gazdaságilag legerősebb országa; fővárosa Washington.",
+      "lat": 39.5,
+      "lon": -98.5
+    },
+    {
+      "name": "Argentína",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Dél-Amerika déli részén, az Andok és az Atlanti-óceán között; Pampa, fővárosa Buenos Aires.",
+      "lat": -35.0,
+      "lon": -65.0
+    },
+    {
+      "name": "Brazília",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Dél-Amerika legnagyobb területű és legnépesebb országa; fővárosa Brazíliaváros.",
+      "lat": -10.0,
+      "lon": -52.0
+    },
+    {
+      "name": "Costa Rica",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Közép-Amerika országa a Karib-tenger és a Csendes-óceán között; esőerdők, ökoturizmus.",
+      "lat": 9.9,
+      "lon": -84.0
+    },
+    {
+      "name": "Kanada",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Észak-Amerika északi részén, a Föld második legnagyobb országa; fővárosa Ottawa.",
+      "lat": 58.0,
+      "lon": -100.0
+    },
+    {
+      "name": "Mexikó",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Észak-Amerika déli részén, az USA-tól délre fekvő ország; fővárosa Mexikóváros, kőolaj.",
+      "lat": 23.5,
+      "lon": -102.0
+    },
+    {
+      "name": "Venezuela",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Dél-Amerika északi országa a Karib-tenger partján; nagy kőolajkészletek, fővárosa Caracas.",
+      "lat": 7.0,
+      "lon": -66.0
+    },
+    {
+      "name": "Bolívia",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Dél-Amerika belső országa az Andokban, nincs tengerpartja; alkotmányos fővárosa Sucre, székhely La Paz.",
+      "lat": -17.0,
+      "lon": -65.0
+    },
+    {
+      "name": "Chile",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Dél-Amerika hosszú, keskeny országa az Andok és a Csendes-óceán között; rézbányászat, Santiago.",
+      "lat": -33.0,
+      "lon": -71.0
+    },
+    {
+      "name": "Dominikai Köztársaság",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Haiti szigetének (Hispaniola) keleti részén fekvő ország az Antillákon; fővárosa Santo Domingo.",
+      "lat": 18.9,
+      "lon": -70.5
+    },
+    {
+      "name": "Ecuador",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Dél-Amerika északnyugati országa az Egyenlítőn; fővárosa Quito, hozzá tartozik a Galápagos-szigetek.",
+      "lat": -1.5,
+      "lon": -78.5
+    },
+    {
+      "name": "Kolumbia",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Dél-Amerika északnyugati országa a Karib-tenger és a Csendes-óceán partján; fővárosa Bogotá, kávé.",
+      "lat": 4.5,
+      "lon": -73.0
+    },
+    {
+      "name": "Kuba",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Az Antillák legnagyobb szigete és állama; fővárosa Havanna, cukornád és szivar.",
+      "lat": 21.8,
+      "lon": -79.0
+    },
+    {
+      "name": "Panama",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Közép-Amerika déli országa a Panama-csatornával; fővárosa Panamaváros.",
+      "lat": 8.5,
+      "lon": -80.0
+    },
+    {
+      "name": "Atlanta",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az USA délkeleti részén, Georgia állam fővárosa; a CNN és a Coca-Cola székhelye.",
+      "lat": 33.749,
+      "lon": -84.388
+    },
+    {
+      "name": "Brazíliaváros",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Brazília 1960-ban épült, tervezett fővárosa az ország belső fennsíkján.",
+      "lat": -15.7939,
+      "lon": -47.8828
+    },
+    {
+      "name": "Buenos Aires",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Argentína fővárosa a La Plata-öböl partján; Dél-Amerika egyik legnagyobb városa.",
+      "lat": -34.6037,
+      "lon": -58.3816
+    },
+    {
+      "name": "Caracas",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Venezuela fővárosa a Karib-tenger közelében, hegyvidéki völgyben.",
+      "lat": 10.4806,
+      "lon": -66.9036
+    },
+    {
+      "name": "Chicago",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az USA harmadik legnagyobb városa a Michigan-tó partján; közlekedési és ipari központ.",
+      "lat": 41.8781,
+      "lon": -87.6298
+    },
+    {
+      "name": "Dallas",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Texas állam nagyvárosa az USA déli részén; kőolajipar, pénzügyi központ.",
+      "lat": 32.7767,
+      "lon": -96.797
+    },
+    {
+      "name": "Houston",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Texas legnagyobb városa az USA déli részén; kőolajipar és űrközpont (NASA).",
+      "lat": 29.7604,
+      "lon": -95.3698
+    },
+    {
+      "name": "Los Angeles",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az USA második legnagyobb városa Kalifornia déli részén; Hollywood, filmipar.",
+      "lat": 34.0522,
+      "lon": -118.2437
+    },
+    {
+      "name": "Mexikóváros",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Mexikó fővárosa a Mexikói-fennsíkon, 2240 m magasan; a világ egyik legnagyobb városa.",
+      "lat": 19.4326,
+      "lon": -99.1332
+    },
+    {
+      "name": "New Orleans",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Louisiana állam városa a Mississippi torkolatánál; jazz, kikötő.",
+      "lat": 29.9511,
+      "lon": -90.0715
+    },
+    {
+      "name": "New York",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az USA legnagyobb városa az Atlanti-partnál; pénzügyi központ, az ENSZ székhelye.",
+      "lat": 40.7128,
+      "lon": -74.006
+    },
+    {
+      "name": "Ottawa",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Kanada fővárosa, Ontario és Québec határán az Ottawa folyó mellett.",
+      "lat": 45.4215,
+      "lon": -75.6972
+    },
+    {
+      "name": "Rio de Janeiro",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Brazília második legnagyobb városa az Atlanti-partnál; Krisztus-szobor, karnevál.",
+      "lat": -22.9068,
+      "lon": -43.1729
+    },
+    {
+      "name": "San Francisco",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Kalifornia nyugati partján, a San Andreas-törés közelében; Golden Gate híd.",
+      "lat": 37.7749,
+      "lon": -122.4194
+    },
+    {
+      "name": "Seattle",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az USA északnyugati partján, Washington állam legnagyobb városa; a Boeing és a Microsoft székhelye.",
+      "lat": 47.6062,
+      "lon": -122.3321
+    },
+    {
+      "name": "Washington",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az USA fővárosa a keleti parton, a Potomac folyónál; kormányzati központ.",
+      "lat": 38.9072,
+      "lon": -77.0369
+    },
+    {
+      "name": "Boston",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Az USA északkeleti részén, Massachusetts fővárosa; Harvard és MIT, oktatási központ.",
+      "lat": 42.3601,
+      "lon": -71.0589
+    },
+    {
+      "name": "Detroit",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Az USA északi részén, a Nagy-tavak mellett; autóipari központ.",
+      "lat": 42.3314,
+      "lon": -83.0458
+    },
+    {
+      "name": "Havanna",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Kuba fővárosa és kikötővárosa a sziget északi partján.",
+      "lat": 23.1136,
+      "lon": -82.3666
+    },
+    {
+      "name": "Miami",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Florida délkeleti partjának nagyvárosa az USA-ban; turizmus, kereskedelem Latin-Amerikával.",
+      "lat": 25.7617,
+      "lon": -80.1918
+    },
+    {
+      "name": "Montréal",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Kanada második legnagyobb városa a Szent Lőrinc-folyónál; francia nyelvű (Québec).",
+      "lat": 45.5017,
+      "lon": -73.5673
+    },
+    {
+      "name": "Santiago",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Chile fővárosa az Andok lábánál, a Központi-völgyben.",
+      "lat": -33.4489,
+      "lon": -70.6693
+    },
+    {
+      "name": "São Paulo",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Brazília legnagyobb városa, Dél-Amerika legnagyobb gazdasági központja.",
+      "lat": -23.5505,
+      "lon": -46.6333
+    },
+    {
+      "name": "Toronto",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Kanada legnagyobb városa az Ontario-tó északi partján.",
+      "lat": 43.6532,
+      "lon": -79.3832
+    },
+    {
+      "name": "Vancouver",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Kanada nyugati partjának nagyvárosa, Brit Columbiában; kikötő a Csendes-óceán partján.",
+      "lat": 49.2827,
+      "lon": -123.1207
+    }
+  ]
+}

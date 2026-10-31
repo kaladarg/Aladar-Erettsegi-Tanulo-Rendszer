@@ -1,10 +1,10 @@
-import { BookOpen, CheckCircle2, ChevronRight, Clock, Info } from 'lucide-react';
+import { BookOpen, CheckCircle2, ChevronRight, Clock, Info, Search } from 'lucide-react';
+import { useDeferredValue, useId, useState } from 'react';
 import { useSearchParams, Link } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
 import { findSubject, subjectShortName } from '@/content/catalog';
 import {
-  GUIDE_SUBJECTS,
-  GUIDE_UNITS,
+  GUIDE_SUBJECTS_WITH_UNITS as SUBJECTS_WITH_UNITS,
   pageFits,
   type GuidePage,
   type GuideSubject,
@@ -18,7 +18,9 @@ import { formatNumber, t } from '@/i18n';
 import { useSettings } from '@/state/settingsStore';
 import { useGuideProgress } from '@/storage/guide';
 import type { GuideProgressRow } from '@/storage/db';
+import { searchGuide } from '@/content/guide/search';
 import { RequirementsPanel } from './RequirementsPanel';
+import { useGuideUnits } from './useGuide';
 import { useLevelView } from './useLevelView';
 
 export function LevelBadge({ page }: { page: GuidePage }) {
@@ -26,9 +28,6 @@ export function LevelBadge({ page }: { page: GuidePage }) {
   if (page.level === 'both') return <Badge>{t('guide.levelBoth')}</Badge>;
   return <Badge tone="success">{t('guide.levelKozep')}</Badge>;
 }
-
-// Subjects without written units yet stay out of the switcher.
-const SUBJECTS_WITH_UNITS = GUIDE_SUBJECTS.filter((s) => GUIDE_UNITS.some((u) => u.subject === s));
 
 export function GuideHubPage() {
   usePageTitle(t('guide.title'));
@@ -40,7 +39,9 @@ export function GuideHubPage() {
     'tortenelem';
   const [view, setView] = useLevelView(subject);
   const progress = useGuideProgress();
-  const units = GUIDE_UNITS.filter((unit) => unit.subject === subject);
+  const units = useGuideUnits(subject);
+  const [query, setQuery] = useState('');
+  const searching = query.trim().length >= 2;
 
   return (
     <>
@@ -69,17 +70,94 @@ export function GuideHubPage() {
         </p>
       </div>
 
+      <GuideSearch query={query} onQuery={setQuery} view={view} />
+
       <p className="mb-6 flex gap-2 rounded-md border border-info/40 bg-info-soft p-3 text-sm">
         <Info aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-info" />
         {t('guide.draftNotice')}
       </p>
 
-      <div className="grid gap-6">
-        {units.map((unit) => (
-          <UnitCard key={unit.id} unit={unit} view={view} progress={progress} />
-        ))}
-      </div>
+      {!searching && (
+        <div className="grid gap-6">
+          {units ? (
+            units.map((unit) => (
+              <UnitCard key={unit.id} unit={unit} view={view} progress={progress} />
+            ))
+          ) : (
+            <p className="text-muted">{t('guide.loading')}</p>
+          )}
+        </div>
+      )}
     </>
+  );
+}
+
+/** Search across every subject's lessons; the units load the first time a student searches. */
+function GuideSearch({
+  query,
+  onQuery,
+  view,
+}: {
+  query: string;
+  onQuery: (query: string) => void;
+  view: LevelView;
+}) {
+  const id = useId();
+  const deferred = useDeferredValue(query.trim());
+  const active = deferred.length >= 2;
+  const units = useGuideUnits(undefined, query.trim().length >= 2);
+  const hits = active && units ? searchGuide(units, deferred, view) : [];
+  return (
+    <div className="mb-6">
+      <div className="relative">
+        <Search
+          aria-hidden="true"
+          className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted"
+        />
+        <label htmlFor={id} className="sr-only">
+          {t('guide.search.label')}
+        </label>
+        <input
+          id={id}
+          type="search"
+          value={query}
+          onChange={(event) => onQuery(event.target.value)}
+          placeholder={t('guide.search.placeholder')}
+          className="min-h-11 w-full rounded-md border border-border-strong bg-surface pr-3 pl-9"
+        />
+      </div>
+      {active && (
+        <div className="mt-3">
+          <p role="status" className="text-sm text-muted">
+            {!units
+              ? t('guide.loading')
+              : hits.length
+                ? t('guide.search.count', { count: formatNumber(hits.length) })
+                : t('guide.search.none')}
+          </p>
+          <ol className="mt-2 grid gap-2">
+            {hits.map(({ unit, page, snippet }) => (
+              <li key={page.id}>
+                <Link
+                  to={`/tananyag/${page.id}?szint=${view}`}
+                  className="block rounded-lg border border-border p-3 hover:border-border-strong hover:bg-surface-muted"
+                >
+                  <span className="block font-semibold [overflow-wrap:anywhere]">{page.title}</span>
+                  <span className="block text-sm text-muted">
+                    {subjectShortName(
+                      findSubject(unit.subject) ?? { id: unit.subject, name: unit.subject },
+                    )}
+                    {' · '}
+                    {unit.title}
+                  </span>
+                  <span className="mt-1 block text-sm [overflow-wrap:anywhere]">{snippet}</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+    </div>
   );
 }
 

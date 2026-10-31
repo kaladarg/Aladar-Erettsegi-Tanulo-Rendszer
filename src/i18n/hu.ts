@@ -1176,8 +1176,37 @@ export const hu = {
       intro:
         'Készülj a szóbeli vizsgára: írj vázlatot a tételekhez, mérd az időt, és vedd fel a feleletedet, hogy visszahallgasd.',
       draftNote:
-        'A beépített témakörök a középszintű vizsgakövetelmények alapján készült tervezetek. A pontos tétellistát az iskolád adja ki: azt add hozzá saját tételként.',
+        'A beépített témakörök a hivatalos vizsgakövetelmények alapján készült tervezetek. A pontos tétellistát az iskolád adja ki: azt add hozzá saját tételként.',
       subject: 'Tárgy',
+      level: 'Szint',
+      levelKozep: 'Középszint',
+      levelEmelt: 'Emelt szint',
+      format: {
+        kozep: {
+          magyar:
+            'Középszint: 15 perc, egy magyar nyelvi és egy irodalmi tétel, összesen 50 pont. Tételcímek előre ismertek, a feladat csak a vizsgán.',
+          tortenelem:
+            'Középszint: 15 perc, tételenként 3–6 forrás és 3–4 feldolgozási szempont, 50 pont. A tételt a vizsgán húzod.',
+          matematika:
+            'Középszint: 15 perc, három elméleti kérdés (15 pont) és három feladat (30 pont), 5 pont a kommunikációért, összesen 50 pont. A tételeket nem hozzák nyilvánosságra.',
+          nyelv:
+            'Középszint: 15 perc, 33 pont, felkészülési idő nélkül: társalgás, szerepjáték, önálló témakifejtés.',
+          foldrajz:
+            'Középszint: 15 perc, 60 pont: egy természetföldrajzi és egy társadalomföldrajzi feladat kifejtése.',
+        },
+        emelt: {
+          magyar:
+            'Emelt szint: 20 perc, egy magyar nyelvi és egy irodalmi tétel, 50 pont. Ugyanazok a témakörök, mélyebb elvárások: életpályák, kritikák, utóélet, történeti összefüggések, elmélet.',
+          tortenelem:
+            'Emelt szint: 20 perc, központi tételsor 20–22 tétellel, tételenként 3–5 szempont és különböző források, 50 pont. Vázlat készíthető. A tétel csak a vizsgán derül ki.',
+          matematika:
+            'Emelt szint: 20 perc, 35 pont. A felelet része egy definíció, egy tétel kimondása és bizonyítása, a kitűzött feladat megoldása, valamint alkalmazás vagy matematikatörténeti vonatkozás.',
+          nyelv:
+            'Emelt szint: 20 perc, 30 pont, felkészülési idő nélkül: társalgás elvontabb témáról, vita (érvelés egy provokatív állítás mellett vagy ellen), önálló témakifejtés általánosabb nézőpontból.',
+          foldrajz:
+            'Emelt szint: 20 perc, 50 pont: egy természetföldrajzi és egy társadalomföldrajzi feladat, egyenként 30 pont, a két feladat tartalmilag nem fedi át egymást.',
+        },
+      },
       builtinTitle: 'Témakörök',
       ownTitle: 'Saját tételeim',
       ownEmpty: 'Még nincs saját tételed. Írd be vagy másold be az iskolád tétellistáját.',
@@ -1212,7 +1241,7 @@ export const hu = {
       timeUp: 'Lejárt az idő: {timer}.',
       timesNote: 'Állítsd be az időket az iskolád szabályai szerint.',
       timesNoteLanguage:
-        'Idegen nyelvből a középszintű szóbelin nincs felkészülési idő. A felelet három része: bemutatkozás és beszélgetés, szituációs feladat, önálló témakifejtés képek vagy más segédanyag alapján. Gyakorold hangosan, felvétellel.',
+        'Idegen nyelvből a szóbelin nincs felkészülési idő. Középszinten a felelet három része: társalgás, szerepjáték és önálló témakifejtés képek vagy más segédanyag alapján. Emelt szinten: társalgás, vita és önálló témakifejtés. Gyakorold hangosan, felvétellel.',
       recordTitle: 'Hangfelvétel',
       record: 'Felvétel indítása',
       stop: 'Felvétel leállítása',
@@ -2128,6 +2157,13 @@ export const hu = {
     levelHintKozep: 'A középszint anyagát látod. Az emelt szintű részek rejtve vannak.',
     levelHintEmelt:
       'Az emelt szint anyagát látod: a középszint mindent, és az emelt szintű részeket külön jelölve.',
+    loading: 'Betöltés…',
+    search: {
+      label: 'Keresés a tananyagban',
+      placeholder: 'Keresés a tananyagban, például monszun vagy Aranybulla',
+      count: '{count} találat',
+      none: 'Nincs találat. Próbálj más szót.',
+    },
     draftNotice:
       'Ez a tananyag próbaváltozat, tanári ellenőrzés még nem volt. Ha hibát találsz, jelezd nekünk.',
     requirementRef: 'Követelmény: {ref}',

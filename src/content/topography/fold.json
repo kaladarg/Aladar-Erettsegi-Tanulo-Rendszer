@@ -1,0 +1,494 @@
+{
+  "region": "fold",
+  "regionName": "Föld",
+  "places": [
+    {
+      "name": "Baktérítő",
+      "category": "Földrajzi fokhálózat",
+      "emelt": false,
+      "desc": "A Baktérítő a déli szélesség 23,5°-án húzódó kör; itt áll délben a Nap merőlegesen december 22-én.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Déli-sark",
+      "category": "Földrajzi fokhálózat",
+      "emelt": false,
+      "desc": "A Föld forgástengelyének déli döféspontja, a 90° déli szélesség; az Antarktisz belsejében van.",
+      "lat": -90.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Déli sarkkör",
+      "category": "Földrajzi fokhálózat",
+      "emelt": false,
+      "desc": "A déli szélesség 66,5°-án húzódó kör; innen délre van poláris nap és poláris éjszaka.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Egyenlítő",
+      "category": "Földrajzi fokhálózat",
+      "emelt": false,
+      "desc": "A 0° szélességi kör, amely a Földet északi és déli félgömbre osztja.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Északi-sark",
+      "category": "Földrajzi fokhálózat",
+      "emelt": false,
+      "desc": "A Föld forgástengelyének északi döféspontja, a 90° északi szélesség; a befagyott Jeges-tengeren van.",
+      "lat": 90.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Északi sarkkör",
+      "category": "Földrajzi fokhálózat",
+      "emelt": false,
+      "desc": "Az északi szélesség 66,5°-án húzódó kör; innen északra van poláris nap és poláris éjszaka.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Ráktérítő",
+      "category": "Földrajzi fokhálózat",
+      "emelt": false,
+      "desc": "Az északi szélesség 23,5°-án húzódó kör; itt áll délben a Nap merőlegesen június 21-én.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "kezdő hosszúsági kör (greenwichi délkör)",
+      "category": "Földrajzi fokhálózat",
+      "emelt": false,
+      "desc": "A 0° hosszúsági kör, amely a londoni Greenwichen halad át; a keleti és nyugati félgömböt választja el.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Afrika",
+      "category": "Földrészek",
+      "emelt": false,
+      "desc": "A Föld második legnagyobb földrésze; az Egyenlítő mindkét oldalán fekszik.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Amerika",
+      "category": "Földrészek",
+      "emelt": false,
+      "desc": "A nyugati félgömb nagy földrésze, Észak- és Dél-Amerikából áll, a Panama-szoros köti össze őket.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Antarktika",
+      "category": "Földrészek",
+      "emelt": false,
+      "desc": "A Déli-sark körüli, jéggel borított földrész; a Föld leghidegebb és legmagasabb átlagmagasságú földrésze.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Ausztrália",
+      "category": "Földrészek",
+      "emelt": false,
+      "desc": "A legkisebb földrész, a déli félgömbön, az Indiai- és a Csendes-óceán között.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Ázsia",
+      "category": "Földrészek",
+      "emelt": false,
+      "desc": "A Föld legnagyobb kiterjedésű és legnépesebb földrésze; itt van a Himalája.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Európa",
+      "category": "Földrészek",
+      "emelt": false,
+      "desc": "Az Eurázsia nyugati részét alkotó földrész; az Urál, a Kaukázus és a Boszporusz választja el Ázsiától.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Eurázsia",
+      "category": "Földrészek",
+      "emelt": false,
+      "desc": "Európa és Ázsia együtt alkotta, a Föld legnagyobb összefüggő szárazföldi tömbje.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Atlanti-óceán",
+      "category": "Óceánok",
+      "emelt": false,
+      "desc": "A második legnagyobb óceán Európa-Afrika és Amerika között; közepén az Atlanti-hátság húzódik.",
+      "lat": 0.0,
+      "lon": -30.0
+    },
+    {
+      "name": "Csendes-óceán",
+      "category": "Óceánok",
+      "emelt": false,
+      "desc": "A legnagyobb és legmélyebb óceán; peremén a Pacifikus tűzgyűrű vulkánjai sorakoznak.",
+      "lat": 0.0,
+      "lon": -150.0
+    },
+    {
+      "name": "Déli-óceán",
+      "category": "Óceánok",
+      "emelt": false,
+      "desc": "Az Antarktiszt körülvevő óceán, az Antarktiszi-köráramlás vizével.",
+      "lat": -65.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Indiai-óceán",
+      "category": "Óceánok",
+      "emelt": false,
+      "desc": "A harmadik legnagyobb óceán Afrika, Ázsia és Ausztrália között; a monszun hatása jellemző rá.",
+      "lat": -20.0,
+      "lon": 80.0
+    },
+    {
+      "name": "Jeges-óceán (Jeges-tenger)",
+      "category": "Óceánok",
+      "emelt": false,
+      "desc": "A legkisebb és legsekélyebb óceán az Északi-sark körül; nagy részét tengeri jég borítja.",
+      "lat": 85.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Afrikai-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "Az Atlanti-hátságtól a Kelet-afrikai-árokrendszerig tartó kőzetlemez; keleten széttolódó, nyugaton eltávolodó határú.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Antarktiszi-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "Az Antarktiszt hordozó kőzetlemez, nagyrészt óceáni lemezekkel határos, szétnyíló peremmel.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Arab-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "Az Arab-félszigetet hordozó kőzetlemez; az Eurázsiai-lemezzel ütközve emelte a Zagrosz-hegységet.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Ausztrál– Indiai-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "Ausztráliát és az Indiai-szubkontinenst hordozó lemez; északra mozogva ütközött Ázsiával, létrehozva a Himalája kialakulását.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Csendes-óceáni-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "A Föld legnagyobb kőzetlemeze; peremén mélytengeri árkok és a Pacifikus tűzgyűrű vulkánjai vannak.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Dél-amerikai-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "Dél-Amerikát hordozó kőzetlemez; nyugati peremén a Nazca-lemez alábukásától emelkedtek az Andok.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Észak-amerikai-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "Észak-Amerikát hordozó kőzetlemez; nyugati peremén van a San Andreas-törésvonal.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Eurázsiai-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "Európát és Ázsia nagy részét hordozó kőzetlemez; az Indiai- és az Afrikai-lemezzel ütközik.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Fülöp-lemez (Filippínó-lemez)",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "A Fülöp-szigetek alatti óceáni kőzetlemez; a Japán- és a Mariana-árok mentén bukik le.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Nazca-lemez",
+      "category": "Kőzetlemezek",
+      "emelt": false,
+      "desc": "A Dél-amerikai-lemez alá bukó óceáni kőzetlemez a Csendes-óceán délkeleti részén.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Afrikai-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Afrika kristályos pajzsa, a Föld egyik legnagyobb ősföldje; a Gondwana őskontinens része volt.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Angara-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Szibériai ősföld, a Közép-szibériai-fennsík alapját adja.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Antarktiszi-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Az Antarktisz jégtakaró alatti ősföldje, a Gondwana része.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Arab-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Az Arab-félsziget nyugati részén lévő kristályos ősföld, az Afrikai-ősföld folytatása.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Balti-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Észak-Európa ősföldje; Skandinávia és Finnország nagy része tartozik hozzá.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Brazil-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Dél-Amerika keleti részén húzódó ősföld, a Brazil-felföld alapja.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Dekkán-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "India déli részének ősföldje; a Dekkán-fennsík alapját alkotja.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Guyanai-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Dél-Amerika északi részén lévő ősföld, a Guyanai-hegyvidék alapja.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Kanadai-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Észak-Amerika legnagyobb ősföldje a Hudson-öböl körül; jégkorszaki eredetű tavak jellemzik.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Kínai-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Kelet-Ázsia ősföldje, Kína északkeleti részén.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Nyugat-ausztráliai-ősföld",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Ausztrália nyugati felének ősföldje; ércekben gazdag, a Gondwana része volt.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Eurázsiai-hegységrendszer",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Az Alpoktól a Himaláján át húzódó fiatal gyűrődéses hegységrendszer, a Föld legmagasabb hegyeivel.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Kaledóniai-hegységrendszer",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "Az ókor végén (kaledóniai kor) kialakult, lepusztult hegységrendszer; Skandináviában és a Brit-szigeteken.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Pacifikus-hegységrendszer",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "A Csendes-óceán peremén húzódó fiatal hegységrendszer, amelyhez az Andok és a Sziklás-hegység tartozik.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Variszkuszi-hegységrendszer",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "A paleozoikum végén (variszkuszi kor) gyűrődött, ma már részben lepusztult hegységrendszer Európában.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Japán-árok",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "A Csendes-óceán mélytengeri árka Japán keleti partjai előtt; a Csendes-óceáni-lemez bukik itt le.",
+      "lat": 36.0,
+      "lon": 143.0
+    },
+    {
+      "name": "Mariana-árok",
+      "category": "Nagyszerkezeti egységek",
+      "emelt": false,
+      "desc": "A Föld legmélyebb pontja (kb. 11 000 m) a Csendes-óceán nyugati részén, a Mariana-szigetek mellett.",
+      "lat": 11.35,
+      "lon": 142.2
+    },
+    {
+      "name": "Észak-atlanti-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": false,
+      "desc": "A Golf-áramlás folytatása az Atlanti-óceán északi részén; melegvizével enyhíti Nyugat- és Észak-Európa éghajlatát.",
+      "lat": 50.0,
+      "lon": -30.0
+    },
+    {
+      "name": "Golf-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": false,
+      "desc": "Meleg tengeráramlás a Mexikói-öbölből indulva az észak-amerikai partok mentén; enyhíti Európa éghajlatát.",
+      "lat": 35.0,
+      "lon": -73.0
+    },
+    {
+      "name": "Kanári-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": false,
+      "desc": "Hideg tengeráramlás Nyugat-Afrika partjai mentén az Atlanti-óceánon; szárazzá teszi a Szahara partvidékét.",
+      "lat": 28.0,
+      "lon": -18.0
+    },
+    {
+      "name": "Labrador-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": false,
+      "desc": "Hideg tengeráramlás Labrador és Új-Fundland partjainál; jéghegyeket szállít és ködöt okoz.",
+      "lat": 52.0,
+      "lon": -52.0
+    },
+    {
+      "name": "Nyugati-szél-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": false,
+      "desc": "Az Antarktiszt körülvevő, nyugatról keletre tartó hideg tengeráramlás a déli félgömb mérsékelt övében.",
+      "lat": -55.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Benguela-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": true,
+      "desc": "Hideg tengeráramlás Dél-Afrika nyugati partján; a Namib-sivatag kialakulásában is szerepe van.",
+      "lat": -25.0,
+      "lon": 12.0
+    },
+    {
+      "name": "Brazíliai-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": true,
+      "desc": "Meleg tengeráramlás Dél-Amerika keleti partja mentén az Atlanti-óceánon, délnek tart.",
+      "lat": -25.0,
+      "lon": -42.0
+    },
+    {
+      "name": "Dél-egyenlítői-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": true,
+      "desc": "Az Egyenlítőtől délre, keletről nyugatra haladó meleg tengeráramlás, a passzátszelek hajtják.",
+      "lat": -5.0,
+      "lon": -25.0
+    },
+    {
+      "name": "Észak-egyenlítői-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": true,
+      "desc": "Az Egyenlítőtől északra, keletről nyugatra haladó meleg tengeráramlás, a passzátszelek hajtják.",
+      "lat": 10.0,
+      "lon": -40.0
+    },
+    {
+      "name": "Humboldt-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": true,
+      "desc": "Hideg tengeráramlás Dél-Amerika nyugati partján; az Atacama-sivatag kialakulásában is szerepe van.",
+      "lat": -20.0,
+      "lon": -72.0
+    },
+    {
+      "name": "Kuro-shio-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": true,
+      "desc": "Meleg tengeráramlás Japán keleti partja mellett a Csendes-óceánon; a Golf-áramlás párja.",
+      "lat": 30.0,
+      "lon": 135.0
+    },
+    {
+      "name": "Oja-shio-áramlás",
+      "category": "Tengeráramlások",
+      "emelt": true,
+      "desc": "Hideg tengeráramlás Kamcsatka és Japán keleti partja mentén a Csendes-óceán északnyugati részén.",
+      "lat": 42.0,
+      "lon": 146.0
+    },
+    {
+      "name": "Déli-sarkvidék (Antarktisz)",
+      "category": "Egyéb",
+      "emelt": false,
+      "desc": "A Déli-sark körüli terület, az Antarktisz földrésszel és a körülötte lévő tengerekkel.",
+      "lat": -90.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Északi-sarkvidék (Arktisz)",
+      "category": "Egyéb",
+      "emelt": false,
+      "desc": "Az Északi-sark körüli terület, amelynek közepén a Jeges-tenger van; tenger, nem szárazföld.",
+      "lat": 85.0,
+      "lon": 0.0
+    }
+  ]
+}

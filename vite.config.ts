@@ -4,6 +4,7 @@ import {
   cpSync,
   createReadStream,
   existsSync,
+  readdirSync,
   readFileSync,
   statSync,
 } from 'node:fs';
@@ -17,6 +18,30 @@ import { VitePWA } from 'vite-plugin-pwa';
 const root = fileURLToPath(new URL('.', import.meta.url));
 const base = process.env.BASE_PATH ?? '/';
 const pkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8')) as { version: string };
+
+/**
+ * `virtual:guide-index` maps every study guide page id to its unit file, so the
+ * reader can load just that one unit (units are loaded lazily, not bundled together).
+ */
+function guideIndex(): Plugin {
+  const id = 'virtual:guide-index';
+  const dir = resolve(root, 'src/content/guide/units');
+  return {
+    name: 'guide-index',
+    resolveId: (source) => (source === id ? `\0${id}` : undefined),
+    load(source) {
+      if (source !== `\0${id}`) return undefined;
+      const index: Record<string, string> = {};
+      for (const file of readdirSync(dir).filter((f) => f.endsWith('.ts'))) {
+        this.addWatchFile(resolve(dir, file));
+        const text = readFileSync(resolve(dir, file), 'utf8');
+        for (const match of text.matchAll(/^ {6}id: '([^']+)'/gm))
+          index[match[1]!] = `./units/${file}`;
+      }
+      return `export default ${JSON.stringify(index)};`;
+    },
+  };
+}
 
 /** GitHub Pages serves 404.html for unknown paths; make it the SPA entry. */
 function spaFallback(): Plugin {
@@ -119,6 +144,7 @@ export default defineConfig(({ mode }) => {
       chunkSizeWarningLimit: 600,
     },
     plugins: [
+      guideIndex(),
       react(),
       tailwindcss(),
       VitePWA({

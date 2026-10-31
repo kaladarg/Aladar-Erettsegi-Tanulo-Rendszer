@@ -3,7 +3,7 @@ import { ArrowLeft, Check, Mic, Pause, Play, RotateCcw, Square, Trash2 } from 'l
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import { usePageTitle } from '@/app/usePageTitle';
-import { LANGUAGE_SUBJECTS } from '@/content/oralTopics';
+import { BUILTIN_ORAL_TOPICS, LANGUAGE_SUBJECTS } from '@/content/oralTopics';
 import { NotFoundPage } from '@/app/ErrorScreens';
 import { Button } from '@/design/ui/Button';
 import { Card, CardDescription, CardTitle } from '@/design/ui/Card';
@@ -66,7 +66,10 @@ function OralTopic({ row }: { row: OralTopicRow }) {
       <div className="grid gap-6 lg:grid-cols-2">
         <Outline row={row} />
         <div className="grid content-start gap-6">
-          <Timers language={LANGUAGE_SUBJECTS.includes(row.subject)} />
+          <Timers
+            language={LANGUAGE_SUBJECTS.includes(row.subject)}
+            emelt={BUILTIN_ORAL_TOPICS.find((b) => b.id === row.builtinId)?.level === 'emelt'}
+          />
           <Recorder row={row} />
         </div>
       </div>
@@ -135,13 +138,13 @@ function Outline({ row }: { row: OralTopicRow }) {
   );
 }
 
-function Timers({ language }: { language: boolean }) {
+function Timers({ language, emelt }: { language: boolean; emelt: boolean }) {
   return (
     <Card aria-labelledby="oral-timers">
       <CardTitle id="oral-timers">{t('practice.oral.timersTitle')}</CardTitle>
       <div className="mt-3 grid gap-4 sm:grid-cols-2">
         {!language && <Timer name={t('practice.oral.prep')} defaultMinutes={30} />}
-        <Timer name={t('practice.oral.answer')} defaultMinutes={15} />
+        <Timer name={t('practice.oral.answer')} defaultMinutes={emelt ? 20 : 15} />
       </div>
       <CardDescription className="mt-3">
         {language ? t('practice.oral.timesNoteLanguage') : t('practice.oral.timesNote')}

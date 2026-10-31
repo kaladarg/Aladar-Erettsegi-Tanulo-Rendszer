@@ -1,0 +1,2150 @@
+{
+  "region": "europa",
+  "regionName": "Európa",
+  "places": [
+    {
+      "name": "Dél-Európa",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Olaszország, Görögország, Spanyolország és a Balkán déli része; mediterrán éghajlatú térség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Észak-Európa",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Skandináv országok és Izland; hideg, óceáni–szubarktikus éghajlat, Skandináv-hegység.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Kelet-Európa",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Az Orosz-alföld térsége: Oroszország európai része, Ukrajna, Fehéroroszország; nagy síkságok.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Kelet-Közép-Európa",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Magyarország, Szlovákia, Csehország, Lengyelország környéke; átmeneti éghajlatú térség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Közép-Európa",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Németország, Ausztria, Svájc és a környező országok; az Alpoktól a Balti-tengerig.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Nyugat-Európa",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Franciaország, Benelux államok és a Brit-szigetek; óceáni éghajlatú, sűrűn lakott térség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Alpok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Európa legmagasabb és legnagyobb hegysége, fiatal lánchegység; Mont Blanc, Rajna és Rhône forrásvidéke.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Appenninek",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Appennini-félsziget gerinchegysége; fiatal lánchegység, az Etna és a Vezúv vulkáni övezete mellett.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Appennini-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Európa középső félszigete, Olaszország területe; csizma alakú.",
+      "lat": 42.0,
+      "lon": 13.0
+    },
+    {
+      "name": "Balkán-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Európa keleti félszigete az Adria, az Égei- és a Fekete-tenger között; hegyes, tagolt.",
+      "lat": 42.0,
+      "lon": 22.0
+    },
+    {
+      "name": "Balkán-hegység",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Bulgária gerinchegysége a Duna-síkság és a Thrák-alföld között; nyugat–kelet irányú.",
+      "lat": 42.8,
+      "lon": 24.9
+    },
+    {
+      "name": "Bécsi-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Duna és a Kisalföld között fekvő medence Bécs környékén; az Alpok és a Kárpátok között.",
+      "lat": 48.2,
+      "lon": 16.6
+    },
+    {
+      "name": "Brit-szigetek",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Nagy-Britannia, Írország és a környező szigetek; Európa nyugati peremén.",
+      "lat": 54.0,
+      "lon": -3.0
+    },
+    {
+      "name": "Ciprus",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Földközi-tenger harmadik legnagyobb szigete, EU-tagállam; Törökország mellett, Aphrodité szigete.",
+      "lat": 35.1,
+      "lon": 33.2
+    },
+    {
+      "name": "Csallóköz",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Duna szigete Pozsony és Komárom között; Európa egyik legnagyobb folyami szigete, magyarlakta vidék.",
+      "lat": 47.95,
+      "lon": 17.6
+    },
+    {
+      "name": "Cseh-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Csehország medencéje a Szudéták és az Érchegység között; az Elba felső vidéke, Prága körül.",
+      "lat": 50.1,
+      "lon": 14.5
+    },
+    {
+      "name": "Dalmácia",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Horvátország adriai tengerpartja; karsztos, szigetekben gazdag, turisztikai övezet.",
+      "lat": 43.5,
+      "lon": 16.4
+    },
+    {
+      "name": "Déli-Kárpátok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Kárpátok déli ága Romániában; legmagasabb csúcsa a Moldoveanu.",
+      "lat": 45.6,
+      "lon": 24.6
+    },
+    {
+      "name": "Dinári-hegység",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Adria keleti partját kísérő karsztos hegység; Szlovéniától Albániáig, a Balkán nyugati gerince.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Duna-delta",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Duna torkolata a Fekete-tengernél, Romániában; Európa legnagyobb deltavidéke, természetvédelmi terület.",
+      "lat": 45.1,
+      "lon": 29.5
+    },
+    {
+      "name": "Erdélyi-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Kárpátok ívétől övezett medence Romániában; sóban és földgázban gazdag, központja Kolozsvár.",
+      "lat": 46.4,
+      "lon": 24.3
+    },
+    {
+      "name": "Erdélyi-szigethegység (Erdélyi-középhegység)",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Erdély nyugati hegysége Romániában; Bihar-hegység és Gyalui-havasok, érc- és karsztvidék.",
+      "lat": 46.4,
+      "lon": 22.8
+    },
+    {
+      "name": "Etna",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Szicília aktív vulkánja, Európa legmagasabb működő vulkánja (kb. 3300 m).",
+      "lat": 37.751,
+      "lon": 14.9934
+    },
+    {
+      "name": "Északkeleti-Kárpátok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Kárpátok keleti-északi ága Ukrajna, Románia, Lengyelország határán; Máramaros és Bukovina térsége.",
+      "lat": 48.4,
+      "lon": 24.5
+    },
+    {
+      "name": "Északnyugati-Kárpátok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Kárpátok északi íve Szlovákia és Lengyelország térségében; Tátra, Fátra, Kis-Kárpátok.",
+      "lat": 49.0,
+      "lon": 19.5
+    },
+    {
+      "name": "Finn-tóvidék",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Finnország tóban gazdag középső vidéke; jégkorszaki eredetű tavak ezrei.",
+      "lat": 62.0,
+      "lon": 28.0
+    },
+    {
+      "name": "Francia-középhegység",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Franciaország déli-középső, ősi vulkáni hegysége (Massif Central); Puy-vulkánok.",
+      "lat": 45.3,
+      "lon": 3.0
+    },
+    {
+      "name": "Germán-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-Európa tengerparti síksága Hollandiától Lengyelországig; jégkorszaki üledék, mezőgazdaság.",
+      "lat": 52.8,
+      "lon": 11.0
+    },
+    {
+      "name": "Hargita",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Keleti-Kárpátok vulkáni hegysége Erdélyben; a Székelyföld hegysége, az Olt és a Maros között.",
+      "lat": 46.4,
+      "lon": 25.6
+    },
+    {
+      "name": "Holland-mélyföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Hollandia nyugati, tenger alatti süllyedéke; gátakkal védett, polderes terület.",
+      "lat": 52.3,
+      "lon": 5.0
+    },
+    {
+      "name": "Izland",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-atlanti vulkáni sziget az Atlanti-hátság mentén; gejzírek, vulkánok, jégtakaró.",
+      "lat": 64.9,
+      "lon": -18.5
+    },
+    {
+      "name": "Kárpát-medence (Pannon-medence)",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Kárpátok ívétől körülvett medence; közepén az Alföld és a Dunántúl, fő folyói a Duna és a Tisza.",
+      "lat": 46.8,
+      "lon": 20.0
+    },
+    {
+      "name": "Kárpátok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Európa fő hegyvonulata, nagy ív Szlovákiától Romániáig; legmagasabb csúcsa a Gerlachfalvi-csúcs, a Moldoveanu.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Kelet-európai-síkság",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Európa legnagyobb síksága Kelet-Európában; Oroszország európai része, Volga és Don mentén.",
+      "lat": 55.0,
+      "lon": 38.0
+    },
+    {
+      "name": "Keleti-Alpok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Alpok keleti szakasza Ausztriában, Szlovéniában; a Hohe Tauern és a Gross Glockner.",
+      "lat": 47.2,
+      "lon": 13.5
+    },
+    {
+      "name": "Keleti-Kárpátok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Kárpátok keleti szakasza, Ukrajna és Románia határán; a Hargita és a Keleti-Kárpátok lejtői.",
+      "lat": 47.0,
+      "lon": 25.5
+    },
+    {
+      "name": "Kréta",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Görögország legnagyobb szigete a Földközi-tenger keleti részén; a minószi kultúra otthona.",
+      "lat": 35.2,
+      "lon": 24.9
+    },
+    {
+      "name": "Krím-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Fekete-tengerbe nyúló félsziget Ukrajnában; Szevasztopol hadikikötő, 2014 óta Oroszország annektálta.",
+      "lat": 45.3,
+      "lon": 34.1
+    },
+    {
+      "name": "Lengyel-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Visztula és az Odera közötti síkság Lengyelországban; Varsó és Poznań térsége.",
+      "lat": 52.2,
+      "lon": 18.5
+    },
+    {
+      "name": "Lengyel-középhegység",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Lengyelország déli hegysége, a Szent Kereszt-hegység; ősi, alacsony tömegek.",
+      "lat": 50.8,
+      "lon": 20.8
+    },
+    {
+      "name": "Lengyel-tóhátság",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Lengyelország északi, tóban gazdag morénavidéke a Balti-tenger partja mentén; Mazúri-tóvidék.",
+      "lat": 53.7,
+      "lon": 20.0
+    },
+    {
+      "name": "Londoni-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Anglia sekély medencéje a Temze körül; London fekszik benne, krétaformák.",
+      "lat": 51.5,
+      "lon": -0.3
+    },
+    {
+      "name": "Magas-Tátra",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Kárpátok legmagasabb csoportja Szlovákiában és Lengyelországban; Gerlachfalvi-csúcs (2655 m).",
+      "lat": 49.19,
+      "lon": 20.13
+    },
+    {
+      "name": "Mont Blanc",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Alpok és Európa legmagasabb csúcsa (4806 m) a francia–olasz határon.",
+      "lat": 45.8326,
+      "lon": 6.8652
+    },
+    {
+      "name": "Morva-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Morvaország medencéje Csehországban; Brno körül, a Morava termékeny síksága.",
+      "lat": 49.2,
+      "lon": 17.0
+    },
+    {
+      "name": "Német-középhegység",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Németország központi középhegységi vidéke; Harz, Türingiai-erdő, Fekete-erdő.",
+      "lat": 50.6,
+      "lon": 10.0
+    },
+    {
+      "name": "Nyugati-Alpok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Alpok nyugati szakasza Franciaország, Olaszország és Svájc határán; Mont Blanc.",
+      "lat": 45.9,
+      "lon": 7.0
+    },
+    {
+      "name": "Párizsi-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Franciaország északi tányér alakú üledékes medencéje; Párizs és a Szajna körül.",
+      "lat": 48.8,
+      "lon": 2.5
+    },
+    {
+      "name": "Pennine-hegység (Pennine)",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Anglia gerincét alkotó hegység; ősi, alacsony tömeg, az angol–skót területek között.",
+      "lat": 54.2,
+      "lon": -2.2
+    },
+    {
+      "name": "Pireneusi (Ibériai)-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Európa nyugati félszigete, Spanyolország és Portugália területe.",
+      "lat": 40.0,
+      "lon": -4.0
+    },
+    {
+      "name": "Pireneusok",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Pireneusi- és Ibériai-félsziget északkeleti hegysége; Franciaország és Spanyolország határa.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Pó-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-Olaszország folyóvölgye az Alpok és az Appenninek között; a Pó és mellékfolyói, ipari-mezőgazdasági térség.",
+      "lat": 45.1,
+      "lon": 10.0
+    },
+    {
+      "name": "Román-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Déli-Kárpátok és a Duna közötti síkság Dél-Romániában; Bukarest körül.",
+      "lat": 44.2,
+      "lon": 25.8
+    },
+    {
+      "name": "Skandináv-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-Európa nagy félszigete, Norvégia és Svédország; Skandináv-hegység.",
+      "lat": 63.0,
+      "lon": 15.0
+    },
+    {
+      "name": "Skandináv-hegység",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Észak-Európa fő hegysége Norvégia és Svédország határán; ősi, jégkorszaki formák, fjordok.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Szicília",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Földközi-tenger legnagyobb szigete Olaszországban; Etna, Palermo.",
+      "lat": 37.6,
+      "lon": 14.0
+    },
+    {
+      "name": "Szilézia",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Sziléziai tájegység Lengyelországban, Csehországban és Németországban; kőszén- és ipari térség.",
+      "lat": 51.0,
+      "lon": 17.0
+    },
+    {
+      "name": "Szudéták",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Közép-európai hegység Csehország és Lengyelország határán; Śnieżka (Hósapka).",
+      "lat": 50.8,
+      "lon": 15.8
+    },
+    {
+      "name": "Urál",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Európa és Ázsia természetes határa, ősi hegység Oroszország és Kazahsztán határán.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Vezúv",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Nápolyi-öböl aktív vulkánja, a Pompeji pusztulását okozó 79. évi kitörés színhelye.",
+      "lat": 40.821,
+      "lon": 14.426
+    },
+    {
+      "name": "Ardennek",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Az Ardenneket kísérő erdős hegyvidék Belgiumban, Luxemburgban és Franciaországban; ősi lekopott felszín.",
+      "lat": 50.1,
+      "lon": 5.7
+    },
+    {
+      "name": "Korzika",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Földközi-tenger szigete, Franciaország része; Napóleon szülőhelye, hegyes.",
+      "lat": 42.1,
+      "lon": 9.1
+    },
+    {
+      "name": "Stromboli",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Tirrén-tengeri vulkáni sziget az Eol-szigetek között; folyamatosan működő vulkán, a Földközi-tenger világítótornya.",
+      "lat": 38.789,
+      "lon": 15.213
+    },
+    {
+      "name": "Szardínia",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "A Földközi-tenger második legnagyobb szigete Olaszországban; hegyvidéki, bronzkori nuraghék.",
+      "lat": 40.0,
+      "lon": 9.0
+    },
+    {
+      "name": "Szent Gotthárd-hágó",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Svájci Alpokbeli hágó, a Reuss és Ticino völgyei között; fontos észak–déli alagút- és útvonal.",
+      "lat": 46.559,
+      "lon": 8.561
+    },
+    {
+      "name": "Vaskapu",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "A Duna szurdokvölgye a Déli-Kárpátok és a Balkán-hegység között; Szerbia és Románia határa, Vaskapu-erőmű.",
+      "lat": 44.6,
+      "lon": 22.5
+    },
+    {
+      "name": "Vereckei-hágó",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Kárpátaljai hágó a Keleti-Kárpátokban; a honfoglaló magyarok bejárata.",
+      "lat": 48.794,
+      "lon": 23.036
+    },
+    {
+      "name": "Adriai-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Földközi-tenger északi öble Olaszország és a Balkán között; Velence, Trieszt, Dubrovnik.",
+      "lat": 43.0,
+      "lon": 15.5
+    },
+    {
+      "name": "Balti-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Észak-Európa belső tengere; kis sótartalmú, sekély, a Skandináv-félsziget és a kontinens között.",
+      "lat": 58.5,
+      "lon": 20.0
+    },
+    {
+      "name": "Boden-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Közép-Európa legnagyobb tava a Rajna felső szakaszán; Németország, Svájc, Ausztria határa.",
+      "lat": 47.6,
+      "lon": 9.4
+    },
+    {
+      "name": "Dnyeper",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Orosz-alföld nagy folyója, Ukrajnán át a Fekete-tengerbe ömlik; Kijev és Zaporozsje.",
+      "lat": 46.5,
+      "lon": 32.3
+    },
+    {
+      "name": "Don",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Oroszország folyója, az Azovi-tengerbe ömlik; Volga–Don-csatorna köti össze a Volgával.",
+      "lat": 47.1,
+      "lon": 39.3
+    },
+    {
+      "name": "Duna",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Európa második leghosszabb folyója, a Fekete-tengerbe ömlik; tíz országon folyik át.",
+      "lat": 45.2,
+      "lon": 29.7
+    },
+    {
+      "name": "Duna–Majna–Rajna vízi út",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Nagy vízi út, mely a Rajnát a Dunával köti össze a Majnán át; Rotterdam–Fekete-tenger.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Elba",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Csehországból ered, Drezdán és Hamburgon át az Északi-tengerbe ömlik.",
+      "lat": 53.9,
+      "lon": 9.0
+    },
+    {
+      "name": "Égei-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Földközi-tenger északkeleti öble Görögország és Törökország között; Athén, Kyklades szigetek.",
+      "lat": 38.5,
+      "lon": 25.0
+    },
+    {
+      "name": "Északi-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Atlanti-óceán sekély peremtengere Nagy-Britannia és a kontinens között; olaj- és földgáz.",
+      "lat": 56.0,
+      "lon": 3.0
+    },
+    {
+      "name": "Fekete-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Európa és Ázsia közötti beltenger; a Bosporuszon át kapcsolódik a Földközi-tengerhez.",
+      "lat": 43.5,
+      "lon": 34.0
+    },
+    {
+      "name": "Földközi-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Európa, Afrika és Ázsia közötti tenger; Gibraltári-szoros köti az Atlanti-óceánhoz.",
+      "lat": 35.0,
+      "lon": 18.0
+    },
+    {
+      "name": "Garda-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Olaszország legnagyobb tava az Alpok lábánál; Lombardia és Veneto, nyaralóövezet.",
+      "lat": 45.6,
+      "lon": 10.7
+    },
+    {
+      "name": "Genfi-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Svájc és Franciaország határán fekvő tó, a Rhône folyik át; Genf a nyugati végén.",
+      "lat": 46.45,
+      "lon": 6.55
+    },
+    {
+      "name": "Gyilkos-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Keleti-Kárpátok hegyi tava Romániában; földcsuszamlás nyomán keletkezett, tuskós.",
+      "lat": 46.7,
+      "lon": 25.8
+    },
+    {
+      "name": "La Manche",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Brit-szigetek és a kontinens közötti tengerszoros; Anglia–Franciaország, Csatorna-alagút.",
+      "lat": 50.2,
+      "lon": -1.0
+    },
+    {
+      "name": "Ladoga-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Európa legnagyobb tava Oroszországban; Szentpétervár közelében, a Néva ered belőle.",
+      "lat": 61.0,
+      "lon": 31.5
+    },
+    {
+      "name": "Odera",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Csehországból ered, Lengyelországon át a Balti-tengerbe ömlik; részben német–lengyel határfolyó.",
+      "lat": 53.8,
+      "lon": 14.3
+    },
+    {
+      "name": "Olt",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Romániában a Keleti-Kárpátokban ered, a Duna mellékfolyója; Székelyföldön és Erdélyben folyik.",
+      "lat": 43.7,
+      "lon": 24.8
+    },
+    {
+      "name": "Pó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Olaszország leghosszabb folyója, az Alpokból az Adriába ömlik; Pó-alföld.",
+      "lat": 44.9,
+      "lon": 12.5
+    },
+    {
+      "name": "Rajna",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Európa egyik legfontosabb folyója az Alpokból az Északi-tengerbe; Hollandiában torkollik, Rajna menti ipari térség.",
+      "lat": 51.9,
+      "lon": 4.1
+    },
+    {
+      "name": "Rhône",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Alpokban ered, Svájcban és Franciaországban folyik, a Földközi-tengerbe ömlik; Lyon, Marseille.",
+      "lat": 43.4,
+      "lon": 4.8
+    },
+    {
+      "name": "Szajna",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Franciaország folyója, Párizson át a La Manche-ba ömlik; Párizs és Le Havre.",
+      "lat": 49.4,
+      "lon": 0.2
+    },
+    {
+      "name": "Száva",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Duna jobb oldali mellékfolyója, Szlovénia–Horvátország–Szerbia; Belgrádnál torkollik.",
+      "lat": 44.8,
+      "lon": 20.45
+    },
+    {
+      "name": "Szent Anna-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Székelyföldi krátertó a Csomád vulkán kialudt kráterében; Erdély egyetlen vulkáni tava.",
+      "lat": 46.1,
+      "lon": 25.9
+    },
+    {
+      "name": "Tajo (Tejo)",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Ibériai-félsziget leghosszabb folyója, Portugáliában ömlik az Atlanti-óceánba; Lisszabonnál.",
+      "lat": 38.7,
+      "lon": -9.1
+    },
+    {
+      "name": "Temze",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Anglia folyója, London mellett folyik át; az Északi-tengerbe ömlik.",
+      "lat": 51.5,
+      "lon": 0.8
+    },
+    {
+      "name": "Urál (folyó)",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Urál-hegységben ered, a Kaszpi-tengerbe ömlik; hagyományosan Európa és Ázsia határa.",
+      "lat": 47.0,
+      "lon": 51.8
+    },
+    {
+      "name": "Vág",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Duna mellékfolyója Szlovákiában; a Magas-Tátrából ered és Komáromnál torkollik.",
+      "lat": 47.75,
+      "lon": 18.1
+    },
+    {
+      "name": "Visztula",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Lengyelország leghosszabb folyója a Balti-tengerbe ömlik; Krakkó és Varsó mellett.",
+      "lat": 54.35,
+      "lon": 18.95
+    },
+    {
+      "name": "Volga",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Európa leghosszabb folyója, Oroszországban a Kaszpi-tengerbe ömlik; Volgográd, Nyizsnyij Novgorod.",
+      "lat": 45.9,
+      "lon": 47.9
+    },
+    {
+      "name": "Botteni-öböl",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "A Balti-tenger északi öble, Svédország és Finnország között; jégtől befagyó, sekély.",
+      "lat": 63.5,
+      "lon": 21.5
+    },
+    {
+      "name": "Ebro",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Spanyolország északkeleti folyója a Földközi-tengerbe ömlik; Aragónia és Katalónia.",
+      "lat": 40.7,
+      "lon": 0.85
+    },
+    {
+      "name": "IJssel-tó",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Hollandia tava, a Zuiderzee egykori részéből, gátakkal elválasztott; polder.",
+      "lat": 52.8,
+      "lon": 5.4
+    },
+    {
+      "name": "Loire",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Franciaország leghosszabb folyója az Atlanti-óceánba ömlik; kastélyok völgye, Nantes.",
+      "lat": 47.3,
+      "lon": -2.2
+    },
+    {
+      "name": "Ohridi-tó",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Észak-Macedónia és Albánia határán fekvő mély tó; a Balkán egyik legrégebbi tava, UNESCO-örökség.",
+      "lat": 41.05,
+      "lon": 20.7
+    },
+    {
+      "name": "Poprádi-tó",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "A Magas-Tátra gleccsertava Szlovákiában; egyik leglátogatottabb hegyi tó.",
+      "lat": 49.15,
+      "lon": 20.05
+    },
+    {
+      "name": "Ausztria",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Közép-európai alpesi ország a Duna mentén; fővárosa Bécs.",
+      "lat": 47.5,
+      "lon": 14.5
+    },
+    {
+      "name": "Belgium",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Nyugat-európai ország, EU-székhely; Brüsszel, flamand és vallon.",
+      "lat": 50.6,
+      "lon": 4.6
+    },
+    {
+      "name": "Bosznia-Hercegovina",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balkáni ország a Dinári-hegységben; fővárosa Szarajevó.",
+      "lat": 44.0,
+      "lon": 17.8
+    },
+    {
+      "name": "Bulgária",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balkáni ország a Fekete-tenger partján; fővárosa Szófia.",
+      "lat": 42.7,
+      "lon": 25.2
+    },
+    {
+      "name": "Csehország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Közép-európai ország; fővárosa Prága, Cseh-medence.",
+      "lat": 49.8,
+      "lon": 15.5
+    },
+    {
+      "name": "Dánia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Skandináv ország a Jütland-félszigeten és szigeteken; fővárosa Koppenhága.",
+      "lat": 56.0,
+      "lon": 10.0
+    },
+    {
+      "name": "Észak-Macedónia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balkáni ország a Vardar mentén; fővárosa Szkopje.",
+      "lat": 41.6,
+      "lon": 21.7
+    },
+    {
+      "name": "Észtország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balti állam a Finn-öböl mellett; fővárosa Tallinn.",
+      "lat": 58.7,
+      "lon": 25.0
+    },
+    {
+      "name": "Finnország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Északi ország tavak és erdők országa; fővárosa Helsinki.",
+      "lat": 64.0,
+      "lon": 26.0
+    },
+    {
+      "name": "Franciaország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Nyugat-európai ország, Európa egyik legnagyobb állama; fővárosa Párizs.",
+      "lat": 46.6,
+      "lon": 2.5
+    },
+    {
+      "name": "Görögország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Dél-európai ország a Balkán déli részén; fővárosa Athén, szigetvilág.",
+      "lat": 39.0,
+      "lon": 22.0
+    },
+    {
+      "name": "Hollandia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Nyugat-európai ország, Rajna-delta; fővárosa Amszterdam, kormányzati székhely Hága.",
+      "lat": 52.2,
+      "lon": 5.5
+    },
+    {
+      "name": "Horvátország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balkáni ország az Adria mentén; fővárosa Zágráb.",
+      "lat": 45.1,
+      "lon": 15.5
+    },
+    {
+      "name": "Írország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Nyugat-európai szigetország, Dublin fővárosa; zöld sziget.",
+      "lat": 53.3,
+      "lon": -8.0
+    },
+    {
+      "name": "Koszovó",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balkáni ország, Szerbiától önállósult 2008-ban; fővárosa Priština.",
+      "lat": 42.6,
+      "lon": 20.9
+    },
+    {
+      "name": "Lengyelország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Közép-európai ország a Balti-tenger partján; fővárosa Varsó.",
+      "lat": 52.1,
+      "lon": 19.4
+    },
+    {
+      "name": "Lettország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balti állam; fővárosa Riga.",
+      "lat": 56.9,
+      "lon": 25.0
+    },
+    {
+      "name": "Litvánia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balti állam a legdélibb; fővárosa Vilnius.",
+      "lat": 55.3,
+      "lon": 23.9
+    },
+    {
+      "name": "Luxemburg",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Nyugat-európai törpeállam Franciaország, Németország és Belgium között; főváros Luxembourg.",
+      "lat": 49.8,
+      "lon": 6.1
+    },
+    {
+      "name": "Málta",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Mediterrán szigetország a Földközi-tenger közepén; fővárosa Valletta.",
+      "lat": 35.9,
+      "lon": 14.4
+    },
+    {
+      "name": "Montenegró",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balkáni ország az Adria partján; fővárosa Podgorica.",
+      "lat": 42.8,
+      "lon": 19.2
+    },
+    {
+      "name": "Nagy-Britannia (Anglia, Skócia, Wales) és Észak-Írország Egyesült Királysága",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Nyugat-európai szigetország; fővárosa London, Egyesült Királyság.",
+      "lat": 54.0,
+      "lon": -2.5
+    },
+    {
+      "name": "Németország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Közép-európai ország, EU legnépesebb tagállama; fővárosa Berlin.",
+      "lat": 51.2,
+      "lon": 10.4
+    },
+    {
+      "name": "Norvégia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Skandináv ország a Skandináv-félsziget nyugati felén; fővárosa Oslo, fjordok.",
+      "lat": 64.0,
+      "lon": 11.0
+    },
+    {
+      "name": "Olaszország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Dél-európai ország, csizma alakú félszigeten; fővárosa Róma.",
+      "lat": 42.5,
+      "lon": 12.5
+    },
+    {
+      "name": "Oroszország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "A világ legnagyobb országa, részben Európában; fővárosa Moszkva.",
+      "lat": 56.0,
+      "lon": 40.0
+    },
+    {
+      "name": "Portugália",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Dél-nyugat európai ország az Atlanti-óceán partján; fővárosa Lisszabon.",
+      "lat": 39.6,
+      "lon": -8.0
+    },
+    {
+      "name": "Románia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délkelet-európai ország a Kárpátokban és a Duna mentén; fővárosa Bukarest.",
+      "lat": 45.9,
+      "lon": 25.0
+    },
+    {
+      "name": "Spanyolország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Az Ibériai-félsziget nagyobb állama; fővárosa Madrid.",
+      "lat": 40.0,
+      "lon": -3.7
+    },
+    {
+      "name": "Svájc",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Alpesi semleges ország; fővárosa Bern, svájci bankok.",
+      "lat": 46.8,
+      "lon": 8.2
+    },
+    {
+      "name": "Svédország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Skandináv ország; fővárosa Stockholm.",
+      "lat": 62.0,
+      "lon": 15.0
+    },
+    {
+      "name": "Szerbia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Balkáni ország, a Duna és a Száva mentén; fővárosa Belgrád.",
+      "lat": 44.0,
+      "lon": 21.0
+    },
+    {
+      "name": "Szlovákia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Közép-európai ország, a Kárpátok északi ívében; fővárosa Pozsony.",
+      "lat": 48.7,
+      "lon": 19.7
+    },
+    {
+      "name": "Szlovénia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Alpesi és adriai ország; fővárosa Ljubljana.",
+      "lat": 46.1,
+      "lon": 14.8
+    },
+    {
+      "name": "Ukrajna",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Kelet-európai ország, területre a legnagyobb teljesen európai állam; fővárosa Kijev.",
+      "lat": 49.0,
+      "lon": 32.0
+    },
+    {
+      "name": "Vatikán",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "A világ legkisebb állama Rómában, a pápa székhelye.",
+      "lat": 41.9029,
+      "lon": 12.4534
+    },
+    {
+      "name": "Albánia",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Balkáni ország az Adria partján; fővárosa Tirana.",
+      "lat": 41.15,
+      "lon": 20.17
+    },
+    {
+      "name": "Fehéroroszország",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Kelet-európai ország, fővárosa Minszk.",
+      "lat": 53.7,
+      "lon": 27.9
+    },
+    {
+      "name": "Moldova",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Kelet-európai ország Románia és Ukrajna között; fővárosa Chișinău.",
+      "lat": 47.2,
+      "lon": 28.5
+    },
+    {
+      "name": "Monaco",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Városállam a Francia Riviérán; fővárosa Monaco, hercegség.",
+      "lat": 43.7384,
+      "lon": 7.4246
+    },
+    {
+      "name": "Burgenland (Őrvidék)",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "Ausztria legkeletibb tartománya; 1921 előtt Magyarország területe.",
+      "lat": 47.5,
+      "lon": 16.5
+    },
+    {
+      "name": "Délvidék",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "A Kárpát-medence déli része, Szerbia északi sávja; Bácska, Bánát, Szerémség.",
+      "lat": 45.5,
+      "lon": 20.0
+    },
+    {
+      "name": "Erdély",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "A Kárpátokkal körülvett történelmi táj; Romániában, Kolozsvár, Brassó.",
+      "lat": 46.3,
+      "lon": 24.5
+    },
+    {
+      "name": "Felvidék",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "A trianoni határ miatt Szlovákiához került terület; Pozsony, Kassa.",
+      "lat": 48.6,
+      "lon": 19.5
+    },
+    {
+      "name": "Kárpátalja",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "A Tisza felső vidéke Ukrajnában; Ungvár, Munkács, Beregszász.",
+      "lat": 48.4,
+      "lon": 23.0
+    },
+    {
+      "name": "Muravidék",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "A Mura folyó vidéke Szlovéniában; Lendva, Alsólendva, Pomurje.",
+      "lat": 46.6,
+      "lon": 16.3
+    },
+    {
+      "name": "Partium",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "Magyarország keleti határán fekvő történelmi táj, Romániában; Nagyvárad, Szatmárnémeti.",
+      "lat": 47.2,
+      "lon": 22.2
+    },
+    {
+      "name": "Székelyföld",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "Erdély keleti részének magyar tájegysége; Hargita, Kovászna, Maros megye.",
+      "lat": 46.2,
+      "lon": 25.7
+    },
+    {
+      "name": "Vajdaság",
+      "category": "Történelmi tájnevek",
+      "emelt": false,
+      "desc": "Szerbia északi autonóm tartománya; Újvidék, Bácska és Bánát.",
+      "lat": 45.4,
+      "lon": 20.0
+    },
+    {
+      "name": "Amszterdam",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Hollandia fővárosa az Amstel torkolatánál; csatornák, kikötő.",
+      "lat": 52.3676,
+      "lon": 4.9041
+    },
+    {
+      "name": "Arad",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Romániai város a Maros mentén; hídfő Erdély és az Alföld között.",
+      "lat": 46.1866,
+      "lon": 21.3123
+    },
+    {
+      "name": "Athén",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Görögország fővárosa; Akropolisz, az ókori Hellász központja.",
+      "lat": 37.9838,
+      "lon": 23.7275
+    },
+    {
+      "name": "Barcelona",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Spanyolország második városa, Katalónia fővárosa; Gaudí, Sagrada Família.",
+      "lat": 41.3851,
+      "lon": 2.1734
+    },
+    {
+      "name": "Belgrád",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szerbia fővárosa a Duna és a Száva összefolyásánál.",
+      "lat": 44.7866,
+      "lon": 20.4489
+    },
+    {
+      "name": "Beregszász",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ukrajna magyarlakta városa Kárpátalján; Beregszász járás székhelye.",
+      "lat": 48.2,
+      "lon": 22.64
+    },
+    {
+      "name": "Berlin",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Németország fővárosa, Spree mentén; a hidegháborúban megosztott város.",
+      "lat": 52.52,
+      "lon": 13.405
+    },
+    {
+      "name": "Bern",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Svájc fővárosa az Aare kanyarulatában.",
+      "lat": 46.948,
+      "lon": 7.4474
+    },
+    {
+      "name": "Bécs",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ausztria fővárosa a Duna mellett; osztrák–magyar monarchia egykori központja.",
+      "lat": 48.2082,
+      "lon": 16.3738
+    },
+    {
+      "name": "Birmingham",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Anglia második legnagyobb városa; West Midlands, ipar- és kereskedelmi központ.",
+      "lat": 52.4862,
+      "lon": -1.8904
+    },
+    {
+      "name": "Brassó",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Erdélyi város a Déli-Kárpátok lábánál; Barcenság központja, szász erődváros.",
+      "lat": 45.6427,
+      "lon": 25.5887
+    },
+    {
+      "name": "Bréma",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Észak-Németország kikötővárosa a Weser mentén; Hanza-város.",
+      "lat": 53.0793,
+      "lon": 8.8017
+    },
+    {
+      "name": "Brno",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Morvaország központja, Csehország második városa; vásárváros.",
+      "lat": 49.1951,
+      "lon": 16.6068
+    },
+    {
+      "name": "Brüsszel",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az EU és a NATO székhelye, Belgium fővárosa.",
+      "lat": 50.8503,
+      "lon": 4.3517
+    },
+    {
+      "name": "Bukarest",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Románia fővárosa, a Dâmbovița mentén.",
+      "lat": 44.4268,
+      "lon": 26.1025
+    },
+    {
+      "name": "Constanţa",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Románia legnagyobb kikötője a Fekete-tenger partján.",
+      "lat": 44.1598,
+      "lon": 28.6348
+    },
+    {
+      "name": "Csernobil",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ukrajna északi városa, az 1986-os atomkatasztrófa színhelye.",
+      "lat": 51.2763,
+      "lon": 30.2219
+    },
+    {
+      "name": "Csíkszereda",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Székelyföldi város, Hargita megye székhelye, az Olt forrásvidékén.",
+      "lat": 46.36,
+      "lon": 25.8
+    },
+    {
+      "name": "Doneck",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ukrajna keleti ipari városa a Donyec-medencében; 2014 óta háború sújtja.",
+      "lat": 48.0159,
+      "lon": 37.8028
+    },
+    {
+      "name": "Dortmund",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "A Ruhr-vidék ipari városa, egykori szén- és acélipar.",
+      "lat": 51.5136,
+      "lon": 7.4653
+    },
+    {
+      "name": "Drezda",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szászország fővárosa az Elba mellett; barokk belváros, a háborúban lerombolták.",
+      "lat": 51.0504,
+      "lon": 13.7373
+    },
+    {
+      "name": "Dublin",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Írország fővárosa a Liffey mentén.",
+      "lat": 53.3498,
+      "lon": -6.2603
+    },
+    {
+      "name": "Dubrovnik",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Horvátország adriai kikötővárosa, az Adria gyöngyszeme; UNESCO-örökség.",
+      "lat": 42.6507,
+      "lon": 18.0944
+    },
+    {
+      "name": "Duisburg",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ruhr-vidéki ipari város a Rajna és a Ruhr összefolyásánál; Európa legnagyobb belvízi kikötője.",
+      "lat": 51.4344,
+      "lon": 6.7623
+    },
+    {
+      "name": "Eszék",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Mezőgazdasági és ipari központ a Dráva mentén Horvátországban.",
+      "lat": 45.555,
+      "lon": 18.6955
+    },
+    {
+      "name": "Fiume (Rijeka)",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Horvátország legnagyobb kikötővárosa a Kvarner-öbölben.",
+      "lat": 45.3271,
+      "lon": 14.4422
+    },
+    {
+      "name": "Frankfurt am Main",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Németország pénzügyi központja a Majna mentén; az Európai Központi Bank székhelye.",
+      "lat": 50.1109,
+      "lon": 8.6821
+    },
+    {
+      "name": "Gdańsk",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Lengyelország kikötővárosa a Balti-tenger partján; a Szolidaritás szülőhelye.",
+      "lat": 54.352,
+      "lon": 18.6466
+    },
+    {
+      "name": "Genf",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Svájci város a Genfi-tó nyugati végén; ENSZ-hivatalok, Vöröskereszt.",
+      "lat": 46.2044,
+      "lon": 6.1432
+    },
+    {
+      "name": "Genova",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Olaszország északnyugati kikötővárosa Ligúriában; Kolumbusz szülővárosa.",
+      "lat": 44.4056,
+      "lon": 8.9463
+    },
+    {
+      "name": "Gibraltár",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Brit tengerentúli terület az Ibériai-félsziget déli csücskében; a szoros bejárata.",
+      "lat": 36.1408,
+      "lon": -5.3536
+    },
+    {
+      "name": "Glasgow",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Skócia legnagyobb városa a Clyde mentén; hajógyártó-ipari központ.",
+      "lat": 55.8642,
+      "lon": -4.2518
+    },
+    {
+      "name": "Graz",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Stájerország fővárosa a Mura mentén; Ausztria második városa.",
+      "lat": 47.0707,
+      "lon": 15.4395
+    },
+    {
+      "name": "Hamburg",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Németország második városa és kikötője az Elba mentén.",
+      "lat": 53.5511,
+      "lon": 9.9937
+    },
+    {
+      "name": "Helsinki",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Finnország fővárosa a Finn-öböl partján.",
+      "lat": 60.1699,
+      "lon": 24.9384
+    },
+    {
+      "name": "Karlovy Vary",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Gyógyfürdőváros Nyugat-Csehországban; hévízforrások.",
+      "lat": 50.2319,
+      "lon": 12.872
+    },
+    {
+      "name": "Kassa",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szlovákia második városa, Kelet-Szlovákia központja; Szent Erzsébet-dóm.",
+      "lat": 48.7164,
+      "lon": 21.2611
+    },
+    {
+      "name": "Katowice",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Lengyelország déli ipari városa Sziléziában; kőszénbányászat.",
+      "lat": 50.2649,
+      "lon": 19.0238
+    },
+    {
+      "name": "Kijev",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ukrajna fővárosa a Dnyeper mentén.",
+      "lat": 50.4501,
+      "lon": 30.5234
+    },
+    {
+      "name": "Kolozsvár",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Erdély központja, magyar egyetemi város Romániában; a Szamos mentén.",
+      "lat": 46.7712,
+      "lon": 23.6236
+    },
+    {
+      "name": "Koppenhága",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Dánia fővárosa Sjælland szigetén az Øresund partján.",
+      "lat": 55.6761,
+      "lon": 12.5683
+    },
+    {
+      "name": "Köln",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Németország negyedik városa a Rajna mentén; gótikus dóm.",
+      "lat": 50.9375,
+      "lon": 6.9603
+    },
+    {
+      "name": "Krakkó",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Lengyelország egykori fővárosa a Visztula mentén; Wawel, történelmi belváros.",
+      "lat": 50.0647,
+      "lon": 19.945
+    },
+    {
+      "name": "Linz",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Felső-Ausztria fővárosa a Duna mentén; acélipar.",
+      "lat": 48.3069,
+      "lon": 14.2858
+    },
+    {
+      "name": "Lipcse",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szászország legnagyobb városa; vásárváros, Bach és a hírlapok.",
+      "lat": 51.3397,
+      "lon": 12.3731
+    },
+    {
+      "name": "Lisszabon",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Portugália fővárosa a Tajo torkolatánál.",
+      "lat": 38.7223,
+      "lon": -9.1393
+    },
+    {
+      "name": "Liverpool",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Anglia nyugati kikötővárosa a Mersey mentén; Beatles.",
+      "lat": 53.4084,
+      "lon": -2.9916
+    },
+    {
+      "name": "Ljubljana",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szlovénia fővárosa a Ljubljanica mentén.",
+      "lat": 46.0569,
+      "lon": 14.5058
+    },
+    {
+      "name": "London",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az Egyesült Királyság fővárosa a Temze mentén.",
+      "lat": 51.5074,
+      "lon": -0.1278
+    },
+    {
+      "name": "Luxembourg",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Luxemburg fővárosa, az Alzette és Pétrusse völgyében.",
+      "lat": 49.6116,
+      "lon": 6.1319
+    },
+    {
+      "name": "Lyon",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Franciaország harmadik városa a Rhône és a Saône összefolyásánál.",
+      "lat": 45.764,
+      "lon": 4.8357
+    },
+    {
+      "name": "Madrid",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Spanyolország fővárosa a Meseta közepén.",
+      "lat": 40.4168,
+      "lon": -3.7038
+    },
+    {
+      "name": "Manchester",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Anglia északi ipari városa; textilipar, ipari forradalom bölcsője.",
+      "lat": 53.4808,
+      "lon": -2.2426
+    },
+    {
+      "name": "Marosvásárhely",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Erdélyi város a Maros mentén, magyarok és románok lakta; Kultúrpalota.",
+      "lat": 46.5455,
+      "lon": 24.5627
+    },
+    {
+      "name": "Marseille",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Franciaország legnagyobb kikötője a Földközi-tenger partján.",
+      "lat": 43.2965,
+      "lon": 5.3698
+    },
+    {
+      "name": "Milánó",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Észak-Olaszország ipari-pénzügyi központja a Pó-alföldön; divat, Dóm.",
+      "lat": 45.4642,
+      "lon": 9.19
+    },
+    {
+      "name": "Moszkva",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Oroszország fővárosa a Moszkva-folyó mentén.",
+      "lat": 55.7558,
+      "lon": 37.6173
+    },
+    {
+      "name": "Munkács",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Kárpátalja városa, Munkács vára; Rákóczi-emlék.",
+      "lat": 48.4475,
+      "lon": 22.7178
+    },
+    {
+      "name": "Murmanszk",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Oroszország északi kikötővárosa a Barents-tengernél; a Golf-áramlat miatt jégmentes.",
+      "lat": 68.9585,
+      "lon": 33.0827
+    },
+    {
+      "name": "München",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Bajorország fővárosa az Isar mentén; Oktoberfest, ipar.",
+      "lat": 48.1351,
+      "lon": 11.582
+    },
+    {
+      "name": "Nagyvárad",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Bihar megyei város a Körös mentén; a Partium központja.",
+      "lat": 47.0465,
+      "lon": 21.9189
+    },
+    {
+      "name": "Nápoly",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Dél-olasz kikötőváros a Vezúv lábánál; Pompeji közelében.",
+      "lat": 40.8518,
+      "lon": 14.2681
+    },
+    {
+      "name": "Odessza",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ukrajna fekete-tengeri kikötője; fontos gabonakikötő.",
+      "lat": 46.4825,
+      "lon": 30.7233
+    },
+    {
+      "name": "Oslo",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Norvégia fővárosa az Oslo-fjord végén.",
+      "lat": 59.9139,
+      "lon": 10.7522
+    },
+    {
+      "name": "Ostrava",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Cseh-sziléziai ipari város; szénbányászat és kohászat.",
+      "lat": 49.8209,
+      "lon": 18.2625
+    },
+    {
+      "name": "Párizs",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Franciaország fővárosa a Szajna mentén; Eiffel-torony.",
+      "lat": 48.8566,
+      "lon": 2.3522
+    },
+    {
+      "name": "Ploieşti",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Romániai kőolaj-finomító város Bukarest közelében.",
+      "lat": 44.9462,
+      "lon": 26.0365
+    },
+    {
+      "name": "Plzeň",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Nyugat-Csehország városa; Pilsner Urquell sör.",
+      "lat": 49.7384,
+      "lon": 13.3736
+    },
+    {
+      "name": "Podgorica",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Montenegró fővárosa a Morača mentén.",
+      "lat": 42.4304,
+      "lon": 19.2594
+    },
+    {
+      "name": "Pozsony",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szlovákia fővárosa a Duna mellett.",
+      "lat": 48.1486,
+      "lon": 17.1077
+    },
+    {
+      "name": "Prága",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Csehország fővárosa a Moldva mentén; Károly-híd.",
+      "lat": 50.0755,
+      "lon": 14.4378
+    },
+    {
+      "name": "Priština",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Koszovó fővárosa.",
+      "lat": 42.6629,
+      "lon": 21.1655
+    },
+    {
+      "name": "Reykjavík",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Izland fővárosa; a világ legészakibb nemzeti fővárosa.",
+      "lat": 64.1466,
+      "lon": -21.9426
+    },
+    {
+      "name": "Révkomárom",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szlovákiai magyar város a Duna mellett; Komárom, Révkomárom.",
+      "lat": 47.76,
+      "lon": 18.128
+    },
+    {
+      "name": "Riga",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Lettország fővárosa a Daugava torkolatánál.",
+      "lat": 56.9496,
+      "lon": 24.1052
+    },
+    {
+      "name": "Rostock",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Észak-németországi kikötőváros a Balti-tenger mentén; hanzaváros.",
+      "lat": 54.0924,
+      "lon": 12.0991
+    },
+    {
+      "name": "Rotterdam",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Európa legnagyobb kikötője a Rajna–Maas deltájában.",
+      "lat": 51.9244,
+      "lon": 4.4777
+    },
+    {
+      "name": "Róma",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Olaszország fővárosa a Tevere mentén; Colosseum, Vatikán.",
+      "lat": 41.9028,
+      "lon": 12.4964
+    },
+    {
+      "name": "Salzburg",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Ausztriai város a Salzach mentén; Mozart szülővárosa.",
+      "lat": 47.8095,
+      "lon": 13.055
+    },
+    {
+      "name": "Skopje (Szkopje)",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Észak-Macedónia fővárosa a Vardar mentén.",
+      "lat": 41.9981,
+      "lon": 21.4254
+    },
+    {
+      "name": "Split",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Horvát kikötőváros az Adrián; Diocletianus-palota.",
+      "lat": 43.5081,
+      "lon": 16.4402
+    },
+    {
+      "name": "Stockholm",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Svédország fővárosa a Mälaren-tó torkolatánál.",
+      "lat": 59.3293,
+      "lon": 18.0686
+    },
+    {
+      "name": "Strasbourg",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Elzász fővárosa a Rajna mentén; az Európai Parlament székhelye.",
+      "lat": 48.5734,
+      "lon": 7.7521
+    },
+    {
+      "name": "Stuttgart",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Baden-Württemberg fővárosa; autóipar, Mercedes és Porsche.",
+      "lat": 48.7758,
+      "lon": 9.1829
+    },
+    {
+      "name": "Szabadka",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Vajdasági magyar város a szerb–magyar határnál.",
+      "lat": 46.1,
+      "lon": 19.665
+    },
+    {
+      "name": "Szarajevó",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Bosznia-Hercegovina fővárosa; 1914-es merénylet helyszíne.",
+      "lat": 43.8563,
+      "lon": 18.4131
+    },
+    {
+      "name": "Szentpétervár",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Oroszország második városa a Néva torkolatánál; I. Péter alapította.",
+      "lat": 59.9311,
+      "lon": 30.3609
+    },
+    {
+      "name": "Székelyudvarhely",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Székelyföldi magyar város, Hargita megye; Küküllő mentén.",
+      "lat": 46.3,
+      "lon": 25.29
+    },
+    {
+      "name": "Szófia",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Bulgária fővárosa a Vitosa lábánál.",
+      "lat": 42.6977,
+      "lon": 23.3219
+    },
+    {
+      "name": "Tallinn",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Észtország fővárosa a Finn-öböl partján; hanza belváros.",
+      "lat": 59.437,
+      "lon": 24.7536
+    },
+    {
+      "name": "Temesvár",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Bánát központja Romániában; a romániai forradalom kiindulópontja 1989-ben.",
+      "lat": 45.7489,
+      "lon": 21.2087
+    },
+    {
+      "name": "Torino",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Észak-olasz ipari város a Pó mentén; Fiat, autóipar.",
+      "lat": 45.0703,
+      "lon": 7.6869
+    },
+    {
+      "name": "Trieszt",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Olaszországi kikötőváros az Adria északi csücskében; szlovén határ.",
+      "lat": 45.6495,
+      "lon": 13.7768
+    },
+    {
+      "name": "Újvidék",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Vajdaság fővárosa a Duna mentén; Magyar Nemzeti Színház.",
+      "lat": 45.2671,
+      "lon": 19.8335
+    },
+    {
+      "name": "Ungvár",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Kárpátalja közigazgatási központja az Ung folyó mentén; ukrán–szlovák határ.",
+      "lat": 48.6208,
+      "lon": 22.2879
+    },
+    {
+      "name": "Varsó",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Lengyelország fővárosa a Visztula mentén.",
+      "lat": 52.2297,
+      "lon": 21.0122
+    },
+    {
+      "name": "Velence",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Olaszország északi lagúnavárosa az Adria partján; csatornák.",
+      "lat": 45.4408,
+      "lon": 12.3155
+    },
+    {
+      "name": "Vilnius",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Litvánia fővárosa a Néris mentén.",
+      "lat": 54.6872,
+      "lon": 25.2797
+    },
+    {
+      "name": "Volgográd",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Oroszországi város a Volga mentén; egykori Sztálingrád, 1942–43-as csata.",
+      "lat": 48.708,
+      "lon": 44.5133
+    },
+    {
+      "name": "Zágráb",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Horvátország fővárosa a Száva mentén.",
+      "lat": 45.815,
+      "lon": 15.9819
+    },
+    {
+      "name": "Zürich",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Svájc legnagyobb városa a Zürichi-tó mellett; pénzügyi központ.",
+      "lat": 47.3769,
+      "lon": 8.5417
+    },
+    {
+      "name": "Antwerpen",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Belgiumi kikötőváros a Schelde mentén; gyémántkereskedelem.",
+      "lat": 51.2194,
+      "lon": 4.4025
+    },
+    {
+      "name": "Bilbao",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Spanyolország észak-atlanti kikötővárosa a Baszkföldön; Guggenheim-múzeum.",
+      "lat": 43.263,
+      "lon": -2.935
+    },
+    {
+      "name": "Chișinău",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Moldova fővárosa.",
+      "lat": 47.0105,
+      "lon": 28.8638
+    },
+    {
+      "name": "Göteborg",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Svédország második városa és fő kikötője a Kattegat partján.",
+      "lat": 57.7089,
+      "lon": 11.9746
+    },
+    {
+      "name": "Hága",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Hollandia kormányzati székhelye; a Nemzetközi Bíróság központja.",
+      "lat": 52.0705,
+      "lon": 4.3007
+    },
+    {
+      "name": "Minszk",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Fehéroroszország fővárosa a Szvisz folyó mentén.",
+      "lat": 53.9006,
+      "lon": 27.559
+    },
+    {
+      "name": "Nyizsnyij Novgorod",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Oroszországi város az Oka és a Volga találkozásánál; autóipar.",
+      "lat": 56.2965,
+      "lon": 43.9361
+    },
+    {
+      "name": "Sevilla",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Spanyolország déli városa a Guadalquivir mentén; Andalúzia fővárosa.",
+      "lat": 37.3891,
+      "lon": -5.9845
+    },
+    {
+      "name": "Thesszaloniki (Szaloniki)",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Görögország második városa; kikötő az Égei-tenger partján.",
+      "lat": 40.6401,
+      "lon": 22.9444
+    },
+    {
+      "name": "Tirana",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Albánia fővárosa.",
+      "lat": 41.3275,
+      "lon": 19.8187
+    },
+    {
+      "name": "Donyec-medence",
+      "category": "Iparvidékek",
+      "emelt": false,
+      "desc": "Kelet-Ukrajna kőszénbányászati és nehézipari medencéje; Doneck, Luhanszk.",
+      "lat": 48.3,
+      "lon": 38.0
+    },
+    {
+      "name": "Közép-angliai iparvidék",
+      "category": "Iparvidékek",
+      "emelt": false,
+      "desc": "Anglia ipari központja; Birmingham, Manchester, textil- és fémipar.",
+      "lat": 52.8,
+      "lon": -1.8
+    },
+    {
+      "name": "Olasz ipari háromszög",
+      "category": "Iparvidékek",
+      "emelt": false,
+      "desc": "Észak-Olaszország ipari területe Milánó, Torino, Genova között.",
+      "lat": 45.0,
+      "lon": 8.9
+    },
+    {
+      "name": "Ruhr-vidék",
+      "category": "Iparvidékek",
+      "emelt": false,
+      "desc": "Németország legnagyobb ipari térsége; kőszén- és acélipar, Rajna–Ruhr.",
+      "lat": 51.45,
+      "lon": 7.2
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
-  GUIDE_UNITS,
-  findGuidePage,
+  GUIDE_SUBJECTS_WITH_UNITS,
+  loadGuidePage,
+  loadGuideUnits,
   matchesTopic,
   neighbours,
   pageFits,
@@ -9,18 +10,31 @@ import {
   type GuideBlock,
 } from '.';
 
+const GUIDE_UNITS = await loadGuideUnits();
 const pages = GUIDE_UNITS.flatMap((unit) => unit.pages.map((page) => ({ unit, page })));
 const allBlocks = (blocks: GuideBlock[][]) => blocks.flat();
 
 describe('study guide content', () => {
-  it('has unique page ids that resolve back to their unit', () => {
+  it('has unique page ids that resolve back to their unit', async () => {
     const ids = pages.map(({ page }) => page.id);
     expect(new Set(ids).size).toBe(ids.length);
     for (const { unit, page } of pages) {
       expect(page.unitId).toBe(unit.id);
       expect(page.subject).toBe(unit.subject);
-      expect(findGuidePage(page.id)?.page).toBe(page);
+      expect((await loadGuidePage(page.id))?.page).toBe(page);
     }
+  });
+
+  it("loads a subject's units by file name", async () => {
+    for (const subject of GUIDE_SUBJECTS_WITH_UNITS) {
+      const units = await loadGuideUnits(subject);
+      expect(units.length).toBeGreaterThan(0);
+      for (const unit of units) expect(unit.subject).toBe(subject);
+    }
+    const counted = (
+      await Promise.all(GUIDE_SUBJECTS_WITH_UNITS.map((s) => loadGuideUnits(s)))
+    ).flat();
+    expect(counted.length).toBe(GUIDE_UNITS.length);
   });
 
   it.each(pages.map(({ page }) => [page.id, page] as const))('%s is complete', (_id, page) => {
@@ -75,8 +89,8 @@ describe('study guide content', () => {
   it('links pages in order within the level', () => {
     const unit = GUIDE_UNITS[0]!;
     const kozep = unit.pages.filter((p) => pageFits(p, 'kozep'));
-    expect(neighbours(kozep[0]!.id, 'kozep').previous).toBeUndefined();
-    expect(neighbours(kozep[0]!.id, 'kozep').next).toBe(kozep[1]);
+    expect(neighbours(unit, kozep[0]!.id, 'kozep').previous).toBeUndefined();
+    expect(neighbours(unit, kozep[0]!.id, 'kozep').next).toBe(kozep[1]);
   });
 
   it('matches task topics case-insensitively', () => {
@@ -85,8 +99,8 @@ describe('study guide content', () => {
     expect(matchesTopic(page, 'nincs ilyen témakör xyz')).toBe(false);
   });
 
-  it('matches "=" patterns only as whole topic names', () => {
-    const page = findGuidePage('szabadsagharc-esemenyei')!.page;
+  it('matches "=" patterns only as whole topic names', async () => {
+    const page = (await loadGuidePage('szabadsagharc-esemenyei'))!.page;
     expect(matchesTopic(page, 'Szabadságharc')).toBe(true);
     expect(matchesTopic(page, 'Rákóczi-szabadságharc')).toBe(false);
   });

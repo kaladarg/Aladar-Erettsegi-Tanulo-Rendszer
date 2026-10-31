@@ -1,21 +1,40 @@
+import pageIndex from 'virtual:guide-index';
 import type { GuideBlock, GuidePage, GuideSubject, GuideUnit } from './types';
 
 export type * from './types';
 
-/** Every file in ./units is one unit (default export), so units can be added without touching this file. */
-const modules = import.meta.glob<GuideUnit>('./units/*.ts', { eager: true, import: 'default' });
-
-/** All units, in the order of the syllabus within each subject. */
-export const GUIDE_UNITS: GuideUnit[] = Object.values(modules).sort((a, b) => a.order - b.order);
+/**
+ * Every file in ./units is one unit (default export), named `<subject>-….ts`, so units can be
+ * added without touching this file. Units load lazily: a subject's units when its list is opened,
+ * one unit when a page is opened.
+ */
+const loaders = import.meta.glob<GuideUnit>('./units/*.ts', { import: 'default' });
 
 export const GUIDE_SUBJECTS: GuideSubject[] = ['tortenelem', 'matematika', 'magyar', 'foldrajz'];
 
-export function findGuidePage(id: string): { unit: GuideUnit; page: GuidePage } | undefined {
-  for (const unit of GUIDE_UNITS) {
-    const page = unit.pages.find((p) => p.id === id);
-    if (page) return { unit, page };
-  }
-  return undefined;
+const fileSubject = (path: string) => path.slice('./units/'.length).split('-')[0];
+
+/** Subjects that have written units. */
+export const GUIDE_SUBJECTS_WITH_UNITS = GUIDE_SUBJECTS.filter((subject) =>
+  Object.keys(loaders).some((path) => fileSubject(path) === subject),
+);
+
+/** The units of a subject (or of every subject), in the order of the syllabus. */
+export async function loadGuideUnits(subject?: GuideSubject): Promise<GuideUnit[]> {
+  const paths = Object.keys(loaders).filter((path) => !subject || fileSubject(path) === subject);
+  const units = await Promise.all(paths.map((path) => loaders[path]!()));
+  return units.sort((a, b) => a.order - b.order);
+}
+
+export async function loadGuidePage(
+  id: string,
+): Promise<{ unit: GuideUnit; page: GuidePage } | undefined> {
+  const path = pageIndex[id];
+  const load = path ? loaders[path] : undefined;
+  if (!load) return undefined;
+  const unit = await load();
+  const page = unit.pages.find((p) => p.id === id);
+  return page ? { unit, page } : undefined;
 }
 
 /** What a student studying at `level` sees: emelt material only at emelt level. */
@@ -49,13 +68,11 @@ export function visibleBlocks(blocks: GuideBlock[], view: LevelView): GuideBlock
 }
 
 /** The pages before and after a page within its unit, for the reader's navigation. */
-export function neighbours(id: string, view: LevelView) {
-  const found = findGuidePage(id);
-  if (!found) return {};
+export function neighbours(unit: GuideUnit, id: string, view: LevelView) {
+  const page = unit.pages.find((p) => p.id === id);
+  if (!page) return {};
   // An emelt page opened at középszint keeps its place among all pages.
-  const pages = pageFits(found.page, view)
-    ? found.unit.pages.filter((p) => pageFits(p, view))
-    : found.unit.pages;
+  const pages = pageFits(page, view) ? unit.pages.filter((p) => pageFits(p, view)) : unit.pages;
   const index = pages.findIndex((p) => p.id === id);
   return { previous: pages[index - 1], next: pages[index + 1] };
 }

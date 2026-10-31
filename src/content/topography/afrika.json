@@ -1,0 +1,398 @@
+{
+  "region": "afrika",
+  "regionName": "Afrika",
+  "places": [
+    {
+      "name": "Észak-Afrika",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "A Szahara és a Földközi-tenger között fekvő, arab nyelvű, főleg muszlim vallású térség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Trópusi-Afrika (szubszaharai Afrika)",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "A Szaharától délre eső terület; fekete afrikai népesség, gyors népességnövekedés, szegénység.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Afrikai-árokrendszer",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Jordán-völgytől Mozambikig húzódó hatalmas árokrendszer; vulkánok és mély tavak jellemzik.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Atlasz",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Fiatal gyűrődéses hegység Afrika északnyugati részén (Marokkó, Algéria, Tunézia).",
+      "lat": 32.0,
+      "lon": -5.0
+    },
+    {
+      "name": "Dél-afrikai-magasföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Afrika belső fennsíkja, a Drakensberg-hegység által övezve; arany- és gyémántlelőhelyek.",
+      "lat": -27.0,
+      "lon": 26.0
+    },
+    {
+      "name": "Etióp-magasföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kelet-Afrika magas fennsíkja, \"Afrika teteje\"; innen ered a Kék-Nílus.",
+      "lat": 9.5,
+      "lon": 39.0
+    },
+    {
+      "name": "Kelet-afrikai-magasföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Afrikai-árokrendszer két ága közötti magasföld Kenya, Tanzánia és Uganda területén.",
+      "lat": -2.0,
+      "lon": 36.0
+    },
+    {
+      "name": "Kilimandzsáró (Kilimandzsáró-csoport)",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Afrika legmagasabb hegye (5895 m), Tanzániában; kialudt vulkán, csúcsán gleccserrel.",
+      "lat": -3.0758,
+      "lon": 37.3533
+    },
+    {
+      "name": "Kongó-medence",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Közép-Afrika medencéje az Egyenlítő mentén; a Kongó vízgyűjtője, forró-nedves esőerdőkkel.",
+      "lat": -1.0,
+      "lon": 22.0
+    },
+    {
+      "name": "Madagaszkár",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Afrika legnagyobb szigete az Indiai-óceánban, Délkelet-Afrika partjainál; egyedi élővilág.",
+      "lat": -19.0,
+      "lon": 46.7
+    },
+    {
+      "name": "Szahara",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Föld legnagyobb forró sivataga Észak-Afrikában, nyugaton az Atlanti-óceántól keleten a Vörös-tengerig.",
+      "lat": 23.0,
+      "lon": 13.0
+    },
+    {
+      "name": "Szudán",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Afrika egyenlítői esőerdői és a Szahara közötti szavannaöv, a Száhel-övtől délre.",
+      "lat": 10.0,
+      "lon": 20.0
+    },
+    {
+      "name": "Száhel (Száhel-öv)",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Szahara déli peremén húzódó félsivatagi öv; elsivatagosodás és aszályok sújtják.",
+      "lat": 14.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Kalahári-medence",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Dél-Afrika belső medencéje Botswanában és Namíbiában; félsivatagos szavanna.",
+      "lat": -23.0,
+      "lon": 22.0
+    },
+    {
+      "name": "Kanári-szigetek",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Spanyol vulkáni szigetcsoport az Atlanti-óceánban, Nyugat-Afrika partjainál; turistaparadicsom.",
+      "lat": 28.3,
+      "lon": -16.0
+    },
+    {
+      "name": "Namib-sivatag",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Dél-Afrika nyugati partján húzódó parti sivatag; a hideg Benguela-áramlás hozta létre.",
+      "lat": -24.0,
+      "lon": 15.0
+    },
+    {
+      "name": "Teleki-vulkán",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Kenya északi részén, a Turkana-tó mellett fekvő vulkán; Teleki Sámuelről kapta nevét.",
+      "lat": 2.3,
+      "lon": 36.6
+    },
+    {
+      "name": "Gibraltári-szoros",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az Atlanti-óceánt a Földközi-tengerrel összekötő szoros Spanyolország és Marokkó között.",
+      "lat": 35.97,
+      "lon": -5.6
+    },
+    {
+      "name": "Guineai-öböl",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Nyugat-Afrika déli partján, az Atlanti-óceán öble; ide torkollik a Niger.",
+      "lat": 3.0,
+      "lon": 2.0
+    },
+    {
+      "name": "Kongó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Afrika második leghosszabb és vízben leggazdagabb folyója; kétszer metszi az Egyenlítőt.",
+      "lat": -6.0,
+      "lon": 12.4
+    },
+    {
+      "name": "Nílus",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Afrika leghosszabb folyója, Kelet-Afrikából a Földközi-tengerbe tart; deltatorkolata van.",
+      "lat": 31.0,
+      "lon": 31.0
+    },
+    {
+      "name": "Szuezi-csatorna",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Mesterséges csatorna Egyiptomban, amely a Földközi-tengert a Vörös-tengerrel köti össze.",
+      "lat": 30.5,
+      "lon": 32.35
+    },
+    {
+      "name": "Tanganyika-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Kelet-Afrika árokrendszerében lévő hosszú, keskeny, rendkívül mély tó; a második legmélyebb tó a Földön.",
+      "lat": -6.2,
+      "lon": 29.5
+    },
+    {
+      "name": "Viktória-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Afrika legnagyobb tava, Kelet-Afrikában; a Fehér-Nílus forrásvidéke.",
+      "lat": -1.0,
+      "lon": 33.0
+    },
+    {
+      "name": "Vörös-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Afrikát és az Arab-félszigetet elválasztó tenger; árokrendszeri süllyedékben jött létre.",
+      "lat": 20.0,
+      "lon": 38.0
+    },
+    {
+      "name": "Asszuáni-gát (asszuáni Nagy-gát)",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Nílust Egyiptomban elzáró gát, mögötte a Nasszer-tóval; vízerőmű és öntözés.",
+      "lat": 23.97,
+      "lon": 32.88
+    },
+    {
+      "name": "Csád-tó",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Közép-Afrika sekély, zsugorodó tava a Száhel-övben; négy ország határán.",
+      "lat": 13.0,
+      "lon": 14.0
+    },
+    {
+      "name": "Niger",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Nyugat-Afrika legnagyobb folyója, nagy kanyart ír le; a Guineai-öbölbe torkollik.",
+      "lat": 5.0,
+      "lon": 6.3
+    },
+    {
+      "name": "Zambézi",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Dél-Afrika legnagyobb keleti folyója; Viktória-vízesés és a Kariba-gát tartozik hozzá.",
+      "lat": -18.8,
+      "lon": 36.2
+    },
+    {
+      "name": "Dél-afrikai Köztársaság",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Afrika déli csücskén fekvő ország; arany-, gyémánt- és szénlelőhelyek; három fővárosa van.",
+      "lat": -29.0,
+      "lon": 24.0
+    },
+    {
+      "name": "Egyiptom",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Észak-Afrika és a Sínai-félsziget országa a Nílus mentén; piramisok, Szuezi-csatorna.",
+      "lat": 26.8,
+      "lon": 30.8
+    },
+    {
+      "name": "Kenya",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Kelet-afrikai ország az Egyenlítőnél; szafariturizmus, fővárosa Nairobi.",
+      "lat": 0.5,
+      "lon": 38.0
+    },
+    {
+      "name": "Líbia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Észak-Afrika országa a Földközi-tenger partján; jelentős kőolajkivitel.",
+      "lat": 27.0,
+      "lon": 17.0
+    },
+    {
+      "name": "Niger",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Nyugat-Afrika szaharai-száheli országa; uránbányászat, fővárosa Niamey.",
+      "lat": 17.0,
+      "lon": 9.0
+    },
+    {
+      "name": "Nigéria",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Afrika legnépesebb állama Nyugat-Afrikában; kőolajtermelő, fővárosa Abuja.",
+      "lat": 9.1,
+      "lon": 8.7
+    },
+    {
+      "name": "Tunézia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Az Atlasz-hegység keleti végénél, Észak-Afrikában fekvő ország; fővárosa Tunisz, turizmus.",
+      "lat": 34.0,
+      "lon": 9.5
+    },
+    {
+      "name": "Algéria",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Afrika területileg legnagyobb országa a Szaharában; kőolaj és földgáz.",
+      "lat": 28.0,
+      "lon": 3.0
+    },
+    {
+      "name": "Csád",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Közép-Afrika országa a Csád-tó körül; fővárosa N'Djamena.",
+      "lat": 15.0,
+      "lon": 19.0
+    },
+    {
+      "name": "Etiópia",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Kelet-afrikai magasföldi ország, Afrika szarván; fővárosa Addisz-Abeba.",
+      "lat": 9.0,
+      "lon": 39.5
+    },
+    {
+      "name": "Libéria",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Nyugat-afrikai ország; egykori felszabadított amerikai rabszolgák alapították, fővárosa Monrovia.",
+      "lat": 6.5,
+      "lon": -9.5
+    },
+    {
+      "name": "Marokkó",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Az Atlasz-hegység és az Atlanti-óceán között fekvő észak-afrikai ország; fővárosa Rabat.",
+      "lat": 32.0,
+      "lon": -6.0
+    },
+    {
+      "name": "Seychelle-szigetek",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Az Indiai-óceán nyugati részén fekvő szigetország Kelet-Afrika partjaitól keletre; turizmus.",
+      "lat": -4.68,
+      "lon": 55.49
+    },
+    {
+      "name": "Abuja",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Nigéria fővárosa az ország közepén, tervezett új főváros (1991 óta).",
+      "lat": 9.0765,
+      "lon": 7.3986
+    },
+    {
+      "name": "Kairó",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Egyiptom fővárosa a Nílus-deltánál; Afrika és az arab világ egyik legnagyobb városa.",
+      "lat": 30.0444,
+      "lon": 31.2357
+    },
+    {
+      "name": "Pretoria",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "A Dél-afrikai Köztársaság közigazgatási fővárosa az ország északkeleti részén.",
+      "lat": -25.7479,
+      "lon": 28.2293
+    },
+    {
+      "name": "Alexandria",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Egyiptom legnagyobb kikötővárosa a Nílus-delta nyugati szélén, a Földközi-tenger partján.",
+      "lat": 31.2001,
+      "lon": 29.9187
+    },
+    {
+      "name": "Fokváros",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "A Dél-afrikai Köztársaság törvényhozási fővárosa a Jóreménység foka közelében; kikötő.",
+      "lat": -33.9249,
+      "lon": 18.4241
+    },
+    {
+      "name": "Johannesburg",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "A Dél-afrikai Köztársaság legnagyobb városa, aranybányászati központ a Witwatersrand térségében.",
+      "lat": -26.2041,
+      "lon": 28.0473
+    },
+    {
+      "name": "Lagos",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Nigéria legnagyobb városa és kikötője a Guineai-öböl partján; Afrika egyik legnagyobb városa.",
+      "lat": 6.5244,
+      "lon": 3.3792
+    }
+  ]
+}

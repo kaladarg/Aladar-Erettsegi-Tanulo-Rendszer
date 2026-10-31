@@ -42,3 +42,15 @@ test('a practice answer is recorded and checked against a checklist', async ({ p
   await page.reload();
   await expect(page.getByText('Értékeld a feleleted (2 / 9)')).toBeVisible();
 });
+
+test('the emelt level shows its own topic list', async ({ page }) => {
+  await page.goto('/gyakorlas/szobeli?targy=tortenelem');
+  await expect(page.getByRole('button', { name: 'Megnyitás: A dualizmus kora' })).toBeVisible();
+  await page.getByRole('radio', { name: 'Emelt szint' }).click();
+  await expect(page.getByRole('button', { name: 'Megnyitás: A dualizmus kora' })).toBeHidden();
+  await expect(
+    page.getByRole('button', {
+      name: 'Megnyitás: Az első világháború (hadviselők, frontok, a háború jellege)',
+    }),
+  ).toBeVisible();
+});

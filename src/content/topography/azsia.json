@@ -1,0 +1,950 @@
+{
+  "region": "azsia",
+  "regionName": "Ázsia",
+  "places": [
+    {
+      "name": "Dél-Ázsia",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Az Indiai-szubkontinens térsége: India, Pakisztán, Banglades, Nepál; monszun éghajlat, sűrű népesség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Délkelet-Ázsia",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Az Indokínai-félsziget és az Indonéz-szigetvilág térsége; trópusi, monszun éghajlat, rizstermesztés.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Délnyugat-Ázsia",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Törökországtól az Arab-félszigetig és Iránig terjedő térség; kőolajban gazdag, száraz éghajlat.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Észak-Ázsia",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Szibéria és az orosz Távol-Kelet térsége; hideg éghajlat, tajga és tundra, ritka népesség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Kelet-Ázsia",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Kína, Japán és a Koreai-félsziget térsége; sűrű népesség, a világgazdaság egyik súlypontja.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Közép-Ázsia",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "A Kaszpi-tengertől Kína nyugati határáig húzódó, sivatagos-félsivatagos, tengertől távoli térség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Belső-Ázsia",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "Kína nyugati és északi részén (Tibet, Góbi, Mongólia) fekvő száraz, tengertől távoli térség.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Közel-Kelet",
+      "category": "A földrész részei",
+      "emelt": false,
+      "desc": "A Földközi-tenger keleti partja és a Perzsa-öböl közötti térség; kőolaj, politikai konfliktusok.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Arab-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Föld legnagyobb félszigete Délnyugat-Ázsiában, a Vörös-tenger és a Perzsa-öböl között; sivatag, kőolaj.",
+      "lat": 24.0,
+      "lon": 45.0
+    },
+    {
+      "name": "Csomolungma (Mt. Everest)",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Föld legmagasabb hegycsúcsa (8849 m) a Himalájában, Nepál és Kína határán.",
+      "lat": 27.9881,
+      "lon": 86.925
+    },
+    {
+      "name": "Dekkán-fennsík",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "India déli részének nagy ősföldi fennsíkja; bazaltból álló terület, gyapottermesztés.",
+      "lat": 17.0,
+      "lon": 77.0
+    },
+    {
+      "name": "Dél-kínai-hegyvidék",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kína déli részének alacsonyabb hegyvidéke; karsztos terület, trópusi-szubtrópusi éghajlat.",
+      "lat": 25.0,
+      "lon": 110.0
+    },
+    {
+      "name": "Fuji (Fudzsi)",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Japán legmagasabb hegye (3776 m), Honsú szigetén; szimmetrikus rétegvulkán, szent hegy.",
+      "lat": 35.3606,
+      "lon": 138.7274
+    },
+    {
+      "name": "Fülöp-szigetek",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Délkelet-Ázsia szigetvilága a Csendes-óceán nyugati peremén, kb. 7000 szigettel; vulkáni tevékenység, földrengések.",
+      "lat": 12.5,
+      "lon": 122.0
+    },
+    {
+      "name": "Góbi",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kelet-Ázsia nagy kiterjedésű, sziklás-köves félsivataga Mongóliában és Kína északi részén.",
+      "lat": 43.5,
+      "lon": 104.0
+    },
+    {
+      "name": "Himalája",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Föld legmagasabb hegysége Dél-Ázsia északi határán; a Csomolungmával, ütköző lemezek hozták létre.",
+      "lat": 28.0,
+      "lon": 85.0
+    },
+    {
+      "name": "Hindusztáni-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "India északi részén, a Gangesz és az Indus között húzódó sűrűn lakott síkság.",
+      "lat": 26.5,
+      "lon": 82.0
+    },
+    {
+      "name": "Hindusztáni-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Dél-Ázsia nagy háromszög alakú félszigete, Indiával; az Indiai-óceánba nyúlik.",
+      "lat": 20.0,
+      "lon": 78.0
+    },
+    {
+      "name": "Indokínai-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Délkelet-Ázsia szárazföldi része Kína déli határától Malajziáig; Vietnam, Laosz, Thaiföld.",
+      "lat": 16.0,
+      "lon": 104.0
+    },
+    {
+      "name": "Indonéz-szigetvilág",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Indiai- és a Csendes-óceán közötti, több ezer szigetből álló szigetvilág (Szumátra, Jáva, Borneó).",
+      "lat": -2.0,
+      "lon": 115.0
+    },
+    {
+      "name": "Japán-szigetek",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kelet-Ázsia szigetországa a Csendes-óceánban: Hokkaidó, Honsú, Sikoku, Kjúsú; vulkáni, földrengéses terület.",
+      "lat": 36.0,
+      "lon": 138.0
+    },
+    {
+      "name": "Jáva",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Indonézia legnépesebb szigete; itt van a főváros, Jakarta; sok vulkán.",
+      "lat": -7.5,
+      "lon": 110.0
+    },
+    {
+      "name": "Kamcsatka-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Oroszország távol-keleti, vulkánokban gazdag félszigete az Ohotszki-tenger és a Csendes-óceán között.",
+      "lat": 56.0,
+      "lon": 159.0
+    },
+    {
+      "name": "Kaszpi-mélyföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Kaszpi-tenger északi partvidéke, a tengerszint alatti síkság Kazahsztánban és Oroszországban.",
+      "lat": 47.0,
+      "lon": 50.0
+    },
+    {
+      "name": "Kaukázus",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Hegység a Fekete- és a Kaszpi-tenger között, az Európa–Ázsia határnak tekintett vonalon; Elbrusz.",
+      "lat": 42.5,
+      "lon": 45.0
+    },
+    {
+      "name": "Kínai-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kína keleti részén a Sárga-folyó és a Jangce vidékének sűrűn lakott, termékeny síksága.",
+      "lat": 34.0,
+      "lon": 116.0
+    },
+    {
+      "name": "Kis-Ázsia",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Törökország ázsiai része, az Anatóliai-fennsík; a Fekete- és a Földközi-tenger között.",
+      "lat": 39.0,
+      "lon": 33.0
+    },
+    {
+      "name": "Koreai-félsziget",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kelet-Ázsia félszigete Kína és Japán között; északon Észak-Korea, délen Dél-Korea.",
+      "lat": 38.0,
+      "lon": 127.5
+    },
+    {
+      "name": "Közép-szibériai-fennsík",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Jenyiszej és a Léna között fekvő fennsík Szibériában; ősföldi, örök fagy borítja.",
+      "lat": 65.0,
+      "lon": 105.0
+    },
+    {
+      "name": "Mezopotámia",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Eufrátesz és a Tigris közötti síkság, Irak területén; a korai öntözéses földművelés bölcsője.",
+      "lat": 33.0,
+      "lon": 44.0
+    },
+    {
+      "name": "Nyugat-szibériai-alföld",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Az Urál és a Jenyiszej között fekvő hatalmas síkság Oroszországban; mocsarak, kőolaj és földgáz.",
+      "lat": 62.0,
+      "lon": 75.0
+    },
+    {
+      "name": "Pamír",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Közép-Ázsia magashegysége Tádzsikisztán, Kína és Afganisztán határán; \"a világ teteje\".",
+      "lat": 38.5,
+      "lon": 73.0
+    },
+    {
+      "name": "Szibéria",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Oroszország hatalmas ázsiai területe az Urál és a Csendes-óceán között; hideg éghajlat, nyersanyagok.",
+      "lat": 62.0,
+      "lon": 95.0
+    },
+    {
+      "name": "Tajvan",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kelet-Ázsia szigete a Kínai-partoktól keletre; elektronikai ipar, vitatott státusz.",
+      "lat": 23.7,
+      "lon": 121.0
+    },
+    {
+      "name": "Takla-Makán",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "Kína nyugati részén, a Tarim-medencében lévő homoksivatag.",
+      "lat": 39.0,
+      "lon": 83.0
+    },
+    {
+      "name": "Tibet",
+      "category": "Tájak",
+      "emelt": false,
+      "desc": "A Himalája és a Kunlun közötti, Kína nyugati részén fekvő magas fennsík; \"a világ tetője\".",
+      "lat": 31.5,
+      "lon": 88.0
+    },
+    {
+      "name": "Iráni-felföld",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Délnyugat-Ázsia nagy fennsíkja Irán területén, a Zagrosz- és az Elburz-hegység között.",
+      "lat": 32.0,
+      "lon": 56.0
+    },
+    {
+      "name": "Krakatau",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Vulkáni sziget a Szunda-szorosban, Jáva és Szumátra között; híres 1883-as kitörés.",
+      "lat": -6.1021,
+      "lon": 105.4233
+    },
+    {
+      "name": "Tien-san",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Közép-Ázsia nagy hegysége Kirgizisztán, Kazahsztán és Kína határán.",
+      "lat": 42.0,
+      "lon": 80.0
+    },
+    {
+      "name": "Turáni-alföld",
+      "category": "Tájak",
+      "emelt": true,
+      "desc": "Közép-Ázsia sivatagos-félsivatagos alföldje az Aral-tótól délre (Karakum, Kizilkum).",
+      "lat": 41.0,
+      "lon": 61.0
+    },
+    {
+      "name": "Aral-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Tó Közép-Ázsiában, Kazahsztán és Üzbegisztán határán; a folyószabályozás miatt nagyrészt kiszáradt.",
+      "lat": 45.0,
+      "lon": 60.0
+    },
+    {
+      "name": "Bajkál-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Föld legmélyebb (1642 m) és legnagyobb édesvizű tava, Dél-Szibériában.",
+      "lat": 53.5,
+      "lon": 108.0
+    },
+    {
+      "name": "Bering-szoros",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Szoros Ázsia és Észak-Amerika között, a Csendes- és a Jeges-tengert köti össze.",
+      "lat": 65.75,
+      "lon": -169.0
+    },
+    {
+      "name": "Boszporusz",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Szoros Isztambulnál, a Fekete-tengert a Márvány-tengerrel köti össze; Európa és Ázsia határa.",
+      "lat": 41.1,
+      "lon": 29.05
+    },
+    {
+      "name": "Eufrátesz",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Délnyugat-Ázsia nagy folyója, Törökországban ered; Irakon át a Perzsa-öbölbe tart.",
+      "lat": 31.0,
+      "lon": 47.45
+    },
+    {
+      "name": "Gangesz",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "India szent folyója, a Himalájában ered és a Bengáli-öbölbe torkollik nagy deltával.",
+      "lat": 22.0,
+      "lon": 90.0
+    },
+    {
+      "name": "Holt-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Föld legmélyebb szárazföldi pontja (kb. –430 m), Izrael és Jordánia között; rendkívül sós.",
+      "lat": 31.5,
+      "lon": 35.5
+    },
+    {
+      "name": "Indus",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Dél-Ázsia nagy folyója, Tibetben ered, Pakisztánon át az Arab-tengerbe torkollik.",
+      "lat": 24.0,
+      "lon": 67.5
+    },
+    {
+      "name": "Jangce",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Ázsia leghosszabb folyója, Kínában a Tibeti-fennsíkról a Kelet-kínai-tengerbe tart; Három-szurdok-gát.",
+      "lat": 31.5,
+      "lon": 121.5
+    },
+    {
+      "name": "Japán (Keleti)-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Japán-szigetek és az ázsiai szárazföld közötti tenger.",
+      "lat": 40.0,
+      "lon": 134.0
+    },
+    {
+      "name": "Jenyiszej",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Szibéria nagy folyója, a Közép-szibériai-fennsík nyugati oldalán folyik észak felé a Jeges-tengerbe.",
+      "lat": 71.0,
+      "lon": 83.0
+    },
+    {
+      "name": "Kaszpi-tenger",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Föld legnagyobb tava Európa és Ázsia határán; sós, kőolajban gazdag.",
+      "lat": 42.0,
+      "lon": 51.0
+    },
+    {
+      "name": "Léna",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Kelet-Szibéria hosszú folyója, a Bajkál környékén ered és a Jeges-tengerbe torkollik.",
+      "lat": 72.5,
+      "lon": 126.5
+    },
+    {
+      "name": "Ob",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Nyugat-Szibéria nagy folyója, az Irtissel együtt hosszú; a Jeges-tengerbe torkollik.",
+      "lat": 66.5,
+      "lon": 71.5
+    },
+    {
+      "name": "Perzsa (Arab)-öböl",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Délnyugat-Ázsiában, Irán és az Arab-félsziget között fekvő sekély tenger; hatalmas kőolajkincs.",
+      "lat": 27.0,
+      "lon": 51.5
+    },
+    {
+      "name": "Sárga-folyó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Kína második leghosszabb folyója, Észak-Kínán át a Bohai-öbölbe folyik; löszvidéken sok hordalék.",
+      "lat": 37.7,
+      "lon": 118.9
+    },
+    {
+      "name": "Tigris",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Délnyugat-Ázsia folyója, Irakon át az Eufrátesszel egyesülve a Perzsa-öbölbe torkollik; Bagdad.",
+      "lat": 31.0,
+      "lon": 47.45
+    },
+    {
+      "name": "Három-szurdok-gát",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Jangcén álló világ legnagyobb vízerőműve Kínában, Hupej tartományban.",
+      "lat": 30.8231,
+      "lon": 111.0036
+    },
+    {
+      "name": "Bengáli-öböl",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Az Indiai-óceán öble India és Délkelet-Ázsia között; ciklonok pusztítanak.",
+      "lat": 15.0,
+      "lon": 88.0
+    },
+    {
+      "name": "Brahmaputra",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Tibetben ered, a Himalája déli oldalán Indián át a Gangesszel közös deltába torkollik.",
+      "lat": 23.9,
+      "lon": 90.0
+    },
+    {
+      "name": "Dardanellák",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Szoros Törökországban, a Márvány-tengert az Égei-tengerrel köti össze.",
+      "lat": 40.2,
+      "lon": 26.4
+    },
+    {
+      "name": "Mekong",
+      "category": "Vízrajz",
+      "emelt": true,
+      "desc": "Délkelet-Ázsia nagy folyója, Tibetben ered; Vietnamban nagy deltával a Dél-kínai-tengerbe ömlik.",
+      "lat": 10.0,
+      "lon": 106.3
+    },
+    {
+      "name": "Egyesült Arab Emírségek",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Az Arab-félsziget keleti részén, a Perzsa-öböl partján fekvő ország; kőolaj, Abu-Dzabi, Dubaj.",
+      "lat": 24.0,
+      "lon": 54.0
+    },
+    {
+      "name": "Dél-Korea (Koreai Köztársaság)",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "A Koreai-félsziget déli fele; elektronikai és autóipar, fővárosa Szöul.",
+      "lat": 36.5,
+      "lon": 127.8
+    },
+    {
+      "name": "Fülöp-szigetek",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délkelet-Ázsia szigetországa, fővárosa Manila; sok vulkán és földrengés.",
+      "lat": 12.5,
+      "lon": 122.0
+    },
+    {
+      "name": "India",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Dél-Ázsia hatalmas országa a Hindusztáni-félszigeten, a Föld második legnépesebb országa; fővárosa Újdelhi.",
+      "lat": 22.0,
+      "lon": 79.0
+    },
+    {
+      "name": "Indonézia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délkelet-Ázsia szigetországa, a Föld legnépesebb muszlim országa; fővárosa Jakarta.",
+      "lat": -2.5,
+      "lon": 118.0
+    },
+    {
+      "name": "Irak",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délnyugat-Ázsia országa az Eufrátesz és a Tigris mentén; kőolaj, fővárosa Bagdad.",
+      "lat": 33.0,
+      "lon": 43.7
+    },
+    {
+      "name": "Irán",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délnyugat-Ázsia nagy országa az Iráni-felföldön; kőolaj és földgáz, fővárosa Teherán.",
+      "lat": 32.5,
+      "lon": 54.0
+    },
+    {
+      "name": "Izrael",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délnyugat-Ázsiában a Földközi-tenger keleti partján; fővárosa Jeruzsálem.",
+      "lat": 31.5,
+      "lon": 34.9
+    },
+    {
+      "name": "Japán",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Kelet-Ázsia szigetországa a Csendes-óceánban; fejlett ipar, fővárosa Tokió.",
+      "lat": 36.0,
+      "lon": 138.0
+    },
+    {
+      "name": "Kína",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "A Föld legnépesebb országai közé tartozó, Kelet-Ázsiában; fővárosa Peking.",
+      "lat": 35.0,
+      "lon": 103.0
+    },
+    {
+      "name": "Malajzia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délkelet-Ázsia országa a Maláj-félszigeten és Borneó északi részén; fővárosa Kuala Lumpur.",
+      "lat": 3.5,
+      "lon": 102.0
+    },
+    {
+      "name": "Szaúd-Arábia",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Az Arab-félsziget legnagyobb országa; hatalmas kőolajkészlet, szent városai Mekka és Medina.",
+      "lat": 24.0,
+      "lon": 45.0
+    },
+    {
+      "name": "Szingapúr",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délkelet-Ázsia városállama a Maláj-félsziget déli csücskénél; kikötő, pénzügyi központ.",
+      "lat": 1.3521,
+      "lon": 103.8198
+    },
+    {
+      "name": "Thaiföld",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Délkelet-Ázsia országa az Indokínai-félszigeten; fővárosa Bangkok, turizmus, rizsexport.",
+      "lat": 15.5,
+      "lon": 101.0
+    },
+    {
+      "name": "Törökország",
+      "category": "Országok",
+      "emelt": false,
+      "desc": "Európa és Ázsia határán fekvő ország, nagy része Kis-Ázsiában; fővárosa Ankara.",
+      "lat": 39.0,
+      "lon": 35.0
+    },
+    {
+      "name": "Afganisztán",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Közép- és Dél-Ázsia határán fekvő hegyvidéki, tengerparttal nem rendelkező ország; fővárosa Kabul.",
+      "lat": 33.9,
+      "lon": 67.7
+    },
+    {
+      "name": "Banglades",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "A Gangesz–Brahmaputra deltájában fekvő sűrűn lakott ország; fővárosa Dakka, gyakori árvizek.",
+      "lat": 23.7,
+      "lon": 90.4
+    },
+    {
+      "name": "Észak-Korea (Koreai Népi Demokratikus Köztársaság)",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "A Koreai-félsziget északi fele; zárt, kommunista ország, fővárosa Phenjan.",
+      "lat": 40.0,
+      "lon": 127.0
+    },
+    {
+      "name": "Kazahsztán",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "A Föld legnagyobb tengerparttal nem rendelkező országa Közép-Ázsiában; kőolaj, fővárosa Asztana.",
+      "lat": 48.0,
+      "lon": 68.0
+    },
+    {
+      "name": "Kuvait",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "A Perzsa-öböl partján, Irak és Szaúd-Arábia között fekvő kis kőolajtermelő ország.",
+      "lat": 29.3,
+      "lon": 47.5
+    },
+    {
+      "name": "Pakisztán",
+      "category": "Országok",
+      "emelt": true,
+      "desc": "Dél-Ázsia nyugati országa az Indus mentén; muszlim ország, fővárosa Iszlámábád.",
+      "lat": 30.0,
+      "lon": 70.0
+    },
+    {
+      "name": "Ankara",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Törökország fővárosa az Anatóliai-fennsík közepén.",
+      "lat": 39.9334,
+      "lon": 32.8597
+    },
+    {
+      "name": "Bagdad",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Irak fővárosa a Tigris partján.",
+      "lat": 33.3152,
+      "lon": 44.3661
+    },
+    {
+      "name": "Bangkok",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Thaiföld fővárosa és legnagyobb városa a Chao Phraya folyó torkolatánál.",
+      "lat": 13.7563,
+      "lon": 100.5018
+    },
+    {
+      "name": "Bengaluru (Bangalore)",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "India déli részén a Dekkán-fennsíkon fekvő informatikai központ; \"India Szilícium-völgye\".",
+      "lat": 12.9716,
+      "lon": 77.5946
+    },
+    {
+      "name": "Hongkong",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Kína különleges közigazgatási területe a Gyöngy-folyó torkolatánál; nemzetközi pénzügyi központ és kikötő.",
+      "lat": 22.3193,
+      "lon": 114.1694
+    },
+    {
+      "name": "Isztambul",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Törökország legnagyobb városa a Boszporusz két partján; Európa és Ázsia között.",
+      "lat": 41.0082,
+      "lon": 28.9784
+    },
+    {
+      "name": "Jakarta",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Indonézia fővárosa Jáva északnyugati partján.",
+      "lat": -6.2088,
+      "lon": 106.8456
+    },
+    {
+      "name": "Jekatyerinburg",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Oroszország városa az Urál keleti lábánál; ipari központ, az Európa–Ázsia határ közelében.",
+      "lat": 56.8389,
+      "lon": 60.6057
+    },
+    {
+      "name": "Jeruzsálem",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Izrael fővárosa; a zsidóság, a kereszténység és az iszlám szent városa.",
+      "lat": 31.7683,
+      "lon": 35.2137
+    },
+    {
+      "name": "Jokohama (Yokohama)",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Japán második legnagyobb városa Tokió mellett, nagy kikötő a Tokiói-öbölnél.",
+      "lat": 35.4437,
+      "lon": 139.638
+    },
+    {
+      "name": "Kanton",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Dél-Kína nagyvárosa a Gyöngy-folyó deltájában; ipari és kereskedelmi központ.",
+      "lat": 23.1291,
+      "lon": 113.2644
+    },
+    {
+      "name": "Kolkata (Calcutta)",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "India keleti részén, a Gangesz deltájában fekvő nagyváros; kikötő, jutafeldolgozás.",
+      "lat": 22.5726,
+      "lon": 88.3639
+    },
+    {
+      "name": "Manila",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "A Fülöp-szigetek fővárosa Luzon szigetén, Manila-öböl partján.",
+      "lat": 14.5995,
+      "lon": 120.9842
+    },
+    {
+      "name": "Mekka",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szaúd-Arábia nyugati részén lévő szent város; Mohamed szülőhelye, az iszlám zarándokhelye.",
+      "lat": 21.3891,
+      "lon": 39.8579
+    },
+    {
+      "name": "Mumbai (Bombay)",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "India legnagyobb kikötővárosa és gazdasági központja a nyugati parton; filmipar.",
+      "lat": 19.076,
+      "lon": 72.8777
+    },
+    {
+      "name": "Oszaka (Osaka)",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Japán második legnagyobb városa Honsú szigetén, ipari és kereskedelmi központ.",
+      "lat": 34.6937,
+      "lon": 135.5023
+    },
+    {
+      "name": "Peking",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Kína fővárosa az Észak-kínai-alföld északi szélén; politikai és kulturális központ.",
+      "lat": 39.9042,
+      "lon": 116.4074
+    },
+    {
+      "name": "Rijád",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Szaúd-Arábia fővárosa az Arab-félsziget belső részén.",
+      "lat": 24.7136,
+      "lon": 46.6753
+    },
+    {
+      "name": "Sanghaj",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Kína legnagyobb városa a Jangce torkolatánál; pénzügyi központ és nagy kikötő.",
+      "lat": 31.2304,
+      "lon": 121.4737
+    },
+    {
+      "name": "Szöul",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Dél-Korea fővárosa a Han folyó mellett; elektronikai ipar.",
+      "lat": 37.5665,
+      "lon": 126.978
+    },
+    {
+      "name": "Teherán",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Irán fővárosa az Elburz-hegység lábánál.",
+      "lat": 35.6892,
+      "lon": 51.389
+    },
+    {
+      "name": "Tokió",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Japán fővárosa Honsú szigetén; a Föld legnagyobb agglomerációinak egyike.",
+      "lat": 35.6762,
+      "lon": 139.6503
+    },
+    {
+      "name": "Újdelhi",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "India fővárosa a Gangesz mellékén, Delhi mellett.",
+      "lat": 28.6139,
+      "lon": 77.209
+    },
+    {
+      "name": "Váránaszi (Benares)",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "India északi részén, a Gangesz partján fekvő szent város; a hinduk zarándokhelye.",
+      "lat": 25.3176,
+      "lon": 82.9739
+    },
+    {
+      "name": "Vlagyivosztok",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Oroszország távol-keleti kikötővárosa a Japán-tenger partján; a Transzszibériai vasút végpontja.",
+      "lat": 43.1155,
+      "lon": 131.8855
+    },
+    {
+      "name": "Vuhan",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Közép-Kína nagyvárosa a Jangce partján; ipari központ.",
+      "lat": 30.5928,
+      "lon": 114.3055
+    },
+    {
+      "name": "Dubaj",
+      "category": "Városok",
+      "emelt": false,
+      "desc": "Az Egyesült Arab Emírségek városa a Perzsa-öböl partján; kereskedelmi és turisztikai központ.",
+      "lat": 25.2048,
+      "lon": 55.2708
+    },
+    {
+      "name": "Cseljabinszk",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Oroszország ipari városa az Urál keleti oldalán; nehézipar.",
+      "lat": 55.1644,
+      "lon": 61.4368
+    },
+    {
+      "name": "Csennai (Madras)",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "India délkeleti partjának nagyvárosa a Bengáli-öböl mellett; autóipar.",
+      "lat": 13.0827,
+      "lon": 80.2707
+    },
+    {
+      "name": "Kiotó (Kyoto)",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Japán egykori fővárosa Honsú szigetén; templomok, kulturális központ.",
+      "lat": 35.0116,
+      "lon": 135.7681
+    },
+    {
+      "name": "Krasznojarszk",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Szibériai ipari város a Jenyiszej partján; fémipar és vízerőmű.",
+      "lat": 56.0153,
+      "lon": 92.8932
+    },
+    {
+      "name": "Novoszibirszk",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Szibéria legnagyobb városa az Ob partján, a Transzszibériai vasútnál; tudományos központ.",
+      "lat": 55.0084,
+      "lon": 82.9357
+    },
+    {
+      "name": "Sencsen",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Dél-Kína nagyvárosa Hongkong mellett; különleges gazdasági övezet, elektronikai ipar.",
+      "lat": 22.5431,
+      "lon": 114.0579
+    },
+    {
+      "name": "Tel Aviv-Jaffa",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Izrael legnagyobb gazdasági központja a Földközi-tenger partján.",
+      "lat": 32.0853,
+      "lon": 34.7818
+    },
+    {
+      "name": "Tiencsin",
+      "category": "Városok",
+      "emelt": true,
+      "desc": "Észak-Kína nagyvárosa és kikötője, Pekingtől délkeletre a Bohai-öböl partján.",
+      "lat": 39.3434,
+      "lon": 117.3616
+    }
+  ]
+}

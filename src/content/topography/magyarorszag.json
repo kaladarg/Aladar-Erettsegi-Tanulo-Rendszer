@@ -1,0 +1,1662 @@
+{
+  "region": "magyarorszag",
+  "regionName": "Magyarország",
+  "places": [
+    {
+      "name": "Alföld",
+      "category": "Fő tájegységek",
+      "emelt": false,
+      "desc": "Magyarország legnagyobb tájegysége, a Kárpát-medence keleti és középső síkvidéke.",
+      "lat": 46.9,
+      "lon": 20.0
+    },
+    {
+      "name": "Alpokalja",
+      "category": "Fő tájegységek",
+      "emelt": false,
+      "desc": "A Nyugat-Dunántúl hegylábi sávja az osztrák határ mentén, Sopron és Szentgotthárd között.",
+      "lat": 47.4,
+      "lon": 16.6
+    },
+    {
+      "name": "Dunántúli-dombvidék",
+      "category": "Fő tájegységek",
+      "emelt": false,
+      "desc": "A Dráva és a Balaton között elterülő dombvidék: Mecsek, Zalai-, Somogyi-, Tolnai-dombság.",
+      "lat": 46.3,
+      "lon": 17.9
+    },
+    {
+      "name": "Dunántúli-középhegység",
+      "category": "Fő tájegységek",
+      "emelt": false,
+      "desc": "A Dunántúl északi hegységsora a Dunától a Balatonig: Bakony, Vértes, Gerecse, Pilis, Budai-hegység.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Északi-középhegység",
+      "category": "Fő tájegységek",
+      "emelt": false,
+      "desc": "A Mátrától a Zempléni-hegységig húzódó hegységsor az ország északi részén; itt van a Kékes.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Kisalföld",
+      "category": "Fő tájegységek",
+      "emelt": false,
+      "desc": "Az ország északnyugati síksága a Duna és a Rába mentén; Győr a központja.",
+      "lat": 47.65,
+      "lon": 17.4
+    },
+    {
+      "name": "Aggteleki-karszt",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Északi-középhegység karsztvidéke a szlovák határon; híres cseppkőbarlangjairól.",
+      "lat": 48.47,
+      "lon": 20.5
+    },
+    {
+      "name": "Badacsony",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Balaton északi partján álló bazaltvulkáni tanúhegy; borvidék.",
+      "lat": 46.8,
+      "lon": 17.5
+    },
+    {
+      "name": "Bakony",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dunántúli-középhegység legnagyobb tagja Veszprém és Zirc körül; bauxit és kőszén.",
+      "lat": 47.2,
+      "lon": 17.7
+    },
+    {
+      "name": "Balaton-felvidék",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Balaton északi partja menti dombos-hegyes sáv: Badacsony, Tihany, Káli-medence.",
+      "lat": 46.9,
+      "lon": 17.6
+    },
+    {
+      "name": "Baradla-barlang",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Európa egyik leghosszabb cseppkőbarlangja az Aggteleki-karsztban; a világörökség része.",
+      "lat": 48.4742,
+      "lon": 20.5
+    },
+    {
+      "name": "Baranyai-dombság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Mecsektől délre a Dráváig húzódó dombság; Siklós és Villány környéke.",
+      "lat": 45.95,
+      "lon": 18.2
+    },
+    {
+      "name": "Belső-Somogy",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Somogyi-dombság belső, erdős-homokos része Kaposvártól északnyugatra a Balaton felé.",
+      "lat": 46.5,
+      "lon": 17.6
+    },
+    {
+      "name": "Bodrogköz",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Tisza és a Bodrog közötti ártéri síkság az északkeleti határnál; Sárospatak és Sátoraljaújhely közelében.",
+      "lat": 48.3,
+      "lon": 21.7
+    },
+    {
+      "name": "Borsodi-medence",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Sajó és a Hernád völgyét magába foglaló medence, Miskolc körül; nehézipari térség.",
+      "lat": 48.1,
+      "lon": 20.8
+    },
+    {
+      "name": "Börzsöny",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dunakanyartól északra emelkedő vulkanikus hegység; legmagasabb pontja a Csóványos.",
+      "lat": 47.9,
+      "lon": 18.97
+    },
+    {
+      "name": "Budai-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Budapest nyugati oldalán emelkedő dolomit- és mészkőhegység; János-hegy, Hármashatár-hegy.",
+      "lat": 47.5,
+      "lon": 18.95
+    },
+    {
+      "name": "Bükk",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Északi-középhegység legnagyobb mészkőhegysége Eger és Miskolc között; karsztfennsík.",
+      "lat": 48.05,
+      "lon": 20.5
+    },
+    {
+      "name": "Bükk-fennsík",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Bükk hegység központi karsztfennsíkja; sok töbör és barlang.",
+      "lat": 48.08,
+      "lon": 20.5
+    },
+    {
+      "name": "Csepel-sziget",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna legnagyobb magyarországi szigete Budapesttől délre; ipari területek.",
+      "lat": 47.3,
+      "lon": 18.98
+    },
+    {
+      "name": "Cserehát",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Aggteleki-karszt és a Hernád között elterülő dombság Borsod megyében.",
+      "lat": 48.35,
+      "lon": 20.95
+    },
+    {
+      "name": "Cserhát",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Mátra és a Börzsöny között húzódó alacsony vulkanikus eredetű hegység.",
+      "lat": 47.95,
+      "lon": 19.55
+    },
+    {
+      "name": "Dráva menti síkság (Dráva-mellék)",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dráva magyarországi szakasza menti ártéri síkság a horvát határon.",
+      "lat": 45.85,
+      "lon": 17.9
+    },
+    {
+      "name": "Duna menti síkság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna mente alföldi sávja a Mezőföld és a Duna–Tisza köze között; Paks, Baja térsége.",
+      "lat": 46.7,
+      "lon": 18.95
+    },
+    {
+      "name": "Duna–Tisza köze",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Alföld nagy homokos-löszös középső síksága a Duna és a Tisza között; Kiskunság, Kecskemét.",
+      "lat": 46.9,
+      "lon": 19.5
+    },
+    {
+      "name": "Dunakanyar",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna Visegrád és Nagymaros közötti, hegységek közt átfúródó kanyarulata.",
+      "lat": 47.78,
+      "lon": 18.95
+    },
+    {
+      "name": "Dunazug-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna és a Zsámbéki-medence közötti hegycsoport: Budai-, Visegrádi-, Pilis és Gerecse.",
+      "lat": 47.65,
+      "lon": 18.8
+    },
+    {
+      "name": "Gerecse",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dunazug-hegység nyugati tagja Tata és Esztergom között; mészkő, bányászat.",
+      "lat": 47.65,
+      "lon": 18.5
+    },
+    {
+      "name": "Gödöllői-dombság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Budapesttől keletre elterülő dombság az Alföld peremén; Gödöllő a központja.",
+      "lat": 47.6,
+      "lon": 19.4
+    },
+    {
+      "name": "Győri-medence",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Kisalföld Győr körüli süllyedéke a Duna, a Rába és a Rábca találkozásánál.",
+      "lat": 47.65,
+      "lon": 17.65
+    },
+    {
+      "name": "Hajdúság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Észak-Alföld löszös síksága Debrecen környékén; Hajdúszoboszló, hajdúvárosok.",
+      "lat": 47.6,
+      "lon": 21.4
+    },
+    {
+      "name": "Hortobágy",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Alföld legnagyobb összefüggő szikes pusztája Debrecentől nyugatra.",
+      "lat": 47.58,
+      "lon": 21.0
+    },
+    {
+      "name": "Írott-kő",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Alpokalja és a Kőszegi-hegység határán álló csúcs (882 m), a Dunántúl legmagasabb pontja.",
+      "lat": 47.3566,
+      "lon": 16.4344
+    },
+    {
+      "name": "Jászság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Zagyva és a Tárnai-hát közötti történelmi tájegység; Jászberény a központja.",
+      "lat": 47.5,
+      "lon": 19.95
+    },
+    {
+      "name": "Keszthelyi-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Balaton nyugati végénél, Keszthely felett emelkedő dolomithegység.",
+      "lat": 46.85,
+      "lon": 17.25
+    },
+    {
+      "name": "Kékes",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Magyarország legmagasabb csúcsa (1014 m) a Mátrában.",
+      "lat": 47.8725,
+      "lon": 20.0183
+    },
+    {
+      "name": "Kiskunság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna–Tisza köze déli, homokos-szikes tája Kecskemét és Kiskunfélegyháza körül.",
+      "lat": 46.75,
+      "lon": 19.6
+    },
+    {
+      "name": "Körös–Maros köze",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Körösök és a Maros közötti síkság Békés és Csongrád megyében; mélyfekvésű, szikes.",
+      "lat": 46.5,
+      "lon": 20.8
+    },
+    {
+      "name": "Kőszegi-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dunántúl nyugati szélén, Kőszeg mellett emelkedő kristályos hegység; legmagasabb pontja az Írott-kő.",
+      "lat": 47.37,
+      "lon": 16.45
+    },
+    {
+      "name": "Külső-Somogy",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Somogyi-dombság Balaton menti, tagoltabb déli része Kaposvár és Siófok között.",
+      "lat": 46.6,
+      "lon": 17.9
+    },
+    {
+      "name": "Marcal-medence",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Bakony és a Kisalföld között, a Marcal mentén elterülő dombos medence; Pápa térsége.",
+      "lat": 47.35,
+      "lon": 17.35
+    },
+    {
+      "name": "Mátra",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Magyarország legmagasabb hegysége, vulkanikus eredetű; Gyöngyös és Gyöngyöspata között.",
+      "lat": 47.85,
+      "lon": 19.95
+    },
+    {
+      "name": "Mecsek",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Pécstől északra emelkedő hegység; kőszén- és uránbányászat, kiránduló- és szőlőtáj.",
+      "lat": 46.15,
+      "lon": 18.25
+    },
+    {
+      "name": "Mezőföld",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dunántúl keleti löszös síksága a Balaton és a Duna között; kiváló szántóföldek.",
+      "lat": 47.0,
+      "lon": 18.5
+    },
+    {
+      "name": "Mohácsi-sziget",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna menti ártéri sziget Mohácsnál, a Dunától jobbra, a déli határ közelében.",
+      "lat": 45.95,
+      "lon": 18.7
+    },
+    {
+      "name": "Móri-árok",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Vértes és a Bakony között húzódó tektonikus árok; Mór borvidéke.",
+      "lat": 47.37,
+      "lon": 18.2
+    },
+    {
+      "name": "Nagykunság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Közép-Tisza vidék Tiszától keletre fekvő síksága; Karcag és Kunhegyes térsége.",
+      "lat": 47.3,
+      "lon": 20.8
+    },
+    {
+      "name": "Nógrádi-medence",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Ipoly és a Zagyva közötti medence Balassagyarmat és Salgótarján között.",
+      "lat": 48.05,
+      "lon": 19.4
+    },
+    {
+      "name": "Nyírség",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az ország legnagyobb összefüggő homokvidéke az Északkelet-Alföldön; Nyíregyháza körül, almatermő.",
+      "lat": 47.9,
+      "lon": 21.8
+    },
+    {
+      "name": "Őrség",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Vas megyei határvidék erdős, dombos tája az osztrák és a szlovén határnál; Nemzeti Park.",
+      "lat": 46.87,
+      "lon": 16.3
+    },
+    {
+      "name": "Pesti-síkság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna bal oldali hordalékkúp-síksága Budapesttől keletre; Gödöllői-dombság előtere.",
+      "lat": 47.4,
+      "lon": 19.3
+    },
+    {
+      "name": "Pilis",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Budai-hegység és a Dunakanyar között emelkedő dolomit-mészkő hegység; Pilis-tető.",
+      "lat": 47.7,
+      "lon": 18.9
+    },
+    {
+      "name": "Somogyi-dombság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Balaton és a Dráva közötti nagy dombság; Kaposvár a központja.",
+      "lat": 46.4,
+      "lon": 17.6
+    },
+    {
+      "name": "Soproni-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Alpok keleti nyúlványa Sopronnál; az ország egyetlen kristályos pala hegysége, Fertő közelében.",
+      "lat": 47.65,
+      "lon": 16.5
+    },
+    {
+      "name": "Szekszárdi-dombság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Sió és a Duna között fekvő, borvidékéről ismert dombság Szekszárd körül.",
+      "lat": 46.35,
+      "lon": 18.7
+    },
+    {
+      "name": "Szentendrei-sziget",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna szigete Szentendre és Budapest között; ivóvízbázis.",
+      "lat": 47.65,
+      "lon": 19.05
+    },
+    {
+      "name": "Szigetköz",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Duna és a Mosoni-Duna közötti ártéri sziget a szlovák határnál; Bős–Nagymaros vita.",
+      "lat": 47.85,
+      "lon": 17.4
+    },
+    {
+      "name": "Tapolcai-medence",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Balaton-felvidék tanúhegyekkel tarkított medencéje Tapolca körül.",
+      "lat": 46.88,
+      "lon": 17.45
+    },
+    {
+      "name": "Tihanyi-félsziget",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Balaton partjába benyúló vulkáni félsziget; gejzírkúpok, apátság, tájvédelmi körzet.",
+      "lat": 46.91,
+      "lon": 17.89
+    },
+    {
+      "name": "Tiszántúl",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Tiszától keletre fekvő alföldi térség: Hajdúság, Nyírség, Hortobágy.",
+      "lat": 47.2,
+      "lon": 21.3
+    },
+    {
+      "name": "Tokaji (Zempléni)-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "Az Északi-középhegység északkeleti vulkáni hegysége; híres a tokaji borvidékről.",
+      "lat": 48.3,
+      "lon": 21.4
+    },
+    {
+      "name": "Tolnai-dombság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Sió és a Duna között fekvő dombság Tolna megyében; löszös, szőlők.",
+      "lat": 46.45,
+      "lon": 18.5
+    },
+    {
+      "name": "Velencei-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Velencei-tó északi partján emelkedő, gránitból álló alacsony hegység.",
+      "lat": 47.25,
+      "lon": 18.6
+    },
+    {
+      "name": "Vértes",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dunántúli-középhegység északi tagja Tatabánya és Székesfehérvár között; bükkös, mészkő.",
+      "lat": 47.45,
+      "lon": 18.4
+    },
+    {
+      "name": "Villányi-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Baranyai-dombságból kiemelkedő mészkőhegység; Villány, a vörösbor híres vidéke.",
+      "lat": 45.87,
+      "lon": 18.4
+    },
+    {
+      "name": "Visegrádi-hegység",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dunakanyar jobb partján emelkedő vulkanikus hegység Visegrád és Pilisszentlászló között.",
+      "lat": 47.75,
+      "lon": 19.0
+    },
+    {
+      "name": "Zalai-dombság",
+      "category": "Egyéb tájak, területek",
+      "emelt": false,
+      "desc": "A Dunántúl délnyugati dombsága a Mura és a Balaton között; kőolaj- és földgázlelőhelyek.",
+      "lat": 46.65,
+      "lon": 16.9
+    },
+    {
+      "name": "Balaton",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Közép-Európa legnagyobb tava, a Dunántúlon; üdülőövezet.",
+      "lat": 46.83,
+      "lon": 17.73
+    },
+    {
+      "name": "Bodrog",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Tisza bal oldali mellékfolyója; a Latorca és a Ronyva egyesüléséből ered, Tokajnál torkollik.",
+      "lat": 48.1,
+      "lon": 21.4
+    },
+    {
+      "name": "Dráva",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Mura torkolatától a magyar–horvát határt kijelölő folyó, a Duna jobb oldali mellékfolyója.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Duna",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Európa második leghosszabb folyója; Magyarországot északról délre szeli át, Budapest a partján áll.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Fertő",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Közép-Európa legnyugatibb sztyeppei tava az osztrák határon; sekély, nádas.",
+      "lat": 47.72,
+      "lon": 16.72
+    },
+    {
+      "name": "Hernád",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Sajó bal oldali mellékfolyója; Kassa felől ered, Miskolc mellett éri el a Sajót.",
+      "lat": 47.97,
+      "lon": 21.0
+    },
+    {
+      "name": "Hévízi-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Európa legnagyobb természetes termáltava Keszthely közelében; gyógyfürdő.",
+      "lat": 46.7903,
+      "lon": 17.1913
+    },
+    {
+      "name": "Ipoly",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Duna bal oldali mellékfolyója; hosszú szakaszon a magyar–szlovák határt alkotja, Szobnál torkollik.",
+      "lat": 47.8,
+      "lon": 18.87
+    },
+    {
+      "name": "Kis-Balaton",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Zala torkolatánál elterülő mocsaras vízvédelmi rezervátum, a Balaton természetes szűrője.",
+      "lat": 46.65,
+      "lon": 17.13
+    },
+    {
+      "name": "Körös",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Tisza bal oldali mellékfolyója az Alföldön; Hármas-Körös néven torkollik Csongrádnál.",
+      "lat": 46.7,
+      "lon": 20.15
+    },
+    {
+      "name": "Maros",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Tisza jobb oldali mellékfolyója Erdélyből; Szegednél torkollik.",
+      "lat": 46.2434,
+      "lon": 20.1456
+    },
+    {
+      "name": "Mura",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Dráva bal oldali mellékfolyója; az ország délnyugati határfolyója, Alpokból érkezik.",
+      "lat": 46.3,
+      "lon": 16.88
+    },
+    {
+      "name": "Rába",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Mosoni-Duna mellékfolyója az Alpokalja felől; Győrnél torkollik.",
+      "lat": 47.69,
+      "lon": 17.63
+    },
+    {
+      "name": "Sajó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Tisza bal oldali mellékfolyója Szlovákiából; Ózd és Miskolc közelében folyik, Tiszaszederkénynél torkollik.",
+      "lat": 48.0,
+      "lon": 21.05
+    },
+    {
+      "name": "Sió",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Balaton egyetlen lefolyója Siófoknál, a Duna felé tart; Szekszárd közelében torkollik.",
+      "lat": 46.3,
+      "lon": 18.8
+    },
+    {
+      "name": "Szamos",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Tisza bal oldali mellékfolyója Erdélyből; az északkeleti határnál lép be, Tiszabecs közelében hagyja el.",
+      "lat": 48.0,
+      "lon": 22.35
+    },
+    {
+      "name": "szegedi Fehér-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Szeged közelében lévő szikes tó; madárvonulási pihenőhely, védett terület.",
+      "lat": 46.3355,
+      "lon": 20.0897
+    },
+    {
+      "name": "Szelidi-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Duna egykori holtága Dunapataj közelében, a Duna–Tisza közén; horgász- és üdülőtó.",
+      "lat": 46.6808,
+      "lon": 19.0864
+    },
+    {
+      "name": "Tisza",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Magyarország leghosszabb folyója, a Duna mellékfolyója; Kelet-Magyarországot szeli át Szolnok és Szeged felé.",
+      "lat": null,
+      "lon": null
+    },
+    {
+      "name": "Tisza-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Magyarország legnagyobb mesterséges tava a Közép-Tisza vidékén (Kisköre), Tiszafüred környékén.",
+      "lat": 47.6,
+      "lon": 20.7
+    },
+    {
+      "name": "Velencei-tó",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "Az ország második legnagyobb tava Székesfehérvár és Budapest között; sekély, nyári üdülőhely.",
+      "lat": 47.2,
+      "lon": 18.65
+    },
+    {
+      "name": "Zagyva",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Tisza jobb oldali mellékfolyója a Mátra és a Cserhát között; Szolnoknál torkollik.",
+      "lat": 47.17,
+      "lon": 20.2
+    },
+    {
+      "name": "Zala",
+      "category": "Vízrajz",
+      "emelt": false,
+      "desc": "A Kis-Balaton felé folyó, a Balaton legnagyobb vízfolyása; Zalaegerszeg mellett halad el.",
+      "lat": 46.67,
+      "lon": 17.13
+    },
+    {
+      "name": "Ajka",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Veszprém megye déli bányász- és iparváros; timföldgyár, Kolontár vörösiszap-katasztrófa (2010).",
+      "lat": 47.1,
+      "lon": 17.55
+    },
+    {
+      "name": "Algyő",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Szeged északi szomszédja; hazai szénhidrogén- (kőolaj- és földgáz-) mező.",
+      "lat": 46.33,
+      "lon": 20.2
+    },
+    {
+      "name": "Baja",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Duna jobb partján fekvő város; halászlé és halászfesztivál.",
+      "lat": 46.18,
+      "lon": 18.95
+    },
+    {
+      "name": "Balassagyarmat",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Nógrád megye északi városa az Ipoly partján a szlovák határnál.",
+      "lat": 48.0766,
+      "lon": 19.2943
+    },
+    {
+      "name": "Balatonfüred",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Balaton északi partján fekvő gyógyfürdő- és üdülőváros; szívgyógyító kúra.",
+      "lat": 46.96,
+      "lon": 17.89
+    },
+    {
+      "name": "Berente",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Borsod megyei hőerőmű és vegyipari telep Kazincbarcika közelében.",
+      "lat": 48.2,
+      "lon": 20.6
+    },
+    {
+      "name": "Békéscsaba",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Békés megye székhelye; kolbász, konzervipar, szlovák hagyományok.",
+      "lat": 46.6833,
+      "lon": 21.1
+    },
+    {
+      "name": "Budapest",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Magyarország fővárosa a Duna két partján; a Budai-hegység és az Alföld találkozásánál.",
+      "lat": 47.4979,
+      "lon": 19.0402
+    },
+    {
+      "name": "Bük",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Nyugat-Dunántúli gyógyfürdőváros Sopron és Szombathely között az osztrák határ közelében.",
+      "lat": 47.3764,
+      "lon": 16.7897
+    },
+    {
+      "name": "Debrecen",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Az Alföld legnagyobb városa, Hajdú-Bihar megye székhelye; egyetemi központ.",
+      "lat": 47.5316,
+      "lon": 21.6273
+    },
+    {
+      "name": "Dunaújváros",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Duna jobb partján fekvő szocialista tervvárosa; vasmű és acélipar.",
+      "lat": 46.9647,
+      "lon": 18.9396
+    },
+    {
+      "name": "Eger",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Heves megye székhelye a Bükk déli lábánál; egri vár, Egri bikavér.",
+      "lat": 47.9025,
+      "lon": 20.3772
+    },
+    {
+      "name": "Esztergom",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Duna jobb partján, a szlovák határnál; a katolikus egyház központja, bazilika.",
+      "lat": 47.7928,
+      "lon": 18.7406
+    },
+    {
+      "name": "Gödöllő",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Budapesttől keletre fekvő város; Grassalkovich-kastély, Szent István Egyetem.",
+      "lat": 47.5975,
+      "lon": 19.3489
+    },
+    {
+      "name": "Gyöngyös",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Mátra déli lábánál fekvő város; borvidék, a Mátra kapuja.",
+      "lat": 47.7825,
+      "lon": 19.9292
+    },
+    {
+      "name": "Győr",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Kisalföld központja a Duna, a Rába és a Rábca találkozásánál; autóipar (Audi).",
+      "lat": 47.6875,
+      "lon": 17.6504
+    },
+    {
+      "name": "Gyula",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Békés megyei város a román határnál; vár és gyógyfürdő.",
+      "lat": 46.6486,
+      "lon": 21.2808
+    },
+    {
+      "name": "Hajdúszoboszló",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Hajdú-Bihar megyei gyógy- és fürdőváros; hévizes gyógyfürdő.",
+      "lat": 47.4443,
+      "lon": 21.3933
+    },
+    {
+      "name": "Harkány",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Baranya megyei gyógyfürdőhely Siklós mellett a Dráva felé; gyógyvíz.",
+      "lat": 45.8531,
+      "lon": 18.2328
+    },
+    {
+      "name": "Hatvan",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Heves megyei város a Zagyva mentén Budapest és Gyöngyös között; cukorgyár.",
+      "lat": 47.6667,
+      "lon": 19.6833
+    },
+    {
+      "name": "Hegyeshalom",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Győr-Moson-Sopron megyei határátkelő Ausztria felé az M1 mentén; Bécs irányába vezető fő út.",
+      "lat": 47.9072,
+      "lon": 17.1608
+    },
+    {
+      "name": "Hévíz",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Zala megyei gyógyfürdőváros a Hévízi-tó mellett Keszthely közelében.",
+      "lat": 46.7903,
+      "lon": 17.1869
+    },
+    {
+      "name": "Hódmezővásárhely",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Csongrád-Csanád megyei város Szeged közelében; mezőgazdaság, kerámia.",
+      "lat": 46.4181,
+      "lon": 20.3306
+    },
+    {
+      "name": "Jászberény",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Jászság központja a Zagyva mentén; Lehel-kürt, hűtőgépgyár.",
+      "lat": 47.5,
+      "lon": 19.9167
+    },
+    {
+      "name": "Jászfényszaru",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Jász-Nagykun-Szolnok megyei kisváros a Jászságban Jászberény mellett.",
+      "lat": 47.5667,
+      "lon": 19.6
+    },
+    {
+      "name": "Kalocsa",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Bács-Kiskun megyei város a Duna jobb partján; paprikatermesztés, népművészet.",
+      "lat": 46.5333,
+      "lon": 18.9833
+    },
+    {
+      "name": "Kaposvár",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Somogy megye székhelye a Kapos mentén; cukorgyár.",
+      "lat": 46.3594,
+      "lon": 17.7967
+    },
+    {
+      "name": "Kecskemét",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Bács-Kiskun megye székhelye a Duna–Tisza közén; kajszibarack, Mercedes-gyár.",
+      "lat": 46.9062,
+      "lon": 19.6913
+    },
+    {
+      "name": "Keszthely",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Balaton nyugati csücskénél fekvő város; Festetics-kastély, Georgikon.",
+      "lat": 46.7681,
+      "lon": 17.2428
+    },
+    {
+      "name": "Komárom",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Duna és a Vág találkozásánál fekvő határváros; hídon át Révkomárom szomszédos.",
+      "lat": 47.7433,
+      "lon": 18.1219
+    },
+    {
+      "name": "Kőszeg",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Vas megyei történelmi város az osztrák határnál, a Kőszegi-hegység lábánál.",
+      "lat": 47.3892,
+      "lon": 16.5403
+    },
+    {
+      "name": "Makó",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Csongrád-Csanád megyei város a Maros mentén; hagymatermesztés.",
+      "lat": 46.2214,
+      "lon": 20.4807
+    },
+    {
+      "name": "Miskolc",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Borsod-Abaúj-Zemplén megye székhelye a Sajó mellett; nehézipar, egyetem.",
+      "lat": 48.1035,
+      "lon": 20.7784
+    },
+    {
+      "name": "Mohács",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Baranya megyei dunai kikötőváros a déli határnál; busójárás, 1526-os csata.",
+      "lat": 45.9933,
+      "lon": 18.6836
+    },
+    {
+      "name": "Nagykanizsa",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Zala megye legnagyobb városa a horvát határ közelében; olajipar.",
+      "lat": 46.4528,
+      "lon": 16.9906
+    },
+    {
+      "name": "Nyíregyháza",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Szabolcs-Szatmár-Bereg megye székhelye a Nyírségben; Sóstói Múzeumfalu.",
+      "lat": 47.9554,
+      "lon": 21.7167
+    },
+    {
+      "name": "Orosháza",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Békés megyei város az Alföldön; üveggyár és mezőgazdaság.",
+      "lat": 46.5667,
+      "lon": 20.6667
+    },
+    {
+      "name": "Ózd",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Borsod-Abaúj-Zemplén megyei egykori vasgyártó város az Északi-középhegységben.",
+      "lat": 48.2167,
+      "lon": 20.3
+    },
+    {
+      "name": "Paks",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Tolna megyei város a Duna jobb partján; az ország egyetlen atomerőműve.",
+      "lat": 46.6217,
+      "lon": 18.8578
+    },
+    {
+      "name": "Pápa",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Veszprém megyei város a Bakony északi lábánál; református kollégium, Esterházy-kastély.",
+      "lat": 47.3294,
+      "lon": 17.4676
+    },
+    {
+      "name": "Pécs",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Baranya megye székhelye a Mecsek déli lábánál; egyetem, ókeresztény sírkamrák.",
+      "lat": 46.0727,
+      "lon": 18.2323
+    },
+    {
+      "name": "Salgótarján",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Nógrád megye székhelye az Északi-középhegységben; egykori szénbányász- és iparváros.",
+      "lat": 48.1,
+      "lon": 19.8
+    },
+    {
+      "name": "Sárospatak",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Borsod-Abaúj-Zemplén megyei város a Bodrog mentén; Rákóczi-vár, református kollégium.",
+      "lat": 48.3175,
+      "lon": 21.5694
+    },
+    {
+      "name": "Siófok",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Balaton déli partjának legnagyobb üdülővárosa; a Sió torkolatánál.",
+      "lat": 46.9047,
+      "lon": 18.0579
+    },
+    {
+      "name": "Sopron",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Győr-Moson-Sopron megyei város az osztrák határnál; megőrzött történelmi belváros.",
+      "lat": 47.6817,
+      "lon": 16.5845
+    },
+    {
+      "name": "Százhalombatta",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Pest megyei város a Duna mellett; kőolaj-finomító (Dunai Finomító), hőerőmű.",
+      "lat": 47.3167,
+      "lon": 18.9167
+    },
+    {
+      "name": "Szeged",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Csongrád-Csanád megye székhelye a Tisza és a Maros torkolatánál; egyetem, paprika.",
+      "lat": 46.253,
+      "lon": 20.1414
+    },
+    {
+      "name": "Székesfehérvár",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Fejér megye székhelye a Mezőföldön; koronázóváros, ipari központ.",
+      "lat": 47.186,
+      "lon": 18.4221
+    },
+    {
+      "name": "Szekszárd",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Tolna megye székhelye a Szekszárdi-dombság lábánál; bortermelés, szekszárdi vörösbor.",
+      "lat": 46.35,
+      "lon": 18.7
+    },
+    {
+      "name": "Szentendre",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Pest megyei város a Duna jobb partján Budapesttől északra; művészváros.",
+      "lat": 47.6694,
+      "lon": 19.0764
+    },
+    {
+      "name": "Szentgotthárd",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Vas megyei határváros a Rába mentén az osztrák és szlovén határ közelében; autóipar.",
+      "lat": 46.9525,
+      "lon": 16.2775
+    },
+    {
+      "name": "Szolnok",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Jász-Nagykun-Szolnok megye székhelye a Tisza és a Zagyva találkozásánál.",
+      "lat": 47.1746,
+      "lon": 20.1824
+    },
+    {
+      "name": "Szombathely",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Vas megye székhelye; római Savaria, a Dunántúl nyugati városa.",
+      "lat": 47.2307,
+      "lon": 16.6218
+    },
+    {
+      "name": "Tata",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Komárom-Esztergom megyei város az Öreg-tó mellett; vár, vizek városa.",
+      "lat": 47.6525,
+      "lon": 18.3228
+    },
+    {
+      "name": "Tatabánya",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Komárom-Esztergom megye székhelye; egykori szénbányászat, Turul-szobor.",
+      "lat": 47.5692,
+      "lon": 18.4048
+    },
+    {
+      "name": "Tihany",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Balatonba benyúló Tihanyi-félsziget települése; apátság, visszhang, levendula.",
+      "lat": 46.9133,
+      "lon": 17.8869
+    },
+    {
+      "name": "Tiszaújváros",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Borsod-Abaúj-Zemplén megyei vegyipari város a Tisza mellett; TVK és MOL.",
+      "lat": 47.9167,
+      "lon": 21.0333
+    },
+    {
+      "name": "Tokaj",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Bodrog és a Tisza találkozásánál fekvő város; a Tokaj-hegyaljai borvidék központja.",
+      "lat": 48.1178,
+      "lon": 21.4094
+    },
+    {
+      "name": "Vác",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Pest megyei püspöki város a Duna bal partján, a Dunakanyar kezdeténél.",
+      "lat": 47.7775,
+      "lon": 19.1361
+    },
+    {
+      "name": "Várpalota",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Veszprém megyei város a Bakony lábánál; egykori szénbányászat, hőerőmű és vár.",
+      "lat": 47.2,
+      "lon": 18.1333
+    },
+    {
+      "name": "Veresegyház",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Pest megyei város Budapest szomszédságában; medvemenhely, agglomerációs település.",
+      "lat": 47.6556,
+      "lon": 19.2858
+    },
+    {
+      "name": "Veszprém",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Veszprém megye székhelye a Bakony alatt; egyetem, vár, királynék városa.",
+      "lat": 47.0933,
+      "lon": 17.9093
+    },
+    {
+      "name": "Visegrád",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A Dunakanyar híres települése; Mátyás király palotája és fellegvár.",
+      "lat": 47.7861,
+      "lon": 18.9722
+    },
+    {
+      "name": "Visonta",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Heves megyei község a Mátra lábánál; hőerőmű és külszíni lignitbánya.",
+      "lat": 47.7833,
+      "lon": 20.0167
+    },
+    {
+      "name": "Zalaegerszeg",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Zala megye székhelye a Zala mentén; kőolajipar és gépgyártás.",
+      "lat": 46.8417,
+      "lon": 16.8416
+    },
+    {
+      "name": "Zalakaros",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Zala megyei gyógy- és fürdőváros Nagykanizsa közelében; hévízforrások.",
+      "lat": 46.5547,
+      "lon": 17.1228
+    },
+    {
+      "name": "Záhony",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "Szabolcs-Szatmár-Bereg megyei határváros Ukrajnával; vasúti átrakóhely a Tisza mellett.",
+      "lat": 48.4,
+      "lon": 22.1833
+    },
+    {
+      "name": "Budapesti agglomeráció",
+      "category": "Települések",
+      "emelt": false,
+      "desc": "A fővárost körülvevő, városiasodó települések gyűrűje Pest megyében.",
+      "lat": 47.5,
+      "lon": 19.1
+    },
+    {
+      "name": "Aggteleki Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "Magyarország északkeleti határán, az Aggteleki-karszton; híres cseppkőbarlangok.",
+      "lat": 48.47,
+      "lon": 20.5
+    },
+    {
+      "name": "Balaton-felvidéki Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Balaton északi partján; tanúhegyek, a Kál-medence és a Tihanyi-félsziget.",
+      "lat": 46.9,
+      "lon": 17.5
+    },
+    {
+      "name": "Bükki Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Bükk-hegységben, Eger és Miskolc között; karsztvidék, vadon.",
+      "lat": 48.05,
+      "lon": 20.5
+    },
+    {
+      "name": "Duna–Dráva Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Duna és a Dráva menti ártéri erdők védett területe Dél-Dunántúlon.",
+      "lat": 45.9,
+      "lon": 17.9
+    },
+    {
+      "name": "Duna– Ipoly Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Börzsöny, a Cserhát és az Ipoly–Duna menti területek védett együttese Budapesttől északra.",
+      "lat": 47.8,
+      "lon": 19.1
+    },
+    {
+      "name": "Fertő–Hanság Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Fertő magyar partja és a Hanság sík vidéke; kétoldalú védett terület Ausztriával.",
+      "lat": 47.7,
+      "lon": 16.8
+    },
+    {
+      "name": "Hortobágyi Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "Az ország első nemzeti parkja (1973) a Hortobágy puszta védett területe; madárvilág.",
+      "lat": 47.58,
+      "lon": 21.05
+    },
+    {
+      "name": "Kiskunsági Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Duna–Tisza köze homokos-szikes táján; legelőkön szürkemarha, puszta.",
+      "lat": 46.8,
+      "lon": 19.55
+    },
+    {
+      "name": "Körös–Maros Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Körös- és Maros-vidék ártéri és szikes tájainak védett területe Békés megyében.",
+      "lat": 46.75,
+      "lon": 20.9
+    },
+    {
+      "name": "Őrségi Nemzeti Park",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "Az ország délnyugati sarkában, az Őrség erdős-dombos tájon; hagyományos építészet.",
+      "lat": 46.87,
+      "lon": 16.3
+    },
+    {
+      "name": "Aggteleki-és Szlovák-karsztvidék",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "Közös magyar–szlovák világörökségi barlangrendszer; Baradla–Domica.",
+      "lat": 48.47,
+      "lon": 20.5
+    },
+    {
+      "name": "Budapest Andrássy út a Millenniumi földalattival",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "Budapest világörökségi városi sugárútja a Városligetig; Európa első földalattijával.",
+      "lat": 47.5069,
+      "lon": 19.0638
+    },
+    {
+      "name": "Budapest Várnegyed és a pesti Duna-part",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A budai Vár, a Gellért-hegy és a pesti rakpart világörökségi együttese.",
+      "lat": 47.496,
+      "lon": 19.0398
+    },
+    {
+      "name": "Fertő",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Fertő kultúrtáj a közös osztrák–magyar világörökség Sopron közelében.",
+      "lat": 47.72,
+      "lon": 16.72
+    },
+    {
+      "name": "Hollókő",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "Nógrád megyei palóc falu, hagyományos építészetével világörökség.",
+      "lat": 48.0556,
+      "lon": 19.5944
+    },
+    {
+      "name": "Hortobágy",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Hortobágyi Nemzeti Park a világörökség része (puszta, pásztorkultúra).",
+      "lat": 47.58,
+      "lon": 21.05
+    },
+    {
+      "name": "Pannonhalmi Főapátság",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Győr melletti Pannonhalmi bencés apátság a Szent Márton-hegyen; világörökség.",
+      "lat": 47.5522,
+      "lon": 17.7556
+    },
+    {
+      "name": "Pécsi ókeresztény sírkamrák",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "Pécs római kori Sopianae-ban fennmaradt ókeresztény temetője; világörökség.",
+      "lat": 46.0764,
+      "lon": 18.2272
+    },
+    {
+      "name": "Tokaj-Hegyalja borvidéke",
+      "category": "Nemzeti parkok, világörökségek",
+      "emelt": false,
+      "desc": "A Zempléni-hegység déli lábán fekvő történelmi borvidék; aszú; világörökség.",
+      "lat": 48.12,
+      "lon": 21.4
+    },
+    {
+      "name": "Baranya megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Délnyugati, a Mecsek és a Dráva között; székhelye Pécs.",
+      "lat": 46.0,
+      "lon": 18.3
+    },
+    {
+      "name": "Bács-Kiskun megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Az ország területre legnagyobb megyéje a Duna–Tisza közén; székhelye Kecskemét.",
+      "lat": 46.65,
+      "lon": 19.4
+    },
+    {
+      "name": "Békés megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Délkeleti megye a Körösök vidékén, a román határon; székhelye Békéscsaba.",
+      "lat": 46.65,
+      "lon": 21.0
+    },
+    {
+      "name": "Borsod-Abaúj-Zemplén megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Északkeleti megye a szlovák határnál, Bükk és Zemplén; székhelye Miskolc.",
+      "lat": 48.3,
+      "lon": 20.9
+    },
+    {
+      "name": "Csongrád-Csanád megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Déli megye a Tisza és a Maros mentén, a szerb és román határnál; székhelye Szeged.",
+      "lat": 46.4,
+      "lon": 20.2
+    },
+    {
+      "name": "Fejér megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Közép-Dunántúl megyéje a Mezőföldön; székhelye Székesfehérvár.",
+      "lat": 47.2,
+      "lon": 18.4
+    },
+    {
+      "name": "Győr-Moson-Sopron megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Északnyugati megye az osztrák és szlovák határnál; székhelye Győr.",
+      "lat": 47.65,
+      "lon": 17.4
+    },
+    {
+      "name": "Hajdú-Bihar megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Keleti megye a Hortobágy és a Hajdúság vidékén; székhelye Debrecen.",
+      "lat": 47.4,
+      "lon": 21.5
+    },
+    {
+      "name": "Heves megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Északi megye a Mátra és a Bükk között; székhelye Eger.",
+      "lat": 47.85,
+      "lon": 20.1
+    },
+    {
+      "name": "Jász-Nagykun-Szolnok megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Az ország közepén, a Tisza mentén; székhelye Szolnok.",
+      "lat": 47.2,
+      "lon": 20.3
+    },
+    {
+      "name": "Komárom-Esztergom megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Északnyugati megye a Duna mentén; székhelye Tatabánya.",
+      "lat": 47.6,
+      "lon": 18.3
+    },
+    {
+      "name": "Nógrád megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Az ország legkisebb területű megyéje északon; székhelye Salgótarján.",
+      "lat": 48.0,
+      "lon": 19.5
+    },
+    {
+      "name": "Pest megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Budapestet körülölelő megye; székhelye Budapest.",
+      "lat": 47.4,
+      "lon": 19.4
+    },
+    {
+      "name": "Somogy megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Dél-Dunántúli megye a Balaton és a Dráva között; székhelye Kaposvár.",
+      "lat": 46.4,
+      "lon": 17.6
+    },
+    {
+      "name": "Szabolcs-Szatmár-Bereg megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Északkeleti megye az ukrán és a román határnál; székhelye Nyíregyháza.",
+      "lat": 47.9,
+      "lon": 22.0
+    },
+    {
+      "name": "Tolna megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Dél-Dunántúli megye a Duna jobb partján; székhelye Szekszárd.",
+      "lat": 46.5,
+      "lon": 18.5
+    },
+    {
+      "name": "Vas megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Nyugati megye az osztrák és a szlovén határnál; székhelye Szombathely.",
+      "lat": 47.2,
+      "lon": 16.8
+    },
+    {
+      "name": "Veszprém megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Közép-Dunántúli megye a Bakony és a Balaton északi partja körül; székhelye Veszprém.",
+      "lat": 47.1,
+      "lon": 17.8
+    },
+    {
+      "name": "Zala megye",
+      "category": "Megyék",
+      "emelt": false,
+      "desc": "Délnyugati megye a Balatontól a Murán át; székhelye Zalaegerszeg.",
+      "lat": 46.7,
+      "lon": 16.9
+    },
+    {
+      "name": "Alföld és Észak nagyrégió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Az ország keleti fele: Észak-Magyarország, Észak-Alföld és Dél-Alföld régió.",
+      "lat": 47.5,
+      "lon": 20.8
+    },
+    {
+      "name": "Dunántúl nagyrégió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "A Duna nyugati oldala: Közép-, Nyugat- és Dél-Dunántúl régió.",
+      "lat": 46.9,
+      "lon": 17.6
+    },
+    {
+      "name": "Közép-Magyarország nagyrégió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Budapest és Pest megye együtt; az ország gazdasági és népességi központja.",
+      "lat": 47.45,
+      "lon": 19.25
+    },
+    {
+      "name": "Budapest régió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "A főváros mint önálló régió a Duna két partján.",
+      "lat": 47.4979,
+      "lon": 19.0402
+    },
+    {
+      "name": "Dél-Alföld régió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Bács-Kiskun, Békés és Csongrád-Csanád megye; központja Szeged.",
+      "lat": 46.5,
+      "lon": 20.0
+    },
+    {
+      "name": "Dél-Dunántúl régió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Baranya, Somogy és Tolna megye; központja Pécs.",
+      "lat": 46.2,
+      "lon": 17.9
+    },
+    {
+      "name": "Észak-Alföld régió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Hajdú-Bihar, Jász-Nagykun-Szolnok és Szabolcs-Szatmár-Bereg megye; központja Debrecen.",
+      "lat": 47.6,
+      "lon": 21.3
+    },
+    {
+      "name": "Észak-Magyarország régió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Borsod-Abaúj-Zemplén, Heves és Nógrád megye; központja Miskolc.",
+      "lat": 48.1,
+      "lon": 20.6
+    },
+    {
+      "name": "Közép-Dunántúl régió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Fejér, Komárom-Esztergom és Veszprém megye; központja Székesfehérvár.",
+      "lat": 47.3,
+      "lon": 18.0
+    },
+    {
+      "name": "Nyugat-Dunántúl régió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Győr-Moson-Sopron, Vas és Zala megye; központja Győr.",
+      "lat": 47.1,
+      "lon": 17.0
+    },
+    {
+      "name": "Pest régió",
+      "category": "Nagyrégiók, régiók",
+      "emelt": false,
+      "desc": "Pest megye mint régió, a fővárost körülvevő gyűrű.",
+      "lat": 47.5,
+      "lon": 19.4
+    }
+  ]
+}

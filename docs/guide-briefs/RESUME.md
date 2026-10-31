@@ -5,6 +5,7 @@ They refer to scratchpad paths (official requirement text extracts) that do not 
 "Érettségi követelmények 2024" document (bubaki.hu copy), extracted per subject.
 
 ## Done (on main and on the private link, version 45)
+
 - Matematika: all topic areas.
 - Történelem: all 42 topics (10 new units in this round).
 - Magyar: all 8 language topics, spelling, the 10 required life works, and literature topics 2–8.
@@ -12,9 +13,11 @@ They refer to scratchpad paths (official requirement text extracts) that do not 
   népesség és települések, világgazdaság).
 
 ## Földrajz 7–10
+
 Rewritten on 2026-10-27 against the official 2024 requirements: every sub-topic (7.1–7.9, 8.1–8.4.5, 9.1–9.6, 10.1–10.5)
 foldrajz-magyarorszag.ts, foldrajz-europa.ts, foldrajz-kontinensek.ts, foldrajz-globalis-kihivasok.ts.
 has a page or section, with the official requirement cells, the official topográfia lists and the topic 10 fogalmak.
 
 ## Next
+
 Földrajz place-name cards and emelt oral topics (steps 5–6 of the plan).

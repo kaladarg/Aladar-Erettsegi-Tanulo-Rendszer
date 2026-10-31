@@ -6,7 +6,6 @@ import { usePageTitle } from '@/app/usePageTitle';
 import { findSubject } from '@/content/catalog';
 import {
   blockFits,
-  findGuidePage,
   neighbours,
   visibleBlocks,
   type GuidePage,
@@ -22,6 +21,7 @@ import { ExamTasks } from './ExamTasks';
 import { GuideBlocks, SectionTitle } from './GuideBlocks';
 import { LevelBadge } from './GuideHubPage';
 import { GuideQuiz } from './GuideQuiz';
+import { useGuidePage } from './useGuide';
 import { useLevelView } from './useLevelView';
 
 type Depth = 'gyorsan' | 'reszletesen' | 'vizsgan';
@@ -29,8 +29,9 @@ const DEPTHS: Depth[] = ['gyorsan', 'reszletesen', 'vizsgan'];
 
 export function GuideReaderPage() {
   const { pageId = '' } = useParams();
-  const found = findGuidePage(pageId);
-  if (!found) return <NotFoundPage />;
+  const found = useGuidePage(pageId);
+  if (found === 'loading') return <p className="text-muted">{t('guide.loading')}</p>;
+  if (found === 'missing') return <NotFoundPage />;
   return <Reader key={pageId} unit={found.unit} page={found.page} />;
 }
 
@@ -56,7 +57,7 @@ function Reader({ unit, page }: { unit: GuideUnit; page: GuidePage }) {
   const depth: Depth = DEPTHS.find((d) => d === params.get('resz')) ?? 'gyorsan';
   const progress = useGuideProgress();
   const read = !!progress?.get(page.id)?.readAt;
-  const { previous, next } = neighbours(page.id, view);
+  const { previous, next } = neighbours(unit, page.id, view);
   const blocks =
     depth === 'gyorsan' ? page.summary : depth === 'reszletesen' ? page.details : page.exam;
   const quiz = page.quiz.filter((q) => blockFits(q, view));
