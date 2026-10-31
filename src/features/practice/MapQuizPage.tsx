@@ -1,7 +1,14 @@
 import { useId, useMemo, useState } from 'react';
+import { ExternalLink } from 'lucide-react';
 import { usePageTitle } from '@/app/usePageTitle';
 import { GEOGRAPHY_CARDS } from '@/content/cards/geographyCards';
 import type { GeographyEra } from '@/content/cards/types';
+import {
+  EXTERNAL_QUIZ_AUTHOR_URL,
+  EXTERNAL_QUIZ_PLAYLIST_URL,
+  EXTERNAL_QUIZZES,
+  type ExternalQuiz,
+} from '@/content/topography/externalQuizzes';
 import { PageHeader } from '@/design/ui/PageHeader';
 import { t } from '@/i18n';
 import { useSettings } from '@/state/settingsStore';
@@ -89,6 +96,52 @@ export function MapQuizPage() {
         items={items}
         onNewRound={() => setRound((r) => r + 1)}
       />
+      <MoreQuizzes region={region} />
     </>
+  );
+}
+
+function QuizLink({ quiz }: { quiz: ExternalQuiz }) {
+  return (
+    <li>
+      <a
+        href={quiz.url}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex min-h-11 items-center gap-1.5 text-primary underline underline-offset-2"
+      >
+        {quiz.title}
+        <ExternalLink aria-hidden="true" className="size-3.5 shrink-0" />
+      </a>
+    </li>
+  );
+}
+
+/** Links to free blank-map quizzes on PurposeGames for further practice. */
+function MoreQuizzes({ region }: { region: GeographyEra }) {
+  const quizzes = EXTERNAL_QUIZZES[region] ?? [];
+  return (
+    <section aria-labelledby="map-quiz-more" className="mt-8 rounded-lg border border-border p-4">
+      <h2 id="map-quiz-more" className="text-lg font-semibold">
+        {t('mapQuiz.moreTitle')}
+      </h2>
+      <p className="mt-1 text-sm text-muted">{t('mapQuiz.moreIntro')}</p>
+      <h3 className="mt-4 font-medium">
+        {t('mapQuiz.moreRegion')}: {t(`practice.cards.eras.${region}`)}
+      </h3>
+      {quizzes.length ? (
+        <ul className="mt-1 grid gap-0 sm:grid-cols-2">
+          {quizzes.map((quiz) => (
+            <QuizLink key={quiz.url} quiz={quiz} />
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-1 text-sm">{t('mapQuiz.moreNone')}</p>
+      )}
+      <ul className="mt-3 grid gap-0 border-t border-border pt-3">
+        <QuizLink quiz={{ title: t('mapQuiz.moreAll'), url: EXTERNAL_QUIZ_AUTHOR_URL }} />
+        <QuizLink quiz={{ title: t('mapQuiz.morePlaylist'), url: EXTERNAL_QUIZ_PLAYLIST_URL }} />
+      </ul>
+    </section>
   );
 }

@@ -1679,6 +1679,13 @@ export const hu = {
     region: 'Terület',
     question: 'Melyik hely van megjelölve a térképen? ({kind})',
     mapLabel: 'Térkép, rajta egy megjelölt hely',
+    moreTitle: 'Gyakorolj tovább a PurposeGames oldalon',
+    moreIntro:
+      'Ingyenes vaktérképes kvízek az érettségi névanyagból (szerző: havassy). Itt rá kell kattintani a helyre a térképen, mint a vizsgán. A kvízek a régebbi névlistára is épülhetnek, ezért egy-egy név eltérhet a 2024-es listától. Új lapon nyílnak meg, az oldalon reklám is lehet.',
+    moreRegion: 'Ehhez a területhez',
+    moreNone: 'Ehhez a területhez nincs külön kvíz; nézd meg a teljes listát lent.',
+    moreAll: 'Az összes kvíz, régi érettségik vaktérképes feladataival',
+    morePlaylist: 'Földrajz érettségi névanyag lejátszási lista',
   },
   probability: {
     title: 'Valószínűség lépésről lépésre',

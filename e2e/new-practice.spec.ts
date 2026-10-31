@@ -26,6 +26,10 @@ test('grammar drills, földrajz calculations, map quiz and study guide search', 
   await expect(page.getByRole('img', { name: 'Térkép, rajta egy megjelölt hely' })).toBeVisible();
   await page.getByLabel('Terület').selectOption('afrika');
   await expect(page.getByText('1. kérdés / 10')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Afrika tájai és vizei/ })).toHaveAttribute(
+    'href',
+    /purposegames\.com/,
+  );
 
   await page.goto('/tananyag');
   await page.getByRole('searchbox', { name: 'Keresés a tananyagban' }).fill('aranybulla');
