@@ -5,7 +5,9 @@ test('grammar drills, földrajz calculations, map quiz and study guide search', 
   await finishOnboarding(page, ['Magyar nyelv és irodalom']);
 
   await page.goto('/gyakorlas/nyelvtan');
-  await expect(page.getByRole('heading', { level: 1, name: 'Nyelvtan és helyesírás' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'Nyelvtan és helyesírás' }),
+  ).toBeVisible();
   await expect(page.getByText('1. kérdés / 10')).toBeVisible();
   await page.getByRole('list', { name: 'Válaszlehetőségek' }).getByRole('button').first().click();
   await expect(page.getByText(/Helyes!|Nem ez a jó válasz\./)).toBeVisible();
@@ -28,6 +30,9 @@ test('grammar drills, földrajz calculations, map quiz and study guide search', 
   await page.goto('/tananyag');
   await page.getByRole('searchbox', { name: 'Keresés a tananyagban' }).fill('aranybulla');
   await expect(page.getByText(/\d+ találat/)).toBeVisible();
-  await page.getByRole('link', { name: /Aranybulla|II\. András/ }).first().click();
+  await page
+    .getByRole('link', { name: /Aranybulla|II\. András/ })
+    .first()
+    .click();
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 });
