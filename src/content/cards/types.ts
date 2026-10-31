@@ -3,7 +3,7 @@
  * turns over and marks as known or not. Review status of the built-in decks:
  * draft, until a teacher checks them.
  */
-export type CardSubject = 'tortenelem' | 'magyar' | 'matematika' | 'angol' | 'nemet';
+export type CardSubject = 'tortenelem' | 'magyar' | 'matematika' | 'angol' | 'nemet' | 'foldrajz';
 
 export type HistoryDeckId = 'evszamok' | 'fogalmak' | 'szemelyek' | 'topografia';
 export type LiteratureDeckId = 'szerzok' | 'muvek' | 'korszakok' | 'irodalmi-fogalmak';
@@ -31,7 +31,10 @@ export type LiteratureEra =
 export type LanguageEra = 'informalis' | 'formalis' | 'semleges';
 /** Maths uses the five topic areas of the exam requirements instead of a period. */
 export type MathEra = 'gondolkodas' | 'algebra' | 'fuggvenyek' | 'geometria' | 'valoszinuseg';
-export type Era = HistoryEra | LiteratureEra | LanguageEra | MathEra;
+/** Földrajz place names, by the regions of the official topográfia list. */
+export type GeographyEra =
+  'fold' | 'afrika' | 'amerika' | 'ausztralia' | 'azsia' | 'europa' | 'magyarorszag';
+export type Era = HistoryEra | LiteratureEra | LanguageEra | MathEra | GeographyEra;
 
 export interface StudyCard {
   /** Stable id: `<deck>-<slug>`; never reuse an id for a different card. */
@@ -50,7 +53,7 @@ export interface StudyCard {
   /** Only required at emelt szint. */
   emelt?: boolean;
   /** Place cards: position and which map view to show. */
-  place?: { lat: number; lon: number; view: 'europe' | 'hungary' };
+  place?: { lat: number; lon: number; view: 'europe' | 'hungary' | 'world' };
 }
 
 /** A card as written in a deck file; the subject comes from the file. */

@@ -42,12 +42,27 @@ describe('study cards', () => {
       expect(card.place, card.id).toBeDefined();
       const { lat, lon, view } = card.place!;
       const [x, y] = project(lon, lat);
-      const v = MAP_VIEWS[view];
+      const v = MAP_VIEWS[view as 'europe' | 'hungary'];
       expect(x, card.id).toBeGreaterThan(v.x);
       expect(x, card.id).toBeLessThan(v.x + v.w);
       expect(y, card.id).toBeGreaterThan(v.y);
       expect(y, card.id).toBeLessThan(v.y + v.h);
       expect(card.front.toLowerCase()).not.toContain(card.back.toLowerCase());
+    }
+  });
+});
+
+describe('földrajz place cards', () => {
+  const cards = filterCards({ subject: 'foldrajz' });
+  it('cover the whole official list and keep Hungarian places on the Hungary map', () => {
+    expect(cards.length).toBeGreaterThan(700);
+    for (const card of cards) {
+      expect(card.front.toLocaleLowerCase('hu')).not.toContain(card.back.toLocaleLowerCase('hu'));
+      if (card.place?.view === 'hungary') {
+        const [x, y] = project(card.place.lon, card.place.lat);
+        const v = MAP_VIEWS.hungary;
+        expect(x > v.x && x < v.x + v.w && y > v.y && y < v.y + v.h, card.id).toBe(true);
+      }
     }
   });
 });

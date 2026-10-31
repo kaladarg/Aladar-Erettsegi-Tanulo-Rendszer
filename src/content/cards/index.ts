@@ -1,4 +1,5 @@
 import { ENGLISH_CARDS } from './englishCards';
+import { GEOGRAPHY_CARDS } from './geographyCards';
 import { GERMAN_CARDS } from './germanCards';
 import { HISTORY_CARDS } from './historyCards';
 import { LITERATURE_CARDS } from './literatureCards';
@@ -13,6 +14,7 @@ export const CARD_SUBJECTS: CardSubject[] = [
   'matematika',
   'angol',
   'nemet',
+  'foldrajz',
 ];
 
 /** Subjects whose cards are phrases in a foreign language (with its BCP 47 tag). */
@@ -27,6 +29,7 @@ export const SUBJECT_DECKS: Record<CardSubject, DeckId[]> = {
   matematika: ['definiciok', 'tetelek', 'bizonyitasok'],
   angol: LANGUAGE_DECKS,
   nemet: LANGUAGE_DECKS,
+  foldrajz: ['topografia'],
 };
 
 export const SUBJECT_ERAS: Record<CardSubject, Era[]> = {
@@ -46,6 +49,7 @@ export const SUBJECT_ERAS: Record<CardSubject, Era[]> = {
   matematika: ['gondolkodas', 'algebra', 'fuggvenyek', 'geometria', 'valoszinuseg'],
   angol: REGISTERS,
   nemet: REGISTERS,
+  foldrajz: ['magyarorszag', 'europa', 'azsia', 'afrika', 'amerika', 'ausztralia', 'fold'],
 };
 
 export const DECKS: DeckId[] = [...new Set(Object.values(SUBJECT_DECKS).flat())];
@@ -65,6 +69,7 @@ export const ALL_CARDS: StudyCard[] = [
   ...MATH_CARDS.map((card) => ({ ...card, subject: 'matematika' as const })),
   ...ENGLISH_CARDS.map((card) => ({ ...card, subject: 'angol' as const })),
   ...GERMAN_CARDS.map((card) => ({ ...card, subject: 'nemet' as const })),
+  ...GEOGRAPHY_CARDS.map((card) => ({ ...card, subject: 'foldrajz' as const })),
 ];
 export const CARDS_BY_ID = new Map(ALL_CARDS.map((card) => [card.id, card]));
 

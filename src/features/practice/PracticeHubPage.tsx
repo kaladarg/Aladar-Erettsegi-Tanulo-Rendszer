@@ -7,6 +7,9 @@ import {
   GalleryVerticalEnd,
   GraduationCap,
   Backpack,
+  Calculator,
+  MapPinned,
+  SpellCheck,
   Layers,
   Mic,
   NotebookPen,
@@ -58,6 +61,48 @@ export function PracticeHubPage() {
           title={t('practice.hub.memoriterTitle')}
           body={t('practice.hub.memoriterBody')}
           badge={chosen.length > 0 && fitsSubjects('memoriter', chosen)}
+        />
+      ),
+    },
+    {
+      tool: 'languageDrills',
+      card: (
+        <HubCard
+          key="languageDrills"
+          to="/gyakorlas/nyelvtan"
+          tint="rose"
+          icon={<SpellCheck />}
+          title={t('practice.hub.languageDrillsTitle')}
+          body={t('practice.hub.languageDrillsBody')}
+          badge={chosen.length > 0 && fitsSubjects('languageDrills', chosen)}
+        />
+      ),
+    },
+    {
+      tool: 'geoCalc',
+      card: (
+        <HubCard
+          key="geoCalc"
+          to="/gyakorlas/foldrajz-szamolas"
+          tint="cyan"
+          icon={<Calculator />}
+          title={t('practice.hub.geoCalcTitle')}
+          body={t('practice.hub.geoCalcBody')}
+          badge={chosen.length > 0 && fitsSubjects('geoCalc', chosen)}
+        />
+      ),
+    },
+    {
+      tool: 'mapQuiz',
+      card: (
+        <HubCard
+          key="mapQuiz"
+          to="/gyakorlas/terkepkviz"
+          tint="cyan"
+          icon={<MapPinned />}
+          title={t('practice.hub.mapQuizTitle')}
+          body={t('practice.hub.mapQuizBody')}
+          badge={chosen.length > 0 && fitsSubjects('mapQuiz', chosen)}
         />
       ),
     },

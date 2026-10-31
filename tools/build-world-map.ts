@@ -20,19 +20,25 @@ const topology = JSON.parse(
 type Ring = [number, number][];
 const MIN_STEP = 0.6;
 
+/**
+ * Rings that cross the date line are unwrapped (each longitude kept within 180° of the
+ * previous one), so they run off the map edge instead of drawing a line across the map.
+ */
 function pathOf(lines: Ring[], close: boolean): string {
   let d = '';
   for (const line of lines) {
     const points: [number, number][] = [];
-    for (const [lon, lat] of line) {
+    let previous: number | undefined;
+    for (const [rawLon, lat] of line) {
+      let lon = rawLon;
+      if (previous !== undefined) {
+        while (lon - previous > 180) lon -= 360;
+        while (previous - lon > 180) lon += 360;
+      }
+      previous = lon;
       const [x, y] = projectWorld(lon, Math.max(-58, Math.min(84, lat)));
       const last = points.at(-1);
-      // A jump across the date line starts a new piece instead of a line over the map.
-      if (last && Math.abs(x - last[0]) > 500) {
-        if (points.length >= 2)
-          d += `M${points.map((p) => `${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join('L')}`;
-        points.length = 0;
-      } else if (last && Math.hypot(x - last[0], y - last[1]) < MIN_STEP) continue;
+      if (last && Math.hypot(x - last[0], y - last[1]) < MIN_STEP) continue;
       points.push([x, y]);
     }
     if (points.length < (close ? 3 : 2)) continue;

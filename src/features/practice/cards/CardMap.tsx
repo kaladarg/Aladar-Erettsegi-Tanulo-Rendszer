@@ -1,28 +1,35 @@
 import { useEffect, useState } from 'react';
-import { MAP_VIEWS, project, type MapViewId } from '@/content/cards/projection';
+import { MAP_VIEWS, project, type MapView, type MapViewId } from '@/content/cards/projection';
+import { projectWorld, worldViewAround } from '@/content/cards/worldProjection';
 import { Skeleton } from '@/design/ui/Skeleton';
 
-type Paths = typeof import('@/content/cards/mapPaths');
-let loaded: Paths | null = null;
+type Paths = { LAND_PATH: string; BORDER_PATH: string; RIVER_PATH: string; LAKE_PATH: string };
+const loaded: { europe?: Paths; world?: Paths } = {};
+const loaders = {
+  europe: () => import('@/content/cards/mapPaths'),
+  world: () => import('@/content/cards/worldPaths'),
+};
 
-/** The base map, loaded on first use (it is the largest part of the cards feature). */
-function useMapPaths(): Paths | null {
-  const [paths, setPaths] = useState(loaded);
+/** A base map, loaded on first use (maps are the largest part of the cards feature). */
+function useMapPaths(map: 'europe' | 'world'): Paths | null {
+  const [paths, setPaths] = useState<{ map: string; paths: Paths } | null>(() =>
+    loaded[map] ? { map, paths: loaded[map] } : null,
+  );
   useEffect(() => {
-    if (paths) return;
+    if (paths?.map === map) return;
     let active = true;
-    void import('@/content/cards/mapPaths').then((module) => {
-      loaded = module;
-      if (active) setPaths(module);
+    void loaders[map]().then((module) => {
+      loaded[map] = module;
+      if (active) setPaths({ map, paths: module });
     });
     return () => {
       active = false;
     };
-  }, [paths]);
-  return paths;
+  }, [map, paths]);
+  return paths?.map === map ? paths.paths : null;
 }
 
-/** A map of Europe or the Carpathian Basin with one place marked. */
+/** A map of the Carpathian Basin, Europe or part of the world with one place marked. */
 export function CardMap({
   lat,
   lon,
@@ -32,13 +39,14 @@ export function CardMap({
 }: {
   lat: number;
   lon: number;
-  view: MapViewId;
+  view: MapViewId | 'world';
   label: string;
   className?: string;
 }) {
-  const paths = useMapPaths();
-  const v = MAP_VIEWS[view];
-  const [x, y] = project(lon, lat);
+  const world = view === 'world';
+  const paths = useMapPaths(world ? 'world' : 'europe');
+  const v: MapView = world ? worldViewAround(lat, lon) : MAP_VIEWS[view];
+  const [x, y] = world ? projectWorld(lon, lat) : project(lon, lat);
   const unit = v.w / 600;
   if (!paths) return <Skeleton className="aspect-[4/3] w-full" />;
   return (

@@ -144,6 +144,24 @@ export function createRouter() {
           }),
         },
         {
+          path: 'gyakorlas/nyelvtan',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/LanguageDrillPage')).LanguageDrillPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/foldrajz-szamolas',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/GeoCalcPage')).GeoCalcPage,
+          }),
+        },
+        {
+          path: 'gyakorlas/terkepkviz',
+          lazy: async () => ({
+            Component: (await import('@/features/practice/MapQuizPage')).MapQuizPage,
+          }),
+        },
+        {
           path: 'gyakorlas/valoszinuseg',
           lazy: async () => ({
             Component: (await import('@/features/practice/ProbabilityPage')).ProbabilityPage,

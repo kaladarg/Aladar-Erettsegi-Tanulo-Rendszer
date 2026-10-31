@@ -2,6 +2,9 @@
 export const SUBJECT_TOOLS = {
   essay: ['tortenelem', 'magyar'],
   memoriter: ['magyar'],
+  languageDrills: ['magyar'],
+  geoCalc: ['foldrajz'],
+  mapQuiz: ['foldrajz'],
   probability: ['matematika'],
   oral: ['tortenelem', 'magyar', 'angol', 'nemet', 'foldrajz'],
 } as const;
